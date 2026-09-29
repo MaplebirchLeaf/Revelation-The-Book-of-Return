@@ -1,0 +1,66 @@
+:: Revelation Robin Temple Walk
+<!-- ./src/twee/RobinTemple/Walk.twee -->
+<<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.walk_day is Time.days>>
+  <<lanSwitch 'Robin has already walked with you today. <<He>> still has work to finish before going home.' '今天罗宾已经陪你走过一趟。回家前，<<he>>还有活要做。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+<<else>>
+  <<lanSwitch 'Robin comes down the temple steps beside you, folding <<his>> work list into a pocket. The evening air feels cooler after the hall.' '罗宾与你一起走下神殿台阶，把工作表折好塞进口袋。离开大厅，晚风显得凉了些。'>>
+  <br><br>
+  <<if Weather.precipitation is 'rain'>>
+    <<lanSwitch 'Rain has darkened the stones. Robin pulls up <<his>> hood and keeps to the sheltered side of the street with you.' '雨水把石阶染深了。罗宾拉起兜帽，与你沿着街道有遮挡的一侧走。'>>
+  <<elseif Weather.isSnow>>
+    <<lanSwitch 'Snow catches in Robin’s hair. <<He>> shakes it free and offers you the warmer side of the path.' '雪落在罗宾的头发上。<<He>>摇掉雪花，把背风的一侧让给你。'>>
+  <<else>>
+    <<lanSwitch 'The last shops are closing. You can hear someone sweeping a doorway further down the street.' '最后几家店正要关门。街道那头传来有人清扫门前的声音。'>>
+  <</if>>
+  <br><br>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'Revelation Robin Temple Walk Faith'>><<pass 30>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '问起孤儿院的孩子 (0:30)' 'Revelation Robin Temple Walk Home'>><<pass 30>><</lanLink>><br>
+  <<if $robinromance is 1>>
+    <<loveicon 'kiss'>><<lanLink '牵住罗宾的手 (0:30)' 'Revelation Robin Temple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
+  <</if>>
+  <<if $RevelationRobinTemple.work_day is Time.days>>
+    <<foresticon>><<lanLink '和罗宾去森林 (0:30)' 'Robin Forest'>><<set $RevelationRobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><br>
+    <<if C.npc.Robin.love gte 20 and $money gte 1500 and !$daily.robin.cinema and Time.hour lt 19>>
+      <<socialiseicon 'cinema'>><<lanLink '和罗宾去电影院 (£15 0:15)' 'Robin Walk Cinema'>><<set $RevelationRobinTemple.walk_day to Time.days>><<pass 15>><</lanLink>><br>
+    <</if>>
+  <<else>>
+    <span class='blue'><<lanSwitch 'Robin still has a shift to finish before a longer outing.' '罗宾还有一班工作没做完，现在只能在附近走走。'>></span><br>
+  <</if>>
+  <br>
+  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Walk Faith
+<<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set $RevelationRobinTemple.walk_day to Time.days>>
+<<lanSwitch '"I like the work," Robin says. "I do not always understand what everyone here believes. Jordan lets me ask questions. That helps."' '“我喜欢这里的工作，”罗宾说，“这里的人相信的事，我不是每件都懂。约旦肯让我提问，这让我安心些。”'>>
+<br><br>
+<<lanSwitch
+  '<<He>> asks what brought you to the temple in the first place. You tell <<him>> as much as you want to, and <<he>> listens until the street turns toward home.'
+  '<<He>>问你最初为何来到神殿。你挑愿意说的告诉<<him>>，<<he>>一直听到街道拐向家的方向。'
+>>
+<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
+<<npcincr Robin dom 1>><br><br><<gdom>>
+<<getouticon>><<lanLink '送罗宾回孤儿院' 'Orphanage'>><<pass 15>><</lanLink>><br>
+
+:: Revelation Robin Temple Walk Home
+<<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set $RevelationRobinTemple.walk_day to Time.days>>
+<<lanSwitch 'Robin tells you which child has learned to tie their own shoes, and which one keeps asking when the lemonade stall will open again.' '罗宾告诉你，哪个孩子学会了自己系鞋带，哪个孩子一直追问柠檬水摊什么时候再开。'>>
+<br><br>
+<<lanSwitch '"I thought joining the temple meant choosing between them and this place," <<he>> says. "I am glad I asked."' '“我起初以为加入神殿，就得在他们和这里之间选一个，”<<he>>说，“幸好我问清楚了。”'>>
+<<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+<<getouticon>><<lanLink '送罗宾回孤儿院' 'Orphanage'>><<pass 15>><</lanLink>><br>
+
+:: Revelation Robin Temple Walk Hand
+<<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set $RevelationRobinTemple.walk_day to Time.days>>
+<<takeHandholdingVirginity 'Robin' 'romantic'>>
+<<lanSwitch 'You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the shuttered shops without hurrying.' '你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过已经打烊的店铺。'>>
+<br><br>
+<<lanSwitch 'At the turn toward the orphanage, Robin hesitates just long enough to ask whether you will come by tomorrow.' '到了通往孤儿院的路口，罗宾迟疑片刻，问你明天会不会过来。'>>
+<<npcincr Robin love 2>><br><br><<glove>>
+<<getouticon>><<lanLink '送罗宾回孤儿院' 'Orphanage'>><<pass 15>><</lanLink>><br>

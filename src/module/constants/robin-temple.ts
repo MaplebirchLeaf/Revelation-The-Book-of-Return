@@ -1,0 +1,84 @@
+// ./src/module/constants/robin-temple.ts
+
+/** The route belongs to the current SugarCube save, not to the browser session. */
+export interface RobinTempleState {
+  stage: 'none' | 'invited' | 'scheduled' | 'failed' | 'member' | 'approved' | 'promised';
+  exam_day: number;
+  exam_attempts: number;
+  readiness: number;
+  prepared_day: number;
+  service: number;
+  work_day: number;
+  vigil_day: number;
+  vigil_followup: boolean;
+  vigil_recovery: boolean;
+  evaluation_day: number;
+  evaluation_style: 'honest' | 'protective' | '';
+  evaluation_marks: number;
+  evaluation_memory: 'first' | 'care' | 'rescue' | '';
+  evaluation_belief_done: boolean;
+  joint_consent: boolean;
+  joint_sydney_penance: boolean;
+  penance_day: number;
+  penance_service: number;
+  penance_work_day: number;
+  breach: '' | 'pc' | 'robin' | 'both';
+  penance_response: 'hold' | 'speak' | 'endure' | '';
+  confession_day: number;
+  prayer_day: number;
+  prayer_event_day: number;
+  prayer_event: number;
+  prayer_event_done: boolean;
+  walk_day: number;
+  night_day: number;
+  night_scene: 'rain' | 'voice' | 'blanket' | '';
+  spear_seen: boolean;
+  spear_return_seen: boolean;
+  transformation_day: number;
+  transformation_count: number;
+  transformation_kind: 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | '';
+  donation_day: number;
+  donation_amount: number;
+  clasp_discussed: boolean;
+}
+
+export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
+  stage: 'none',
+  exam_day: -1,
+  exam_attempts: 0,
+  readiness: 0,
+  prepared_day: -1,
+  service: 0,
+  work_day: -1,
+  vigil_day: -1,
+  vigil_followup: false,
+  vigil_recovery: false,
+  evaluation_day: -1,
+  evaluation_style: '',
+  evaluation_marks: 0,
+  evaluation_memory: '',
+  evaluation_belief_done: false,
+  joint_consent: false,
+  joint_sydney_penance: false,
+  penance_day: -1,
+  penance_service: 0,
+  penance_work_day: -1,
+  breach: '',
+  penance_response: '',
+  confession_day: -1,
+  prayer_day: -1,
+  prayer_event_day: -1,
+  prayer_event: 0,
+  prayer_event_done: false,
+  walk_day: -1,
+  night_day: -1,
+  night_scene: '',
+  spear_seen: false,
+  spear_return_seen: false,
+  transformation_day: -1,
+  transformation_count: 0,
+  transformation_kind: '',
+  donation_day: -1,
+  donation_amount: 0,
+  clasp_discussed: false
+};

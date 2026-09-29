@@ -1,0 +1,54 @@
+:: Revelation Robin Temple Journal Widgets [widget]
+<!-- ./src/twee/RobinTemple/Journal.twee -->
+<<widget 'revelation-robin-temple-journal'>>
+  <<if $RevelationRobinTemple?.stage and $RevelationRobinTemple.stage isnot 'none'>>
+    <hr>
+    <h1 class='header gold bold'><<lanSwitch 'Robin and the temple' '罗宾与神殿'>></h1>
+    <ul class='journal'>
+      <<switch $RevelationRobinTemple.stage>>
+        <<case 'invited'>>
+          <li><<lanSwitch 'Robin has questions about joining the temple. Talk in Robin’s room after making your own vow.' '罗宾对加入神殿还有疑问。立下自己的誓言后，去罗宾的房间谈谈。'>></li>
+        <<case 'scheduled'>>
+          <li><<lanSwitch 'Jordan will assess Robin on day ' '约旦将在第 '>>
+            <span class='gold'><<= $RevelationRobinTemple.exam_day>></span><<lanSwitch '. Before then, help Robin prepare in the temple quarters after the stall closes.' ' 天考核罗宾。在此之前，可以等摊位收工后去神殿宿舍帮罗宾准备。'>></li>
+        <<case 'failed'>>
+          <li><<lanSwitch 'Robin needs time to decide freely. Ask again in Robin’s room after day ' '罗宾需要时间自己考虑。第 '>>
+            <span class='gold'><<= $RevelationRobinTemple.exam_day + 7>></span><<lanSwitch '.' ' 天后再去房间询问。'>></li>
+        <<case 'member'>>
+          <li><<lanSwitch 'Robin has a place in the temple quarters. You can work together during the evening shift.' '罗宾在神殿宿舍有自己的位置。晚间值班时可以一起做事。'>></li>
+          <li><<lanSwitch 'On weekdays without school, Robin helps at the temple from 09:00 to 16:00. You can also ask to walk there together from Robin’s room after 17:00. Robin stays overnight on Saturday and helps with the Sunday service.' '不上学的工作日，罗宾会在 09:00 至 16:00 帮神殿做事。17:00 后也可以在罗宾房间约<<him>>同行。星期六夜里罗宾会留宿，并协助星期日礼拜。'>></li>
+          <<if $RevelationRobinTemple.penance_day gte 0>>
+            <li><<lanSwitch 'The temple work ends on day ' '神殿安排的工作在第 '>>
+              <span class='red'><<= $RevelationRobinTemple.penance_day>></span><<lanSwitch '. Complete three evening shifts together, then return to the temple quarters.' ' 天结束。先陪罗宾完成三个晚间班次，再去神殿宿舍。'>></li>
+            <li><<lanSwitch 'Evening shifts completed: ' '已完成的晚间班次：'>><span class='teal'><<= $RevelationRobinTemple.penance_service>></span>/3</li>
+          <<elseif $robinromance is 1 and $RevelationRobinTemple.service gte 3>>
+            <li><<lanSwitch 'Ask Robin about making a promise during an evening shift. Jordan will weigh your shared work and Robin’s conviction.' '晚间值班时可以和罗宾谈承诺仪式。约旦会考虑你们共同完成的工作，以及罗宾对誓言的信念。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Shared temple shifts: ' '已一起完成的神殿值班：'>><span class='teal'><<= $RevelationRobinTemple.service>></span>/3</li>
+          <</if>>
+        <<case 'approved'>>
+          <li><<lanSwitch 'Jordan approved the rite. Meet Robin in the temple quarters in the evening.' '约旦批准了仪式。傍晚去神殿宿舍见罗宾。'>></li>
+        <<case 'promised'>>
+          <<if $templePromised is 'Sydney'>>
+            <li><<lanSwitch 'The temple records promises with Robin and Sydney. Jordan will examine all three vows together.' '神殿记录着你与罗宾、悉尼立下的承诺。约旦会一起检查三人的誓言。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Your promise to Robin is recognised by the temple. Jordan will examine your vows together.' '神殿见证了你和罗宾的承诺。约旦会一同检查你们的誓言。'>></li>
+          <</if>>
+          <li><<lanSwitch 'Days until the next examination: ' '距离下次检查还有：'>><span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span></li>
+      <</switch>>
+      <<if $RevelationRobinTemple.joint_sydney_penance>>
+        <li><<lanSwitch 'Work with Robin and Sydney on three separate days, then return after day ' '与罗宾、悉尼在三个不同的日子完成工作，第 '>>
+          <span class='red'><<= $RevelationRobinTemple.penance_day>></span><<lanSwitch ' to renew the broken vows.' ' 天后再去重新立誓。'>></li>
+        <li><<lanSwitch 'Shared shifts completed: ' '已完成的共同值班：'>><span class='teal'><<= $RevelationRobinTemple.penance_service>></span>/3</li>
+      <</if>>
+      <<if C.npc.Robin.revelationConviction gt 0>>
+        <li><<lanSwitch 'Robin’s temple conviction: ' '罗宾的神殿信念：'>><span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200</li>
+      <</if>>
+      <<if $temple_spear_mission is 1 and !$RevelationRobinTemple.spear_seen>>
+        <li><<lanSwitch 'Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.' '罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。'>></li>
+      <<elseif $temple_spear_mission gte 2 and $RevelationRobinTemple.spear_seen and !$RevelationRobinTemple.spear_return_seen>>
+        <li><<lanSwitch 'You promised to tell Robin how the spear journey went. Find <<him>> at the temple bench.' '你答应把取矛的经过告诉罗宾。去神殿长椅找<<him>>。'>></li>
+      <</if>>
+    </ul>
+  <</if>>
+<</widget>>

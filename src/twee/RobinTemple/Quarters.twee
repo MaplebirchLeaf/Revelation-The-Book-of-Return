@@ -1,0 +1,115 @@
+:: Revelation Robin Temple Corner
+<!-- ./src/twee/RobinTemple/Quarters.twee -->
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'Robin has been given a narrow shelf and a place at the long table in the quarters. A schoolbook rests beside temple notes. A stall receipt marks the page.' '罗宾在宿舍里分到一小格书架和长桌旁的座位。课本挨着神殿笔记，摊位收据夹在书页之间。'>>
+<br><br>
+<<icon 'temple/revelation-robin-temple-bed.png'>><<lanLink '看看罗宾的床铺' 'Revelation Robin Temple Bunk'>><</lanLink>><br>
+<<if (Time.weekDay is 7 and Time.hour gte 21) or (Time.weekDay is 1 and Time.hour lt 7)>>
+  <<lanSwitch 'Robin has turned in for the night. <<His>> schoolbook lies closed beside the bunk.' '罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。'>>
+<<elseif Time.weekDay is 1 and Time.hour is 11>>
+  <<lanSwitch 'Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.' '罗宾在帮忙准备星期日礼拜。结束后，<<he>>会回宿舍。'>>
+  <<if $RevelationRobinTemple.work_day isnot Time.days
+    and Time.minute lt 30>>
+    <br><br>
+    <<templeicon 'altar'>><<lanLink '去帮罗宾准备礼拜 (0:30)' 'Revelation Robin Temple Sunday Service'>><<pass 30>><</lanLink>><br>
+  <</if>>
+<<elseif Time.weekDay is 1 and Time.hour is 12>>
+  <<lanSwitch 'The Sunday service has begun. Robin is near the back of the hall, helping late arrivals find their seats.' '星期日礼拜已经开始。罗宾在大厅后方帮晚到的人找座位。'>>
+<<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9 and Time.hour lt 13>>
+  <<if Time.hour lt 11>>
+    <<lanSwitch 'Robin is carrying tools between the temple garden and the quarters. <<He>> has left a note to say when <<he>> will return.' '罗宾正带着工具往返神殿花园和宿舍。<<He>>留下纸条，写了回来的时间。'>>
+  <<else>>
+    <<lanSwitch 'Robin is helping in the hall. You hear <<his>> voice when the doors open.' '罗宾在大厅帮忙。门一开，你就听见了<<his>>的声音。'>>
+  <</if>>
+<<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 13 and Time.hour lt 16>>
+  <<lanSwitch 'Robin has the afternoon work list spread across the table. <<He>> moves a stack of clean linen so you can sit.' '罗宾把下午的工作表摊在桌上，挪开一叠干净布巾，让你坐下。'>>
+  <br><br>
+  <<if $RevelationRobinTemple.work_day isnot Time.days>>
+    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'Revelation Robin Temple Cleaning'>><<pass 60>><</lanLink>><br>
+    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'Revelation Robin Temple Supplies'>><<pass 60>><</lanLink>><br>
+  <</if>>
+<<elseif Time.hour lt 17 or Time.hour gte 20 or getRobinLocation() isnot "temple">>
+  <<lanSwitch 'Robin is elsewhere. The work list shows an evening shift, after school and the stall have been dealt with.' '罗宾现在不在这里。工作表上写着晚间值班，排在上学和摊位收工之后。'>>
+<<else>>
+  <<lanSwitch 'You find Robin reviewing the evening list. When <<he>> sees you, <<he>> turns the page so you can read it too.' '你找到罗宾时，<<he>>正在核对晚间工作表。看见你，<<he>>把纸转过来，让你也能看清。'>>
+  <br><br>
+  <<if $RevelationRobinTemple.work_day isnot Time.days>>
+    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'Revelation Robin Temple Cleaning'>><<pass 60>><</lanLink>><br>
+    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'Revelation Robin Temple Supplies'>><<pass 60>><</lanLink>><br>
+  <</if>>
+  <<if $robinromance is 1 and $RevelationRobinTemple.stage is 'member'
+    and $RevelationRobinTemple.penance_day lt 0
+    and ['monk', 'priest'].includes($temple_rank) and $RevelationRobinTemple.service gte 3
+    and ($templePromised is '' or $templePromised is 'Sydney' and $sydneyromance is 1)>>
+    <<loveicon "hug">><<lanLink '和罗宾谈谈承诺仪式' 'Revelation Robin Temple Promise Talk'>><</lanLink>><br>
+  <</if>>
+  <<if $robinromance is 1 and $RevelationRobinTemple.stage is 'member'
+    and C.npc.Robin.dom gte 60 and $RevelationRobinTemple.service gte 2
+    and !$RevelationRobinTemple.clasp_discussed>>
+    <<socialiseicon 'ask'>><<lanLink '问罗宾神殿锁的事' 'Revelation Robin Temple Clasp'>><</lanLink>><br>
+  <</if>>
+  <<if $RevelationRobinTemple.stage is "approved">>
+    <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'Revelation Robin Temple Promise Rite'>><</lanLink>><br>
+  <</if>>
+  <<if $RevelationRobinTemple.stage is "promised">>
+    <span class="teal"><<lanSwitch 'A thin silver ring catches the light when Robin reaches for your hand.' '罗宾伸手牵你时，细银戒在光里一闪。'>></span><br>
+  <</if>>
+<</if>>
+<br>
+<<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+
+:: Revelation Robin Temple Cleaning
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.work_day isnot Time.days>>
+  <<set $RevelationRobinTemple.work_day to Time.days>><<set $RevelationRobinTemple.service += 1>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<lanSwitch
+    'You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.'
+    '你整理床铺，罗宾在床位之间扫地。<<He>>停下来帮一名年幼的见习者找回毯子，随后回来和你收拾完最后一排。'
+  >>
+  <br><br>
+  <<lanSwitch 'Jordan looks in before you leave. "Thank you, both of you."' '离开前约旦来巡视。“谢谢你们两个。”'>>
+  <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<else>>
+  <<lanSwitch 'The work is already done today.' '今天的工作已经做完了。'>>
+<</if>>
+<br><br>
+<<templeicon "quarters">><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+
+:: Revelation Robin Temple Supplies
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.work_day isnot Time.days>>
+  <<set $RevelationRobinTemple.work_day to Time.days>><<set $RevelationRobinTemple.service += 1>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<lanSwitch
+    'A delivery has been left by the stairwell. Robin checks the list while you carry the lighter boxes inside. Some are meant for the kitchen; others hold clean sheets.'
+    '楼梯旁堆着一批刚送到的物资。罗宾核对清单，你把较轻的箱子搬进屋里。一部分要送去厨房，其余装着干净床单。'
+  >>
+  <br><br>
+  <<lanSwitch 'Robin catches a mistaken count before it reaches the storeroom. <<He>> adds a note for the next shift, then hands you the pencil.' '罗宾发现有一项数量记错了。<<He>>给下一班留了张便条，随后把铅笔递给你。'>>
+  <<grace 1>><<npcincr Robin dom 1>><br><br><<ggrace>><<gdom>>
+<<else>>
+  <<lanSwitch 'The work is already done today.' '今天的工作已经做完了。'>>
+<</if>>
+<br><br>
+<<templeicon "quarters">><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+
+:: Revelation Robin Temple Sunday Service
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if Time.weekDay is 1 and Time.hour is 11
+  and $RevelationRobinTemple.work_day isnot Time.days>>
+  <<set $RevelationRobinTemple.work_day to Time.days>>
+  <<set $RevelationRobinTemple.service += 1>>
+  <<lanSwitch
+    'The hall is filling. Robin lays out the prayer books while you help an older visitor find a seat. When the last row is ready, Robin checks the count with Jordan.'
+    '大厅里渐渐坐满了人。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。'
+  >>
+  <br><br>
+  <<lanSwitch '"The stall taught me to count quickly," Robin says. <<He>> leaves the front row clear for those who arrived late.' '“摆摊倒让我学会了算得快，”罗宾说。<<He>>把前排留给晚到的人。'>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<else>>
+  <<lanSwitch 'The service has already begun, or today’s work is finished.' '礼拜已经开始，或是今天的工作已经做完了。'>>
+<</if>>
+<br><br>
+<<templeicon 'quarters'>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>

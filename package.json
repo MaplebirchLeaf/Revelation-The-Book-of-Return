@@ -1,0 +1,68 @@
+{
+  "name": "revelation-the-book-of-return",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A DoL story mod built on the maplebirch framework.",
+  "author": "Maplebirch Leaf",
+  "type": "module",
+  "scripts": {
+    "dev": "rspack serve",
+    "prep": "bun run scripts/prep.ts",
+    "build": "bun run rspack -- build --mode=production",
+    "build:dev": "bun run rspack -- build --mode=development",
+    "package": "bun run scripts/package.ts",
+    "package:encrypted": "bun run build:all && bun run scripts/protected-release.ts",
+    "build:all": "bun run prep && bun run build && bun run package",
+    "bump": "bumpp --no-push --tag v%s",
+    "release": "bun run scripts/release.ts",
+    "check": "oxlint --disable-nested-config && oxfmt --check --disable-nested-config",
+    "typecheck": "tsc --noEmit",
+    "fix": "oxlint --fix --disable-nested-config && oxfmt --disable-nested-config"
+  },
+  "devDependencies": {
+    "@rspack/cli": "^2.2.7",
+    "@rspack/core": "^2.2.7",
+    "@scml-dol-maplebirch/types": "5.1.0",
+    "@types/adm-zip": "^0.5.8",
+    "@types/bun": "^1.4.2",
+    "@types/twine-sugarcube": "^2.37.0",
+    "adm-zip": "^0.6.1",
+    "bumpp": "^11.1.0",
+    "oxfmt": "^0.52.0",
+    "oxlint": "^1.85.0",
+    "typescript": "^7.0.2"
+  },
+  "packageManager": "bun@1.4.2",
+  "scml": {
+    "nickName": {
+      "en": "Revelation: The Book of Return",
+      "cn": "默示录：归途之书"
+    },
+    "dependenceInfo": [
+      {
+        "modName": "maplebirch",
+        "version": ">=5.1.1"
+      },
+      {
+        "modName": "ModLoader",
+        "version": ">=2.0.0"
+      },
+      {
+        "modName": "ModLoaderGui",
+        "version": ">=1.0.0"
+      },
+      {
+        "modName": "ModSubUiAngularJs",
+        "version": ">=1.0.0"
+      },
+      {
+        "modName": "ConflictChecker",
+        "version": ">=1.0.0"
+      },
+      {
+        "modName": "GameVersion",
+        "version": ">=0.5.12.13"
+      }
+    ]
+  }
+}

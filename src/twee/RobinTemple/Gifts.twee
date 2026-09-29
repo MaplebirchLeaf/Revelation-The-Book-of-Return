@@ -1,0 +1,46 @@
+:: Revelation Robin Temple Gifts List
+<!-- ./src/twee/RobinTemple/Gifts.twee -->
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'What will you give Robin?' '你想把什么送给罗宾？'>>
+<br><br>
+<<food_gift_list>>
+<<if _food_gift_found is true>>
+  <<skinicon 'give'>><<lanLink '送给罗宾 (0:05)' 'Revelation Robin Temple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
+<</if>>
+<<getouticon>><<lanLink '重新考虑' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+
+:: Revelation Robin Temple Gift
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<if $gift.name is 'sticky_toffee_pudding'>>
+  <<lanSwitch
+    'Robin stares at the sticky toffee pudding. "That is my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.'
+    '罗宾望着粘稠的太妃布丁。“这是我最喜欢的。”<<he>>说得很轻，几乎听不清。<<He>>小心尝了一口，接着又吃了一口。'
+  >>
+  <br><br>
+  <<lanSwitch '"Bailey used to tell me not to eat this," <<he>> says. "I am glad you brought it."' '“贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”'>>
+  <<npcincr Robin love 3>><br><br><<gglove>>
+<<elseif ($gift.special || []).includes('spicy')>>
+  <<lanSwitch 'Robin accepts the spicy food with both hands. After the first mouthful, <<his>> eyes water, but <<he>> does not put it down.' '罗宾双手接过辣味食物。第一口下去，<<his>>眼睛就湿了，但<<he>>没有放下。'>>
+  <<npcincr Robin love 1>><br><br><<glove>>
+<<elseif ($gift.special || []).includes('drink')>>
+  <<lanSwitch 'Robin looks at the drink, then produces a second straw from <<his>> pocket. "Would you share it?" <<he>> asks.' '罗宾看了看饮料，从口袋里摸出另一根吸管。“一起喝吗？”<<he>>问。'>>
+  <<npcincr Robin love 1>><br><br><<glove>>
+<<else>>
+  <<lanSwitch 'Robin thanks you and sets the food between you. "I can wash the plate when we are done," <<he>> says.' '罗宾道了谢，把食物放在你们中间。“吃完我来洗盘子，”<<he>>说。'>>
+  <<npcincr Robin love 1>><br><br><<glove>>
+<</if>>
+<br><br>
+<<loveicon 'hug'>><<lanLink '与罗宾分享' 'Revelation Robin Temple Gift Share'>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '让罗宾自己享用' 'Revelation Robin Temple Gift Alone'>><</lanLink>><br>
+
+:: Revelation Robin Temple Gift Share
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'You share the food with Robin. <<He>> moves it closer to your side of the bench whenever <<he>> thinks you have had less.' '你与罗宾分享食物。每当<<he>>觉得你吃得少了，就把盘子往你那边推一推。'>>
+<br><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+
+:: Revelation Robin Temple Gift Alone
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'Robin eats slowly, keeping you company while the last light fades from the windows. <<He>> thanks you again before taking the plate to the kitchen.' '罗宾慢慢吃着，陪你坐到窗外最后一点天光消失。<<He>>再次道谢，随后把盘子送去厨房。'>>
+<br><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>

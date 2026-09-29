@@ -1,0 +1,137 @@
+:: Revelation Robin Temple Invitation
+<!-- ./src/twee/RobinTemple/Invitation.twee -->
+<<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
+<<lanSwitch "Robin's eyes fall on the clasp of your chastity device. <<He>> starts to ask a question, then looks away." '罗宾的目光落在你的守贞器具上。<<He>>刚要开口，又把话咽了回去。'>>
+<br><br>
+<<lanSwitch
+  'You explain what the temple asks of you. Robin listens without interrupting. When you mention the work and the shelter it offers, <<he>> glances at the window.'
+  '你向罗宾解释神殿对信徒的要求。罗宾没有打断你。听到那里的工作和庇护时，<<he>>望向窗外。'
+>>
+<br><br>
+<<lanSwitch '"I still have my stall," Robin says. "And the children here. Would I have to leave them?"' '“我还有摊位，”罗宾说，“院里的孩子们也需要人照看。我得离开他们吗？”'>>
+<br><br>
+<<lanSwitch 'You tell <<him>> the choice is <<his>>. The temple will ask for time and discipline, but it will not take the rest of <<his>> life away.' '你告诉<<him>>，决定权在<<his>>手里。神殿会要求时间与自律，却不会夺走<<his>>余下的生活。'>>
+<br><br>
+<<loveicon "hug">><<lanLink '让罗宾慢慢考虑' 'Robin Options'>><<set $RevelationRobinTemple.stage to "invited">><<npcincr Robin love 1>><</lanLink>><<glove>><br>
+<<socialiseicon "ask">><<lanLink '提议一起去问约旦' 'Revelation Robin Temple Schedule'>><<set $RevelationRobinTemple.stage to "invited">><</lanLink>><br>
+<<getouticon>><<lanLink '暂时不提这件事' 'Robin Options'>><</lanLink>><br>
+
+:: Revelation Robin Temple Schedule
+<<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is "invited">>
+  <<lanSwitch 'Robin has written a few questions on the back of a stall receipt. <<He>> wants to know whether the temple would still let <<him>> go to school and work.' '罗宾在摊位收据背面写了几个问题。<<He>>想知道加入神殿后还能不能上学和照顾生意。'>>
+  <br><br>
+  <<lanSwitch
+    '"Jordan said I could keep both," you tell <<him>>. "But the assessment is yours to take. I cannot take it for you." Robin folds the receipt and nods.'
+    '“约旦说，这两件事都可以继续，”你告诉<<him>>，“但考核得由你自己参加，我不能替你。”罗宾折好收据，点了点头。'
+  >>
+  <br><br>
+  <<socialiseicon "ask">><<lanLink '约好两天后参加考核' 'Revelation Robin Temple Scheduled'>><<set $RevelationRobinTemple.stage to "scheduled">><<set $RevelationRobinTemple.exam_day to Time.days + 2>><</lanLink>><br>
+  <<getouticon>><<lanLink '再给罗宾一些时间' 'Robin Options'>><</lanLink>><br>
+<<else>>
+  <<lanSwitch 'Robin has already made a decision. You can talk again when the time is right.' '罗宾已经作了决定。等时机合适，你们还可以再谈。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Scheduled
+<<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'Robin carefully marks the date on the receipt. "Two days," <<he>> says. "I can do that."' '罗宾在收据上仔细圈出日期。“两天后，”<<he>>说，“我能做到。”'>>
+<br><br>
+<<lanSwitch 'Jordan has agreed to meet you both in the temple quarters. You can help Robin prepare there before the assessment.' '约旦答应在神殿宿舍与你们见面。考核之前，你可以在那里陪罗宾做些准备。'>>
+<br><br>
+<<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
+
+:: Revelation Robin Temple Prepare
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is "scheduled" and $RevelationRobinTemple.prepared_day isnot Time.days and Time.days lt $RevelationRobinTemple.exam_day>>
+  <<set $RevelationRobinTemple.prepared_day to Time.days>>
+  <<set $RevelationRobinTemple.readiness to Math.min(30, $RevelationRobinTemple.readiness + 10)>>
+  <<lanSwitch 'You find Robin at a table with a temple pamphlet spread before <<him>>. You read the questions aloud and let <<him>> answer in <<his>> own words.' '你在一张桌旁找到罗宾。神殿的小册子摊在<<his>>面前。你念出上面的问题，让<<him>>用自己的话作答。'>>
+  <br><br>
+  <<lanSwitch 'At first Robin keeps looking to you for approval. After a while, <<he>> begins to answer without waiting.' '起初罗宾总要看你的脸色。过了一会儿，<<he>>不再等你点头，也能继续说下去。'>>
+  <br><br>
+  <span class="green"><<lanSwitch 'Robin seems better prepared.' '罗宾准备得更充分了。'>></span>
+<<else>>
+  <<lanSwitch 'There is nothing more to prepare today.' '今天已经没有更多需要准备的事了。'>>
+<</if>>
+<br><br>
+<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+
+:: Revelation Robin Temple Assessment
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is "scheduled" and Time.days gte $RevelationRobinTemple.exam_day>>
+  <<lanSwitch 'Jordan closes the door behind you. The room holds a desk, two chairs and a small lamp. Robin sits down beside you, gripping the folded receipt.' '约旦在你们身后关上门。屋里只有一张桌子、两把椅子和一盏小灯。罗宾坐在你身旁，攥着那张折好的收据。'>>
+  <br><br>
+  <<lanSwitch '"I want to hear why you came," Jordan tells Robin. "No one else needs to answer for you."' '“我想听听你为什么来，”约旦对罗宾说，“不用别人替你回答。”'>>
+  <br><br>
+  <<if C.npc.Robin.dom + $RevelationRobinTemple.readiness - C.npc.Robin.trauma / 2 gte 50>>
+    <<lanSwitch
+      'Robin takes a breath. <<He>> speaks of the children at the orphanage, the work <<he>> already does, and the kind of shelter <<he>> hopes the temple might become. Jordan listens to the end.'
+      '罗宾深吸一口气。<<He>>说起孤儿院的孩子、自己已经承担的工作，以及<<he>>希望神殿能成为怎样的庇护所。约旦一直听到最后。'
+    >>
+    <br><br>
+    <<templeicon "altar">><<lanLink '听约旦宣布结果' 'Revelation Robin Temple Pass'>><</lanLink>><br>
+  <<else>>
+    <<lanSwitch 'Robin begins well, but the questions turn to the vow. <<His>> voice falters. Jordan puts the pen down rather than pressing for another answer.' '罗宾开头说得顺利，问题转向誓言时，<<his>>的声音却低了下去。约旦放下笔，没有逼<<him>>继续作答。'>>
+    <br><br>
+    <<templeicon "altar">><<lanLink '听约旦宣布结果' 'Revelation Robin Temple Fail'>><</lanLink>><br>
+  <</if>>
+<<else>>
+  <<lanSwitch 'The assessment is no longer scheduled.' '考核已经不在日程上了。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Pass
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is "scheduled">>
+  <<set $RevelationRobinTemple.stage to "member">><<set $RevelationRobinTemple.exam_attempts += 1>>
+  <<set C.npc.Robin.revelationConviction to 100>>
+  <<set C.npc.Robin.virginity.temple to true>>
+  <<set C.npc.Robin.chastity.anus to "anal shield">>
+  <<set C.npc.Robin.chastity.vagina to "chastity belt">>
+  <<set C.npc.Robin.chastity.penis to "chastity belt">>
+  <<npcincr Robin love 2>><<npcincr Robin dom 2>>
+  <<lanSwitch
+    '"You understand what this vow asks of you," Jordan says. "Welcome." Robin looks at you before accepting the small temple clasp. <<He>> is smiling now.'
+    '“你明白这份誓言的分量，”约旦说，“欢迎你。”罗宾接过神殿的小徽记前先看了你一眼。<<He>>现在笑了。'
+  >>
+  <br><br>
+  <<lanSwitch 'The temple gives Robin a place to change and a share of the daily work. The stall and school remain <<his>> own.' '神殿给罗宾安排了更衣处，也分给<<him>>一部分日常工作。摊位和学校仍由<<him>>自己安排。'>>
+  <br><br><span class="green"><<lanSwitch 'Robin has joined the temple.' '罗宾加入了神殿。'>></span><<glove>><<gdom>>
+<<else>>
+  <<lanSwitch 'Robin has already received the result.' '罗宾已经收到考核结果。'>>
+<</if>>
+<br><br>
+<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+
+:: Revelation Robin Temple Fail
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is "scheduled">>
+  <<set $RevelationRobinTemple.stage to "failed">><<set $RevelationRobinTemple.exam_attempts += 1>>
+  <<set $RevelationRobinTemple.exam_day to Time.days>>
+  <<lanSwitch '"Not today," Jordan says. "A vow made in fear is no vow. Come back after you have had time to decide for yourself."' '“今天不行，”约旦说，“出于恐惧立下的誓言不算誓言。等你有时间自己想清楚，再回来。”'>>
+  <br><br>
+  <<lanSwitch 'Robin stares at the folded receipt. <<He>> has not been expelled or punished, but <<his>> disappointment is plain.' '罗宾盯着折好的收据。<<He>>没有被逐出，也没有受罚，但失望写在<<his>>脸上。'>>
+  <br><br>
+  <<loveicon "hug">><<lanLink '陪罗宾待一会儿' 'Revelation Robin Temple Comfort'>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><</lanLink>><<glove>><br>
+  <<getouticon>><<lanLink '让罗宾独自待一会儿' 'Temple Quarters'>><<npcincr Robin dom -2>><</lanLink>><<ldom>><br>
+<<else>>
+  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Comfort
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'You sit beside Robin until <<he>> unfolds the receipt. There are still questions on the back. <<He>> circles one and asks what you think.' '你在罗宾身边坐下，直到<<he>>重新展开收据。背面还有几个没问完的问题。<<He>>圈出其中一个，问你怎么看。'>>
+<br><br>
+<<lanSwitch '"We can come back," you say. Robin nods, and this time <<he>> keeps the receipt instead of hiding it.' '“我们还可以再来，”你说。罗宾点点头，这次没有把收据藏起来。'>>
+<br><br>
+<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+
+:: Revelation Robin Temple Retry
+<<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'Robin takes the old receipt from a drawer. The folds have softened, but the date is still there. "I want to try again," <<he>> says.' '罗宾从抽屉里拿出那张旧收据。折痕已经软了，圈出的日期还在。“我想再试一次，”<<he>>说。'>>
+<br><br>
+<<socialiseicon "ask">><<lanLink '约好两天后再参加考核' 'Revelation Robin Temple Scheduled'>><<set $RevelationRobinTemple.stage to "scheduled">><<set $RevelationRobinTemple.exam_day to Time.days + 2>><</lanLink>><br>
+<<getouticon>><<lanLink '改天再说' 'Robin Options'>><</lanLink>><br>

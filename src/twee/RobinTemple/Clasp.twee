@@ -1,0 +1,41 @@
+:: Revelation Robin Temple Clasp
+<!-- ./src/twee/RobinTemple/Clasp.twee -->
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set $RevelationRobinTemple.clasp_discussed to true>>
+<<lanSwitch
+  'Robin closes the storeroom list when you ask about the temple lock. "It reminds me what I promised," <<he>> says. "Some days it also reminds me that I did not ask enough questions before agreeing."'
+  '你问起神殿锁时，罗宾合上了储藏室清单。“它提醒我立过什么誓，”<<he>>说，“有些时候，也提醒我当初没问清楚就答应了。”'
+>>
+<br><br>
+<<if C.npc.Robin.revelationConviction gte 120>>
+  <<lanSwitch '<<He>> does not want to leave the temple. <<He>> wants to know whether Jordan will hear a different promise made in <<his>> own words.' '<<He>>并不想离开神殿。<<He>>只是想知道，约旦是否愿意听<<he>>亲口立下另一种承诺。'>>
+<<else>>
+  <<lanSwitch '"I still need time to decide what I believe," <<he>> adds. "I do not want to pretend certainty just to get a key."' '“我还得想清楚自己相信什么，”<<he>>补充说，“我不想为了拿到钥匙，就假装自己毫不犹豫。”'>>
+<</if>>
+<br><br>
+<<socialiseicon 'ask'>><<lanLink '请罗宾亲自向约旦询问' 'Revelation Robin Temple Clasp Jordan'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '先听罗宾说完' 'Revelation Robin Temple Clasp Listen'>><</lanLink>><br>
+
+:: Revelation Robin Temple Clasp Jordan
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch
+  'Robin speaks first when Jordan arrives. Jordan says the lock belongs to the vow Robin made on joining, and that a new vow would need its own examination. "You may ask," Jordan says. "You may also decide not to."'
+  '约旦来后，罗宾先开口。约旦说，神殿锁对应罗宾入教时立下的誓言。若要改立新誓，需要另行审查。“你可以申请，”约旦说，“也可以选择不申请。”'
+>>
+<br><br>
+<<lanSwitch 'Robin asks what would happen if the two of you made a promise together. Jordan asks to see your work records before giving an answer.' '罗宾问，如果你们共同立誓会怎样。约旦想先看你们的工作记录，再作回答。'>>
+<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+<<npcincr Robin dom 1>><br><br><<gdom>>
+<<templeicon 'altar'>><<lanLink '谈谈共同立誓' 'Revelation Robin Temple Promise Talk'>><</lanLink>><br>
+<<templeicon 'quarters'>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+
+:: Revelation Robin Temple Clasp Listen
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch
+  'You leave the list untouched and let Robin find <<his>> words. <<He>> tells you which parts of the work matter to <<him>>, and which rules still frighten <<him>>.'
+  '你没有碰那张清单，等罗宾自己把话说完。<<He>>告诉你，哪些工作对<<him>>重要，哪些规矩仍让<<him>>害怕。'
+>>
+<br><br>
+<<lanSwitch '"I can ask Jordan myself," <<he>> says at last. "I just wanted you to know first."' '“我能自己去问约旦，”<<he>>最后说，“只是想先告诉你。”'>>
+<<npcincr Robin love 2>><<npcincr Robin trauma -2>><br><br><<glove>><<lrtrauma>>
+<<templeicon 'quarters'>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>

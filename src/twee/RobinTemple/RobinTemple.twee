@@ -1,0 +1,118 @@
+:: Revelation Robin Temple Widgets [widget]
+<!-- ./src/twee/RobinTemple/RobinTemple.twee -->
+<<widget 'revelation-robin-room-temple-note'>>
+  <<lanSwitch "You go to Robin's room. A note on the door says <<he>> is at the temple." '你来到罗宾的房间。门上的字条写着，<<he>>去了神殿。'>>
+  <br><br>
+  <<main_hall_icon>><<lanLink '返回孤儿院大厅 (0:01)' 'Orphanage'>><<pass 1>><</lanLink>><br>
+<</widget>>
+
+<<widget "revelation-robin-room-link">>
+  <<if ["initiate", "monk", "priest"].includes($temple_rank)
+    and C.npc.Robin.init is 1
+    and !$robinmissing
+    and $exposed lte 0>>
+    <<if $RevelationRobinTemple.stage is "none" and C.npc.Robin.love gte 100
+      and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0>>
+      <<if playerChastity()>>
+        <<socialiseicon "ask">><<lanLink '和罗宾谈谈神殿' 'Revelation Robin Temple Invitation'>><</lanLink>><br>
+      <<else>>
+        <span class="teal"><<lanSwitch "Robin notices the temple clasp at your collar, but your vow is not yet reflected in what you wear." '罗宾瞥见你领口的神殿徽记，又看向你的衣服。你尚未戴上守贞器具。'>></span><br>
+      <</if>>
+    <<elseif $RevelationRobinTemple.stage is "invited">>
+      <<socialiseicon "ask">><<lanLink '问罗宾考核的事' 'Revelation Robin Temple Schedule'>><</lanLink>><br>
+    <<elseif $RevelationRobinTemple.stage is "failed" and Time.days gte $RevelationRobinTemple.exam_day + 7>>
+      <<socialiseicon "ask">><<lanLink '问罗宾愿不愿意再试一次考核' 'Revelation Robin Temple Retry'>><</lanLink>><br>
+    <<elseif ['member', 'approved', 'promised'].includes($RevelationRobinTemple.stage)
+      and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
+      and Time.hour gte 17 and (Time.hour lt 19 or Time.hour is 19 and Time.minute lt 45)
+      and getRobinLocation() is 'orphanage'>>
+      <<templeicon 'altar'>><<lanLink '和罗宾一起去神殿 (0:15)' 'Temple'>><<run setRobinLocationOverride('temple', [17, 18, 19])>><<pass 15>><</lanLink>><br>
+    <</if>>
+  <</if>>
+<</widget>>
+
+<<widget "revelation-robin-temple-links">>
+  <<if $exposed lte 0 and $stress lt $stressmax and C.npc.Robin.init is 1 and !$robinmissing>>
+    <<if $RevelationRobinTemple.stage is "scheduled">>
+      <<if Time.days gte $RevelationRobinTemple.exam_day and Time.hour gte 6 and (Time.hour lt 8 or !Time.schoolDay and Time.hour lt 18)>>
+        <<templeicon "altar">><<lanLink '陪罗宾参加考核' 'Revelation Robin Temple Assessment'>><</lanLink>><br>
+      <<elseif $RevelationRobinTemple.prepared_day isnot Time.days and Time.days lt $RevelationRobinTemple.exam_day and Time.hour gte 17 and Time.hour lt 20 and getRobinLocation() is "orphanage">>
+        <<socialiseicon "ask">><<lanLink '陪罗宾准备考核 (0:30)' 'Revelation Robin Temple Prepare'>><<pass 30>><</lanLink>><br>
+      <</if>>
+    <<elseif ["member", "approved", "promised"].includes($RevelationRobinTemple.stage)>>
+      <<templeicon "quarters">><<lanLink '去罗宾在宿舍的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+      <<if $RevelationRobinTemple.penance_day gte 0 and Time.days gte $RevelationRobinTemple.penance_day>>
+        <<if $RevelationRobinTemple.joint_sydney_penance>>
+          <<templeicon 'altar'>><<lanLink '向约旦交还三人的工作记录' 'Revelation Robin Temple Joint Restoration'>><</lanLink>><br>
+        <<else>>
+          <<templeicon 'altar'>><<lanLink '和罗宾完成赎罪工作' 'Revelation Robin Temple Penance'>><</lanLink>><br>
+        <</if>>
+      <</if>>
+      <<if $RevelationRobinTemple.penance_day gte 0
+        and $RevelationRobinTemple.penance_work_day isnot Time.days
+        and ((Time.hour gte 17 and Time.hour lt 20 and getRobinLocation() is 'temple')
+          or (!Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 13 and Time.hour lt 16))>>
+        <<if $RevelationRobinTemple.joint_sydney_penance>>
+          <<choreicon 'sweep'>><<lanLink '和罗宾、悉尼一起值班 (1:00)' 'Revelation Robin Temple Joint Work'>><<pass 60>><</lanLink>><br>
+        <<else>>
+          <<choreicon 'sweep'>><<lanLink '陪罗宾做赎罪工作 (1:00)' 'Revelation Robin Temple Penance Work'>><<pass 60>><</lanLink>><br>
+        <</if>>
+      <</if>>
+      <<if $RevelationRobinTemple.vigil_day gte 0 and !$RevelationRobinTemple.vigil_followup and Time.days gt $RevelationRobinTemple.vigil_day>>
+        <<socialiseicon "ask">><<lanLink '和罗宾谈谈守夜试炼' 'Revelation Robin Temple Vigil After'>><</lanLink>><br>
+      <</if>>
+    <</if>>
+    <br>
+  <</if>>
+<</widget>>
+
+<<widget 'revelation-robin-joint-examination'>>
+  <<npc Jordan>><<person1>>
+  <<if !$RevelationRobinTemple.joint_consent>>
+    <<lanSwitch 'Jordan sees both names on your records and closes the examination book. "First, the three of you must tell me whether this was a choice you all made."' '约旦看见记录上写着罗宾和悉尼的名字，合上了检查簿。“先告诉我，这是不是你们三个人共同作出的选择。”'>>
+    <br><br>
+    <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼一起谈清楚' 'Revelation Robin Temple Joint Reconcile'>><</lanLink>><br>
+  <<elseif $RevelationRobinTemple.joint_sydney_penance>>
+    <<lanSwitch 'Jordan points to the unfinished work list. "Finish what we agreed first. Then we will speak about the vows again."' '约旦指向尚未完成的工作表。“先做完约定的事，然后我们再谈誓言。”'>>
+    <br><br>
+    <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<else>>
+    <<lanSwitch
+      'Jordan meets you at the altar. "Sydney and Robin have both made promises with you. I will hear from all three of you today," <<he>> says.'
+      '约旦在祭坛前等着你。“悉尼和罗宾都与你立过誓。今天我要听你们三个人亲口回答。”<<he>>说。'
+    >>
+    <br><br>
+    <<templeicon 'altar'>><<lanLink '请罗宾与悉尼一同接受检查' 'Revelation Robin Temple Joint Examination'>><</lanLink>><br>
+    <<getouticon>><<lanLink '请求改日检查' 'Revelation Robin Temple Joint Refuse'>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink '先向约旦说明情况' 'Revelation Robin Temple Joint Admit'>><</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget "revelation-robin-monthly-examination">>
+  <<npc Jordan>><<person1>>
+  <<lanSwitch 'Jordan stops you near the altar. "It is time to examine the vow you and Robin made together. I have sent for <<him>>."' '约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<him>>。”'>>
+  <br><br>
+  <<templeicon "altar">><<lanLink '和罗宾一起接受检查' 'Revelation Robin Temple Monthly Examination'>><</lanLink>><br>
+  <<getouticon>><<lanLink '拒绝检查' 'Revelation Robin Temple Monthly Refuse'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '先向约旦坦白' 'Revelation Robin Temple Monthly Admit'>><</lanLink>><br>
+<</widget>>
+
+<<widget "revelation-robin-vigil-link">>
+  <<if $RevelationRobinTemple.stage is "member"
+    and $temple_rank is "initiate"
+    and !$weekly.templeVigil
+    and $grace gte 100
+    and Time.weekDay is 1
+    and Time.hour is 20
+    and C.npc.Robin.init is 1
+    and getRobinLocation() is "orphanage"
+    and !$robinmissing>>
+    <<loveicon "hug">><<lanLink '请罗宾送你去守夜试炼' 'Revelation Robin Temple Vigil Before'>><</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget "revelation-robin-vigil-fire-link">>
+  <<if $RevelationRobinTemple.stage is "member" and $RevelationRobinTemple.vigil_day gte 0 and Time.days lte $RevelationRobinTemple.vigil_day + 1>>
+    <<templeicon "trialcontinue">><<lanLink '在火堆前牵住罗宾的手 (1:00)' 'Revelation Robin Temple Vigil Fire'>><<set $phase to 0>><<stress 8>><<pain 8>><</lanLink>><<gstress>><<gpain>><<handholdingvirginitywarning>><<NPCvirginitywarning "Robin" "handholding">><br>
+  <</if>>
+<</widget>>

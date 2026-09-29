@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": ["node_modules/", "dist/", "package/", ".cache/", "tools/dol-mod-protection-tools/"],
+  "options": {
+    "typeAware": false,
+    "typeCheck": false
+  },
+  "plugins": ["import", "jsdoc", "node", "oxc", "promise", "typescript", "unicorn"],
+  "rules": {
+    "no-implied-eval": "off",
+    "no-extra-boolean-cast": "off",
+    "no-unused-vars": "off"
+  }
+}

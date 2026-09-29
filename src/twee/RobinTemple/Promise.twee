@@ -1,0 +1,93 @@
+:: Revelation Robin Temple Promise Talk
+<!-- ./src/twee/RobinTemple/Promise.twee -->
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage isnot 'member' or $robinromance isnot 1
+  or !['monk', 'priest'].includes($temple_rank) or $RevelationRobinTemple.service lt 3
+  or $RevelationRobinTemple.penance_day gte 0>>
+  <<lanSwitch 'Jordan asks you to establish your own place in the temple and to work alongside Robin before requesting a shared vow.' '约旦请你先在神殿站稳脚跟，再与罗宾一同完成几次工作，之后才申请共同立誓。'>>
+<<elseif $templePromised is 'Sydney' and !$RevelationRobinTemple.joint_consent>>
+  <<lanSwitch 'You have made a promise to Sydney. Robin asks to speak with <<him>> before deciding whether there is room for another.' '你已经与悉尼立誓。罗宾想先亲自和<<he>>谈谈，再决定是否还能接纳另一份承诺。'>>
+  <br><br>
+  <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼谈谈' 'Revelation Robin Temple Joint Consent'>><</lanLink>><br>
+<<elseif $templePromised isnot '' and $templePromised isnot 'Sydney'>>
+  <<lanSwitch 'You have already made a promise in the temple. Robin deserves an honest answer before either of you asks Jordan for anything else.' '你已经在神殿立下过誓言。无论你们想向约旦提出什么，都该先把这件事对罗宾说清楚。'>>
+<<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true
+  or $templePromised is 'Sydney' and C.npc.Sydney.virginity.temple isnot true>>
+  <<lanSwitch 'Jordan will not approve the rite while one of your temple vows stands broken. You and Robin agree to settle that first.' '你们之中仍有人违背着神殿誓言，约旦不会批准仪式。你和罗宾决定先处理这件事。'>>
+<<else>>
+  <<lanSwitch 'You ask Robin whether <<he>> would want a promise recognised by the temple. <<He>> puts down the work list and takes time to answer.' '你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了许久才回答。'>>
+  <br><br>
+  <<lanSwitch '"Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."' '“愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”'>>
+  <br><br>
+  <<if $RevelationRobinTemple.evaluation_day lt 0 or Time.days gte $RevelationRobinTemple.evaluation_day + 7>>
+    <<templeicon "altar">><<lanLink '请约旦为你们评估' 'Revelation Robin Temple Evaluation'>><</lanLink>><br>
+  <<else>>
+    <span class="blue"><<lanSwitch 'Jordan asked you to wait a week before trying again.' '约旦让你们过一周再来。'>></span><br>
+  <</if>>
+<</if>>
+<br>
+<<getouticon>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+
+:: Revelation Robin Temple Promise Rite
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is 'approved' and $robinromance is 1
+  and ($templePromised is '' or $templePromised is 'Sydney' and $RevelationRobinTemple.joint_consent)
+  and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
+  and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
+  <<if $templePromised is 'Sydney'>>
+    <<lanSwitch 'Jordan sets a new page beside the record of your promise to Sydney. Robin stands beside you, trying to keep <<his>> hands still.' '约旦在你与悉尼立誓的记录旁放上新的一页。罗宾站在你身边，努力让双手不再发抖。'>>
+  <<else>>
+    <<lanSwitch 'The small chapel has been cleared for you. Jordan sets two silver rings on the altar. Robin stands beside you, trying to keep <<his>> hands still.' '小礼拜堂已经为你们腾出来。约旦把两枚银戒放在祭坛上。罗宾站在你身边，努力让双手不再发抖。'>>
+  <</if>>
+  <br><br>
+  <<lanSwitch '"You may leave now," Jordan says, "or speak in your own words. No one will make this choice for you."' '“你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。不会有人替你们作决定。”'>>
+  <br><br>
+  <<if $templePromised is 'Sydney'>>
+    <<loveicon 'hug'>><<lanLink '请悉尼一同见证' 'Revelation Robin Temple Joint Rite'>><</lanLink>><br>
+  <<else>>
+    <<loveicon 'hug'>><<lanLink '与罗宾立下承诺' 'Revelation Robin Temple Promise End'>><</lanLink>><br>
+  <</if>>
+  <<getouticon>><<lanLink '请求再多一点时间' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+<<else>>
+  <<lanSwitch 'Jordan cannot hold the rite while your vows are unsettled.' '你们的誓言尚未厘清，约旦现在不能主持仪式。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Promise End
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is 'approved' and $robinromance is 1
+  and ($templePromised is '' or $templePromised is 'Sydney' and $RevelationRobinTemple.joint_consent
+    and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)
+  and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
+  <<set $RevelationRobinTemple.stage to 'promised'>>
+  <<set $player.virginity.temple to true>><<set $virginityProtected to true>>
+  <<world_corruption 'hard' -1>>
+  <<set C.npc.Robin.chastity.anus to ''>>
+  <<set C.npc.Robin.chastity.vagina to ''>>
+  <<set C.npc.Robin.chastity.penis to ''>>
+  <<if $templePromised is 'Sydney'>>
+    <<lanSwitch
+      'You, Robin, and Sydney speak in turn. Neither partner promises on behalf of the other. Jordan repeats each promise separately before recording that all three of you have agreed.'
+      '你、罗宾和悉尼轮流开口。没有人替另一人立誓。约旦逐一复述你们的承诺，确认三人都同意，才将它记下。'
+    >>
+    <br><br>
+    <<lanSwitch 'Jordan releases the temple lock from Robin’s chastity device. Sydney remains beside you as Robin takes your hand.' '约旦解开罗宾守贞器具上的神殿锁。悉尼仍站在你身边，罗宾握住了你的手。'>>
+  <<else>>
+    <<lanSwitch
+      'You speak first, and Robin answers without looking at Jordan for permission. <<He>> promises to return when things become difficult, to listen, and to let you do the same.'
+      '你先开口。罗宾回答时没有看约旦的脸色。<<He>>答应遇到难处也会回来，会听你说话，也会给你同样的机会。'
+    >>
+    <br><br>
+    <<lanSwitch
+      'Jordan releases the temple’s lock from Robin’s chastity device, puts the key away, then places two silver rings in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.'
+      '约旦解开罗宾守贞器具上的神殿锁，将钥匙收好，再把两枚银戒交到你们手中。罗宾把其中一枚戴在你的手指上。你也为<<him>>戴好时，<<he>>终于松了口气。'
+    >>
+  <</if>>
+  <br><br>
+  <span class="gold"><<lanSwitch 'The temple recognises your promise to Robin.' '神殿见证了你与罗宾的承诺。'>></span>
+<<else>>
+  <<lanSwitch 'The ceremony cannot continue. You need to speak to Jordan and Robin again.' '仪式现在无法继续。你需要再与约旦和罗宾谈谈。'>>
+<</if>>
+<br><br>
+<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>

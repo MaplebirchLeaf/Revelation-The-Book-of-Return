@@ -1,0 +1,80 @@
+:: Revelation Robin Temple Penance Widgets [widget]
+<!-- ./src/twee/RobinTemple/Examination.twee -->
+<<widget 'revelation-robin-penance-exit'>>
+  <<templeicon 'altar'>><<lanLink '与罗宾一同面对惩戒' 'Revelation Robin Temple Penance Trial'>><</lanLink>><br>
+<</widget>>
+
+:: Revelation Robin Temple Monthly Examination
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<lanSwitch 'Robin joins you in the side room. Jordan asks each of you in turn about the promise. Robin answers for <<himself>> and waits while you answer for yourself.' '罗宾来到侧室。约旦轮流问起你们立下的誓言。罗宾自己作答，也等着你自己回答。'>>
+<br><br>
+<<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
+  <<lanSwitch 'Jordan sets down the small jar used for the examination. A brief golden spark rises from it. "Your vows stand," Jordan says.' '约旦放下检验用的小罐。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。'>>
+  <br><br>
+  <<lanSwitch 'Robin catches your eye on the way out and squeezes your hand.' '出门时罗宾望向你，轻轻握了握你的手。'>>
+  <br><br><span class="green"><<lanSwitch 'Your promise remains intact.' '你们的承诺依然完好。'>></span>
+  <br><br>
+  <<templeicon "altar">><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+<<else>>
+  <<lanSwitch 'The jar gives no light. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."' '小罐没有亮起。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”'>>
+  <br><br>
+  <<templeicon "altar">><<lanLink '听约旦说明赎罪要求' 'Revelation Robin Temple Monthly Failure'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Monthly Failure
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is 'promised' and ($player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true)>>
+  <<set $RevelationRobinTemple.breach to $player.virginity.temple isnot true and C.npc.Robin.virginity.temple isnot true ? 'both'
+    : $player.virginity.temple isnot true ? 'pc' : 'robin'>>
+  <<set $RevelationRobinTemple.stage to "member">>
+  <<set C.npc.Robin.revelationConviction to Math.max(0, C.npc.Robin.revelationConviction - 15)>>
+  <<set $RevelationRobinTemple.penance_day to Time.days + 7>>
+  <<set $RevelationRobinTemple.penance_service to 0>>
+  <<grace -10>><<npcincr Robin love -2>>
+  <<lanSwitch
+    'Jordan gives each of you a week to reckon with what happened. Robin reaches toward you, then waits for your answer before the attendants take either of you away.'
+    '约旦给你们一周时间面对发生的事。罗宾向你伸出手，在侍从带走你们之前，等你作出回应。'
+  >>
+  <br><br><<llgrace>><<lllove>>
+<<else>>
+  <<lanSwitch 'You have already answered for this examination.' '这次检查的结果已经处理完了。'>>
+<</if>>
+<br><br>
+<<if $RevelationRobinTemple.penance_day gte 0>>
+  <<getinicon>><<lanLink '听约旦说明惩戒' 'Revelation Robin Temple Penance Hearing'>><</lanLink>><br>
+<<else>>
+  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Monthly Refuse
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is 'promised'>>
+  <<set $temple_chastity_timer to 7>>
+  <<lanSwitch 'You refuse the examination. Jordan does not declare either of you guilty. "I will ask again in a week," Jordan says. Robin leaves with you, but does not speak until you reach the doors.' '你拒绝了检查。约旦没有认定你们任何一人有罪。“一周后我会再问。”约旦说。罗宾跟你一起离开，直到门口都没有开口。'>>
+  <br><br>
+  <<lanSwitch '"You can tell me why," <<he>> says at last. "I would rather hear it from you than guess."' '“你可以告诉我原因，”<<he>>终于说，“我宁愿听你亲口讲，也不想自己猜。”'>>
+  <<npcincr Robin love -1>><br><br><<lllove>>
+  <span class='blue'><<lanSwitch 'Jordan will ask again in seven days.' '约旦将在七天后再次提出检查。'>></span><br><br>
+<<else>>
+  <<lanSwitch 'The joint examination is no longer due.' '现在没有需要你们共同接受的检查。'>>
+  <br><br>
+<</if>>
+<<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+
+:: Revelation Robin Temple Monthly Admit
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage isnot 'promised'>>
+  <<lanSwitch 'The joint examination is no longer due.' '现在没有需要你们共同接受的检查。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+<<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true>>
+  <<lanSwitch 'You ask Jordan to listen before beginning the examination. Robin adds <<his>> own account. Jordan writes down what each of you says, then explains what must be answered separately.' '你请约旦先听你说完，再开始检查。罗宾也说出自己的经过。约旦分别记下你们的话，接着说明各自需要面对什么。'>>
+  <br><br>
+  <<templeicon 'altar'>><<lanLink '听约旦说明赎罪要求' 'Revelation Robin Temple Monthly Failure'>><</lanLink>><br>
+<<else>>
+  <<lanSwitch 'You tell Jordan you are afraid of what the examination might mean. Jordan listens, then says fear alone is not a broken vow. Robin remains beside you.' '你告诉约旦，自己害怕检查的结果。约旦听完说，害怕本身不算背誓。罗宾仍站在你身旁。'>>
+  <<set $temple_chastity_timer to 14>>
+  <<stress -2>><br><br><<lstress>>
+  <span class='blue'><<lanSwitch 'Jordan will give you time to return for the examination.' '约旦会给你们一点时间，再进行检查。'>></span><br><br>
+  <<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+<</if>>

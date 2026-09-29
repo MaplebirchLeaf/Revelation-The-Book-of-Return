@@ -1,0 +1,124 @@
+:: Revelation Robin Temple Joint Examination
+<!-- ./src/twee/RobinTemple/JointExamination.twee -->
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RevelationRobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
+  <<lanSwitch
+    'Jordan asks you, Robin, and Sydney to speak in turn. Each of you answers without being interrupted. Jordan checks the three vows against the temple record.'
+    '约旦请你、罗宾和悉尼轮流回答。每个人说话时，另外两人都没有打断。约旦照着神殿的记录，逐一核对三人的誓言。'
+  >>
+  <br><br>
+  <<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true and C.npc.Sydney.virginity.temple is true>>
+    <<lanSwitch 'The small jar gives a brief golden glow. Jordan nods. Sydney lets out a breath, and Robin reaches for your hand.' '小罐闪过一瞬金光。约旦点了点头。悉尼长出一口气，罗宾伸手握住你。'>>
+    <br><br><span class='green'><<lanSwitch 'All three promises remain intact.' '三人的誓言都仍然完好。'>></span><br><br>
+    <<templeicon 'altar'>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+  <<else>>
+    <<lanSwitch 'The jar stays dark. Jordan asks you to speak with <<him>> before anyone decides what happens next.' '小罐没有亮起。约旦请你们先说清经过，再决定接下来怎么办。'>>
+    <br><br>
+    <<socialiseicon 'ask'>><<lanLink '把事情讲清楚' 'Revelation Robin Temple Joint Failure'>><</lanLink>><br>
+  <</if>>
+<<else>>
+  <<lanSwitch 'The three-person examination is no longer due.' '现在没有需要三人共同接受的检查。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Joint Refuse
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RevelationRobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
+  <<set $temple_chastity_timer to 7>>
+  <<lanSwitch
+    'You ask Jordan to wait. Jordan agrees to call you back in seven days, without declaring anyone guilty. Robin and Sydney want to know your reason once you are ready to tell them.'
+    '你请约旦暂缓检查。约旦同意七天后再请你们回来，没有认定任何人有错。罗宾和悉尼都想等你准备好，再听你解释原因。'
+  >>
+  <<npcincr Robin love -1>><<npcincr Sydney love -1>><br><br><<lllove>>
+  <span class='blue'><<lanSwitch 'The examination will be offered again in seven days.' '七天后可以再次接受检查。'>></span><br><br>
+<<else>>
+  <<lanSwitch 'The three-person examination is no longer due.' '现在没有需要三人共同接受的检查。'>>
+  <br><br>
+<</if>>
+<<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+
+:: Revelation Robin Temple Joint Admit
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RevelationRobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
+  <<if $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true or C.npc.Sydney.virginity.temple isnot true>>
+    <<lanSwitch 'You ask Jordan to listen before the examination begins. Robin and Sydney give their own accounts. Jordan writes down each answer separately.' '你请约旦先听你说完。罗宾和悉尼也分别讲出自己的经过。约旦把三人的话各自记下。'>>
+    <br><br>
+    <<socialiseicon 'ask'>><<lanLink '听约旦说明后续安排' 'Revelation Robin Temple Joint Failure'>><</lanLink>><br>
+  <<else>>
+    <<set $temple_chastity_timer to 14>>
+    <<lanSwitch 'You admit that you are afraid of the result. Jordan says fear is not itself a broken vow. Robin and Sydney stay beside you while Jordan postpones the examination.' '你承认自己害怕检查结果。约旦说，害怕本身并不算背誓。推迟检查时，罗宾和悉尼都留在你身边。'>>
+    <br><br><span class='blue'><<lanSwitch 'Jordan will ask again in fourteen days.' '约旦将在十四天后再问。'>></span><br><br>
+    <<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+  <</if>>
+<<else>>
+  <<lanSwitch 'The three-person examination is no longer due.' '现在没有需要三人共同接受的检查。'>>
+  <br><br>
+  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Robin Temple Joint Failure
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RevelationRobinTemple.stage is 'promised' and $templePromised is 'Sydney'
+  and $RevelationRobinTemple.penance_day lt 0
+  and ($player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true or C.npc.Sydney.virginity.temple isnot true)>>
+  <<set $RevelationRobinTemple.joint_sydney_penance to $player.virginity.temple isnot true or C.npc.Sydney.virginity.temple isnot true>>
+  <<set $RevelationRobinTemple.breach to $player.virginity.temple isnot true and C.npc.Robin.virginity.temple isnot true ? 'both'
+    : $player.virginity.temple isnot true ? 'pc' : C.npc.Robin.virginity.temple isnot true ? 'robin' : ''>>
+  <<if $RevelationRobinTemple.breach isnot ''>>
+    <<set $RevelationRobinTemple.stage to 'member'>>
+    <<set C.npc.Robin.revelationConviction to Math.max(0, C.npc.Robin.revelationConviction - 15)>>
+  <</if>>
+  <<set $RevelationRobinTemple.penance_day to Time.days + 7>>
+  <<set $RevelationRobinTemple.penance_service to 0>>
+  <<set $RevelationRobinTemple.penance_work_day to -1>>
+  <<lanSwitch
+    'Jordan does not ask one person to answer for another. Jordan gives you seven days and a shared work list. What each of you must renew will depend on the vow that was broken.'
+    '约旦没有让任何人替别人承担责任，又给你们七天时间和一份共同的工作表。之后各自需要重新立下什么誓言，要看哪一份曾被违背。'
+  >>
+  <br><br><span class='red'><<lanSwitch 'The examination found a broken vow.' '检查发现有人违背了誓言。'>></span><br><br>
+<<else>>
+  <<lanSwitch 'Jordan has already recorded the result of this examination.' '约旦已经记录了这次检查的结果。'>>
+  <br><br>
+<</if>>
+<<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><<endevent>><</lanLink>><br>
+
+:: Revelation Robin Temple Joint Work
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RevelationRobinTemple.joint_sydney_penance and $RevelationRobinTemple.penance_day gte 0
+  and $RevelationRobinTemple.penance_work_day isnot Time.days>>
+  <<set $RevelationRobinTemple.penance_work_day to Time.days>>
+  <<set $RevelationRobinTemple.penance_service += 1>>
+  <<lanSwitch
+    'Sydney checks the kitchen stores while Robin sorts blankets. You carry the completed lists between them. They compare notes before signing their own names.'
+    '悉尼核对厨房存货，罗宾整理毯子。你把填好的清单送到他们手里。两人对完记录，分别签上自己的名字。'
+  >>
+  <<grace 1>><br><br><<ggrace>>
+<<else>>
+  <<lanSwitch 'Today’s shared work is already finished.' '今天的共同工作已经做完了。'>>
+<</if>>
+<br><br>
+<<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+
+:: Revelation Robin Temple Joint Restoration
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RevelationRobinTemple.joint_sydney_penance and $RevelationRobinTemple.penance_day gte 0
+  and Time.days gte $RevelationRobinTemple.penance_day and $RevelationRobinTemple.penance_service gte 3>>
+  <<set $player.virginity.temple to true>>
+  <<set C.npc.Sydney.virginity.temple to true>>
+  <<if $RevelationRobinTemple.breach isnot ''>>
+    <<set C.npc.Robin.virginity.temple to true>>
+  <</if>>
+  <<set $RevelationRobinTemple.penance_day to -1>>
+  <<set $RevelationRobinTemple.joint_sydney_penance to false>>
+  <<set $RevelationRobinTemple.breach to ''>>
+  <<lanSwitch
+    'Jordan accepts the three signed work lists. Sydney’s promise is renewed. Robin thanks <<him>> for hearing each of you separately, then asks what the next week’s work will be.'
+    '约旦收下三人签过名的工作表，重新接纳悉尼的誓言。罗宾谢过约旦愿意分别听他们说话，随后问起下周还有什么工作。'
+  >>
+  <br><br><span class='green'><<lanSwitch 'The broken vows have been restored.' '违背的誓言已经重新立下。'>></span><br><br>
+<<else>>
+  <<lanSwitch 'The work is not finished. Complete shifts on three separate days, then return after the seventh day.' '工作还没有结束。至少在三个不同的日子完成值班，第七天后再回来。'>>
+  <br><br>
+<</if>>
+<<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
