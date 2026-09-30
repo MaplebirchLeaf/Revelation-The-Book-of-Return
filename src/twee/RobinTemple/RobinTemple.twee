@@ -1,9 +1,9 @@
 :: RobinTemple Widgets [widget]
 <<widget 'robin-temple-return-home'>>
-  <<set _robinResidence to maplebirch.get('VP')?.realEstate.residenceOf('Robin')>>
+  <<set _robinResidence to maplebirch.get('VanillaPlus')?.realEstate.residenceOf('Robin')>>
   <<if _robinResidence>>
     <<getouticon>><<lanLink 'revelation-the-book-of-return:robinTemple:link:sharedHome' 'Deadwood Reblooms Property Home'>>
-      <<run maplebirch.get('VP').realEstate.visit(_robinResidence.id)>>
+      <<run maplebirch.get('VanillaPlus').realEstate.visit(_robinResidence.id)>>
       <<pass _args[0]>>
     <</lanLink>><br>
   <<else>>

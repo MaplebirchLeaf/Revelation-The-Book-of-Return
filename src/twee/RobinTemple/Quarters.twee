@@ -22,7 +22,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<if maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin')>>
+<<if maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
   <<language>>
     <<option 'EN'>>
       Robin keeps a bunk for temple duties, but goes home to you when the work is done.
@@ -380,7 +380,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
           “罗宾说要参加宅邸街孤儿院的万圣节活动。”
       <</language>>
     <<case 'orphanage'>>
-      <<if maplebirch.get('VP')?.realEstate.residenceOf('Robin')>>
+      <<if maplebirch.get('VanillaPlus')?.realEstate.residenceOf('Robin')>>
         <<language>>
           <<option 'EN'>>
             Robin has gone home. You remember that <<he>> now shares your property, so the orphanage may not be the place to look.

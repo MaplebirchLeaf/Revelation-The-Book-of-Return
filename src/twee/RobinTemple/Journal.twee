@@ -44,7 +44,7 @@
               <<option 'CN'>>
                 不上学的工作日，09:00 至 16:00 可以到罗宾房间约<<him>>去神殿帮忙。17:00 后也可以同行。罗宾会协助星期日弥撒。
             <</language>></li>
-          <<if !(maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin'))>>
+          <<if !(maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin'))>>
             <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
           <</if>>
           <<if $RobinTemple.punish>>

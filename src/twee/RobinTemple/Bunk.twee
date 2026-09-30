@@ -14,7 +14,7 @@
   <<option 'CN'>>
     罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
 <</language>>
-<<if maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin')>>
+<<if maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
   <<language>>
     <<option 'EN'>>
       Robin uses it during temple shifts. At night <<he>> returns to your home.

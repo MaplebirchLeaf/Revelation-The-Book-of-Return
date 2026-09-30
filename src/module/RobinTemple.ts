@@ -221,7 +221,7 @@ class RobinTemple extends Module {
     )
       return false;
 
-    const housing = this.core.get('VP') as ResidentialModule | undefined;
+    const housing = this.core.get('VanillaPlus') as ResidentialModule | undefined;
     const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));
     const overnight = !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
     const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
