@@ -34,9 +34,9 @@
       <<else>>
         <<language>>
           <<option 'EN'>>
-            <span class="teal">Robin glances at the chastity belt you wear, then looks away, unsure whether to ask about it.</span>
+            <span class="teal">You could talk to Robin about the temple after taking its vow.</span>
           <<option 'CN'>>
-            <span class="teal">罗宾看了一眼你身上的贞操带，又移开目光，似乎拿不准要不要问。</span>
+            <span class="teal">立下神殿誓言后，可以和罗宾谈谈神殿的事。</span>
         <</language>><br>
       <</if>>
     <<elseif $RobinTemple.stage is "invited">>
@@ -48,9 +48,9 @@
       and Time.hour gte 17
       and (Time.hour lt 19 or Time.hour is 19 and Time.minute lte 15)
       and !(maplebirch.get('Robin') and $RobinExpansion?.tutor
-        and Time.schoolDay and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
+      and Time.schoolDay and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
       and !(maplebirch.get('Robin') and $RobinExpansion?.shop
-        and $RobinExpansion.shopStaff lt 1 and (Time.hour gt 17 or Time.minute gt 15))>>
+      and $RobinExpansion.shopStaff lt 1 and (Time.hour gt 17 or Time.minute gt 15))>>
       <<templeicon 'altar'>><<lanLink '陪罗宾去神殿准备试炼 (0:45)' 'RobinTemple Prepare'>>
         <<run setRobinLocationOverride('temple', maplebirch.get('Robin') && $RobinExpansion?.shop && $RobinExpansion.shopStaff < 1 ? [17] : [17, 18, 19])>>
         <<pass 45>>
@@ -61,12 +61,12 @@
       and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
       and getRobinLocation() is 'orphanage'
       and !(maplebirch.get('Robin') and $RobinExpansion?.tutor and Time.schoolDay
-        and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
+      and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
       and !(maplebirch.get('Robin') and $RobinExpansion?.shop
-        and $RobinExpansion.shopStaff lt 1 and Time.hour gte 17)
+      and $RobinExpansion.shopStaff lt 1 and Time.hour gte 17)
       and ((Time.hour gte 17 and (Time.hour lt 19 or Time.hour is 19 and Time.minute lt 45))
-        or (!Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9
-          and (Time.hour lt 15 or Time.hour is 15 and Time.minute lt 45)))>>
+      or (!Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9
+      and (Time.hour lt 15 or Time.hour is 15 and Time.minute lt 45)))>>
       <<templeicon 'altar'>><<lanLink '和罗宾一起去神殿 (0:15)' 'Temple'>><<run setRobinLocationOverride('temple', Time.hour < 16 ? [9, 10, 11, 12, 13, 14, 15] : [17, 18, 19])>><<pass 15>><</lanLink>><br>
     <</if>>
   <</if>>
@@ -81,27 +81,16 @@
       <</if>>
     <<elseif ["member", "approved", "promised"].includes($RobinTemple.stage)>>
       <<icon 'temple/Robinquarters.png'>><<lanLink '去罗宾在宿舍的座位' 'RobinTemple Corner'>><</lanLink>><br>
-      <<if $RobinTemple.penance_day gte 0 and Time.days gte $RobinTemple.penance_day>>
-        <<if $RobinTemple.joint_sydney_penance>>
-          <<templeicon 'altar'>><<lanLink '向约旦交还三人的工作记录' 'RobinTemple Joint Restoration'>><</lanLink>><br>
-        <<else>>
-          <<templeicon 'altar'>><<lanLink '和罗宾完成赎罪工作' 'RobinTemple Penance'>><</lanLink>><br>
-        <</if>>
-      <</if>>
-      <<if $RobinTemple.penance_day gte 0
-        and $RobinTemple.penance_work_day isnot Time.days
-        and Time.hour gte 13 and Time.hour lt 20
-        and getRobinLocation() is 'temple'>>
-        <<if $RobinTemple.joint_sydney_penance>>
-          <<choreicon 'sweep'>><<lanLink '和罗宾、悉尼一起值班 (1:00)' 'RobinTemple Joint Work'>><<pass 60>><</lanLink>><br>
-        <<else>>
-          <<choreicon 'sweep'>><<lanLink '陪罗宾做赎罪工作 (1:00)' 'RobinTemple Penance Work'>><<pass 60>><</lanLink>><br>
-        <</if>>
+      <<if $RobinTemple.punish>>
+        <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] ($RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance')>><</lanLink>><br>
       <</if>>
       <<if $RobinTemple.vigil_attempt_day gte 0
         and !$RobinTemple.vigil_followup
         and Time.days gte $RobinTemple.vigil_attempt_day
-        and $RobinTemple.vigil_result isnot ''>>
+        and $RobinTemple.vigil_result isnot ''
+        and getRobinLocation() is 'temple'
+        and !($RobinTemple.vigil_result isnot 'passed'
+        and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7))>>
         <<socialiseicon "ask">><<lanLink '和罗宾谈谈守夜试炼' 'RobinTemple Vigil After'>><</lanLink>><br>
       <</if>>
     <</if>>
@@ -109,50 +98,66 @@
   <</if>>
 <</widget>>
 
+<<widget 'robin-temple-examination-ready'>>
+  <!-- 任一日历到期都进入同一轮月检；暂时无法到场时不会让 PC 先重复检查。 -->
+  <<set _robinTempleExamDue to $RobinTemple.templePromised is 'Robin'
+  and ($RobinTemple.chastity_timer lte 0
+  or $temple_chastity_timer lte 0
+  or !$RobinTemple.monthly_checked)
+  and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
+  and $exposed lte 0>>
+<</widget>>
+
+<<widget 'robin-temple-examination'>>
+  <<if C.npc.Robin.init isnot 1 or $robinmissing or $robin.timer.hurt isnot 0
+    or C.npc.Robin.trauma gte 80 or getRobinLocation() is 'asylum'>>
+    <<language>>
+      <<option 'EN'>>
+        Robin cannot attend. The examination will wait until <<nnpc_he 'Robin'>> can join you.
+      <<option 'CN'>>
+        罗宾暂时无法到场。等<<nnpc_he 'Robin'>>能够参加时，再一同接受检查。
+    <</language>>
+    <br><br>
+    <<getouticon>><<lanLink ['Leave the temple (0:01)', '离开神殿 (0:01)'] 'Town'>><<pass 1>><</lanLink>><br>
+  <<elseif $RobinTemple.punish>>
+    <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] ($RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance')>><</lanLink>><br>
+  <<else>>
+    <<set $RobinTemple.monthly_checked to false>>
+    <<set $RobinTemple.chastity_timer to 30>>
+    <!-- 两份日历在同一轮检查中重置，PC 不会另行接受单人月检。 -->
+    <<set $temple_chastity_timer to 30>>
+    <<if $templePromised is 'Sydney'>>
+      <<robin-temple-joint-examination>>
+    <<else>>
+      <<robin-temple-monthly-examination>>
+    <</if>>
+  <</if>>
+<</widget>>
+
 <<widget 'robin-temple-joint-examination'>>
   <<npc Jordan>><<person1>>
-  <<if !$RobinTemple.joint_consent>>
-    <<language>>
-      <<option 'EN'>>
-        Jordan sees both names on your records and closes the examination book. "First, the three of you must tell me whether this was a choice you all made."
-      <<option 'CN'>>
-        约旦看见记录上写着罗宾和悉尼的名字，合上了检查簿。“先告诉我，这是不是你们三个人共同作出的选择。”
-    <</language>>
-    <br><br>
-    <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼一起谈清楚' 'RobinTemple Joint Reconcile'>><</lanLink>><br>
-  <<elseif $RobinTemple.joint_sydney_penance>>
-    <<language>>
-      <<option 'EN'>>
-        Jordan points to the unfinished work list. "Finish what we agreed first. Then we will speak about the vows again."
-      <<option 'CN'>>
-        约旦指向尚未完成的工作表。“先做完约定的事，然后我们再谈誓言。”
-    <</language>>
-    <br><br>
-    <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        Jordan meets you at the altar. "Sydney and Robin have both made promises with you. I will hear from all three of you today," <<he>> says.
-      <<option 'CN'>>
-        约旦在祭坛前等着你。“悉尼和罗宾都与你立过誓。今天我要听你们三个人亲口回答。”<<he>>说。
-    <</language>>
-    <br><br>
-    <<templeicon 'altar'>><<lanLink '请罗宾与悉尼一同接受检查' 'RobinTemple Joint Examination'>><</lanLink>><br>
-    <<getouticon>><<lanLink '请求改日检查' 'RobinTemple Joint Refuse'>><</lanLink>><br>
-    <<socialiseicon 'ask'>><<lanLink '先向约旦说明情况' 'RobinTemple Joint Admit'>><</lanLink>><br>
-  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan meets you at the altar. "Sydney and Robin have both made promises with you. I will hear from all three of you today," <<he>> says.
+    <<option 'CN'>>
+      约旦在祭坛前等着你。“悉尼和罗宾都与你立过誓。今天我要听你们三个人亲口回答。”<<he>>说。
+  <</language>>
+  <br><br>
+  <<templeicon 'altar'>><<lanLink '请罗宾与悉尼一同接受检查' 'RobinTemple Joint Examination'>><</lanLink>><br>
+  <<getouticon>><<lanLink '拒绝检查' 'RobinTemple Joint Refuse'>><<npcincr Robin love -5>><<npcincr Sydney love -5>><</lanLink>><<lllove 'Robin'>><<lllove 'Sydney'>><br>
+  <<socialiseicon 'ask'>><<lanLink '先向约旦说明情况' 'RobinTemple Joint Admit'>><<npcincr Robin love -10>><<npcincr Sydney love -10>><</lanLink>><<llllove 'Robin'>><<llllove 'Sydney'>><br>
 <</widget>>
 
 <<widget "robin-temple-monthly-examination">>
   <<npc Jordan>><<person1>>
   <<language>>
     <<option 'EN'>>
-      Jordan stops you near the altar. "It is time to examine the vow you and Robin made together. I have sent for <<him>>."
+      Jordan stops you near the altar. "It is time to examine the vow you and Robin made together. I have sent for <<nnpc_him 'Robin'>>."
     <<option 'CN'>>
-      约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<him>>。”
+      约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<nnpc_him 'Robin'>>。”
   <</language>>
   <br><br>
   <<templeicon "altar">><<lanLink '和罗宾一起接受检查' 'RobinTemple Monthly Examination'>><</lanLink>><br>
-  <<getouticon>><<lanLink '拒绝检查' 'RobinTemple Monthly Refuse'>><</lanLink>><br>
-  <<socialiseicon 'ask'>><<lanLink '先向约旦坦白' 'RobinTemple Monthly Admit'>><</lanLink>><br>
+  <<getouticon>><<lanLink '拒绝检查' 'RobinTemple Monthly Refuse'>><<npcincr Robin love -5>><</lanLink>><<lllove 'Robin'>><br>
+  <<socialiseicon 'ask'>><<lanLink '先向约旦坦白' 'RobinTemple Monthly Admit'>><<npcincr Robin love -10>><</lanLink>><<llllove 'Robin'>><br>
 <</widget>>

@@ -34,15 +34,15 @@
 <<if $RobinTemple.vigil_result is 'passed'>>
   <<language>>
     <<option 'EN'>>
-      Robin's new cloak hangs by the bunk. <<He>> still checks the work list with the older monks before taking a task, but no longer looks to Jordan for permission to enter the hall.
+      Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before he carries a task into the hall.
     <<option 'CN'>>
-      罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍先请教年长的修士，却不再需要约旦准许才能走进大厅。
+      罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
   <</language>>
   <br><br>
 <</if>>
 <<icon 'temple/RobinTemplebed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
 <<set _robinAtTemple to getRobinLocation() is 'temple' and !$robinmissing
-  and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
+and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
 <<if !_robinAtTemple>>
   <<language>>
     <<option 'EN'>>
@@ -52,6 +52,14 @@
   <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink '问值班侍从罗宾去了哪里' 'RobinTemple Whereabouts'>><</lanLink>><br>
+<<elseif $RobinTemple.vigil_result isnot 'passed'
+  and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7)>>
+  <<language>>
+    <<option 'EN'>>
+      Robin is taking part in the trial of anguish. <<His>> belongings have been left beside the bunk.
+    <<option 'CN'>>
+      罗宾正在参加苦难审判。<<His>>的物品留在床铺旁。
+  <</language>>
 <<elseif (Time.weekDay is 7 and Time.hour gte 21) or (Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
     <<option 'EN'>>
@@ -69,7 +77,7 @@
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
   <</if>>
 <<elseif Time.weekDay is 1 and Time.hour is 12>>
   <<language>>
@@ -103,8 +111,8 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><br>
-    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><br>
+    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
+    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction>><br>
   <</if>>
 <<elseif Time.hour lt 17 or Time.hour gte 20>>
   <<language>>
@@ -122,25 +130,27 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><br>
-    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><br>
+    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
+    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction>><br>
   <</if>>
-  <<if $robinromance is 1 and $RobinTemple.stage is 'member'
-    and $RobinTemple.penance_day lt 0
-    and ['monk', 'priest'].includes($temple_rank) and $RobinTemple.service gte 3
-    and ($templePromised is '' or $templePromised is 'Sydney' and $sydneyromance is 1)>>
-    <<loveicon "hug">><<lanLink '和罗宾谈谈承诺仪式' 'RobinTemple Promise Talk'>><</lanLink>><br>
-  <</if>>
+
   <<if $robinromance is 1 and $RobinTemple.stage is 'member'
     and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2
     and !$RobinTemple.clasp_discussed>>
     <<socialiseicon 'ask'>><<lanLink '问罗宾贞操带的事' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
   <<if $RobinTemple.stage is "approved">>
-    <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Rite'>><</lanLink>><br>
+    <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Altar'>><</lanLink>><br>
   <</if>>
 <</if>>
-<<if _robinAtTemple and $RobinTemple.stage is 'promised'
+<!-- 承诺入口在罗宾到场时显示，避免被晚间工作分支限制而无法访问。 -->
+<<if _robinAtTemple and $robinromance is 1 and $RobinTemple.stage is 'member'
+  and !$RobinTemple.punish and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
+  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.dual_promise)>>
+  <br><br>
+  <<loveicon 'hug'>><<lanLink '和罗宾谈谈承诺仪式' 'RobinTemple Evaluation'>><</lanLink>><br>
+<</if>>
+<<if _robinAtTemple and $RobinTemple.templePromised is 'Robin'
   and Time.hour gte 11 and Time.hour lt 20
   and !(Time.weekDay is 1 and Time.hour lt 13)>>
   <br><br>
@@ -157,20 +167,6 @@
     <<lockicon>><<lanLink '和罗宾谈谈贞操带' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
 <</if>>
-<<if _robinAtTemple and $temple_rank is 'initiate'
-  and ['member', 'approved', 'promised'].includes($RobinTemple.stage)
-  and $RobinTemple.vigil_result isnot 'passed' and $RobinTemple.penance_day lt 0
-  and $RobinTemple.service gte 3 and C.npc.Robin.revelationConviction gte 110>>
-  <<if $RobinTemple.vigil_day lt Time.days
-    and ($RobinTemple.vigil_attempt_day lt 0 or $RobinTemple.vigil_followup)>>
-    <br><br>
-    <<socialiseicon 'ask'>><<lanLink '问罗宾愿不愿意参加守夜' 'RobinTemple Vigil Before'>><</lanLink>><br>
-  <<elseif $RobinTemple.vigil_prepared_day isnot Time.days
-    and Time.days lte $RobinTemple.vigil_day>>
-    <br><br>
-    <<templeicon 'quarters'>><<lanLink '陪罗宾准备守夜 (0:30)' 'RobinTemple Vigil Prepare'>><<pass 30>><</lanLink>><br>
-  <</if>>
-<</if>>
 <br>
 <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
 
@@ -178,7 +174,7 @@
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
   <<language>>
     <<option 'EN'>>
       You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
@@ -208,7 +204,7 @@
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
   <<language>>
     <<option 'EN'>>
       A delivery has been left by the stairwell. Robin checks the list while you carry the lighter boxes inside. Some are meant for the kitchen; others hold clean sheets.
@@ -248,12 +244,19 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.vigil_result is 'passed'>>
-    <<if C.npc.Robin.dom gt 50>>
+    <<if C.npc.Robin.trauma gte 40>>
       <<language>>
         <<option 'EN'>>
-          Jordan asks Robin to read a short passage aloud. <<He>> marks the line with a finger and speaks clearly enough for the back row to hear. Afterwards, <<he>> finds you by the remaining books. "How was that?"
+          Jordan asks Robin to read a short passage. <<He>> looks down at the book, then towards you. You stand nearby while <<he>> reads, quietly enough that the hall has to fall silent to hear. Afterwards, <<he>> stays beside you.
         <<option 'CN'>>
-          约旦请罗宾朗读一小段经文。<<He>>用手指沿着字行，读得后排也能听清。结束后，<<he>>在剩下的祈祷书旁找到你。“刚才读得怎么样？”
+          约旦请罗宾朗读一小段经文。<<He>>低头看着书，又望向你。你站在附近陪着<<him>>。<<His>>声音很轻，大厅里安静下来才听得清。读完后，<<he>>仍待在你身旁。
+      <</language>>
+    <<elseif C.npc.Robin.dom gt 50>>
+      <<language>>
+        <<option 'EN'>>
+          Jordan asks Robin to read a short passage aloud. <<He>> follows the line with a finger and keeps going even when <<his>> voice wavers. Afterwards, <<he>> finds you by the remaining books. "How was that?"
+        <<option 'CN'>>
+          约旦请罗宾朗读一小段经文。<<He>>用手指沿着字行，声音发颤时也没有停下。结束后，<<he>>在剩下的祈祷书旁找到你。“刚才读得怎么样？”
       <</language>>
     <<else>>
       <<language>>
@@ -271,7 +274,7 @@
         “做生意倒让我学会了算得快，”罗宾说。<<He>>把前排留给晚到的人。
     <</language>>
   <</if>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
   <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
 <<else>>
   <<language>>
@@ -318,12 +321,22 @@
 <<else>>
   <<switch _robinWhereabouts>>
     <<case 'temple'>>
-      <<language>>
-        <<option 'EN'>>
-          "Robin is still here. Try the hall, or check the quarters when the next shift starts."
-        <<option 'CN'>>
-          “罗宾还在这里。去大厅看看，或等下一班开始时再来宿舍找找。”
-      <</language>>
+      <<if $RobinTemple.vigil_result isnot 'passed'
+        and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7)>>
+        <<language>>
+          <<option 'EN'>>
+            "Robin is taking part in the trial of anguish. You can speak to <<him>> afterwards."
+          <<option 'CN'>>
+            “罗宾正在参加苦难审判。等结束后再找<<him>>吧。”
+        <</language>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            "Robin is still here. Try the hall, or check the quarters when the next shift starts."
+          <<option 'CN'>>
+            “罗宾还在这里。去大厅看看，或等下一班开始时再来宿舍找找。”
+        <</language>>
+      <</if>>
     <<case 'school' 'englishPlay'>>
       <<language>>
         <<option 'EN'>>

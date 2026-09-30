@@ -1,7 +1,7 @@
 :: RobinTemple Bed Afternoon
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised' and $robinromance is 1
-  and $RobinTemple.penance_day lt 0 and !$robinmissing
+<<if $RobinTemple.templePromised is 'Robin' and $robinromance is 1
+  and !$RobinTemple.punish and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and $robin.timer.hurt is 0 and !Time.schoolDay and !Time.isWeekEnd()
   and Time.hour gte 13 and Time.hour lt 16>>
@@ -12,21 +12,12 @@
       罗宾放下工作表，来到自己的床铺旁。其他见习教徒都在别处忙碌。<<He>>拉上这一排床铺的屏风，挨着你坐在床垫边缘。
   <</language>>
   <br><br>
-  <<if $RobinTemple.evaluation_style is 'protective'>>
-    <<language>>
-      <<option 'EN'>>
-        "You told Jordan you would keep every hurt from me," <<he>> says. "You do not have to promise that again. Just tell me when something is wrong."
-      <<option 'CN'>>
-        “你曾对约旦说，会替我挡下所有伤害，”<<he>>说，“别再答应这种事了。有难处就告诉我。”
-    <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        "I meant what I said at the altar," <<he>> says. "Even when I have to leave for work or the orphanage."
-      <<option 'CN'>>
-        “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
-    <</language>>
-  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      "I meant what I said at the altar," <<he>> says. "Even when I have to leave for work or the orphanage."
+    <<option 'CN'>>
+      “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
+  <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink '问罗宾是否习惯了新的誓言' 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
   <<loveicon 'kiss'>><<lanLink '问罗宾要不要更亲近些' 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
@@ -42,7 +33,7 @@
 
 :: RobinTemple Bed Afternoon Talk
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised' and !$robinmissing
+<<if $RobinTemple.templePromised is 'Robin' and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
@@ -86,8 +77,8 @@
 
 :: RobinTemple Bed Afternoon Invite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised' and $robinromance is 1
-  and $RobinTemple.penance_day lt 0 and !$robinmissing
+<<if $RobinTemple.templePromised is 'Robin' and $robinromance is 1
+  and !$RobinTemple.punish and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and $robin.timer.hurt is 0>>
   <<language>>
@@ -134,7 +125,7 @@
 
 :: RobinTemple Bed Afternoon Hold
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised' and $robinromance is 1
+<<if $RobinTemple.templePromised is 'Robin' and $robinromance is 1
   and !$robinmissing and getRobinLocation() is 'temple'
   and C.npc.Robin.trauma lt 80>>
   <<if C.npc.Robin.trauma gte 40>>
@@ -173,8 +164,8 @@
 :: RobinTemple Bed Sex
 <<set $outside to 0>><<set $location to 'temple'>>
 <!-- 标记保存在 V 中，战斗期间读档也能保留神殿床铺这个返回位置。 -->
-<<if $sexstart is 1 and $RobinTemple.stage is 'promised'
-  and $robinromance is 1 and $RobinTemple.penance_day lt 0
+<<if $sexstart is 1 and $RobinTemple.templePromised is 'Robin'
+  and $robinromance is 1 and !$RobinTemple.punish
   and !$robinmissing and getRobinLocation() is 'temple'
   and C.npc.Robin.trauma lt 80
   and $robin.timer.hurt is 0>>

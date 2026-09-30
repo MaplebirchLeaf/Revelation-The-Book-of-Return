@@ -1,6 +1,13 @@
 :: RobinTemple Invitation
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
-<<if C.npc.Robin.dom gt 50>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>
+      Robin glances at your chastity device, then lowers <<his>> eyes. "Is that from the temple?" <<he>> asks quietly. "D-does it help?"
+    <<option 'CN'>>
+      罗宾看了看你的贞操器具，又垂下目光。“是神殿给你的吗？”<<he>>小声问，“它……能保护你吗？”
+  <</language>>
+<<elseif C.npc.Robin.dom gt 50>>
   <<language>>
     <<option 'EN'>>
       Robin glances at your chastity device. "Does wearing that mean you have joined the temple?" <<He>> pauses. "I'm only asking. If it's what you want, I'm glad."
@@ -46,12 +53,19 @@
     你告诉<<him>>，决定权在<<his>>的手里。约旦会如何安排，你不能擅自保证，但你可以陪罗宾去问。
 <</language>>
 <br><br>
-<<if C.npc.Robin.dom gt 50>>
+<<if C.npc.Robin.trauma gte 40>>
   <<language>>
     <<option 'EN'>>
-      "If they look after you, that's good," Robin says. "I'd like to see it for myself before deciding."
+      "Would you come with me?" Robin asks. <<He>> watches your face. "Just to look. I don't know what I'd say to Jordan."
     <<option 'CN'>>
-      “那里愿意照顾你，是件好事，”罗宾说，“不过要不要加入，我想先亲自去看看。”
+      “你会陪我去吗？”罗宾望着你的脸，“先去看看就好。我不知道该和约旦说什么。”
+  <</language>>
+<<elseif C.npc.Robin.dom gt 50>>
+  <<language>>
+    <<option 'EN'>>
+      "If they look after you, that's good," Robin says. "Could we go together? I'd like to see it."
+    <<option 'CN'>>
+      “那里愿意照顾你，是件好事，”罗宾说，“我们一起去好吗？我也想看看。”
   <</language>>
 <<elseif !(maplebirch.get('Robin') and $RobinExpansion?.baileyDefeated)>>
   <<language>>
@@ -154,7 +168,6 @@
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is "scheduled" and $RobinTemple.prepared_day isnot Time.days and Time.days lt $RobinTemple.exam_day>>
   <<set $RobinTemple.prepared_day to Time.days>>
-  <<set $RobinTemple.readiness to Math.min(30, $RobinTemple.readiness + 10)>>
   <<set $RobinTemple.assessment_bonus to Math.min(15, $RobinTemple.assessment_bonus + 5)>>
   <<language>>
     <<option 'EN'>>
@@ -210,9 +223,9 @@
   <<if $RobinTemple.assessment_passed>>
     <<language>>
       <<option 'EN'>>
-        Robin is smiling as <<he>> crosses the hall. "Hello! Did you come to pick me up?" <<He>> reaches for you. "I passed. Thank you for telling me about this place."
+        Robin is smiling as <<he>> crosses the hall. "Hey! Did you come to pick me up?" <<He>> reaches for you. "I passed. Thank you for telling me about this place."
       <<option 'CN'>>
-        罗宾微笑着穿过大厅。“嘿！你是来接我的吗？”<<He>>伸手抱住你，“我通过了。谢谢你推荐我来这里。”
+        罗宾微笑着穿过大厅。“嘿，你来接我啦？”<<He>>伸手抱住你，“我通过了。谢谢你告诉我这个地方。”
     <</language>>
     <br><br>
     <<templeicon "altar">><<lanLink '听约旦宣布结果' 'RobinTemple Pass'>><</lanLink>><br>
@@ -240,10 +253,10 @@
 :: RobinTemple Pass
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is "scheduled" and $RobinTemple.assessment_passed>>
-  <<set $RobinTemple.stage to "member">><<set $RobinTemple.exam_attempts += 1>>
+  <<set $RobinTemple.stage to "member">>
   <<set $RobinTemple.grace to 0>><<set $RobinTemple.assessment_bonus to 0>>
-  <<if C.npc.Robin.revelationConviction is undefined or C.npc.Robin.revelationConviction is 0>>
-    <<set C.npc.Robin.revelationConviction to 100>>
+  <<if C.npc.Robin.conviction is undefined or C.npc.Robin.conviction is 0>>
+    <<set C.npc.Robin.conviction to 100>>
   <</if>>
   <<set C.npc.Robin.virginity.temple to true>>
   <<if C.npc.Robin.chastity.anus is ''
@@ -265,9 +278,9 @@
   <<if $RobinTemple.clasp_equipped>>
     <<language>>
       <<option 'EN'>>
-        An attendant fits Robin with the temple's chastity belt and leaves the key with Jordan.
+        An attendant fits Robin with the temple's chastity belt. Jordan explains that specialised equipment is needed to remove it.
       <<option 'CN'>>
-        一名侍从为罗宾戴上神殿的贞操带，把钥匙交给约旦保管。
+        一名侍从为罗宾戴上神殿的贞操带。约旦告诉<<him>>，拆除时需要专用工具。
     <</language>>
   <<else>>
     <<language>>
@@ -304,7 +317,7 @@
 :: RobinTemple Fail
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is "scheduled">>
-  <<set $RobinTemple.stage to "failed">><<set $RobinTemple.exam_attempts += 1>>
+  <<set $RobinTemple.stage to "failed">>
   <<set $RobinTemple.exam_day to Time.days>>
   <<language>>
     <<option 'EN'>>

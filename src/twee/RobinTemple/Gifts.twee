@@ -29,7 +29,7 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "Bailey used to tell me not to eat this," <<he>> says. "I am glad you brought it."
+      "Bailey used to tell me not to eat this," <<he>> says. "I'm glad you brought it."
     <<option 'CN'>>
       “贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”
   <</language>>

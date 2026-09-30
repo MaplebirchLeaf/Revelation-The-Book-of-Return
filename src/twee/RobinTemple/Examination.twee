@@ -1,155 +1,517 @@
-:: RobinTemple Penance Widgets [widget]
-<<widget 'robin-temple-penance-exit'>>
-  <<templeicon 'altar'>><<lanLink '与罗宾一同面对惩戒' 'RobinTemple Penance Trial'>><</lanLink>><br>
+:: RobinTemple Examination Widgets [widget]
+<<widget 'robin-temple-examination-success'>>
+  <<if !$RobinTemple.monthly_checked>>
+    <<set $RobinTemple.monthly_checked to true>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $grace gte 90>>
+
+          Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. Your behaviour has been remarkable. <span class="green">You're a credit to our faith, and every one of us could learn from you.</span> Thank you."
+          <br><br>
+          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+
+        <<elseif $grace gte 50>>
+
+          Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="teal">You've been an upstanding member of our faith,</span> and deserve every penny."
+          <br><br>
+          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+
+        <<elseif $grace gte 1>>
+
+          Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="lblue">You've been an upstanding member of our faith.</span> There is room for improvement, but such is true of us all. We should strive to be better each day."
+          <br><br>
+          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+
+        <<else>>
+          <span class="red">"Though pure, your behaviour hasn't been appropriate for a member of our faith,"</span> <<he>> says. "We know you can do better. As such, we've decided to withhold your allowance this month. I hope I can pay you next time."
+        <</if>>
+      <<option 'CN'>>
+        <<if $grace gte 90>>
+
+          <<he>>没有看你，只是把一个信封放在了你旁边的架子上。“这是你的月度津贴。你的表现非常出色。<span class="green">你是我们信仰中值得称赞的人，我们每个人都可以向你学习。</span>谢谢。”
+          <br><br>
+          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+
+        <<elseif $grace gte 50>>
+
+          <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="teal">你一直是我们教会的杰出成员，</span>每一分钱都对应着你的付出。”
+          <br><br>
+          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+
+        <<elseif $grace gte 1>>
+
+          <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="lblue">你一直是我们教会中表现良好的成员。</span>当然，还有提高的空间，但我们所有人都需要进步。我们应该每天努力变得更好。”
+          <br><br>
+          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+
+        <<else>>
+          <span class="red">"尽管你很纯洁，但作为信徒，你的行为并不合乎我们的信仰，"</span><<he>>说道，"我们知道你可以做得更好。因此，我们决定暂停发放你这个月的津贴。希望下次我能发放给你。"
+        <</if>>
+    <</language>>
+    <<if $grace gte 90>>
+      <<wearProp 'cash four'>><<npcincr Jordan love 2>><<glove>>
+    <<elseif $grace gte 50>>
+      <<wearProp 'cash three'>>
+    <<elseif $grace gte 1>>
+      <<wearProp 'cash two'>>
+    <</if>>
+    <<if $grace gt 0>><<money ($grace * 4000)>><</if>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-purification-summons'>>
+  <<set $templetest to 'failed'>>
+  <<set $RobinTemple.monthly_checked to true>>
+  <<run maplebirch.get('RobinTemple').startPunishment(_args[0])>>
+  <<npc Jordan>><<person1>>
+  <<language>>
+    <<option 'EN'>>
+      "You must be purified, as one. I will summon the specialists. Please cooperate with them." Jordan produces a small bell from <<his>> robes and rings it.
+    <<option 'CN'>>
+      “作为一体，你们必须被净化。我会召集专人来，请一定要配合。”约旦从斗篷里拿出一个小铃铛，摇了摇。
+  <</language>>
+  <br><br>
+  <<if _args[0]>>
+    <<language>>
+      <<option 'EN'>>
+        Robin and Sydney quickly cling to your arms.
+      <<option 'CN'>>
+        悉尼和罗宾飞速地用手挽住了你的两条胳膊。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        Robin quickly clings to your arm.
+      <<option 'CN'>>
+        罗宾飞速地用手挽住了你的胳膊。
+    <</language>>
+  <</if>>
+  <br><br>
+  <<robin-temple-punishment-exit>>
+<</widget>>
+
+<<widget 'robin-temple-examination-prepare'>>
+  <!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+  原版 passage：Sydney Temple Test。
+  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Test.twee:2
+  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Test.twee:2
+  -->
+
+  <<npc Jordan 1>><<npc Robin 2>><<person1>>
+  <<if _args[0]>><<npc Sydney 3>><</if>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan gives you a solemn nod. "Please come with me."
+
+      You and Robin follow.
+
+      <br><br>
+      <<He>> leads you out of the main hall and into a small room. "There's a ritual to this, nothing complicated. It differs from the usual examination. I'll prepare while you undress."
+
+      <br><br>
+      <<npc "Robin" 2>><<person2>>
+      You both remove your clothing, wishing it wasn't quite so cold in here. Jordan rubs grey powder between <<person1>><<his>> hands, then kneels in front of you.
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>> holds a strange rod against your $worn.genitals.name, and the device clatters to the floor.
+      <</if>>
+      <<if $player.penisExist>>
+        <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
+          <<He>> holds your $worn.genitals.name between both forefingers, gently manipulating it. <<He>> scatters grey powder over it as <<he>> inspects it. You try to distract yourself, but soon feel your <<penis>> attempt to harden under <<his>> scrutiny.
+        <<else>>
+          <<He>> holds your penis between both forefingers, and stares at it intently, gently manipulating the length and rubbing the grey powder along it. You try to distract yourself, but you soon feel it hardening under <<his>> scrutiny.
+        <</if>>
+      <</if>>
+      <<if $player.vaginaExist>>
+        <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
+          <<He>> places <<his>> thumbs against the side of your $worn.genitals.name and attempts to inspect your pussy. With some difficulty, <<he>> attempts to rub the grey powder over it.
+          <br>
+        <<else>>
+          <<He>> places <<his>> thumbs against your pussy and gently opens your
+          <<if setup.bodyliquid.combined("vagina") gte 2>>
+            <<if setup.bodyliquid.combined("vagina") gte 6>>
+              lips. Cum bursts out, spraying across Jordan's face and running in streams down both <<his>> arms.
+              <<He>> falls back in shock, hurriedly wiping cum from <<his>> eyes and mouth.
+              <br>
+              <<He>> looks at you.
+            <<elseif setup.bodyliquid.combined("vagina") gte 4>>
+              lips. A thick stream of lewd fluids gushes out. Some runs down Jordan's arm and quickly disappears up <<his>> sleeve.
+              <<He>> jumps back with a yelp, shaking <<his>> arms in alarm.
+              <br>
+            <<else>>
+              lips. Cum runs out in a thin stream down your legs. Jordan withdraws <<his>> hands in surprise.
+              <br>
+            <</if>>
+            "That's a bad sign," <<he>> mutters.
+            <br><br>
+
+            <<if _args[0] and $daily.sydney.cum>>
+              Sydney looks away and blushes. "That... that was my fault..."
+            <<else>>
+              Robin's eyes widen.
+            <</if>>
+
+          <<else>>
+            lips, giving <<him>> a clear view inside. <<He>> rubs the grey powder around the entrance.
+            <br>
+          <</if>>
+        <</if>>
+        You don't want to admit it, but your body responds lewdly to being examined like this.
+      <</if>>
+      <br><br>
+      The fondling continues for a few minutes. At last, <<he>> finishes <<his>> work, scraping the grey powder into a small jar. <<He>> then approaches Robin.
+      <<arousal 1000 "genitals">>
+      <br><br>
+    <<option 'CN'>>
+      约旦向你郑重点头。“请随我来。”
+
+      你和罗宾跟了上去。
+
+      <br><br>
+      <<He>>带你离开主厅，来到一个小房间。“还有个仪式，和平常有些不一样，但没什么复杂的。我来准备，你先脱衣服吧。”
+
+      <br><br>
+      <<npc "Robin" 2>><<person2>>
+      你俩脱掉衣服，都希望不会很冷。约旦在两手间擦拭上白色粉末，然后跪在了你们的面前。<<person1>>
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>>拿着一根奇怪的杆状物抵住你的$worn.genitals.cn_name_cap，装置随即咔嗒落地。
+      <</if>>
+      <<if $player.penisExist>>
+        <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
+          <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，轻轻地摆弄着。<<He>>一边检查着它，一边在上面涂抹灰色粉末。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>的审视下变得更硬了。
+        <<else>>
+          约旦用两根食指夹住你的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了你的阴茎上，用以细致地检查包皮的状况。你试图分散自己的注意力，但阴茎还是在<<his>>的抚摸下慢慢挺立。
+        <</if>>
+      <</if>>
+      <<if $player.vaginaExist>>
+        <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
+          <<He>>用<<his>>双手的拇指放在你的$worn.genitals.cn_name_cap边上，试图检查你的阴部。<<he>>艰难地将灰白色的粉末涂抹在上面。
+          <br>
+        <<else>>
+          随后<<He>>用<<his>>双手的拇指轻触着你的阴部，温柔地打开了你的
+          <<if setup.bodyliquid.combined("vagina") gte 2>>
+            <<if setup.bodyliquid.combined("vagina") gte 6>>
+              阴唇。淫液喷涌而出，溅了约旦一脸，沿着<<his>>的双手流下。
+              <<He>>震惊地跌坐在地，慌忙擦掉了眼中和嘴里的液体。
+              <br>
+              <<He>>看向你。
+            <<elseif setup.bodyliquid.combined("vagina") gte 4>>
+              阴唇。一股淫液涌出，滴在了约旦的手上，很快浸没到<<his>>的袖子里。
+              <<He>>惊叫地向后跳去，惊恐地甩着双手。
+              <br>
+            <<else>>
+              阴唇。淫液如细流淌下你的双腿，约旦吃惊地抽出双手。
+              <br>
+            <</if>>
+            "那可不是一个好兆头。"<<he>>喃喃道。
+            <br><br>
+
+            <<if _args[0] and $daily.sydney.cum>>
+              悉尼把脸别向一边，满脸通红。“那……那是我的错……”
+            <<else>>
+              罗宾的双眼瞪大了。
+            <</if>>
+
+          <<else>>
+            阴唇，以便能清晰查看里面的景象。<<He>>在入口处涂抹上了灰色的粉末。
+            <br>
+          <</if>>
+        <</if>>
+        你不愿承认，但你的身体确实在淫荡地回应着这个检验。
+      <</if>>
+      <br><br>
+      抚弄持续了几分钟。最后，<<he>>完成了手里的活儿，把灰粉刮进一个小罐子里，然后走向罗宾。
+      <<arousal 1000 "genitals">>
+      <br><br>
+  <</language>>
+  <<if _args[0]>>
+    <<language>>
+      <<option 'EN'>>
+        Sydney waits beside Robin for the same examination.
+      <<option 'CN'>>
+        悉尼站在罗宾身旁，等着接受同一场检查。
+    <</language>>
+  <</if>>
+  <<socialiseicon 'ask'>><<lanLink ['Look away', '移开视线'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 1>><<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><</lanLink>><<gconviction>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Watch', '看着'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 2>><<npcincr Robin lust 1>><<set C.npc.Robin.conviction to Math.max(0, C.npc.Robin.conviction - 2)>><</lanLink>><<glust 'Robin'>><<lconviction>><br>
+<</widget>>
+
+<<widget 'robin-temple-examination-partners'>>
+  <!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+  原版 passage：Sydney Temple Test 2。
+  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Test 2.twee:2
+  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Test 2.twee:2
+  -->
+
+  <<npc Jordan 1>><<npc Robin 2>><<person1>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $phase is 1>>
+        You look away as Jordan repeats the examination on Robin, only daring to look when it's finished.
+      <<else>>
+        You watch as Jordan rubs more grey powder on <<his>> hands.
+        <<if C.npc.Robin.gender is "m">>
+          <<if $player.penisExist>>
+            <<He>> gives Robin the same treatment, <<if C.npc.Robin.lust gte 50>>and Robin looks away as <<person2>><<he>> gradually hardens<<else>>but <<person2>><<he>> stays noticeably flaccid<</if>>.
+          <<else>>
+            <<He>> holds Robin's penis between both forefingers, and stares at it intently, gently manipulating the length and rubbing the grey powder along it. <<if C.npc.Robin.lust gte 50>>Robin looks away as <<person2>><<he>> hardens<<else>><<person2>><<He>> stays flaccid<</if>>.
+          <</if>>
+        <<else>>
+          <<if $player.vaginaExist>>
+            <<He>> gives Robin the same treatment.
+          <<else>>
+            <<He>> places <<his>> thumbs against Robin's pussy and opens <<person2>><<his>> lips.
+          <</if>>
+
+          <<person1>> <<He>> rubs the grey powder around the entrance.
+          <<if C.npc.Robin.lust gte 50>>
+            You can tell Robin's body is responding lewdly, despite <<person2>><<his>> attempts to conceal it.
+          <<else>>
+            Robin remains calm and placid.
+          <</if>>
+        <</if>>
+      <</if>>
+      <br><br>
+    <<option 'CN'>>
+      <<if $phase is 1>>
+        约旦给罗宾做重复的检验时，你别过了头，等到完成时才敢转回来。
+      <<else>>
+        你看着约旦在手上涂抹了更多的粉末。
+        <<if C.npc.Robin.gender is "m">>
+          <<if $player.penisExist>>
+            约旦给罗宾做着同样的工作，<<if C.npc.Robin.lust gte 50>>在手指的抚弄下，<<person2>><<he>>的阴茎缓缓立起，罗宾把脸别向了一旁<<else>>但罗宾的阴茎丝毫没有反应<</if>>。
+          <<else>>
+            <<He>>用两根食指夹住罗宾的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了柱身上，用以细致地检查里面包皮的状况。<<if C.npc.Robin.lust gte 50>>只见阴茎缓缓立起，罗宾把脸别向了一旁<<else>>但罗宾的阴茎丝毫没有反应<</if>>。<<person2>>
+          <</if>>
+        <<else>>
+          <<if $player.vaginaExist>>
+            <<He>>给罗宾做着同样的工作。
+          <<else>>
+            <<He>>用拇指轻触罗宾的阴部，温柔地打开了<<person2>><<his>>的阴唇。
+          <</if>>
+
+          <<person1>><<He>>在入口处涂抹上了灰色的粉末。
+          <<if C.npc.Robin.lust gte 50>>
+            你可以看出罗宾的身体在淫荡地回应着检验，尽管<<person2>><<his>>试图掩盖这件事。
+          <<else>>
+            罗宾保持冷静，私处也没有丝毫反应。
+          <</if>>
+        <</if>>
+      <</if>>
+      <br><br>
+  <</language>>
+  <<if _args[0]>>
+    <<npc Sydney 3>><<person1>><<run statusCheck('Sydney')>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $phase is 1>>
+          You look away as Jordan repeats the examination on Sydney, only daring to look when it's finished.
+        <<else>>
+          You watch as Jordan rubs more grey powder on <<his>> hands.
+          <<if C.npc.Sydney.gender is "m">>
+            <<if $player.penisExist>>
+              <<He>> gives Sydney the same treatment, <<if _sydneyStatus.includes("Lust")>>and Sydney looks away as <<person3>><<he>> gradually hardens<<else>>but <<person3>><<he>> stays noticeably flaccid<</if>>.
+            <<else>>
+              <<He>> holds Sydney's penis between both forefingers, and stares at it intently, gently manipulating the length and rubbing the grey powder along it. <<if _sydneyStatus.includes("Lust")>>Sydney looks away as <<person3>><<he>> hardens<<else>><<person3>><<He>> stays flaccid<</if>>.
+            <</if>>
+          <<else>>
+            <<if $player.vaginaExist>>
+              <<He>> gives Sydney the same treatment.
+            <<else>>
+              <<He>> places <<his>> thumbs against Sydney's pussy and opens <<person3>><<his>> lips.
+            <</if>>
+            <<if $daily.sydney.sydneyCum>>
+              Cum runs out in a thin stream down <<person3>><<his>> legs. Jordan withdraws <<person1>><<his>> hands in surprise.
+              <br>
+              "That's a bad sign," <<person1>><<he>> mutters. Sydney covers <<person3>><<his>> rapidly reddening face, and you feel a swell of pride knowing you're responsible for it.
+              <br><br>
+            <</if>>
+            <<person1>> <<He>> rubs the grey powder around the entrance.
+            <<if _sydneyStatus.includes("Lust")>>
+              You can tell Sydney's body is responding lewdly, despite <<person3>><<his>> attempts to conceal it.
+            <<else>>
+              Sydney remains calm and placid.
+            <</if>>
+          <</if>>
+        <</if>>
+        <br><br>
+      <<option 'CN'>>
+        <<if $phase is 1>>
+          约旦给悉尼做重复的检验时，你别过了头，等到完成时才敢转回来。
+        <<else>>
+          你看着约旦在手上涂抹了更多的粉末。
+          <<if C.npc.Sydney.gender is "m">>
+            <<if $player.penisExist>>
+              约旦给悉尼做着同样的工作，<<if _sydneyStatus.includes("Lust")>>在手指的抚弄下，<<person3>><<he>>的阴茎缓缓立起，悉尼把脸别向了一旁<<else>>但悉尼的阴茎丝毫没有反应<</if>>。
+            <<else>>
+              <<He>>用两根食指夹住悉尼的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了柱身上，用以细致地检查里面包皮的状况。<<if _sydneyStatus.includes("Lust")>>只见阴茎缓缓立起，悉尼把脸别向了一旁<<else>>但悉尼的阴茎丝毫没有反应<</if>>。<<person3>>
+            <</if>>
+          <<else>>
+            <<if $player.vaginaExist>>
+              <<He>>给悉尼做着同样的工作。
+            <<else>>
+              <<He>>用拇指轻触悉尼的阴部，温柔地打开了<<person3>><<his>>的阴唇。
+            <</if>>
+            <<if $daily.sydney.sydneyCum>>
+              淫液如细流淌下<<person3>><<his>>的双腿，约旦吃惊地抽出双手。<<person1>>
+              <br>
+              "那可不是个好的迹象。"<<person1>><<he>>喃喃道。悉尼迅速捂住<<person3>><<his>>绯红的脸颊。深知这是你的功劳，你感到十分得意。
+              <br><br>
+            <</if>>
+            <<person1>><<He>>在入口处涂抹上了灰色的粉末。
+            <<if _sydneyStatus.includes("Lust")>>
+              你可以看出悉尼的身体在淫荡地回应着检验，尽管<<person3>><<his>>试图掩盖这件事。
+            <<else>>
+              悉尼保持冷静，私处也没有丝毫反应。
+            <</if>>
+          <</if>>
+        <</if>>
+        <br><br>
+    <</language>>
+  <</if>>
+  <<person1>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan scrapes away the grey powder into the same jar. You and Robin<<if _args[0]>> and Sydney<</if>> watch with anticipation.
+    <<option 'CN'>>
+      约旦把灰粉刮进同一个罐子。你和罗宾<<if _args[0]>>、悉尼<</if>>满怀期待地看着。
+  <</language>>
 <</widget>>
 
 :: RobinTemple Monthly Examination
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>
-    Robin joins you in the side room. Jordan asks each of you in turn about the promise. Robin answers for <<himself>> and waits while you answer for yourself.
-  <<option 'CN'>>
-    罗宾来到侧室。约旦轮流问起你们立下的誓言。罗宾自己作答，也等着你自己回答。
-<</language>>
-<br><br>
-<<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan sets down the small jar used for the examination. Warmth gathers low in your body, then answers from Robin in the same breath. A brief golden spark rises from the glass. "Your vows stand," Jordan says.
-    <<option 'CN'>>
-      约旦放下检验用的小罐。热意从你身体深处聚起，又在同一口气里从罗宾那里应和回来。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。
-  <</language>>
-  <br><br>
-  <<language>>
-    <<option 'EN'>>
-      Robin catches your eye on the way out and squeezes your hand. <<His>> face is calm, but <<his>> thumb rubs yours as if <<he>> can still feel the examination passing over every place the vow protects.
-    <<option 'CN'>>
-      出门时罗宾望向你，轻轻握了握你的手。<<His>>的神情平静，拇指却反复蹭着你的手背，像是仍能感觉到那道检查扫过誓言守护的每一处。
-  <</language>>
-  <br><br><<language>>
-    <<option 'EN'>>
-      <span class="green">Your promise remains intact.</span>
-    <<option 'CN'>>
-      <span class="green">你们的承诺依然完好。</span>
-  <</language>>
-  <br><br>
-  <<templeicon "altar">><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
+<<if $RobinTemple.monthly_checked>>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <<else>>
-  <<language>>
-    <<option 'EN'>>
-      The jar gives no light. Instead, the glass fogs from within, darkening where the vow should answer cleanly. Heat prickles across your skin, not pleasure now but the memory of where the promise was spent. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."
-    <<option 'CN'>>
-      小罐没有亮起。雾气反而从内侧漫上玻璃，在誓言本该清澈回应的位置沉成暗色。热意刺过你的皮肤，这一次不是快感，而是承诺被耗尽处留下的记忆。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”
-  <</language>>
-  <br><br>
-  <<templeicon "altar">><<lanLink '听约旦说明赎罪要求' 'RobinTemple Monthly Failure'>><</lanLink>><br>
+  <<robin-temple-examination-prepare false>>
 <</if>>
 
-:: RobinTemple Monthly Failure
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised' and ($player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true)>>
-  <<set $RobinTemple.breach to $player.virginity.temple isnot true and C.npc.Robin.virginity.temple isnot true ? 'both'
-    : $player.virginity.temple isnot true ? 'pc' : 'robin'>>
-  <<set $RobinTemple.stage to "member">>
-  <<set C.npc.Robin.revelationConviction to Math.max(0, C.npc.Robin.revelationConviction - 15)>>
-  <<set $RobinTemple.penance_day to Time.days + 7>>
-  <<set $RobinTemple.penance_work_day to -1>>
-  <<set $RobinTemple.penance_service to 0>>
-  <<set $RobinTemple.penance_hearing_done to false>>
-  <<set $RobinTemple.penance_trial_done to false>>
-  <<set $RobinTemple.penance_response to ''>>
-  <<grace -10>><<npcincr Robin love -2>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan gives each of you a week to reckon with what happened. Robin reaches toward you, then waits for your answer before the attendants take either of you away.
-    <<option 'CN'>>
-      约旦给你们一周时间面对发生的事。罗宾向你伸出手，在侍从带走你们之前，等你作出回应。
-  <</language>>
-  <br><br><<llgrace>><<lllove>>
+:: RobinTemple Monthly Examination Result
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
+<<if $RobinTemple.monthly_checked>>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <<else>>
-  <<language>>
-    <<option 'EN'>>
-      You have already answered for this examination.
-    <<option 'CN'>>
-      这次检查的结果已经处理完了。
-  <</language>>
-<</if>>
-<br><br>
-<<if $RobinTemple.penance_day gte 0>>
-  <<getinicon>><<lanLink '听约旦说明惩戒' 'RobinTemple Penance Hearing'>><</lanLink>><br>
-<<else>>
-  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+  <<robin-temple-examination-partners false>>
+  <<run statusCheck('Robin')>>
+  <<if (_robinVirgin and $player.virginity.penile is true and $player.virginity.vaginal is true)
+    or ($player.virginity.temple is true and C.npc.Robin.virginity.temple is true)>>
+    <<language>>
+      <<option 'EN'>>
+        <span class="gold">It begins to intensely sparkle.</span> Jordan smiles.
+        "You have been faithful to one another, and may it stay that way."
+        <<if playerChastity() and $worn.genitals.origin is "temple">>
+          With one anxious motion, <<he>> returns your $worn.genitals.name to its place, guarding your crotch.
+        <</if>>
+        <br><br>
+        <<person1>><<He>> turns away to let you both dress.
+        <<robin-temple-examination-success>>
+        Robin hugs you. "I love you." <<stress -6>><<lstress>>
+        <br><br>
+        <<clotheson>>
+        <<link [[Next|Temple]]>><<endevent>><</link>>
+      <<option 'CN'>>
+        <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
+        “你们对彼此忠诚，希望继续保持。”
+        <<if playerChastity() and $worn.genitals.origin is "temple">>
+          <<he>>飞快地将$worn.genitals.cn_name_cap装了回去，护住你的裆部。
+        <</if>>
+        <br><br>
+        <<person1>><<He>>转过身，让你们将衣物穿好。
+        <<robin-temple-examination-success>>
+        罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
+        <br><br>
+        <<clotheson>>
+        <<link [[继续|Temple]]>><<endevent>><</link>>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <span class="gold">It begins to intensely sparkle.</span> Jordan smiles.
+        "You have been faithful to one another, and may it stay that way."
+        <<if playerChastity() and $worn.genitals.origin is "temple">>
+          With one anxious motion, <<he>> returns your $worn.genitals.name to its place, guarding your crotch.
+        <</if>>
+        <br><br>
+        <<person1>><<He>> turns away to let you both dress.
+        <<robin-temple-examination-success>>
+        Robin hugs you. "I love you." <<stress -6>><<lstress>>
+        <br><br>
+        <<clotheson>>
+        <<link [[Next|Temple]]>><<endevent>><</link>>
+      <<option 'CN'>>
+        <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
+        “你们对彼此忠诚，希望继续保持。”
+        <<if playerChastity() and $worn.genitals.origin is "temple">>
+          <<he>>飞快地将$worn.genitals.cn_name_cap装了回去，护住你的裆部。
+        <</if>>
+        <br><br>
+        <<person1>><<He>>转过身，让你们将衣物穿好。
+        <<robin-temple-examination-success>>
+        罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
+        <br><br>
+        <<clotheson>>
+        <<link [[继续|Temple]]>><<endevent>><</link>>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <span class='red'>It remains inert.</span> Jordan frowns. "I’m sorry. One of you has become impure."
+      <<option 'CN'>>
+        <span class='red'>粉末毫无反应。</span>约旦皱起眉头。“抱歉，你们有人已经污浊了。”
+    <</language>>
+    <br><br>
+    <<robin-temple-purification-summons false>>
+  <</if>>
 <</if>>
 
 :: RobinTemple Monthly Refuse
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised'>>
-  <<set $temple_chastity_timer to 7>>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
+<<if !$RobinTemple.monthly_checked and $RobinTemple.templePromised is 'Robin'>>
   <<language>>
     <<option 'EN'>>
-      You refuse the examination. Jordan does not declare either of you guilty. "I will ask again in a week," Jordan says. Robin leaves with you, but does not speak until you reach the doors.
+      "Then I must assume the worst," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      你拒绝了检查。约旦没有认定你们任何一人有罪。“一周后我会再问。”约旦说。罗宾跟你一起离开，直到门口都没有开口。
+      “那我必须设想最坏的情况。”约旦说，直直地盯着脚尖。
   <</language>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>
-      "You can tell me why," <<he>> says at last. "I would rather hear it from you than guess."
-    <<option 'CN'>>
-      “你可以告诉我原因，”<<he>>终于说，“我宁愿听你亲口讲，也不想自己猜。”
-  <</language>>
-  <<npcincr Robin love -1>><br><br><<lllove>>
-  <<language>>
-    <<option 'EN'>>
-      <span class='blue'>Jordan will ask again in seven days.</span>
-    <<option 'CN'>>
-      <span class='blue'>约旦将在七天后再次提出检查。</span>
-  <</language>><br><br>
+  <<robin-temple-purification-summons false>>
 <<else>>
-  <<language>>
-    <<option 'EN'>>
-      The joint examination is no longer due.
-    <<option 'CN'>>
-      现在没有需要你们共同接受的检查。
-  <</language>>
-  <br><br>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <</if>>
-<<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
 
 :: RobinTemple Monthly Admit
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage isnot 'promised'>>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
+<<if !$RobinTemple.monthly_checked and $RobinTemple.templePromised is 'Robin'>>
+  <<if $speech_attitude is 'meek'>>
+    <<language>>
+      <<option 'EN'>>
+        "I, I haven’t kept it," you say. "I’m sorry. I’m so sorry..."
+      <<option 'CN'>>
+        “我，我没有守节，”你说，“抱歉，我真的很抱歉……”
+    <</language>>
+  <<elseif $speech_attitude is 'bratty'>>
+    <<language>>
+      <<option 'EN'>>
+        "No need," you say. "I haven’t been faithful."
+      <<option 'CN'>>
+        “没必要了，”你说，“我没能保持忠诚。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "I’m sorry," you say. "I haven’t been faithful."
+      <<option 'CN'>>
+        “抱歉，”你说，“我没有保持忠诚。”
+    <</language>>
+  <</if>><br><br>
   <<language>>
     <<option 'EN'>>
-      The joint examination is no longer due.
+      "Thank you for your honesty," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      现在没有需要你们共同接受的检查。
+      “谢谢你的坦诚。”约旦说，直直地盯着脚尖。
   <</language>>
   <br><br>
-  <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
-<<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true>>
-  <<language>>
-    <<option 'EN'>>
-      You ask Jordan to listen before beginning the examination. Robin adds <<his>> own account. Jordan writes down what each of you says, then explains what must be answered separately.
-    <<option 'CN'>>
-      你请约旦先听你说完，再开始检查。罗宾也说出自己的经过。约旦分别记下你们的话，接着说明各自需要面对什么。
-  <</language>>
-  <br><br>
-  <<templeicon 'altar'>><<lanLink '听约旦说明赎罪要求' 'RobinTemple Monthly Failure'>><</lanLink>><br>
+  <<robin-temple-purification-summons false>>
 <<else>>
-  <<language>>
-    <<option 'EN'>>
-      You tell Jordan you are afraid of what the examination might mean. Jordan listens, then says fear alone is not a broken vow. Robin remains beside you.
-    <<option 'CN'>>
-      你告诉约旦，自己害怕检查的结果。约旦听完说，害怕本身不算背誓。罗宾仍站在你身旁。
-  <</language>>
-  <<set $temple_chastity_timer to 14>>
-  <<stress -2>><br><br><<lstress>>
-  <<language>>
-    <<option 'EN'>>
-      <span class='blue'>Jordan will give you time to return for the examination.</span>
-    <<option 'CN'>>
-      <span class='blue'>约旦会给你们一点时间，再进行检查。</span>
-  <</language>><br><br>
-  <<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <</if>>

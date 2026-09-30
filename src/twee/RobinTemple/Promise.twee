@@ -1,204 +1,292 @@
-:: RobinTemple Promise Talk
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
-  or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
-  or $RobinTemple.penance_day gte 0 or $RobinTemple.joint_sydney_penance>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan asks you to establish your own place in the temple and to work alongside Robin before requesting a shared vow.
-    <<option 'CN'>>
-      约旦请你先在神殿站稳脚跟，再与罗宾一同完成几次工作，之后才申请共同立誓。
-  <</language>>
-<<elseif $templePromised is 'Sydney' and !$RobinTemple.joint_consent>>
-  <<language>>
-    <<option 'EN'>>
-      You have made a promise to Sydney. Robin asks to speak with <<him>> before deciding whether there is room for another.
-    <<option 'CN'>>
-      你已经与悉尼立誓。罗宾想先亲自和<<he>>谈谈，再决定是否还能接纳另一份承诺。
-  <</language>>
-  <br><br>
-  <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼谈谈' 'RobinTemple Joint Consent'>><</lanLink>><br>
-<<elseif $templePromised isnot '' and $templePromised isnot 'Sydney'>>
-  <<language>>
-    <<option 'EN'>>
-      You have already made a promise in the temple. Robin deserves an honest answer before either of you asks Jordan for anything else.
-    <<option 'CN'>>
-      你已经在神殿立下过誓言。无论你们想向约旦提出什么，都该先把这件事对罗宾说清楚。
-  <</language>>
-<<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true
-  or $templePromised is 'Sydney' and C.npc.Sydney.virginity.temple isnot true>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan will not approve the rite while one of your temple vows stands broken. You and Robin agree to settle that first.
-    <<option 'CN'>>
-      你们之中仍有人违背着神殿誓言，约旦不会批准仪式。你和罗宾决定先处理这件事。
-  <</language>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      You ask Robin whether <<he>> would want a promise recognised by the temple. <<He>> puts down the work list and takes time to answer.
-    <<option 'CN'>>
-      你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了好一会儿才回答。
-  <</language>>
-  <br><br>
-  <<if C.npc.Robin.trauma gte 40>>
-    <<language>>
-      <<option 'EN'>>
-        Robin takes a while to answer. "I do want to," <<he>> whispers. "Will you stay near me while I talk to Jordan?"
-      <<option 'CN'>>
-        罗宾过了一会儿才回答。“我确实愿意，”<<he>>低声说，“我和约旦说话时，你能陪在旁边吗？”
-    <</language>>
-  <<elseif C.npc.Robin.dom lte 50>>
-    <<language>>
-      <<option 'EN'>>
-        "Y-yes," <<he>> says, looking down. "I want to tell Jordan too. Could we go together?"
-      <<option 'CN'>>
-        “愿、愿意，”<<he>>垂下目光，“我也想告诉约旦。我们一起去，好吗？”
-    <</language>>
+:: RobinTemple Promise Widgets [widget]
+<<widget 'robin-temple-promise-ready'>>
+  <<set _robinPromiseReady to $RobinTemple.stage is 'approved' and $robinromance is 1
+  and !$RobinTemple.punish
+  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.dual_promise
+  and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
+<</widget>>
+
+<<widget 'robin-temple-promise-trait-name'>>
+  <<if _args[0]>><<lanSwitch 'Broken Promise: ' '破碎的承诺：'>><<else>><<lanSwitch 'Rite of Promise: ' '承诺仪式：'>><</if>>
+  <<if $RobinTemple.templePromised is 'Robin' and $templePromised is 'Sydney'>>
+    <span class='tentacle'><<lanSwitch 'As Two, As One' '两者如一'>></span>
+  <<elseif $RobinTemple.templePromised is 'Robin'>>
+    <<= maplebirch.auto('Robin')>>
   <<else>>
-    <<language>>
-      <<option 'EN'>>
-        "Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."
-      <<option 'CN'>>
-        “愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”
-    <</language>>
+    <<= maplebirch.auto($templePromised)>>
   <</if>>
-  <br><br>
-  <<if $RobinTemple.evaluation_day lt 0 or Time.days gte $RobinTemple.evaluation_day + 7>>
-    <<templeicon "altar">><<lanLink '请约旦为你们评估' 'RobinTemple Evaluation'>><</lanLink>><br>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        <span class="blue">Jordan asked you to wait a week before trying again.</span>
-      <<option 'CN'>>
-        <span class="blue">约旦让你们过一周再来。</span>
-    <</language>><br>
-  <</if>>
-<</if>>
-<br>
-<<getouticon>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<</widget>>
+
+<<widget 'robin-temple-promise-limit'>>
+  <<set _robinPromiseBlocked to $RobinTemple.templePromised is 'Robin' and !$RobinTemple.dual_promise>>
+<</widget>>
+
+<<widget 'robin-temple-promise-blocked'>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan will not authorise a second promise while your existing promise stands.
+    <<option 'CN'>>
+      你已经立下过共同誓约，约旦不会再为你主持第二份承诺仪式。
+  <</language>><br><br>
+<</widget>>
 
 :: RobinTemple Promise Rite
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'approved' and $robinromance is 1
-  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
-  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent)
-  and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
-  and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
-  <<if $templePromised is 'Sydney'>>
-    <<language>>
-      <<option 'EN'>>
-        Jordan sets a new page beside the record of your promise to Sydney. Robin stands beside you, trying to keep <<his>> hands still.
-      <<option 'CN'>>
-        约旦在你与悉尼立誓的记录旁放上新的一页。罗宾站在你身边，努力让双手不再发抖。
-    <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        The side room has been cleared, and Jordan sets two plain silver bands on the cloth between you. Robin stands beside you, trying to keep <<his>> hands still.
-      <<option 'CN'>>
-        侧室已经收拾出来，约旦把两枚素银环放在你们之间的布面上。罗宾站在你身边，努力让双手不再发抖。
-    <</language>>
-  <</if>>
-  <br><br>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<npc Robin 1>><<npc Jordan 2>><<person2>>
+<<if $RobinTemple.stage is 'approved' and $RobinTemple.evaluation_day gte 0>>
+  <<npcincr Robin lust 1>>
   <<language>>
     <<option 'EN'>>
-      "You may leave now," Jordan says, "or speak in your own words. No one will make this choice for you."
+      <<effects>>
+      <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
+      Jordan leads you back into the other room, where Robin waits. <<person1>><<He>> excitedly hops up from <<his>> seat. "So? Did we...?"
+      <br><br>
+      "Yes. Congratulations, my children, you've passed. Your union will be permitted, with the full support of myself and every other member of the order. The bishop will be informed at once, and your rings are already being prepared." <<npcincr "Jordan" love 5>><<gglove "Jordan">>
+      <br><br>
+      Robin barrels into you, hugging you with enough force to nearly knock you over. You hear a few gentle sobs, and find your own eyes watering. <<trauma -24>><<llltrauma>>
+      <br><br>
+
     <<option 'CN'>>
-      “你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。没有人能替你们作这个决定。”
+      <<effects>>
+      <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
+      约旦将你带到罗宾的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。"怎么样？我们……? "
+      <br><br>
+      “是的，我的孩子们，我在此向你们二位表示祝贺，你们通过了。在神殿所有兄弟姐妹的见证下，你们的结合将会得到主的认可。主教将会立马知晓，你们的戒指也已经在准备了。” <<npcincr "Jordan" love 5>><<gglove "Jordan">>
+      <br><br>
+      罗宾飞扑而来，用尽全身力气抱住你，几乎要把你推倒。你听见几声轻微的抽泣，你的眼眶也湿润了。<<trauma -24>><<llltrauma>>
+      <br><br>
+
   <</language>>
-  <br><br>
-  <<if $templePromised is 'Sydney'>>
-    <<loveicon 'hug'>><<lanLink '请悉尼一同见证' 'RobinTemple Joint Rite'>><</lanLink>><br>
-  <<else>>
-    <<loveicon 'hug'>><<lanLink '与罗宾立下承诺' 'RobinTemple Promise End'>><</lanLink>><br>
+<</if>>
+<<robin-temple-promise-ready>>
+<<if _robinPromiseReady>>
+
+  <<lanLink ['Next', '继续'] 'RobinTemple Promise Altar'>><</lanLink>><br>
+<<else>>
+  <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Promise Altar
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对；保留当前模组的状态变量与跳转。
+原版 passage：Sydney Temple Pure Pass。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Pass.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Pass.twee:2
+原版 passage：Sydney Temple Pure Ritual。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Ritual.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Ritual.twee:2
+-->
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<robin-temple-promise-ready>>
+<<if _robinPromiseReady>>
+  <<endevent>><<npc Robin 1>><<npc Jordan 2>><<person2>>
+  <<language>>
+    <<option 'EN'>>
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>> produces a sinister bladed instrument from <<his>> robes and kneels in front of you. Seconds later, the belt lies ruined on the floor and your <<genitals 1>>
+        <<if $player.penisExist and $player.vaginaExist>>
+          are
+        <<else>>
+          is
+        <</if>>
+        once again exposed and vulnerable. <<He>> stands up, and approaches Robin.
+        <br><br>
+        <<set $worn.genitals.type.push("broken")>>
+        <<genitalsruined>>
+        <<if $vaginalchastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $vaginalchastityparasite fall out of your vagina.</span>
+          <br>
+          <<set $vaginalchastityparasite to 0>>
+        <</if>>
+        <<if $penilechastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $penilechastityparasite fall off of your penis.</span>
+          <br>
+          <<set $penilechastityparasite to 0>>
+        <</if>>
+        <<if $analchastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $analchastityparasite fall out of your anus.</span>
+          <br>
+          <<set $analchastityparasite to 0>>
+        <</if>>
+        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
+      <<else>>
+        <<He>> moves right to Robin.
+      <</if>>
+      <br><br>
+      <<undress "ritual">>
+    <<option 'CN'>>
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>>从斗篷里拿出一个不祥的片状物体，然后跪在了你的面前。瞬间，你的贞操带哐当落地，<<genitals 1>>
+        <<if $player.penisExist and $player.vaginaExist>>
+          被
+        <<else>>
+          被
+        <</if>>
+        再次脆弱地暴露在了空气中。<<He>>站起身来，随后走向了罗宾。
+        <br><br>
+        <<set $worn.genitals.type.push("broken")>>
+        <<genitalsruined>>
+        <<if $vaginalchastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($vaginalchastityparasite)>>从你的阴道中脱落。</span>
+          <br>
+          <<set $vaginalchastityparasite to 0>>
+        <</if>>
+        <<if $penilechastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($penilechastityparasite)>>从你的阴茎上脱落下来。</span>
+          <br>
+          <<set $penilechastityparasite to 0>>
+        <</if>>
+        <<if $analchastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($analchastityparasite)>>从你的肛门掉了出来。</span>
+          <br>
+          <<set $analchastityparasite to 0>>
+        <</if>>
+        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
+      <<else>>
+        <<He>>转向了罗宾。
+      <</if>>
+      <br><br>
+      <<undress "ritual">>
+  <</language>>
+  <<if $templePromised is 'Sydney'>><<npc Sydney 3>><</if>>
+  <<person1>>
+  <<if $RobinTemple.clasp_equipped and C.npc.Robin.chastity.anus is 'anal shield'
+    and C.npc.Robin.chastity.vagina is 'chastity belt' and C.npc.Robin.chastity.penis is 'chastity belt'>>
+    <<language>>
+      <<option 'EN'>>
+        Jordan kneels in front of <<person1>><<him>>, and seconds later, Robin's belt lies on the floor. <<He>> gasps, the sensation of being unrestricted taking <<him>> by surprise. <span class="lewd">You can see some signs of arousal already.</span> <<arousal 50>><<garousal>>
+        <br><br>
+      <<option 'CN'>>
+        约旦跪在了<<person1>><<him>>的跟前，瞬间罗宾的贞操带便掉在了地上。<<He>>吸了口气，被解放的触感令<<him>>吃了一惊。<span class="lewd">你能看出罗宾下体已经有些兴奋的迹象。</span><<arousal 50>><<garousal>>
+        <br><br>
+    <</language>>
+    <<set C.npc.Robin.chastity.anus to ''>><<set C.npc.Robin.chastity.vagina to ''>><<set C.npc.Robin.chastity.penis to ''>>
+    <<set $RobinTemple.clasp_equipped to false>>
   <</if>>
-  <<getouticon>><<lanLink '请求再多一点时间' 'RobinTemple Corner'>><</lanLink>><br>
+  <<person2>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan produces a bell from <<person2>><<his>> robes and rings it four times. Robin quickly attempts to hide <<person1>><<his>> exposure with <<his>> hands. A moment later, four <<person2>><<monks>> enter the room. Two of them bear clear jars full of grey powder, and the other two bring in various cushions, blankets, and candles. They begin to place them on the table, and the candles are lit. All other lights in the room seem to become dimmer.
+      <br><br>
+      "Please lie on the altar," Jordan says, placing a hand on your shoulder. You comply, lying on your back, the blankets protecting you from the cold material underneath. The <<monks>> begin softly speaking, but you can't make out their words. "<<nnpc_Brother "Robin">> Robin. Please join your beloved on the altar. Take <<pher>> hands in yours, face to face." Robin hesitates, but complies.
+      <br><br>
+      <<person1>><<He>> climbs on top of you, taking your hands in <<his>> own. <<His>> face is becoming more red by the second as you both maintain eye contact, trying to ignore your mutual exposure. <<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
+      <br><br>
+      <<if $templePromised is 'Sydney'>>Sydney joins you on the altar and takes your other hand. <<takeHandholdingVirginity 'Sydney' 'romantic'>><br><br><</if>>
+      Jordan moves to touch something under the altar, and sets of ivory restraints emerge, binding your hands with Robin's<<if $templePromised is 'Sydney'>> and Sydney's<</if>>. "As those wish to be bound, so do we bind them."
+      <br>
+      The <<person2>><<monks>> repeat Jordan's words. "So do we bind them."
+      <br>
+      "Here they lie, <<if $templePromised is 'Sydney'>>as three<<else>>as two<</if>>, as one."
+      <br>
+      "<<if $templePromised is 'Sydney'>>As three<<else>>As two<</if>>, as one."
+      <br>
+      "May this pardon, this promise, this vow hold fast, forever, as one."
+      <br>
+      "Forever, as one."
+      <br><br>
+      One of the <<person2>><<monks>> picks up one of the candles, holding it over Robin. "Should your love be pure, you will feel no pain." You both find your breathing becoming more laboured, and a heat begins to rise in you as Robin's bare body is pressed against yours. <<arousal 100>><<garousal>>
+      <br><br>
+      You see the candle above Robin melt at a faster rate. A drop of wax hits <<person1>><<his>> bare back. <<He>> flinches, but soon looks relieved. More wax begins to drip down, until it begins to drip from Robin onto you. It's very hot, <span class="gold">yet you feel no pain.</span>
+      <br><br>
+    <<option 'CN'>>
+      约旦从斗篷里拿出一枚铃铛摇响了四次，罗宾见了迅速用手遮住<<person1>><<his>>赤裸的身体。过了一会儿，四名<<person2>><<monks>>走进房间。其中二人手持一瓶装满灰色粉末的干净玻璃罐，另外两人则拿着各色的软垫，毯子和烛台。众人把东西都放在桌子上，随后点燃了烛台。房间里的其它灯瞬间显得昏暗起来。
+      <br><br>
+      "请躺在圣坛上。"约旦说着，把手搭在你的肩上。你照做躺下，身下柔软的毯子隔开了冰冷的台面。<<monks>>开始温柔低吟，但你听不清说些了什么。"罗宾<<nnpc_Brother "Robin">>，请和你的挚爱一起躺到圣坛上，握住你们的双手，面向对方。"罗宾迟疑了一瞬，但还是照做了。
+      <br><br>
+      <<person1>><<He>>压在你身上，握住你的手。当你们注视着对方时，<<his>>的脸又烧了起来，试着忽视你们彼此赤裸的身体。<<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
+      <br><br>
+      <<if $templePromised is 'Sydney'>>悉尼也来到圣坛上，握住你的另一只手。<<takeHandholdingVirginity 'Sydney' 'romantic'>><br><br><</if>>
+      约旦在圣坛下触动了某个机关，只见一对象牙束手出现在眼前，你和罗宾<<if $templePromised is 'Sydney'>>、悉尼<</if>>的手随即被绑在了一起。“希望彼此缔结的爱人，我们就会如此将他们绑在一起。”
+      <br>
+      <<person2>><<monks>>重复着约旦的话：“我们就会如此将他们绑在一起。”
+      <br>
+      "躺在此处的，<<if $templePromised is 'Sydney'>>如三者<<else>>如两者<</if>>，如一体。"
+      <br>
+      "<<if $templePromised is 'Sydney'>>如三者<<else>>如两者<</if>>，如一体。"
+      <br>
+      "愿此种宽恕、此种承诺、此种誓约，恪守不渝。永远，如一。"
+      <br>
+      "永远，如一。"
+      <br><br>
+      一名<<person2>><<monks>>端起烛台，举到罗宾的上方，"如果你们的爱是纯净的，那将不会有痛楚。"听罢，你们的呼吸变得沉重了起来。当罗宾赤身裸体地压在你身上时，你的体内卷起了热浪。<<arousal 100>><<garousal>>
+      <br><br>
+      罗宾上方的蜡烛飞速地融化着。一滴蜡落下，烫在<<person1>><<his>>光滑的脊背上。<<He>>微微一缩，但很快便放松下来。更多的蜡随之滴落，顺着罗宾的腰肢流到了你的身上。蜡滴很烫，<span class="gold">但你一点也不疼。</span>
+      <br><br>
+  <</language>>
+  <<loveicon 'hug'>><<lanLink ['Forever, as one', '永远，如一'] 'RobinTemple Promise End'>><<set $RobinTemple.stage to 'promised'>><<set $RobinTemple.templePromised to 'Robin'>><<set $RobinTemple.chastity_timer to 30>><<set $player.virginity.temple to true>><<set $virginityProtected to true>><<world_corruption 'hard' -1>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Jordan cannot hold the rite while your vows are unsettled.
+      The ceremony cannot continue. You need to speak to Jordan and Robin again.
     <<option 'CN'>>
-      你们的誓言尚未厘清，约旦现在不能主持仪式。
+      仪式现在无法继续。你需要再与约旦和罗宾谈谈。
   <</language>>
-  <br><br>
-  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<clotheson>><<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Promise End
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'approved' and $robinromance is 1
-  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
-  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent
-    and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)
-  and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
-  <<set $RobinTemple.stage to 'promised'>>
-  <<set $player.virginity.temple to true>><<set $virginityProtected to true>>
-  <<world_corruption 'hard' -1>>
-  <<set _templeClaspReleased to false>>
-  <<if $RobinTemple.clasp_equipped
-    and C.npc.Robin.chastity.anus is 'anal shield'
-    and C.npc.Robin.chastity.vagina is 'chastity belt'
-    and C.npc.Robin.chastity.penis is 'chastity belt'>>
-    <<set C.npc.Robin.chastity.anus to ''>>
-    <<set C.npc.Robin.chastity.vagina to ''>>
-    <<set C.npc.Robin.chastity.penis to ''>>
-    <<set $RobinTemple.clasp_equipped to false>>
-    <<set _templeClaspReleased to true>>
-  <</if>>
-  <<if $templePromised is 'Sydney'>>
-    <<language>>
-      <<option 'EN'>>
-        You, Robin, and Sydney speak in turn. Neither partner promises on behalf of the other. Jordan repeats each promise separately before recording that all three of you have agreed.
-      <<option 'CN'>>
-        你、罗宾和悉尼轮流开口。没有人替另一人立誓。约旦逐一复述你们的承诺，确认三人都同意，才将它记下。
-    <</language>>
-    <br><br>
-    <<if _templeClaspReleased>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan undoes Robin's chastity belt at <<his>> own request. Sydney remains beside you as Robin takes your hand.
-        <<option 'CN'>>
-          应罗宾自己的要求，约旦解开了<<his>>贞操带。悉尼仍站在你身边，罗宾握住了你的手。
-      <</language>>
-    <<else>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan leaves Robin's other equipment untouched. Sydney remains beside you as Robin takes your hand.
-        <<option 'CN'>>
-          约旦没有更动罗宾原有的其他装置。悉尼仍站在你身边，罗宾握住了你的手。
-      <</language>>
-    <</if>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        You speak first, and Robin answers without looking at Jordan for permission. <<He>> promises to return when things become difficult, to listen, and to let you do the same.
-      <<option 'CN'>>
-        你先开口。罗宾回答时没有看约旦的脸色。<<He>>答应遇到难处也会回来，会听你说话，也会给你同样的机会。
-    <</language>>
-    <br><br>
-    <<if _templeClaspReleased>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan undoes Robin's chastity belt at <<his>> request and puts it aside.
-        <<option 'CN'>>
-          应罗宾自己的要求，约旦解开了<<his>>贞操带，放到一旁。
-      <</language>>
-      <br><br>
-    <</if>>
-    <<language>>
-      <<option 'EN'>>
-        Jordan places the two silver bands in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.
-      <<option 'CN'>>
-        约旦把两枚素银环交到你们手中。罗宾把其中一枚套在你的手指上。你也为<<him>>套好时，<<he>>终于松了口气。
-    <</language>>
-  <</if>>
-  <br><br>
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对；保留当前模组的状态变量与跳转。
+原版 passage：Sydney Temple Pure Ritual 2。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Ritual 2.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Ritual 2.twee:2
+原版 passage：Sydney Temple Pure Sex。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex.twee:2
+原版 passage：Sydney Temple Pure Sex Finish。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex Finish.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex Finish.twee:2
+-->
+
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
+<<if $RobinTemple.stage is 'promised' and $RobinTemple.templePromised is 'Robin'>>
+  <<endevent>><<npc Robin 1>><<npc Jordan 2>><<person2>>
+  <<if $templePromised is 'Sydney'>><<npc Sydney 3>><</if>>
   <<language>>
     <<option 'EN'>>
-      <span class="gold">The temple recognises your promise to Robin.</span>
+      As the wax continues to pour down, it quickly slides off of you and onto the altar. One of the <<person2>><<monks>> begins to collect it in an empty jar. "Release." The restraints retract, freeing you. The <<monks>> help you<<if $templePromised is 'Sydney'>> all<</if>> up, putting you in a sitting position on the edge of the altar.
+      <br><br>
+      "The ritual is done," Jordan says, "but there's just one final step. We must prepare you for your new chastity exams." A <<monk>> approaches you with a jar of grey powder. <<He>> opens it, begins to rub it on your <<genitals>>. You turn away, and see Robin getting the same treatment from another <<monk>>. After a moment, they scrape the powder away into the jar of melted wax.  <<if $templePromised is 'Sydney'>>Sydney is examined as well, and the powder is scraped into the same jar.<</if>> It begins to sparkle.
+      <br><br>
+      "This powder will be used in your exams from now on," Jordan explains as another <<monk>> hands <<him>> a small box. <<He>> opens it, revealing two silver rings. <<He>> gingerly places one on your ring finger, and the other on Robin's.
+      <br><br>
+      "You are bound. Congratulations again." You notice a pair of <<monks>> folding your clothes, before placing them on the altar. "We will give you<<if $templePromised is 'Sydney'>> three<<else>> two<</if>> some... privacy, and clean up when you're done. The cushions and blankets will be burned to remove any impurities from this site. What you do now, the order will be blinded to." Jordan gives you both a gentle smile, and begins to leave with the other <<monks>>. "I hope you both find happiness in this decision."
+      <br><br>
+      You're left alone with Robin<<if $templePromised is 'Sydney'>> and Sydney<</if>>, hearing the doors lock. <<person1>>"S...so, now we can just...?" Robin looks to you, still attempting to keep <<person1>><<his>> eyes off your body.
+      <br><br>
+      <<if $speech_attitude is "meek">>
+        "I... I think so. Are you ready?" you ask quietly.
+      <<elseif $speech_attitude is "bratty">>
+        "About time. Ready?" you ask.
+      <<else>>
+        "I think so. Are you ready?" you ask.
+      <</if>>
+      <br>
+      Robin smiles at you. "I'm ready." <<He>> wraps <<his>> arms around you and kisses you. You both fall back onto the cushioned altar. <<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+      <br><br>
+      You've gained the <span class="blue">Rite of Promise: Robin</span> trait.
+      <br><br>
     <<option 'CN'>>
-      <span class="gold">神殿见证了你与罗宾的承诺。</span>
+      蜡烛融化流淌，顺着你的身子滴在了圣坛上。一名<<person2>><<monks>>拿出一个空罐子，收集起蜡液。"松开吧。"束手收起，将你们的手解放。<<monks>>帮你们<<if $templePromised is 'Sydney'>>三人<<else>>俩<</if>>直起身，让你们坐在了圣坛的边上。
+      <br><br>
+      "仪式结束了，"约旦朝你们点了点头，"但还有最后一个步骤。我们必须为你们准备全新的贞洁测试。" 一个手拿盛有灰色粉末玻璃罐的<<monk>>向你们走来。<<He>>将罐子打开，把粉末涂抹到你的<<genitals>>上。你扭头，只见罗宾也正被做同样的事。不久，<<monk>>们把粉末刮进滚烫的蜡滴罐里，<<if $templePromised is 'Sydney'>>悉尼也接受了同样的检验，粉末被刮进同一个罐子。<</if>> 一瞬间粉液相触，火花闪现。
+      <br><br>
+      "从现在起，这些粉末将会用在你们的贞操测试中。"约旦一边解释，一边接过另一个<<monk>>递过来的小盒子。<<He>>打开盒盖，两枚银戒正躺在中央。<<He>>温柔地将戒指分别戴在你和罗宾的手指上。
+      <br><br>
+      "你们正式结为伴侣了，再次向你们<<if $templePromised is 'Sydney'>>三位<<else>>二位<</if>>表示祝贺。"你注意到一对<<monk>>整理好你们的衣服，放在一旁的圣坛上。"我们会给你们<<if $templePromised is 'Sydney'>>三人<<else>>二人<</if>>一些……私密空间，在你们完事后再来清扫干净。这些软垫和毯子都将会被烧毁，以去除任何留在此处的不洁之物。你们在这里做的任何事情都不会被其他同修知道。"约旦朝你们温和一笑，和其他<<monks>>一起离开了。"希望你们通过这个决定找到彼此的幸福。"
+      <br><br>
+      门咔哒上锁，你和罗宾<<if $templePromised is 'Sydney'>>、悉尼<</if>>被留在了屋内。<<person1>>"所……所以，我们现在是可以……? "罗宾看着你，依旧有意避免瞟到你赤裸的身体。<<person1>>
+      <br><br>
+      <<if $speech_attitude is "meek">>
+        "我……我想是的。你准备好了吗？"你悄声问道。
+      <<elseif $speech_attitude is "bratty">>
+        "是时候了，你准备好了吗？"你问道。
+      <<else>>
+        "我可以，你准备好了吗？"你问道。
+      <</if>>
+      <br>
+      罗宾绽开笑容。"我准备好了。"<<He>>将你拥进怀里，亲吻着你的身体。你们双双躺倒在软垫铺好的圣坛上。<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+      <br><br>
+      你获得了<span class="blue">承诺仪式：罗宾</span>特质。
+      <br><br>
   <</language>>
 <<else>>
   <<language>>
@@ -209,4 +297,70 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<if $RobinTemple.templePromised is 'Robin'>>
+  <<endevent>><<npc Robin>><<person1>>
+  <<lanLink ['Next', '继续'] 'RobinTemple Promise Sex'>><<set $sexstart to 1>><</lanLink>><br>
+<<else>>
+  <<getouticon>><<lanLink ['Return to the temple quarters', '返回神殿宿舍'] 'Temple Quarters'>><<clotheson>><<endevent>><</lanLink>><br>
+<</if>>
+
+
+:: RobinTemple Promise Sex
+<<run statusCheck('Robin')>>
+<<if $sexstart is 1>>
+  <<set $sexstart to 0>><<set $RobinTemple.intimacy_active to true>>
+  <<npc Robin>><<person1>>
+  <<consensual>><<set $consensual to 1>><<neutral 1>>
+  <<maninit>><<npcexpose>>
+  <<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
+<</if>>
+<<if $RobinTemple.intimacy_active>>
+  <<set $enemyanger to -10>>
+  <<effects>><<effectsman>><<man>><<stateman>>
+  <br><br>
+  <<actionsman>>
+  <<if _combatend>>
+    <span id="next"><<lanLink ['Next', '继续'] 'RobinTemple Promise Sex Finish'>><</lanLink>></span><<nexttext>>
+  <<else>>
+    <span id="next"><<lanLink ['Next', '继续'] 'RobinTemple Promise Sex'>><</lanLink>></span><<nexttext>>
+  <</if>>
+<<else>>
+  <<getouticon>><<lanLink ['Return to the temple', '返回神殿'] 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Promise Sex Finish
+<<effects>>
+<<if $RobinTemple.intimacy_active>>
+  <!-- TODO（作者）：本页各结算分支的露骨正文需要人工核对，代码保留原版的分支和恢复着装顺序。
+  原版 passage：Sydney Temple Pure Sex Finish。
+  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex Finish.twee:4
+  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex Finish.twee:4
+  -->
+  <<if $enemyarousal gte $enemyarousalmax>>
+    <<ejaculation>>
+  <<elseif $enemyhealth lte 0>>
+    <<npcincr Robin lust 5>><<gglust 'Robin'>>
+  <<else>>
+    <<npcincr Robin lust 5>><<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gglust 'Robin'>><<gconviction>>
+  <</if>>
+  <<storeon 'ritual'>><<clotheson>><<endcombat>>
+  <<set $RobinTemple.intimacy_active to false>>
+  <<npc Robin>><<person1>>
+<</if>>
+<<lanLink ['Next', '继续'] 'RobinTemple Promise Return'>><</lanLink>><br>
+
+:: RobinTemple Promise Return
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<language>>
+  <<option 'EN'>>
+    You exit the room, hand-in-hand with Robin. Jordan sees you and smiles again.
+    <br><br>
+    You take a seat with Robin on a pew, and simply hold each other.
+  <<option 'CN'>>
+    你和罗宾手牵手走出房间。约旦见了，又朝你们微笑起来。
+    <br><br>
+    你和罗宾在长椅上落座，只是相拥着。
+<</language>>
+<<pass 15>>
+<br><br>
+<<templeicon 'quarters'>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

@@ -40,13 +40,13 @@
     <</language>>
   <</if>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><br>
-  <<loveicon 'hug'>><<lanLink '问起孤儿院的孩子 (0:30)' 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction>><br>
+  <<loveicon 'hug'>><<lanLink '问起孤儿院的孩子 (0:30)' 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
   <<if $robinromance is 1>>
     <<loveicon 'kiss'>><<lanLink '牵住罗宾的手 (0:30)' 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
   <</if>>
   <<if $RobinTemple.work_day is Time.days>>
-    <<foresticon>><<lanLink '和罗宾去森林 (0:30)' 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><br>
+    <<foresticon>><<lanLink '和罗宾去森林 (0:30)' 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><<glove>><br>
     <<if C.npc.Robin.love gte 20 and $money gte 1500 and !$daily.robin.cinema and Time.hour lt 19>>
       <<socialiseicon 'cinema'>><<lanLink '和罗宾去电影院 (£15 0:15)' 'Robin Walk Cinema'>><<set $RobinTemple.walk_day to Time.days>><<pass 15>><</lanLink>><br>
     <</if>>
@@ -66,11 +66,11 @@
 <<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.walk_day isnot Time.days>>
   <<set $RobinTemple.walk_day to Time.days>>
-  <<if C.npc.Robin.revelationConviction gte 120>>
+  <<if C.npc.Robin.conviction gte 120>>
     <<if C.npc.Robin.trauma gte 40>>
       <<language>>
         <<option 'EN'>>
-          "I still want to help here," Robin says quietly. "Some days it is hard to talk to people. I can at least put the blankets away."
+          "I still want to help here," Robin says quietly. "Some days it's hard to talk to people. I can at least put the blankets away."
         <<option 'CN'>>
           “我还是想在这里帮忙，”罗宾低声说，“有时很难和别人说话。不过，我至少能把毯子收好。”
       <</language>>
@@ -84,12 +84,12 @@
     <<else>>
       <<language>>
         <<option 'EN'>>
-          "I used to come here because you were here," Robin says. "Now I want to stay even when you're busy. Someone has to look after the new initiates." <<He>> smiles. "I know how they feel."
+          "I used to come here because you were here," Robin says. "Now I want to stay even when you're busy. I can help the ones who are newer than me." <<He>> smiles. "I know how they feel."
         <<option 'CN'>>
-          “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。新来的见习教徒总得有人照顾。”<<He>>笑了笑，“我知道他们是什么心情。”
+          “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。比我晚来的，我也能帮上一点。”<<He>>笑了笑，“我知道他们是什么心情。”
       <</language>>
     <</if>>
-  <<elseif C.npc.Robin.revelationConviction lt 80>>
+  <<elseif C.npc.Robin.conviction lt 80>>
     <<language>>
       <<option 'EN'>>
         "I like helping," Robin says, looking back toward the temple. "But sometimes I say the prayers and wonder if I mean them. Did you ever feel like that?"
@@ -99,7 +99,7 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I like the work," Robin says. "I do not always understand what everyone here believes. Jordan lets me ask questions. That helps."
+        "I like the work," Robin says. "I don't always understand what everyone here believes. Jordan lets me ask questions. That helps."
       <<option 'CN'>>
         “我喜欢这里的工作，”罗宾说，“这里的人相信的事，我不是每件都懂。约旦肯让我提问，这让我安心些。”
     <</language>>
@@ -111,7 +111,7 @@
     <<option 'CN'>>
       <<He>>问你最初为何来到神殿。你挑愿意说的告诉<<him>>，<<he>>一直听到街道拐向家的方向。
   <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gconviction>>
   <<npcincr Robin dom 1>><br><br><<gdom>>
 <<else>>
   <<language>>
@@ -145,7 +145,7 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "I thought joining the temple meant choosing between them and this place," <<he>> says. "I am glad I asked."
+      "I thought joining the temple meant choosing between them and this place," <<he>> says. "I'm glad I asked."
     <<option 'CN'>>
       “我起初以为加入神殿，就得在他们和这里之间选一个，”<<he>>说，“幸好我问清楚了。”
   <</language>>

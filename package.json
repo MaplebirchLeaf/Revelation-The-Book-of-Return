@@ -41,7 +41,7 @@
     "dependenceInfo": [
       {
         "modName": "maplebirch",
-        "version": ">=5.1.1"
+        "version": ">=5.1.3"
       },
       {
         "modName": "ModLoader",

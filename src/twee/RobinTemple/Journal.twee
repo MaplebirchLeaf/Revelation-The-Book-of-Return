@@ -9,7 +9,6 @@
         <h1 class='header gold bold'>罗宾与神殿</h1>
     <</language>>
     <ul class='journal'>
-      <li><<lanSwitch "This path is the mod's own invention. In the base game Robin has no ties to the temple." '罗宾的神殿线是模组的原创内容；原版中罗宾与神殿并无往来。'>></li>
       <<switch $RobinTemple.stage>>
         <<case 'invited'>>
           <li><<language>>
@@ -48,25 +47,14 @@
           <<if !(maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin'))>>
             <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
           <</if>>
-          <<if $RobinTemple.penance_day gte 0>>
-            <li><<language>>
-              <<option 'EN'>>
-                The temple work ends on day <span class='red'><<= $RobinTemple.penance_day>></span>. Complete three evening shifts together, then return to the temple quarters.
-              <<option 'CN'>>
-                神殿安排的工作在第 <span class='red'><<= $RobinTemple.penance_day>></span> 天结束。先陪罗宾完成三个晚间班次，再去神殿宿舍。
-            <</language>></li>
-            <li><<language>>
-              <<option 'EN'>>
-                Evening shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
-              <<option 'CN'>>
-                已完成的晚间班次：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
-            <</language>></li>
+          <<if $RobinTemple.punish>>
+            <li><<lanSwitch 'The purification is unfinished. Continue it at the temple.' '净化尚未结束，返回神殿继续。'>></li>
           <<elseif $robinromance is 1 and $RobinTemple.service gte 3>>
             <li><<language>>
               <<option 'EN'>>
-                Ask Robin about making a promise during an evening shift. Jordan will weigh both your contributions, your shared work and Robin’s conviction.
+                Ask Robin about making a promise during an evening shift. Jordan will weigh both your contributions, your shared work and Robin’s faith.
               <<option 'CN'>>
-                晚间值班时可以和罗宾谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信念。
+                晚间值班时可以和罗宾谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信仰。
             <</language>></li>
           <<else>>
             <li><<language>>
@@ -101,56 +89,17 @@
           <</if>>
           <li><<language>>
             <<option 'EN'>>
-              Days until the next examination: <span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
+              Days until the next examination: <span class='gold'><<= Math.max(0, $RobinTemple.chastity_timer)>></span>
             <<option 'CN'>>
-              距离下次检查还有：<span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
+              距离下次检查还有：<span class='gold'><<= Math.max(0, $RobinTemple.chastity_timer)>></span>
           <</language>></li>
       <</switch>>
-      <<if $RobinTemple.vigil_result is 'passed'>>
+      <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
         <li><<language>>
           <<option 'EN'>>
-            You led Robin through the vigil. Robin joined the monks beside you.
+            Robin's trial of anguish: <<if $RobinTemple.vigil_result is 'passed'>>passed; Robin is now a monk.<<else>>not yet passed; Robin remains an initiate.<</if>>
           <<option 'CN'>>
-            你带罗宾走过守夜。罗宾与你一同晋升为修士。
-        <</language>></li>
-      <<elseif $temple_rank is 'initiate'
-        and $RobinTemple.vigil_day gte Time.days>>
-        <li><<language>>
-          <<option 'EN'>>
-            You and Robin arranged to attempt the vigil on day <span class='gold'><<= $RobinTemple.vigil_day>></span>. Prepare with Robin on two separate days before Sunday at 20:00. Preparation: <span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20.
-          <<option 'CN'>>
-            你与罗宾约好在第 <span class='gold'><<= $RobinTemple.vigil_day>></span> 天参加守夜。星期日 20:00 前，至少在两个不同的日子陪罗宾准备。准备程度：<span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20。
-        <</language>></li>
-      <<elseif $temple_rank is 'initiate'
-        and $RobinTemple.vigil_result is 'failed'>>
-        <li><<language>>
-          <<option 'EN'>>
-            Your joint vigil failed. Speak with Robin, then arrange another attempt for a later Sunday while you are both initiates.
-          <<option 'CN'>>
-            你与罗宾未能通过守夜。先与罗宾谈谈，再趁你们仍是见习教徒时另约一个星期日。
-        <</language>></li>
-      <<elseif ['monk', 'priest'].includes($temple_rank)
-        and $RobinTemple.vigil_result isnot 'passed'
-        and ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
-        <li><<language>>
-          <<option 'EN'>>
-            You have already passed your own vigil. Robin cannot join you in a second trial and remains an initiate.
-          <<option 'CN'>>
-            你已经通过自己的守夜，不能再次参加同一场试炼。罗宾仍是见习教徒。
-        <</language>></li>
-      <</if>>
-      <<if $RobinTemple.joint_sydney_penance>>
-        <li><<language>>
-          <<option 'EN'>>
-            Work with Robin and Sydney on three separate days, then return after day <span class='red'><<= $RobinTemple.penance_day>></span> to renew the broken vows.
-          <<option 'CN'>>
-            与罗宾、悉尼在三个不同的日子完成工作，第 <span class='red'><<= $RobinTemple.penance_day>></span> 天后再去重新立誓。
-        <</language>></li>
-        <li><<language>>
-          <<option 'EN'>>
-            Shared shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
-          <<option 'CN'>>
-            已完成的共同值班：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
+            罗宾的苦难审判：<<if $RobinTemple.vigil_result is 'passed'>>已通过，现为修士。<<else>>尚未通过，仍是见习教徒。<</if>>
         <</language>></li>
       <</if>>
       <<if $RobinTemple.faith_transition isnot ''>>
@@ -159,12 +108,12 @@
       <<if $RobinTemple.hospital_stage isnot ''>>
         <li><<lanSwitch 'Your hospital visit with Robin is unfinished. You can continue it at the hospital entrance.' '罗宾陪同的这次就诊尚未结束。可以在医院门口继续。'>></li>
       <</if>>
-      <<if C.npc.Robin.revelationConviction gt 0>>
+      <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
         <li><<language>>
           <<option 'EN'>>
-            Robin’s temple conviction: <span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
+            Robin’s faith: <span class='teal'><<= C.npc.Robin.conviction>></span>/200
           <<option 'CN'>>
-            罗宾的神殿信念：<span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
+            罗宾的信仰：<span class='teal'><<= C.npc.Robin.conviction>></span>/200
         <</language>></li>
       <</if>>
       <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>

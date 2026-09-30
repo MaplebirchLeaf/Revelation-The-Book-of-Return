@@ -14,9 +14,9 @@
       <<if $RobinTemple.confession_recognized>>
         <<language>>
           <<option 'EN'>>
-            Three quiet taps sound on the doorframe before Robin enters. <<He>> takes the bench on the other side of the screen.
+            Three quiet taps sound on the doorframe before Robin enters. <<He>> takes the bench on the other side of the screen. You greet <<him>> by name in your usual voice. "Oh, it is you," <<he>> says.
           <<option 'CN'>>
-            门框传来轻轻的三下敲击。罗宾走进另一侧的隔间，在屏风后坐下。
+            门框传来轻轻的三下敲击。罗宾走进另一侧的隔间，在屏风后坐下。你用平常的声音叫了<<his>>的名字。“啊，是你。”<<he>>说。
         <</language>>
       <<else>>
         <<language>>
@@ -27,19 +27,19 @@
         <</language>>
       <</if>>
       <br><br>
-      <<if $RobinTemple.penance_day gte 0>>
+      <<if $RobinTemple.punish>>
         <<language>>
           <<option 'EN'>>
-            "Jordan said we had to answer for our vows," <<he>> says. "I keep wondering who gets to decide what answering for them should mean."
+            "Forgive me, <<sister>>. I thought about running," <<he>> says. "But I don’t want to leave <<if $RobinTemple.punish.joint>>the people I made the vow with<<else>>my beloved<</if>> to be punished without me."
           <<option 'CN'>>
-            “约旦说我们得为自己的誓言负责，”<<he>>说，“可我一直在想，该由谁决定怎样才算负责。”
+            “请宽恕我，<<sister>>。我想过跑掉，”<<he>>说，“可我不想丢下<<if $RobinTemple.punish.joint>>和我一起立誓的人<<else>>我的爱人<</if>>，让<<if $RobinTemple.punish.joint>>他们<<else>><<pshe>><</if>>受罚。”
         <</language>>
-      <<elseif $RobinTemple.stage is 'promised'>>
+      <<elseif $RobinTemple.templePromised is 'Robin'>>
         <<language>>
           <<option 'EN'>>
-            "I meant what I promised," <<he>> says. "But sometimes I worry I only came here because I was afraid of losing you."
+            "I meant what I promised, <<sister>>," <<he>> says. "But sometimes I worry I only came here because I was afraid of losing my beloved."
           <<option 'CN'>>
-            “我立下的誓言是真心的，”<<he>>说，“但有时我担心自己来这里，只是因为害怕失去你。”
+            “<<Sister>>，我立下的誓言是真心的，”<<he>>说，“但有时我担心自己来这里，只是因为害怕失去我的爱人。”
         <</language>>
       <<else>>
         <<language>>
@@ -52,41 +52,41 @@
       <br><br>
       <<if !$RobinTemple.confession_recognized>>
         <<socialiseicon 'ask'>><<lanLink '先向罗宾表明身份' 'RobinTemple Confession Reveal'>><</lanLink>><br>
-        <<templeicon 'altar'>><<lanLink '先不说出自己的名字' 'RobinTemple Confession Anonymous'>><</lanLink>><br>
+        <<templeicon 'altar'>><<lanLink '先不说出自己的名字' 'RobinTemple Confession Anonymous'>><</lanLink>><<gconviction>><br>
       <<else>>
-        <<if $RobinTemple.penance_day gte 0>>
+        <<if $RobinTemple.punish>>
           <<socialiseicon 'ask'>><<lanLink '听罗宾说说惩戒的事' 'RobinTemple Confession Doubt'>><</lanLink>><br>
         <</if>>
-        <<socialiseicon 'ask'>><<lanLink '请罗宾说说自己的选择' 'RobinTemple Confession Listen'>><</lanLink>><br>
-        <<loveicon 'hug'>><<lanLink '隔着木板安慰罗宾' 'RobinTemple Confession Comfort'>><</lanLink>><br>
-        <<templeicon 'altar'>><<lanLink '提醒罗宾认真对待誓言' 'RobinTemple Confession Admonish'>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink '请罗宾说说自己的选择' 'RobinTemple Confession Listen'>><</lanLink>><<gdom>><<ggconviction>><br>
+        <<loveicon 'hug'>><<lanLink '隔着木板安慰罗宾' 'RobinTemple Confession Comfort'>><</lanLink>><<glove>><<lrtrauma>><br>
+        <<templeicon 'altar'>><<lanLink '提醒罗宾认真对待誓言' 'RobinTemple Confession Admonish'>><</lanLink>><<gdom>><<llove>><<lconviction>><br>
       <</if>>
     <</addinlineevent>>
     <<if $robinpaid is 1 and $RobinTemple.confession_recognized
       and !(maplebirch.get('Robin')
-        and ($RobinExpansion.selfRent or $RobinExpansion.baileyDefeated))>>
+      and ($RobinExpansion.selfRent or $RobinExpansion.baileyDefeated))>>
       <<addinlineevent 'robin_temple_confession_debt' 1>>
         <<npc Robin>><<person1>>
         <<set $attendant to 'robin_temple_confession_debt'>>
         <<set $RobinTemple.confession_day to Time.days>>
-      <<set $RobinTemple.confession_resolved to false>>
+        <<set $RobinTemple.confession_resolved to false>>
         <<set _noOptions to true>>
         <<language>>
           <<option 'EN'>>
-            Robin sits on the other side of the screen. "You paid what I owed Bailey," <<he>> says. "I still count the day's takings. I know you never asked for it back."
+            Robin sits on the other side of the screen. You greet <<him>> by name in your usual voice. "Oh, it is you. You paid what I owed Bailey," <<he>> says. "I still count the day's takings. I know you never asked for it back."
           <<option 'CN'>>
-            罗宾在木板另一侧坐下。“你替我还了欠贝利的钱，”<<he>>说，“每天收工，我还是会把钱数一遍。我知道你从没让我还。”
+            罗宾在木板另一侧坐下。你用平常的声音叫了<<his>>的名字。“啊，是你。你替我还了欠贝利的钱，”<<he>>说，“每天收工，我还是会把钱数一遍。我知道你从没让我还。”
         <</language>>
         <br><br>
         <<language>>
           <<option 'EN'>>
-            "I want to help you too," <<he>> says. "I just do not know how to do that without making it another debt."
+            "I want to help you too," <<he>> says. "I just don't know how to do that without making it another debt."
           <<option 'CN'>>
             “我也想帮你，”<<he>>说，“可我不知道怎么做，才不会又变成一笔欠账。”
         <</language>>
         <br><br>
-        <<loveicon 'hug'>><<lanLink '告诉罗宾你从未记过这笔账' 'RobinTemple Confession Debt Comfort'>><</lanLink>><br>
-        <<socialiseicon 'ask'>><<lanLink '问罗宾自己想做什么' 'RobinTemple Confession Debt Plan'>><</lanLink>><br>
+        <<loveicon 'hug'>><<lanLink '告诉罗宾你从未记过这笔账' 'RobinTemple Confession Debt Comfort'>><</lanLink>><<glove>><<lrtrauma>><br>
+        <<socialiseicon 'ask'>><<lanLink '问罗宾自己想做什么' 'RobinTemple Confession Debt Plan'>><</lanLink>><<gdom>><<gconviction>><br>
       <</addinlineevent>>
     <</if>>
   <</if>>
@@ -118,19 +118,38 @@
   <</language>>
 <</if>>
 <br><br>
-<<socialiseicon 'ask'>><<lanLink '请罗宾说说自己的选择' 'RobinTemple Confession Listen'>><</lanLink>><br>
+<<if $RobinTemple.punish>>
+  <<socialiseicon 'ask'>><<lanLink '听罗宾说说惩戒的事' 'RobinTemple Confession Doubt'>><</lanLink>><br>
+<</if>>
+<<socialiseicon 'ask'>><<lanLink '请罗宾说说自己的选择' 'RobinTemple Confession Listen'>><</lanLink>><<gdom>><<ggconviction>><br>
 <<getouticon>><<lanLink '结束这次告解' 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
 
 :: RobinTemple Confession Anonymous
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.confession_day is Time.days and !$RobinTemple.confession_resolved>>
   <<set $RobinTemple.confession_resolved to true>>
-  <<language>>
-    <<option 'EN'>>
-      You let Robin finish without saying <<his>> name. "I can work here and still go back for the people waiting outside," <<he>> says. You tell <<him>> that the choice is <<his>> to make.
-    <<option 'CN'>>
-      你没有叫罗宾的名字，让<<he>>把话说完。“我可以在这里做事，也能回去照顾外面等我的人，”<<he>>说。你告诉<<him>>，这个选择该由<<him>>自己来做。
-  <</language>>
+  <<if $RobinTemple.punish>>
+    <<language>>
+      <<option 'EN'>>
+        You let Robin finish without saying <<his>> name. You ask what frightens <<him>> about the punishment. <<He>> speaks quietly, but you let <<him>> take <<his>> time. "Thank you for listening, <<sister>>," <<he>> says.
+      <<option 'CN'>>
+        你没有叫罗宾的名字，让<<he>>把话说完。你问起惩戒中让<<him>>害怕的事。<<His>>的声音很轻，你没有催促。“谢谢你听我说，<<sister>>。”<<he>>说。
+    <</language>>
+  <<elseif $RobinTemple.templePromised is 'Robin'>>
+    <<language>>
+      <<option 'EN'>>
+        You let Robin finish without saying <<his>> name. You tell <<him>> that loving someone does not mean <<his>> promise was insincere. "I do want to keep it," <<he>> says. "Thank you, <<sister>>."
+      <<option 'CN'>>
+        你没有叫罗宾的名字，让<<he>>把话说完。你告诉<<him>>，爱着一个人并不意味着<<his>>的承诺不是真心的。“我确实想遵守它，”<<he>>说，“谢谢你，<<sister>>。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        You let Robin finish without saying <<his>> name. "I can work here and still go back for the people waiting outside," <<he>> says. You tell <<him>> that the choice is <<his>> to make.
+      <<option 'CN'>>
+        你没有叫罗宾的名字，让<<he>>把话说完。“我可以在这里做事，也能回去照顾外面等我的人，”<<he>>说。你告诉<<him>>，这个选择该由<<him>>自己来做。
+    <</language>>
+  <</if>>
   <br><br>
   <<language>>
     <<option 'EN'>>
@@ -138,7 +157,7 @@
     <<option 'CN'>>
       另一侧的门关上了。罗宾离开时，仍不知道刚才是谁在听。
   <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 1)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 1)>><<gconviction>>
   <br><br>
 <<else>>
   <<language>>
@@ -184,7 +203,7 @@
   <<set $RobinTemple.confession_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      "What would you choose to do?" you ask. Robin thinks about the business, the orphanage, and the work waiting here. "There is plenty I can do," <<he>> says. "I do not need a bill to tell me when to start."
+      "What would you choose to do?" you ask. Robin thinks about the business, the orphanage, and the work waiting here. "There's plenty I can do," <<he>> says. "I don't need a bill to tell me when to start."
     <<option 'CN'>>
       “那你自己想做什么？”你问。罗宾想起摊位、孤儿院和神殿里等着做的事。“能做的事很多，”<<he>>说，“不需要一张账单来催我。”
   <</language>>
@@ -195,7 +214,7 @@
     <<option 'CN'>>
       你把决定留给<<him>>。罗宾向你道了谢。
   <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gconviction>>
   <<npcincr Robin dom 2>><br><br><<gdom>>
 <<else>>
   <<language>>
@@ -211,9 +230,9 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>
-    "I know I made a vow," Robin says. "I also know you can be hurt without choosing it. Is the temple going to call that a broken promise?"
+    "I know I made a vow," Robin says. "But what if someone hurts me?" <<He>> pauses behind the screen. "Would that mean I'd broken it?"
   <<option 'CN'>>
-    “我知道自己立下了誓言，”罗宾说，“我也知道，有时人受伤并不是自己选的。神殿也会把那算成背誓吗？”
+    “我知道自己立下了誓言，”罗宾说，“可是，如果有人伤害我呢？”屏风后安静了一会儿。“那也算我背誓了吗？”
 <</language>>
 <br><br>
 <<language>>
@@ -223,14 +242,14 @@
     隔着木板，你看不见<<his>>的脸。<<He>>仍等着你回答。
 <</language>>
 <br><br>
-<<loveicon 'hug'>><<lanLink '告诉罗宾受伤不是罪' 'RobinTemple Confession Doubt Answer'>><<set $RobinTemple.penance_response to 'hold'>><</lanLink>><br>
-<<templeicon 'altar'>><<lanLink '劝罗宾向约旦问清楚' 'RobinTemple Confession Doubt Answer'>><<set $RobinTemple.penance_response to 'speak'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '告诉罗宾受伤不是罪' 'RobinTemple Confession Doubt Answer'>><<set $RobinTemple.confession_response to 'hold'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '劝罗宾向约旦问清楚' 'RobinTemple Confession Doubt Answer'>><<set $RobinTemple.confession_response to 'speak'>><</lanLink>><br>
 
 :: RobinTemple Confession Doubt Answer
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.confession_day is Time.days and !$RobinTemple.confession_resolved>>
   <<set $RobinTemple.confession_resolved to true>>
-  <<if $RobinTemple.penance_response is 'hold'>>
+  <<if $RobinTemple.confession_response is 'hold'>>
     <<language>>
       <<option 'EN'>>
         "No," you say. "What someone does to you is not a choice you made." Robin is silent for a long time. "Thank you," <<he>> says at last.
@@ -239,12 +258,21 @@
     <</language>>
     <<npcincr Robin love 2>><<npcincr Robin trauma -3>><br><br><<glove>><<lrtrauma>>
   <<else>>
-    <<language>>
-      <<option 'EN'>>
-        You tell Robin that Jordan should answer the question openly. "I will ask," <<he>> says. "And if I do not agree with the answer, I will say that too."
-      <<option 'CN'>>
-        你告诉罗宾，该请约旦公开回答这个问题。“我会去问，”<<he>>说，“如果我不同意答案，也会说出来。”
-    <</language>>
+    <<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
+      <<language>>
+        <<option 'EN'>>
+          You suggest asking Jordan what the vow means. Robin takes a while to answer. "Will you come with me?" <<he>> asks. "I don't know how to explain it."
+        <<option 'CN'>>
+          你提议向约旦问清誓言的含义。罗宾过了一会儿才回答。“你会陪我去吗？”<<he>>问，“我不知道该怎么说。”
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          You suggest asking Jordan what the vow means. "I'll ask," Robin says. "I don't want to keep worrying about it." <<He>> adds, more quietly, "I'd still like you to come."
+        <<option 'CN'>>
+          你提议向约旦问清誓言的含义。“我会去问，”罗宾说，“我不想总担心这件事。”<<He>>又放轻了声音。“我还是希望你能陪我。”
+      <</language>>
+    <</if>>
     <<npcincr Robin dom 2>><br><br><<gdom>>
   <</if>>
 <<else>>
@@ -261,20 +289,36 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.confession_day is Time.days and !$RobinTemple.confession_resolved>>
   <<set $RobinTemple.confession_resolved to true>>
-  <<language>>
-    <<option 'EN'>>
-      You wait. Robin tells you about the work <<he>> chose to do and the work <<he>> still wants to do outside these walls. "I think I can belong to both," <<he>> says at last.
-    <<option 'CN'>>
-      你等罗宾说完。<<He>>讲起自己在神殿接下的工作，也讲起墙外仍想做的事。“我想两边都能顾到，”<<he>>终于说。
-  <</language>>
-  <br><br>
-  <<language>>
-    <<option 'EN'>>
-      "Then tell Jordan that," you say. You hear Robin let out a breath behind the screen.
-    <<option 'CN'>>
-      “那就这样告诉约旦，”你说。屏风后传来罗宾松了口气的声音。
-  <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 4)>>
+  <<if $RobinTemple.punish>>
+    <<language>>
+      <<option 'EN'>>
+        You ask Robin what <<he>> wants to do. "I'm scared," <<he>> admits. "But I don't want to leave anyone behind." You listen as <<he>> tells you what worries <<him>>, without asking <<him>> to pretend otherwise.
+      <<option 'CN'>>
+        你问罗宾想怎么做。“我很害怕，”<<he>>承认，“可我不想丢下任何人。”你听<<him>>说起担忧，没有让<<him>>装作不怕。
+    <</language>>
+  <<elseif $RobinTemple.templePromised is 'Robin'>>
+    <<language>>
+      <<option 'EN'>>
+        You ask Robin about the promise. "I wanted to be with you," <<he>> says. "That part hasn't changed." You listen while <<he>> puts the rest into words. <<He>> sounds less hesitant by the time <<he>> finishes.
+      <<option 'CN'>>
+        你问起那份承诺。“我想和你在一起，”<<he>>说，“这一点没有变。”你听<<him>>把余下的话慢慢说清。说完时，<<he>>不再像刚才那样迟疑。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        You wait. Robin tells you about the work <<he>> chose to do and the work <<he>> still wants to do outside these walls. "I think I can belong to both," <<he>> says at last.
+      <<option 'CN'>>
+        你等罗宾说完。<<He>>讲起自己在神殿接下的工作，也讲起墙外仍想做的事。“我想两边都能顾到，”<<he>>终于说。
+    <</language>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        "Then tell Jordan that," you say. You hear Robin let out a breath behind the screen.
+      <<option 'CN'>>
+        “那就这样告诉约旦，”你说。屏风后传来罗宾松了口气的声音。
+    <</language>>
+  <</if>>
+  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 4)>><<ggconviction>>
   <<npcincr Robin dom 1>><br><br><<gdom>>
 <<else>>
   <<language>>
@@ -292,9 +336,9 @@
   <<set $RobinTemple.confession_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      You put your palm against the wooden slats. Robin’s fingers find yours on the other side. Neither of you can see the other, but <<he>> stays until <<his>> breathing slows.
+      You put your palm against the wooden screen. Robin presses <<his>> hand against the other side. Neither of you can see the other, but <<he>> stays until <<his>> breathing slows.
     <<option 'CN'>>
-      你把手掌贴在木板上。罗宾从另一边用手指碰了碰你。你们看不见彼此，但<<he>>一直待到呼吸平稳下来。
+      你把手掌贴在木板上。罗宾把手贴在另一侧。你们看不见彼此，但<<he>>一直待到呼吸平稳下来。
   <</language>>
   <br><br>
   <<language>>
@@ -320,12 +364,12 @@
   <<set $RobinTemple.confession_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      You remind Robin that Jordan asked for a vow made by choice. Robin goes quiet. "I know," <<he>> says. "I will not say the words only because someone wants to hear them."
+      You remind Robin that Jordan asked for a vow made by choice. Robin goes quiet. "I know," <<he>> says quietly. "I meant it. I'm trying."
     <<option 'CN'>>
-      你提醒罗宾，约旦要的是自己选择的誓言。罗宾安静下来。“我知道，”<<he>>说，“我不会只因为有人想听，就说出那些话。”
+      你提醒罗宾，约旦要的是自己选择的誓言。罗宾安静下来。“我知道，”<<he>>轻声说，“我是真心的。我在努力。”
   <</language>>
   <br><br>
-  <<set C.npc.Robin.revelationConviction to Math.max(0, C.npc.Robin.revelationConviction - 2)>>
+  <<set C.npc.Robin.conviction to Math.max(0, C.npc.Robin.conviction - 2)>><<lconviction>>
   <<npcincr Robin dom 1>><<npcincr Robin love -1>><br><br><<gdom>><<llove>>
 <<else>>
   <<language>>

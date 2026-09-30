@@ -2,7 +2,7 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set $RobinTemple.clasp_discussed to true>>
 <!-- 罗宾线自行解释誓言与器具的关系，因此这里让约旦保持原版那种回避、克制的口吻。 -->
-<<if $RobinTemple.stage is 'promised'>>
+<<if $RobinTemple.templePromised is 'Robin'>>
   <<if $RobinTemple.clasp_equipped>>
     <<language>>
       <<option 'EN'>>
@@ -27,23 +27,23 @@
         罗宾放下储藏室清单。<<He>>身上的器具并非神殿所有。约旦不能擅自更动别人的东西。
     <</language>>
   <</if>>
-<<elseif C.npc.Robin.revelationConviction gte 120>>
+<<elseif C.npc.Robin.conviction gte 120>>
   <<language>>
     <<option 'EN'>>
-      Robin closes the storeroom list when you ask about the chastity belt. <<He>> does not want to leave the temple. He only wants to know whether he can put a promise into his own words, belt or no belt.
+      Robin closes the storeroom list when you ask about the chastity belt. <<He>> does not want to leave the temple. <<He>> only wants to know whether <<he>> can put a promise into <<his>> own words, belt or no belt.
     <<option 'CN'>>
       你问起贞操带，罗宾合上储藏室清单。<<He>>并不想离开神殿，只想知道除了这件器具之外，能不能用自己的话再立一次承诺。
   <</language>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Robin closes the storeroom list. "I still need time to decide what I believe," <<he>> says. "I like the quiet here. I am not ready to promise my whole life to it yet."
+      Robin closes the storeroom list. "I still need time to decide what I believe," <<he>> says. "I like the quiet here. I'm not ready to promise my whole life to it yet."
     <<option 'CN'>>
       罗宾合上储藏室清单。“我还得想清楚自己相信什么，”<<he>>说，“我喜欢这里的安静，可还没准备好把一生都许给它。”
   <</language>>
 <</if>>
 <br><br>
-<<if $RobinTemple.stage is 'promised'>>
+<<if $RobinTemple.templePromised is 'Robin'>>
   <<if $RobinTemple.clasp_request isnot ''>>
     <<language>>
       <<option 'EN'>>
@@ -86,7 +86,7 @@
 
 :: RobinTemple Clasp Request
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised'
+<<if $RobinTemple.templePromised is 'Robin'
   and $RobinTemple.clasp_request_day is Time.days>>
   <<if $RobinTemple.clasp_request is 'remove'>>
     <<language>>
@@ -116,7 +116,7 @@
 
 :: RobinTemple Clasp Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.stage is 'promised'
+<<if $RobinTemple.templePromised is 'Robin'
   and $RobinTemple.clasp_request isnot ''
   and Time.days gt $RobinTemple.clasp_request_day>>
   <<if $RobinTemple.clasp_request is 'remove'
@@ -130,9 +130,9 @@
     <<set $RobinTemple.clasp_equipped to false>>
     <<language>>
       <<option 'EN'>>
-        Robin meets you outside the side room. The belt is open in <<his>> hands. "Jordan heard me out," <<he>> says, "and did not make the decision for me. I asked for it to come off. Our promise stays either way."
+        Robin meets you outside the side room. "Jordan checked our promise," <<he>> says, "then used a tool to take it off. It looked a bit frightening." <<He>> reaches for your hand. "I still meant what I said when we made our vows."
       <<option 'CN'>>
-        罗宾在侧室外等你，手里拿着打开的贞操带。“约旦听我说完了，”<<he>>说，“没有替我拿主意。是我自己要求取下的。取不取，承诺都在。”
+        罗宾在侧室外等你。“约旦核实了我们的誓言，”<<he>>说，“才用工具把它取下来。那东西看着有点吓人。”<<He>>伸手牵住你。“立誓时说的话，我还是认真的。”
     <</language>>
     <br><br>
     <span class='green'><<lanSwitch 'Robin asked for the belt to be removed.' '罗宾自己要求取下了贞操带。'>></span>
@@ -147,9 +147,9 @@
     <<set $RobinTemple.clasp_equipped to true>>
     <<language>>
       <<option 'EN'>>
-        Robin comes back from speaking to Jordan with the belt fastened again. "It was my own request," <<he>> says. "I know I can ask to change my mind." <<He>> takes your hand before returning to the work list.
+        Robin comes back from speaking to Jordan with the belt fastened again. "I asked to wear it," <<he>> says. "Jordan reminded me that our vows still count, with or without it." <<He>> takes your hand before returning to the work list.
       <<option 'CN'>>
-        罗宾与约旦谈过之后，重新戴好了贞操带。“是我自己要求的，”<<he>>说，“我也知道，将来还可以再改主意。”<<He>>牵了牵你的手，才回到工作表前。
+        罗宾与约旦谈过之后，重新戴好了贞操带。“是我自己要求的，”<<he>>说，“约旦提醒我，戴不戴都得遵守我们的誓言。”<<He>>牵了牵你的手，才回到工作表前。
     <</language>>
     <br><br>
     <span class='green'><<lanSwitch 'Robin asked for the belt to be refitted.' '罗宾自己要求重新戴上了贞操带。'>></span>
@@ -177,20 +177,29 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>
-    Robin speaks first when Jordan arrives. Jordan says the belt is the temple's, and that the temple cannot release another person's. "Ask the one who holds it," Jordan says. "You may also decide not to."
+    Jordan listens to your question. "We don't use keys," Jordan says. "Removing the temple's fitting requires specialised equipment. Before I consider an exception, I need to know how you intend to honour your vows."
   <<option 'CN'>>
-    约旦来后，罗宾先开口。约旦说，这条贞操带属于神殿，神殿不能替别人解开。至于钥匙在谁手里，得去问那个人。“你可以去问，”约旦说，“也可以选择不问。”
+    约旦听了你们的问题。“我们不用钥匙，”约旦说，“取下神殿的器具需要专门的工具。在考虑破例之前，我得知道你们打算怎样遵守誓言。”
 <</language>>
 <br><br>
-<<language>>
-  <<option 'EN'>>
-    Robin asks what would happen if the two of you made a promise together. Jordan asks to see your work records before giving an answer.
-  <<option 'CN'>>
-    罗宾问，如果你们共同立誓会怎样。约旦想先看你们的工作记录，再作回答。
-<</language>>
-<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+<<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>
+      Robin glances at you before speaking. "Could we… make a promise together?" <<he>> asks. <<His>> fingers close around yours while Jordan asks to see your work records.
+    <<option 'CN'>>
+      罗宾先看了你一眼。“我们能不能……一起立誓？”<<he>>问。约旦提出查看你们的工作记录时，<<his>>手指握住了你的手。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      "What if we made a promise together?" Robin asks. Jordan asks to see your work records before giving an answer. Robin nods, then looks at you to see what you think.
+    <<option 'CN'>>
+      “如果我们共同立誓呢？”罗宾问。约旦想先看你们的工作记录，再作回答。罗宾点点头，随后望向你，想知道你的意思。
+  <</language>>
+<</if>>
+<<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
 <<npcincr Robin dom 1>><br><br><<gdom>>
-<<templeicon 'altar'>><<lanLink '谈谈共同立誓' 'RobinTemple Promise Talk'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '谈谈共同立誓' 'RobinTemple Evaluation'>><</lanLink>><br>
 <<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Listen
@@ -202,11 +211,20 @@
     你没有碰那张清单，等罗宾自己把话说完。<<He>>告诉你，哪些工作对<<him>>重要，哪些规矩仍让<<him>>害怕。
 <</language>>
 <br><br>
-<<language>>
-  <<option 'EN'>>
-    "I can ask Jordan myself," <<he>> says at last. "I just wanted you to know first."
-  <<option 'CN'>>
-    “我能自己去问约旦，”<<he>>最后说，“只是想先告诉你。”
-<</language>>
+<<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>
+      "Could you come when I ask Jordan?" <<he>> says at last. "I think I'd feel better if you were there."
+    <<option 'CN'>>
+      “我去问约旦的时候，你能陪我吗？”<<he>>最后说，“有你在，我会安心一点。”
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      "I can ask Jordan myself," <<he>> says at last. "I just wanted you to know first."
+    <<option 'CN'>>
+      “我能自己去问约旦，”<<he>>最后说，“只是想先告诉你。”
+  <</language>>
+<</if>>
 <<npcincr Robin love 2>><<npcincr Robin trauma -2>><br><br><<glove>><<lrtrauma>>
 <<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>

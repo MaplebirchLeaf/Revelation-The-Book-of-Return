@@ -1,269 +1,876 @@
-:: RobinTemple Penance Hearing
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>
-    Jordan takes you to the side of the hall. "The examination cannot tell me who chose to break a vow," Jordan says. "I will listen to you both before deciding what follows."
-  <<option 'CN'>>
-    约旦带你们来到大厅侧边。“检查分辨不出是谁选择违背誓言，”约旦说，“决定后续处置前，我会听你们两个人讲清楚。”
-<</language>>
-<br><br>
-<<if $RobinTemple.breach is 'pc'>>
-  <<language>>
-    <<option 'EN'>>
-      Robin steps forward. "It was not my choice," <<he>> says. <<He>> still does not let go of your hand.
-    <<option 'CN'>>
-      罗宾向前一步。“那不是我的选择，”<<he>>说，却仍没有松开你的手。
-  <</language>>
-<<elseif $RobinTemple.breach is 'robin'>>
-  <<language>>
-    <<option 'EN'>>
-      Robin lowers <<his>> eyes. "I broke mine," <<he>> says before you can speak for <<him>>.
-    <<option 'CN'>>
-      罗宾垂下眼。“是我违背了自己的誓言，”<<he>>抢在你替<<him>>开口前说。
-  <</language>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      You each admit what happened. Jordan does not let either of you take responsibility for the other’s choice.
-    <<option 'CN'>>
-      你们各自承认发生的事。约旦不许任何一方替另一方承担自己的选择。
-  <</language>>
-<</if>>
-<br><br>
-<<socialiseicon 'ask'>><<lanLink '如实说明经过' 'RobinTemple Penance Honest'>><</lanLink>><br>
-<<loveicon 'hug'>><<lanLink '请求和罗宾一起赎罪' 'RobinTemple Penance Together'>><</lanLink>><br>
+:: RobinTemple Penance Widgets [widget]
+<<widget 'robin-temple-punishment-npcs'>>
+  <<run statusCheck('Robin')>><<run statusCheck('Sydney')>>
+  <<if $RobinTemple.punish.joint>>
+    <<npc Robin 1>><<npc Sydney 2>><<generate3>><<generate4>><<generate5>><<person3>>
+  <<else>>
+    <<npc Robin 1>><<generate3>><<generate4>><<generate5>><<person3>>
+  <</if>>
+<</widget>>
 
-:: RobinTemple Penance Honest
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.penance_day gte 0 and !$RobinTemple.penance_hearing_done and !$RobinTemple.penance_trial_done>>
-  <<set $RobinTemple.penance_hearing_done to true>>
-	  <<language>>
-	    <<option 'EN'>>
-	      You explain what happened without asking Robin to carry your part. The words feel hotter than the act did now that they are spoken in the temple hall. Jordan writes them down without flinching, then turns to Robin for <<his>> own account.
-	    <<option 'CN'>>
-	      你说清经过，没有让罗宾替你承担那一部分。那些话在神殿大厅里说出口时，比当时发生的一切还要烫。约旦没有移开视线，只把它们记下，转向罗宾，等<<he>>自己讲述。
-	  <</language>>
-	  <br><br>
-	  <<if $RobinTemple.breach is 'pc'>>
-	    <<language>>
-	      <<option 'EN'>>
-	        Robin listens with <<his>> jaw tight. When you admit how your body answered someone else, <<he>> looks hurt, but not surprised. <<He>> still reaches for your sleeve before Jordan speaks again.
-	      <<option 'CN'>>
-	        罗宾咬紧牙听着。你承认自己的身体怎样回应了别人时，<<he>>看起来受了伤，却并不惊讶。约旦再次开口前，<<he>>仍伸手抓住了你的袖口。
-	    <</language>>
-	  <<elseif $RobinTemple.breach is 'robin'>>
-	    <<language>>
-	      <<option 'EN'>>
-	        Robin's voice shakes when <<he>> describes <<his>> own wanting. <<He>> does not hide behind fear or confusion; <<he>> names the desire, the choice, and the way <<his>> body betrayed the vow before <<his>> mouth could.
-	      <<option 'CN'>>
-	        罗宾说起自己的欲望时，声音在发抖。<<He>>没有躲在恐惧或混乱后面，而是把那份想要、那个选择，以及身体比嘴唇更早背叛誓言的瞬间，一样样说出来。
-	    <</language>>
-	  <<else>>
-	    <<language>>
-	      <<option 'EN'>>
-	        Neither of you is allowed to turn confession into protection. Jordan makes you separate the shared heat from the separate choices, until every admission has a name attached to it.
-	      <<option 'CN'>>
-	        约旦不许你们把坦白变成相互遮掩。约旦让你们把共同的热意与各自的选择分开，直到每一句承认都清清楚楚落在该负责的人身上。
-	    <</language>>
-	  <</if>>
-	  <br><br>
-	  <<language>>
-	    <<option 'EN'>>
-	      "Work beside each other if you wish," Jordan says, "but each of you must answer for your own vow."
-    <<option 'CN'>>
-      “你们愿意，可以并肩做事，”约旦说，“但每个人都必须为自己的誓言负责。”
-  <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
-  <<npcincr Robin dom 1>><br><br><<gdom>>
-<<else>>
+<<widget 'robin-temple-punishment-exit'>>
+  <<templeicon 'altar'>><<lanLink ['Continue', '继续'] 'RobinTemple Penance'>><<endevent>><</lanLink>><br>
+<</widget>>
+
+<<widget 'robin-temple-punishment-cleanup'>>
+  <<set $worn.face.type.push('broken')>><<faceruined>>
+  <<if !($worn.neck.name is 'familiar collar' and $worn.neck.cursed is 1)>>
+    <<set $worn.neck.type.push('broken')>><<neckruined>>
+  <</if>>
+  <<remove_shackle>><<unbindtemp>><<storeon 'duopunish'>><<clotheson>><<endevent>>
+<</widget>>
+
+<<widget 'robin-temple-punishment-action'>>
+  <<if maplebirch.get('RobinTemple').punishmentChoice(_args[0], _args[1])>>
+    <<switch _args[0]>>
+      <<case 'hold'>>
+        <<pain (_args[1] is 'both' and $RobinTemple.punish.joint ? -6 : -3)>>
+      <<case 'belt'>>
+        <<arousal -2500>>
+      <<case 'hit'>>
+        <<def 1>><<arousal -3000>><<violence_noncombat 30 0.3>>
+      <<case 'plead'>>
+        <<sub 1>><<arousal 2000>><<pain -5>>
+      <<case 'touch'>>
+        <<arousal 1500>>
+      <<case 'close'>>
+        <<arousal 3000>><<pain -3>>
+    <</switch>>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-punishment-status'>>
   <<language>>
     <<option 'EN'>>
-      Jordan has already heard your account for this examination.
+      <<lanSwitch _args[0] (_args[0] is 'Robin' ? '罗宾' : '悉尼')>> looks
+      <<switch _args[1].pain>>
+        <<case 0>><span class="green">unharmed</span>
+        <<case 1>><span class="teal">uncomfortable</span>
+        <<case 2>><span class="lblue">stung</span>
+        <<case 3>><span class="blue">pained</span>
+        <<case 4>><span class="purple">hurt</span>
+        <<case 5>><span class="pink">like <<nnpc_he _args[0]>> can't take much more pain,</span>
+      <</switch>>
+      and
+      <<switch _args[1].arousal>>
+        <<case 0>><span class="green">calm.</span>
+        <<case 1>><span class="teal">stimulated.</span>
+        <<case 2>><span class="lblue">aroused.</span>
+        <<case 3>><span class="blue">horny.</span>
+        <<case 4>><span class="purple"><<nnpc_his _args[0]>> face is flushed with arousal.</span>
+        <<case 5>><span class="pink">like <<nnpc_hes _args[0]>> on the edge of climax.</span>
+      <</switch>>
+
     <<option 'CN'>>
-      约旦已经听过你对这次检查的说明。
+      <<lanSwitch _args[0] (_args[0] is 'Robin' ? '罗宾' : '悉尼')>>看起来
+      <<switch _args[1].pain>>
+        <<case 0>><span class="green">安然无恙</span>
+        <<case 1>><span class="teal">有些不适</span>
+        <<case 2>><span class="lblue">有些痛苦</span>
+        <<case 3>><span class="blue">很痛苦</span>
+        <<case 4>><span class="purple">很痛苦</span>
+        <<case 5>><span class="pink">已经无法承受更多的痛苦了，</span>
+      <</switch>>
+      并且
+      <<switch _args[1].arousal>>
+        <<case 0>><span class="green">面色平静。</span>
+        <<case 1>><span class="teal">略微兴奋。</span>
+        <<case 2>><span class="lblue">很兴奋。</span>
+        <<case 3>><span class="blue">十分兴奋。</span>
+        <<case 4>><span class="purple">脸因兴奋而涨得通红。</span>
+        <<case 5>><span class="pink">正处于高潮的边缘。</span>
+      <</switch>>
+
   <</language>>
+  <br>
+<</widget>>
+
+<<widget 'robin-temple-punishment-options'>>
+  <!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+  原版 passage：Widgets Sydney。
+  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Widgets Sydney.twee:1355
+  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Widgets Sydney.twee:1355
+  -->
+
+  <<set _punishNewRound to $RobinTemple.punish.result is 'active'>>
+  <<if _punishNewRound>>
+    <<hallucinogen 10>><<arousal 1000>><<garousal>>
+    <<run maplebirch.get('RobinTemple').punishmentRound()>>
+  <</if>>
+  <<switch $RobinTemple.punish.result>>
+    <<case 'hospital'>>
+      <<if _punishNewRound>><<passout>><<trauma 100>><<gggtrauma>><</if>>
+      <<language>>
+        <<option 'EN'>>
+          You feel yourself losing consciousness. Robin’s frightened face fades from view.
+        <<option 'CN'>>
+          你感觉自己正在失去意识。在昏过去前，你看到了罗宾的脸，表情愈发惊恐，视野随之逐渐模糊。
+      <</language>>
+      <br><br>
+      <<lanLink ['Everything goes black...', '你眼前一黑……'] 'RobinTemple Penance Hospital'>><<pain -8>><<arousal -2000>><<pass 60>><</lanLink>><br>
+    <<case 'passed'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $RobinTemple.punish.repeats gte 10>>
+            <<person3>>The <<priest>> bows to you. <<He>> slowly approaches you, and raises <<his>> hand, causing both you and Robin to flinch in fear.
+            <br><br>
+            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured much suffering, and although you failed time and time again, you've shown your bond to be strong enough to last. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar">><<He>> also removes Robin's collar.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you and Robin remain clinging to each other, supporting each other to a standing position. Your knees tremble.
+            <br><br>
+            "A warning," the <<priest>> continues. "Breathe not a word of this to anyone. Not your friends. Not Jordan. Not your parents, should you be so blessed. I'd hate to consider you impure again."
+            <br><br>
+            The <<monks>> present you your neatly folded clothing.
+            <<if $player.virginity.penile isnot true or $player.virginity.vaginal isnot true>>
+              <<if $RobinTemple.templePromised is "Robin">>
+                You've gained the <span class="blue"><<robin-temple-promise-trait-name>></span> trait.
+              <<else>>
+                You've gained the <span class="blue">Chastity Vow</span> trait.
+              <</if>>
+            <</if>>
+            <br><br>
+            <<link [[Next|RobinTemple Penance End]]>><</link>>
+            <br>
+          <<else>>
+            <<person3>>The <<priest>> holds up <<his>> hand. "Enough." The <<monks>> stop, and snuff the incense burners. <<He>> slowly approaches you, and raises <<his>> hand, causing both you and Robin to flinch in fear.
+            <br><br>
+            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured lust and wrath, showing your bond to be stronger than both. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar">><<He>> also removes Robin's collar.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you and Robin remain clinging to each other, supporting each other to a standing position. Your knees tremble.
+            <br><br>
+            "A warning," the <<priest>> continues. "Breathe not a word of this to anyone. Not your friends. Not Jordan. Not your parents, should you be so blessed. I'd hate to consider you impure again."
+            <br><br>
+            The <<monks>> present you your neatly folded clothing.
+            <<if $player.virginity.penile isnot true or $player.virginity.vaginal isnot true>>
+              <<if $RobinTemple.templePromised is "Robin">>
+                You've gained the <span class="blue"><<robin-temple-promise-trait-name>></span> trait.
+              <<else>>
+                You've gained the <span class="blue">Chastity Vow</span> trait.
+              <</if>>
+            <</if>>
+            <br><br>
+            <<link [[Next|RobinTemple Penance End]]>><</link>>
+            <br>
+          <</if>>
+        <<option 'CN'>>
+          <<if $RobinTemple.punish.repeats gte 10>>
+            <<person3>><<priest>>向你们鞠了一躬。<<He>>慢慢抬起手，这让你和罗宾都害怕地一缩。
+            <br><br>
+            鞭子没有再落下。相反，你听见金属落地的声音。"恭喜，我的孩子们，"<<he>>一字一句地说着，"你们共同经历了痛苦。尽管多次失败，但你们向我们证明了你们的羁绊足够牢固。<span class="green">你们再次纯洁了。</span>"你们的束缚全部解开。一位<<monk>>走了过来，解开你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还摘下了罗宾的项圈。<<else>><<He>>还摘下了你们的项圈。<</if>><<tearful>>你和罗宾仍保持相拥的姿势，彼此支撑着站起。你的膝盖仍然在打颤。
+            <br><br>
+            "一个警告，"<<priest>>说，"不要向任何人透露此事。无论朋友，还是约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
+            <br><br>
+            <<monks>>把你叠好的衣服递给你。
+            <<if $player.virginity.penile isnot true or $player.virginity.vaginal isnot true>>
+              <<if $RobinTemple.templePromised is "Robin">>
+                你获得了<span class="blue"><<robin-temple-promise-trait-name>></span>特质。
+              <<else>>
+                你获得了<span class="blue">贞洁誓言</span>特质。
+              <</if>>
+            <</if>>
+            <br><br>
+            <<link [[继续|RobinTemple Penance End]]>><</link>>
+            <br>
+          <<else>>
+            <<person3>><<priest>>举起了一只手，"够了。"<<monks>>停了下来，掐灭了燃香盏。<<He>>慢慢靠近你们，把手伸了出来，你和罗宾惊恐地后退。
+            <br><br>
+            鞭子没有再落下。相反，你听见金属落地的声音。“恭喜，我的孩子们，”<<he>>说，“你们共同经历了痛苦，也一同抵御了欲望。你们证明了你们的羁绊比欲望和痛苦更强大。<span class="green">你们再次纯洁了。</span>”你们的束缚全部解开。一个<<monk>>走了过来，拔掉你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还把罗宾的项圈解开了。<<else>><<He>>还把你们的项圈解开了。<</if>><<tearful>>你和罗宾仍保持相拥的姿势，彼此支撑着站起。你的膝盖打着颤。
+            <br><br>
+            "一个警告，"<<priest>>继续说道，"不要向任何人透露此事。不要告诉你的朋友。不要告诉约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
+            <br><br>
+            <<monks>>把你叠好的衣服拿给你。
+            <<if $player.virginity.penile isnot true or $player.virginity.vaginal isnot true>>
+              <<if $RobinTemple.templePromised is "Robin">>
+                你获得了<span class="blue"><<robin-temple-promise-trait-name>></span>特质。
+              <<else>>
+                你获得了<span class="blue">贞洁誓言</span>特质。
+              <</if>>
+            <</if>>
+            <br><br>
+            <<link [[继续|RobinTemple Penance End]]>><</link>>
+            <br>
+          <</if>>
+      <</language>>
+    <<case 'rest'>>
+      <<if _punishNewRound>>
+        <<set _punishNpcArousal to !($pain gte 100 and $willpowerpain is 0) and $arousal lt $arousalmax and !Object.values($RobinTemple.punish.partners).some(npc => npc.pain gte 6)>>
+        <<if !($pain gte 100 and $willpowerpain is 0) and $arousal gte $arousalmax>><<orgasm>><</if>>
+        <<for _punishName, _punishPartner range $RobinTemple.punish.partners>>
+          <<if _punishNpcArousal and _punishPartner.arousal gte 6>>
+            <<npcincr _punishName lust -1>>
+            <<if _punishName is 'Robin'>>
+              <<set C.npc.Robin.conviction to Math.max(0, C.npc.Robin.conviction - 2)>><<lconviction>>
+            <<else>>
+              <<npcincr Sydney purity -2>><<lspurity>>
+            <</if>>
+          <</if>>
+        <</for>>
+        <<stress 24>><<gggstress>>
+        <<stress -1>><<lstress>>
+      <</if>>
+      <<language>>
+        <<option 'EN'>>
+          <<person3>>The <<priest>> holds up <<his>> hand. "Cease." The <<monks>> stop, and snuff the incense burners. "Your bodies betray you. You will be given time to recover, and then we will begin again." <<gggstress>>
+          <br><br>
+          The <<monks>> dim the light in the room, and leave one by one. As the last one leaves, you and Robin are left in total darkness.
+          <br><br>
+          You can feel Robin's breath on your skin. Something about knowing <<nnpc_hes "Robin">> still there calms you. <<nnpc_He "Robin">> holds you tighter. You squeeze back. <<lstress>>
+          <br><br>
+
+          <<if playerBellySize() gte 15>>
+            You feel a third, faint heartbeat between you.
+            <br><br>
+          <</if>>
+        <<option 'CN'>>
+          <<person3>><<priest>>抬起手。"可以了。"<<monks>>纷纷停下，熄灭了燃香盏。"你们的身体背叛了你。给你们点时间恢复，然后我们重新开始。"<<gggstress>>
+          <br><br>
+          <<monks>>熄灭了房间里的火光，一个接一个地离开。当最后一个人离开后，你和罗宾陷入了一片黑暗。
+          <br><br>
+          罗宾的吐息轻轻拂过你的肌肤。一想到<<nnpc_hes "Robin">>在这里，你便平静了下来。<<nnpc_He "Robin">>把你抱得更紧了，你也用力抱了回去。<<lstress>>
+          <br><br>
+
+          <<if playerBellySize() gte 15>>
+            你感觉到了另一个微弱的心跳——它就夹在你们之间。
+            <br><br>
+          <</if>>
+      <</language>>
+      <<lanLink ['Rest (1:00)', '休息 (1:00)'] 'RobinTemple Penance Trial'>><<pass 60>><<pain -30>><<run maplebirch.get('RobinTemple').punishmentRest()>><</lanLink>><<lllpain>><br>
+    <<case 'active'>>
+      <<for _punishName, _punishPartner range $RobinTemple.punish.partners>>
+        <<capture _punishName _punishPartner>>
+          <<robin-temple-punishment-status _punishName _punishPartner>>
+        <</capture>>
+      <</for>>
+      <span class='red'>
+      <<switch $RobinTemple.punish.action>>
+        <<case 'Player'>><<lanSwitch 'The specialist prepares to lash you.' '专员准备鞭打你。'>>
+        <<case 'Robin'>><<lanSwitch 'The specialist prepares to lash Robin.' '专员准备鞭打罗宾。'>>
+        <<case 'Sydney'>><<lanSwitch 'The specialist prepares to lash Sydney.' '专员准备鞭打悉尼。'>>
+        <<case 'Vibrate'>><<lanSwitch 'The specialist intensifies the vibration.' '专员调高振动的强度。'>>
+      <</switch>>
+      </span><br><br>
+      <<if $RobinTemple.punish.joint and Object.values($RobinTemple.punish.partners).every(npc => npc.hold lt 5)>>
+        <<lanLink ['Hold Robin and Sydney tighter', '抱紧罗宾和悉尼'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'hold' 'both'>><</lanLink>><<llpain>><br>
+      <</if>>
+      <<if $RobinTemple.punish.joint and Object.values($RobinTemple.punish.partners).every(npc => npc.touch lt 5 and (npc.touch is 0 or hasSexStat('promiscuity', npc.touch + 1)))>>
+        <<lanLink ['Touch Robin and Sydney', '抚摸罗宾和悉尼'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'touch' 'both'>><</lanLink>><<garousal>><br>
+      <</if>>
+      <<for _punishName, _punishPartner range $RobinTemple.punish.partners>>
+        <<capture _punishName _punishPartner>>
+          <<if _punishPartner.hold lt 5>>
+            <<lanLink (_punishName is 'Robin' ? ['Hold Robin tighter', '抱紧罗宾'] : ['Hold Sydney tighter', '抱紧悉尼']) 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'hold' _punishName>><</lanLink>><<lpain>><br>
+          <</if>>
+          <<if _punishPartner.touch lt 5 and (_punishPartner.touch is 0 or hasSexStat('promiscuity', _punishPartner.touch + 1))>>
+            <<lanLink (_punishName is 'Robin' ? ['Touch Robin', '抚摸罗宾'] : ['Touch Sydney', '抚摸悉尼']) 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'touch' _punishName>><</lanLink>><<garousal>><br>
+          <</if>>
+        <</capture>>
+      <</for>>
+      <<if Object.values($RobinTemple.punish.partners).every(npc => npc.belt lt 5)>>
+        <<lanLink ['Try to stop the vibration', '阻止皮带振动'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'belt' 'both'>><</lanLink>><<llarousal>><br>
+      <</if>>
+      <<if ['Robin', 'Sydney'].includes($RobinTemple.punish.action) and Object.values($RobinTemple.punish.partners).every(npc => npc.hit lt 4)>>
+        <<lanLink ['Try to shield them from the lash', '尝试避开鞭打'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'hit' 'both'>><</lanLink>><<llarousal>><<gpain>><br>
+      <</if>>
+      <<if $RobinTemple.punish.action is 'Player' and Object.values($RobinTemple.punish.partners).every(npc => npc.plead lt 4)>>
+        <<lanLink ['Plead', '恳求'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'plead' 'both'>><</lanLink>><<garousal>><<llpain>><br>
+      <</if>>
+      <<lanLink ['Close your eyes', '闭上眼睛'] 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'close' 'both'>><</lanLink>><<ggarousal>><<lpain>><br>
+  <</switch>>
+<</widget>>
+
+:: RobinTemple Penance
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish>>
+  <<robin-temple-punishment-npcs>>
+  <<if $RobinTemple.punish.joint>>
+    <<language>>
+      <<option 'EN'>>
+        <<person1>>
+
+        <<person3>> A <<priest>> emerges from a door marked with a red cross. <<Hes>> flanked by many <<monks>>. One of them assures Jordan that you'll all be treated gently.
+        <br><br>
+        Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with each other remains strong.<<else>>rely on each other, as you've all sinned.<</if>> Stay still."
+        <br><br>
+        <<if C.npc.Robin.conviction lte 80 and _sydneyStatus.includes('corrupt')>>
+          Robin and Sydney try to step between you and the <<monks>>.
+        <<elseif _sydneyStatus.includes('corrupt')>>
+          Sydney tries to step between you and the <<monks>>, while Robin holds you tighter.
+        <<elseif C.npc.Robin.conviction lte 80>>
+          Robin tries to step between you and the <<monks>>, while Sydney holds you tighter.
+        <<else>>
+          Robin and Sydney hold you tighter.
+        <</if>>
+        "I... I forgive you... just... please don't leave me..."
+        <br><br>
+        You're already surrounded by enough <<monks>> to restrain all three of you. They make no effort to separate you.
+      <<option 'CN'>>
+        <<person2>><<person1>>
+
+        <<person3>>一名<<priest>>从一扇标有红色十字架的门里走出，两侧还跟随着一众<<monks>>。一人示意悉尼和罗宾去你那儿，<<lanSwitch 'They' '他们'>>便立刻跑到了你的身边。
+        <br><br>
+        一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须证明你们之间的羁绊依旧牢固。请不要动。"
+        <br><br>
+        <<if C.npc.Robin.conviction lte 80 && _sydneyStatus.includes("corrupt")>>
+          悉尼和罗宾走到你和<<monks>>的中间，努力想把你挡在身后。
+        <<elseif _sydneyStatus.includes("corrupt")>>
+          悉尼走到你和<<monks>>的中间，努力想把你挡在身后，而罗宾紧紧地搂着你。
+        <<elseif C.npc.Robin.conviction lte 80>>
+          罗宾走到你和<<monks>>的中间，努力想把你挡在身后，而悉尼紧紧地搂着你。
+        <<else>>
+          悉尼和罗宾把你搂得更紧了。
+        <</if>>
+        <<person2>>
+        <<lanSwitch 'They' '他们'>>说："我……我原谅你……只要……请不要离开我……"
+        <br><br>
+        你们已经完全被<<monks>>包围住了，但众人并没有打算将你们分开。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <<person1>>
+
+        <<person3>> A <<priest>> emerges from a door marked with a red cross. <<Hes>> flanked by many <<monks>>. One of them assures Jordan that you'll both be treated gently.
+        <br><br>
+        Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with each other remains strong.<<else>>rely on each other, as you've both sinned.<</if>> Stay still."
+        <br><br>
+        <<if C.npc.Robin.conviction lte 80>>
+          Robin tries to step between you and the <<monks>>.
+        <<else>>
+          Robin holds you tighter.
+        <</if>>
+        <<person1>>
+        <<if C.npc.Robin.virginity.temple isnot true>>
+          "I'm sorry. We should have been more careful. I tried to tell them it wasn't you, but they didn't buy it. I thought about running, but I don't want you getting punished alone."
+        <<else>>
+          "I... I forgive you... just... please don't leave me..."
+        <</if>>
+        <br><br>
+        You're already surrounded by enough <<monks>> to restrain both of you. They make no effort to separate you.
+      <<option 'CN'>>
+        <<person1>>
+
+        <<person3>>一名<<priest>>从一扇标有红色十字架的门里走出，两侧还跟随着一众<<monks>>。一人示意罗宾去你那儿，<<nnpc_He 'Robin'>>便立刻跑到了你的身边。
+        <br><br>
+        一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须<<if $RobinTemple.templePromised is "Robin">>证明你们之间的羁绊依旧牢固。<<else>>得彼此依靠，因为你们都有罪。<</if>>请不要动。"
+        <br><br>
+        <<if C.npc.Robin.conviction lte 80>>
+          罗宾走到你和<<monks>>的中间，努力想把你挡在身后。
+        <<else>>
+          罗宾把你搂得更紧了。
+        <</if>>
+        <<person1>>
+        <<if C.npc.Robin.virginity.temple isnot true>>
+          "对不起。我们应该更小心的。我试着告诉那些人不是你的错，但没人买账。我想过跑掉，但我不想让你独自受罚。"
+        <<else>>
+          "我……我原谅你……只要……请不要离开我……"
+        <</if>>
+        <br><br>
+        你们已经完全被<<monks>>包围住了，但众人并没有打算将你们分开。
+    <</language>>
+  <</if>>
+  <br><br>
+  <<lanLink ['Hold on to Robin', '抓紧罗宾'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<glove 'Robin'>><br>
+  <<if $RobinTemple.punish.joint>>
+    <<lanLink ['Hold on to Robin and Sydney', '抓紧罗宾和悉尼'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<pass 20>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
+    <<lanLink ['Hold on to Sydney', '抓紧悉尼'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to 2>><<npcincr Robin love -5>><<npcincr Sydney love 1>><<pass 20>><</lanLink>><<lllove 'Robin'>><<glove 'Sydney'>><br>
+  <</if>>
+  <<lanLink ['Push them away', '推开身旁的人'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 4 : 2)>><<npcincr Robin love -5>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<lllove 'Robin'>><br>
+<<else>>
+  <<getouticon>><<lanLink ['Return to the temple', '返回神殿'] 'Temple'>><</lanLink>><br>
 <</if>>
-<<robin-temple-penance-exit>>
+
+:: RobinTemple Penance Intro 2
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+原版 passage：Sydney Temple Punish Intro 2。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Punish Intro 2.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Punish Intro 2.twee:2
+-->
+
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish>>
+  <<facewear 4>>
+  <<if !($worn.neck.name is 'familiar collar' and $worn.neck.cursed is 1)>><<leash 21>><</if>>
+  <<if $RobinTemple.punish.joint>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          You hold on to Robin and Sydney, not daring to let go. Whatever’s coming, you know you can handle it together.
+          <br><br>
+          The <<person3>><<priest>> nods in approval. "A good start."
+        <<elseif $RobinTemple.punish.phase is 2 or $RobinTemple.punish.phase is 3>>
+          <<set _punishRejected to $RobinTemple.punish.phase is 2 ? 'Robin' : 'Sydney'>>
+          <<set _punishHeld to $RobinTemple.punish.phase is 2 ? 'Sydney' : 'Robin'>>
+          You hold on to <<= _punishHeld>> and push <<= _punishRejected>> away. It’s all <<nnpc_his _punishRejected>> fault, why should you both be punished for this? <<nnpc_He _punishRejected>> looks at you with tears in <<nnpc_his _punishRejected>> eyes, looking utterly betrayed.
+          <br><br>
+          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can’t come sooner."
+        <<else>>
+          You push Robin and Sydney away. It’s all their fault, why should you be punished for this? They look at you with tears in their eyes, looking utterly betrayed.
+          <br><br>
+          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can’t come sooner."
+        <</if>>
+        <<He>> pushes the gag into your mouth and ties it firm behind your head. <<He>> walks over to Robin and Sydney and does the same motion. Any sound you make will be muffled and unintelligible.
+        <<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>>
+          A <<person3>><<monk>> to <<his>> side wraps a collar around their neck, but pauses upon seeing your collar. Wordlessly, <<he>> ties your hands instead.
+        <<else>>
+
+          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with their. <<He>> holds the attached leashes, and tugs.
+        <</if>>
+        <br><br>
+        You're all led through the marked door and down a cramped passage. There are no lights bar the occasional torch on the wall.
+        After a few minutes, you emerge in a small round room with no windows. Various incense burners hang from the ceiling. The room is bare save for some padding in the centre and <span class="red">whips, belts and other disciplinary devices that adorn the walls.</span>
+      <<option 'CN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          你抓紧悉尼和罗宾，不敢放开。你把手攥得很紧很紧。无论即将发生什么，你知道你都能和悉尼还有罗宾一起面对。<<nnpc_He "Robin">>透过恐惧，向你挤出一个微笑。
+          <br><br>
+          <<priest>>赞许地点了点头。“很好。”
+        <<elseif $RobinTemple.punish.phase is 2>>
+          你抓紧悉尼，将罗宾推开。全是<<nnpc_his "Robin">>的错，为什么要连带你和悉尼一起惩罚？你可以自行解决。<<nnpc_He "Robin">>含泪看向你，一脸被背叛的表情。
+          <br><br>
+          <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
+        <<elseif $RobinTemple.punish.phase is 3>>
+          你抓紧罗宾，将悉尼推开。全是<<nnpc_his "Sydney">>的错，为什么要连带你和罗宾一起惩罚？你可以自行解决。<<nnpc_He "Sydney">>含泪看向你，一脸被背叛的表情。
+          <br><br>
+          <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
+        <<elseif $RobinTemple.punish.phase is 4>>
+          你猛地一挣，将悉尼和罗宾推开。全是<<lanSwitch 'They' '他们'>>的错，为什么要连带你一起惩罚？你可以自行解决。<<lanSwitch 'They' '他们'>>含泪看向你，一脸被背叛的表情。
+          <br><br>
+          <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
+        <</if>>
+        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了悉尼和罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。旁边一名<<person3>><<monk>>在自己的位置上站定，将你和悉尼还有罗宾的脖子一起用项圈套在了一起。<<He>>抓住中间连接的链子，用力拉了拉。
+        <br><br>
+        你们被带出标记门，走进一个狭窄的通道。墙上除了零星的火把，没有其他光照了。
+        几分钟后，你们来到一个没有窗户的圆形小房间里。各种燃香盏从天花板悬下，屋内除了正中央的一些软垫外，空空荡荡。<span class="red">皮鞭，绑带，和其它惩罚用具都挂在墙面上。</span>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          You hold on to Robin, not daring to let go. You hold on for dear life. Whatever's coming, you know you'll be able to handle it together. <<nnpc_He "Robin">> smiles through <<his>> panic.
+          <br><br>
+          The <<priest>> nods in approval. "A good start."
+        <<else>>
+          You lash out, pushing Robin away. It's all <<nnpc_his "Robin">> fault, why should you be punished for this? You can handle yourself. <<nnpc_He "Robin">> looks to you with tears in <<nnpc_his "Robin">> eyes, looking utterly betrayed.
+          <br><br>
+          The <<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can't come sooner."
+        <</if>>
+        <<He>> pushes the gag into your mouth and ties it firm behind your head. <<He>> walks over to Robin and does the same motion. Any sound you make will be muffled and unintelligible.
+        <<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>>
+          A <<person3>><<monk>> to <<his>> side wraps a collar around Robin's neck, but pauses upon seeing your collar. Wordlessly, <<he>> ties your hands instead.
+        <<else>>
+
+          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with Robin's. <<He>> holds the attached leashes, and tugs.
+        <</if>>
+        <br><br>
+        You're both led through the marked door and down a cramped passage. There are no lights bar the occasional torch on the wall.
+        After a few minutes, you emerge in a small round room with no windows. Various incense burners hang from the ceiling. The room is bare save for some padding in the centre and <span class="red">whips, belts and other disciplinary devices that adorn the walls.</span>
+      <<option 'CN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          你抓紧罗宾，不敢放开。你把手攥得很紧很紧。无论即将发生什么，你知道你都能和罗宾一起面对。<<nnpc_He "Robin">>透过恐惧，向你挤出一个微笑。
+          <br><br>
+          <<priest>>赞许地点了点头。“很好。”
+        <<else>>
+          你猛地一挣，将罗宾推开。全是<<nnpc_his "Robin">>的错，为什么要连带你一起惩罚？你可以自行解决。<<nnpc_He "Robin">>含泪看向你，一脸被背叛的表情。
+          <br><br>
+          <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
+        <</if>>
+        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。旁边一名<<person3>><<monk>>在自己的位置上站定，将你和罗宾的脖子一起用项圈套在了一起。<<He>>抓住中间连接的链子，用力拉了拉。
+        <br><br>
+        你们被带出标记门，走进一个狭窄的通道。墙上除了零星的火把，没有其他光照了。
+        几分钟后，你们来到一个没有窗户的圆形小房间里。各种燃香盏从天花板悬下，屋内除了正中央的一些软垫外，空空荡荡。<span class="red">皮鞭，绑带，和其它惩罚用具都挂在墙面上。</span>
+    <</language>>
+  <</if>>
+  <br><br>
+  <<lanLink ['Continue', '继续'] 'RobinTemple Penance Intro 3'>><<pass 3>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Penance Intro 3
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+原版 passage：Sydney Temple Punish Intro 3。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Punish Intro 3.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Punish Intro 3.twee:2
+-->
+
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish>>
+  <<if !$RobinTemple.punish.started>>
+    <<set $RobinTemple.punish.started to true>>
+    <<undress 'duopunish'>><<bindtemp>><<shackle_feet>>
+    <<run $robinSeen.pushUnique('punishment')>>
+    <<if $RobinTemple.punish.joint>><<run $sydneySeen.pushUnique('punishment')>><</if>>
+    <<violence_noncombat 40 0.3>><<stress 12>>
+  <</if>>
+  <<if $RobinTemple.punish.joint>>
+    <<language>>
+      <<option 'EN'>>
+        The <<monks>> strip you and Robin and Sydney bare, leaving only your gags and collars.
+        You're led to the padding and forced down onto your knees. The <<priest>> pulls out some belts and grabs ahold of your arms. Your arms are wrapped around their waist, and your wrists are bound behind <<person1>>them. their arms are restrained similarly. The <<person3>><<priest>> acquires more belts and wraps them around you and their waists, pressing the three of you together. One more belt wraps around all three of your backs, leaving little wriggle room. Finally, a pair of shackles bind your legs together.
+        <br><br>
+        "<<if $RobinTemple.templePromised is "Robin">>You have broken your promise to one another,<<else>>The all three of you have succumbed to pleasure and desire with one another,<</if>>" the <<priest>> speaks, brandishing a whip with nine chords hanging from the cudgel. "Given your special bond, you'll experience pain with one another as the first step to make amends." You can feel their heart race. You're overcome with fear yourself at what's coming<<if $masochism_level gte 1>>, along with a hint of excitement<</if>>.
+        <br><br>
+        The whip strikes down onto your back first without warning, stinging tremendously. Another strike causes you to thrash in pain. You let out a scream into your gag while tears fill your eyes. You can feel their panicked breathing at your pain. <<person1>>They let out a garbled protest at the torment you're receiving. Another strike comes down onto your back, stinging your flesh from the heavy chords. <<gggpain>>
+        <br><br>
+        The <<person3>><<priest>> moves over to Robin and Sydney and, without hesitation, lashes the whip onto <<person1>>their back. They squeal into their gag and then receives another strike. The whip strikes their back a third time, leaving them in tears. <<ggstress>>
+      <<option 'CN'>>
+        <<monks>>把你们扒光，只留下口球和项圈。
+        你们被领到软垫旁，被迫跪下。<<priest>>拿下一些绑带，一头捆住你的胳膊，然后把你的双手摆弄成环住悉尼和罗宾腰肢的姿势，手腕系在了<<lanSwitch 'They' '他们'>>的身后。悉尼和罗宾也和你一样。<<person3>><<priest>>拿来更多绑带，缠绕上你和悉尼还有罗宾的腰，把你们紧贴在一起。当最后一根绑带捆上你的后背时，你们的身体间几乎没留下空隙。最后，一对脚镣把你们的腿铐上了。
+        <br><br>
+        "你违背了对彼此许下的承诺，"<<priest>>说着，挥舞起手中的九尾鞭。"鉴于你们特殊的羁绊，你们的第一个弥补就是和对方一起体验痛苦。"你可以感受到悉尼和罗宾加速的心跳。想到即将到来的事，你也被恐惧<<if $masochism_level gte 1>>和一丝兴奋<</if>>所淹没。
+        <br><br>
+        第一鞭没有任何预兆地落下，强烈的刺痛顿时席卷了全身，紧接的一鞭更是疼得你猛然一抖。你隔着口球尖叫着，泪水涌上眼眶。你可以感受到悉尼和罗宾惊惧的呼吸。看着你所承受的痛苦，<<person2>><<He>>含混地喊着不要。又是重重的一鞭刮在你的皮肉上，随着响亮的鞭响，刺痛袭击了你的肉体。<<gggpain>>
+        <br><br>
+        <<person3>><<priest>>走到悉尼和罗宾身边，没有任何犹豫地甩鞭挥向<<lanSwitch 'They' '他们'>>的后背。<<lanSwitch 'They' '他们'>>的尖叫闷在口球里，接着又受了一鞭。鞭子再一次落在悉尼和罗宾的背上，<<lanSwitch 'They' '他们'>>痛得满脸泪水。<<ggstress>>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        The <<monks>> strip you and Robin bare, leaving only your gags and collars.
+        You're led to the padding and forced down onto your knees. The <<priest>> pulls out some belts and grabs ahold of your arms. Your arms are wrapped around Robin's waist, and your wrists are bound behind <<person1>><<him>>. Robin's arms are restrained similarly. The <<person3>><<priest>> acquires more belts and wraps them around you and Robin's waists, pressing the two of you together. One more belt wraps around both of your backs, leaving little wriggle room. Finally, a pair of shackles bind your legs together.
+        <br><br>
+        "<<if $RobinTemple.templePromised is "Robin">>You have broken your promise to one another,<<else>>The both of you have succumbed to pleasure and desire with one another,<</if>>" the <<priest>> speaks, brandishing a whip with nine chords hanging from the cudgel. "Given your special bond, you'll experience pain with one another as the first step to make amends." You can feel Robin's heart race. You're overcome with fear yourself at what's coming<<if $masochism_level gte 1>>, along with a hint of excitement<</if>>.
+        <br><br>
+        The whip strikes down onto your back first without warning, stinging tremendously. Another strike causes you to thrash in pain. You let out a scream into your gag while tears fill your eyes. You can feel Robin's panicked breathing at your pain. <<person1>><<He>> lets out a garbled protest at the torment you're receiving. Another strike comes down onto your back, stinging your flesh from the heavy chords. <<gggpain>>
+        <br><br>
+        The <<person3>><<priest>> moves over to Robin and, without hesitation, lashes the whip onto <<person1>><<his>> back. <<He>> squeals into <<his>> gag and then receives another strike. The whip strikes Robin's back a third time, leaving <<him>> in tears. <<ggstress>>
+      <<option 'CN'>>
+        <<monks>>把你们扒光，只留下口球和项圈。
+        你们被领到软垫旁，被迫跪下。<<priest>>拿下一些绑带，一头捆住你的胳膊，然后把你的双手摆弄成环住罗宾腰肢的姿势，手腕系在了<<person1>><<him>>的身后。罗宾也和你一样。<<person3>><<priest>>拿来更多绑带，缠绕上你和罗宾的腰，把你俩紧贴在一起。当最后一根绑带捆上你的后背时，你们的身体间几乎没留下空隙。最后，一对脚镣把你们的腿铐上了。
+        <br><br>
+        "<<if $RobinTemple.templePromised is "Robin">>你违背了对彼此许下的承诺，<<else>>你们都向快感和对彼此的渴求屈服了，<</if>>"<<priest>>说着，挥舞起手中的九尾鞭。"鉴于你们特殊的羁绊，你们的第一个弥补就是和对方一起体验痛苦。"你可以感受到罗宾加速的心跳。想到即将到来的事，你也被恐惧<<if $masochism_level gte 1>>和一丝兴奋<</if>>所淹没。
+        <br><br>
+        第一鞭没有任何预兆地落下，强烈的刺痛顿时席卷了全身，紧接的一鞭更是疼得你猛然一抖。你隔着口球尖叫着，泪水涌上眼眶。你可以感受到罗宾惊惧的呼吸。看着你所承受的痛苦，<<person1>><<He>>含混地喊着不要。又是重重的一鞭刮在你的皮肉上，随着响亮的鞭响，刺痛袭击了你的肉体。<<gggpain>>
+        <br><br>
+        <<person3>><<priest>>走到罗宾身边，没有任何犹豫地甩鞭挥向<<person1>><<his>>的后背。<<He>>的尖叫闷在口球里，接着又受了一鞭。鞭子再一次落在罗宾的背上，<<him>>痛得满脸泪水。<<ggstress>>
+    <</language>>
+  <</if>>
+  <br><br>
+  <<lanLink ['Reassure Robin', '安抚罗宾'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -1>><</if>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><</lanLink>><<glove 'Robin'>><br>
+  <<if $RobinTemple.punish.joint>>
+    <<lanLink ['Reassure Robin and Sydney', '安抚罗宾和悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
+    <<lanLink ['Reassure Sydney', '安抚悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 2>><<npcincr Sydney love 1>><<npcincr Robin love -1>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Sydney'>><<llove 'Robin'>><br>
+  <</if>>
+  <<lanLink ['Close your eyes', '闭上眼睛'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 4 : 2)>><<stress -3>><<pain -10>><</lanLink>><<lstress>><<lpain>><br>
+<</if>>
+
+:: RobinTemple Penance Intro 4
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+原版 passage：Sydney Temple Punish Intro 4。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Punish Intro 4.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Punish Intro 4.twee:2
+-->
+
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish>>
+  <<if $RobinTemple.punish.joint>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          You lock eyes with Robin and Sydney, silently asking them to focus on you. The tears don’t stop, but you think they’re trying to smile at you.
+        <<elseif $RobinTemple.punish.phase is 2 or $RobinTemple.punish.phase is 3>>
+          <<set _punishHeld to $RobinTemple.punish.phase is 2 ? 'Sydney' : 'Robin'>>
+          <<set _punishRejected to $RobinTemple.punish.phase is 2 ? 'Robin' : 'Sydney'>>
+          You lock eyes with <<= _punishHeld>>, silently asking <<nnpc_him _punishHeld>> to focus on you. You think <<nnpc_hes _punishHeld>> trying to smile, while you ignore <<= _punishRejected>>’s cries.
+        <<else>>
+          You tightly shut your eyes, trying to ignore Robin and Sydney’s cries. After a few moments, you can’t help but peek.
+        <</if>>
+        <br><br>
+        You see the <<person3>><<priest>> come into view. "Your bonds must be strong. Stronger than any desire and stronger than pain itself," <<he>> says in an instructive manner. Despite their sobs, you think the words have emboldened <<person1>>them. Robin and Sydney cling onto you tighter, and you do the same around them. <span class="blue">You'll only get through this together.</span>
+        <br><br>
+        You receive more lashings on your back and then on your <<bottom>>. Robin and Sydney receive the same amount of lashes in return. After what feels like an eternity, the <<person3>><<priest>> holsters the whip. <<gpain>>
+        <br><br>
+        "Your atonement has only just begun. Ready yourselves." <<person3>><<His>> voice suddenly sounds muffled. You look over to see the <<priest>> and <<monks>> all donning strange masks, as they begin to light the incense burners. You start to feel a warmth building within you, and <span class="lewd">something inside the waist belts begins to vibrate.</span>
+      <<option 'CN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          你的眼神死死锁在悉尼和罗宾身上，无声地让<<lanSwitch 'They' '他们'>>专注于你，不要想别的事。眼泪不住地流下，但你想<<lanSwitch 'They' '他们'>>正努力挤出一个笑容。
+        <<elseif $RobinTemple.punish.phase is 2>>
+          你的眼神死死锁在悉尼身上，无声地让悉尼专注于你，不要想别的事。眼泪不住地流下，但你想<<nnpc_he "Sydney">>正努力挤出一个笑容，却忽视了罗宾的哭泣。
+        <<elseif $RobinTemple.punish.phase is 3>>
+          你的眼神死死锁在罗宾身上，无声地让罗宾专注于你，不要想别的事。眼泪不住地流下，但你想<<nnpc_he "Robin">>正努力挤出一个笑容，却忽视了悉尼的哭泣。
+        <<elseif $RobinTemple.punish.phase is 4>>
+          你紧紧闭上双眼，试图忽视悉尼和罗宾的哭泣。过了几分钟，你还是没忍住睁开了眼睛。
+        <</if>>
+        <br><br>
+        那个<<person3>><<priest>>映入眼帘。"你们的羁绊必须坚如磐石，超越任何欲望，强过痛苦本身。"<<he>>循循善诱着。尽管悉尼和罗宾仍在抽泣，但你想这番话让<<lanSwitch 'They' '他们'>>变得坚强了起来。悉尼和罗宾把你缠得更紧了，你也倚在<<lanSwitch 'They' '他们'>>的身上。<span class="blue">你们知道，你们只能共同挺过这一切。</span>
+        <br><br>
+        你的后背和<<bottom>>受了更多鞭打，悉尼和罗宾也挨了同样的数目。像是过了几辈子，<<person3>><<priest>>终于收起九尾鞭。<<gpain>>
+        <br><br>
+        "你们的赎罪才刚刚开始。准备好吧。"<<person3>><<His>>的声音突然沉闷了起来。你环顾四周，只见<<priest>>和<<monks>>都戴上了奇怪的面罩，燃香盏也已被点燃。一股温意流淌在你的体内，<span class="lewd">腰带里的什么东西开始震动起来。</span>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          You lock eyes with Robin, nonverbally telling <<him>> to focus on you and nothing else. The tears don't stop, but you think <<hes>> trying to smile at you.
+        <<else>>
+          You tightly shut your eyes, trying to ignore Robin's cries. After a few moments, you can't help but peek.
+        <</if>>
+        <br><br>
+        You see the <<person3>><<priest>> come into view. "Your bonds must be strong. Stronger than any desire and stronger than pain itself," <<he>> says in an instructive manner. Despite Robin's sobs, you think the words have emboldened <<person1>><<him>>. Robin clings onto you tighter, and you do the same around <<him>>. <span class="blue">You'll only get through this together.</span>
+        <br><br>
+        You receive more lashings on your back and then on your <<bottom>>. Robin receives the same amount of lashes in return. After what feels like an eternity, the <<person3>><<priest>> holsters the whip. <<gpain>>
+        <br><br>
+        "Your atonement has only just begun. Ready yourselves." <<person3>><<His>> voice suddenly sounds muffled. You look over to see the <<priest>> and <<monks>> all donning strange masks, as they begin to light the incense burners. You start to feel a warmth building within you, and <span class="lewd">something inside the waist belts begins to vibrate.</span>
+      <<option 'CN'>>
+        <<if $RobinTemple.punish.phase is 1>>
+          你的眼神死死锁在罗宾身上，无声地让<<him>>专注于你，不要想别的事。眼泪不住地流下，但你想<<hes>>正努力挤出一个笑容。
+        <<else>>
+          你紧紧闭上双眼，试图忽视罗宾的哭泣。过了几分钟，你还是没忍住睁开了眼睛。
+        <</if>>
+        <br><br>
+        那个<<person3>><<priest>>映入眼帘。"你们的羁绊必须坚如磐石，超越任何欲望，强过痛苦本身。"<<he>>循循善诱着。尽管罗宾仍在抽泣，但你想这番话让<<person1>><<him>>变得坚强了起来。罗宾把你缠得更紧了，你也倚在<<him>>的身上。<span class="blue">你们知道，你们只能共同挺过这一切。</span>
+        <br><br>
+        你的后背和<<bottom>>受了更多鞭打，罗宾也挨了同样的数目。像是过了几辈子，<<person3>><<priest>>终于收起九尾鞭。<<gpain>>
+        <br><br>
+        "你们的赎罪才刚刚开始。准备好吧。"<<person3>><<His>>的声音突然沉闷了起来。你环顾四周，只见<<priest>>和<<monks>>都戴上了奇怪的面罩，燃香盏也已被点燃。一股温意流淌在你的体内，<span class="lewd">腰带里的什么东西开始震动起来。</span>
+    <</language>>
+  <</if>>
+  <br><br>
+  <<lanLink ['Continue', '继续'] 'RobinTemple Penance Trial'>><</lanLink>><br>
+<</if>>
 
 :: RobinTemple Penance Trial
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>
-    Two attendants take you to the cloister. Jordan remains at the door. "You will clean the room where the initiates prepare for vigil," Jordan says. "Then each of you will tell me, separately, how you will answer for your vow."
-  <<option 'CN'>>
-    两名侍从带你们来到回廊。约旦停在门口。“先把见习教徒准备守夜的房间打扫干净，”约旦说，“之后各自告诉我，打算怎样为自己的誓言负责。”
-<</language>>
-<br><br>
-<<language>>
-  <<option 'EN'>>
-    The floor is cold beneath your knees. Robin works beside you, tired but intent on finishing <<his>> section rather than leaving it to you.
-  <<option 'CN'>>
-    地板透过膝盖传来寒意。罗宾在你身边做事，虽然疲倦，仍坚持完成<<his>>的那一部分。
-<</language>>
-<br><br>
-<<loveicon 'hug'>><<lanLink '伸手扶住罗宾' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'hold'>><<pass 30>><</lanLink>><br>
-<<socialiseicon 'ask'>><<lanLink '请求约旦听你们解释' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'speak'>><<pass 30>><</lanLink>><br>
-<<choreicon 'sweep'>><<lanLink '先把手里的工作做完' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'endure'>><<pass 30>><</lanLink>><br>
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish>>
+  <<language>>
+    <<option 'EN'>>
+      <i>If your pain or arousal, or either companion’s pain or arousal, reaches the limit, your punishment will continue.</i>
+    <<option 'CN'>>
+      <i>要是你或同伴的疼痛或情欲达到最大值，你们的惩罚都将会继续。</i>
+  <</language>>
+  <br><br>
+  <<robin-temple-punishment-options>>
+<</if>>
 
-:: RobinTemple Penance Trial Result
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.penance_day gte 0 and !$RobinTemple.penance_trial_done
-  and ['hold', 'speak', 'endure'].includes($RobinTemple.penance_response)>>
-  <<set $RobinTemple.penance_trial_done to true>>
-  <<switch $RobinTemple.penance_response>>
+:: RobinTemple Penance Action
+<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
+原版 passage：Sydney Temple Punish Touch。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Punish Touch.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Punish Touch.twee:2
+原版 passage：Sydney Temple Punish Belt。
+英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Punish Belt.twee:2
+中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Punish Belt.twee:2
+-->
+
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish and $RobinTemple.punish.result is 'active'>>
+  <<set _punishTarget to $RobinTemple.punish.target is 'Sydney' ? 'Sydney' : 'Robin'>>
+  <<set _punishBoth to $RobinTemple.punish.joint and $RobinTemple.punish.target is 'both'>>
+  <<set _punishTargetName to _punishBoth ? lanSwitch('Robin and Sydney', '罗宾和悉尼') : lanSwitch(_punishTarget, _punishTarget is 'Robin' ? '罗宾' : '悉尼')>>
+  <<set _punishActionCount to $RobinTemple.punish.choice is 'close' ? 0 : _punishBoth ? Math.floor(Object.values($RobinTemple.punish.partners).reduce((sum, npc) => sum + npc[$RobinTemple.punish.choice], 0) / 2) : $RobinTemple.punish.partners[_punishTarget][$RobinTemple.punish.choice]>>
+  <<npc _punishTarget 2>><<person2>>
+  <<if $RobinTemple.punish.choice is 'touch'>>
+    <<switch _punishActionCount>>
+      <<case 1>><<promiscuity1>>
+      <<case 2>><<promiscuity2>>
+      <<case 3>><<promiscuity3>>
+      <<case 4>><<promiscuity4>>
+      <<case 5>><<promiscuity5>>
+    <</switch>>
+  <</if>>
+  <<switch $RobinTemple.punish.choice>>
     <<case 'hold'>>
       <<language>>
         <<option 'EN'>>
-          You steady Robin when <<he>> stumbles. <<He>> accepts your arm, then straightens and goes back to the task. Jordan watches without interrupting.
+          <<switch _punishActionCount>>
+            <<case 1>>
+              You hold on to <<= _punishTargetName>> tighter. <<person2>><<if _punishBoth>>They do<<else>><<He>> does<</if>> the same to you, and you brace each other.
+            <<case 2>>
+              You pull <<= _punishTargetName>> as close as you can, and brace yourself. <<person2>><<if _punishBoth>>They do<<else>><<He>> does<</if>> the same.
+            <<case 3>>
+              <<= _punishTargetName>> is your lifeline, and you refuse to let go. <<person2>><<if _punishBoth>>They<<else>><<He>><</if>> buries <<if _punishBoth>>their<<else>><<his>><</if>> head in your shoulder.
+            <<case 4>>
+              You're nearly squeezing the life out of each other, but it's keeping your minds off the pain.
+            <<case 5>>
+              You use every last ounce of strength to brace yourself with <<= _punishTargetName>>. <span class="red">You can't hold <<person2>><<if _punishBoth>>them<<else>><<him>><</if>> any tighter without hurting <<if _punishBoth>>them<<else>><<him>><</if>> more.</span>
+          <</switch>>
         <<option 'CN'>>
-          罗宾踉跄时，你扶住了<<him>>。<<He>>借着你的手臂站稳，又回去做事。约旦没有打断。
+          <<switch _punishActionCount>>
+            <<case 1>>
+              你把<<= _punishTargetName>>抱得更紧了，<<person2>><<if _punishBoth>>他们<<else>><<He>><</if>>也一样。你们紧紧拥住了对方。
+            <<case 2>>
+              你尽可能地把<<= _punishTargetName>>拉近，做好准备。<<person2>><<if _punishBoth>>他们<<else>><<He>><</if>>也和你一样。
+            <<case 3>>
+              <<= _punishTargetName>>是你的生命线，你不会放手的。<<person2>><<if _punishBoth>>他们<<else>><<He>><</if>>把头埋在你的肩膀上。
+            <<case 4>>
+              你们紧拥在一起，用几乎窒息的方式死死抱住对方，但这有助于你们从痛苦中分散注意力。
+            <<case 5>>
+              你用尽每一丝力气拥抱着<<= _punishTargetName>>，<span class="red"><<person2>><<if _punishBoth>>他们<<else>><<him>><</if>>在你的拥抱下几乎疼痛起来。</span>
+          <</switch>>
       <</language>>
-      <<npcincr Robin love 2>><<stress 3>><br><br><<glove>><<gstress>>
-    <<case 'speak'>>
+    <<case 'belt'>>
       <<language>>
         <<option 'EN'>>
-          You ask Jordan to hear both of you. Jordan asks you to finish the room first. When you do, Jordan returns and gives each of you time to speak.
+          <<switch _punishActionCount>>
+            <<case 1>>
+              You wedge your hands into the belt, and hold it in place to stop the vibrations. <<= _punishTargetName>> <<if _punishBoth>>copy<<else>>copies<</if>> you.
+            <<case 2>>
+              You push the belt away from <<= _punishTargetName>>'s body. The <<person3>><<priest>> intensifies the vibrations in response.
+            <<case 3>>
+              You put your hands between the vibrating section of the belt and <<= _punishTargetName>>'s body. They're getting more intense by the second.
+            <<case 4>>
+              You clench your fists, firmly grabbing the belt. The vibrations are making your hands feel numb.
+            <<case 5>>
+              You can't feel your hands anymore. <span class="red">You won't be able to effectively stop the vibrations any longer.</span>
+          <</switch>>
         <<option 'CN'>>
-          你请求约旦听你们说明。约旦请你们先把屋子打扫完。等工作结束，约旦回来，给你们各自发言的时间。
+          <<switch _punishActionCount>>
+            <<case 1>>
+              你将手塞入腰带，紧紧握住，想要止住震动。<<= _punishTargetName>>也模仿你的样子，把手插了进去。
+            <<case 2>>
+              你把<<= _punishTargetName>>的腰带向外拉了拉，但<<person3>><<priest>>立马加大了震动强度。
+            <<case 3>>
+              你把手掌搁在腰带的震动部位和<<= _punishTargetName>>的身体中间，但它们马上震动得更为剧烈了。
+            <<case 4>>
+              你握紧拳头，死死扣在腰带上，震动快把你的手震麻了。
+            <<case 5>>
+              你已经感觉不到手掌的知觉了。<span class="red">你不能再有效地制止腰带的震动了。</span>
+          <</switch>>
       <</language>>
-      <<if currentSkillValue('willpower') gte 400>>
-        <<language>>
-          <<option 'EN'>>
-            Robin describes <<his>> own choice clearly. Jordan tells <<him>> that being honest about it matters.
-          <<option 'CN'>>
-            罗宾把自己的选择讲得清楚。约旦说，愿意如实面对这件事，很重要。
-        <</language>>
-        <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 4)>>
-      <<else>>
-        <<language>>
-          <<option 'EN'>>
-            Robin struggles to find the words. Jordan lets <<him>> pause and begin again.
-          <<option 'CN'>>
-            罗宾一时找不到合适的话。约旦让<<he>>停一停，再重新说。
-        <</language>>
-      <</if>>
-      <<npcincr Robin dom 1>><br><br><<gdom>>
-    <<default>>
+    <<case 'hit'>>
       <<language>>
         <<option 'EN'>>
-          You finish your part without looking up. Robin does the same. When the last bucket is emptied, <<he>> asks whether you can talk on the way out.
+          <<switch _punishActionCount>>
+            <<case 1>>
+              You bring your arms up to shield <<= _punishTargetName>>'s back, taking the brunt of the hit. <<larousal>><<gpain>>
+            <<case 2>>
+              You brace your arms against <<= _punishTargetName>>'s back, protecting <<person2>><<if _punishBoth>>them<<else>><<him>><</if>> from harm at your own cost. <<larousal>><<gpain>>
+            <<case 3>>
+              You refuse to let <<= _punishTargetName>> come to further harm, blocking the whip with your arms again. The pain is almost unbearable. <<larousal>><<gpain>>
+            <<case 4>>
+              With one final brutal lash, <span class="red">your arms fall limp.</span> <<larousal>><<gpain>>
+          <</switch>>
         <<option 'CN'>>
-          你低头做完了自己的活。罗宾也是。最后一桶水倒掉后，<<he>>问能不能在出去的路上聊聊。
+          <<switch _punishActionCount>>
+            <<case 1>>
+              你抬起双臂，护住<<= _punishTargetName>>的后背，顶住了一番抽打。<<larousal>><<gpain>>
+            <<case 2>>
+              你把双臂护在<<= _punishTargetName>>的背上，用自己的身体为<<person2>><<if _punishBoth>>他们<<else>><<him>><</if>>承受鞭笞。<<larousal>><<gpain>>
+            <<case 3>>
+              你不愿让<<= _punishTargetName>>受到更多伤害，再次用手臂挡下了鞭子，剧痛几乎到了难以承受的地步。<<larousal>><<gpain>>
+            <<case 4>>
+              随着最后无情的一击，<span class="red">你的双臂软软地垂下了。</span><<larousal>><<gpain>>
+          <</switch>>
       <</language>>
-      <<grace 1>><<stress 4>><br><br><<ggrace>><<gstress>>
+    <<case 'plead'>>
+      <<language>>
+        <<option 'EN'>>
+          <<switch _punishActionCount>>
+            <<case 1>>
+              You stare the <<person3>><<priest>> in the eyes. <<if _punishBoth>>They<<else>><<He>><</if>> falters.
+            <<case 2>>
+              You silently plead to the <<person3>><<priest>>. <<if _punishBoth>>Their<<else>><<His>><</if>> whip doesn't raise with as much conviction.
+            <<case 3>>
+              The tears in your eyes seem to make the <<person3>><<priest>> pause for a moment.
+            <<case 4>>
+              The <<person3>><<priest>> shakes <<if _punishBoth>>their<<else>><<his>><</if>> head, and readies to strike with conviction again. <span class="red">Your pleading seems to have no further effect.</span>
+          <</switch>>
+        <<option 'CN'>>
+          <<switch _punishActionCount>>
+            <<case 1>>
+              你凝视着<<person3>><<priest>>的眼睛，<<if _punishBoth>>他们<<else>><<He>><</if>>动摇了。
+            <<case 2>>
+              你无声地向<<person3>><<priest>>乞求，<<if _punishBoth>>他们<<else>><<His>><</if>>举鞭的动作没有那么坚定了。
+            <<case 3>>
+              你眼里的泪水似乎让<<person3>><<priest>>迟疑了一瞬。
+            <<case 4>>
+              <<person3>><<priest>>摇摇头，重新坚定地准备挥鞭。<span class="red">你的乞求似乎不会再有用了。</span>
+          <</switch>>
+      <</language>>
+    <<case 'touch'>>
+      <<language>>
+        <<option 'EN'>>
+          <<switch _punishActionCount>>
+            <<case 1>>
+              You give <<= _punishTargetName>>'s bottom a squeeze with your bound hands. <<person2>><<if _punishBoth>>They look<<else>><<He>> looks<</if>> at you, confused.
+            <<case 2>>
+              You pull <<= _punishTargetName>> in and give <<person2>><<if _punishBoth>>their<<else>><<his>><</if>> bottom a tweak. It seems to help keep <<if _punishBoth>>their<<else>><<his>><</if>> mind off the pain.
+            <<case 3>>
+              You manage to make contact with <<person2>><<if _punishBoth>>their<<else>><<his>><</if>> <<robin-temple-punishment-genitals _punishTarget _punishBoth>>. <<if _punishBoth>>Their<<else>><<His>><</if>> eyes close.
+            <<case 4>>
+              You get one of your hands firm on <<person2>><<if _punishBoth>>their<<else>><<his>><</if>> <<robin-temple-punishment-genitals _punishTarget _punishBoth>>. <<if _punishBoth>>They suppress<<else>><<He>> suppresses<</if>> moans, and the pain seems to be rapidly fading.
+            <<case 5>>
+              You fondle <<= _punishTargetName>> despite everything. <<person2>><<if _punishBoth>>Their<<else>><<His>><</if>> cries of pain are replaced with moans of pleasure.
+          <</switch>>
+        <<option 'CN'>>
+          <<switch _punishActionCount>>
+            <<case 1>>
+              你用绑住的手往<<= _punishTargetName>>的屁股上一捏，<<person2>><<if _punishBoth>>他们<<else>><<He>><</if>>有些疑惑地看向你。
+            <<case 2>>
+              你把<<= _punishTargetName>>拉近，往<<person2>><<if _punishBoth>>他们<<else>><<his>><</if>>屁股上一拧。这样似乎可以帮<<if _punishBoth>>他们<<else>><<his>><</if>>忘掉疼痛。
+            <<case 3>>
+              你努力去触碰<<person2>><<if _punishBoth>>他们<<else>><<his>><</if>>的<<robin-temple-punishment-genitals _punishTarget _punishBoth>>，但<<if _punishBoth>>他们<<else>><<His>><</if>>双目紧闭。
+            <<case 4>>
+              你把一只手掌压在<<person2>><<if _punishBoth>>他们<<else>><<his>><</if>>的<<robin-temple-punishment-genitals _punishTarget _punishBoth>>上，<<if _punishBoth>>他们<<else>><<He>><</if>>忍着呻吟，疼痛似乎迅速消失了。
+            <<case 5>>
+              不顾其他，你开始抚弄<<= _punishTargetName>>。很快，<<person2>><<if _punishBoth>>他们<<else>><<His>><</if>>疼痛的哭喊转变成了愉悦的呻吟。
+          <</switch>>
+      <</language>>
+    <<case 'close'>><<lanSwitch 'You close your eyes and try to shut the pain out.' '你闭上眼睛，试图隔绝痛苦。'>>
   <</switch>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>
-      Jordan records the first day of your work. "The rest cannot be done in one night," Jordan says.
-    <<option 'CN'>>
-      约旦记下你们完成的第一天工作。“剩下的事，不能一夜做完。”约旦说。
-  <</language>>
-  <<if $RobinTemple.penance_work_day isnot Time.days>>
-    <<set $RobinTemple.penance_service += 1>>
-    <<set $RobinTemple.penance_work_day to Time.days>>
+  <<set _punishAttack to maplebirch.get('RobinTemple').punishmentAttack()>>
+  <<if _punishAttack is 'Player'>><<violence_noncombat 30 0.3>><<gpain>>
+  <<elseif _punishAttack is 'Vibrate'>><<arousal 2000>><<garousal>>
   <</if>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan has already recorded this work. The remaining shifts are on your list.
-    <<option 'CN'>>
-      约旦已经记下这次工作。其余班次仍按清单安排。
-  <</language>>
-<</if>>
-<<if $RobinTemple.breach is 'robin'>>
-  <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><<endevent>><</lanLink>><br>
-<<else>>
-  <<getinicon>><<lanLink '接受自己的净化' 'Temple Arcade Intro'>><<endevent>><<clotheson>><</lanLink>><br>
+  <<if _punishAttack is 'blocked'>><<lanSwitch 'You shield your companion from the lash.' '你挡住了抽向同伴的鞭子。'>>
+  <<elseif _punishAttack is 'Robin,Sydney'>><<lanSwitch 'Robin and Sydney shield you from the lash.' '罗宾和悉尼为你承受了打击。'>>
+  <<elseif _punishAttack is 'Robin' or _punishAttack is 'Sydney'>><<lanSwitch _punishAttack (_punishAttack is 'Robin' ? '罗宾' : '悉尼')>><<lanSwitch ' bears the lash.' '承受了鞭打。'>>
+  <</if>>
+  <br><br>
+  <<robin-temple-punishment-options>>
 <</if>>
 
-:: RobinTemple Penance Together
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.penance_day gte 0 and !$RobinTemple.penance_hearing_done and !$RobinTemple.penance_trial_done>>
-  <<set $RobinTemple.penance_hearing_done to true>>
+:: RobinTemple Penance End
+<<set $outside to 0>><<set $location to 'temple'>><<effects>>
+<<if $RobinTemple.punish?.result is 'passed'>>
+  <<set _punishJoint to $RobinTemple.punish.joint>>
+  <<robin-temple-punishment-cleanup>>
+  <<run maplebirch.get('RobinTemple').finishPunishment()>>
+  <<pass 20>><<npc Robin>><<person1>>
   <<language>>
     <<option 'EN'>>
-      You ask to stay with Robin through the work ahead. Robin nods, but Jordan raises a hand. "Support is welcome. Do not make Robin’s answer for <<him>>."
+      You're led through the tunnel and back to the temple. Robin clings to you the whole way.
+      <br><br>
+      <<He>> collapses onto you when you reach the main temple, and begins sobbing. You hold each other for what feels like forever. You can't help but begin to sob yourself, after everything you've been through.
+      <br><br>
+      "We... we made it..." <<He>> looks up to you with tears running down <<his>> face. "I love you."
+      <br><br>
+
     <<option 'CN'>>
-      你请求在接下来的工作中陪着罗宾。罗宾点头，约旦却抬起一只手。“陪伴可以，但不要替<<him>>作答。”
+      你们穿过地道，被带回了神殿。罗宾一路上都紧抱着你不放。
+      <br><br>
+      当你们抵达主殿时，<<He>>彻底地瘫软在你的身上，开始抽泣了起来。你们拥住对方，就好像是过了一辈子。你也忍不住开始哭泣……在经历了这一切的一切之后。
+      <br><br>
+      “我们……我们做到了……”<<He>>抬眼看你，眼泪淌下脸颊，“我爱你。”
+      <br><br>
+
+  <</language>>
+  <<if _punishJoint>>
+    <<language>>
+      <<option 'EN'>>
+        Sydney holds you both before standing. "I... I need to go home. <<nnpc_Mum 'Sirris'>> is probably worried sick. I’ll... I’ll see you tomorrow..."
+      <<option 'CN'>>
+        悉尼拥住你和罗宾，随后站起身。“我……我得回家了。<<nnpc_Mum 'Sirris'>>肯定担心坏了。我……明天见……”
+    <</language>>
+  <</if>>
+  <<stress -3>><<lstress>><br><br>
+<</if>>
+<<getouticon>><<lanLink ['Continue', '继续'] 'Temple'>><<set $eventskip to 1>><</lanLink>><br>
+
+:: RobinTemple Penance Hospital
+<<set $outside to 0>><<set $location to 'hospital'>><<effects>>
+<<if $RobinTemple.punish?.result is 'hospital'>>
+  <<set _punishJoint to $RobinTemple.punish.joint>>
+  <<robin-temple-punishment-cleanup>>
+  <<run maplebirch.get('RobinTemple').finishPunishment()>>
+  <<set $RobinTemple.hospital_day to Time.days>><<set $RobinTemple.hospital_stage to 'waiting'>>
+  <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1 and C.npc.Sirris.init is 1 and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
+  <<language>>
+    <<option 'EN'>>
+      You feel yourself being lifted onto a stretcher. You’re holding onto something. It’s holding onto you, too. It’s warm, and makes you feel safe in a way you can’t explain. Something tries to pull it away from you, so you hold on tighter. You pass out again.
+    <<option 'CN'>>
+      你感觉自己被举到担架上。你抓住了什么东西，它也抓住了你。那感觉非常温暖，以一种你无法理解的方式让你安心。有什么东西试图把它从你手中拽走，于是你攥得更紧。你再次昏了过去。
   <</language>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>
-      Robin turns to you. "I want you there," <<he>> says. "I also want to do my own share."
-    <<option 'CN'>>
-      罗宾转向你。“我希望你在，”<<he>>说，“也想把自己那份做好。”
-  <</language>>
-  <<npcincr Robin love 1>><br><br><<glove>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan has already heard your account for this examination.
-    <<option 'CN'>>
-      约旦已经听过你对这次检查的说明。
-  <</language>>
 <</if>>
-<<robin-temple-penance-exit>>
+<<lanLink ['Sleep', '睡觉'] 'RobinTemple Hospital Bed'>><</lanLink>><br>
 
-:: RobinTemple Penance Work
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.penance_day gte 0 and $RobinTemple.penance_work_day isnot Time.days>>
-  <<set $RobinTemple.penance_work_day to Time.days>>
-  <<set $RobinTemple.penance_service += 1>>
-  <<language>>
-    <<option 'EN'>>
-      Robin checks the beds while you sort clean linen. A younger initiate offers to take one pile. Robin thanks <<him>> and leaves the easier task within reach.
-    <<option 'CN'>>
-      罗宾检查床铺，你整理干净的布巾。一名年幼见习教徒提出帮忙，罗宾道了谢，把较轻松的活留给<<him>>。
-  <</language>>
-  <br><br>
-  <<language>>
-    <<option 'EN'>>
-      When the list is finished, Robin brings it to Jordan in <<his>> own hand.
-    <<option 'CN'>>
-      清单做完后，罗宾亲手把它交给约旦。
-  <</language>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
-  <<grace 1>><br><br><<ggrace>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      Today’s work is already finished.
-    <<option 'CN'>>
-      今天的工作已经做完了。
-  <</language>>
-<</if>>
-<br><br>
-<<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
-
-:: RobinTemple Penance
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.penance_day gte 0 and Time.days gte $RobinTemple.penance_day and $RobinTemple.penance_service gte 3
-  and $player.virginity.temple is true>>
-  <<set $RobinTemple.penance_day to -1>>
-  <<if $RobinTemple.breach isnot 'pc'>><<set C.npc.Robin.virginity.temple to true>><</if>>
-  <<run maplebirch.get('RobinTemple').restorePromise()>>
-  <<set $RobinTemple.breach to ''>>
-  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 5)>>
-  <<language>>
-    <<option 'EN'>>
-      Robin finishes the last shift and brings Jordan the completed list. Jordan accepts it, then renews <<his>> temple vow. Robin folds the list with care before taking your hand.
-    <<option 'CN'>>
-      罗宾结束最后一班工作，把填完的清单交给约旦。约旦收下清单，重新接纳<<his>>的神殿誓言。罗宾仔细折好清单，才牵住你的手。
-  <</language>>
-  <br><br><<language>>
-    <<option 'EN'>>
-      <span class="green">Robin's temple vow is restored.</span>
-    <<option 'CN'>>
-      <span class="green">罗宾重新立下了神殿誓言。</span>
-  <</language>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      Complete work with Robin on three different days, wait until the seventh day, and renew your own temple vow before returning.
-    <<option 'CN'>>
-      至少在三个不同的日子与罗宾一起做事，等到第七天，并先恢复你自己的神殿誓言，再回来交还记录。
-  <</language>>
-<</if>>
-<br><br>
-<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+:: RobinTemple Penance Genitals Widgets [widget]
+<<widget 'robin-temple-punishment-genitals'>>
+  <<if _args[1]>><<lanSwitch 'genitals' '下体'>><<else>><<lanSwitch (C.npc[_args[0]].gender is 'm' ? 'penis' : 'vagina') (C.npc[_args[0]].gender is 'm' ? '阴茎' : '阴部')>><</if>>
+<</widget>>

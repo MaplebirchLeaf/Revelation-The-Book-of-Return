@@ -1,4 +1,3 @@
-# ./t3lt.twee-config.yml
 aliases:
   dom:
     border: solid 0px
@@ -22806,13 +22805,47 @@ sugarcube-2:
       name: deadwoodRobinShop-main
     exerciseicon:
       name: exerciseicon
-    revelation-robin-room-link:
-      name: revelation-robin-room-link
-    revelation-robin-temple-links:
-      name: revelation-robin-temple-links
-    revelation-robin-monthly-examination:
-      name: revelation-robin-monthly-examination
-    revelation-robin-vigil-link:
-      name: revelation-robin-vigil-link
-    revelation-robin-vigil-fire-link:
-      name: revelation-robin-vigil-fire-link
+    robin-temple-confession-event:
+      name: robin-temple-confession-event
+    robin-temple-hall-link:
+      name: robin-temple-hall-link
+    robin-temple-joint-examination:
+      name: robin-temple-joint-examination
+    robin-temple-journal:
+      name: robin-temple-journal
+    robin-temple-links:
+      name: robin-temple-links
+    robin-temple-monthly-examination:
+      name: robin-temple-monthly-examination
+    robin-temple-penance-exit:
+      name: robin-temple-penance-exit
+    robin-temple-room-link:
+      name: robin-temple-room-link
+    robin-temple-room-note:
+      name: robin-temple-room-note
+    robin-temple-return-home:
+      name: robin-temple-return-home
+    robin-temple-hospital-followup:
+      name: robin-temple-hospital-followup
+    robin-temple-vigil-options:
+      name: robin-temple-vigil-options
+    robin-temple-vigil-arrival:
+      name: robin-temple-vigil-arrival
+    robin-temple-vigil-bell:
+      name: robin-temple-vigil-bell
+    robin-temple-vigil-cold:
+      name: robin-temple-vigil-cold
+    robin-temple-vigil-failure:
+      name: robin-temple-vigil-failure
+    robin-temple-vigil-left-behind:
+      name: robin-temple-vigil-left-behind
+    robin-temple-vigil-whisper:
+      name: robin-temple-vigil-whisper
+    skinicon:
+      name: skinicon
+    tficon:
+      name: tficon
+    birdicon:
+      name: birdicon
+    main_hall_icon:
+      name: main_hall_icon

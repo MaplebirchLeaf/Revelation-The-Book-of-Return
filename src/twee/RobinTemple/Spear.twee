@@ -33,9 +33,9 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>
-    "I will," you say. Robin folds the map carefully and hands it back. <<He>> stays with you until Jordan calls for the evening prayer.
+    "I will," you say. Robin folds the receipt back into its old creases and hands it to you. <<He>> stays with you until Jordan calls for the evening prayer.
   <<option 'CN'>>
-    “我会的。”你说。罗宾仔细折好地图，交还给你。<<He>>一直陪着你，直到约旦召集晚祷。
+    “我会的。”你说。罗宾沿着旧折痕把收据折好，交给你。<<He>>一直陪着你，直到约旦召集晚祷。
 <</language>>
 <<npcincr Robin love 2>><<stress -2>><br><br><<glove>><<lstress>>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
@@ -81,7 +81,7 @@
   <<if $spear_vessel is 'temple'>>
     <<language>>
       <<option 'EN'>>
-        "So it is back here," <<he>> says. <<He>> glances toward the altar, then back at you. "And you are back too."
+        "So it's back here," <<he>> says. <<He>> glances toward the altar, then back at you. "And you are back too."
       <<option 'CN'>>
         “长矛回到这里了，”<<he>>说。<<He>>看了一眼祭坛，又看向你。“你也回来了。”
     <</language>>
@@ -95,7 +95,7 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        Robin asks what happened. When you falter, <<he>> stops asking. "I am glad you came back," <<he>> says.
+        Robin asks what happened. When you falter, <<he>> stops asking. "I'm glad you came back," <<he>> says.
       <<option 'CN'>>
         罗宾问你路上发生了什么。你一时说不下去，<<he>>便不再追问。“你回来了就好。”<<he>>说。
     <</language>>
