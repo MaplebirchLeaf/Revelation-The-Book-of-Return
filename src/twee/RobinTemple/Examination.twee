@@ -15,16 +15,16 @@
 <<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
   <<language>>
     <<option 'EN'>>
-      Jordan sets down the small jar used for the examination. A brief golden spark rises from it. "Your vows stand," Jordan says.
+      Jordan sets down the small jar used for the examination. Warmth gathers low in your body, then answers from Robin in the same breath. A brief golden spark rises from the glass. "Your vows stand," Jordan says.
     <<option 'CN'>>
-      约旦放下检验用的小罐。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。
+      约旦放下检验用的小罐。热意从你身体深处聚起，又在同一口气里从罗宾那里应和回来。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。
   <</language>>
   <br><br>
   <<language>>
     <<option 'EN'>>
-      Robin catches your eye on the way out and squeezes your hand.
+      Robin catches your eye on the way out and squeezes your hand. <<His>> face is calm, but <<his>> thumb rubs yours as if <<he>> can still feel the examination passing over every place the vow protects.
     <<option 'CN'>>
-      出门时罗宾望向你，轻轻握了握你的手。
+      出门时罗宾望向你，轻轻握了握你的手。<<His>>的神情平静，拇指却反复蹭着你的手背，像是仍能感觉到那道检查扫过誓言守护的每一处。
   <</language>>
   <br><br><<language>>
     <<option 'EN'>>
@@ -37,9 +37,9 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      The jar gives no light. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."
+      The jar gives no light. Instead, the glass fogs from within, darkening where the vow should answer cleanly. Heat prickles across your skin, not pleasure now but the memory of where the promise was spent. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."
     <<option 'CN'>>
-      小罐没有亮起。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”
+      小罐没有亮起。雾气反而从内侧漫上玻璃，在誓言本该清澈回应的位置沉成暗色。热意刺过你的皮肤，这一次不是快感，而是承诺被耗尽处留下的记忆。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”
   <</language>>
   <br><br>
   <<templeicon "altar">><<lanLink '听约旦说明赎罪要求' 'RobinTemple Monthly Failure'>><</lanLink>><br>

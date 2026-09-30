@@ -2,7 +2,7 @@
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
   or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
-  or $RobinTemple.penance_day gte 0>>
+  or $RobinTemple.penance_day gte 0 or $RobinTemple.joint_sydney_penance>>
   <<language>>
     <<option 'EN'>>
       Jordan asks you to establish your own place in the temple and to work alongside Robin before requesting a shared vow.
@@ -38,7 +38,7 @@
     <<option 'EN'>>
       You ask Robin whether <<he>> would want a promise recognised by the temple. <<He>> puts down the work list and takes time to answer.
     <<option 'CN'>>
-      你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了许久才回答。
+      你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了好一会儿才回答。
   <</language>>
   <br><br>
   <<if C.npc.Robin.trauma gte 40>>
@@ -81,6 +81,7 @@
 :: RobinTemple Promise Rite
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'approved' and $robinromance is 1
+  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
   and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent)
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
   and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
@@ -94,9 +95,9 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        The small chapel has been cleared for you. Jordan sets two silver rings on the altar. Robin stands beside you, trying to keep <<his>> hands still.
+        The side room has been cleared, and Jordan sets two plain silver bands on the cloth between you. Robin stands beside you, trying to keep <<his>> hands still.
       <<option 'CN'>>
-        小礼拜堂已经为你们腾出来。约旦把两枚银戒放在祭坛上。罗宾站在你身边，努力让双手不再发抖。
+        侧室已经收拾出来，约旦把两枚素银环放在你们之间的布面上。罗宾站在你身边，努力让双手不再发抖。
     <</language>>
   <</if>>
   <br><br>
@@ -104,7 +105,7 @@
     <<option 'EN'>>
       "You may leave now," Jordan says, "or speak in your own words. No one will make this choice for you."
     <<option 'CN'>>
-      “你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。不会有人替你们作决定。”
+      “你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。没有人能替你们作这个决定。”
   <</language>>
   <br><br>
   <<if $templePromised is 'Sydney'>>
@@ -127,6 +128,7 @@
 :: RobinTemple Promise End
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'approved' and $robinromance is 1
+  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
   and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent
     and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
@@ -155,9 +157,9 @@
     <<if _templeClaspReleased>>
       <<language>>
         <<option 'EN'>>
-          Jordan releases Robin's chastity lock. Sydney remains beside you as Robin takes your hand.
+          Jordan undoes Robin's chastity belt at <<his>> own request. Sydney remains beside you as Robin takes your hand.
         <<option 'CN'>>
-          约旦解开罗宾的贞操锁。悉尼仍站在你身边，罗宾握住了你的手。
+          应罗宾自己的要求，约旦解开了<<his>>贞操带。悉尼仍站在你身边，罗宾握住了你的手。
       <</language>>
     <<else>>
       <<language>>
@@ -178,17 +180,17 @@
     <<if _templeClaspReleased>>
       <<language>>
         <<option 'EN'>>
-          Jordan opens Robin's chastity lock and puts the key away.
+          Jordan undoes Robin's chastity belt at <<his>> request and puts it aside.
         <<option 'CN'>>
-          约旦解开罗宾的贞操锁，收好了钥匙。
+          应罗宾自己的要求，约旦解开了<<his>>贞操带，放到一旁。
       <</language>>
       <br><br>
     <</if>>
     <<language>>
       <<option 'EN'>>
-        Jordan places two silver rings in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.
+        Jordan places the two silver bands in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.
       <<option 'CN'>>
-        约旦把两枚银戒交到你们手中。罗宾把其中一枚戴在你的手指上。你也为<<him>>戴好时，<<he>>终于松了口气。
+        约旦把两枚素银环交到你们手中。罗宾把其中一枚套在你的手指上。你也为<<him>>套好时，<<he>>终于松了口气。
     <</language>>
   <</if>>
   <br><br>

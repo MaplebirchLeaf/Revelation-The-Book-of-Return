@@ -1,6 +1,7 @@
 :: RobinTemple Joint Consent
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'member' and $templePromised is 'Sydney'
+  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
   and $robinromance is 1 and $sydneyromance is 1
   and $player.virginity.temple is true and C.npc.Sydney.virginity.temple is true>>
   <<language>>
@@ -33,6 +34,7 @@
 :: RobinTemple Joint Rite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'approved' and $RobinTemple.joint_consent
+  and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance
   and $templePromised is 'Sydney' and $robinromance is 1 and $sydneyromance is 1
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
   and C.npc.Sydney.virginity.temple is true>>

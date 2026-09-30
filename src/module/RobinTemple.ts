@@ -55,8 +55,23 @@ class RobinTemple extends Module {
     const conviction = robin.revelationConviction ?? 0;
     if (conviction >= 120) robin.revelationConviction = Math.min(200, conviction + 1);
     else if (conviction < 80) robin.revelationConviction = Math.max(0, conviction - 1);
+    this.reviewFaith();
     const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
     if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
+  }
+
+  /** 旧版 80/120 信念转折以 35% 概率出现；同一天不因重访反复抽取。 */
+  public reviewFaith(): void {
+    const state = V.RobinTemple;
+    const robin = C.npc.Robin;
+    if (!state || !['member', 'approved', 'promised'].includes(state.stage) || robin?.init !== 1) return;
+    const conviction = robin.revelationConviction ?? 0;
+    const band = conviction >= 120 ? 'belief' : conviction <= 80 ? 'doubt' : 'steady';
+    if (band === 'steady' || band === state.faith_band || state.faith_review_day === Time.days) return;
+    state.faith_review_day = Time.days;
+    if (Math.random() >= 0.35) return;
+    state.faith_band = band;
+    state.faith_transition = band;
   }
 
   /** 每次预约只结算一次，避免重访结果页面时重新抽取火焰考验结果。 */

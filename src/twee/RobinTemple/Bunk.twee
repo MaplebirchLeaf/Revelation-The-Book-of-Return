@@ -39,7 +39,7 @@
     <<option 'EN'>>
       Robin is finishing the afternoon work list at the long table. The other initiates have gone to their duties. The space around <<his>> bunk is empty.
     <<option 'CN'>>
-      罗宾在长桌旁核对下午的工作表。其他见习者都去做各自的事了，<<his>>床铺周围没有人。
+      罗宾在长桌旁核对下午的工作表。其他见习教徒都去做各自的事了，<<his>>的床铺周围没有人。
   <</language>>
   <<if $RobinTemple.stage is 'promised' and $robinromance is 1
     and $RobinTemple.penance_day lt 0 and C.npc.Robin.trauma lt 80
@@ -91,7 +91,7 @@
     <<option 'EN'>>
       Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
     <<option 'CN'>>
-      罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习者。
+      罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习教徒。
   <</language>>
   <br><br>
   <<language>>
@@ -129,7 +129,7 @@
     <<option 'EN'>>
       Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
     <<option 'CN'>>
-      罗宾那侧空着。你盖上毯子，听着其他见习者渐渐安静下来。
+      罗宾那侧空着。你盖上毯子，听着其他见习教徒渐渐安静下来。
   <</language>>
 <</if>>
 <br><br>
@@ -157,7 +157,7 @@
     <<option 'EN'>>
       A neighbouring initiate turns over. You both wait until the room is quiet again.
     <<option 'CN'>>
-      旁边的见习者翻了个身。你们等到屋里重新安静下来。
+      旁边的见习教徒翻了个身。你们等到屋里重新安静下来。
   <</language>>
   <<npcincr Robin love 1>><<npcincr Robin lust 1>><br><br><<glove>><<glust>>
 <<else>>
@@ -202,7 +202,7 @@
   <<option 'EN'>>
     You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
   <<option 'CN'>>
-    你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习者在床上翻身。
+    你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
 <</language>>
 <<stress -2>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
@@ -247,7 +247,7 @@
         <<option 'EN'>>
           A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
         <<option 'CN'>>
-          隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习者盖好滑落的毯子。
+          隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习教徒盖好滑落的毯子。
       <</language>>
       <<case 'embers'>><<language>>
         <<option 'EN'>>

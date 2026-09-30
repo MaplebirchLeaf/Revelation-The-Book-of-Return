@@ -102,3 +102,8 @@
 - passage: 'Temple Confess'
   findString: '<!-- Must be last. -->'
   before: "<<robin-temple-confession-event>>\n"
+
+# 中途离开后可在医院门口继续未完成的罗宾陪诊。
+- passage: 'Hospital front'
+  findString: '<<if $stress gte $stressmax>>'
+  before: "<<robin-temple-hospital-followup>>\n"

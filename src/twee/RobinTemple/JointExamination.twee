@@ -128,17 +128,40 @@
   <<set $RobinTemple.penance_trial_done to false>>
   <<set $RobinTemple.penance_response to ''>>
   <<set $RobinTemple.penance_work_day to -1>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan does not ask one person to answer for another. Jordan gives you seven days and a shared work list. What each of you must renew will depend on the vow that was broken.
+	  <<language>>
+	    <<option 'EN'>>
+	      Jordan does not ask one person to answer for another. The darkened jar sits between the three of you, still warm from the failed answer. Jordan gives you seven days and a shared work list. What each of you must renew will depend on the vow that was broken.
+	    <<option 'CN'>>
+	      约旦没有让任何人替别人承担责任。变暗的小罐放在三人之间，仍带着失败回应留下的热度。约旦又给你们七天时间和一份共同的工作表。之后各自需要重新立下什么誓言，要看哪一份曾被违背。
+	  <</language>>
+	  <br><br>
+	  <<if $player.virginity.temple isnot true>>
+	    <<language>>
+	      <<option 'EN'>>
+	        Robin looks at you first. Sydney looks down at <<his>> own hands. Neither asks for details in front of Jordan, but the silence makes it clear that both will want the truth later.
+	      <<option 'CN'>>
+	        罗宾先看向你。悉尼低头看着自己的手。两人都没有在约旦面前追问细节，但那阵沉默已经说明，之后他们都会想听你亲口讲清楚。
+	    <</language>>
+	  <<elseif C.npc.Robin.virginity.temple isnot true>>
+	    <<language>>
+	      <<option 'EN'>>
+	        Robin admits <<his>> part with a red face and a steady voice. Sydney's expression tightens, then softens when Robin refuses to let either of you excuse <<him>>. <<if ['initiate', 'monk'].includes($sydney.rank)>>Jordan has not decided what should be done when a priest takes part in a vow like this, and says as much.<<else>>Jordan has not decided what should be done when two vows of this kind overlap, and says as much.<</if>>
+	      <<option 'CN'>>
+	        罗宾红着脸承认了自己的部分，声音却很稳。悉尼的神情先绷紧，又在罗宾拒绝让你们替<<him>>开脱时慢慢软下来。<<if ['initiate', 'monk'].includes($sydney.rank)>>约旦说，祭司参与这样的誓言该如何处置，他还没有先例可循。<<else>>约旦说，两份这样的誓言彼此重叠该怎么算，他还没有先例可循。<</if>>
+	    <</language>>
+	  <<else>>
+	    <<language>>
+	      <<option 'EN'>>
+	        Sydney speaks last. <<His>> composure cracks only once, when <<he>> admits the vow failed because desire answered before discipline could. Robin stays beside you, but keeps <<his>> eyes on Sydney until the confession is finished.
+	      <<option 'CN'>>
+	        悉尼最后开口。<<His>>的镇定只裂开了一瞬，就在<<he>>承认誓言失败，是因为欲望先于戒律作出了回应。罗宾留在你身旁，却一直看着悉尼，直到那段坦白结束。
+	    <</language>>
+	  <</if>>
+	  <br><br><<language>>
+	    <<option 'EN'>>
+	      <<if ['initiate', 'monk'].includes($sydney.rank)>>Jordan sends for an attendant to note how a priest's part in this vow should be handled, and says it may take time.<br><br><</if>><span class='red'>The examination found a broken vow.</span>
     <<option 'CN'>>
-      约旦没有让任何人替别人承担责任，又给你们七天时间和一份共同的工作表。之后各自需要重新立下什么誓言，要看哪一份曾被违背。
-  <</language>>
-  <br><br><<language>>
-    <<option 'EN'>>
-      <span class='red'>The examination found a broken vow.</span>
-    <<option 'CN'>>
-      <span class='red'>检查发现有人违背了誓言。</span>
+      <<if ['initiate', 'monk'].includes($sydney.rank)>>约旦叫来侍从，记下祭司参与这件事该如何处理，并说这也许要花些时间。<br><br><</if>><span class='red'>检查发现有人违背了誓言。</span>
   <</language>><br><br>
 <<else>>
   <<language>>

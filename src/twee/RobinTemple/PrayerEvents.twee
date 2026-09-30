@@ -17,11 +17,11 @@
       <<option 'EN'>>
         The initiate has written the wrong number beside the linen and fears Jordan will think a whole bundle is missing.
       <<option 'CN'>>
-        见习者说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
+        见习教徒说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '和罗宾一起核对清单 (0:15)' 'RobinTemple Prayer List'>><<pass 15>><</lanLink>><br>
-    <<loveicon 'hug'>><<lanLink '请罗宾先安慰见习者' 'RobinTemple Prayer Comfort'>><</lanLink>><br>
+    <<loveicon 'hug'>><<lanLink '请罗宾先安慰见习教徒' 'RobinTemple Prayer Comfort'>><</lanLink>><br>
   <<case 3>>
     <<language>>
       <<option 'EN'>>
@@ -119,7 +119,7 @@
     <<option 'EN'>>
       You count each bundle with Robin. The missing linen is on a shelf in the next room. The initiate corrects the entry while you hold the pages together.
     <<option 'CN'>>
-      你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习者把数字改好。
+      你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习教徒把数字改好。
   <</language>>
   <<set $RobinTemple.service += 1>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
@@ -143,7 +143,7 @@
     <<option 'EN'>>
       Robin sits with the initiate until the mistake can be explained. "We should check the shelves," Robin says. The two of you find the bundle and correct the list together.
     <<option 'CN'>>
-      罗宾陪见习者坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
+      罗宾陪见习教徒坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
   <</language>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<npcincr Robin love 1>><br><br><<glove>>
@@ -209,9 +209,9 @@
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      Jordan says an initiate became frightened during a task. "It is being dealt with," <<nnpc_he 'Jordan'>> says. "Leave the attendants to me."
+      Jordan says an initiate became frightened during a task. "The attendants will see to them," <<nnpc_he 'Jordan'>> says. "The temple looks after its own."
     <<option 'CN'>>
-      约旦说，一名见习者在做事时受了惊吓。“这件事正在处理，”<<nnpc_he 'Jordan'>>说，“侍从那边由我来问。”
+      约旦说，一名见习教徒在做事时受了惊吓。“侍从会照看他们，”<<nnpc_he 'Jordan'>>说，“神殿不会放着不管。”
   <</language>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
@@ -223,16 +223,16 @@
   <<elseif C.npc.Robin.dom lte 50>>
     <<language>>
       <<option 'EN'>>
-        "Is the initiate all right?" Robin asks quietly. Jordan says they are resting. Robin looks relieved.
+        "Is the initiate all right?" Robin asks quietly. Jordan says they are resting, and that there is nothing more the two of you can do. Robin looks only a little relieved.
       <<option 'CN'>>
-        “那名见习者还好吗？”罗宾小声问。约旦说对方正在休息。罗宾松了口气。
+        “那名见习教徒还好吗？”罗宾小声问。约旦说对方正在休息，别的事不用你们操心。罗宾只稍微松了口气。
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
         Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go.
       <<option 'CN'>>
-        罗宾问能不能给那名见习者送些水。约旦点头，告诉<<him>>该去哪里。
+        罗宾问能不能给那名见习教徒送些水。约旦点头，告诉<<him>>该去哪里。
     <</language>>
   <</if>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>

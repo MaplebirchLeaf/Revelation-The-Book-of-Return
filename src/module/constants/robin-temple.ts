@@ -10,6 +10,9 @@ export interface RobinTempleState {
   service: number;
   grace: number;
   pendant: boolean;
+  faith_band: 'steady' | 'belief' | 'doubt';
+  faith_transition: '' | 'belief' | 'doubt';
+  faith_review_day: number;
   assessment_fire: boolean;
   assessment_passed: boolean;
   assessment_day: number;
@@ -28,7 +31,7 @@ export interface RobinTempleState {
   evaluation_day: number;
   evaluation_style: 'honest' | 'protective' | '';
   evaluation_marks: number;
-  evaluation_memory: 'first' | 'care' | 'rescue' | 'work' | 'sky' | '';
+  evaluation_memory: 'first' | 'care' | 'rescue' | 'work' | 'sky' | 'clothes' | '';
   evaluation_records_done: boolean;
   evaluation_memory_done: boolean;
   evaluation_interview: '' | 'wait' | 'heard' | 'caught';
@@ -45,7 +48,12 @@ export interface RobinTempleState {
   penance_hearing_done: boolean;
   confession_day: number;
   confession_recognized: boolean;
+  confession_resolved: boolean;
   prayer_day: number;
+  rest_day: number;
+  hospital_day: number;
+  hospital_stage: '' | 'waiting' | 'discharged' | 'therapy' | 'rescue' | 'vanilla';
+  hospital_support: boolean;
   prayer_event_day: number;
   prayer_event: number;
   prayer_event_done: boolean;
@@ -76,6 +84,9 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   service: 0,
   grace: 0,
   pendant: false,
+  faith_band: 'steady',
+  faith_transition: '',
+  faith_review_day: -1,
   assessment_fire: false,
   assessment_passed: false,
   assessment_day: -1,
@@ -111,7 +122,12 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   penance_hearing_done: false,
   confession_day: -1,
   confession_recognized: false,
+  confession_resolved: false,
   prayer_day: -1,
+  rest_day: -1,
+  hospital_day: -1,
+  hospital_stage: '',
+  hospital_support: false,
   prayer_event_day: -1,
   prayer_event: 0,
   prayer_event_done: false,

@@ -9,7 +9,7 @@
     <<option 'EN'>>
       Robin sets down the work list and joins you beside <<his>> bunk. The other initiates are occupied elsewhere. <<He>> draws the folding screen across the empty row, then sits with you on the edge of the mattress.
     <<option 'CN'>>
-      罗宾放下工作表，来到自己的床铺旁。其他见习者都在别处忙碌。<<He>>拉上这一排床铺的屏风，挨着你坐在床垫边缘。
+      罗宾放下工作表，来到自己的床铺旁。其他见习教徒都在别处忙碌。<<He>>拉上这一排床铺的屏风，挨着你坐在床垫边缘。
   <</language>>
   <br><br>
   <<if $RobinTemple.evaluation_style is 'protective'>>
@@ -44,18 +44,34 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'promised' and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80>>
-  <<language>>
-    <<option 'EN'>>
-      Robin turns the silver ring once around <<his>> finger. "I am still learning what it means," <<he>> says. "Jordan witnessed it. That does not mean I need permission to tell you how I feel."
-    <<option 'CN'>>
-      罗宾转了转手上的银戒。“我还在琢磨它意味着什么，”<<he>>说，“约旦见证了誓言，但我不必得到谁的允许，才能对你说心里话。”
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        "I meant it," <<he>> says quietly. "I just… some days I still worry I'll do something wrong." You let <<him>> finish. After a while, <<he>> looks up. "Could we talk here again tomorrow?"
+      <<option 'CN'>>
+        “我是真心的，”<<he>>轻声说，“只是……有时候还是怕自己做错什么。”你等<<him>>把话说完。过了一会儿，<<he>>抬起头。“明天还能在这里说说话吗？”
+    <</language>>
+  <<elseif C.npc.Robin.dom gte 50>>
+    <<language>>
+      <<option 'EN'>>
+        Robin smiles at you. "I don't know how everything will turn out. But if something's bothering you, tell me. I want to help too."
+      <<option 'CN'>>
+        罗宾朝你笑了笑。“以后会怎样，我也不知道。不过，你要是有心事，就告诉我。我也想帮得上忙。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "I'm glad we did it," <<he>> says. "I wanted to tell you earlier, but there were so many people." <<He>> gives you a small smile. "It's easier when it's just us."
+      <<option 'CN'>>
+        “能和你一起立誓，我很高兴，”<<he>>说，“刚才就想告诉你，可是人太多了。”<<He>>朝你露出一个小小的笑容。“只有我们两个的时候，就容易说出口了。”
+    <</language>>
+  <</if>>
   <br><br>
   <<language>>
     <<option 'EN'>>
-      You stay together until the next shift begins. Robin folds the screen back and returns to the work list.
+      When the next shift's bell rings, Robin gets up and checks the work list. Before leaving, <<he>> looks back to make sure you're coming too.
     <<option 'CN'>>
-      你们一直坐到下一班开始。罗宾收起屏风，回到工作表旁。
+      下一班的钟声响起，罗宾站起来，查看工作表。离开前，<<he>>又回头看看，确认你也跟上了。
   <</language>>
 <<else>>
   <<language>>
@@ -76,12 +92,34 @@
   and $robin.timer.hurt is 0>>
   <<language>>
     <<option 'EN'>>
-      Robin looks toward the empty row, then back at you. "Only if we both want to," <<he>> says. <<He>> waits for your answer.
+      Robin looks at you. "Only if we both want to," <<he>> says, waiting.
     <<option 'CN'>>
-      罗宾看了看空着的床铺，又转向你。“得我们都愿意才行，”<<he>>说，等着你的回答。
+      罗宾看着你。“得我们都愿意才行，”<<he>>说，等着你的回答。
   <</language>>
   <br><br>
-  <!-- TODO（作者）：在此补写英中双语的亲密邀请文本，保留罗宾自愿作答的条件，并确保其他见习者不在床铺附近。 -->
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        "I still get nervous," <<he>> admits quietly. "But I want to try. I want… your hands, and yours on mine. Just go slow, and stop if I ask."
+      <<option 'CN'>>
+        “我还是会紧张，”<<he>>低声说，“可是我想试试。想要……你的手，也想碰碰你。慢一点就好，我说停的时候就停。”
+    <</language>>
+  <<elseif C.npc.Robin.dom gte 50>>
+    <<language>>
+      <<option 'EN'>>
+        "I've been thinking about this," <<he>> murmurs, close to your ear. "All day. I want to hold you down, and feel you against me until neither of us can think. Only if you want it too."
+      <<option 'CN'>>
+        “这件事我想了一整天，”<<he>>凑到你耳边低声说，“想按住你，贴着你不放，直到谁都想不了别的。你要是也愿意，就告诉我。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "I keep imagining it," <<he>> confesses, face warm. "Being close to you. Your hands, and mine. I'd like that… only if you want it too."
+      <<option 'CN'>>
+        “我一直在想象，”<<he>>红着脸轻声说，“和你靠得很近。你的手，还有我的手。我想那样……只有你也愿意才行。”
+    <</language>>
+  <</if>>
+  <br><br>
   <<loveicon 'kiss'>><<lanLink '与罗宾做爱' 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
   <<loveicon 'hug'>><<lanLink '只抱着罗宾待一会儿' 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
 <<else>>
@@ -99,12 +137,28 @@
 <<if $RobinTemple.stage is 'promised' and $robinromance is 1
   and !$robinmissing and getRobinLocation() is 'temple'
   and C.npc.Robin.trauma lt 80>>
-  <<language>>
-    <<option 'EN'>>
-      Robin rests against you until the bell for the next shift sounds. <<He>> folds the screen back before anyone returns.
-    <<option 'CN'>>
-      罗宾靠着你，直到下一班的钟声响起。趁其他人还没回来，<<he>>收起屏风。
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        You ask whether Robin would like a hug. <<He>> nods, and you leave <<him>> to decide when to let go. "Could you stay a little longer?" <<he>> asks. You sit together without making <<him>> explain. When the bell rings, <<he>> lets go and thanks you quietly.
+      <<option 'CN'>>
+        你问罗宾要不要一个拥抱。<<He>>点点头，你让<<him>>自己决定什么时候松开。“能再陪我一会儿吗？”<<he>>问。你陪<<him>>坐着，没有追问缘由。钟声响起时，<<he>>松开你，轻声道了谢。
+    <</language>>
+  <<elseif C.npc.Robin.dom gte 50>>
+    <<language>>
+      <<option 'EN'>>
+        Robin opens <<his>> arms, smiling. "I was hoping you'd say that." When the next shift's bell rings, <<he>> gives a reluctant sigh, then stands. "Come on. If we finish the list together, it won't take so long."
+      <<option 'CN'>>
+        罗宾笑着张开双臂。“我还盼着你这么说呢。”下一班的钟声响起时，<<he>>有些不舍地叹了口气，随后站起来。“走吧。一起把表上的活做完，就不用忙那么久了。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "Just a hug?" Robin asks. You nod, and <<he>> hugs you back. For a while, neither of you says anything. "This is nice," <<he>> says at last, looking a little embarrassed by the words. When the bell rings, you help <<him>> fold the screen back.
+      <<option 'CN'>>
+        “就抱一会儿？”罗宾问。你点点头，<<he>>也抱住了你。你们安静地坐了一阵。“这样就很好，”<<he>>终于说，话出口又有些不好意思。钟声响起后，你帮<<him>>收起屏风。
+    <</language>>
+  <</if>>
   <<npcincr Robin love 1>><br><br><<glove>>
 <<else>>
   <<language>>
@@ -130,7 +184,28 @@
   <<if $exposed lt 2>><<strip>><</if>>
   <<maninit>><<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
   <<npcexpose>><<npckiss>>
-  <!-- TODO（作者）：在此补写英中双语的战斗开场文本。此分支只执行一次，开场文本应放在条件分支内。 -->
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        Robin pulls you closer, voice low. "Go slow," <<he>> whispers. "And remember what I said." <<He>> keeps hold of your wrist, ready to guide or stop you.
+      <<option 'CN'>>
+        罗宾把你拉近，声音很低。“慢一点，”<<he>>低声说，“我刚才说的话，你还记得吧。”<<He>>握着你的手腕，随时能引你向前，也能让你停下。
+    <</language>>
+  <<elseif C.npc.Robin.dom gte 50>>
+    <<language>>
+      <<option 'EN'>>
+        Robin presses you back onto the mattress. "I want this," <<he>> says. "Let me have you." <<He>> takes your hand and holds it over <<his>> own, not letting go.
+      <<option 'CN'>>
+        罗宾把你按倒在床垫上。“我想要这个，”<<he>>说，“让我来一次。”<<He>>牵起你的手，按在<<his>>自己手背上，没有松开。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        Robin's face is red, but <<he>> doesn't look away. "I want this," <<he>> says. "I want you." <<He>> takes your hand and holds it close.
+      <<option 'CN'>>
+        罗宾脸红了，却没有移开视线。“我想要这个，”<<he>>说，“我想要你。”<<He>>拉起你的手，贴在自己身边。
+    <</language>>
+  <</if>>
 <</if>>
 <<if $RobinTemple.intimacy_active>>
   <<set $enemyanger to 0>>
@@ -167,13 +242,42 @@
     <</language>>
   <<else>>
     <<takeKissVirginity 'Robin' 'loveInterest'>>
+    <<if $enemyarousal gte $enemyarousalmax>>
+      <<language>>
+        <<option 'EN'>>
+          Robin shudders against you, holding on until it passes. "That was… a lot," <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
+        <<option 'CN'>>
+          罗宾贴着你发抖，一直抱到你停下才松开手。“这也……太过了，”<<he>>喘着气说，随后不好意思地笑了一声，“我大概是需要这个。”
+      <</language>>
+    <<elseif $enemyhealth lte 0>>
+      <<language>>
+        <<option 'EN'>>
+          Robin collapses against you, completely spent. "You… you really went all out," <<he>> says with a weak laugh.
+        <<option 'CN'>>
+          罗宾彻底脱力地靠在你身上。“你……你真的很用力啊，”<<he>>虚弱地笑了笑。
+      <</language>>
+    <<elseif $finish is 1>>
+      <<language>>
+        <<option 'EN'>>
+          Robin pulls you close after you both finish. "That was perfect," <<he>> whispers. "I love you."
+        <<option 'CN'>>
+          结束后罗宾把你拉近。“太棒了，”<<he>>低声说，“我爱你。”
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          Robin is still breathing hard. "We should stop… the others will be back soon." <<He>> looks reluctant to let go.
+        <<option 'CN'>>
+          罗宾还在大口喘气。“该停了……他们快回来了。”<<He>>看起来不太情愿松手。
+      <</language>>
+    <</if>>
+    <br><br>
     <<language>>
       <<option 'EN'>>
         Robin folds the screen back. "The others will be back soon," <<he>> says, straightening the blanket before returning to the work list.
       <<option 'CN'>>
         罗宾收起屏风。“他们快回来了。”<<he>>说，理好毯子后回到工作表旁。
     <</language>>
-    <!-- TODO（作者）：在此按 $enemyarousal、$enemyhealth 和 $finish 补写英中双语收尾差分，保留下方的清理逻辑。 -->
   <</if>>
   <br><br>
   <<clotheson>><<endcombat>>

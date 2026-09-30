@@ -50,6 +50,8 @@
     <<option 'CN'>>
       罗宾现在不在。工作表和<<his>>的课本还放在桌上。
   <</language>>
+  <br><br>
+  <<socialiseicon 'ask'>><<lanLink '问值班侍从罗宾去了哪里' 'RobinTemple Whereabouts'>><</lanLink>><br>
 <<elseif (Time.weekDay is 7 and Time.hour gte 21) or (Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
     <<option 'EN'>>
@@ -62,19 +64,19 @@
     <<option 'EN'>>
       Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.
     <<option 'CN'>>
-      罗宾在帮忙准备星期日礼拜。结束后，<<he>>会回宿舍。
+      罗宾在帮忙准备星期日弥撒。结束后，<<he>>会回宿舍。
   <</language>>
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink '去帮罗宾准备礼拜 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><br>
   <</if>>
 <<elseif Time.weekDay is 1 and Time.hour is 12>>
   <<language>>
     <<option 'EN'>>
       The Sunday service has begun. Robin is near the back of the hall, helping late arrivals find their seats.
     <<option 'CN'>>
-      星期日礼拜已经开始。罗宾在大厅后方帮晚到的人找座位。
+      星期日弥撒已经开始。罗宾在大厅后方帮晚到的人找座位。
   <</language>>
 <<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9 and Time.hour lt 13>>
   <<if Time.hour lt 11>>
@@ -132,7 +134,7 @@
   <<if $robinromance is 1 and $RobinTemple.stage is 'member'
     and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2
     and !$RobinTemple.clasp_discussed>>
-    <<socialiseicon 'ask'>><<lanLink '问罗宾贞操锁的事' 'RobinTemple Clasp'>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink '问罗宾贞操带的事' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
   <<if $RobinTemple.stage is "approved">>
     <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Rite'>><</lanLink>><br>
@@ -152,7 +154,7 @@
     and Time.days gt $RobinTemple.clasp_request_day>>
     <<lockicon 'unlock'>><<lanLink '听罗宾与约旦商量的结果' 'RobinTemple Clasp Result'>><</lanLink>><br>
   <<else>>
-    <<lockicon>><<lanLink '和罗宾谈谈贞操锁' 'RobinTemple Clasp'>><</lanLink>><br>
+    <<lockicon>><<lanLink '和罗宾谈谈贞操带' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
 <</if>>
 <<if _robinAtTemple and $temple_rank is 'initiate'
@@ -181,7 +183,7 @@
     <<option 'EN'>>
       You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
     <<option 'CN'>>
-      你整理床铺，罗宾在床位之间扫地。<<He>>停下来帮一名年幼的见习者找回毯子，随后回来和你收拾完最后一排。
+      你整理床铺，罗宾在床位之间扫地。<<He>>在一名年幼见习教徒面前停下，帮对方找回毯子，随后回来和你收拾完最后一排。
   <</language>>
   <br><br>
   <<language>>
@@ -276,8 +278,118 @@
     <<option 'EN'>>
       The service has already begun, or today’s work is finished.
     <<option 'CN'>>
-      礼拜已经开始，或是今天的工作已经做完了。
+      弥撒已经开始，或是今天的工作已经做完了。
   <</language>>
+<</if>>
+<br><br>
+<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+
+:: RobinTemple Whereabouts
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set _robinWhereabouts to getRobinLocation()>>
+<<language>>
+  <<option 'EN'>>
+    You ask an attendant by the work list whether Robin has left a message.
+  <<option 'CN'>>
+    你问工作表旁的值班侍从，罗宾有没有留下口信。
+<</language>>
+<br><br>
+<<if $robinmissing>>
+  <<language>>
+    <<option 'EN'>>
+      "Robin hasn't signed in," the attendant says after checking the list. "I'm sorry. I don't know where Robin is."
+    <<option 'CN'>>
+      侍从查看了工作表。“罗宾还没有来签到。抱歉，我不知道罗宾在哪里。”
+  <</language>>
+<<elseif _robinWhereabouts is 'asylum' and maplebirch.get('Robin')>>
+  <<language>>
+    <<option 'EN'>>
+      Robin is receiving care at the asylum. The attendant has no message about returning to temple duties and suggests asking Jordan before changing the work list.
+    <<option 'CN'>>
+      罗宾正在精神病院接受治疗。侍从没有收到恢复值班的消息，建议你先问约旦，再调整工作表。
+  <</language>>
+<<elseif $robin.timer.hurt isnot 0 or C.npc.Robin.trauma gte 80>>
+  <<language>>
+    <<option 'EN'>>
+      "Robin hasn't returned to duties yet," the attendant says. "The list can wait."
+    <<option 'CN'>>
+      “罗宾还没回来值班，”侍从说，“工作表上的事可以先放一放。”
+  <</language>>
+<<else>>
+  <<switch _robinWhereabouts>>
+    <<case 'temple'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin is still here. Try the hall, or check the quarters when the next shift starts."
+        <<option 'CN'>>
+          “罗宾还在这里。去大厅看看，或等下一班开始时再来宿舍找找。”
+      <</language>>
+    <<case 'school' 'englishPlay'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin mentioned school on Oxford Street." The attendant points to a note beside the shift times.
+        <<option 'CN'>>
+          “罗宾说要去牛津街的学校。”侍从指了指值班时间旁的便条。
+      <</language>>
+    <<case 'park'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin said there was hot chocolate to sell at the park."
+        <<option 'CN'>>
+          “罗宾说要去公园卖热可可。”
+      <</language>>
+    <<case 'beach'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin left for the lemonade stand at the beach."
+        <<option 'CN'>>
+          “罗宾去海滩的柠檬水摊了。”
+      <</language>>
+    <<case 'tutor'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin has a tutoring appointment. The shift here comes afterwards."
+        <<option 'CN'>>
+          “罗宾约了家教。这里的值班排在那之后。”
+      <</language>>
+    <<case 'shop'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin is working at the shop. We'll leave a note if anything needs doing here."
+        <<option 'CN'>>
+          “罗宾在店里忙。这里有事要做的话，我们会留便条。”
+      <</language>>
+    <<case 'halloween'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin mentioned the Halloween gathering at the orphanage on Domus Street."
+        <<option 'CN'>>
+          “罗宾说要参加宅邸街孤儿院的万圣节活动。”
+      <</language>>
+    <<case 'orphanage'>>
+      <<if maplebirch.get('VP')?.realEstate.residenceOf('Robin')>>
+        <<language>>
+          <<option 'EN'>>
+            Robin has gone home. You remember that <<he>> now shares your property, so the orphanage may not be the place to look.
+          <<option 'CN'>>
+            罗宾已经回家了。你记得<<he>>现在与你同住房产，不必再去孤儿院寻找。
+        <</language>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            "Robin went back to the orphanage on Domus Street."
+          <<option 'CN'>>
+            “罗宾回宅邸街的孤儿院了。”
+        <</language>>
+      <</if>>
+    <<default>>
+      <<language>>
+        <<option 'EN'>>
+          The attendant checks the list, but there is no message about where Robin went. "I'm sorry. I don't know."
+        <<option 'CN'>>
+          侍从检查工作表，没有找到罗宾去向的口信。“抱歉，我也不知道。”
+      <</language>>
+  <</switch>>
 <</if>>
 <br><br>
 <<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>

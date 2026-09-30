@@ -34,13 +34,13 @@
       <<else>>
         <<language>>
           <<option 'EN'>>
-            <span class="teal">Robin notices you have not put on a chastity device for your temple vow.</span>
+            <span class="teal">Robin glances at the chastity belt you wear, then looks away, unsure whether to ask about it.</span>
           <<option 'CN'>>
-            <span class="teal">罗宾注意到你还没有为神殿誓言戴上贞操装置。</span>
+            <span class="teal">罗宾看了一眼你身上的贞操带，又移开目光，似乎拿不准要不要问。</span>
         <</language>><br>
       <</if>>
     <<elseif $RobinTemple.stage is "invited">>
-      <<socialiseicon "ask">><<lanLink '问罗宾考核的事' 'RobinTemple Schedule'>><</lanLink>><br>
+      <<socialiseicon "ask">><<lanLink '问罗宾纯洁试炼的事' 'RobinTemple Schedule'>><</lanLink>><br>
     <<elseif $RobinTemple.stage is 'scheduled'
       and Time.days lt $RobinTemple.exam_day
       and $RobinTemple.prepared_day isnot Time.days
@@ -51,12 +51,12 @@
         and Time.schoolDay and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
       and !(maplebirch.get('Robin') and $RobinExpansion?.shop
         and $RobinExpansion.shopStaff lt 1 and (Time.hour gt 17 or Time.minute gt 15))>>
-      <<templeicon 'altar'>><<lanLink '陪罗宾去神殿准备考核 (0:45)' 'RobinTemple Prepare'>>
+      <<templeicon 'altar'>><<lanLink '陪罗宾去神殿准备试炼 (0:45)' 'RobinTemple Prepare'>>
         <<run setRobinLocationOverride('temple', maplebirch.get('Robin') && $RobinExpansion?.shop && $RobinExpansion.shopStaff < 1 ? [17] : [17, 18, 19])>>
         <<pass 45>>
       <</lanLink>><br>
     <<elseif $RobinTemple.stage is "failed" and Time.days gte $RobinTemple.exam_day + 7>>
-      <<socialiseicon "ask">><<lanLink '问罗宾愿不愿意再试一次考核' 'RobinTemple Retry'>><</lanLink>><br>
+      <<socialiseicon "ask">><<lanLink '问罗宾愿不愿意再试一次纯洁试炼' 'RobinTemple Retry'>><</lanLink>><br>
     <<elseif ['member', 'approved', 'promised'].includes($RobinTemple.stage)
       and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
       and getRobinLocation() is 'orphanage'
@@ -77,7 +77,7 @@
     and !$robinmissing and getRobinLocation() isnot 'asylum'>>
     <<if $RobinTemple.stage is "scheduled">>
       <<if Time.days gte $RobinTemple.exam_day and Time.hour gte 6 and (Time.hour lt 8 or !Time.schoolDay and Time.hour lt 18)>>
-        <<templeicon "altar">><<lanLink '陪罗宾参加考核' 'RobinTemple Assessment'>><</lanLink>><br>
+        <<templeicon "altar">><<lanLink '陪罗宾参加纯洁试炼' 'RobinTemple Assessment'>><</lanLink>><br>
       <</if>>
     <<elseif ["member", "approved", "promised"].includes($RobinTemple.stage)>>
       <<icon 'temple/Robinquarters.png'>><<lanLink '去罗宾在宿舍的座位' 'RobinTemple Corner'>><</lanLink>><br>

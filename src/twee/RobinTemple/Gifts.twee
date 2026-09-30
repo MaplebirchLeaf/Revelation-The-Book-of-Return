@@ -15,7 +15,11 @@
 
 :: RobinTemple Gift
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<if $gift.name is 'sticky_toffee_pudding'>>
+<!-- 沿用原版 Robin Gifts 的读取方式：$gift 是 setup.foodstuff 的键，而不是物品对象。 -->
+<<set _foodstuff to $gift ? setup.foodstuff[$gift] : undefined>>
+<<set _giftLabel to _foodstuff ? _foodstuff.name + (_foodstuff.food.handheld_gift ? ' gift' : '') : ''>>
+<<if _giftLabel>><<wearProp _giftLabel>><</if>>
+<<if $gift is 'sticky_toffee_pudding'>>
   <<language>>
     <<option 'EN'>>
       Robin stares at the sticky toffee pudding. "That is my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.
@@ -29,16 +33,16 @@
     <<option 'CN'>>
       “贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”
   <</language>>
-  <<npcincr Robin love 3>><br><br><<gglove>>
-<<elseif ($gift.special || []).includes('spicy')>>
+  <<npcincr Robin love 3>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><br><br><<gglove>>
+<<elseif _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
     <<option 'EN'>>
       Robin accepts the spicy food with both hands. After the first mouthful, <<his>> eyes water, but <<he>> does not put it down.
     <<option 'CN'>>
-      罗宾双手接过辣味食物。第一口下去，<<his>>眼睛就湿了，但<<he>>没有放下。
+      罗宾双手接过辣味食物。第一口下去，<<his>>的眼睛就湿了，但<<he>>没有放下。
   <</language>>
   <<npcincr Robin love 1>><br><br><<glove>>
-<<elseif ($gift.special || []).includes('drink')>>
+<<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>
   <<language>>
     <<option 'EN'>>
       Robin looks at the drink, then produces a second straw from <<his>> pocket. "Would you share it?" <<he>> asks.
@@ -56,7 +60,7 @@
   <<npcincr Robin love 1>><br><br><<glove>>
 <</if>>
 <br><br>
-<<if $gift.name is 'sticky_toffee_pudding'>>
+<<if $gift is 'sticky_toffee_pudding'>>
   <<socialiseicon 'ask'>><<lanLink '问罗宾能不能尝一口' 'RobinTemple Gift Pudding Ask'>><</lanLink>><br>
   <<loveicon 'hug'>><<lanLink '看罗宾吃完' 'RobinTemple Gift Pudding Watch'>><</lanLink>><br>
 <<else>>
@@ -66,7 +70,7 @@
 
 :: RobinTemple Gift Pudding Ask
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<if $speech_attitudes is 'bratty'>>
+<<if $speech_attitude is 'bratty'>>
   <<language>>
     <<option 'EN'>>
       "You could leave some for me," you say. Robin stops with the spoon halfway to <<his>> mouth.
@@ -104,14 +108,14 @@
 
 :: RobinTemple Gift Share
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<if ($gift.special || []).includes('spicy')>>
+<<if _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
     <<option 'EN'>>
       You share the food. Robin's eyes water after the next bite. <<He>> fetches two cups of water, then returns to finish eating beside you.
     <<option 'CN'>>
       你们分着吃。又吃了一口，罗宾的眼睛就被辣得湿了。<<He>>取来两杯水，回来挨着你把食物吃完。
   <</language>>
-<<elseif ($gift.special || []).includes('drink')>>
+<<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>
   <<language>>
     <<option 'EN'>>
       You take the spare straw. Robin waits until you have had a drink before taking another sip.
@@ -127,18 +131,19 @@
   <</language>>
 <</if>>
 <br><br>
+<<if $gift is 'sticky_toffee_pudding'>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><</if>>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Alone
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<if ($gift.special || []).includes('spicy')>>
+<<if _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
     <<option 'EN'>>
       Robin insists <<he>> can finish it. <<He>> does, though <<his>> eyes water. After fetching a drink, <<he>> takes the dishes to the kitchen.
     <<option 'CN'>>
       罗宾坚持说自己能吃完。<<He>>的确吃完了，只是眼睛一直被辣得湿漉漉的。喝过水后，<<he>>把餐具送去厨房。
   <</language>>
-<<elseif ($gift.special || []).includes('drink')>>
+<<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>
   <<language>>
     <<option 'EN'>>
       Robin drinks slowly while you sit together. <<He>> saves the second straw for another day.

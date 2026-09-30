@@ -9,6 +9,7 @@
         <h1 class='header gold bold'>罗宾与神殿</h1>
     <</language>>
     <ul class='journal'>
+      <li><<lanSwitch "This path is the mod's own invention. In the base game Robin has no ties to the temple." '罗宾的神殿线是模组的原创内容；原版中罗宾与神殿并无往来。'>></li>
       <<switch $RobinTemple.stage>>
         <<case 'invited'>>
           <li><<language>>
@@ -22,7 +23,7 @@
             <<option 'EN'>>
               Jordan will assess Robin on day <span class='gold'><<= $RobinTemple.exam_day>></span>. Before then, find Robin at the orphanage from 17:00 to 19:15 and go to the temple together.
             <<option 'CN'>>
-              约旦将在第 <span class='gold'><<= $RobinTemple.exam_day>></span> 天考核罗宾。在此之前，17:00 至 19:15 可以去孤儿院找罗宾，一起到神殿准备。
+              约旦将在第 <span class='gold'><<= $RobinTemple.exam_day>></span> 天为罗宾主持纯洁试炼。在此之前，17:00 至 19:15 可以去孤儿院找罗宾，一起到神殿准备。
           <</language>></li>
         <<case 'failed'>>
           <li><<language>>
@@ -42,7 +43,7 @@
               <<option 'EN'>>
                 On school-free weekdays, you can invite Robin from <<his>> room to help at the temple between 09:00 and 16:00. You can also go together after 17:00. Robin helps with the Sunday service.
               <<option 'CN'>>
-                不上学的工作日，09:00 至 16:00 可以到罗宾房间约<<him>>去神殿帮忙。17:00 后也可以同行。罗宾会协助星期日礼拜。
+                不上学的工作日，09:00 至 16:00 可以到罗宾房间约<<him>>去神殿帮忙。17:00 后也可以同行。罗宾会协助星期日弥撒。
             <</language>></li>
           <<if !(maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin'))>>
             <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
@@ -126,7 +127,7 @@
           <<option 'EN'>>
             Your joint vigil failed. Speak with Robin, then arrange another attempt for a later Sunday while you are both initiates.
           <<option 'CN'>>
-            你与罗宾未能通过守夜。先与罗宾谈谈，再趁你们仍是见习者时另约一个星期日。
+            你与罗宾未能通过守夜。先与罗宾谈谈，再趁你们仍是见习教徒时另约一个星期日。
         <</language>></li>
       <<elseif ['monk', 'priest'].includes($temple_rank)
         and $RobinTemple.vigil_result isnot 'passed'
@@ -135,7 +136,7 @@
           <<option 'EN'>>
             You have already passed your own vigil. Robin cannot join you in a second trial and remains an initiate.
           <<option 'CN'>>
-            你已经通过自己的守夜，不能再次参加同一场试炼。罗宾仍是见习者。
+            你已经通过自己的守夜，不能再次参加同一场试炼。罗宾仍是见习教徒。
         <</language>></li>
       <</if>>
       <<if $RobinTemple.joint_sydney_penance>>
@@ -151,6 +152,12 @@
           <<option 'CN'>>
             已完成的共同值班：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
         <</language>></li>
+      <</if>>
+      <<if $RobinTemple.faith_transition isnot ''>>
+        <li><<lanSwitch 'Robin has something to say about the temple. Listen next time you pray together.' '罗宾有些关于神殿的想法想告诉你。下次一起祈祷时可以听听。'>></li>
+      <</if>>
+      <<if $RobinTemple.hospital_stage isnot ''>>
+        <li><<lanSwitch 'Your hospital visit with Robin is unfinished. You can continue it at the hospital entrance.' '罗宾陪同的这次就诊尚未结束。可以在医院门口继续。'>></li>
       <</if>>
       <<if C.npc.Robin.revelationConviction gt 0>>
         <li><<language>>

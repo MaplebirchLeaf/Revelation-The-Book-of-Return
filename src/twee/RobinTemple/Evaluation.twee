@@ -2,7 +2,7 @@
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
   or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
-  or $RobinTemple.penance_day gte 0
+  or $RobinTemple.penance_day gte 0 or $RobinTemple.joint_sydney_penance
   or $RobinTemple.evaluation_day gte 0 and Time.days lt $RobinTemple.evaluation_day + 7
   or ($templePromised isnot '' and ($templePromised isnot 'Sydney' or !$RobinTemple.joint_consent
   or $sydneyromance isnot 1 or C.npc.Sydney.virginity.temple isnot true))
@@ -35,21 +35,21 @@
       <<option 'EN'>>
         An initiate brings the work list. Robin grips the edge of <<his>> seat and looks down. Jordan waits until <<he>> is ready to answer.
       <<option 'CN'>>
-        一名见习者送来工作表。罗宾攥住椅子边缘，垂下目光。约旦等<<he>>准备好，才让<<he>>回答。
+        一名见习教徒送来工作表。罗宾攥住椅子边缘，垂下目光。约旦等<<he>>准备好，才让<<he>>回答。
     <</language>>
   <<elseif C.npc.Robin.dom lte 50>>
     <<language>>
       <<option 'EN'>>
         An initiate brings the work list. Robin looks to you, then answers Jordan quietly when asked about <<his>> own work.
       <<option 'CN'>>
-        一名见习者送来工作表。罗宾先看了看你，等约旦问起，才小声说出自己做过的工作。
+        一名见习教徒送来工作表。罗宾先看了看你，等约旦问起，才小声说出自己做过的工作。
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
         A senior initiate arrives with the evening work list. Robin glances at you before stepping forward to explain <<his>> own part.
       <<option 'CN'>>
-        一名资深见习者带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。
+        一名资深见习教徒带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。
     <</language>>
   <</if>>
   <br><br>
@@ -177,14 +177,19 @@
 <br><br>
 <<set $RobinTemple.evaluation_records_done to true>>
 <<socialiseicon 'ask'>><<lanLink '说起你们初次相识' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'first'>><</lanLink>><br>
+<<if C.npc.Robin.crossdress gte 2>>
+  <<socialiseicon 'ask'>><<lanLink '说起罗宾对衣服的选择' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'clothes'>><</lanLink>><br>
+<</if>>
 <<if $robinSeen.includes('homeBandage') or $robinSeen.includes('favouriteFlower')>>
   <<loveicon 'hug'>><<lanLink '说起孤儿院里相互照顾的日子' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'care'>><</lanLink>><br>
 <</if>>
-<<if $robinSeen.includes('pilloryRescue') or $robinSeen.includes('ubEscapeTogether')>>
+<<if $robinSeen.includes('pilloryRescue') or $robinSeen.includes('ubEscapeTogether')
+  or $robinSeen.includes('templeRescue')>>
   <<socialiseicon 'ask'>><<lanLink '说起你们一起渡过的险境' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'rescue'>><</lanLink>><br>
 <</if>>
 <<if maplebirch.get('Robin')
-  and ($RobinExpansion?.shop or $RobinExpansion?.tutor)>>
+  and ($RobinExpansion?.shop or $RobinExpansion?.tutor
+    or $RobinExpansion?.lemonade gt 0 or $RobinExpansion?.chocolate gt 0)>>
   <<socialiseicon 'ask'>><<lanLink '说起你们一起打理的生意' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'work'>><</lanLink>><br>
 <</if>>
 <<if maplebirch.get('Robin') and $RobinExpansion?.meteorDay gte 0>>
@@ -194,6 +199,14 @@
 :: RobinTemple Evaluation Memory
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<switch $RobinTemple.evaluation_memory>>
+  <<case 'clothes'>>
+    <<language>>
+      <<option 'EN'>>
+        You speak about the clothes Robin wanted to try. Jordan asks whether the choice was Robin's. You leave <<him>> room to answer. "I wanted to," <<he>> says. "It was easier when I knew I wouldn't be laughed at." Jordan asks what you did to help, rather than treating the clothes themselves as a fault.
+      <<option 'CN'>>
+        你说起罗宾曾想试穿的衣服。约旦问，这是否是罗宾自己的选择。你留出机会让<<him>>作答。“是我想试的，”<<he>>说，“知道不会被笑话，就容易些了。”约旦接着问你做过什么来支持罗宾，没有把衣服本身当成过错。
+    <</language>>
+    <<if !$RobinTemple.evaluation_memory_done>><<set $RobinTemple.evaluation_marks += 6>><</if>>
   <<case 'care'>>
     <<language>>
       <<option 'EN'>>
@@ -224,6 +237,21 @@
           You describe the work you helped Robin begin. Robin corrects you when you claim too much credit. <<He>> tells Jordan which decisions <<he>> made alone, and which burdens you shared.
         <<option 'CN'>>
           你说起曾陪罗宾一起做的生意。你把功劳揽得太多时，罗宾纠正了你。<<He>>告诉约旦，哪些决定是自己作的，哪些重担是与你一起分担的。
+      <</language>>
+    <</if>>
+    <<if maplebirch.get('Robin') and $RobinExpansion?.tutor>>
+      <br><br><<language>>
+        <<option 'EN'>>
+          Jordan asks about the tutoring. Robin describes preparing lessons and fitting them around school. "I still have to do the work myself," <<he>> says. Jordan records that distinction.
+        <<option 'CN'>>
+          约旦问起家教。罗宾说起如何备课、怎样把它排在上学之外。“活还是得我自己做。”<<he>>说。约旦把这一区别记下来。
+      <</language>>
+    <<elseif maplebirch.get('Robin') and !$RobinExpansion?.shop>>
+      <br><br><<language>>
+        <<option 'EN'>>
+          Robin describes the stall rather than a shop that has not opened. <<He>> remembers checking the supplies and counting what was left at the end of the day. Jordan asks what each of you contributed.
+        <<option 'CN'>>
+          罗宾说的是摊位，没有把尚未开业的店铺算进去。<<He>>记得如何检查物资，又怎样在一天结束时清点剩下的东西。约旦问起你们各自做了什么。
       <</language>>
     <</if>>
     <<if !$RobinTemple.evaluation_memory_done>><<set $RobinTemple.evaluation_marks += 6>><</if>>
@@ -360,7 +388,7 @@
   <<option 'EN'>>
     You wait where Jordan asked you to. A door opens down the hall, and an initiate passes with clean linen. By the time Robin emerges, <<he>> seems less tense.
   <<option 'CN'>>
-    你照约旦的话留在原地。一名见习者抱着干净的布巾从走廊经过。罗宾出来时，看起来没那么紧张了。
+    你照约旦的话留在原地。一名见习教徒抱着干净的布巾从走廊经过。罗宾出来时，看起来没那么紧张了。
 <</language>>
 <br><br>
 <<if C.npc.Robin.trauma gte 40>>
@@ -466,7 +494,7 @@
   <<if $RobinTemple.evaluation_style is "honest">><<set _score += 10>><<else>><<set _score -= 10>><</if>>
   <<if $RobinTemple.stage is 'member' and $robinromance is 1
     and ['monk', 'priest'].includes($temple_rank) and $RobinTemple.service gte 3
-    and $RobinTemple.penance_day lt 0 and _score gte 105 and C.npc.Robin.revelationConviction gte 110
+    and $RobinTemple.penance_day lt 0 and !$RobinTemple.joint_sydney_penance and _score gte 105 and C.npc.Robin.revelationConviction gte 110
     and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent)
     and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
     and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
