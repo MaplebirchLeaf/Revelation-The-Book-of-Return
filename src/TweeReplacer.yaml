@@ -1,0 +1,104 @@
+# 仅在罗宾入殿后显示神殿信念。
+- passage: 'Widgets'
+  findString: 'return !statOverrides.hasOwnProperty("requirements") || statOverrides.requirements;'
+  replace: 'return (stat !== "revelationConviction" || T.npcData.nam === "Robin" && ["member", "approved", "promised"].includes(V.RobinTemple?.stage)) && (!statOverrides.hasOwnProperty("requirements") || statOverrides.requirements);'
+
+# 社交卡片读取当前存档的属性数值。
+- passage: 'Widgets'
+  findString: 'return Object.assign({}, baseConfig, T.npcOverrides[stat]);'
+  replace: 'return Object.assign({}, baseConfig, T.npcOverrides[stat], stat === "revelationConviction" ? { value: T.npcData[stat] } : {});'
+
+# 罗宾共同立誓后的伴侣豁免。
+- passage: 'Widgets Combat'
+  findString: '<<if $templePromised isnot $_taker>>'
+  replace: '<<if $templePromised isnot $_taker and !($RobinTemple.stage is "promised" and $_taker is "Robin")>>'
+
+# 罗宾共同立誓后的玩家誓言检查。
+- passage: 'Widgets Combat'
+  findString: '<<if $player.virginity.temple is true and (_args[1] is "vaginal" or _args[1] is "penile") and $templePromised isnot $_taker>>'
+  replace: '<<if $player.virginity.temple is true and (_args[1] is "vaginal" or _args[1] is "penile") and $templePromised isnot $_taker and !($RobinTemple.stage is "promised" and $_taker is "Robin")>>'
+
+# 另一处玩家誓言检查的罗宾伴侣豁免。
+- passage: 'Widgets Combat'
+  findString: '<<if $player.virginity.temple is true and (_args[1] is "vaginal" or _args[1] is "penile") and $templePromised isnot _args[0]>>'
+  replace: '<<if $player.virginity.temple is true and (_args[1] is "vaginal" or _args[1] is "penile") and $templePromised isnot _args[0] and !($RobinTemple.stage is "promised" and _args[0] is "Robin")>>'
+
+# 罗宾自己的誓言检查豁免。
+- passage: 'Widgets Combat'
+  findString: '<<if ($_vType is "vaginal" or $_vType is "penile") and $_npc.virginity.temple is true and $templePromised isnot $_npc.fullDescription>>'
+  replace: '<<if ($_vType is "vaginal" or $_vType is "penile") and $_npc.virginity.temple is true and $templePromised isnot $_npc.fullDescription and !($RobinTemple.stage is "promised" and $_npc.fullDescription is "Robin")>>'
+
+# 在罗宾房间加入神殿路线入口。
+- passage: 'Widgets Robin'
+  findString: "\t\t<<robinbully>>"
+  before: "\t\t<<robin-temple-room-link>>\n"
+
+# 守夜试炼中罗宾入场。
+- passage: 'Temple Vigil 3'
+  findString: '<<stress 2>><<gstress>>'
+  after: "\n<<robin-temple-vigil-arrival>>"
+
+# 守夜寒冷阶段的罗宾反应。
+- passage: 'Temple Vigil 7'
+  findString: '<<effects>>'
+  after: "\n<<robin-temple-vigil-cold>>"
+
+# 守夜低语阶段的罗宾反应。
+- passage: 'Temple Vigil 8'
+  findString: '<<effects>>'
+  after: "\n<<robin-temple-vigil-whisper>>"
+
+# 守夜钟声阶段的罗宾反应。
+- passage: 'Temple Vigil 9'
+  findString: '<<person1>>'
+  after: "\n<<robin-temple-vigil-bell>>"
+
+# 火堆选择加入罗宾同行选项。
+- passage: 'Temple Vigil 10'
+  findString: '<<refuseicon>>'
+  before: "<<robin-temple-vigil-options>>\n"
+
+# 玩家独自穿过火堆时处理罗宾。
+- passage: 'Temple Vigil 12'
+  findString: '<<set $player.bodyTemperature to $player.bodyTemperature + 1>><<set $fire to 2>>'
+  after: "\n<<robin-temple-vigil-left-behind>>"
+
+# 普通守夜失败的罗宾收尾。
+- passage: 'Temple Vigil End'
+  findString: '<<person1>>'
+  after: "\n<<robin-temple-vigil-failure>>"
+
+# 悉尼守夜失败的罗宾收尾。
+- passage: 'Temple Vigil End Sydney'
+  findString: '<<person1>>'
+  after: "\n<<robin-temple-vigil-failure>>"
+
+# 大厅普通导航中加入罗宾入口。
+- passage: 'Temple'
+  findString: '<<templeicon "pray">>'
+  before: "<<robin-temple-hall-link>>\n"
+
+# 罗宾与悉尼共同立誓时分流到三人检查。
+- passage: 'Temple'
+  findString: "\t<<if $templePromised is \"Sydney\">>"
+  replace: "\t<<if $templePromised is \"Sydney\" and $RobinTemple.stage is \"promised\">>\n\t\t<<robin-temple-joint-examination>>\n\t<<elseif $templePromised is \"Sydney\">>"
+
+# 仅与罗宾立誓时分流到罗宾检查。
+- passage: 'Temple'
+  findString: "\t<<elseif C.npc.Sydney.init is 1 and C.npc.Sydney.virginity.temple isnot true and $templePromised isnot \"Sydney\">>"
+  before: "\t<<elseif $RobinTemple.stage is \"promised\">>\n\t\t<<robin-temple-monthly-examination>>\n"
+
+# 神殿宿舍加入罗宾座位入口。
+- passage: 'Temple Quarters'
+  findRegex: "\\t<<getouticon>><<link \\[\\[[^\\]\\n]+\\|Temple\\]\\]>><<pass 1>><<\\/link>>"
+  before: "\t<<robin-temple-links>>\n"
+
+# 罗宾在神殿时显示房门留言。
+- passage: "Robin's Room Entrance"
+  findString: '<<elseif _robin_location is "school">>'
+  before: "<<elseif [\"member\", \"approved\", \"promised\"].includes($RobinTemple.stage) and _robin_location is \"temple\">>\n\t<<robin-temple-room-note>>\n"
+
+# 在怨灵覆盖事件池之前加入罗宾忏悔事件。
+- passage: 'Temple Confess'
+  findString: '<!-- Must be last. -->'
+  before: "<<robin-temple-confession-event>>\n"

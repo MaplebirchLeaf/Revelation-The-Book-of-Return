@@ -13,7 +13,7 @@ class RobinTemple extends Module {
   }
 
   public preInit(): void {
-    // A zero value hides this stat on everyone else's Social card. Robin gains it on joining.
+    // 属性默认值为 0；社交卡片仅在罗宾加入神殿后显示这项属性。
     this.core.npc.addStats({
       revelationConviction: {
         default: 0,
@@ -36,21 +36,6 @@ class RobinTemple extends Module {
       'RobinTemple conviction'
     );
     this.core.npc.Schedule.get('Robin').when(() => this.isTempleTime(), 'temple', { id: 'revelation-robin-temple' });
-    this.core.once(':addon:patchStart', () => {
-      this.core.host.modLoader.defineTwineAsset(
-        'script',
-        'game\\03-JavaScript\\ingame.js',
-        source => {
-          const anchor = 'else if (!between(Time.hour, 7, 20)) {';
-          if (source.split(anchor).length !== 2) {
-            this.core.log('RobinTemple: vanilla location anchor must match once', 'ERROR');
-            return source;
-          }
-          return source.replace(anchor, 'else if (maplebirch.npc.Schedule.get("Robin").location === "temple") {\n\t\tT.robin_location = "temple";\n\t} ' + anchor);
-        },
-        'patch'
-      );
-    });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
       action: () => this.dailyUpdate()
@@ -66,7 +51,7 @@ class RobinTemple extends Module {
       return;
     }
     if (!['member', 'approved', 'promised'].includes(state.stage)) return;
-    // Legacy faith drifts only outside the neutral band; contribution follows the school calendar.
+    // 沿用旧版规则：信仰仅在中立区间之外逐日变化，贡献按上学与休息日增减。
     const conviction = robin.revelationConviction ?? 0;
     if (conviction >= 120) robin.revelationConviction = Math.min(200, conviction + 1);
     else if (conviction < 80) robin.revelationConviction = Math.max(0, conviction - 1);
@@ -74,7 +59,7 @@ class RobinTemple extends Module {
     if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
   }
 
-  /** Resolve once per appointment so revisiting the result cannot reroll the fire trial. */
+  /** 每次预约只结算一次，避免重访结果页面时重新抽取火焰考验结果。 */
   public assess(): void {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;

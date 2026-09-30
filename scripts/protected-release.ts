@@ -15,7 +15,7 @@ const tempDir = await mkdtemp(path.join(os.tmpdir(), 'revelation-protected-relea
 try {
   await stat(input);
   await stat(tool);
-  // The tool generates auth.json in no-credential mode. Private keys stay in a temporary directory.
+  // 工具在无凭据模式下生成 auth.json，私钥仅保存在临时目录中。
   const child = Bun.spawn([process.execPath, 'run', tool, '--input', input, '--out', output, '--auto-auth', '--no-credential-password', '--keys-out', path.join(tempDir, 'release.keys.json')], {
     cwd: root,
     stdout: 'inherit',

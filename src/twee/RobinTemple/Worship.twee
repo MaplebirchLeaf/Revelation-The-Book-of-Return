@@ -19,7 +19,7 @@
 :: RobinTemple Prayer
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.prayer_event_day isnot Time.days>>
-  <!-- A day's encounter is chosen once and saved. Revisiting the bench does not reroll it. -->
+  <!-- 每天只抽取并保存一次偶遇事件，重访长椅不会重新抽取。 -->
   <<set $RobinTemple.prayer_event_day to Time.days>>
   <<set $RobinTemple.prayer_event to random(1, 6)>>
   <<set $RobinTemple.prayer_event_done to false>>

@@ -1,0 +1,4 @@
+# 在失踪判断之后、夜间睡觉判断之前接入框架神殿日程，保留原版临时地点覆盖的优先级。
+- fileName: 'ingame.js'
+  from: 'else if (!between(Time.hour, 7, 20)) {'
+  before: "else if (maplebirch.npc.Schedule.get(\"Robin\").location === \"temple\") {\n\t\tT.robin_location = \"temple\";\n\t} "

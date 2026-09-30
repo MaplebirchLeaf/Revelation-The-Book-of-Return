@@ -5,7 +5,7 @@ import { existsSync } from 'node:fs';
 import { rspack, type Configuration } from '@rspack/core';
 import { production } from './scripts/production';
 
-// Each future story module can use the same entry layout without changing the bundler.
+// 后续剧情模块沿用相同的入口目录，不必调整打包配置。
 const entryNames = ['module', 'script', 'game', 'preload', 'earlyload', 'inject_early'] as const;
 const rootDir = import.meta.dirname;
 

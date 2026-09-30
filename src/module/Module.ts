@@ -2,7 +2,7 @@
 
 import { version } from './constants';
 
-/** Registers a module's current-save state before its other runtime hooks. */
+/** 先注册模块的当前存档状态，再注册其他运行时钩子。 */
 abstract class Module {
   public log!: (message: string, level?: string, ...objects: unknown[]) => void;
   public readonly version: string;

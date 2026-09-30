@@ -1,5 +1,5 @@
 # ./public/translations/CN/RobinTemple.yaml
-# Robin temple route links. Twee uses the CN text as the source label.
+# 罗宾神殿线的链接翻译；Twee 使用中文文本作为来源标签。
 'revelation-the-book-of-return:robinTemple:link:abandon': '推开罗宾，独自离开'
 'revelation-the-book-of-return:robinTemple:link:leaveAlone': '独自离开神殿 (0:01)'
 'revelation-the-book-of-return:robinTemple:link:pendant': '把吊坠送给罗宾'

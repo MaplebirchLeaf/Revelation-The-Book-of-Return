@@ -78,7 +78,7 @@
       罗宾看了看空着的床铺，又转向你。“得我们都愿意才行，”<<he>>说，等着你的回答。
   <</language>>
   <br><br>
-  <!-- TODO(user): Add EN/CN intimate invitation prose here. Keep Robin's answer voluntary and the other initiates away from the bunk. -->
+  <!-- TODO（作者）：在此补写英中双语的亲密邀请文本，保留罗宾自愿作答的条件，并确保其他见习者不在床铺附近。 -->
   <<loveicon 'kiss'>><<lanLink '与罗宾做爱' 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
   <<loveicon 'hug'>><<lanLink '只抱着罗宾待一会儿' 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
 <<else>>
@@ -111,7 +111,7 @@
 
 :: RobinTemple Bed Sex
 <<set $outside to 0>><<set $location to 'temple'>>
-<!-- The flag lives in V, so loading a save during combat keeps the temple bunk as the return point. -->
+<!-- 标记保存在 V 中，战斗期间读档也能保留神殿床铺这个返回位置。 -->
 <<if $sexstart is 1 and $RobinTemple.stage is 'promised'
   and $robinromance is 1 and $RobinTemple.penance_day lt 0
   and !$robinmissing and getRobinLocation() is 'temple'
@@ -123,7 +123,7 @@
   <<if $exposed lt 2>><<strip>><</if>>
   <<maninit>><<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
   <<npcexpose>><<npckiss>>
-  <!-- TODO(user): Add EN/CN explicit combat opening here. This branch runs only once; do not put opening prose after the guard. -->
+  <!-- TODO（作者）：在此补写英中双语的战斗开场文本。此分支只执行一次，开场文本应放在条件分支内。 -->
 <</if>>
 <<if $RobinTemple.intimacy_active>>
   <<set $enemyanger to 0>>
@@ -162,7 +162,7 @@
       <<option 'CN'>>
         罗宾收起屏风。“他们快回来了。”<<he>>说，理好毯子后回到工作表旁。
     <</language>>
-    <!-- TODO(user): Add EN/CN explicit aftermath variants here. Branch on $enemyarousal/$enemyhealth/$finish, and keep the cleanup below. -->
+    <!-- TODO（作者）：在此按 $enemyarousal、$enemyhealth 和 $finish 补写英中双语收尾差分，保留下方的清理逻辑。 -->
   <</if>>
   <br><br>
   <<clotheson>><<endcombat>>

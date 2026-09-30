@@ -185,7 +185,7 @@
   and $RobinTemple.night_day isnot Time.days
   and $nightmares lte 0 and random(1, 6) is 1>>
 <<if _nightWake>>
-  <!-- Select the scene before sleeping so a save reload cannot reroll the same wake. -->
+  <!-- 睡前选定并保存场景，避免读档后重新抽取同一次夜醒事件。 -->
   <<set $RobinTemple.night_scene to Weather.precipitation is 'rain' ? 'rain'
     : $RobinTemple.vigil_result is 'passed' and random(1, 3) is 1 ? 'embers'
     : random(1, 3) is 1 ? 'ledger'

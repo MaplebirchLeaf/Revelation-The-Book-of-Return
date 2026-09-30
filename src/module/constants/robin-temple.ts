@@ -1,6 +1,6 @@
 // ./src/module/constants/robin-temple.ts
 
-/** The route belongs to the current SugarCube save, not to the browser session. */
+/** 路线状态保存在当前 SugarCube 存档中，不属于浏览器会话。 */
 export interface RobinTempleState {
   stage: 'none' | 'invited' | 'scheduled' | 'failed' | 'member' | 'approved' | 'promised';
   exam_day: number;

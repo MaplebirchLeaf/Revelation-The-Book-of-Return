@@ -9,7 +9,7 @@ const asset = await createZipPackage(root);
 const output = path.join(root, 'package', asset.fileName);
 await mkdir(path.dirname(output), { recursive: true });
 
-// Preserve timestamps when a package has not changed, as in Deadwood-Reblooms.
+// 与 Deadwood-Reblooms 一致，包内容未变化时保留原时间戳。
 const current = await readFile(output).catch(() => null);
 if (current?.equals(asset.buffer)) console.log(`Package unchanged: ${output}`);
 else {

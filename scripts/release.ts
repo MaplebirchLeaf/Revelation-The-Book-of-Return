@@ -18,7 +18,7 @@ let tagged: string | null = null;
 try {
   tagged = git('rev-parse', `${tag}^{commit}`);
 } catch {
-  // The first release attempt has no tag yet.
+  // 首次发布时尚未创建标签。
 }
 if (tagged && tagged !== head) throw new Error(`${tag} points to another commit.`);
 if (!tagged) git('tag', '-a', tag, '-m', `Revelation: The Book of Return ${tag}`);
