@@ -1,9 +1,9 @@
 :: RobinTemple Evaluation
-<!-- ./src/twee/RobinTemple/Evaluation.twee -->
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
   or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
   or $RobinTemple.penance_day gte 0
+  or $RobinTemple.evaluation_day gte 0 and Time.days lt $RobinTemple.evaluation_day + 7
   or ($templePromised isnot '' and ($templePromised isnot 'Sydney' or !$RobinTemple.joint_consent
     or $sydneyromance isnot 1 or C.npc.Sydney.virginity.temple isnot true))
   or $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true>>
@@ -22,16 +22,72 @@
   <<option 'CN'>>约旦关上侧室的门，打开笔记本。“我会分别问你们，”约旦说，“我想知道你们一起作了什么选择，各自又会作什么选择。”
 <</language>>
 <br><br>
-<<language>>
-  <<option 'EN'>>A senior initiate arrives with the evening work list. Robin glances at you before stepping forward to explain <<his>> own part.
-  <<option 'CN'>>一名资深见习者带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。
-<</language>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>An initiate brings the work list. Robin grips the edge of <<his>> seat and looks down. Jordan waits until <<he>> is ready to answer.
+    <<option 'CN'>>一名见习者送来工作表。罗宾攥住椅子边缘，垂下目光。约旦等<<he>>准备好，才让<<he>>回答。
+  <</language>>
+<<elseif C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>An initiate brings the work list. Robin looks to you, then answers Jordan quietly when asked about <<his>> own work.
+    <<option 'CN'>>一名见习者送来工作表。罗宾先看了看你，等约旦问起，才小声说出自己做过的工作。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>A senior initiate arrives with the evening work list. Robin glances at you before stepping forward to explain <<his>> own part.
+    <<option 'CN'>>一名资深见习者带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。
+  <</language>>
+<</if>>
 <br><br>
 <<templeicon 'altar'>><<lanLink '让约旦查看工作记录' 'RobinTemple Evaluation Records'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Evaluation Records
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RobinTemple.grace gte 90>>
+  <<language>>
+    <<option 'EN'>><span class="green">Jordan is very pleased with Robin’s contribution to the temple.</span>
+    <<option 'CN'>><span class="green">约旦对罗宾的神殿贡献十分满意。</span>
+  <</language>>
+<<elseif $RobinTemple.grace gte 75>>
+  <<language>>
+    <<option 'EN'>><span class="teal">Jordan approves of Robin’s contribution to the temple.</span>
+    <<option 'CN'>><span class="teal">约旦认可罗宾对神殿的贡献。</span>
+  <</language>>
+<<elseif $RobinTemple.grace gte 60>>
+  <<language>>
+    <<option 'EN'>><span class="lblue">Jordan acknowledges Robin’s contribution, but expects more work.</span>
+    <<option 'CN'>><span class="lblue">约旦承认罗宾的贡献，也希望<<he>>继续努力。</span>
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>><span class="red">Jordan wants to see more of Robin’s contribution before approving the promise.</span>
+    <<option 'CN'>><span class="red">约旦认为罗宾对神殿的贡献还有待提高。</span>
+  <</language>>
+<</if>>
+<br><br>
+<<if $grace gte 90>>
+  <<language>>
+    <<option 'EN'>><span class="green">Jordan praises your outstanding contribution to the temple.</span>
+    <<option 'CN'>><span class="green">约旦称赞你对神殿作出的出色贡献。</span>
+  <</language>>
+<<elseif $grace gte 50>>
+  <<language>>
+    <<option 'EN'>><span class="teal">Jordan recognises the work you have done for the temple.</span>
+    <<option 'CN'>><span class="teal">约旦认可你为神殿做过的工作。</span>
+  <</language>>
+<<elseif $grace gte 1>>
+  <<language>>
+    <<option 'EN'>><span class="lblue">Jordan acknowledges your contribution, but reminds you there is still work to do.</span>
+    <<option 'CN'>><span class="lblue">约旦承认你的贡献，也提醒你仍有需要努力的地方。</span>
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>><span class="red">Jordan considers your contribution insufficient.</span>
+    <<option 'CN'>><span class="red">约旦认为你对神殿的贡献仍然不足。</span>
+  <</language>>
+<</if>>
+<br><br>
 <<if $RobinTemple.service gte 5>>
   <<set $RobinTemple.evaluation_marks += 10>>
   <<language>>
@@ -47,10 +103,22 @@
 <br><br>
 <<if C.npc.Robin.revelationConviction gte 120>>
   <<set $RobinTemple.evaluation_marks += 10>>
-  <<language>>
-    <<option 'EN'>>Asked why <<he>> still comes after work, Robin answers without looking to you. <<He>> speaks of the people <<he>> has met here and the duties <<he>> wants to keep doing.
-    <<option 'CN'>>约旦问罗宾为何忙完生意还愿意来。罗宾没有看向你，自己说起在这里认识的人，以及<<he>>想继续做的事。
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>Robin struggles to answer at first. Jordan gives <<him>> time. Eventually <<he>> mentions someone <<he>> helped here, still keeping <<his>> eyes on the list.
+      <<option 'CN'>>罗宾起初说不出话。约旦给了<<him>>一些时间。过了一会儿，<<he>>提起自己在这里帮助过的人，目光仍停在工作表上。
+    <</language>>
+  <<elseif C.npc.Robin.dom lte 50>>
+    <<language>>
+      <<option 'EN'>>Robin glances at you before answering quietly. "I like helping here," <<he>> says, then names a duty <<he>> hopes to keep doing.
+      <<option 'CN'>>罗宾看了你一眼，才小声回答。“我喜欢在这里帮忙。”<<he>>说，随后提起一项想继续做的工作。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>Asked why <<he>> keeps coming to the temple, Robin speaks about the people <<he>> has met here and the duties <<he>> wants to keep doing.
+      <<option 'CN'>>约旦问罗宾为何一直来神殿。罗宾说起在这里认识的人，以及<<he>>想继续做的事。
+    <</language>>
+  <</if>>
 <<else>>
   <<language>>
     <<option 'EN'>>Robin answers carefully, pausing when Jordan asks whether joining was entirely <<his>> choice.
@@ -94,10 +162,17 @@
     <</language>>
     <<set $RobinTemple.evaluation_marks += 6>>
   <<case 'work'>>
-    <<language>>
-      <<option 'EN'>>You describe the work you helped Robin begin. Robin corrects you when you claim too much credit. <<He>> tells Jordan which decisions <<he>> made alone, and which burdens you shared.
-      <<option 'CN'>>你说起曾陪罗宾一起做的生意。你把功劳揽得太多时，罗宾纠正了你。<<He>>告诉约旦，哪些决定是自己作的，哪些重担是与你一起分担的。
-    <</language>>
+    <<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
+      <<language>>
+        <<option 'EN'>>You describe the work you share. Robin lets you finish, then quietly adds something <<he>> did <<himself>>. Jordan turns to <<him>> and asks about it.
+        <<option 'CN'>>你说起共同做过的生意。罗宾等你说完，才轻声补上一件自己做过的事。约旦转向<<him>>，继续问了下去。
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>You describe the work you helped Robin begin. Robin corrects you when you claim too much credit. <<He>> tells Jordan which decisions <<he>> made alone, and which burdens you shared.
+        <<option 'CN'>>你说起曾陪罗宾一起做的生意。你把功劳揽得太多时，罗宾纠正了你。<<He>>告诉约旦，哪些决定是自己作的，哪些重担是与你一起分担的。
+      <</language>>
+    <</if>>
     <<set $RobinTemple.evaluation_marks += 6>>
   <<case 'sky'>>
     <<language>>
@@ -106,10 +181,22 @@
     <</language>>
     <<set $RobinTemple.evaluation_marks += 6>>
   <<default>>
-    <<language>>
-      <<option 'EN'>>You tell Jordan how you first met. Robin interrupts once to correct a detail, and you both laugh. The story matters less for its beginning than for everything you have done since.
-      <<option 'CN'>>你告诉约旦，你们是怎样认识的。罗宾打断你，纠正了一处细节。你们都笑了。比起开头，这段相识之后的日子更值得说。
-    <</language>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>You tell Jordan how you first met. Robin listens quietly. When Jordan asks <<him>> about it, <<he>> nods and adds a few words.
+        <<option 'CN'>>你告诉约旦，你们是怎样认识的。罗宾安静地听着。约旦向<<him>>问起时，<<he>>点了点头，又补充了几句话。
+      <</language>>
+    <<elseif C.npc.Robin.dom lte 50>>
+      <<language>>
+        <<option 'EN'>>You tell Jordan how you first met. Robin smiles shyly and waits for a pause before adding a detail you forgot.
+        <<option 'CN'>>你告诉约旦，你们是怎样认识的。罗宾腼腆地笑了笑，等你停下来，才补上一处你忘记的细节。
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>You tell Jordan how you first met. Robin interrupts once to correct a detail, and you both laugh. The story matters less for its beginning than for everything you have done since.
+        <<option 'CN'>>你告诉约旦，你们是怎样认识的。罗宾打断你，纠正了一处细节。你们都笑了。比起开头，这段相识之后的日子更值得说。
+      <</language>>
+    <</if>>
     <<set $RobinTemple.evaluation_marks += 3>>
 <</switch>>
 <br><br>
@@ -126,15 +213,27 @@
   <<set $RobinTemple.evaluation_belief_done to true>>
   <<if $angel gte 6>>
     <<language>>
-      <<option 'EN'>>Jordan notices the light around you. Robin says the glow is less important than the things you have chosen to do when no one was looking.
-      <<option 'CN'>>约旦注意到你周身的光。罗宾说，比起光芒，<<he>>更在意无人看见时你做出的选择。
+      <<option 'EN'>>Jordan notices the light around you and records it with approval. Robin stares at the glow for a moment, then looks back at you.
+      <<option 'CN'>>约旦注意到你周身的光，认可地在纸上记了一笔。罗宾望着光芒出了会儿神，又看向你。
     <</language>>
     <<set $RobinTemple.evaluation_marks += 12>>
   <<elseif $fallenangel gte 2 or $demon gte 6>>
-    <<language>>
-      <<option 'EN'>>Jordan studies your changed appearance. Robin steps forward. "Ask what we do here," <<he>> says, "not what we look like."
-      <<option 'CN'>>约旦端详着你变化后的模样。罗宾向前一步。“问问我们在这里做了什么，”<<he>>说，“别只看我们的外表。”
-    <</language>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>Jordan studies your changed appearance. Robin tenses beside you. When Jordan asks about your work, <<he>> manages to name a task you completed together.
+        <<option 'CN'>>约旦端详着你变化后的模样。罗宾在你身旁绷紧了身子。约旦问起你们做过的事时，<<he>>总算说出了一项共同完成的工作。
+      <</language>>
+    <<elseif C.npc.Robin.dom lte 50>>
+      <<language>>
+        <<option 'EN'>>Jordan studies your changed appearance. Robin hesitates. "We have been helping here," <<he>> says quietly. "Does that count too?"
+        <<option 'CN'>>约旦端详着你变化后的模样。罗宾迟疑片刻。“我们也一直在这里帮忙，”<<he>>小声说，“这些……也能算上吗？”
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>Jordan studies your changed appearance. "You know we have been helping here," Robin says. "Could you look at that too?"
+        <<option 'CN'>>约旦端详着你变化后的模样。“你知道我们一直在这里帮忙，”罗宾说，“也能看看那些吗？”
+      <</language>>
+    <</if>>
     <<if $forgiveintro is 1>>
       <<language>>
         <<option 'EN'>>Jordan recalls that you came to ask for forgiveness rather than hide. Jordan marks the work you have done since.
@@ -150,8 +249,8 @@
     <</if>>
   <<elseif $purity gte 900>>
     <<language>>
-      <<option 'EN'>>Jordan knows how seriously you take the temple’s discipline. Robin reminds <<him>> that you have also found room to listen to people who struggle with it.
-      <<option 'CN'>>约旦知道你认真遵守神殿戒律。罗宾提醒<<him>>，你也愿意倾听那些为此感到困惑的人。
+      <<option 'EN'>>Jordan notes how carefully you have kept the temple’s discipline. <<nnpc_He 'Jordan'>> asks you to continue doing so. Robin listens beside you.
+      <<option 'CN'>>约旦记下你认真遵守神殿戒律的表现，要求你继续保持。罗宾在你身旁听着。
     <</language>>
     <<set $RobinTemple.evaluation_marks += 8>>
   <<else>>
@@ -180,10 +279,22 @@
   <<option 'CN'>>你照约旦的话留在原地。一名见习者抱着干净的布巾从走廊经过。罗宾出来时，看起来没那么紧张了。
 <</language>>
 <br><br>
-<<language>>
-  <<option 'EN'>>"I told <<him>> what I think," Robin says. "Now it is your turn."
-  <<option 'CN'>>“我把自己的想法告诉<<him>>了，”罗宾说，“现在轮到你。”
-<</language>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>"I tried to explain," Robin whispers. <<He>> rubs <<his>> hands together. "Jordan said I could take my time."
+    <<option 'CN'>>“我尽量说清楚了。”罗宾低声说，搓了搓双手。“约旦说，不用急着回答。”
+  <</language>>
+<<elseif C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>"I think I said it right," Robin says, glancing at the door. "<<nnpc_He 'Jordan'>> wants to talk to you now."
+    <<option 'CN'>>“我想，我应该说清楚了。”罗宾看了一眼门。“<<nnpc_He 'Jordan'>>现在想和你谈谈。”
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>"I told <<nnpc_him 'Jordan'>> what I think," Robin says. "Now it is your turn."
+    <<option 'CN'>>“我把自己的想法告诉<<nnpc_him 'Jordan'>>了，”罗宾说，“现在轮到你。”
+  <</language>>
+<</if>>
 <<set $RobinTemple.evaluation_marks += 3>>
 <br><br>
 <<templeicon 'altar'>><<lanLink '回答约旦的问题' 'RobinTemple Evaluation Questions'>><</lanLink>><br>
@@ -191,10 +302,22 @@
 :: RobinTemple Evaluation Eavesdrop
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if currentSkillValue('skulduggery') gte random(350, 750)>>
-  <<language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>There is a long silence before Robin answers. "I do want to be here," <<he>> says quietly. Jordan asks what work <<he>> feels able to do, and waits for <<him>> to answer.
+      <<option 'CN'>>屋里安静了好一会儿，罗宾才低声回答：“我确实想来这里。”约旦问<<he>>觉得自己能做哪些工作，等着<<he>>回答。
+    <</language>>
+  <<elseif C.npc.Robin.dom lte 50>>
+    <<language>>
+      <<option 'EN'>>Robin asks whether <<he>> can still earn money and help the children at the orphanage. "Of course," Jordan says. "But I also expect you to carry out your duties here."
+      <<option 'CN'>>罗宾问，自己是否还能挣钱，帮孤儿院里的孩子。“当然，”约旦说，“但我也要求你履行这里的职责。”
+    <</language>>
+  <<else>>
+    <<language>>
       <<option 'EN'>>You catch Robin saying that <<he>> wants to remain responsible for <<his>> business and the children, whatever the temple calls <<him>>. Jordan asks if <<he>> can still promise to return here when needed. "Yes," Robin says.
       <<option 'CN'>>你听见罗宾说，无论神殿如何称呼<<him>>，<<he>>都想继续照顾生意和孤儿院的孩子。约旦问，需要时<<he>>是否仍愿意回来。“愿意，”罗宾答道。
-  <</language>>
+    <</language>>
+  <</if>>
   <<set $RobinTemple.evaluation_marks += 2>>
 <<else>>
   <<language>>
@@ -218,7 +341,10 @@
 
 :: RobinTemple Evaluation Result
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<npc Robin>><<person1>>
-<<set _score to $RobinTemple.service * 5 + $grace / 2 + C.npc.Robin.dom / 2 - C.npc.Robin.trauma / 2 + C.npc.Robin.revelationConviction / 4 + $RobinTemple.evaluation_marks>>
+<!-- 沿用旧版双方贡献分档，在结果页直接计算，避免重访工作记录时重复加分。 -->
+<<set _robinContributionScore to $RobinTemple.grace gte 90 ? 10 : $RobinTemple.grace gte 75 ? 5 : $RobinTemple.grace gte 60 ? 2 : -5>>
+<<set _playerContributionScore to $grace gte 90 ? 10 : $grace gte 50 ? 5 : $grace gte 1 ? 2 : -5>>
+<<set _score to $RobinTemple.service * 5 + _robinContributionScore + _playerContributionScore + C.npc.Robin.dom / 2 - C.npc.Robin.trauma / 2 + C.npc.Robin.revelationConviction / 4 + $RobinTemple.evaluation_marks>>
 <<if $RobinTemple.evaluation_style is "honest">><<set _score += 10>><<else>><<set _score -= 10>><</if>>
 <<if _score gte 105 and C.npc.Robin.revelationConviction gte 110
   and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent)
@@ -226,9 +352,26 @@
   and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
   <<set $RobinTemple.stage to "approved">>
   <<language>>
-    <<option 'EN'>>You speak of showing up, sharing work, and asking Robin what <<he>> needs. Robin adds that <<he>> will do the same for you. Jordan nods.
-    <<option 'CN'>>你说自己会守约、分担工作，也会问罗宾真正需要什么。罗宾补充说，<<he>>也会这样对你。约旦点了点头。
+    <<option 'EN'>>Jordan checks the notes against your work records, then nods. "You have both shown me enough."
+    <<option 'CN'>>约旦把笔记和工作记录对照了一遍，随后点头。“你们两人的表现已经足够了。”
   <</language>>
+  <br><br>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>Robin lets out a breath <<he>> had been holding. <<He>> looks at you, still gripping the edge of <<his>> seat.
+      <<option 'CN'>>罗宾长长地松了口气。<<He>>望向你，手仍攥着椅子边缘。
+    <</language>>
+  <<elseif C.npc.Robin.dom lte 50>>
+    <<language>>
+      <<option 'EN'>>Robin looks up in surprise, then smiles at you. "We did it," <<he>> whispers.
+      <<option 'CN'>>罗宾惊讶地抬起头，随后朝你笑了。“我们通过了。”<<he>>小声说。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>Robin smiles and reaches for your hand. "Thank you," <<he>> tells Jordan.
+      <<option 'CN'>>罗宾笑着伸手牵住你，又向约旦道谢。
+    <</language>>
+  <</if>>
   <br><br>
   <<language>>
     <<option 'EN'>>"You may make the promise here. Come back when you are both ready."
@@ -245,10 +388,17 @@
     <<option 'CN'>>约旦合上笔记本。“你们彼此关心，但我还没看到，当生活要求更多时，这份承诺要如何维系。继续一起做事，一周后再来。”
   <</language>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>Robin is disappointed, but <<he>> takes your hand on the way out.
-    <<option 'CN'>>罗宾有些失望，出门时却还是牵住了你的手。
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>Robin leaves quietly beside you. Outside, <<he>> asks whether you will come with <<him>> next time too.
+      <<option 'CN'>>罗宾安静地走在你身旁。出了门，<<he>>问下次你还会不会陪<<him>>一起来。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>Robin is disappointed, but <<he>> takes your hand on the way out.
+      <<option 'CN'>>罗宾有些失望，出门时却还是牵住了你的手。
+    <</language>>
+  <</if>>
   <br><br><<language>>
     <<option 'EN'>><span class="blue">You can request another evaluation in one week.</span>
     <<option 'CN'>><span class="blue">一周后可以重新申请评估。</span>

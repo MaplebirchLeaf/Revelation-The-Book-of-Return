@@ -1,5 +1,4 @@
 :: RobinTemple Bunk
-<!-- ./src/twee/RobinTemple/Bunk.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<set $wardrobe_location to 'temple'>>
 <<bedclotheson 'RobinTemple Bed'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set _robinHere to $RobinTemple.stage isnot 'none' and !$robinmissing

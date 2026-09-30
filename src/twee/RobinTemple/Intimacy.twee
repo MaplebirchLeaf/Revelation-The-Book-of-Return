@@ -1,5 +1,4 @@
 :: RobinTemple Bed Afternoon
-<!-- ./src/twee/RobinTemple/Intimacy.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'promised' and $robinromance is 1
   and $RobinTemple.penance_day lt 0 and !$robinmissing

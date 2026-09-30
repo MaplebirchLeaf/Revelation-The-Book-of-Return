@@ -1,5 +1,4 @@
 :: RobinTemple Transformation
-<!-- ./src/twee/RobinTemple/Transformation.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.transformation_day isnot Time.days>>
   <<set $RobinTemple.transformation_day to Time.days>>

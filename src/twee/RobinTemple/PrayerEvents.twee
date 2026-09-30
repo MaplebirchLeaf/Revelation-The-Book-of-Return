@@ -1,5 +1,4 @@
 :: RobinTemple Prayer Event
-<!-- ./src/twee/RobinTemple/PrayerEvents.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set $RobinTemple.prayer_event_done to true>>
 <<switch $RobinTemple.prayer_event>>
@@ -28,10 +27,22 @@
     <<socialiseicon 'ask'>><<lanLink '帮罗宾去问约旦 (0:15)' 'RobinTemple Prayer Shelter'>><<pass 15>><</lanLink>><br>
     <<templeicon 'altar'>><<lanLink '留下来陪访客等候' 'RobinTemple Prayer Wait'>><</lanLink>><br>
   <<case 4>>
-    <<language>>
-      <<option 'EN'>>Robin says <<he>> heard someone arguing behind the side-room door. Neither of you knows what happened. "We can ask Jordan," <<he>> says, "rather than guessing."
-      <<option 'CN'>>罗宾说听见侧室里有人争执。你们都不知道发生了什么。“可以去问约旦，”<<he>>说，“别只在这里猜。”
-    <</language>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>Robin flinches at a raised voice behind the door. <<He>> moves closer to you and looks toward the hall. "Could we ask Jordan?" <<he>> whispers.
+        <<option 'CN'>>门后有人提高了嗓门，罗宾一颤，朝你靠近了一些，又望向大厅。“能去问问约旦吗？”<<he>>小声说。
+      <</language>>
+    <<elseif C.npc.Robin.dom lte 50>>
+      <<language>>
+        <<option 'EN'>>Robin says <<he>> heard arguing behind the door. Neither of you knows what happened. <<He>> looks at you. "Should we ask Jordan?"
+        <<option 'CN'>>罗宾说听见门后有人争执。你们都不知道发生了什么。<<He>>看向你：“要不要问问约旦？”
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>Robin says <<he>> heard someone arguing behind the side-room door. Neither of you knows what happened. "We can ask Jordan," <<he>> says, "rather than guessing."
+        <<option 'CN'>>罗宾说听见侧室里有人争执。你们都不知道发生了什么。“可以去问约旦，”<<he>>说，“别只在这里猜。”
+      <</language>>
+    <</if>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '请约旦说明情况' 'RobinTemple Prayer Ask Jordan'>><</lanLink>><br>
     <<getouticon>><<lanLink '先和罗宾离开' 'RobinTemple Prayer Leave'>><</lanLink>><br>
@@ -103,9 +114,25 @@
 :: RobinTemple Prayer Ask Jordan
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>Jordan says an initiate asked to stop a frightening task. "The initiate is safe," Jordan says. "I will speak with the attendants before that task is assigned again." Robin asks to be present for the conversation.
-  <<option 'CN'>>约旦说，一名见习者请求停止一项令自己害怕的工作。“那名见习者现在安全了，”约旦说，“再次分配这项工作前，我会先和侍从谈谈。”罗宾提出也想在场。
+  <<option 'EN'>>Jordan says an initiate became frightened during a task. "It is being dealt with," <<nnpc_he 'Jordan'>> says. "Leave the attendants to me."
+  <<option 'CN'>>约旦说，一名见习者在做事时受了惊吓。“这件事正在处理，”<<nnpc_he 'Jordan'>>说，“侍从那边由我来问。”
 <</language>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>Robin nods without asking anything more. Outside the room, <<he>> asks you to sit with <<him>> for a while.
+    <<option 'CN'>>罗宾点点头，没有再问。出了房间，<<he>>请你陪<<him>>坐一会儿。
+  <</language>>
+<<elseif C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>"Is the initiate all right?" Robin asks quietly. Jordan says they are resting. Robin looks relieved.
+    <<option 'CN'>>“那名见习者还好吗？”罗宾小声问。约旦说对方正在休息。罗宾松了口气。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go.
+    <<option 'CN'>>罗宾问能不能给那名见习者送些水。约旦点头，告诉<<him>>该去哪里。
+  <</language>>
+<</if>>
 <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
 <<npcincr Robin dom 1>><br><br><<gdom>>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>

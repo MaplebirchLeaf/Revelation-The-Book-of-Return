@@ -1,5 +1,4 @@
 :: RobinTemple Corner
-<!-- ./src/twee/RobinTemple/Quarters.twee -->
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>Robin has been given a narrow shelf and a place at the long table in the quarters. A schoolbook rests beside temple notes.

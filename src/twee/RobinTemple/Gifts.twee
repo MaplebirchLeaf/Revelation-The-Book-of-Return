@@ -1,5 +1,4 @@
 :: RobinTemple Gifts List
-<!-- ./src/twee/RobinTemple/Gifts.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>What will you give Robin?

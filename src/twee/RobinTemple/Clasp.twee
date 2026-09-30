@@ -1,5 +1,4 @@
 :: RobinTemple Clasp
-<!-- ./src/twee/RobinTemple/Clasp.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set $RobinTemple.clasp_discussed to true>>
 <<if $RobinTemple.stage is 'promised'>>

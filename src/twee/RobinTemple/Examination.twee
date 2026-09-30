@@ -1,5 +1,4 @@
 :: RobinTemple Penance Widgets [widget]
-<!-- ./src/twee/RobinTemple/Examination.twee -->
 <<widget 'robin-temple-penance-exit'>>
   <<templeicon 'altar'>><<lanLink '与罗宾一同面对惩戒' 'RobinTemple Penance Trial'>><</lanLink>><br>
 <</widget>>

@@ -1,5 +1,4 @@
 :: RobinTemple Joint Examination
-<!-- ./src/twee/RobinTemple/JointExamination.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
   <<language>>

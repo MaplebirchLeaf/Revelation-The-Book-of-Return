@@ -1,5 +1,4 @@
 :: RobinTemple Vigil Before
-<!-- ./src/twee/RobinTemple/Vigil.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $temple_rank is 'initiate'
   and ['member', 'approved', 'promised'].includes($RobinTemple.stage)

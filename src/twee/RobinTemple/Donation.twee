@@ -1,5 +1,4 @@
 :: RobinTemple Donation
-<!-- ./src/twee/RobinTemple/Donation.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>An initiate carries the collection plate along the benches. Robin checks <<his>> pocket and looks at you. The temple also needs linen and food for the people it shelters.

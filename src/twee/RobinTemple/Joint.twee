@@ -1,5 +1,4 @@
 :: RobinTemple Joint Consent
-<!-- ./src/twee/RobinTemple/Joint.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'member' and $templePromised is 'Sydney'
   and $robinromance is 1 and $sydneyromance is 1

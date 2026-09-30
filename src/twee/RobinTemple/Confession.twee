@@ -1,5 +1,4 @@
 :: RobinTemple Confession Widgets [widget]
-<!-- ./src/twee/RobinTemple/Confession.twee -->
 <<widget 'robin-temple-confession-event'>>
   <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)
     and $RobinTemple.confession_day isnot Time.days

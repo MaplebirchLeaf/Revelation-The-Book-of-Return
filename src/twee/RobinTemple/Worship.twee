@@ -1,5 +1,4 @@
 :: RobinTemple Worship Widgets [widget]
-<!-- ./src/twee/RobinTemple/Worship.twee -->
 <<widget 'robin-temple-hall-link'>>
   <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'
     and !$RobinTemple.joint_consent and $exposed lte 0>>
@@ -130,10 +129,17 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.prayer_day isnot Time.days>>
   <<set $RobinTemple.prayer_day to Time.days>>
-  <<language>>
-    <<option 'EN'>>You tell Robin what has been troubling you. <<He>> does not try to finish your sentence. When you run out of words, <<he>> asks which part of it you want to face first.
-    <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>没有替你把话说完。等你一时语塞，<<he>>才问，你想先面对哪一部分。
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>You tell Robin what has been troubling you. <<He>> listens with <<his>> hands tucked into <<his>> sleeves. "I do not know what to say," <<he>> admits. "But I can stay."
+      <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>把手藏在袖口里，安静地听着。“我不知道该说什么，”<<he>>承认，“不过我可以陪着你。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>You tell Robin what has been troubling you. <<He>> listens, then admits that <<he>> has wondered about some of the same things. You try to put your questions into words together.
+      <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>听完，承认自己也想过其中一些问题。你们一起试着把疑问说清楚。
+    <</language>>
+  <</if>>
   <br><br>
   <<language>>
     <<option 'EN'>>"We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.

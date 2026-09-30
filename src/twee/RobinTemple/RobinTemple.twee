@@ -1,5 +1,4 @@
 :: RobinTemple Widgets [widget]
-<!-- ./src/twee/RobinTemple/RobinTemple.twee -->
 <<widget 'robin-temple-return-home'>>
   <<set _robinResidence to maplebirch.get('VP')?.realEstate.residenceOf('Robin')>>
   <<if _robinResidence>>

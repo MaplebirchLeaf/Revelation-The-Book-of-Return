@@ -1,5 +1,4 @@
 :: RobinTemple Invitation
-<!-- ./src/twee/RobinTemple/Invitation.twee -->
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
 <<if C.npc.Robin.dom gt 50>>
   <<language>>

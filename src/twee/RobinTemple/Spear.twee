@@ -1,5 +1,4 @@
 :: RobinTemple Spear
-<!-- ./src/twee/RobinTemple/Spear.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen>>
   <<set $RobinTemple.spear_seen to true>>
@@ -9,8 +8,8 @@
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>><<He>> checks the map with you, marking the last place Jordan knew the vessel had been seen. "Come back and tell me what happened," <<he>> says.
-    <<option 'CN'>><<He>>陪你看地图，标出约旦最后得知船只出现的地点。“回来以后，告诉我发生了什么。”<<he>>说。
+    <<option 'EN'>>Robin says Jordan suggested starting with the museum, which only opens at weekends. "You could ask Winter," <<he>> says. "Come back and tell me what happened."
+    <<option 'CN'>>罗宾说，约旦建议先去博物馆，那里只在周末开放。“可以去问温特，”<<he>>说，“回来以后，告诉我发生了什么。”
   <</language>>
   <br><br>
   <<loveicon 'hug'>><<lanLink '答应回来告诉罗宾' 'RobinTemple Spear Reassure'>><</lanLink>><br>
@@ -35,10 +34,22 @@
 
 :: RobinTemple Spear Prepare
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>Robin asks how you mean to return if the route changes. You work through two possibilities together. <<He>> cannot make the journey safe, but <<he>> makes sure someone will know where to look.
-  <<option 'CN'>>罗宾问你，如果路线有变打算怎样回来。你们一起想出两种办法。<<He>>无法替你排除路上的危险，却能确保有人知道去哪里找你。
-<</language>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>Robin checks your bag, then falls quiet. "Will you be back tonight?" <<he>> asks at last. You tell <<him>> where you plan to start.
+    <<option 'CN'>>罗宾看了看你的包，随后安静下来。“你今晚会回来吗？”<<he>>终于问道。你告诉<<him>>，自己打算先去哪里。
+  <</language>>
+<<elseif C.npc.Robin.dom lte 50>>
+  <<language>>
+    <<option 'EN'>>Robin asks whether you have packed something to eat. <<He>> hesitates before asking when you expect to come back. You go through your preparations together.
+    <<option 'CN'>>罗宾问你有没有带吃的。<<He>>迟疑了一下，又问你准备什么时候回来。你们一起检查带上的东西。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin helps check your bag for food and water. "Let me know where you go after the museum," <<he>> says. "Just so I know where to look if you are late."
+    <<option 'CN'>>罗宾帮你检查包里的食物和水。“离开博物馆后要去哪里，也告诉我一声，”<<he>>说，“这样你要是回来晚了，我就知道去哪里找你。”
+  <</language>>
+<</if>>
 <<willpower 1>><<npcincr Robin dom 1>><br><br><<gwillpower>><<gdom>>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
@@ -63,8 +74,8 @@
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>Robin asks what you learned. When you falter, <<he>> reminds you that the route home mattered as much as the thing you were sent to find.
-      <<option 'CN'>>罗宾问你一路看到了什么。你一时说不下去，<<he>>提醒你，回来的路和你被派去寻找的东西一样重要。
+      <<option 'EN'>>Robin asks what happened. When you falter, <<he>> stops asking. "I am glad you came back," <<he>> says.
+      <<option 'CN'>>罗宾问你路上发生了什么。你一时说不下去，<<he>>便不再追问。“你回来了就好。”<<he>>说。
     <</language>>
   <</if>>
   <<npcincr Robin love 2>><<stress -3>><br><br><<glove>><<lstress>>

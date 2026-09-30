@@ -1,5 +1,4 @@
 :: RobinTemple Journal Widgets [widget]
-<!-- ./src/twee/RobinTemple/Journal.twee -->
 <<widget 'robin-temple-journal'>>
   <<if $RobinTemple?.stage and $RobinTemple.stage isnot 'none'>>
     <hr>
@@ -47,8 +46,8 @@
             <</language>></li>
           <<elseif $robinromance is 1 and $RobinTemple.service gte 3>>
             <li><<language>>
-              <<option 'EN'>>Ask Robin about making a promise during an evening shift. Jordan will weigh your shared work and Robin’s conviction.
-              <<option 'CN'>>晚间值班时可以和罗宾谈承诺仪式。约旦会考虑你们共同完成的工作，以及罗宾对誓言的信念。
+              <<option 'EN'>>Ask Robin about making a promise during an evening shift. Jordan will weigh both your contributions, your shared work and Robin’s conviction.
+              <<option 'CN'>>晚间值班时可以和罗宾谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信念。
             <</language>></li>
           <<else>>
             <li><<language>>

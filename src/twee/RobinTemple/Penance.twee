@@ -1,5 +1,4 @@
 :: RobinTemple Penance Hearing
-<!-- ./src/twee/RobinTemple/Penance.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>Jordan takes you to the side of the hall. "The examination cannot tell me who chose to break a vow," Jordan says. "I will listen to you both before deciding what follows."

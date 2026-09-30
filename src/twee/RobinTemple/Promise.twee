@@ -1,5 +1,4 @@
 :: RobinTemple Promise Talk
-<!-- ./src/twee/RobinTemple/Promise.twee -->
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
   or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
@@ -32,10 +31,22 @@
     <<option 'CN'>>你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了许久才回答。
   <</language>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>"Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."
-    <<option 'CN'>>“愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>Robin takes a while to answer. "I do want to," <<he>> whispers. "Will you stay near me while I talk to Jordan?"
+      <<option 'CN'>>罗宾过了一会儿才回答。“我确实愿意，”<<he>>低声说，“我和约旦说话时，你能陪在旁边吗？”
+    <</language>>
+  <<elseif C.npc.Robin.dom lte 50>>
+    <<language>>
+      <<option 'EN'>>"Y-yes," <<he>> says, looking down. "I want to tell Jordan too. Could we go together?"
+      <<option 'CN'>>“愿、愿意，”<<he>>垂下目光，“我也想告诉约旦。我们一起去，好吗？”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>"Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."
+      <<option 'CN'>>“愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”
+    <</language>>
+  <</if>>
   <br><br>
   <<if $RobinTemple.evaluation_day lt 0 or Time.days gte $RobinTemple.evaluation_day + 7>>
     <<templeicon "altar">><<lanLink '请约旦为你们评估' 'RobinTemple Evaluation'>><</lanLink>><br>
