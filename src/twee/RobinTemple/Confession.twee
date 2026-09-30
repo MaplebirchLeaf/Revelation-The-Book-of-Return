@@ -62,7 +62,7 @@
       <</if>>
     <</addinlineevent>>
     <<if $robinpaid is 1 and $RobinTemple.confession_recognized
-      and !(maplebirch.get('RobinExpansion')
+      and !(maplebirch.get('Robin')
         and ($RobinExpansion.selfRent or $RobinExpansion.baileyDefeated))>>
       <<addinlineevent 'robin_temple_confession_debt' 1>>
         <<npc Robin>><<person1>>

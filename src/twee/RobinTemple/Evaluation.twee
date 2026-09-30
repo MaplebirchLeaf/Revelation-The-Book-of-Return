@@ -183,11 +183,11 @@
 <<if $robinSeen.includes('pilloryRescue') or $robinSeen.includes('ubEscapeTogether')>>
   <<socialiseicon 'ask'>><<lanLink '说起你们一起渡过的险境' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'rescue'>><</lanLink>><br>
 <</if>>
-<<if maplebirch.get('RobinExpansion')
+<<if maplebirch.get('Robin')
   and ($RobinExpansion?.shop or $RobinExpansion?.tutor)>>
   <<socialiseicon 'ask'>><<lanLink '说起你们一起打理的生意' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'work'>><</lanLink>><br>
 <</if>>
-<<if maplebirch.get('RobinExpansion') and $RobinExpansion?.meteorDay gte 0>>
+<<if maplebirch.get('Robin') and $RobinExpansion?.meteorDay gte 0>>
   <<loveicon 'hug'>><<lanLink '说起一起看过的流星' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'sky'>><</lanLink>><br>
 <</if>>
 

@@ -47,12 +47,12 @@
       and getRobinLocation() is 'orphanage'
       and Time.hour gte 17
       and (Time.hour lt 19 or Time.hour is 19 and Time.minute lte 15)
-      and !(maplebirch.get('RobinExpansion') and $RobinExpansion?.tutor
+      and !(maplebirch.get('Robin') and $RobinExpansion?.tutor
         and Time.schoolDay and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
-      and !(maplebirch.get('RobinExpansion') and $RobinExpansion?.shop
+      and !(maplebirch.get('Robin') and $RobinExpansion?.shop
         and $RobinExpansion.shopStaff lt 1 and (Time.hour gt 17 or Time.minute gt 15))>>
       <<templeicon 'altar'>><<lanLink '陪罗宾去神殿准备考核 (0:45)' 'RobinTemple Prepare'>>
-        <<run setRobinLocationOverride('temple', maplebirch.get('RobinExpansion') && $RobinExpansion?.shop && $RobinExpansion.shopStaff < 1 ? [17] : [17, 18, 19])>>
+        <<run setRobinLocationOverride('temple', maplebirch.get('Robin') && $RobinExpansion?.shop && $RobinExpansion.shopStaff < 1 ? [17] : [17, 18, 19])>>
         <<pass 45>>
       <</lanLink>><br>
     <<elseif $RobinTemple.stage is "failed" and Time.days gte $RobinTemple.exam_day + 7>>
@@ -60,9 +60,9 @@
     <<elseif ['member', 'approved', 'promised'].includes($RobinTemple.stage)
       and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
       and getRobinLocation() is 'orphanage'
-      and !(maplebirch.get('RobinExpansion') and $RobinExpansion?.tutor and Time.schoolDay
+      and !(maplebirch.get('Robin') and $RobinExpansion?.tutor and Time.schoolDay
         and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
-      and !(maplebirch.get('RobinExpansion') and $RobinExpansion?.shop
+      and !(maplebirch.get('Robin') and $RobinExpansion?.shop
         and $RobinExpansion.shopStaff lt 1 and Time.hour gte 17)
       and ((Time.hour gte 17 and (Time.hour lt 19 or Time.hour is 19 and Time.minute lt 45))
         or (!Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9

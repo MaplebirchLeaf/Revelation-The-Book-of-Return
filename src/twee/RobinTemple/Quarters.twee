@@ -6,7 +6,7 @@
   <<option 'CN'>>
     罗宾在宿舍里分到一小格书架和长桌旁的座位。课本挨着神殿笔记。
 <</language>>
-<<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
+<<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
   <<language>>
     <<option 'EN'>>
       A page from the shop ledger marks Robin's place.

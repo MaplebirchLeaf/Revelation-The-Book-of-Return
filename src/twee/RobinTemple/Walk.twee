@@ -117,7 +117,7 @@
 :: RobinTemple Walk Home
 <<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set $RobinTemple.walk_day to Time.days>>
-<<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
+<<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
   <<language>>
     <<option 'EN'>>
       Robin tells you which child has learned to tie their own shoes, and which one keeps asking to help at the shop. "Helping mostly means asking for a drink," <<he>> adds with a smile.

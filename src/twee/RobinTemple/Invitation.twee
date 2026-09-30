@@ -23,7 +23,7 @@
     你向罗宾解释神殿对信徒的要求。罗宾没有打断你。听到那里的工作和庇护时，<<he>>望向窗外。
 <</language>>
 <br><br>
-<<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
+<<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
   <<language>>
     <<option 'EN'>>
       "I have the shop to run," Robin says. "And the children here. Would I have to leave them?"
@@ -53,7 +53,7 @@
     <<option 'CN'>>
       “那里愿意照顾你，是件好事，”罗宾说，“不过要不要加入，我想先亲自去看看。”
   <</language>>
-<<elseif !(maplebirch.get('RobinExpansion') and $RobinExpansion?.baileyDefeated)>>
+<<elseif !(maplebirch.get('Robin') and $RobinExpansion?.baileyDefeated)>>
   <<language>>
     <<option 'EN'>>
       "Would Bailey let me?" Robin asks. <<He>> rubs the edge of <<his>> sleeve. "I don't want to cause trouble for the children."

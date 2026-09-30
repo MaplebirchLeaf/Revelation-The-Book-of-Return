@@ -45,7 +45,7 @@ class RobinTemple extends Module {
   private dailyUpdate(): void {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;
-    if (!state || robin?.init !== 1 || V.robinmissing || V.robin.timer.hurt !== 0 || robin.trauma >= 80 || (this.core.get('RobinExpansion') && V.RobinExpansion?.asylum?.status === 'admitted')) return;
+    if (!state || robin?.init !== 1 || V.robinmissing || V.robin.timer.hurt !== 0 || robin.trauma >= 80 || (this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted')) return;
     if (state.stage === 'scheduled' || state.stage === 'failed') {
       state.assessment_bonus = Math.min(15, state.assessment_bonus + (state.pendant ? 3 : 1));
       return;
@@ -97,7 +97,7 @@ class RobinTemple extends Module {
       V.robinmissing ||
       V.robin.timer.hurt !== 0 ||
       C.npc.Robin.trauma >= 80 ||
-      (this.core.get('RobinExpansion') && V.RobinExpansion?.asylum?.status === 'admitted')
+      (this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted')
     )
       return false;
 

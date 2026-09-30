@@ -167,7 +167,7 @@
           <<option 'CN'>>
             罗宾的神殿贡献：<span class='teal'><<= $RobinTemple.grace>></span>/100。
         <</language>></li>
-        <<if maplebirch.get('RobinExpansion')>>
+        <<if maplebirch.get('Robin')>>
           <li><<language>>
             <<option 'EN'>>
               Temple duties add <span class='gold'>£<<= $RobinTemple.grace * 10>></span> to Robin's weekly income. This is included in <<his>> business and rent accounts.
