@@ -1,130 +1,165 @@
-:: Revelation Robin Temple Worship Widgets [widget]
+:: RobinTemple Worship Widgets [widget]
 <!-- ./src/twee/RobinTemple/Worship.twee -->
-<<widget 'revelation-robin-temple-hall-link'>>
-  <<if $RevelationRobinTemple.stage is 'promised' and $templePromised is 'Sydney'
-    and !$RevelationRobinTemple.joint_consent and $exposed lte 0>>
-    <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼一起谈清楚' 'Revelation Robin Temple Joint Reconcile'>><</lanLink>><br>
+<<widget 'robin-temple-hall-link'>>
+  <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'
+    and !$RobinTemple.joint_consent and $exposed lte 0>>
+    <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼一起谈清楚' 'RobinTemple Joint Reconcile'>><</lanLink>><br>
     <br>
   <</if>>
-  <<if ['member', 'approved', 'promised'].includes($RevelationRobinTemple.stage)
+  <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)
     and $temple_chastity_timer gt 0
     and $stress lt $stressmax and $exposed lte 0
-    and ((Time.hour gte 17 and Time.hour lt 20 and getRobinLocation() is 'temple')
-      or (!Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 11 and Time.hour lt 13))
-    and !$robinmissing>>
-    <<templeicon 'altar'>><<lanLink '和罗宾一起祈祷' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+    and Time.hour gte 11 and Time.hour lt 20
+    and getRobinLocation() is 'temple' and !$robinmissing>>
+    <<templeicon 'altar'>><<lanLink '和罗宾一起祈祷' 'RobinTemple Prayer'>><</lanLink>><br>
     <br>
   <</if>>
 <</widget>>
 
-:: Revelation Robin Temple Prayer
+:: RobinTemple Prayer
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.prayer_event_day isnot Time.days>>
+<<if $RobinTemple.prayer_event_day isnot Time.days>>
   <!-- A day's encounter is chosen once and saved. Revisiting the bench does not reroll it. -->
-  <<set $RevelationRobinTemple.prayer_event_day to Time.days>>
-  <<set $RevelationRobinTemple.prayer_event to random(1, 6)>>
-  <<set $RevelationRobinTemple.prayer_event_done to false>>
+  <<set $RobinTemple.prayer_event_day to Time.days>>
+  <<set $RobinTemple.prayer_event to random(1, 6)>>
+  <<set $RobinTemple.prayer_event_done to false>>
 <</if>>
-<<lanSwitch 'Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.' '罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。'>>
+<<language>>
+  <<option 'EN'>>Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.
+  <<option 'CN'>>罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
+<</language>>
 <br><br>
-<<if !$RevelationRobinTemple.prayer_event_done and $RevelationRobinTemple.prayer_event lte 4>>
-  <<switch $RevelationRobinTemple.prayer_event>>
-    <<case 1>><<lanSwitch 'A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.' '一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。'>>
-    <<case 2>><<lanSwitch 'A younger initiate lingers in the aisle with a torn work list.' '一名年幼的见习者拿着撕破的工作表，在过道里迟迟不走。'>>
-    <<case 3>><<lanSwitch 'A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.' '一名疲惫的访客坐在长椅另一头，双手抱住了头。'>>
-    <<case 4>><<lanSwitch 'The side-room door closes. Robin catches the uneasy look on your face.' '侧室的门合上了。罗宾注意到你脸上的不安。'>>
+<<if !$RobinTemple.prayer_event_done and $RobinTemple.prayer_event lte 4>>
+  <<switch $RobinTemple.prayer_event>>
+    <<case 1>><<language>>
+      <<option 'EN'>>A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.
+      <<option 'CN'>>一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。
+    <</language>>
+    <<case 2>><<language>>
+      <<option 'EN'>>A younger initiate lingers in the aisle with a torn work list.
+      <<option 'CN'>>一名年幼的见习者拿着撕破的工作表，在过道里迟迟不走。
+    <</language>>
+    <<case 3>><<language>>
+      <<option 'EN'>>A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.
+      <<option 'CN'>>一名疲惫的访客坐在长椅另一头，双手抱住了头。
+    <</language>>
+    <<case 4>><<language>>
+      <<option 'EN'>>The side-room door closes. Robin catches the uneasy look on your face.
+      <<option 'CN'>>侧室的门合上了。罗宾注意到你脸上的不安。
+    <</language>>
   <</switch>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '和罗宾看看发生了什么' 'Revelation Robin Temple Prayer Event'>><</lanLink>><br><br>
+  <<socialiseicon 'ask'>><<lanLink '和罗宾看看发生了什么' 'RobinTemple Prayer Event'>><</lanLink>><br><br>
 <</if>>
-<<if $RevelationRobinTemple.prayer_day isnot Time.days>>
-  <<lanSwitch 'The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.' '最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。'>>
+<<if $RobinTemple.prayer_day isnot Time.days>>
+  <<language>>
+    <<option 'EN'>>The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.
+    <<option 'CN'>>最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
+  <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'Revelation Robin Temple Prayer Others'>><<pass 60>><</lanLink>><br>
-  <<loveicon 'hug'>><<lanLink '和罗宾谈谈心里的疑虑 (0:30)' 'Revelation Robin Temple Prayer Doubt'>><<pass 30>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '和罗宾谈谈心里的疑虑 (0:30)' 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><br>
 <<else>>
-  <<lanSwitch 'You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.' '今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。'>>
+  <<language>>
+    <<option 'EN'>>You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.
+    <<option 'CN'>>今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。
+  <</language>>
   <br><br>
 <</if>>
 <<if $stress gte $stressmax * 0.8 and $stress lt $stressmax>>
-  <<loveicon 'hug'>><<lanLink '告诉罗宾你快撑不住了 (0:30)' 'Revelation Robin Temple Rest'>><<pass 30>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '告诉罗宾你快撑不住了 (0:30)' 'RobinTemple Rest'>><<pass 30>><</lanLink>><br>
 <</if>>
-<<skinicon 'give'>><<lanLink '给罗宾带来的食物' 'Revelation Robin Temple Gifts List'>><</lanLink>><br>
-<<if Time.hour lt 19 and $RevelationRobinTemple.walk_day isnot Time.days>>
-  <<loveicon 'hug'>><<lanLink '问罗宾要不要一起走走' 'Revelation Robin Temple Walk'>><</lanLink>><br>
+<<skinicon 'give'>><<lanLink '给罗宾带来的食物' 'RobinTemple Gifts List'>><</lanLink>><br>
+<<if Time.hour lt 19 and $RobinTemple.walk_day isnot Time.days>>
+  <<loveicon 'hug'>><<lanLink '问罗宾要不要一起走走' 'RobinTemple Walk'>><</lanLink>><br>
 <</if>>
-<<if $temple_spear_mission is 1 and !$spear_vessel and !$RevelationRobinTemple.spear_seen and $robinromance is 1>>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾取矛任务的事' 'Revelation Robin Temple Spear'>><</lanLink>><br>
+<<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾取矛任务的事' 'RobinTemple Spear'>><</lanLink>><br>
 <</if>>
-<<if $temple_spear_mission gte 2 and $RevelationRobinTemple.spear_seen and !$RevelationRobinTemple.spear_return_seen>>
-  <<socialiseicon 'ask'>><<lanLink '把取矛的经过告诉罗宾' 'Revelation Robin Temple Spear Return'>><</lanLink>><br>
+<<if $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
+  <<socialiseicon 'ask'>><<lanLink '把取矛的经过告诉罗宾' 'RobinTemple Spear Return'>><</lanLink>><br>
 <</if>>
-<<if $RevelationRobinTemple.donation_day isnot Time.days>>
-  <<templeicon 'altar'>><<lanLink '和罗宾一起为神殿捐赠' 'Revelation Robin Temple Donation'>><</lanLink>><br>
+<<if $RobinTemple.donation_day isnot Time.days>>
+  <<templeicon 'altar'>><<lanLink '和罗宾一起为神殿捐赠' 'RobinTemple Donation'>><</lanLink>><br>
 <</if>>
-<<if $RevelationRobinTemple.transformation_day isnot Time.days>>
-  <<set $RevelationRobinTemple.transformation_count to 0>>
+<<if $RobinTemple.transformation_day isnot Time.days>>
+  <<set $RobinTemple.transformation_count to 0>>
 <</if>>
-<<if $RevelationRobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
+<<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
   <<set _parts to checkTFparts()>>
   <<if $fox gte 6 and _parts.foxTail>>
-    <<tficon 'fox'>><<lanLink '让罗宾靠在你的尾巴上 (0:10)' 'Revelation Robin Temple Transformation'>><<set $RevelationRobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
+    <<tficon 'fox'>><<lanLink '让罗宾靠在你的尾巴上 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
   <<elseif $wolfgirl gte 6>>
-    <<tficon 'wolf'>><<lanLink '用头轻碰罗宾 (0:10)' 'Revelation Robin Temple Transformation'>><<set $RevelationRobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
+    <<tficon 'wolf'>><<lanLink '用头轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
   <<elseif $cat gte 6>>
-    <<tficon 'cat'>><<lanLink '挨着罗宾坐下 (0:10)' 'Revelation Robin Temple Transformation'>><<set $RevelationRobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
+    <<tficon 'cat'>><<lanLink '挨着罗宾坐下 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
   <<elseif $harpy gte 6>>
-    <<birdicon 'sing'>><<lanLink '为罗宾唱歌 (0:10)' 'Revelation Robin Temple Transformation'>><<set $RevelationRobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
+    <<birdicon 'sing'>><<lanLink '为罗宾唱歌 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
   <<elseif $cow gte 6>>
-    <<tficon 'cow'>><<lanLink '用角轻碰罗宾 (0:10)' 'Revelation Robin Temple Transformation'>><<set $RevelationRobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
+    <<tficon 'cow'>><<lanLink '用角轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
   <</if>>
 <</if>>
 <br>
 <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
 
-:: Revelation Robin Temple Prayer Others
+:: RobinTemple Prayer Others
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.prayer_day isnot Time.days>>
-  <<set $RevelationRobinTemple.prayer_day to Time.days>>
-  <<lanSwitch 'You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.' '你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。'>>
+<<if $RobinTemple.prayer_day isnot Time.days>>
+  <<set $RobinTemple.prayer_day to Time.days>>
+  <<language>>
+    <<option 'EN'>>You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.
+    <<option 'CN'>>你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。
+  <</language>>
   <br><br>
-  <<lanSwitch 'When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.' '一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。'>>
+  <<language>>
+    <<option 'EN'>>When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.
+    <<option 'CN'>>一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
+  <</language>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<grace 2>><<stress -4>><br><br><<ggrace>><<lstress>>
 <<else>>
-  <<lanSwitch 'You have already prayed together today.' '今天你们已经一起祈祷过。'>>
+  <<language>>
+    <<option 'EN'>>You have already prayed together today.
+    <<option 'CN'>>今天你们已经一起祈祷过。
+  <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Prayer Doubt
+:: RobinTemple Prayer Doubt
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.prayer_day isnot Time.days>>
-  <<set $RevelationRobinTemple.prayer_day to Time.days>>
-  <<lanSwitch
-    'You tell Robin what has been troubling you. <<He>> does not try to finish your sentence. When you run out of words, <<he>> asks which part of it you want to face first.'
-    '你把心里的烦恼告诉罗宾。<<He>>没有替你把话说完。等你一时语塞，<<he>>才问，你想先面对哪一部分。'
-  >>
+<<if $RobinTemple.prayer_day isnot Time.days>>
+  <<set $RobinTemple.prayer_day to Time.days>>
+  <<language>>
+    <<option 'EN'>>You tell Robin what has been troubling you. <<He>> does not try to finish your sentence. When you run out of words, <<he>> asks which part of it you want to face first.
+    <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>没有替你把话说完。等你一时语塞，<<he>>才问，你想先面对哪一部分。
+  <</language>>
   <br><br>
-  <<lanSwitch '"We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.' '“如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。'>>
+  <<language>>
+    <<option 'EN'>>"We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.
+    <<option 'CN'>>“如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
+  <</language>>
   <<npcincr Robin love 1>><<stress -5>><br><br><<glove>><<lstress>>
 <<else>>
-  <<lanSwitch 'You have already talked today.' '今天你们已经谈过了。'>>
+  <<language>>
+    <<option 'EN'>>You have already talked today.
+    <<option 'CN'>>今天你们已经谈过了。
+  <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Rest
+:: RobinTemple Rest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.'
-  '你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。'
->>
+<<language>>
+  <<option 'EN'>>You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.
+  <<option 'CN'>>你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。
+<</language>>
 <br><br>
-<<lanSwitch
-  'Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."'
-  '罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”'
->>
+<<language>>
+  <<option 'EN'>>Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
+  <<option 'CN'>>罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
+<</language>>
 <<stress -12>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
-<<bedicon>><<lanLink '在罗宾床边再坐一会儿' 'Revelation Robin Temple Bunk'>><</lanLink>><br>
+<<bedicon>><<lanLink '在罗宾床边再坐一会儿' 'RobinTemple Bunk'>><</lanLink>><br>
 <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>

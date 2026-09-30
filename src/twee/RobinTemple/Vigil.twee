@@ -1,111 +1,535 @@
-:: Revelation Robin Temple Vigil Before
+:: RobinTemple Vigil Before
 <!-- ./src/twee/RobinTemple/Vigil.twee -->
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<set $RevelationRobinTemple.vigil_day to Time.days>><<set $RevelationRobinTemple.vigil_followup to false>>
-<<set $RevelationRobinTemple.vigil_recovery to false>>
-<<lanSwitch
-  'Robin waits beside the stairs to the cloister. Jordan has allowed <<him>> to join the other initiates, but neither of you knows how far <<he>> can go. <<He>> folds your hands between <<his>> own.'
-  '罗宾在通往回廊的楼梯旁等你。约旦准许<<him>>跟其他见习者一同参加，但你们都不知道<<he>>能走多远。<<He>>把你的手拢在<<his>>掌心。'
->>
-<br><br>
-<<lanSwitch '"I will stay as long as I can," <<he>> says. <<He>> lets go before Jordan calls your name.' '“我会尽量陪着你，”<<he>>说。约旦喊你的名字之前，<<he>>松开了手。'>>
-<br><br>
-<<templeicon "trialcontinue">><<lanLink '开始守夜试炼 (9:00)' 'Temple Vigil'>><</lanLink>><br>
-<<getouticon>><<lanLink '暂时退出' 'Temple'>><<set $RevelationRobinTemple.vigil_day to -1>><</lanLink>><br>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $temple_rank is 'initiate'
+  and ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+  and $RobinTemple.vigil_result isnot 'passed'
+  and $RobinTemple.service gte 3
+  and C.npc.Robin.revelationConviction gte 110
+  and $RobinTemple.penance_day lt 0>>
+  <<language>>
+    <<option 'EN'>>Robin has copied the hour of the vigil onto the back of a receipt. "I've heard what happens in the cloister," <<he>> says. "I don't think I could get through the fire alone."
+    <<option 'CN'>>罗宾把守夜的时间抄在一张收据背面。“我听说了回廊里会发生什么，”<<he>>说，“我恐怕没法独自穿过那堆火。”
+  <</language>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>You tell <<him>> you intend to attempt the vigil yourself. You could ask Jordan to let Robin enter with you. You would have to keep your own footing and guide <<him>> through the night. Robin looks relieved, but asks to hear what happens if either of you turns back.
+    <<option 'CN'>>你告诉<<him>>，自己也准备参加守夜。你可以请约旦准许罗宾与你同行。你既要坚持走下去，也要引导<<him>>熬过这一夜。罗宾松了口气，却仍想知道，若你们有一人退缩会怎样。
+  <</language>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>Jordan will let you try again after a failed vigil, but <span class='red'>only while you are still an initiate</span>. Once you become a monk, you cannot take the same trial a second time. Robin can only advance beside you.
+    <<option 'CN'>>约旦允许试炼失败的见习者下周重试，但<span class='red'>仅限于你尚未晋升时</span>。一旦你成为修士，便不能再次参加同一场试炼。罗宾只能与你一同晋升。
+  <</language>>
+  <br><br>
+  <<if Time.weekDay is 1>>
+    <<set _daysUntilSunday to 7>>
+  <<else>>
+    <<set _daysUntilSunday to 8 - Time.weekDay>>
+  <</if>>
+  <<socialiseicon 'ask'>><<lanLink '约好一起参加星期日守夜' 'RobinTemple Vigil Scheduled'>>
+    <<set $RobinTemple.vigil_day to Time.days + _daysUntilSunday>>
+    <<set $RobinTemple.vigil_readiness to 0>>
+    <<set $RobinTemple.vigil_attending to false>>
+    <<set $RobinTemple.vigil_result to ''>>
+    <<set $RobinTemple.vigil_followup to false>>
+    <<set $RobinTemple.vigil_recovery to false>>
+    <<set $RobinTemple.vigil_with_sydney to false>>
+  <</lanLink>><br>
+  <<getouticon>><<lanLink '让罗宾再考虑' 'RobinTemple Corner'>><</lanLink>><br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>You cannot arrange a joint vigil now. Robin must first join the temple, work beside you and choose to enter. You must still be an initiate.
+    <<option 'CN'>>现在不能约定共同守夜。罗宾需要先加入神殿，与你一起做事，并亲自决定参加。你也必须仍是见习者。
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<</if>>
 
-:: Revelation Robin Temple Vigil Fire
+:: RobinTemple Vigil Scheduled
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<language>>
+  <<option 'EN'>>Robin circles Sunday's date on the receipt. "I will be there," <<he>> says, then asks you to go over the route with <<him>> before the trial.
+  <<option 'CN'>>罗宾在收据上圈出星期日的日期。“我会去，”<<he>>说，随后请你在试炼前陪<<him>>认清回廊的路。
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>><span class='gold'>Meet Jordan at 20:00 on Sunday.</span> Prepare with Robin on at least two separate days. At the pyre, you can then choose whose hand to take.
+  <<option 'CN'>><span class='gold'>星期日 20:00 去见约旦。</span>至少在两个不同的日子陪罗宾准备。到了火堆前，你再决定要牵谁的手。
+<</language>>
+<br><br>
+<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+
+:: RobinTemple Vigil Prepare
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $temple_rank is 'initiate'
+  and $RobinTemple.vigil_day gte Time.days
+  and $RobinTemple.vigil_prepared_day isnot Time.days>>
+  <<set $RobinTemple.vigil_prepared_day to Time.days>>
+  <<set $RobinTemple.vigil_readiness to Math.min(30, $RobinTemple.vigil_readiness + 10)>>
+  <<language>>
+    <<option 'EN'>>You walk the cloister with Robin, naming the doors and the attendants' stations. Robin repeats the route back to you, then asks about the fire. You answer honestly.
+    <<option 'CN'>>你陪罗宾走过回廊，认清每扇门和侍从的位置。罗宾向你复述回来的路，随后问起火堆。你如实回答。
+  <</language>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>"If I lose my way, will you call to me?" <<he>> asks. You practise speaking to each other across the empty hall until <<he>> can answer without looking for you first.
+    <<option 'CN'>>“如果我迷了路，你会叫我吗？”<<he>>问。你们在空荡的大厅两端练习呼唤，直到<<he>>不必先寻找你的身影，也能应声。
+  <</language>>
+  <br><br>
+  <span class='green'><<lanSwitch 'Robin is better prepared.' '罗宾准备得更充分了。'>></span>
+<<else>>
+  <<language>>
+    <<option 'EN'>>There is no more to prepare today.
+    <<option 'CN'>>今天已经没有更多需要准备的事了。
+  <</language>>
+<</if>>
+<br><br>
+<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+
+:: RobinTemple Vigil Widgets [widget]
+<<widget 'robin-temple-vigil-arrival'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_day is Time.days
+    and $RobinTemple.vigil_readiness gte 20
+    and !$robinmissing and $robin.timer.hurt is 0
+    and C.npc.Robin.trauma lt 80
+    and ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
+    <<set $RobinTemple.vigil_attending to true>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>Robin stands among the initiates with the route you practised folded in one hand. After Jordan's warning, Robin looks for you. You point out where to wait, and Robin moves there before the bell rings again.
+      <<option 'CN'>>罗宾站在见习者中间，手里攥着你们练习时记下的路线。约旦说完警告，罗宾便朝你望来。你指给罗宾看该站的位置，第二次钟声响起前，罗宾走了过去。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-cold'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day gte 0
+    and Time.days gte $RobinTemple.vigil_day
+    and Time.days - $RobinTemple.vigil_day lte 1
+    and $RobinTemple.vigil_readiness gte 20
+    and $RobinTemple.vigil_result is ''>>
+    <<language>>
+      <<option 'EN'>>Robin is trembling. When your eyes meet, Robin copies the breathing rhythm you practised in the quarters. The night is still too much to face alone.
+      <<option 'CN'>>罗宾抖得厉害。与你对上目光后，罗宾照着你们在宿舍里练过的节奏呼吸。这一夜仍难以独自面对。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-whisper'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day gte 0
+    and Time.days gte $RobinTemple.vigil_day
+    and Time.days - $RobinTemple.vigil_day lte 1
+    and $RobinTemple.vigil_readiness gte 20
+    and $RobinTemple.vigil_result is ''>>
+    <<language>>
+      <<option 'EN'>>Robin presses both hands over both ears. You call Robin's name. Robin takes a step toward your voice rather than toward the whisper in the wind.
+      <<option 'CN'>>罗宾捂住耳朵。你喊罗宾的名字。罗宾朝你的声音迈了一步，没有跟随风里的低语。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-bell'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day gte 0
+    and Time.days gte $RobinTemple.vigil_day
+    and Time.days - $RobinTemple.vigil_day lte 1
+    and $RobinTemple.vigil_readiness gte 20
+    and $RobinTemple.vigil_result is ''>>
+    <<language>>
+      <<option 'EN'>>Robin has reached the last hour, but watches you instead of the wood. Robin waits for you to show where to carry the next log.
+      <<option 'CN'>>罗宾熬到了最后一段，却一直看着你，没有看柴堆。罗宾等你指明下一根木柴该送到哪里。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-left-behind'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day is Time.days - 1
+    and $RobinTemple.vigil_readiness gte 20
+    and $RobinTemple.vigil_result is ''
+    and $RobinTemple.vigil_attempt_day isnot Time.days>>
+    <<set $RobinTemple.vigil_result to 'failed'>>
+    <<set $RobinTemple.vigil_attempt_day to Time.days>>
+    <<language>>
+      <<option 'EN'>>Robin reaches after you, but loses footing before the fire. An attendant leads Robin out. You cannot return to take Robin's hand now.
+      <<option 'CN'>>罗宾伸手想跟上你，却在火边站不稳。侍从带罗宾离开。你现在已经无法回头去牵罗宾的手。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-failure'>>
+  <<if $RobinTemple.vigil_result is 'failed'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_attempt_day is Time.days>>
+    <<language>>
+      <<option 'EN'>>Robin follows you out of the cloister. <<if $RobinTemple.vigil_with_sydney>>Sydney stays with you both.<</if>> Jordan leads you towards the warmth inside.
+      <<option 'CN'>>罗宾跟着你走出回廊。<<if $RobinTemple.vigil_with_sydney>>悉尼也陪在你们身旁。<</if>>约旦带你们走向屋里的暖意。
+    <</language>>
+    <br><br>
+  <<elseif $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day gte 0
+    and Time.days gte $RobinTemple.vigil_day
+    and Time.days - $RobinTemple.vigil_day lte 1
+    and $RobinTemple.vigil_readiness gte 20
+    and $RobinTemple.vigil_result is ''
+    and $RobinTemple.vigil_attempt_day isnot Time.days>>
+    <<set $RobinTemple.vigil_result to 'failed'>>
+    <<set $RobinTemple.vigil_attempt_day to Time.days>>
+    <<set $RobinTemple.vigil_recovery to true>>
+    <<language>>
+      <<option 'EN'>>Robin comes out of the cloister behind you and reaches for your hand, but is shaking too much to hold it. Jordan helps you both inside.
+      <<option 'CN'>>罗宾在你身后走出回廊，伸手想牵你，却抖得握不住。约旦扶你们一起进屋。
+    <</language>>
+    <br><br>
+  <</if>>
+<</widget>>
+
+<<widget 'robin-temple-vigil-options'>>
+  <<if $temple_rank is 'initiate'
+    and $RobinTemple.vigil_attending
+    and $RobinTemple.vigil_day is Time.days - 1
+    and $RobinTemple.vigil_attempt_day isnot Time.days
+    and $RobinTemple.vigil_result isnot 'passed'
+    and $RobinTemple.vigil_readiness gte 20
+    and C.npc.Robin.revelationConviction gte 110
+    and !$robinmissing and $robin.timer.hurt is 0
+    and C.npc.Robin.trauma lt 80
+    and $RobinTemple.penance_day lt 0
+    and ($robinromance is 1 or C.npc.Robin.love gte 90)>>
+    <<if $sydney.rank is 'initiate'
+      and ($sydneyromance is 1 or C.npc.Sydney.love gte 90)>>
+      <<templeicon 'trialcontinue'>><<lanLink '牵起罗宾与悉尼的手 (1:00)' 'RobinTemple Vigil Fire'>>
+        <<set $RobinTemple.vigil_with_sydney to true>>
+        <<set $RobinTemple.vigil_attempt_day to Time.days>>
+        <<set $phase to 2>>
+        <<stress 8>><<pain 8>>
+      <</lanLink>><<gstress>><<gpain>>
+      <<handholdingvirginitywarning>>
+      <<NPCvirginitywarning 'Robin' 'handholding'>>
+      <<NPCvirginitywarning 'Sydney' 'handholding'>><br>
+    <</if>>
+    <<templeicon 'trialcontinue'>><<lanLink '牵起罗宾的手 (1:00)' 'RobinTemple Vigil Fire'>>
+      <<set $RobinTemple.vigil_with_sydney to false>>
+      <<set $RobinTemple.vigil_attempt_day to Time.days>>
+      <<set $phase to 1>>
+      <<stress 8>><<pain 8>>
+    <</lanLink>><<gstress>><<gpain>>
+    <<handholdingvirginitywarning>>
+    <<NPCvirginitywarning 'Robin' 'handholding'>><br>
+  <<elseif $temple_rank is 'initiate' and $RobinTemple.vigil_day is Time.days - 1
+    and $RobinTemple.vigil_readiness lt 20>>
+    <span class='red'><<lanSwitch 'Robin is not ready to enter the fire with you.' '罗宾还没准备好与你一同走进火中。'>></span><br>
+  <</if>>
+<</widget>>
+
+:: RobinTemple Vigil Fire
 <<effects>><<npc Robin>><<person1>>
 <<set Weather.Temperature.override.increase.outside(60)>>
 <<set $player.bodyTemperature to $player.bodyTemperature + 1>>
-<<lanSwitch 'You take Robin by the hand. The heat of the pyre reaches you before the flames do. Robin's fingers tighten around yours, then slowly relax as you step forward together.' '你牵住罗宾的手。火堆的热浪比火焰先一步扑来。罗宾握紧你的手，随后慢慢放松，与你一同向前。'>>
-<<takeHandholdingVirginity "Robin" `($robinromance is 1 ? "romantic" : "consensual")`>>
+<<if $temple_rank is 'initiate'
+  and $RobinTemple.vigil_attempt_day is Time.days
+  and $RobinTemple.vigil_result is ''>>
+  <<set _sydneyFollowsVow to !$RobinTemple.vigil_with_sydney
+    and $templePromised is 'Sydney' and $sydney.rank is 'initiate'>>
+  <<if _sydneyFollowsVow>>
+    <<set $RobinTemple.vigil_with_sydney to true>><<set $phase to 2>>
+  <</if>>
+  <<language>>
+    <<option 'EN'>>You catch Robin's hand before <<he>> can step back. It is cold, even this close to the fire. You show <<him>> where to place <<his>> feet and wait for <<him>> to say <<he>> is ready.
+    <<option 'CN'>>罗宾后退前，你握住了<<his>>的手。离火这么近，那只手仍冰冷。你指给<<him>>看该把脚踩在哪里，等<<he>>亲口说准备好了。
+  <</language>>
+  <br><br>
+  <<if $RobinTemple.vigil_with_sydney>>
+    <<canvas-model-override 'arm_left' 'idle'>><<canvas-model-override 'arm_right' 'idle'>>
+    <<if _sydneyFollowsVow>>
+      <<language>>
+        <<option 'EN'>>Sydney stumbles to your other side. You catch Sydney's hand. Robin looks across you. Neither moves until you lead them forward.
+        <<option 'CN'>>悉尼踉跄着来到你另一侧。你伸手牵住悉尼，罗宾隔着你望了过去。在你迈步之前，他们谁都没有动。
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>Sydney takes your other hand. Robin looks across you. Sydney nods, but neither of them moves until you lead them forward.
+        <<option 'CN'>>悉尼牵住你的另一只手。罗宾隔着你望过去。悉尼点了点头，但在你迈步之前，他们谁都没有动。
+      <</language>>
+    <</if>>
+    <<takeHandholdingVirginity 'Sydney' 'romantic'>>
+  <<else>>
+    <<canvas-model-override 'arm_right' 'idle'>>
+  <</if>>
+  <<takeHandholdingVirginity 'Robin' 'romantic'>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>The heat wipes away the cold. Then <span class='red'>your vision changes</span>. A vast evil hangs over the town, tearing holes in the sky. Something moves behind them. Robin stumbles. You hold on and call <<his>> name.
+    <<option 'CN'>>热浪驱散了寒意。随后，<span class='red'>你的视野骤然扭曲</span>。庞大的邪恶笼罩着小镇，撕开天空。裂隙后有什么正在蠕动。罗宾踉跄了一下。你握紧<<his>>的手，喊<<his>>的名字。
+  <</language>>
+  <<stress 18>><br><br><<ggstress>>
+  <<if (currentSkillValue('willpower') / 10) gte (($pain - 5) + random(0, 10))>>
+    <<language>>
+      <<option 'EN'>>Robin answers. You keep your footing and draw <<him>> through the first wall of heat. The flame does not go out, but you find a path through it.
+      <<option 'CN'>>罗宾应了你一声。你站稳脚步，带<<him>>穿过第一道热浪。火没有熄，你却在其中找到一条路。
+    <</language>>
+    <<willpower 1>><<wash>><br><br><<gwillpower>>
+    <<templeicon 'trialcontinue'>><<lanLink '带罗宾继续向前' 'RobinTemple Vigil Embers'>><</lanLink>><br>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>Your legs give way. Robin tries to follow you, but cannot find the route without your lead. Jordan's attendants pull you clear of the fire.
+      <<option 'CN'>>你的腿一软，跪倒下去。罗宾想跟着你继续走，却没有你的引导便找不到前路。约旦的侍从把你们从火中带了出来。
+    <</language>>
+    <br><br>
+    <<if $RobinTemple.vigil_with_sydney>>
+      <<templeicon 'trialbail'>><<lanLink '离开苦难审判' 'Temple Vigil End Sydney'>>
+        <<set $RobinTemple.vigil_result to 'failed'>>
+        <<set $RobinTemple.vigil_recovery to true>>
+        <<set $weekly.trialFailed to 'Sydney'>>
+        <<set $phase to 2>>
+        <<canvas-model-override 'clear'>>
+      <</lanLink>><br>
+    <<else>>
+      <<templeicon 'trialbail'>><<lanLink '离开苦难审判' 'Temple Vigil End'>>
+        <<set $RobinTemple.vigil_result to 'failed'>>
+        <<set $RobinTemple.vigil_recovery to true>>
+        <<set $weekly.trialFailed to 'pyre'>>
+        <<set $phase to 1>>
+        <<canvas-model-override 'clear'>>
+      <</lanLink>><br>
+    <</if>>
+  <</if>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>The trial has already moved on.
+    <<option 'CN'>>试炼已经过去了。
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Vigil Embers
+<<effects>><<wash>><<npc Robin>><<person1>>
+<<set Weather.Temperature.override.increase.outside(80)>>
+<<set $player.bodyTemperature to $player.bodyTemperature + 1>><<set $fire to 2>>
+<<language>>
+  <<option 'EN'>>Another initiate falls to the ground, a crucifix swinging from their neck. Attendants hurry over. Robin stops beside you. "Should we help?" <<he>> asks.
+  <<option 'CN'>>另一名见习者跪倒在地，脖子上的十字架不停晃动。侍从急忙赶去。罗宾停在你身旁。“我们要去帮忙吗？”<<he>>问。
+<</language>>
 <br><br>
-<<lanSwitch 'For a moment the town beyond the fire seems to split apart. Robin whispers your name. You hear it clearly, even over the roar.' '火焰之外的小镇仿佛裂开了片刻。罗宾低声喊你的名字。隔着呼啸的火声，你仍听得清清楚楚。'>>
+<<language>>
+  <<option 'EN'>>You point out the attendants and keep Robin moving. <<He>> looks back until they have the initiate safely away from the heat.
+  <<option 'CN'>>你指给罗宾看那些侍从，带<<him>>继续走。<<He>>一直回头，直到他们把那名见习者安全带离热浪。
+<</language>>
 <br><br>
-<<if currentSkillValue('willpower') / 10 gte ($pain - 10 + random(0, 10))>>
-  <<lanSwitch
-    'The vision passes. Robin stumbles. Jordan takes <<him>> by the shoulder and guides <<him>> away from the fire. Robin looks back once to make sure you are still standing. You must finish the trial yourself.'
-    '幻象散去。罗宾踉跄了一下。约旦扶住<<his>>的肩，把<<him>>带离火边。罗宾回头确认你还站着。试炼剩下的路，得由你自己走完。'
-  >>
-  <<gwillpower>><<willpower 1>><<wash>>
-  <<if C.npc.Robin.trauma gte 55>>
-    <<set $RevelationRobinTemple.vigil_recovery to true>>
+<<if $RobinTemple.vigil_with_sydney>>
+  <<language>>
+    <<option 'EN'>>Sydney falters at your other side. You hold both their hands and set the pace. They follow you through the embers.
+    <<option 'CN'>>悉尼在你另一侧放慢了脚步。你握住他们的手，定下步子。他们跟着你踏过余烬。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Sydney falls behind and is led away by an attendant. Robin's grip tightens. You remind <<him>> to watch the ground ahead.
+    <<option 'CN'>>悉尼落在后面，被侍从带离。罗宾握得更紧了。你提醒<<him>>看清脚下的路。
+  <</language>>
+<</if>>
+<br><br>
+<<templeicon 'trialcontinue'>><<lanLink '继续走向火堆' 'RobinTemple Vigil Vision'>><</lanLink>><br>
+
+:: RobinTemple Vigil Vision
+<<effects>><<npc Robin>><<person1>>
+<<canvas-model-override 'blink' false>>
+<<canvas-model-override 'eyes_half' true>>
+<<canvas-model-override 'trauma' true>>
+<<canvas-model-override 'mouth' 'cry'>>
+<<set Weather.Temperature.override.increase.outside(100)>>
+<<set $player.bodyTemperature to $player.bodyTemperature + 1>>
+<<language>>
+  <<option 'EN'>>The heat and pain disappear. <span class='teal'>Light takes the shape of a vast and beautiful figure.</span> You feel the urge to lower your eyes.
+  <<option 'CN'>>热与疼痛忽然消失。<span class='teal'>光凝成一道庞大而美丽的身影。</span>你几乎想要垂下目光。
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>>Robin is shaking. <<He>> cannot tell you what <<he>> sees. You recognise the moment when you must choose where to look, and Robin waits for you to move.
+  <<option 'CN'>>罗宾浑身发抖，已说不清自己看见了什么。你明白到了必须决定把目光投向何处的时刻。罗宾等着你迈步。
+<</language>>
+<br><br>
+<<templeicon 'trialcontinue'>><<lanLink '凝视那道身影' 'RobinTemple Vigil Focus'>><</lanLink>><br>
+<<templeicon 'trialcontinue'>><<lanLink '任由光芒吞没你们' 'RobinTemple Vigil Yield'>><<stress -12>><</lanLink>><<llstress>><br>
+
+:: RobinTemple Vigil Focus
+<<effects>><<npc Robin>><<person1>>
+<<set Weather.Temperature.override.increase.outside(100)>>
+<<set $player.bodyTemperature to $player.bodyTemperature + 1>>
+<<language>>
+  <<option 'EN'>>You force yourself to look. Innumerable eyes turn across the cloister. Then you see the missing arm, the broken wing and gaps in the light. <span class='purple'>They match the tears you saw over the town.</span> You tell Robin what you can see, one piece at a time, until <<he>> can speak again.
+  <<option 'CN'>>你强迫自己凝视。无数只眼睛扫过回廊。随后，你看见缺失的手臂、折断的翅膀和光里的空洞。<span class='purple'>那些裂痕与你在小镇上空看见的一样。</span>你把看到的事一件件告诉罗宾，直到<<he>>重新能开口。
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>>"It is hurt," <<he>> whispers. "I thought it would be whole." You do not pretend to know the answer. You keep hold of <<his>> hand as the light fades.
+  <<option 'CN'>>“它受伤了，”<<he>>低声说，“我以为它会是完整的。”你没有假装知道答案。光渐渐褪去时，你仍握着<<his>>的手。
+<</language>>
+<br><br>
+<<templeicon 'trialcontinue'>><<lanLink '等待黎明' 'RobinTemple Vigil Dawn'>><</lanLink>><br>
+
+:: RobinTemple Vigil Yield
+<<effects>><<npc Robin>><<person1>>
+<<set Weather.Temperature.override.increase.outside(90)>>
+<<set $player.bodyTemperature to $player.bodyTemperature + 1>>
+<<language>>
+  <<option 'EN'>>You fall to your knees. Robin nearly follows before you call <<his>> name. <<He>> crawls to your side instead of toward the brightest part of the fire.
+  <<option 'CN'>>你跪倒在地。罗宾险些跟着扑向火光最盛处，直到你叫住<<him>>。<<He>>爬到你身旁，没有继续靠近火堆。
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>>The light washes over you both. Robin keeps asking whether you are still there. You answer until the last of the fire has gone.
+  <<option 'CN'>>光漫过你们。罗宾一遍遍问你是否还在。你一次次回答，直到火焰消失。
+<</language>>
+<br><br>
+<<templeicon 'trialcontinue'>><<lanLink '等待黎明' 'RobinTemple Vigil Dawn'>><</lanLink>><br>
+
+:: RobinTemple Vigil Dawn
+<<effects>><<npc Robin>><<person1>>
+<<canvas-model-override 'clear'>><<unset $fire>>
+<<if $temple_rank is 'initiate'
+  and $RobinTemple.vigil_result is ''
+  and $RobinTemple.vigil_attempt_day is Time.days>>
+  <<pass 60>>
+  <<set $pain to 0>><<tiredness -20>><<stress -40>>
+  <<set $grace to 0>>
+  <<set $temple_rank to 'monk'>>
+  <<set $temple_monk_days to 0>>
+  <<set $wardrobes.temple.unlocked to true>>
+  <<set $RobinTemple.vigil_result to 'passed'>>
+  <<set $RobinTemple.vigil_followup to false>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 12)>>
+  <<run $robinSeen.pushUnique('initiate')>>
+  <<run $robinSeen.pushUnique('monk')>>
+  <<npcincr Robin love 10>>
+  <<npcincr Jordan love 5>>
+  <<if $RobinTemple.vigil_with_sydney>>
+    <<set $sydney.rank to 'monk'>>
+    <<run $sydneySeen.pushUnique('initiate')>>
+    <<run $sydneySeen.pushUnique('monk')>>
+    <<npcincr Sydney love 10>>
+  <</if>>
+  <<earnFeat 'Defy the Night'>>
+  <<specialClothesUnlock 'set' 'temple_monk_and_nun'>>
+  <<language>>
+    <<option 'EN'>>The flames have vanished. Dawn reaches the temple roof, and the bell rings three times. Jordan hurries to you with a warm cloak.
+    <<option 'CN'>>火焰已经消失。晨光照上神殿屋顶，钟声连响三次。约旦带着一件暖和的斗篷匆匆赶来。
+  <</language>>
+  <br><br>
+  <<if $RobinTemple.vigil_with_sydney>>
+    <<language>>
+      <<option 'EN'>>Robin and Sydney are still beside you. Jordan looks at your joined hands, then hears from each of you. "You went in together and came out together," Jordan says, recording all three names. Neither Robin nor Sydney could have made it through without your lead.
+      <<option 'CN'>>罗宾和悉尼仍在你身旁。约旦看了看你们相牵的手，听完每个人的回答，才说：“你们一起进去，也一起走了出来。”随后，约旦把三个名字记进簿册。没有你的带领，他们谁也无法独自走完。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>Robin is still beside you. Jordan asks what Robin saw, then records both your names. Robin tells Jordan how your voice reached through the dark.
+      <<option 'CN'>>罗宾仍在你身旁。约旦问罗宾看见了什么，随后将你们两人的名字记进簿册。罗宾告诉约旦，你的声音是怎样穿过黑暗传来的。
+    <</language>>
   <</if>>
   <br><br>
-  <<templeicon "trialcontinue">><<lanLink '继续守夜试炼' 'Temple Vigil 12'>><</lanLink>><br>
-<<else>>
-  <<set $RevelationRobinTemple.vigil_recovery to true>>
-  <<lanSwitch 'The vision overwhelms you both. You recoil from the pyre and fall into Jordan's arms. Robin keeps hold of your hand until the attendants separate you.' '幻象压垮了你们。你们从火边退开，跌进约旦怀里。罗宾一直握着你的手，直到侍从把你们分开。'>>
+  <<language>>
+    <<option 'EN'>>"I couldn't have done it without you," Robin says. <<He>> stays close as you make your way back together.
+    <<option 'CN'>>“没有你，我做不到。”罗宾说。回程时，<<he>>仍紧挨着你，与你一同向前走。
+  <</language>>
   <br><br>
-  <<templeicon "trialbail">><<lanLink '离开试炼' 'Temple Vigil End'>><<set $phase to 1>><<set $weekly.trialFailed to "pyre">><<canvas-model-override "clear">><</lanLink>><br>
+  <span class='green'><<lanSwitch 'You and Robin passed the vigil together.' '你带罗宾一同通过了守夜。'>></span>
+  <br><br><<gglove 'Jordan'>><<gglove 'Robin'>>
+  <<if $RobinTemple.vigil_with_sydney>><<gglove 'Sydney'>><</if>>
+  <<templeicon 'trialcontinue'>><<lanLink '和罗宾回到神殿' 'RobinTemple Vigil Return'>><<clotheson>><<endevent>><</lanLink>><br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>The vigil has already ended.
+    <<option 'CN'>>守夜已经结束。
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Vigil After
-<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<set $RevelationRobinTemple.vigil_followup to true>>
-<<if $weekly.trialFailed is 'strip'>>
-  <<lanSwitch 'Robin notices that you hesitate near the cloister stairs. "I refused the first demand too," <<he>> says. "You do not have to call that failure to know what it cost you."' '罗宾见你在回廊楼梯前停下。“第一次遇到那项要求，我也拒绝了，”<<he>>说，“你不必把拒绝称作失败，也能承认自己为此付出了代价。”'>>
-  <br><br>
-<<elseif $weekly.trialFailed is 'cold'>>
-  <<lanSwitch 'Robin brings you something warm to drink. "I kept thinking I should have brought another blanket," <<he>> says. <<He>> waits while your hands stop shaking.' '罗宾给你端来热饮。“我一直在想，该多带一条毯子，”<<he>>说。<<He>>陪着你，直到你的手不再发抖。'>>
-  <br><br>
-<<elseif $weekly.trialFailed is 'whisper'>>
-  <<lanSwitch 'You tell Robin about the whispers. <<He>> does not ask you to repeat them. "I heard something too," <<he>> says. "Next time, we can tell Jordan before it gets worse."' '你把低语的事告诉罗宾。<<He>>没有让你复述。“我也听到了些声音，”<<he>>说，“下次我们可以早点告诉约旦。”'>>
-  <br><br>
-<<elseif $weekly.trialFailed is 'pyre'>>
-  <<lanSwitch 'Robin studies the marks the fire left on the stones. "The flames frightened me," <<he>> says. "I was still glad you reached for my hand."' '罗宾望着火焰在石头上留下的痕迹。“我当时很怕，”<<he>>说，“但你伸手牵我时，我还是很高兴。”'>>
-  <br><br>
-<</if>>
-<<if $RevelationRobinTemple.vigil_recovery>>
-  <<lanSwitch 'Robin is sitting on a bench outside the hall. <<He>> tries to stand when you arrive, but sways and sits back down.' '罗宾坐在大厅外的长椅上。你走近时，<<he>>想站起来，却晃了晃，又坐了回去。'>>
-  <br><br>
-  <<socialiseicon 'ask'>><<lanLink '陪罗宾去医院 (0:30)' 'Revelation Robin Temple Hospital'>><<pass 30>><</lanLink>><br>
-  <<loveicon 'hug'>><<lanLink '在神殿陪罗宾休息 (1:00)' 'Revelation Robin Temple Recovery'>><<pass 60>><</lanLink>><br>
-  <br>
-<</if>>
-<<if ["monk", "priest"].includes($temple_rank)>>
-  <<lanSwitch 'Robin finds you after the vigil. Your hands are still cold. <<He>> cups them without asking how brave you were.' '守夜后，罗宾找到了你。你的手还冷着。<<He>>把它们捂在掌心，没有问你表现得有多勇敢。'>>
-  <br><br>
-  <<lanSwitch '"You came back," <<he>> says. This seems to matter more to <<him>> than your new rank.' '“你回来了，”<<he>>说。比起你新获得的身份，<<he>>似乎更在意这件事。'>>
-  <<npcincr Robin love 1>><<stress -3>><br><br><<glove>><<lstress>>
-<<else>>
-  <<lanSwitch 'Robin sits beside you as you recover. "There will be another Sunday," <<he>> says. <<He>> stays until your hands stop shaking.' '你休息时，罗宾坐在身边。“还会有下个星期日，”<<he>>说。<<He>>一直等到你的手不再发抖。'>>
-  <<stress -3>><br><br><<lstress>>
-<</if>>
-<<if $weekly.trialFailed>>
-  <<socialiseicon 'ask'>><<lanLink '和罗宾想想下次怎么办' 'Revelation Robin Temple Vigil Plan'>><</lanLink>><br>
-<</if>>
+:: RobinTemple Vigil Return
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<language>>
+  <<option 'EN'>>Jordan leads you downstairs to a room warmed by a fireplace. An attendant returns your clothes. Robin folds <<his>> cloak before sitting beside you.
+  <<option 'CN'>>约旦带你们下楼，走进一间生着壁炉的屋子。侍从归还了衣物。罗宾叠好斗篷，才在你身边坐下。
+<</language>>
 <br><br>
-<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<language>>
+  <<option 'EN'>>"You both have a place here," Jordan says. Robin glances at you. <<He>> still has school, work and the children at the orphanage to return to. You remind <<him>> that passing the vigil has not taken those away.
+  <<option 'CN'>>“神殿有你们的位置了。”约旦说。罗宾望向你。学校、生意和孤儿院的孩子仍在等<<him>>回去。你提醒<<him>>，通过守夜不会夺走这些。
+<</language>>
+<br><br>
+<<if $RobinTemple.vigil_with_sydney>>
+  <<language>>
+    <<option 'EN'>>Sydney waits at the door. Robin thanks Sydney for staying close. You lead them both back towards the hall.
+    <<option 'CN'>>悉尼在门边等着。罗宾谢谢悉尼一路相伴。你带着他们一起朝大厅走去。
+  <</language>>
+  <br><br>
+<</if>>
+<<templeicon 'altar'>><<lanLink '返回神殿大厅' 'Temple'>><<endevent>><</lanLink>><br>
 
-:: Revelation Robin Temple Vigil Plan
+:: RobinTemple Vigil After
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'Robin spreads the trial notes on the bench. You decide which part to practise and where to stop if either of you needs help. <<He>> writes the plan down rather than asking you to promise you will not be afraid.' '罗宾把试炼笔记摊在长椅上。你们决定先练哪一段，也说好谁需要帮忙时就停下来。<<He>>把计划记下，没有要你保证下次绝不害怕。'>>
-<<willpower 1>><<npcincr Robin love 1>><br><br><<gwillpower>><<glove>>
-<<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<set $RobinTemple.vigil_followup to true>>
+<<if $RobinTemple.vigil_result is 'passed'>>
+  <<language>>
+    <<option 'EN'>>Robin puts <<his>> new cloak beside <<his>> schoolbook. "I still have work to do," <<he>> says. "And now I know I can come back here without leaving the children behind."
+    <<option 'CN'>>罗宾把新斗篷放在课本旁。“生意还得照常做，”<<he>>说，“现在我也知道，回来这里不必抛下院里的孩子。”
+  <</language>>
+<<elseif $RobinTemple.vigil_result is 'failed'
+  and ['monk', 'priest'].includes($temple_rank)>>
+  <<language>>
+    <<option 'EN'>>Robin has kept Sunday's receipt, though the trial cannot be taken again with you. "I saw you make it through," <<he>> says. "I wish I could have followed." You sit with <<him>> until <<he>> is ready to put the receipt away.
+    <<option 'CN'>>罗宾还留着星期日的收据，可你已不能再陪<<him>>参加同一场试炼。“我看见你走过去了，”<<he>>说，“我真希望自己也跟得上。”你陪<<him>>坐了一会儿，直到<<he>>愿意把收据收好。
+  <</language>>
+<<elseif $RobinTemple.vigil_result is 'failed'>>
+  <<language>>
+    <<option 'EN'>>Robin looks tired, but has kept the receipt with Sunday's date. "If you are still an initiate next week, could we prepare again?" <<he>> asks. You leave the choice to <<him>>.
+    <<option 'CN'>>罗宾看上去很疲惫，却还留着圈了星期日的收据。“如果下周你还是见习者，我们能再准备一次吗？”<<he>>问。你把决定权留给<<him>>。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin asks whether you will still talk about the vigil. You say you will, when <<he>> is ready.
+    <<option 'CN'>>罗宾问，你们之后是否还会谈起守夜。你说会的，等<<he>>准备好时再谈。
+  <</language>>
+<</if>>
+<br><br>
+<<if $RobinTemple.vigil_recovery>>
+  <<socialiseicon 'ask'>><<lanLink '陪罗宾去医院 (0:30)' 'RobinTemple Hospital'>><<pass 30>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '在神殿陪罗宾休息 (1:00)' 'RobinTemple Recovery'>><<pass 60>><</lanLink>><br>
+<<else>>
+  <<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<</if>>
 
-:: Revelation Robin Temple Hospital
+:: RobinTemple Hospital
 <<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You help Robin into a cab. <<He>> keeps insisting <<he>> only needs a moment, then leans against you when the road turns.' '你扶罗宾上了出租车。<<He>>一直说休息片刻就好，车一转弯，却靠在了你身上。'>>
-<br><br>
-<<lanSwitch
-  'At the hospital, a nurse checks <<his>> breathing and asks about the heat and smoke. Robin answers the questions <<himself>>. The nurse gives <<him>> water and tells <<him>> to rest.'
-  '到了医院，一名护士检查<<his>>的呼吸，问起高温和烟雾。罗宾自己回答了问题。护士给<<him>>倒水，叮嘱<<him>>休息。'
->>
-<br><br>
-<<lanSwitch '"I should have listened when you asked," Robin says. <<He>> is quiet for a while, then adds, "Thank you for coming with me."' '“你让我休息时，我就该听的。”罗宾说。<<He>>安静了一会儿，又说，“谢谢你陪我来。”'>>
-<<set $RevelationRobinTemple.vigil_recovery to false>>
-<<npcincr Robin love 2>><<npcincr Robin trauma -3>><br><br><<glove>><<lrtrauma>>
+<<language>>
+  <<option 'EN'>>You take Robin to the hospital. A nurse checks <<his>> breathing and asks about the heat and smoke. Robin answers while you stay beside <<him>>.
+  <<option 'CN'>>你陪罗宾去了医院。护士检查<<his>>的呼吸，问起高温与烟雾。罗宾自己回答问题，你在旁边陪着<<him>>。
+<</language>>
+<<set $RobinTemple.vigil_recovery to false>>
+<<npcincr Robin trauma -3>><<npcincr Robin love 1>><br><br><<lrtrauma>><<glove>>
 <<getouticon>><<lanLink '送罗宾回孤儿院' 'Orphanage'>><<pass 30>><<endevent>><</lanLink>><br>
 
-:: Revelation Robin Temple Recovery
+:: RobinTemple Recovery
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'You bring Robin a cup of water and sit beside <<him>>. The temple’s doors open and close around you, but <<he>> keeps <<his>> eyes on the floor until the dizziness passes.'
-  '你给罗宾端来一杯水，在<<he>>身边坐下。神殿的门在你们周围不断开合，<<he>>一直望着地板，直到眩晕过去。'
->>
-<br><br>
-<<lanSwitch '"If it happens again, I will let someone look at me," <<he>> promises.' '“如果下次还这样，我会让人检查的。”<<he>>答应。'>>
-<<set $RevelationRobinTemple.vigil_recovery to false>>
-<<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+<<language>>
+  <<option 'EN'>>You bring Robin water and sit nearby until <<his>> hands stop shaking. <<He>> does not ask you to promise another attempt.
+  <<option 'CN'>>你给罗宾端来水，在旁边坐到<<his>>双手不再发抖。<<He>>没有要你保证再陪<<him>>尝试一次。
+<</language>>
+<<set $RobinTemple.vigil_recovery to false>>
+<<stress -2>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>

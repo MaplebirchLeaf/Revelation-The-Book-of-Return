@@ -1,114 +1,168 @@
-:: Revelation Robin Temple Penance Hearing
+:: RobinTemple Penance Hearing
 <!-- ./src/twee/RobinTemple/Penance.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'Jordan takes you to the side of the hall. "The examination cannot tell me who chose to break a vow," Jordan says. "I will listen to you both before deciding what follows."'
-  '约旦带你们来到大厅侧边。“检查分辨不出是谁选择违背誓言，”约旦说，“决定后续处置前，我会听你们两个人讲清楚。”'
->>
+<<language>>
+  <<option 'EN'>>Jordan takes you to the side of the hall. "The examination cannot tell me who chose to break a vow," Jordan says. "I will listen to you both before deciding what follows."
+  <<option 'CN'>>约旦带你们来到大厅侧边。“检查分辨不出是谁选择违背誓言，”约旦说，“决定后续处置前，我会听你们两个人讲清楚。”
+<</language>>
 <br><br>
-<<if $RevelationRobinTemple.breach is 'pc'>>
-  <<lanSwitch 'Robin steps forward. "It was not my choice," <<he>> says. <<He>> still does not let go of your hand.' '罗宾向前一步。“那不是我的选择，”<<he>>说，却仍没有松开你的手。'>>
-<<elseif $RevelationRobinTemple.breach is 'robin'>>
-  <<lanSwitch 'Robin lowers <<his>> eyes. "I broke mine," <<he>> says before you can speak for <<him>>.' '罗宾垂下眼。“是我违背了自己的誓言，”<<he>>抢在你替<<him>>开口前说。'>>
+<<if $RobinTemple.breach is 'pc'>>
+  <<language>>
+    <<option 'EN'>>Robin steps forward. "It was not my choice," <<he>> says. <<He>> still does not let go of your hand.
+    <<option 'CN'>>罗宾向前一步。“那不是我的选择，”<<he>>说，却仍没有松开你的手。
+  <</language>>
+<<elseif $RobinTemple.breach is 'robin'>>
+  <<language>>
+    <<option 'EN'>>Robin lowers <<his>> eyes. "I broke mine," <<he>> says before you can speak for <<him>>.
+    <<option 'CN'>>罗宾垂下眼。“是我违背了自己的誓言，”<<he>>抢在你替<<him>>开口前说。
+  <</language>>
 <<else>>
-  <<lanSwitch 'You each admit what happened. Jordan does not let either of you take responsibility for the other’s choice.' '你们各自承认发生的事。约旦不许任何一方替另一方承担自己的选择。'>>
+  <<language>>
+    <<option 'EN'>>You each admit what happened. Jordan does not let either of you take responsibility for the other’s choice.
+    <<option 'CN'>>你们各自承认发生的事。约旦不许任何一方替另一方承担自己的选择。
+  <</language>>
 <</if>>
 <br><br>
-<<socialiseicon 'ask'>><<lanLink '如实说明经过' 'Revelation Robin Temple Penance Honest'>><</lanLink>><br>
-<<loveicon 'hug'>><<lanLink '请求和罗宾一起赎罪' 'Revelation Robin Temple Penance Together'>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '如实说明经过' 'RobinTemple Penance Honest'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '请求和罗宾一起赎罪' 'RobinTemple Penance Together'>><</lanLink>><br>
 
-:: Revelation Robin Temple Penance Honest
+:: RobinTemple Penance Honest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You explain what happened without asking Robin to carry your part. Jordan writes it down, then turns to Robin for <<his>> own account.' '你说清经过，没有让罗宾替你承担那一部分。约旦记下，转向罗宾，等<<he>>自己讲述。'>>
+<<language>>
+  <<option 'EN'>>You explain what happened without asking Robin to carry your part. Jordan writes it down, then turns to Robin for <<his>> own account.
+  <<option 'CN'>>你说清经过，没有让罗宾替你承担那一部分。约旦记下，转向罗宾，等<<he>>自己讲述。
+<</language>>
 <br><br>
-<<lanSwitch '"Work beside each other if you wish," Jordan says, "but each of you must answer for your own vow."' '“你们愿意，可以并肩做事，”约旦说，“但每个人都必须为自己的誓言负责。”'>>
+<<language>>
+  <<option 'EN'>>"Work beside each other if you wish," Jordan says, "but each of you must answer for your own vow."
+  <<option 'CN'>>“你们愿意，可以并肩做事，”约旦说，“但每个人都必须为自己的誓言负责。”
+<</language>>
 <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
 <<npcincr Robin dom 1>><br><br><<gdom>>
-<<revelation-robin-penance-exit>>
+<<robin-temple-penance-exit>>
 
-:: Revelation Robin Temple Penance Trial
+:: RobinTemple Penance Trial
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'Two attendants take you to the cloister. Jordan remains at the door. "You will clean the room where the initiates prepare for vigil," Jordan says. "Then each of you will tell me, separately, how you will answer for your vow."'
-  '两名侍从带你们来到回廊。约旦停在门口。“先把见习者准备守夜的房间打扫干净，”约旦说，“之后各自告诉我，打算怎样为自己的誓言负责。”'
->>
+<<language>>
+  <<option 'EN'>>Two attendants take you to the cloister. Jordan remains at the door. "You will clean the room where the initiates prepare for vigil," Jordan says. "Then each of you will tell me, separately, how you will answer for your vow."
+  <<option 'CN'>>两名侍从带你们来到回廊。约旦停在门口。“先把见习者准备守夜的房间打扫干净，”约旦说，“之后各自告诉我，打算怎样为自己的誓言负责。”
+<</language>>
 <br><br>
-<<lanSwitch 'The floor is cold beneath your knees. Robin works beside you, tired but intent on finishing <<his>> section rather than leaving it to you.' '地板透过膝盖传来寒意。罗宾在你身边做事，虽然疲倦，仍坚持完成<<his>>那一部分。'>>
+<<language>>
+  <<option 'EN'>>The floor is cold beneath your knees. Robin works beside you, tired but intent on finishing <<his>> section rather than leaving it to you.
+  <<option 'CN'>>地板透过膝盖传来寒意。罗宾在你身边做事，虽然疲倦，仍坚持完成<<his>>那一部分。
+<</language>>
 <br><br>
-<<loveicon 'hug'>><<lanLink '伸手扶住罗宾' 'Revelation Robin Temple Penance Trial Result'>><<set $RevelationRobinTemple.penance_response to 'hold'>><<pass 30>><</lanLink>><br>
-<<socialiseicon 'ask'>><<lanLink '请求约旦听你们解释' 'Revelation Robin Temple Penance Trial Result'>><<set $RevelationRobinTemple.penance_response to 'speak'>><<pass 30>><</lanLink>><br>
-<<choreicon 'sweep'>><<lanLink '先把手里的工作做完' 'Revelation Robin Temple Penance Trial Result'>><<set $RevelationRobinTemple.penance_response to 'endure'>><<pass 30>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '伸手扶住罗宾' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'hold'>><<pass 30>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '请求约旦听你们解释' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'speak'>><<pass 30>><</lanLink>><br>
+<<choreicon 'sweep'>><<lanLink '先把手里的工作做完' 'RobinTemple Penance Trial Result'>><<set $RobinTemple.penance_response to 'endure'>><<pass 30>><</lanLink>><br>
 
-:: Revelation Robin Temple Penance Trial Result
+:: RobinTemple Penance Trial Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<switch $RevelationRobinTemple.penance_response>>
+<<switch $RobinTemple.penance_response>>
   <<case 'hold'>>
-    <<lanSwitch 'You steady Robin when <<he>> stumbles. <<He>> accepts your arm, then straightens and goes back to the task. Jordan watches without interrupting.' '罗宾踉跄时，你扶住了<<him>>。<<He>>借着你的手臂站稳，又回去做事。约旦没有打断。'>>
+    <<language>>
+      <<option 'EN'>>You steady Robin when <<he>> stumbles. <<He>> accepts your arm, then straightens and goes back to the task. Jordan watches without interrupting.
+      <<option 'CN'>>罗宾踉跄时，你扶住了<<him>>。<<He>>借着你的手臂站稳，又回去做事。约旦没有打断。
+    <</language>>
     <<npcincr Robin love 2>><<stress 3>><br><br><<glove>><<gstress>>
   <<case 'speak'>>
-    <<lanSwitch 'You ask Jordan to hear both of you. Jordan asks you to finish the room first. When you do, Jordan returns and gives each of you time to speak.' '你请求约旦听你们说明。约旦请你们先把屋子打扫完。等工作结束，约旦回来，给你们各自发言的时间。'>>
+    <<language>>
+      <<option 'EN'>>You ask Jordan to hear both of you. Jordan asks you to finish the room first. When you do, Jordan returns and gives each of you time to speak.
+      <<option 'CN'>>你请求约旦听你们说明。约旦请你们先把屋子打扫完。等工作结束，约旦回来，给你们各自发言的时间。
+    <</language>>
     <<if currentSkillValue('willpower') gte 400>>
-      <<lanSwitch 'Robin describes <<his>> own choice clearly. Jordan tells <<him>> that being honest about it matters.' '罗宾把自己的选择讲得清楚。约旦说，愿意如实面对这件事，很重要。'>>
+      <<language>>
+        <<option 'EN'>>Robin describes <<his>> own choice clearly. Jordan tells <<him>> that being honest about it matters.
+        <<option 'CN'>>罗宾把自己的选择讲得清楚。约旦说，愿意如实面对这件事，很重要。
+      <</language>>
       <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 4)>>
     <<else>>
-      <<lanSwitch 'Robin struggles to find the words. Jordan lets <<him>> pause and begin again.' '罗宾一时找不到合适的话。约旦让<<he>>停一停，再重新说。'>>
+      <<language>>
+        <<option 'EN'>>Robin struggles to find the words. Jordan lets <<him>> pause and begin again.
+        <<option 'CN'>>罗宾一时找不到合适的话。约旦让<<he>>停一停，再重新说。
+      <</language>>
     <</if>>
     <<npcincr Robin dom 1>><br><br><<gdom>>
   <<default>>
-    <<lanSwitch 'You finish your part without looking up. Robin does the same. When the last bucket is emptied, <<he>> asks whether you can talk on the way out.' '你低头做完了自己的活。罗宾也是。最后一桶水倒掉后，<<he>>问能不能在出去的路上聊聊。'>>
+    <<language>>
+      <<option 'EN'>>You finish your part without looking up. Robin does the same. When the last bucket is emptied, <<he>> asks whether you can talk on the way out.
+      <<option 'CN'>>你低头做完了自己的活。罗宾也是。最后一桶水倒掉后，<<he>>问能不能在出去的路上聊聊。
+    <</language>>
     <<grace 1>><<stress 4>><br><br><<ggrace>><<gstress>>
 <</switch>>
 <br><br>
-<<lanSwitch 'Jordan records the first day of your work. "The rest cannot be done in one night," Jordan says.' '约旦记下你们完成的第一天工作。“剩下的事，不能一夜做完。”约旦说。'>>
-<<set $RevelationRobinTemple.penance_service to 1>>
-<<set $RevelationRobinTemple.penance_work_day to Time.days>>
-<<if $RevelationRobinTemple.breach is 'robin'>>
+<<language>>
+  <<option 'EN'>>Jordan records the first day of your work. "The rest cannot be done in one night," Jordan says.
+  <<option 'CN'>>约旦记下你们完成的第一天工作。“剩下的事，不能一夜做完。”约旦说。
+<</language>>
+<<set $RobinTemple.penance_service to 1>>
+<<set $RobinTemple.penance_work_day to Time.days>>
+<<if $RobinTemple.breach is 'robin'>>
   <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><<endevent>><</lanLink>><br>
 <<else>>
   <<getinicon>><<lanLink '接受自己的净化' 'Temple Arcade Intro'>><<endevent>><<clotheson>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Penance Together
+:: RobinTemple Penance Together
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You ask to stay with Robin through the work ahead. Robin nods, but Jordan raises a hand. "Support is welcome. Do not make Robin’s answer for <<him>>."' '你请求在接下来的工作中陪着罗宾。罗宾点头，约旦却抬起一只手。“陪伴可以，但不要替<<him>>作答。”'>>
+<<language>>
+  <<option 'EN'>>You ask to stay with Robin through the work ahead. Robin nods, but Jordan raises a hand. "Support is welcome. Do not make Robin’s answer for <<him>>."
+  <<option 'CN'>>你请求在接下来的工作中陪着罗宾。罗宾点头，约旦却抬起一只手。“陪伴可以，但不要替<<him>>作答。”
+<</language>>
 <br><br>
-<<lanSwitch 'Robin turns to you. "I want you there," <<he>> says. "I also want to do my own share."' '罗宾转向你。“我希望你在，”<<he>>说，“也想把自己那份做好。”'>>
+<<language>>
+  <<option 'EN'>>Robin turns to you. "I want you there," <<he>> says. "I also want to do my own share."
+  <<option 'CN'>>罗宾转向你。“我希望你在，”<<he>>说，“也想把自己那份做好。”
+<</language>>
 <<npcincr Robin love 1>><br><br><<glove>>
-<<revelation-robin-penance-exit>>
+<<robin-temple-penance-exit>>
 
-:: Revelation Robin Temple Penance Work
+:: RobinTemple Penance Work
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.penance_day gte 0 and $RevelationRobinTemple.penance_work_day isnot Time.days>>
-  <<set $RevelationRobinTemple.penance_work_day to Time.days>>
-  <<set $RevelationRobinTemple.penance_service += 1>>
-  <<lanSwitch
-    'Robin checks the beds while you sort clean linen. A younger initiate offers to take one pile. Robin thanks <<him>> and leaves the easier task within reach.'
-    '罗宾检查床铺，你整理干净的布巾。一名年幼见习者提出帮忙，罗宾道了谢，把较轻松的活留给<<him>>。'
-  >>
+<<if $RobinTemple.penance_day gte 0 and $RobinTemple.penance_work_day isnot Time.days>>
+  <<set $RobinTemple.penance_work_day to Time.days>>
+  <<set $RobinTemple.penance_service += 1>>
+  <<language>>
+    <<option 'EN'>>Robin checks the beds while you sort clean linen. A younger initiate offers to take one pile. Robin thanks <<him>> and leaves the easier task within reach.
+    <<option 'CN'>>罗宾检查床铺，你整理干净的布巾。一名年幼见习者提出帮忙，罗宾道了谢，把较轻松的活留给<<him>>。
+  <</language>>
   <br><br>
-  <<lanSwitch 'When the list is finished, Robin brings it to Jordan in <<his>> own hand.' '清单做完后，罗宾亲手把它交给约旦。'>>
+  <<language>>
+    <<option 'EN'>>When the list is finished, Robin brings it to Jordan in <<his>> own hand.
+    <<option 'CN'>>清单做完后，罗宾亲手把它交给约旦。
+  <</language>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<grace 1>><br><br><<ggrace>>
 <<else>>
-  <<lanSwitch 'Today’s work is already finished.' '今天的工作已经做完了。'>>
+  <<language>>
+    <<option 'EN'>>Today’s work is already finished.
+    <<option 'CN'>>今天的工作已经做完了。
+  <</language>>
 <</if>>
 <br><br>
 <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
 
-:: Revelation Robin Temple Penance
+:: RobinTemple Penance
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.penance_day gte 0 and Time.days gte $RevelationRobinTemple.penance_day and $RevelationRobinTemple.penance_service gte 3>>
-  <<set $RevelationRobinTemple.penance_day to -1>>
-  <<if $RevelationRobinTemple.breach isnot 'pc'>><<set C.npc.Robin.virginity.temple to true>><</if>>
-  <<set $RevelationRobinTemple.breach to ''>>
+<<if $RobinTemple.penance_day gte 0 and Time.days gte $RobinTemple.penance_day and $RobinTemple.penance_service gte 3>>
+  <<set $RobinTemple.penance_day to -1>>
+  <<if $RobinTemple.breach isnot 'pc'>><<set C.npc.Robin.virginity.temple to true>><</if>>
+  <<set $RobinTemple.breach to ''>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 5)>>
-  <<lanSwitch
-    'Robin finishes the last shift and brings Jordan the completed list. Jordan accepts it, then renews <<his>> temple vow. Robin folds the list with care before taking your hand.'
-    '罗宾结束最后一班工作，把填完的清单交给约旦。约旦收下清单，重新接纳<<his>>神殿誓言。罗宾仔细折好清单，才牵住你的手。'
-  >>
-  <br><br><span class="green"><<lanSwitch "Robin's temple vow is restored." '罗宾重新立下了神殿誓言。'>></span>
+  <<language>>
+    <<option 'EN'>>Robin finishes the last shift and brings Jordan the completed list. Jordan accepts it, then renews <<his>> temple vow. Robin folds the list with care before taking your hand.
+    <<option 'CN'>>罗宾结束最后一班工作，把填完的清单交给约旦。约旦收下清单，重新接纳<<his>>神殿誓言。罗宾仔细折好清单，才牵住你的手。
+  <</language>>
+  <br><br><<language>>
+    <<option 'EN'>><span class="green">Robin's temple vow is restored.</span>
+    <<option 'CN'>><span class="green">罗宾重新立下了神殿誓言。</span>
+  <</language>>
 <<else>>
-  <<lanSwitch 'The week of penance is not complete. Work with Robin on at least three different days, then return after the seventh day.' '赎罪工作尚未完成。至少在三个不同的日子与罗宾一起做事，第七天后再回来。'>>
+  <<language>>
+    <<option 'EN'>>The week of penance is not complete. Work with Robin on at least three different days, then return after the seventh day.
+    <<option 'CN'>>赎罪工作尚未完成。至少在三个不同的日子与罗宾一起做事，第七天后再回来。
+  <</language>>
 <</if>>
 <br><br>
 <<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>

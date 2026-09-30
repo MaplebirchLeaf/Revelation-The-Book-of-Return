@@ -3,9 +3,13 @@
 import Module from './Module';
 import { DEFAULT_ROBIN_TEMPLE_STATE } from './constants';
 
+interface ResidentialModule {
+  realEstate: { residenceOf(name: string): unknown };
+}
+
 class RobinTemple extends Module {
   constructor(core: typeof maplebirch) {
-    super(core, 'RevelationRobinTemple', DEFAULT_ROBIN_TEMPLE_STATE);
+    super(core, 'RobinTemple', DEFAULT_ROBIN_TEMPLE_STATE);
   }
 
   public preInit(): void {
@@ -13,25 +17,97 @@ class RobinTemple extends Module {
     this.core.npc.addStats({
       revelationConviction: {
         default: 0,
-        value: 0,
         minValue: 0,
         maxValue: 200,
         position: 7,
         name: this.core.t('revelation-the-book-of-return:robinTemple:stat:conviction'),
-        activeIcon: 'img/ui/revelation-robin-conviction.svg',
+        activeIcon: 'img/ui/robin-temple-conviction.svg',
         color: 'white'
       }
     });
     super.preInit();
-    this.core.on(':passagestart', () => this.syncStat(), 'Revelation Robin Temple conviction');
-    this.core.on(':language', () => this.syncStat(), 'Revelation Robin Temple conviction language');
+    this.core.on(
+      ':npcInit',
+      (name: string) => {
+        if (name !== 'Robin') return;
+        const robin = V.NPCName.find((npc: { nam: string; revelationConviction?: number }) => npc.nam === name);
+        if (robin) robin.revelationConviction ??= 0;
+      },
+      'RobinTemple conviction'
+    );
+    this.core.npc.Schedule.get('Robin').when(() => this.isTempleTime(), 'temple', { id: 'revelation-robin-temple' });
+    this.core.once(':addon:patchStart', () => {
+      this.core.host.modLoader.defineTwineAsset(
+        'script',
+        'game\\03-JavaScript\\ingame.js',
+        source => {
+          const anchor = 'else if (!between(Time.hour, 7, 20)) {';
+          if (source.split(anchor).length !== 2) {
+            this.core.log('RobinTemple: vanilla location anchor must match once', 'ERROR');
+            return source;
+          }
+          return source.replace(anchor, 'else if (maplebirch.npc.Schedule.get("Robin").location === "temple") {\n\t\tT.robin_location = "temple";\n\t} ' + anchor);
+        },
+        'patch'
+      );
+    });
+    this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
+      exact: true,
+      action: () => this.dailyUpdate()
+    });
   }
 
-  private syncStat(): void {
-    const robin = C?.npc?.Robin;
-    const stat = this.core.npc.customStats.revelationConviction;
-    stat.value = robin?.revelationConviction ?? 0;
-    stat.name = this.core.t('revelation-the-book-of-return:robinTemple:stat:conviction');
+  private dailyUpdate(): void {
+    const state = V.RobinTemple;
+    const robin = C.npc.Robin;
+    if (!state || robin?.init !== 1 || V.robinmissing || V.robin.timer.hurt !== 0 || robin.trauma >= 80 || (this.core.get('RobinExpansion') && V.RobinExpansion?.asylum?.status === 'admitted')) return;
+    if (state.stage === 'scheduled' || state.stage === 'failed') {
+      state.assessment_bonus = Math.min(15, state.assessment_bonus + (state.pendant ? 3 : 1));
+      return;
+    }
+    if (!['member', 'approved', 'promised'].includes(state.stage)) return;
+    // Legacy faith drifts only outside the neutral band; contribution follows the school calendar.
+    const conviction = robin.revelationConviction ?? 0;
+    if (conviction >= 120) robin.revelationConviction = Math.min(200, conviction + 1);
+    else if (conviction < 80) robin.revelationConviction = Math.max(0, conviction - 1);
+    const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
+    if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
+  }
+
+  /** Resolve once per appointment so revisiting the result cannot reroll the fire trial. */
+  public assess(): void {
+    const state = V.RobinTemple;
+    const robin = C.npc.Robin;
+    if (state.stage !== 'scheduled' || Time.days < state.exam_day || state.assessment_day === state.exam_day) return;
+    state.assessment_day = state.exam_day;
+    state.assessment_fire = robin.virginity.vaginal !== true || robin.virginity.penile !== true;
+    if (!state.assessment_fire) {
+      state.assessment_passed = true;
+      return;
+    }
+    const threshold = robin.dom >= 100 ? 35 : robin.dom >= 90 ? 55 : robin.dom >= 80 ? 75 : 95;
+    state.assessment_passed = Math.floor(Math.random() * 100) + 1 + state.assessment_bonus >= threshold;
+  }
+
+  private isTempleTime(): boolean {
+    if (
+      !V.RobinTemple ||
+      !['member', 'approved', 'promised'].includes(V.RobinTemple.stage) ||
+      C.npc.Robin?.init !== 1 ||
+      V.robinmissing ||
+      V.robin.timer.hurt !== 0 ||
+      C.npc.Robin.trauma >= 80 ||
+      (this.core.get('RobinExpansion') && V.RobinExpansion?.asylum?.status === 'admitted')
+    )
+      return false;
+
+    const housing = this.core.get('VP') as ResidentialModule | undefined;
+    const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));
+    const overnight = !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
+    const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
+    const freeWeekday = !Time.schoolDay && !Time.isWeekEnd() && Time.hour >= 9 && Time.hour < 16;
+    const vigil = Time.weekDay === 1 && Time.hour >= 20 && V.RobinTemple.vigil_day === Time.days && V.temple_rank === 'initiate';
+    return overnight || sundayService || freeWeekday || vigil;
   }
 }
 

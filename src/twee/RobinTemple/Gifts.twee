@@ -1,46 +1,126 @@
-:: Revelation Robin Temple Gifts List
+:: RobinTemple Gifts List
 <!-- ./src/twee/RobinTemple/Gifts.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'What will you give Robin?' '你想把什么送给罗宾？'>>
+<<language>>
+  <<option 'EN'>>What will you give Robin?
+  <<option 'CN'>>你想把什么送给罗宾？
+<</language>>
 <br><br>
 <<food_gift_list>>
 <<if _food_gift_found is true>>
-  <<skinicon 'give'>><<lanLink '送给罗宾 (0:05)' 'Revelation Robin Temple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
+  <<skinicon 'give'>><<lanLink '送给罗宾 (0:05)' 'RobinTemple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
 <</if>>
-<<getouticon>><<lanLink '重新考虑' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<getouticon>><<lanLink '重新考虑' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Gift
+:: RobinTemple Gift
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
 <<if $gift.name is 'sticky_toffee_pudding'>>
-  <<lanSwitch
-    'Robin stares at the sticky toffee pudding. "That is my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.'
-    '罗宾望着粘稠的太妃布丁。“这是我最喜欢的。”<<he>>说得很轻，几乎听不清。<<He>>小心尝了一口，接着又吃了一口。'
-  >>
+  <<language>>
+    <<option 'EN'>>Robin stares at the sticky toffee pudding. "That is my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.
+    <<option 'CN'>>罗宾望着粘稠的太妃布丁。“这是我最喜欢的。”<<he>>说得很轻，几乎听不清。<<He>>小心尝了一口，接着又吃了一口。
+  <</language>>
   <br><br>
-  <<lanSwitch '"Bailey used to tell me not to eat this," <<he>> says. "I am glad you brought it."' '“贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”'>>
+  <<language>>
+    <<option 'EN'>>"Bailey used to tell me not to eat this," <<he>> says. "I am glad you brought it."
+    <<option 'CN'>>“贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”
+  <</language>>
   <<npcincr Robin love 3>><br><br><<gglove>>
 <<elseif ($gift.special || []).includes('spicy')>>
-  <<lanSwitch 'Robin accepts the spicy food with both hands. After the first mouthful, <<his>> eyes water, but <<he>> does not put it down.' '罗宾双手接过辣味食物。第一口下去，<<his>>眼睛就湿了，但<<he>>没有放下。'>>
+  <<language>>
+    <<option 'EN'>>Robin accepts the spicy food with both hands. After the first mouthful, <<his>> eyes water, but <<he>> does not put it down.
+    <<option 'CN'>>罗宾双手接过辣味食物。第一口下去，<<his>>眼睛就湿了，但<<he>>没有放下。
+  <</language>>
   <<npcincr Robin love 1>><br><br><<glove>>
 <<elseif ($gift.special || []).includes('drink')>>
-  <<lanSwitch 'Robin looks at the drink, then produces a second straw from <<his>> pocket. "Would you share it?" <<he>> asks.' '罗宾看了看饮料，从口袋里摸出另一根吸管。“一起喝吗？”<<he>>问。'>>
+  <<language>>
+    <<option 'EN'>>Robin looks at the drink, then produces a second straw from <<his>> pocket. "Would you share it?" <<he>> asks.
+    <<option 'CN'>>罗宾看了看饮料，从口袋里摸出另一根吸管。“一起喝吗？”<<he>>问。
+  <</language>>
   <<npcincr Robin love 1>><br><br><<glove>>
 <<else>>
-  <<lanSwitch 'Robin thanks you and sets the food between you. "I can wash the plate when we are done," <<he>> says.' '罗宾道了谢，把食物放在你们中间。“吃完我来洗盘子，”<<he>>说。'>>
+  <<language>>
+    <<option 'EN'>>Robin thanks you and sets the food between you. "I can wash the plate when we are done," <<he>> says.
+    <<option 'CN'>>罗宾道了谢，把食物放在你们中间。“吃完我来洗盘子，”<<he>>说。
+  <</language>>
   <<npcincr Robin love 1>><br><br><<glove>>
 <</if>>
 <br><br>
-<<loveicon 'hug'>><<lanLink '与罗宾分享' 'Revelation Robin Temple Gift Share'>><</lanLink>><br>
-<<socialiseicon 'ask'>><<lanLink '让罗宾自己享用' 'Revelation Robin Temple Gift Alone'>><</lanLink>><br>
+<<if $gift.name is 'sticky_toffee_pudding'>>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾能不能尝一口' 'RobinTemple Gift Pudding Ask'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '看罗宾吃完' 'RobinTemple Gift Pudding Watch'>><</lanLink>><br>
+<<else>>
+  <<loveicon 'hug'>><<lanLink '与罗宾分享' 'RobinTemple Gift Share'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '让罗宾自己享用' 'RobinTemple Gift Alone'>><</lanLink>><br>
+<</if>>
 
-:: Revelation Robin Temple Gift Share
+:: RobinTemple Gift Pudding Ask
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You share the food with Robin. <<He>> moves it closer to your side of the bench whenever <<he>> thinks you have had less.' '你与罗宾分享食物。每当<<he>>觉得你吃得少了，就把盘子往你那边推一推。'>>
+<<if $speech_attitudes is 'bratty'>>
+  <<language>>
+    <<option 'EN'>>"You could leave some for me," you say. Robin stops with the spoon halfway to <<his>> mouth.
+    <<option 'CN'>>“你也给我留一口呀。”你说。罗宾举着勺子，停在半空。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>"May I try some?" you ask. Robin looks down at the pudding, then back at you.
+    <<option 'CN'>>“我能尝一口吗？”你问。罗宾看看布丁，又看看你。
+  <</language>>
+<</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<language>>
+  <<option 'EN'>>"Sorry, I forgot to ask." Robin pushes the plate towards you. You finish the pudding together, and <<he>> insists on washing the dish.
+  <<option 'CN'>>“对不起，我忘了问你。”罗宾把盘子推过来。你们一起吃完布丁，<<he>>坚持要把盘子洗干净。
+<</language>>
+<<npcincr Robin dom -1>><br><br><<ldom>>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Gift Alone
+:: RobinTemple Gift Pudding Watch
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'Robin eats slowly, keeping you company while the last light fades from the windows. <<He>> thanks you again before taking the plate to the kitchen.' '罗宾慢慢吃着，陪你坐到窗外最后一点天光消失。<<He>>再次道谢，随后把盘子送去厨房。'>>
+<<language>>
+  <<option 'EN'>>You let Robin eat the pudding. <<He>> closes <<his>> eyes after the last bite and smiles before noticing you are still watching.
+  <<option 'CN'>>你看着罗宾吃完布丁。最后一口咽下后，<<he>>闭上眼笑了笑，随后才发现你还在看<<him>>。
+<</language>>
+<<npcincr Robin dom 1>><br><br><<gdom>>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+
+:: RobinTemple Gift Share
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<if ($gift.special || []).includes('spicy')>>
+  <<language>>
+    <<option 'EN'>>You share the food. Robin's eyes water after the next bite. <<He>> fetches two cups of water, then returns to finish eating beside you.
+    <<option 'CN'>>你们分着吃。又吃了一口，罗宾的眼睛就被辣得湿了。<<He>>取来两杯水，回来挨着你把食物吃完。
+  <</language>>
+<<elseif ($gift.special || []).includes('drink')>>
+  <<language>>
+    <<option 'EN'>>You take the spare straw. Robin waits until you have had a drink before taking another sip.
+    <<option 'CN'>>你接过另一根吸管。罗宾等你喝过一口，才又自己喝起来。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>You share the food with Robin. <<He>> moves it closer to your side of the bench whenever <<he>> thinks you have had less.
+    <<option 'CN'>>你与罗宾分享食物。每当<<he>>觉得你吃得少了，就把盘子往你那边推一推。
+  <</language>>
+<</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+
+:: RobinTemple Gift Alone
+<<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<if ($gift.special || []).includes('spicy')>>
+  <<language>>
+    <<option 'EN'>>Robin insists <<he>> can finish it. <<He>> does, though <<his>> eyes water. After fetching a drink, <<he>> takes the dishes to the kitchen.
+    <<option 'CN'>>罗宾坚持说自己能吃完。<<He>>的确吃完了，只是眼睛一直被辣得湿漉漉的。喝过水后，<<he>>把餐具送去厨房。
+  <</language>>
+<<elseif ($gift.special || []).includes('drink')>>
+  <<language>>
+    <<option 'EN'>>Robin drinks slowly while you sit together. <<He>> saves the second straw for another day.
+    <<option 'CN'>>罗宾慢慢喝着，你在旁边陪<<him>>坐着。<<He>>把另一根吸管留到了下次。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin eats slowly, keeping you company while the last light fades from the windows. <<He>> thanks you again before taking the plate to the kitchen.
+    <<option 'CN'>>罗宾慢慢吃着，陪你坐到窗外最后一点天光消失。<<He>>再次道谢，随后把盘子送去厨房。
+  <</language>>
+<</if>>
+<br><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>

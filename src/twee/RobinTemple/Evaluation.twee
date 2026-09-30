@@ -1,173 +1,258 @@
-:: Revelation Robin Temple Evaluation
+:: RobinTemple Evaluation
 <!-- ./src/twee/RobinTemple/Evaluation.twee -->
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.stage isnot 'member' or $robinromance isnot 1
-  or !['monk', 'priest'].includes($temple_rank) or $RevelationRobinTemple.service lt 3
-  or $RevelationRobinTemple.penance_day gte 0
-  or ($templePromised isnot '' and ($templePromised isnot 'Sydney' or !$RevelationRobinTemple.joint_consent
+<<if $RobinTemple.stage isnot 'member' or $robinromance isnot 1
+  or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
+  or $RobinTemple.penance_day gte 0
+  or ($templePromised isnot '' and ($templePromised isnot 'Sydney' or !$RobinTemple.joint_consent
     or $sydneyromance isnot 1 or C.npc.Sydney.virginity.temple isnot true))
   or $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true>>
-  <<lanSwitch 'Jordan will not open the assessment until your vows and work records are in order.' '誓言与工作记录尚未齐备，约旦现在不会开始评估。'>>
+  <<language>>
+    <<option 'EN'>>Jordan will not open the assessment until your vows and work records are in order.
+    <<option 'CN'>>誓言与工作记录尚未齐备，约旦现在不会开始评估。
+  <</language>>
   <br><br>
-  <<templeicon 'quarters'>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+  <<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
-<<set $RevelationRobinTemple.evaluation_marks to 0>>
-<<set $RevelationRobinTemple.evaluation_memory to ''>>
-<<set $RevelationRobinTemple.evaluation_belief_done to false>>
-<<lanSwitch
-  'Jordan shuts the side-room door and opens a notebook. "I will speak to each of you," Jordan says. "I want to know what you have chosen together, and what you would choose alone."'
-  '约旦关上侧室的门，打开笔记本。“我会分别问你们，”约旦说，“我想知道你们一起作了什么选择，各自又会作什么选择。”'
->>
+<<set $RobinTemple.evaluation_marks to 0>>
+<<set $RobinTemple.evaluation_memory to ''>>
+<<set $RobinTemple.evaluation_belief_done to false>>
+<<language>>
+  <<option 'EN'>>Jordan shuts the side-room door and opens a notebook. "I will speak to each of you," Jordan says. "I want to know what you have chosen together, and what you would choose alone."
+  <<option 'CN'>>约旦关上侧室的门，打开笔记本。“我会分别问你们，”约旦说，“我想知道你们一起作了什么选择，各自又会作什么选择。”
+<</language>>
 <br><br>
-<<lanSwitch 'A senior initiate arrives with the evening work list. Robin glances at you before stepping forward to explain <<his>> own part.' '一名资深见习者带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。'>>
+<<language>>
+  <<option 'EN'>>A senior initiate arrives with the evening work list. Robin glances at you before stepping forward to explain <<his>> own part.
+  <<option 'CN'>>一名资深见习者带着晚间工作表进来。罗宾看了你一眼，走上前，亲自说明<<his>>负责的事。
+<</language>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '让约旦查看工作记录' 'Revelation Robin Temple Evaluation Records'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '让约旦查看工作记录' 'RobinTemple Evaluation Records'>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Evaluation Records
+:: RobinTemple Evaluation Records
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.service gte 5>>
-  <<set $RevelationRobinTemple.evaluation_marks += 10>>
-  <<lanSwitch
-    'Jordan finds your names on several evening lists. Robin remembers a missing blanket, a wrong count in the storeroom, and the people who helped correct it. Jordan marks the page.'
-    '约旦在几张晚间工作表上找到了你们的名字。罗宾还记得一条遗失的毯子、储藏室里记错的数量，以及帮忙改正的人。约旦在纸上作了记号。'
-  >>
+<<if $RobinTemple.service gte 5>>
+  <<set $RobinTemple.evaluation_marks += 10>>
+  <<language>>
+    <<option 'EN'>>Jordan finds your names on several evening lists. Robin remembers a missing blanket, a wrong count in the storeroom, and the people who helped correct it. Jordan marks the page.
+    <<option 'CN'>>约旦在几张晚间工作表上找到了你们的名字。罗宾还记得一条遗失的毯子、储藏室里记错的数量，以及帮忙改正的人。约旦在纸上作了记号。
+  <</language>>
 <<else>>
-  <<lanSwitch 'The work lists show that you have started helping, but the entries are few. "Come back to this when you have more to tell me," Jordan says.' '工作表上已经有你们帮忙的记录，只是还不多。“等你们有更多事可讲，再回到这个问题上。”约旦说。'>>
+  <<language>>
+    <<option 'EN'>>The work lists show that you have started helping, but the entries are few. "Come back to this when you have more to tell me," Jordan says.
+    <<option 'CN'>>工作表上已经有你们帮忙的记录，只是还不多。“等你们有更多事可讲，再回到这个问题上。”约旦说。
+  <</language>>
 <</if>>
 <br><br>
 <<if C.npc.Robin.revelationConviction gte 120>>
-  <<set $RevelationRobinTemple.evaluation_marks += 10>>
-  <<lanSwitch
-    'Asked why <<he>> still comes after the stall closes, Robin answers without looking to you. <<He>> speaks of the people <<he>> has met here and the work <<he>> wants to keep doing.'
-    '约旦问罗宾为何在摊位收工后还愿意来。罗宾没有看向你，自己说起在这里认识的人，以及<<he>>想继续做的事。'
-  >>
+  <<set $RobinTemple.evaluation_marks += 10>>
+  <<language>>
+    <<option 'EN'>>Asked why <<he>> still comes after work, Robin answers without looking to you. <<He>> speaks of the people <<he>> has met here and the duties <<he>> wants to keep doing.
+    <<option 'CN'>>约旦问罗宾为何忙完生意还愿意来。罗宾没有看向你，自己说起在这里认识的人，以及<<he>>想继续做的事。
+  <</language>>
 <<else>>
-  <<lanSwitch 'Robin answers carefully, pausing when Jordan asks whether joining was entirely <<his>> choice.' '罗宾答得谨慎。约旦问加入神殿是否完全出于<<his>>自己的选择时，<<he>>停顿了片刻。'>>
+  <<language>>
+    <<option 'EN'>>Robin answers carefully, pausing when Jordan asks whether joining was entirely <<his>> choice.
+    <<option 'CN'>>罗宾答得谨慎。约旦问加入神殿是否完全出于<<his>>自己的选择时，<<he>>停顿了片刻。
+  <</language>>
 <</if>>
 <br><br>
-<<lanSwitch 'Jordan closes the work list. "Tell me where your trust began," Jordan says. Robin looks at you, waiting to hear which memory you choose.' '约旦合上工作表。“说说你们从什么时候开始信任彼此。”约旦说。罗宾看着你，等你选一个共同的回忆。'>>
+<<language>>
+  <<option 'EN'>>Jordan closes the work list. "Tell me where your trust began," Jordan says. Robin looks at you, waiting to hear which memory you choose.
+  <<option 'CN'>>约旦合上工作表。“说说你们从什么时候开始信任彼此。”约旦说。罗宾看着你，等你选一个共同的回忆。
+<</language>>
 <br><br>
-<<socialiseicon 'ask'>><<lanLink '说起你们初次相识' 'Revelation Robin Temple Evaluation Memory'>><<set $RevelationRobinTemple.evaluation_memory to 'first'>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '说起你们初次相识' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'first'>><</lanLink>><br>
 <<if $robinSeen.includes('homeBandage') or $robinSeen.includes('favouriteFlower')>>
-  <<loveicon 'hug'>><<lanLink '说起孤儿院里相互照顾的日子' 'Revelation Robin Temple Evaluation Memory'>><<set $RevelationRobinTemple.evaluation_memory to 'care'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '说起孤儿院里相互照顾的日子' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'care'>><</lanLink>><br>
 <</if>>
 <<if $robinSeen.includes('pilloryRescue') or $robinSeen.includes('ubEscapeTogether')>>
-  <<socialiseicon 'ask'>><<lanLink '说起你们一起渡过的险境' 'Revelation Robin Temple Evaluation Memory'>><<set $RevelationRobinTemple.evaluation_memory to 'rescue'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '说起你们一起渡过的险境' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'rescue'>><</lanLink>><br>
+<</if>>
+<<if maplebirch.get('RobinExpansion')
+  and ($RobinExpansion?.shop or $RobinExpansion?.tutor)>>
+  <<socialiseicon 'ask'>><<lanLink '说起你们一起打理的生意' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'work'>><</lanLink>><br>
+<</if>>
+<<if maplebirch.get('RobinExpansion') and $RobinExpansion?.meteorDay gte 0>>
+  <<loveicon 'hug'>><<lanLink '说起一起看过的流星' 'RobinTemple Evaluation Memory'>><<set $RobinTemple.evaluation_memory to 'sky'>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Evaluation Memory
+:: RobinTemple Evaluation Memory
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<switch $RevelationRobinTemple.evaluation_memory>>
+<<switch $RobinTemple.evaluation_memory>>
   <<case 'care'>>
-    <<lanSwitch
-      'You recall a small kindness at the orphanage. Robin remembers it differently, and fills in a part you had forgotten. Jordan listens to both accounts.'
-      '你说起孤儿院里的一件小事。罗宾记得与你不同，又补上了你忘记的部分。约旦听完了你们各自的讲述。'
-    >>
-    <<set $RevelationRobinTemple.evaluation_marks += 6>>
+    <<language>>
+      <<option 'EN'>>You recall a small kindness at the orphanage. Robin remembers it differently, and fills in a part you had forgotten. Jordan listens to both accounts.
+      <<option 'CN'>>你说起孤儿院里的一件小事。罗宾记得与你不同，又补上了你忘记的部分。约旦听完了你们各自的讲述。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 6>>
   <<case 'rescue'>>
-    <<lanSwitch
-      'You speak of a day when one of you needed help. Robin says what frightened <<him>> most, then what made <<him>> trust you enough to go on.'
-      '你说起其中一人需要帮助的那一天。罗宾讲出当时最害怕的事，也讲出<<he>>后来为何愿意相信你。'
-    >>
-    <<set $RevelationRobinTemple.evaluation_marks += 6>>
+    <<language>>
+      <<option 'EN'>>You speak of a day when one of you needed help. Robin says what frightened <<him>> most, then what made <<him>> trust you enough to go on.
+      <<option 'CN'>>你说起其中一人需要帮助的那一天。罗宾讲出当时最害怕的事，也讲出<<he>>后来为何愿意相信你。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 6>>
+  <<case 'work'>>
+    <<language>>
+      <<option 'EN'>>You describe the work you helped Robin begin. Robin corrects you when you claim too much credit. <<He>> tells Jordan which decisions <<he>> made alone, and which burdens you shared.
+      <<option 'CN'>>你说起曾陪罗宾一起做的生意。你把功劳揽得太多时，罗宾纠正了你。<<He>>告诉约旦，哪些决定是自己作的，哪些重担是与你一起分担的。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 6>>
+  <<case 'sky'>>
+    <<language>>
+      <<option 'EN'>>You recall the meteor shower. Robin remembers where you stood and how long you waited in the cold. "We stayed because we both wanted to," <<he>> tells Jordan.
+      <<option 'CN'>>你说起那场流星雨。罗宾还记得你们站在哪里，在冷风里等了多久。“我们留下，是因为都想留下。”<<he>>对约旦说。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 6>>
   <<default>>
-    <<lanSwitch
-      'You tell Jordan how you first met. Robin interrupts once to correct a detail, and you both laugh. The story matters less for its beginning than for everything you have done since.'
-      '你告诉约旦，你们是怎样认识的。罗宾打断你，纠正了一处细节。你们都笑了。比起开头，这段相识之后的日子更值得说。'
-    >>
-    <<set $RevelationRobinTemple.evaluation_marks += 3>>
+    <<language>>
+      <<option 'EN'>>You tell Jordan how you first met. Robin interrupts once to correct a detail, and you both laugh. The story matters less for its beginning than for everything you have done since.
+      <<option 'CN'>>你告诉约旦，你们是怎样认识的。罗宾打断你，纠正了一处细节。你们都笑了。比起开头，这段相识之后的日子更值得说。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 3>>
 <</switch>>
 <br><br>
-<<lanSwitch 'Jordan asks how the faith you practise here fits the life you and Robin lead outside these walls.' '约旦问起你在神殿坚持的信念，要怎样融进你与罗宾在神殿外的生活。'>>
+<<language>>
+  <<option 'EN'>>Jordan asks how the faith you practise here fits the life you and Robin lead outside these walls.
+  <<option 'CN'>>约旦问起你在神殿坚持的信念，要怎样融进你与罗宾在神殿外的生活。
+<</language>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回答约旦对信仰的疑问' 'Revelation Robin Temple Evaluation Belief'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回答约旦对信仰的疑问' 'RobinTemple Evaluation Belief'>><</lanLink>><br>
 
-:: Revelation Robin Temple Evaluation Belief
+:: RobinTemple Evaluation Belief
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if !$RevelationRobinTemple.evaluation_belief_done>>
-  <<set $RevelationRobinTemple.evaluation_belief_done to true>>
+<<if !$RobinTemple.evaluation_belief_done>>
+  <<set $RobinTemple.evaluation_belief_done to true>>
   <<if $angel gte 6>>
-    <<lanSwitch 'Jordan notices the light around you. Robin says the glow is less important than the things you have chosen to do when no one was looking.' '约旦注意到你周身的光。罗宾说，比起光芒，<<he>>更在意无人看见时你做出的选择。'>>
-    <<set $RevelationRobinTemple.evaluation_marks += 12>>
+    <<language>>
+      <<option 'EN'>>Jordan notices the light around you. Robin says the glow is less important than the things you have chosen to do when no one was looking.
+      <<option 'CN'>>约旦注意到你周身的光。罗宾说，比起光芒，<<he>>更在意无人看见时你做出的选择。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 12>>
   <<elseif $fallenangel gte 2 or $demon gte 6>>
-    <<lanSwitch 'Jordan studies your changed appearance. Robin steps forward. "Ask what we do here," <<he>> says, "not what we look like."' '约旦端详着你变化后的模样。罗宾向前一步。“问问我们在这里做了什么，”<<he>>说，“别只看我们的外表。”'>>
+    <<language>>
+      <<option 'EN'>>Jordan studies your changed appearance. Robin steps forward. "Ask what we do here," <<he>> says, "not what we look like."
+      <<option 'CN'>>约旦端详着你变化后的模样。罗宾向前一步。“问问我们在这里做了什么，”<<he>>说，“别只看我们的外表。”
+    <</language>>
     <<if $forgiveintro is 1>>
-      <<lanSwitch 'Jordan recalls that you came to ask for forgiveness rather than hide. Jordan marks the work you have done since.' '约旦记得你曾主动来寻求宽恕，没有躲藏，也记下你后来做过的工作。'>>
-      <<set $RevelationRobinTemple.evaluation_marks += 5>>
+      <<language>>
+        <<option 'EN'>>Jordan recalls that you came to ask for forgiveness rather than hide. Jordan marks the work you have done since.
+        <<option 'CN'>>约旦记得你曾主动来寻求宽恕，没有躲藏，也记下你后来做过的工作。
+      <</language>>
+      <<set $RobinTemple.evaluation_marks += 5>>
     <<else>>
-      <<lanSwitch '"I need to see more than one evening of work," Jordan says. Robin agrees that you can return with a fuller record.' '“我得看到的不只是一晚的工作，”约旦说。罗宾也同意，你们可以带着更完整的记录再来。'>>
-      <<set $RevelationRobinTemple.evaluation_marks -= 8>>
+      <<language>>
+        <<option 'EN'>>"I need to see more than one evening of work," Jordan says. Robin agrees that you can return with a fuller record.
+        <<option 'CN'>>“我得看到的不只是一晚的工作，”约旦说。罗宾也同意，你们可以带着更完整的记录再来。
+      <</language>>
+      <<set $RobinTemple.evaluation_marks -= 8>>
     <</if>>
   <<elseif $purity gte 900>>
-    <<lanSwitch 'Jordan knows how seriously you take the temple’s discipline. Robin reminds <<him>> that you have also found room to listen to people who struggle with it.' '约旦知道你认真遵守神殿戒律。罗宾提醒<<him>>，你也愿意倾听那些为此感到困惑的人。'>>
-    <<set $RevelationRobinTemple.evaluation_marks += 8>>
+    <<language>>
+      <<option 'EN'>>Jordan knows how seriously you take the temple’s discipline. Robin reminds <<him>> that you have also found room to listen to people who struggle with it.
+      <<option 'CN'>>约旦知道你认真遵守神殿戒律。罗宾提醒<<him>>，你也愿意倾听那些为此感到困惑的人。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 8>>
   <<else>>
-    <<lanSwitch 'You speak about the work you return to even when no one has asked you. Robin names a small task you had forgotten. Jordan writes it down.' '你说起没人要求时仍会主动做的事。罗宾又补上一件你忘了的小事。约旦把它记下。'>>
-    <<set $RevelationRobinTemple.evaluation_marks += 2>>
+    <<language>>
+      <<option 'EN'>>You speak about the work you return to even when no one has asked you. Robin names a small task you had forgotten. Jordan writes it down.
+      <<option 'CN'>>你说起没人要求时仍会主动做的事。罗宾又补上一件你忘了的小事。约旦把它记下。
+    <</language>>
+    <<set $RobinTemple.evaluation_marks += 2>>
   <</if>>
   <br><br>
 <</if>>
-<<lanSwitch 'Jordan asks you to wait outside while speaking to Robin alone. The corridor is quiet enough to hear through the door if you move close.' '约旦请你到外面等候，想单独和罗宾谈谈。走廊很安静，靠近门边就能听见里面的话。'>>
+<<language>>
+  <<option 'EN'>>Jordan asks you to wait outside while speaking to Robin alone. The corridor is quiet enough to hear through the door if you move close.
+  <<option 'CN'>>约旦请你到外面等候，想单独和罗宾谈谈。走廊很安静，靠近门边就能听见里面的话。
+<</language>>
 <br><br>
-<<socialiseicon 'ask'>><<lanLink '留在原处等候 (0:15)' 'Revelation Robin Temple Evaluation Wait'>><<pass 15>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '留在原处等候 (0:15)' 'RobinTemple Evaluation Wait'>><<pass 15>><</lanLink>><br>
 <<if currentSkillValue('skulduggery') gte 400>>
-  <<socialiseicon 'ask'>><<lanLink '试着偷听 (0:15)' 'Revelation Robin Temple Evaluation Eavesdrop'>><<pass 15>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '试着偷听 (0:15)' 'RobinTemple Evaluation Eavesdrop'>><<pass 15>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Evaluation Wait
+:: RobinTemple Evaluation Wait
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You wait where Jordan asked you to. A door opens down the hall, and an initiate passes with clean linen. By the time Robin emerges, <<he>> seems less tense.' '你照约旦的话留在原地。一名见习者抱着干净的布巾从走廊经过。罗宾出来时，看起来没那么紧张了。'>>
+<<language>>
+  <<option 'EN'>>You wait where Jordan asked you to. A door opens down the hall, and an initiate passes with clean linen. By the time Robin emerges, <<he>> seems less tense.
+  <<option 'CN'>>你照约旦的话留在原地。一名见习者抱着干净的布巾从走廊经过。罗宾出来时，看起来没那么紧张了。
+<</language>>
 <br><br>
-<<lanSwitch '"I told <<him>> what I think," Robin says. "Now it is your turn."' '“我把自己的想法告诉<<him>>了，”罗宾说，“现在轮到你。”'>>
-<<set $RevelationRobinTemple.evaluation_marks += 3>>
+<<language>>
+  <<option 'EN'>>"I told <<him>> what I think," Robin says. "Now it is your turn."
+  <<option 'CN'>>“我把自己的想法告诉<<him>>了，”罗宾说，“现在轮到你。”
+<</language>>
+<<set $RobinTemple.evaluation_marks += 3>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回答约旦的问题' 'Revelation Robin Temple Evaluation Questions'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回答约旦的问题' 'RobinTemple Evaluation Questions'>><</lanLink>><br>
 
-:: Revelation Robin Temple Evaluation Eavesdrop
+:: RobinTemple Evaluation Eavesdrop
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if currentSkillValue('skulduggery') gte random(350, 750)>>
-  <<lanSwitch
-    'You catch Robin saying that <<he>> wants to remain responsible for the stall and the children, whatever the temple calls <<him>>. Jordan asks if <<he>> can still promise to return here when needed. "Yes," Robin says.'
-    '你听见罗宾说，无论神殿如何称呼<<him>>，<<he>>都想继续照顾摊位和孤儿院的孩子。约旦问，需要时<<he>>是否仍愿意回来。“愿意，”罗宾答道。'
-  >>
-  <<set $RevelationRobinTemple.evaluation_marks += 2>>
+  <<language>>
+      <<option 'EN'>>You catch Robin saying that <<he>> wants to remain responsible for <<his>> business and the children, whatever the temple calls <<him>>. Jordan asks if <<he>> can still promise to return here when needed. "Yes," Robin says.
+      <<option 'CN'>>你听见罗宾说，无论神殿如何称呼<<him>>，<<he>>都想继续照顾生意和孤儿院的孩子。约旦问，需要时<<he>>是否仍愿意回来。“愿意，”罗宾答道。
+  <</language>>
+  <<set $RobinTemple.evaluation_marks += 2>>
 <<else>>
-  <<lanSwitch 'The door opens while you are leaning close. Jordan sees you and waits until you step back. "You will have your own turn to speak," Jordan says.' '你靠近时，门忽然开了。约旦看见你，等你退开。“你会有自己发言的机会。”约旦说。'>>
-  <<set $RevelationRobinTemple.evaluation_marks -= 5>>
+  <<language>>
+    <<option 'EN'>>The door opens while you are leaning close. Jordan sees you and waits until you step back. "You will have your own turn to speak," Jordan says.
+    <<option 'CN'>>你靠近时，门忽然开了。约旦看见你，等你退开。“你会有自己发言的机会。”约旦说。
+  <</language>>
+  <<set $RobinTemple.evaluation_marks -= 5>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回答约旦的问题' 'Revelation Robin Temple Evaluation Questions'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回答约旦的问题' 'RobinTemple Evaluation Questions'>><</lanLink>><br>
 
-:: Revelation Robin Temple Evaluation Questions
+:: RobinTemple Evaluation Questions
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'Jordan lets you back in. "A promise does not make one person responsible for the other," Jordan says. "Tell me what you mean to offer."' '约旦让你回到屋里。“承诺不是让一个人替另一个人承担所有事，”约旦说，“告诉我，你愿意付出什么。”'>>
+<<language>>
+  <<option 'EN'>>Jordan lets you back in. "A promise does not make one person responsible for the other," Jordan says. "Tell me what you mean to offer."
+  <<option 'CN'>>约旦让你回到屋里。“承诺不是让一个人替另一个人承担所有事，”约旦说，“告诉我，你愿意付出什么。”
+<</language>>
 <br><br>
-<<socialiseicon 'ask'>><<lanLink '告诉约旦你真正能遵守的承诺' 'Revelation Robin Temple Evaluation Result'>><<set $RevelationRobinTemple.evaluation_style to 'honest'>><</lanLink>><br>
-<<loveicon 'hug'>><<lanLink '承诺替罗宾挡下所有事' 'Revelation Robin Temple Evaluation Result'>><<set $RevelationRobinTemple.evaluation_style to 'protective'>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink '告诉约旦你真正能遵守的承诺' 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_style to 'honest'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '承诺替罗宾挡下所有事' 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_style to 'protective'>><</lanLink>><br>
 
-:: Revelation Robin Temple Evaluation Result
+:: RobinTemple Evaluation Result
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<npc Robin>><<person1>>
-<<set _score to $RevelationRobinTemple.service * 5 + $grace / 2 + C.npc.Robin.dom / 2 - C.npc.Robin.trauma / 2 + C.npc.Robin.revelationConviction / 4 + $RevelationRobinTemple.evaluation_marks>>
-<<if $RevelationRobinTemple.evaluation_style is "honest">><<set _score += 10>><<else>><<set _score -= 10>><</if>>
+<<set _score to $RobinTemple.service * 5 + $grace / 2 + C.npc.Robin.dom / 2 - C.npc.Robin.trauma / 2 + C.npc.Robin.revelationConviction / 4 + $RobinTemple.evaluation_marks>>
+<<if $RobinTemple.evaluation_style is "honest">><<set _score += 10>><<else>><<set _score -= 10>><</if>>
 <<if _score gte 105 and C.npc.Robin.revelationConviction gte 110
-  and ($templePromised is '' or $templePromised is 'Sydney' and $RevelationRobinTemple.joint_consent)
+  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.joint_consent)
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
   and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
-  <<set $RevelationRobinTemple.stage to "approved">>
-  <<lanSwitch 'You speak of showing up, sharing work, and asking Robin what <<he>> needs. Robin adds that <<he>> will do the same for you. Jordan nods.' '你说自己会守约、分担工作，也会问罗宾真正需要什么。罗宾补充说，<<he>>也会这样对你。约旦点了点头。'>>
+  <<set $RobinTemple.stage to "approved">>
+  <<language>>
+    <<option 'EN'>>You speak of showing up, sharing work, and asking Robin what <<he>> needs. Robin adds that <<he>> will do the same for you. Jordan nods.
+    <<option 'CN'>>你说自己会守约、分担工作，也会问罗宾真正需要什么。罗宾补充说，<<he>>也会这样对你。约旦点了点头。
+  <</language>>
   <br><br>
-  <<lanSwitch '"You may make the promise here. Come back when you are both ready."' '“你们可以在这里立誓。准备好了，就一起来找我。”'>>
-  <br><br><span class="green"><<lanSwitch 'The rite is approved.' '仪式获准举行。'>></span>
+  <<language>>
+    <<option 'EN'>>"You may make the promise here. Come back when you are both ready."
+    <<option 'CN'>>“你们可以在这里立誓。准备好了，就一起来找我。”
+  <</language>>
+  <br><br><<language>>
+    <<option 'EN'>><span class="green">The rite is approved.</span>
+    <<option 'CN'>><span class="green">仪式获准举行。</span>
+  <</language>>
 <<else>>
-  <<set $RevelationRobinTemple.evaluation_day to Time.days>>
-  <<lanSwitch
-    'Jordan closes the notebook. "There is care between you, but you have not yet shown me how this promise will hold when life asks more of you. Keep working together. Come back in a week."'
-    '约旦合上笔记本。“你们彼此关心，但我还没看到，当生活要求更多时，这份承诺要如何维系。继续一起做事，一周后再来。”'
-  >>
+  <<set $RobinTemple.evaluation_day to Time.days>>
+  <<language>>
+    <<option 'EN'>>Jordan closes the notebook. "There is care between you, but you have not yet shown me how this promise will hold when life asks more of you. Keep working together. Come back in a week."
+    <<option 'CN'>>约旦合上笔记本。“你们彼此关心，但我还没看到，当生活要求更多时，这份承诺要如何维系。继续一起做事，一周后再来。”
+  <</language>>
   <br><br>
-  <<lanSwitch 'Robin is disappointed, but <<he>> takes your hand on the way out.' '罗宾有些失望，出门时却还是牵住了你的手。'>>
-  <br><br><span class="blue"><<lanSwitch 'You can request another evaluation in one week.' '一周后可以重新申请评估。'>></span>
+  <<language>>
+    <<option 'EN'>>Robin is disappointed, but <<he>> takes your hand on the way out.
+    <<option 'CN'>>罗宾有些失望，出门时却还是牵住了你的手。
+  <</language>>
+  <br><br><<language>>
+    <<option 'EN'>><span class="blue">You can request another evaluation in one week.</span>
+    <<option 'CN'>><span class="blue">一周后可以重新申请评估。</span>
+  <</language>>
 <</if>>
 <br><br>
 <<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>

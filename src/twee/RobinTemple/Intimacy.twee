@@ -1,0 +1,176 @@
+:: RobinTemple Bed Afternoon
+<!-- ./src/twee/RobinTemple/Intimacy.twee -->
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RobinTemple.stage is 'promised' and $robinromance is 1
+  and $RobinTemple.penance_day lt 0 and !$robinmissing
+  and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
+  and $robin.timer.hurt is 0 and !Time.schoolDay and !Time.isWeekEnd()
+  and Time.hour gte 13 and Time.hour lt 16>>
+  <<language>>
+    <<option 'EN'>>
+      Robin sets down the work list and joins you beside <<his>> bunk. The other initiates are occupied elsewhere. <<He>> draws the folding screen across the empty row, then sits with you on the edge of the mattress.
+    <<option 'CN'>>
+      罗宾放下工作表，来到自己的床铺旁。其他见习者都在别处忙碌。<<He>>拉上这一排床铺的屏风，挨着你坐在床垫边缘。
+  <</language>>
+  <br><br>
+  <<if $RobinTemple.evaluation_style is 'protective'>>
+    <<language>>
+      <<option 'EN'>>
+        "You told Jordan you would keep every hurt from me," <<he>> says. "You do not have to promise that again. Just tell me when something is wrong."
+      <<option 'CN'>>
+        “你曾对约旦说，会替我挡下所有伤害，”<<he>>说，“别再答应这种事了。有难处就告诉我。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "I meant what I said at the altar," <<he>> says. "Even when I have to leave for work or the orphanage."
+      <<option 'CN'>>
+        “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
+    <</language>>
+  <</if>>
+  <br><br>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾是否习惯了新的誓言' 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
+  <<loveicon 'kiss'>><<lanLink '问罗宾要不要更亲近些' 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin is not at the bunk now.
+    <<option 'CN'>>罗宾现在不在床铺旁。
+  <</language>><br><br>
+<</if>>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+
+:: RobinTemple Bed Afternoon Talk
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RobinTemple.stage is 'promised' and !$robinmissing
+  and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80>>
+  <<language>>
+    <<option 'EN'>>
+      Robin turns the silver ring once around <<his>> finger. "I am still learning what it means," <<he>> says. "Jordan witnessed it. That does not mean I need permission to tell you how I feel."
+    <<option 'CN'>>
+      罗宾转了转手上的银戒。“我还在琢磨它意味着什么，”<<he>>说，“约旦见证了誓言，但我不必得到谁的允许，才能对你说心里话。”
+  <</language>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      You stay together until the next shift begins. Robin folds the screen back and returns to the work list.
+    <<option 'CN'>>
+      你们一直坐到下一班开始。罗宾收起屏风，回到工作表旁。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin has already left.
+    <<option 'CN'>>罗宾已经离开了。
+  <</language>>
+<</if>>
+<br><br>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+
+:: RobinTemple Bed Afternoon Invite
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RobinTemple.stage is 'promised' and $robinromance is 1
+  and $RobinTemple.penance_day lt 0 and !$robinmissing
+  and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
+  and $robin.timer.hurt is 0>>
+  <<language>>
+    <<option 'EN'>>
+      Robin looks toward the empty row, then back at you. "Only if we both want to," <<he>> says. <<He>> waits for your answer.
+    <<option 'CN'>>
+      罗宾看了看空着的床铺，又转向你。“得我们都愿意才行，”<<he>>说，等着你的回答。
+  <</language>>
+  <br><br>
+  <!-- TODO(user): Add EN/CN intimate invitation prose here. Keep Robin's answer voluntary and the other initiates away from the bunk. -->
+  <<loveicon 'kiss'>><<lanLink '与罗宾做爱' 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
+  <<loveicon 'hug'>><<lanLink '只抱着罗宾待一会儿' 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin cannot stay with you now.
+    <<option 'CN'>>罗宾现在不能留下陪你。
+  <</language>><br><br>
+<</if>>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+
+:: RobinTemple Bed Afternoon Hold
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $RobinTemple.stage is 'promised' and $robinromance is 1
+  and !$robinmissing and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80>>
+  <<language>>
+    <<option 'EN'>>
+      Robin rests against you until the bell for the next shift sounds. <<He>> folds the screen back before anyone returns.
+    <<option 'CN'>>
+      罗宾靠着你，直到下一班的钟声响起。趁其他人还没回来，<<he>>收起屏风。
+  <</language>>
+  <<npcincr Robin love 1>><br><br><<glove>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>Robin has already left.
+    <<option 'CN'>>罗宾已经离开了。
+  <</language>><br><br>
+<</if>>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+
+:: RobinTemple Bed Sex
+<<set $outside to 0>><<set $location to 'temple'>>
+<!-- The flag lives in V, so loading a save during combat keeps the temple bunk as the return point. -->
+<<if $sexstart is 1 and $RobinTemple.stage is 'promised'
+  and $robinromance is 1 and $RobinTemple.penance_day lt 0
+  and !$robinmissing and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80
+  and $robin.timer.hurt is 0>>
+  <<set $sexstart to 0>><<set $RobinTemple.intimacy_active to true>>
+  <<clearnpc>><<npc Robin>><<person1>><<run statusCheck('Robin')>>
+  <<consensual>><<set $consensual to 1>><<neutral 1>>
+  <<if $exposed lt 2>><<strip>><</if>>
+  <<maninit>><<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
+  <<npcexpose>><<npckiss>>
+  <!-- TODO(user): Add EN/CN explicit combat opening here. This branch runs only once; do not put opening prose after the guard. -->
+<</if>>
+<<if $RobinTemple.intimacy_active>>
+  <<set $enemyanger to 0>>
+  <<effects>><<effectsman>><<man>><<stateman>>
+  <br><br><<actionsman>>
+  <<if _combatend or $consensual isnot 1>>
+    <span id='next'><<lanLink '继续' 'RobinTemple Bed Sex Finish'>><</lanLink>></span><<nexttext>>
+  <<else>>
+    <span id='next'><<lanLink '继续' 'RobinTemple Bed Sex'>><</lanLink>></span><<nexttext>>
+  <</if>>
+<<else>>
+  <<set $sexstart to 0>>
+  <<language>>
+    <<option 'EN'>>Robin is not at the bunk now.
+    <<option 'CN'>>罗宾现在不在床铺旁。
+  <</language>><br><br>
+  <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Bed Sex Finish
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<person1>>
+<<if $RobinTemple.intimacy_active>>
+  <<if $enemyarousal gte $enemyarousalmax>>
+    <<ejaculation>><<npcincr Robin lust -20>>
+  <</if>>
+  <<if $consensual isnot 1>>
+    <<language>>
+      <<option 'EN'>>Robin draws back. You give <<him>> room, and neither of you tries to continue.
+      <<option 'CN'>>罗宾退开了。你给<<him>>让出地方，谁也没有继续。
+    <</language>>
+  <<else>>
+    <<takeKissVirginity 'Robin' 'loveInterest'>>
+    <<language>>
+      <<option 'EN'>>
+        Robin folds the screen back. "The others will be back soon," <<he>> says, straightening the blanket before returning to the work list.
+      <<option 'CN'>>
+        罗宾收起屏风。“他们快回来了。”<<he>>说，理好毯子后回到工作表旁。
+    <</language>>
+    <!-- TODO(user): Add EN/CN explicit aftermath variants here. Branch on $enemyarousal/$enemyhealth/$finish, and keep the cleanup below. -->
+  <</if>>
+  <br><br>
+  <<clotheson>><<endcombat>>
+  <<set $RobinTemple.intimacy_active to false>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>The bunk is quiet again.
+    <<option 'CN'>>床铺旁又安静下来。
+  <</language>><br><br>
+<</if>>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>

@@ -1,28 +1,37 @@
-:: Revelation Robin Temple Transformation
+:: RobinTemple Transformation
 <!-- ./src/twee/RobinTemple/Transformation.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RevelationRobinTemple.transformation_day isnot Time.days>>
-  <<set $RevelationRobinTemple.transformation_day to Time.days>>
-  <<set $RevelationRobinTemple.transformation_count to 0>>
+<<if $RobinTemple.transformation_day isnot Time.days>>
+  <<set $RobinTemple.transformation_day to Time.days>>
+  <<set $RobinTemple.transformation_count to 0>>
 <</if>>
-<<set $RevelationRobinTemple.transformation_count += 1>>
-<<switch $RevelationRobinTemple.transformation_kind>>
+<<set $RobinTemple.transformation_count += 1>>
+<<switch $RobinTemple.transformation_kind>>
   <<case 'fox'>>
-    <<lanSwitch
-      'Robin rests <<his>> head on your tail. "I was only going to close my eyes for a moment," <<he>> says. An initiate clears <<his>> throat, and Robin sits up at once.'
-      '罗宾把头枕在你的尾巴上。“我只是想闭一会儿眼，”<<he>>说。一名见习者清了清嗓子，罗宾立刻坐直。'
-    >>
+    <<language>>
+      <<option 'EN'>>Robin rests <<his>> head on your tail. "I was only going to close my eyes for a moment," <<he>> says. An initiate clears <<his>> throat, and Robin sits up at once.
+      <<option 'CN'>>罗宾把头枕在你的尾巴上。“我只是想闭一会儿眼，”<<he>>说。一名见习者清了清嗓子，罗宾立刻坐直。
+    <</language>>
   <<case 'wolf'>>
-    <<lanSwitch 'You nudge Robin gently. <<He>> notices your ears and scratches behind one, then remembers where you are and pulls <<his>> hand back with a smile.' '你轻轻碰了碰罗宾。<<He>>留意到你的耳朵，挠了挠耳根，随后想起自己身在何处，笑着收回手。'>>
+    <<language>>
+      <<option 'EN'>>You nudge Robin gently. <<He>> notices your ears and scratches behind one, then remembers where you are and pulls <<his>> hand back with a smile.
+      <<option 'CN'>>你轻轻碰了碰罗宾。<<He>>留意到你的耳朵，挠了挠耳根，随后想起自己身在何处，笑着收回手。
+    <</language>>
   <<case 'cat'>>
-    <<lanSwitch 'You settle close to Robin. <<He>> strokes your hair as <<he>> finishes a line of prayer. A quiet purr makes <<him>> lose <<his>> place.' '你挨着罗宾坐下。<<He>>一边念完那句祷词，一边轻抚你的头发。你轻轻呼噜一声，<<he>>便忘了念到哪里。'>>
+    <<language>>
+      <<option 'EN'>>You settle close to Robin. <<He>> strokes your hair as <<he>> finishes a line of prayer. A quiet purr makes <<him>> lose <<his>> place.
+      <<option 'CN'>>你挨着罗宾坐下。<<He>>一边念完那句祷词，一边轻抚你的头发。你轻轻呼噜一声，<<he>>便忘了念到哪里。
+    <</language>>
   <<case 'bird'>>
-    <<lanSwitch 'Your song draws a few listeners. Robin waits until you finish before joining their applause. "You should sing here again," <<he>> says.' '你的歌声引来几名听众。罗宾等你唱完，也跟着鼓掌。“下次还来唱吧，”<<he>>说。'>>
+    <<language>>
+      <<option 'EN'>>Your song draws a few listeners. Robin waits until you finish before joining their applause. "You should sing here again," <<he>> says.
+      <<option 'CN'>>你的歌声引来几名听众。罗宾等你唱完，也跟着鼓掌。“下次还来唱吧，”<<he>>说。
+    <</language>>
   <<case 'cow'>>
-    <<lanSwitch
-      'You touch Robin’s shoulder with your head. <<He>> reaches toward your horn, then pauses. "Does it hurt if I touch it?" <<he>> asks before moving closer.'
-      '你用头轻碰罗宾的肩。<<He>>伸手想摸你的角，又停住了。“碰它会疼吗？”<<he>>问过才靠近。'
-    >>
+    <<language>>
+      <<option 'EN'>>You touch Robin’s shoulder with your head. <<He>> reaches toward your horn, then pauses. "Does it hurt if I touch it?" <<he>> asks before moving closer.
+      <<option 'CN'>>你用头轻碰罗宾的肩。<<He>>伸手想摸你的角，又停住了。“碰它会疼吗？”<<he>>问过才靠近。
+    <</language>>
 <</switch>>
 <<npcincr Robin love 2>><<stress -2>><br><br><<glove>><<lstress>>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>

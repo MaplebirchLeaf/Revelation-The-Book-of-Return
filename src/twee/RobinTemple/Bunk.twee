@@ -1,115 +1,194 @@
-:: Revelation Robin Temple Bunk
+:: RobinTemple Bunk
 <!-- ./src/twee/RobinTemple/Bunk.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<set $wardrobe_location to 'temple'>>
-<<bedclotheson 'Revelation Robin Temple Bed'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<set _robinHere to $RevelationRobinTemple.stage isnot 'none' and !$robinmissing
+<<bedclotheson 'RobinTemple Bed'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<set _robinHere to $RobinTemple.stage isnot 'none' and !$robinmissing
+  and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
-<<lanSwitch 'Robin’s bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.' '罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。'>>
+<<set _robinAfternoon to ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+  and !$robinmissing and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
+  and !Time.schoolDay and !Time.isWeekEnd()
+  and Time.hour gte 13 and Time.hour lt 16>>
+<<language>>
+  <<option 'EN'>>Robin’s bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.
+  <<option 'CN'>>罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
+<</language>>
+<<if maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin')>>
+  <<language>>
+    <<option 'EN'>>Robin uses it during temple shifts. At night <<he>> returns to your home.
+    <<option 'CN'>>罗宾值班时会用这张床，夜里则回到与你同住的家。
+  <</language>>
+<</if>>
 <br><br>
 <<if _robinHere>>
-  <<lanSwitch 'After the Saturday shift, Robin stays here until morning. <<He>> shifts aside when you approach, leaving room on the mattress.' '星期六的值班结束后，罗宾会在这里待到天亮。见你走近，<<he>>往旁边挪了挪，在床垫上给你留出位置。'>>
+  <<language>>
+    <<option 'EN'>>After the Saturday shift, Robin stays here until morning. <<He>> shifts aside when you approach, leaving room on the mattress.
+    <<option 'CN'>>星期六的值班结束后，罗宾会在这里待到天亮。见你走近，<<he>>往旁边挪了挪，在床垫上给你留出位置。
+  <</language>>
   <<if $robinromance is 1>>
     <br><br>
-    <<loveicon 'hug'>><<lanLink '在床边陪罗宾坐一会儿 (0:15)' 'Revelation Robin Temple Bunk Talk'>><<pass 15>><</lanLink>><br>
+    <<loveicon 'hug'>><<lanLink '在床边陪罗宾坐一会儿 (0:15)' 'RobinTemple Bunk Talk'>><<pass 15>><</lanLink>><br>
   <</if>>
+<<elseif _robinAfternoon>>
+  <<language>>
+    <<option 'EN'>>
+      Robin is finishing the afternoon work list at the long table. The other initiates have gone to their duties. The space around <<his>> bunk is empty.
+    <<option 'CN'>>
+      罗宾在长桌旁核对下午的工作表。其他见习者都去做各自的事了，<<his>>床铺周围没有人。
+  <</language>>
+  <<if $RobinTemple.stage is 'promised' and $robinromance is 1
+    and $RobinTemple.penance_day lt 0 and C.npc.Robin.trauma lt 80
+    and $robin.timer.hurt is 0
+    and (Time.hour lt 15 or Time.hour is 15 and Time.minute lt 45)>>
+    <br><br>
+    <<icon 'temple/RobinTemplebed.png'>><<lanLink '请罗宾到床边坐坐 (0:10)' 'RobinTemple Bed Afternoon'>><<pass 10>><</lanLink>><br>
+  <</if>>
+<<elseif getRobinLocation() is 'temple' and !$robinmissing and C.npc.Robin.trauma lt 80>>
+  <<language>>
+    <<option 'EN'>>Robin is helping elsewhere in the quarters. <<His>> bunk is empty for now.
+    <<option 'CN'>>罗宾在宿舍别处帮忙，床铺暂时空着。
+  <</language>>
 <<else>>
-  <<lanSwitch 'Robin is away. The bed has been made, and the space beside it is quiet.' '罗宾不在。床铺已经整理好，旁边一片安静。'>>
+  <<language>>
+    <<option 'EN'>>Robin is away. The bed has been made, and the space beside it is quiet.
+    <<option 'CN'>>罗宾不在。床铺已经整理好，旁边一片安静。
+  <</language>>
 <</if>>
 <br><br>
 <<if $earSlime.event and $earSlime.noSleep>>
-  <span class='red'><<lanSwitch 'The slime will not let you sleep yet.' '史莱姆现在不肯让你睡。'>></span><br>
+  <<language>>
+    <<option 'EN'>><span class='red'>The slime will not let you sleep yet.</span>
+    <<option 'CN'>><span class='red'>史莱姆现在不肯让你睡。</span>
+  <</language>><br>
 <<else>>
-  <<bedicon>><<lanLink '脱衣钻进被窝' 'Revelation Robin Temple Bed'>><<undressSleep 'Revelation Robin Temple Bed'>><</lanLink>><br>
-  <<listsleepoutfits 'Revelation Robin Temple Bed'>>
+  <<icon 'temple/RobinTemplebed.png'>><<lanLink '脱衣钻进被窝' 'RobinTemple Bed'>><<undressSleep 'RobinTemple Bed'>><</lanLink>><br>
+  <<listsleepoutfits 'RobinTemple Bed'>>
 <</if>>
 <br>
 <<bedicon>><<lanLink '你的床铺' 'Temple Bunk'>><</lanLink>><br>
 <<wardrobeicon>><<lanLink '衣柜' 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink '镜子' 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
-<<templeicon 'quarters'>><<lanLink '回到罗宾的座位' 'Revelation Robin Temple Corner'>><</lanLink>><br>
+<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
 
-:: Revelation Robin Temple Bunk Talk
+:: RobinTemple Bunk Talk
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if !$robinmissing and $robinromance is 1 and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
-  <<lanSwitch 'Robin closes the schoolbook and rests against you. <<He>> talks about the stall, then about a younger initiate who kept asking when morning would come.' '罗宾合上课本，靠在你身边。<<He>>先说起摊位，又说起一名总问天什么时候亮的年幼见习者。'>>
+<<if !$robinmissing and $robinromance is 1 and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80
+  and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
+  <<language>>
+    <<option 'EN'>>Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
+    <<option 'CN'>>罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习者。
+  <</language>>
   <br><br>
-  <<lanSwitch '"I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.' '“我告诉<<him>>，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。'>>
+  <<language>>
+    <<option 'EN'>>"I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.
+    <<option 'CN'>>“我告诉<<him>>，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
+  <</language>>
   <<stress -3>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<else>>
-  <<lanSwitch 'Robin has already left for the day.' '罗宾已经离开了。'>>
+  <<language>>
+    <<option 'EN'>>Robin has already left for the day.
+    <<option 'CN'>>罗宾已经离开了。
+  <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/revelation-robin-temple-bed.png'>><<lanLink '回到床边' 'Revelation Robin Temple Bunk'>><</lanLink>><br>
+<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
-:: Revelation Robin Temple Bed
+:: RobinTemple Bed
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<wearoutfit>><<npc Robin>><<person1>>
-<<set _robinHere to !$robinmissing and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
+<<set _robinHere to !$robinmissing and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80
+  and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
 <<if _robinHere>>
-  <<lanSwitch 'You settle beside Robin beneath the blanket. <<He>> waits for you to get comfortable before drawing it over both of you.' '你在毯子下挨着罗宾躺好。<<He>>等你安顿下来，才把毯子拉过你们两人。'>>
+  <<language>>
+    <<option 'EN'>>You settle beside Robin beneath the blanket. <<He>> waits for you to get comfortable before drawing it over both of you.
+    <<option 'CN'>>你在毯子下挨着罗宾躺好。<<He>>等你安顿下来，才把毯子拉过你们两人。
+  <</language>>
 <<else>>
-  <<lanSwitch 'Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.' '罗宾那侧空着。你盖上毯子，听着其他见习者渐渐安静下来。'>>
+  <<language>>
+    <<option 'EN'>>Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
+    <<option 'CN'>>罗宾那侧空着。你盖上毯子，听着其他见习者渐渐安静下来。
+  <</language>>
 <</if>>
 <br><br>
-<<nightmareCheck 'Revelation Robin Temple Sleep'>>
-<<generateSleepLinks 'Revelation Robin Temple Sleep'>>
+<<nightmareCheck 'RobinTemple Sleep'>>
+<<generateSleepLinks 'RobinTemple Sleep'>>
 <<if _robinHere and $robinromance is 1>>
-  <<loveicon 'kiss'>><<lanLink '在毯子下吻罗宾' 'Revelation Robin Temple Bed Kiss'>><</lanLink>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
-  <<loveicon 'hug'>><<lanLink '问罗宾要不要你留下' 'Revelation Robin Temple Bed Invite'>><</lanLink>><br>
+  <<loveicon 'kiss'>><<lanLink '在毯子下吻罗宾' 'RobinTemple Bed Kiss'>><</lanLink>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
+  <<loveicon 'hug'>><<lanLink '问罗宾要不要你留下' 'RobinTemple Bed Invite'>><</lanLink>><br>
 <</if>>
 <br>
-<<bedicon>><<lanLink '起床' 'Revelation Robin Temple Bunk'>><<storeon 'Revelation Robin Temple Bed'>><<loadTempHairStyle>><</lanLink>><br>
+<<bedicon>><<lanLink '起床' 'RobinTemple Bunk'>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
 
-:: Revelation Robin Temple Bed Kiss
+:: RobinTemple Bed Kiss
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $robinromance is 1 and !$robinmissing>>
-  <<lanSwitch 'You kiss Robin beneath the blanket. <<He>> returns it softly, one hand closing around yours when the bunk creaks.' '你在毯子下吻了罗宾。<<He>>轻轻回吻。床铺一响，<<he>>便握住你的手。'>>
+<<if $robinromance is 1 and !$robinmissing and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80>>
+  <<language>>
+    <<option 'EN'>>You kiss Robin beneath the blanket. <<He>> returns it softly, one hand closing around yours when the bunk creaks.
+    <<option 'CN'>>你在毯子下吻了罗宾。<<He>>轻轻回吻。床铺一响，<<he>>便握住你的手。
+  <</language>>
   <br><br>
-  <<lanSwitch 'A neighbouring initiate turns over. You both wait until the room is quiet again.' '旁边的见习者翻了个身。你们等到屋里重新安静下来。'>>
+  <<language>>
+    <<option 'EN'>>A neighbouring initiate turns over. You both wait until the room is quiet again.
+    <<option 'CN'>>旁边的见习者翻了个身。你们等到屋里重新安静下来。
+  <</language>>
   <<npcincr Robin love 1>><<npcincr Robin lust 1>><br><br><<glove>><<glust>>
 <<else>>
-  <<lanSwitch 'Robin is not beside you.' '罗宾不在你身边。'>>
+  <<language>>
+    <<option 'EN'>>Robin is not beside you.
+    <<option 'CN'>>罗宾不在你身边。
+  <</language>>
 <</if>>
 <br><br>
-<<bedicon>><<lanLink '躺回床上' 'Revelation Robin Temple Bed'>><</lanLink>><br>
+<<bedicon>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
 
-:: Revelation Robin Temple Bed Invite
+:: RobinTemple Bed Invite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $robinromance is 1 and !$robinmissing
+  and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
-  <<lanSwitch
-    'Robin lifts the edge of the blanket. "You can stay," <<he>> whispers. "But ask me again if I seem worried. I will do the same for you."'
-    '罗宾掀开毯子一角。“你可以留下，”<<he>>轻声说，“如果我看起来不安，再问我一遍。我也会这样对你。”'
-  >>
+  <<language>>
+    <<option 'EN'>>Robin lifts the edge of the blanket. "You can stay," <<he>> whispers. "But ask me again if I seem worried. I will do the same for you."
+    <<option 'CN'>>罗宾掀开毯子一角。“你可以留下，”<<he>>轻声说，“如果我看起来不安，再问我一遍。我也会这样对你。”
+  <</language>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink '靠着罗宾睡' 'Revelation Robin Temple Bed Close'>><</lanLink>><br>
-  <<bedicon>><<lanLink '让罗宾先睡' 'Revelation Robin Temple Bed'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '靠着罗宾睡' 'RobinTemple Bed Close'>><</lanLink>><br>
+  <<bedicon>><<lanLink '让罗宾先睡' 'RobinTemple Bed'>><</lanLink>><br>
 <<else>>
-  <<lanSwitch 'Robin is not here now. You settle back beneath the blanket.' '罗宾现在不在。你重新躺回毯子下。'>>
+  <<language>>
+    <<option 'EN'>>Robin is not here now. You settle back beneath the blanket.
+    <<option 'CN'>>罗宾现在不在。你重新躺回毯子下。
+  <</language>>
   <br><br>
-  <<bedicon>><<lanLink '躺回床上' 'Revelation Robin Temple Bed'>><</lanLink>><br>
+  <<bedicon>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Bed Close
+:: RobinTemple Bed Close
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.'
-  '你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习者在床上翻身。'
->>
+<<language>>
+  <<option 'EN'>>You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
+  <<option 'CN'>>你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习者在床上翻身。
+<</language>>
 <<stress -2>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
-<<bedicon>><<lanLink '继续睡觉' 'Revelation Robin Temple Sleep'>><</lanLink>><br>
+<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 
-:: Revelation Robin Temple Sleep
+:: RobinTemple Sleep
 <<set $outside to 0>><<set $location to 'temple'>>
 <<set _requestedHours to $sleephour>>
-<<set _robinHere to !$robinmissing and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
+<<set _robinHere to !$robinmissing and getRobinLocation() is 'temple'
+  and C.npc.Robin.trauma lt 80
+  and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
 <<set _nightWake to _robinHere and $robinromance is 1 and _requestedHours gte 3
   and (Time.hour gte 21 or Time.hour lt 3)
-  and $RevelationRobinTemple.night_day isnot Time.days
+  and $RobinTemple.night_day isnot Time.days
   and $nightmares lte 0 and random(1, 6) is 1>>
 <<if _nightWake>>
   <!-- Select the scene before sleeping so a save reload cannot reroll the same wake. -->
-  <<set $RevelationRobinTemple.night_scene to Weather.precipitation is 'rain' ? 'rain'
+  <<set $RobinTemple.night_scene to Weather.precipitation is 'rain' ? 'rain'
+    : $RobinTemple.vigil_result is 'passed' and random(1, 3) is 1 ? 'embers'
+    : random(1, 3) is 1 ? 'ledger'
     : random(1, 2) is 1 ? 'voice' : 'blanket'>>
   <<set $sleephour to random(1, Math.min(2, _requestedHours - 1))>>
 <</if>>
@@ -121,51 +200,102 @@
     and !_wakingEffect and $sleepHoursTotal gte 1
     and (Time.hour gte 22 or Time.hour lt 6)>>
   <<if _nightWake>>
-    <<set $RevelationRobinTemple.night_day to Time.days>>
+    <<set $RobinTemple.night_day to Time.days>>
     <<set $sleephour to Math.max(1, _requestedHours - $sleepHoursTotal)>>
     <<sleepeffects>>
-    <<switch $RevelationRobinTemple.night_scene>>
-      <<case 'rain'>><<lanSwitch 'Rain taps the high window. Robin is awake beside you, watching the water run down the glass.' '雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。'>>
-      <<case 'voice'>><<lanSwitch 'A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.' '隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习者盖好滑落的毯子。'>>
-      <<default>><<lanSwitch 'You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.' '罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。'>>
+    <<switch $RobinTemple.night_scene>>
+      <<case 'rain'>><<language>>
+        <<option 'EN'>>Rain taps the high window. Robin is awake beside you, watching the water run down the glass.
+        <<option 'CN'>>雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。
+      <</language>>
+      <<case 'voice'>><<language>>
+        <<option 'EN'>>A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
+        <<option 'CN'>>隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习者盖好滑落的毯子。
+      <</language>>
+      <<case 'embers'>><<language>>
+        <<option 'EN'>>Robin wakes with a start. <<He>> stares at the dark ceiling as if the fire were still there.
+        <<option 'CN'>>罗宾猛地醒来，盯着黑暗中的天花板，仿佛那堆火还在眼前。
+      <</language>>
+      <<case 'ledger'>><<language>>
+        <<option 'EN'>>A page turns beside you. Robin is awake with the business ledger open on <<his>> knees.
+        <<option 'CN'>>身旁传来翻页声。罗宾还醒着，膝上摊着生意账本。
+      <</language>>
+      <<default>><<language>>
+        <<option 'EN'>>You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.
+        <<option 'CN'>>罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。
+      <</language>>
     <</switch>>
     <br><br>
-    <<bedicon>><<lanLink '睁开眼' 'Revelation Robin Temple Night Wake'>><</lanLink>><br>
+    <<bedicon>><<lanLink '睁开眼' 'RobinTemple Night Wake'>><</lanLink>><br>
   <<elseif $nightmares gte 1 and $controlled is 0>>
     <<nightmareWake>>
   <<elseif !_wakingEffect>>
-    <<lanSwitch 'You sleep beneath the temple’s quiet roof.' '你在神殿安静的屋檐下睡了一觉。'>>
+    <<language>>
+      <<option 'EN'>>You sleep beneath the temple’s quiet roof.
+      <<option 'CN'>>你在神殿安静的屋檐下睡了一觉。
+    <</language>>
   <</if>>
   <<if !_nightWake>>
     <<sleepeffects>>
     <<set $wardrobe_location to 'temple'>><<wardrobeSelection true>><<radiooutfits>>
     <br><br>
-    <<bedicon>><<lanLink '起床' 'Revelation Robin Temple Bunk'>><</lanLink>><br>
+    <<bedicon>><<lanLink '起床' 'RobinTemple Bunk'>><</lanLink>><br>
   <</if>>
   <<set $phase to 0>>
 <</if>>
 
-:: Revelation Robin Temple Night Wake
+:: RobinTemple Night Wake
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<switch $RevelationRobinTemple.night_scene>>
+<<switch $RobinTemple.night_scene>>
   <<case 'rain'>>
-    <<lanSwitch
-      'Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It is strange to lie still and not fetch a bucket."'
-      '罗宾陪你听雨。“孤儿院的屋顶遇到这种天气会漏水，”<<he>>说，“躺着不去拿水桶，真有点不习惯。”'
-    >>
+    <<language>>
+      <<option 'EN'>>Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It is strange to lie still and not fetch a bucket."
+      <<option 'CN'>>罗宾陪你听雨。“孤儿院的屋顶遇到这种天气会漏水，”<<he>>说，“躺着不去拿水桶，真有点不习惯。”
+    <</language>>
   <<case 'voice'>>
-    <<lanSwitch 'Robin settles back beside you. "The child was dreaming about home," <<he>> whispers. "Jordan says the first nights can be difficult."' '罗宾重新在你身边躺下。“那孩子梦见家了，”<<he>>低声说，“约旦说，刚来的几晚会很难熬。”'>>
+    <<language>>
+      <<option 'EN'>>Robin settles back beside you. "The child was dreaming about home," <<he>> whispers. "Jordan says the first nights can be difficult."
+      <<option 'CN'>>罗宾重新在你身边躺下。“那孩子梦见家了，”<<he>>低声说，“约旦说，刚来的几晚会很难熬。”
+    <</language>>
+  <<case 'embers'>>
+    <<language>>
+      <<option 'EN'>>You remind Robin of the route out of the cloister. <<He>> names each door with you. When <<he>> reaches the last one, <<he>> lies back down.
+      <<option 'CN'>>你陪罗宾回忆离开回廊的路。<<He>>和你一起说出每扇门的位置。数到最后一扇，<<he>>重新躺了下来。
+    <</language>>
+  <<case 'ledger'>>
+    <<language>>
+      <<option 'EN'>>Robin has been working out what <<he>> can afford for the business next week. You point out that the figures will still be there in the morning. <<He>> closes the book and moves it out of the bed.
+      <<option 'CN'>>罗宾正算下周还能给生意添些什么。你提醒<<him>>，账本明早也不会跑掉。<<He>>合上本子，把它从床上挪开。
+    <</language>>
   <<default>>
-    <<lanSwitch '"I thought you were cold," Robin whispers. <<He>> draws the blanket over both of you and waits for your breathing to slow.' '“我以为你冷，”罗宾轻声说。<<He>>把毯子盖在你们身上，等你的呼吸渐渐平稳。'>>
+    <<language>>
+      <<option 'EN'>>"I thought you were cold," Robin whispers. <<He>> draws the blanket over both of you and waits for your breathing to slow.
+      <<option 'CN'>>“我以为你冷，”罗宾轻声说。<<He>>把毯子盖在你们身上，等你的呼吸渐渐平稳。
+    <</language>>
 <</switch>>
 <br><br>
-<<loveicon 'hug'>><<lanLink '握住罗宾的手' 'Revelation Robin Temple Night Wake Hand'>><</lanLink>><br>
-<<bedicon>><<lanLink '继续睡觉' 'Revelation Robin Temple Sleep'>><</lanLink>><br>
-<<getouticon>><<lanLink '起床' 'Revelation Robin Temple Bunk'>><<set $sleephour to 0>><<storeon 'Revelation Robin Temple Bed'>><<loadTempHairStyle>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink '握住罗宾的手' 'RobinTemple Night Wake Hand'>><</lanLink>><br>
+<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
+<<getouticon>><<lanLink '起床' 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
 
-:: Revelation Robin Temple Night Wake Hand
+:: RobinTemple Night Wake Hand
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch 'You find Robin’s hand beneath the blanket. <<He>> holds yours until the rain and the quiet voices in the dormitory no longer seem so distant.' '你在毯子下握住罗宾的手。<<He>>一直牵着你，直到宿舍里的雨声和低语不再显得遥远。'>>
+<<if $RobinTemple.night_scene is 'embers'>>
+  <<language>>
+    <<option 'EN'>>You find Robin's hand beneath the blanket. <<He>> holds on while you name the familiar sounds of the quarters, one by one.
+    <<option 'CN'>>你在毯子下握住罗宾的手。你一件件说起宿舍里熟悉的声音，<<he>>一直牵着你。
+  <</language>>
+<<elseif $RobinTemple.night_scene is 'ledger'>>
+  <<language>>
+    <<option 'EN'>>You take Robin's hand away from the closed ledger. <<He>> laughs quietly and settles beside you.
+    <<option 'CN'>>你把罗宾的手从合上的账本边牵开。<<He>>轻声笑了笑，挨着你躺好。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>You find Robin's hand beneath the blanket. <<He>> holds yours until the quarters are quiet again.
+    <<option 'CN'>>你在毯子下握住罗宾的手。<<He>>一直牵着你，直到宿舍再次安静下来。
+  <</language>>
+<</if>>
 <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
-<<bedicon>><<lanLink '继续睡觉' 'Revelation Robin Temple Sleep'>><</lanLink>><br>
-<<getouticon>><<lanLink '起床' 'Revelation Robin Temple Bunk'>><<set $sleephour to 0>><<storeon 'Revelation Robin Temple Bed'>><<loadTempHairStyle>><</lanLink>><br>
+<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
+<<getouticon>><<lanLink '起床' 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>

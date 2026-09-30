@@ -1,54 +1,78 @@
-:: Revelation Robin Temple Spear
+:: RobinTemple Spear
 <!-- ./src/twee/RobinTemple/Spear.twee -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $temple_spear_mission is 1 and !$spear_vessel and !$RevelationRobinTemple.spear_seen>>
-  <<set $RevelationRobinTemple.spear_seen to true>>
-  <<lanSwitch
-    'Robin stops turning the page of <<his>> schoolbook. "Jordan told me about the spear," <<he>> says. "I know you can find it. I just wish I could go with you."'
-    '罗宾停下翻书的手。“约旦把长矛的事告诉我了，”<<he>>说，“我知道你能找到它。只是希望我也能跟你去。”'
-  >>
+<<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen>>
+  <<set $RobinTemple.spear_seen to true>>
+  <<language>>
+    <<option 'EN'>>Robin stops turning the page of <<his>> schoolbook. "Jordan told me about the spear," <<he>> says. "I know you can find it. I just wish I could go with you."
+    <<option 'CN'>>罗宾停下翻书的手。“约旦把长矛的事告诉我了，”<<he>>说，“我知道你能找到它。只是希望我也能跟你去。”
+  <</language>>
   <br><br>
-  <<lanSwitch '<<He>> checks the map with you, marking the last place Jordan knew the vessel had been seen. "Come back and tell me what happened," <<he>> says.' '<<He>>陪你看地图，标出约旦最后得知船只出现的地点。“回来以后，告诉我发生了什么。”<<he>>说。'>>
+  <<language>>
+    <<option 'EN'>><<He>> checks the map with you, marking the last place Jordan knew the vessel had been seen. "Come back and tell me what happened," <<he>> says.
+    <<option 'CN'>><<He>>陪你看地图，标出约旦最后得知船只出现的地点。“回来以后，告诉我发生了什么。”<<he>>说。
+  <</language>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink '答应回来告诉罗宾' 'Revelation Robin Temple Spear Reassure'>><</lanLink>><br>
-  <<socialiseicon 'ask'>><<lanLink '请罗宾帮你检查准备' 'Revelation Robin Temple Spear Prepare'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink '答应回来告诉罗宾' 'RobinTemple Spear Reassure'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink '请罗宾帮你检查准备' 'RobinTemple Spear Prepare'>><</lanLink>><br>
 <<else>>
-  <<lanSwitch 'Robin has already told you what <<he>> knows about the spear.' '罗宾已经把自己知道的长矛线索告诉你了。'>>
+  <<language>>
+    <<option 'EN'>>Robin has already told you what <<he>> knows about the spear.
+    <<option 'CN'>>罗宾已经把自己知道的长矛线索告诉你了。
+  <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 <</if>>
 
-:: Revelation Robin Temple Spear Reassure
+:: RobinTemple Spear Reassure
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch '"I will," you say. Robin folds the map carefully and hands it back. <<He>> stays with you until Jordan calls for the evening prayer.' '“我会的。”你说。罗宾仔细折好地图，交还给你。<<He>>一直陪着你，直到约旦召集晚祷。'>>
+<<language>>
+  <<option 'EN'>>"I will," you say. Robin folds the map carefully and hands it back. <<He>> stays with you until Jordan calls for the evening prayer.
+  <<option 'CN'>>“我会的。”你说。罗宾仔细折好地图，交还给你。<<He>>一直陪着你，直到约旦召集晚祷。
+<</language>>
 <<npcincr Robin love 2>><<stress -2>><br><br><<glove>><<lstress>>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Spear Prepare
+:: RobinTemple Spear Prepare
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<lanSwitch
-  'Robin asks how you mean to return if the route changes. You work through two possibilities together. <<He>> cannot make the journey safe, but <<he>> makes sure someone will know where to look.'
-  '罗宾问你，如果路线有变打算怎样回来。你们一起想出两种办法。<<He>>无法替你排除路上的危险，却能确保有人知道去哪里找你。'
->>
+<<language>>
+  <<option 'EN'>>Robin asks how you mean to return if the route changes. You work through two possibilities together. <<He>> cannot make the journey safe, but <<he>> makes sure someone will know where to look.
+  <<option 'CN'>>罗宾问你，如果路线有变打算怎样回来。你们一起想出两种办法。<<He>>无法替你排除路上的危险，却能确保有人知道去哪里找你。
+<</language>>
 <<willpower 1>><<npcincr Robin dom 1>><br><br><<gwillpower>><<gdom>>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
-:: Revelation Robin Temple Spear Return
+:: RobinTemple Spear Return
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if !$RevelationRobinTemple.spear_return_seen>>
-  <<set $RevelationRobinTemple.spear_return_seen to true>>
-  <<lanSwitch 'Robin sees you before you reach the bench. <<He>> closes the schoolbook and waits while you tell <<him>> where the journey took you.' '你还没走到长椅，罗宾就看见了你。<<He>>合上课本，等你讲述这一路去了哪里。'>>
+<<if !$RobinTemple.spear_return_seen>>
+  <<set $RobinTemple.spear_return_seen to true>>
+  <<language>>
+    <<option 'EN'>>Robin sees you before you reach the bench. <<He>> closes the schoolbook and waits while you tell <<him>> where the journey took you.
+    <<option 'CN'>>你还没走到长椅，罗宾就看见了你。<<He>>合上课本，等你讲述这一路去了哪里。
+  <</language>>
   <br><br>
   <<if $spear_vessel is 'temple'>>
-    <<lanSwitch '"So it is back here," <<he>> says. <<He>> glances toward the altar, then back at you. "And you are back too."' '“长矛回到这里了，”<<he>>说。<<He>>看了一眼祭坛，又看向你。“你也回来了。”'>>
+    <<language>>
+      <<option 'EN'>>"So it is back here," <<he>> says. <<He>> glances toward the altar, then back at you. "And you are back too."
+      <<option 'CN'>>“长矛回到这里了，”<<he>>说。<<He>>看了一眼祭坛，又看向你。“你也回来了。”
+    <</language>>
   <<elseif $spear_vessel is 'sea' or $spear_vessel is 'Zephyr'>>
-    <<lanSwitch 'The spear has not reached the altar, but Robin listens to the decision you made. "Jordan should hear it from you," <<he>> says.' '长矛还没回到祭坛，但罗宾听完了你的决定。“该由你亲口告诉约旦，”<<he>>说。'>>
+    <<language>>
+      <<option 'EN'>>The spear has not reached the altar, but Robin listens to the decision you made. "Jordan should hear it from you," <<he>> says.
+      <<option 'CN'>>长矛还没回到祭坛，但罗宾听完了你的决定。“该由你亲口告诉约旦，”<<he>>说。
+    <</language>>
   <<else>>
-    <<lanSwitch 'Robin asks what you learned. When you falter, <<he>> reminds you that the route home mattered as much as the thing you were sent to find.' '罗宾问你一路看到了什么。你一时说不下去，<<he>>提醒你，回来的路和你被派去寻找的东西一样重要。'>>
+    <<language>>
+      <<option 'EN'>>Robin asks what you learned. When you falter, <<he>> reminds you that the route home mattered as much as the thing you were sent to find.
+      <<option 'CN'>>罗宾问你一路看到了什么。你一时说不下去，<<he>>提醒你，回来的路和你被派去寻找的东西一样重要。
+    <</language>>
   <</if>>
   <<npcincr Robin love 2>><<stress -3>><br><br><<glove>><<lstress>>
 <<else>>
-  <<lanSwitch 'You have already told Robin about the journey.' '你已经把旅途的经过告诉罗宾了。'>>
+  <<language>>
+    <<option 'EN'>>You have already told Robin about the journey.
+    <<option 'CN'>>你已经把旅途的经过告诉罗宾了。
+  <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'Revelation Robin Temple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
