@@ -2,52 +2,70 @@
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
 <<if C.npc.Robin.dom gt 50>>
   <<language>>
-    <<option 'EN'>>Robin glances at your chastity device. "Does wearing that mean you have joined the temple?" <<He>> pauses. "I'm only asking. If it's what you want, I'm glad."
-    <<option 'CN'>>罗宾看了看你的贞操装置。“戴上这个，是因为你加入神殿了吗？”<<He>>顿了一下，“我只是有些好奇。如果这是你想要的，我也替你开心。”
+    <<option 'EN'>>
+      Robin glances at your chastity device. "Does wearing that mean you have joined the temple?" <<He>> pauses. "I'm only asking. If it's what you want, I'm glad."
+    <<option 'CN'>>
+      罗宾看了看你的贞操装置。“戴上这个，是因为你加入神殿了吗？”<<He>>顿了一下，“我只是有些好奇。如果这是你想要的，我也替你开心。”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin's eyes fall on your chastity device, then turn away. "Is it all right if I ask about that?" <<he>> says quietly. "You don't have to tell me."
-    <<option 'CN'>>罗宾的目光落在你的贞操装置上，又移了开去。“我能问问这个吗？”<<he>>轻声说，“你不想说也没关系。”
+    <<option 'EN'>>
+      Robin's eyes fall on your chastity device, then turn away. "Is it all right if I ask about that?" <<he>> says quietly. "You don't have to tell me."
+    <<option 'CN'>>
+      罗宾的目光落在你的贞操装置上，又移了开去。“我能问问这个吗？”<<he>>轻声说，“你不想说也没关系。”
   <</language>>
 <</if>>
 <br><br>
 <<language>>
-  <<option 'EN'>>You explain what the temple asks of you. Robin listens without interrupting. When you mention the work and the shelter it offers, <<he>> glances at the window.
-  <<option 'CN'>>你向罗宾解释神殿对信徒的要求。罗宾没有打断你。听到那里的工作和庇护时，<<he>>望向窗外。
+  <<option 'EN'>>
+    You explain what the temple asks of you. Robin listens without interrupting. When you mention the work and the shelter it offers, <<he>> glances at the window.
+  <<option 'CN'>>
+    你向罗宾解释神殿对信徒的要求。罗宾没有打断你。听到那里的工作和庇护时，<<he>>望向窗外。
 <</language>>
 <br><br>
 <<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
   <<language>>
-    <<option 'EN'>>"I have the shop to run," Robin says. "And the children here. Would I have to leave them?"
-    <<option 'CN'>>“我还要照看店铺，”罗宾说，“院里的孩子们也需要人照顾。我得离开他们吗？”
+    <<option 'EN'>>
+      "I have the shop to run," Robin says. "And the children here. Would I have to leave them?"
+    <<option 'CN'>>
+      “我还要照看店铺，”罗宾说，“院里的孩子们也需要人照顾。我得离开他们吗？”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>"I still have my stall," Robin says. "And the children here. Would I have to leave them?"
-    <<option 'CN'>>“我还有摊位，”罗宾说，“院里的孩子们也需要人照看。我得离开他们吗？”
+    <<option 'EN'>>
+      "I still have my stall," Robin says. "And the children here. Would I have to leave them?"
+    <<option 'CN'>>
+      “我还有摊位，”罗宾说，“院里的孩子们也需要人照看。我得离开他们吗？”
   <</language>>
 <</if>>
 <br><br>
 <<language>>
-  <<option 'EN'>>You tell <<him>> the choice is <<his>>. You cannot promise what Jordan will allow, but you can go with Robin and ask.
-  <<option 'CN'>>你告诉<<him>>，决定权在<<his>>手里。约旦会如何安排，你不能擅自保证，但你可以陪罗宾去问。
+  <<option 'EN'>>
+    You tell <<him>> the choice is <<his>>. You cannot promise what Jordan will allow, but you can go with Robin and ask.
+  <<option 'CN'>>
+    你告诉<<him>>，决定权在<<his>>手里。约旦会如何安排，你不能擅自保证，但你可以陪罗宾去问。
 <</language>>
 <br><br>
 <<if C.npc.Robin.dom gt 50>>
   <<language>>
-    <<option 'EN'>>"If they look after you, that's good," Robin says. "I'd like to see it for myself before deciding."
-    <<option 'CN'>>“那里愿意照顾你，是件好事，”罗宾说，“不过要不要加入，我想先亲自去看看。”
+    <<option 'EN'>>
+      "If they look after you, that's good," Robin says. "I'd like to see it for myself before deciding."
+    <<option 'CN'>>
+      “那里愿意照顾你，是件好事，”罗宾说，“不过要不要加入，我想先亲自去看看。”
   <</language>>
 <<elseif !(maplebirch.get('RobinExpansion') and $RobinExpansion?.baileyDefeated)>>
   <<language>>
-    <<option 'EN'>>"Would Bailey let me?" Robin asks. <<He>> rubs the edge of <<his>> sleeve. "I don't want to cause trouble for the children."
-    <<option 'CN'>>“贝利会答应吗？”罗宾问。<<He>>捻着袖口，“我不想给院里的孩子们惹麻烦。”
+    <<option 'EN'>>
+      "Would Bailey let me?" Robin asks. <<He>> rubs the edge of <<his>> sleeve. "I don't want to cause trouble for the children."
+    <<option 'CN'>>
+      “贝利会答应吗？”罗宾问。<<He>>捻着袖口，“我不想给院里的孩子们惹麻烦。”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>"The children still need me," Robin says. "I want to know I can keep looking after them."
-    <<option 'CN'>>“院里的孩子们还需要我，”罗宾说，“我想先确定，自己还能继续照顾他们。”
+    <<option 'EN'>>
+      "The children still need me," Robin says. "I want to know I can keep looking after them."
+    <<option 'CN'>>
+      “院里的孩子们还需要我，”罗宾说，“我想先确定，自己还能继续照顾他们。”
   <</language>>
 <</if>>
 <br><br>
@@ -59,21 +77,27 @@
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is "invited">>
   <<language>>
-    <<option 'EN'>>Robin has written a few questions on the back of a receipt. <<He>> wants to know whether the temple would still let <<him>> go to school and work.
-    <<option 'CN'>>罗宾在一张收据背面写了几个问题。<<He>>想知道加入神殿后还能不能上学和照顾生意。
+    <<option 'EN'>>
+      Robin has written a few questions on the back of a receipt. <<He>> wants to know whether the temple would still let <<him>> go to school and work.
+    <<option 'CN'>>
+      罗宾在一张收据背面写了几个问题。<<He>>想知道加入神殿后还能不能上学和照顾生意。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"Let's ask Jordan together," you say. "The assessment will still be yours to take. I cannot take it for you." Robin folds the receipt and nods.
-    <<option 'CN'>>“我们一起去问约旦，”你说，“考核仍得由你自己参加，我不能替你。”罗宾折好收据，点了点头。
+    <<option 'EN'>>
+      "Let's ask Jordan together," you say. "The assessment will still be yours to take. I cannot take it for you." Robin folds the receipt and nods.
+    <<option 'CN'>>
+      “我们一起去问约旦，”你说，“考核仍得由你自己参加，我不能替你。”罗宾折好收据，点了点头。
   <</language>>
   <br><br>
   <<templeicon 'altar'>><<lanLink '陪罗宾去见约旦 (0:10)' 'RobinTemple Jordan Introduction'>><<pass 10>><</lanLink>><br>
   <<getouticon>><<lanLink '再给罗宾一些时间' 'Robin Options'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin has already made a decision. You can talk again when the time is right.
-    <<option 'CN'>>罗宾已经作了决定。等时机合适，你们还可以再谈。
+    <<option 'EN'>>
+      Robin has already made a decision. You can talk again when the time is right.
+    <<option 'CN'>>
+      罗宾已经作了决定。等时机合适，你们还可以再谈。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
@@ -83,13 +107,17 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'invited'>>
   <<language>>
-    <<option 'EN'>>You bring Robin to Jordan. Robin reads the questions from the receipt, stumbling over the first one but finishing it without your help. Jordan waits until <<he>> is done.
-    <<option 'CN'>>你陪罗宾见到约旦。罗宾照着收据念出自己的问题。第一个问题念得有些磕绊，但<<he>>没有让你代劳。约旦等<<he>>说完。
+    <<option 'EN'>>
+      You bring Robin to Jordan. Robin reads the questions from the receipt, stumbling over the first one but finishing it without your help. Jordan waits until <<he>> is done.
+    <<option 'CN'>>
+      你陪罗宾见到约旦。罗宾照着收据念出自己的问题。第一个问题念得有些磕绊，但<<he>>没有让你代劳。约旦等<<he>>说完。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"You may keep going to school and working," Jordan says. "You will also have duties here. First you must pass the chastity assessment." Robin asks for two days to prepare. Jordan agrees.
-    <<option 'CN'>>“你可以继续上学和工作，”约旦说，“神殿也会分给你一些事务。首先，你得通过贞洁考核。”罗宾请求用两天作准备。约旦答应了。
+    <<option 'EN'>>
+      "You may keep going to school and working," Jordan says. "You will also have duties here. First you must pass the chastity assessment." Robin asks for two days to prepare. Jordan agrees.
+    <<option 'CN'>>
+      “你可以继续上学和工作，”约旦说，“神殿也会分给你一些事务。首先，你得通过贞洁考核。”罗宾请求用两天作准备。约旦答应了。
   <</language>>
   <br><br>
   <<templeicon 'altar'>><<lanLink '与罗宾约定考核日期' 'RobinTemple Scheduled'>><<set $RobinTemple.stage to 'scheduled'>><<set $RobinTemple.exam_day to Time.days + 2>><<pass 10>><</lanLink>><br>
@@ -100,13 +128,17 @@
 :: RobinTemple Scheduled
 <<set $outside to 0>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>Robin marks the date on the receipt. "Two days," <<he>> says. "I can do that."
-  <<option 'CN'>>罗宾在收据上圈出日期。“两天后，”<<he>>说，“我能做到。”
+  <<option 'EN'>>
+    Robin marks the date on the receipt. "Two days," <<he>> says. "I can do that."
+  <<option 'CN'>>
+    罗宾在收据上圈出日期。“两天后，”<<he>>说，“我能做到。”
 <</language>>
 <br><br>
 <<language>>
-  <<option 'EN'>>Jordan has agreed to meet you both in the temple quarters. You can help Robin prepare there before the assessment.
-  <<option 'CN'>>约旦答应在神殿宿舍与你们见面。考核之前，你可以在那里陪罗宾做些准备。
+  <<option 'EN'>>
+    Jordan has agreed to meet you both in the temple quarters. You can help Robin prepare there before the assessment.
+  <<option 'CN'>>
+    约旦答应在神殿宿舍与你们见面。考核之前，你可以在那里陪罗宾做些准备。
 <</language>>
 <br><br>
 <<if !$RobinTemple.pendant and ['holy pendant', 'stone pendant'].includes($worn.neck.name)>>
@@ -125,23 +157,31 @@
   <<set $RobinTemple.readiness to Math.min(30, $RobinTemple.readiness + 10)>>
   <<set $RobinTemple.assessment_bonus to Math.min(15, $RobinTemple.assessment_bonus + 5)>>
   <<language>>
-    <<option 'EN'>>You find Robin at a table with a temple pamphlet spread before <<him>>. You read the questions aloud and let <<him>> answer in <<his>> own words.
-    <<option 'CN'>>你在一张桌旁找到罗宾。神殿的小册子摊在<<his>>面前。你念出上面的问题，让<<him>>用自己的话作答。
+    <<option 'EN'>>
+      You find Robin at a table with a temple pamphlet spread before <<him>>. You read the questions aloud and let <<him>> answer in <<his>> own words.
+    <<option 'CN'>>
+      你在一张桌旁找到罗宾。神殿的小册子摊在<<his>>面前。你念出上面的问题，让<<him>>用自己的话作答。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>At first Robin keeps looking to you for approval. After a while, <<he>> begins to answer without waiting.
-    <<option 'CN'>>起初罗宾总要看你的脸色。过了一会儿，<<he>>不再等你点头，也能继续说下去。
+    <<option 'EN'>>
+      At first Robin keeps looking to you for approval. After a while, <<he>> begins to answer without waiting.
+    <<option 'CN'>>
+      起初罗宾总要看你的脸色。过了一会儿，<<he>>不再等你点头，也能继续说下去。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>><span class="green">Robin seems better prepared.</span>
-    <<option 'CN'>><span class="green">罗宾准备得更充分了。</span>
+    <<option 'EN'>>
+      <span class="green">Robin seems better prepared.</span>
+    <<option 'CN'>>
+      <span class="green">罗宾准备得更充分了。</span>
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>There is nothing more to prepare today.
-    <<option 'CN'>>今天已经没有更多需要准备的事了。
+    <<option 'EN'>>
+      There is nothing more to prepare today.
+    <<option 'CN'>>
+      今天已经没有更多需要准备的事了。
   <</language>>
 <</if>>
 <br><br>
@@ -152,36 +192,46 @@
 <<if $RobinTemple.stage is "scheduled" and Time.days gte $RobinTemple.exam_day>>
   <<run maplebirch.get('RobinTemple').assess()>>
   <<language>>
-    <<option 'EN'>>Robin goes with Jordan for the temple's chastity assessment. You wait in the hall. When the door opens again, you get up to meet <<him>>.
-    <<option 'CN'>>罗宾跟着约旦去参加神殿的贞洁考核。你留在大厅等候。门再次打开时，你起身朝<<him>>走去。
+    <<option 'EN'>>
+      Robin goes with Jordan for the temple's chastity assessment. You wait in the hall. When the door opens again, you get up to meet <<him>>.
+    <<option 'CN'>>
+      罗宾跟着约旦去参加神殿的贞洁考核。你留在大厅等候。门再次打开时，你起身朝<<him>>走去。
   <</language>>
   <br><br>
   <<if $RobinTemple.assessment_fire>>
     <<language>>
-      <<option 'EN'>>The ordinary examination was not enough to confirm Robin's vow. <<He>> chose to face the fire trial as well. You notice marks from the flames on <<his>> feet.
-      <<option 'CN'>>普通检查未能确认罗宾的誓言，<<he>>选择继续接受火焰考验。你注意到<<his>>脚上留下了火焰灼烧的痕迹。
+      <<option 'EN'>>
+        The ordinary examination was not enough to confirm Robin's vow. <<He>> chose to face the fire trial as well. You notice marks from the flames on <<his>> feet.
+      <<option 'CN'>>
+        普通检查未能确认罗宾的誓言，<<he>>选择继续接受火焰考验。你注意到<<his>>脚上留下了火焰灼烧的痕迹。
     <</language>>
     <br><br>
   <</if>>
   <<if $RobinTemple.assessment_passed>>
     <<language>>
-      <<option 'EN'>>Robin is smiling as <<he>> crosses the hall. "Hello! Did you come to pick me up?" <<He>> reaches for you. "I passed. Thank you for telling me about this place."
-      <<option 'CN'>>罗宾微笑着穿过大厅。“你好啊！你是来接我的吗？”<<He>>伸手抱住你，“我通过了。谢谢你推荐我来这里。”
+      <<option 'EN'>>
+        Robin is smiling as <<he>> crosses the hall. "Hello! Did you come to pick me up?" <<He>> reaches for you. "I passed. Thank you for telling me about this place."
+      <<option 'CN'>>
+        罗宾微笑着穿过大厅。“你好啊！你是来接我的吗？”<<He>>伸手抱住你，“我通过了。谢谢你推荐我来这里。”
     <</language>>
     <br><br>
     <<templeicon "altar">><<lanLink '听约旦宣布结果' 'RobinTemple Pass'>><</lanLink>><br>
   <<else>>
     <<language>>
-      <<option 'EN'>>Robin lowers <<his>> head when <<he>> sees you. A tear falls onto the floor. "I'm sorry," <<he>> says. "I let you down." You move closer as <<his>> voice breaks.
-      <<option 'CN'>>看见你，罗宾低下头，一滴眼泪落在地上。“对不起，”<<he>>说，“我辜负了你的期待。”你走近<<him>>，<<his>>的声音已经哽咽。
+      <<option 'EN'>>
+        Robin lowers <<his>> head when <<he>> sees you. A tear falls onto the floor. "I'm sorry," <<he>> says. "I let you down." You move closer as <<his>> voice breaks.
+      <<option 'CN'>>
+        看见你，罗宾低下头，一滴眼泪落在地上。“对不起，”<<he>>说，“我辜负了你的期待。”你走近<<him>>，<<his>>的声音已经哽咽。
     <</language>>
     <br><br>
     <<templeicon "altar">><<lanLink '听约旦宣布结果' 'RobinTemple Fail'>><</lanLink>><br>
   <</if>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The assessment is no longer scheduled.
-    <<option 'CN'>>考核已经不在日程上了。
+    <<option 'EN'>>
+      The assessment is no longer scheduled.
+    <<option 'CN'>>
+      考核已经不在日程上了。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
@@ -206,34 +256,46 @@
   <</if>>
   <<npcincr Robin love 2>><<npcincr Robin dom 2>>
   <<language>>
-    <<option 'EN'>>"Jordan told me about the work here," Robin says. "I'll do my best. We can help together now." You congratulate <<him>>. <<He>> holds you a little tighter.
-    <<option 'CN'>>“约旦告诉了我很多神殿的工作，”罗宾说，“我会努力的。以后我们就能一起在这里帮忙了。”你祝贺<<him>>，<<he>>把你抱得更紧了些。
+    <<option 'EN'>>
+      "Jordan told me about the work here," Robin says. "I'll do my best. We can help together now." You congratulate <<him>>. <<He>> holds you a little tighter.
+    <<option 'CN'>>
+      “约旦告诉了我很多神殿的工作，”罗宾说，“我会努力的。以后我们就能一起在这里帮忙了。”你祝贺<<him>>，<<he>>把你抱得更紧了些。
   <</language>>
   <br><br>
   <<if $RobinTemple.clasp_equipped>>
     <<language>>
-      <<option 'EN'>>An attendant fits Robin with the temple's chastity lock and leaves the key with Jordan.
-      <<option 'CN'>>一名侍从为罗宾戴上神殿的贞操锁，把钥匙交给约旦保管。
+      <<option 'EN'>>
+        An attendant fits Robin with the temple's chastity lock and leaves the key with Jordan.
+      <<option 'CN'>>
+        一名侍从为罗宾戴上神殿的贞操锁，把钥匙交给约旦保管。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>The fitting Robin already wears is left untouched. Jordan asks <<him>> to discuss it separately with its owner.
-      <<option 'CN'>>罗宾身上原有的装置没有被更动。约旦请<<him>>另行与装置的主人商量。
+      <<option 'EN'>>
+        The fitting Robin already wears is left untouched. Jordan asks <<him>> to discuss it separately with its owner.
+      <<option 'CN'>>
+        罗宾身上原有的装置没有被更动。约旦请<<him>>另行与装置的主人商量。
     <</language>>
   <</if>>
   <br><br>
   <<language>>
-    <<option 'EN'>>The temple gives Robin a place to change and a share of the daily work. School and <<his>> business remain <<his>> own.
-    <<option 'CN'>>神殿给罗宾安排了更衣处，也分给<<him>>一部分日常工作。学校和生意仍由<<him>>自己安排。
+    <<option 'EN'>>
+      The temple gives Robin a place to change and a share of the daily work. School and <<his>> business remain <<his>> own.
+    <<option 'CN'>>
+      神殿给罗宾安排了更衣处，也分给<<him>>一部分日常工作。学校和生意仍由<<him>>自己安排。
   <</language>>
   <br><br><<language>>
-    <<option 'EN'>><span class="green">Robin has joined the temple.</span>
-    <<option 'CN'>><span class="green">罗宾加入了神殿。</span>
+    <<option 'EN'>>
+      <span class="green">Robin has joined the temple.</span>
+    <<option 'CN'>>
+      <span class="green">罗宾加入了神殿。</span>
   <</language>><<glove>><<gdom>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin has already received the result.
-    <<option 'CN'>>罗宾已经收到考核结果。
+    <<option 'EN'>>
+      Robin has already received the result.
+    <<option 'CN'>>
+      罗宾已经收到考核结果。
   <</language>>
 <</if>>
 <br><br>
@@ -245,13 +307,17 @@
   <<set $RobinTemple.stage to "failed">><<set $RobinTemple.exam_attempts += 1>>
   <<set $RobinTemple.exam_day to Time.days>>
   <<language>>
-    <<option 'EN'>>"Not today," Jordan says. "A vow made in fear is no vow. Come back after you have had time to decide for yourself."
-    <<option 'CN'>>“今天不行，”约旦说，“出于恐惧立下的誓言不算誓言。等你有时间自己想清楚，再回来。”
+    <<option 'EN'>>
+      "Not today," Jordan says. "A vow made in fear is no vow. Come back after you have had time to decide for yourself."
+    <<option 'CN'>>
+      “今天不行，”约旦说，“出于恐惧立下的誓言不算誓言。等你有时间自己想清楚，再回来。”
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Robin stares at the folded receipt. <<He>> has not been expelled or punished, but <<his>> disappointment is plain.
-    <<option 'CN'>>罗宾盯着折好的收据。<<He>>没有被逐出，也没有受罚，但失望写在<<his>>脸上。
+    <<option 'EN'>>
+      Robin stares at the folded receipt. <<He>> has not been expelled or punished, but <<his>> disappointment is plain.
+    <<option 'CN'>>
+      罗宾盯着折好的收据。<<He>>没有被逐出，也没有受罚，但失望写在<<his>>脸上。
   <</language>>
   <br><br>
   <<loveicon "hug">><<lanLink '陪罗宾待一会儿' 'RobinTemple Comfort'>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><</lanLink>><<glove>><br>
@@ -263,13 +329,17 @@
 :: RobinTemple Comfort
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>You hold Robin despite the people looking over. "You haven't let me down," you tell <<him>>. <<He>> clings to you until the sobbing eases. You help <<him>> stand and leave the temple together.
-  <<option 'CN'>>你不顾周围人的目光抱住罗宾。“你没有辜负我，”你告诉<<him>>。<<He>>紧紧抓着你，直到抽泣渐渐平息。你扶<<him>>站起来，一起走出神殿。
+  <<option 'EN'>>
+    You hold Robin despite the people looking over. "You haven't let me down," you tell <<him>>. <<He>> clings to you until the sobbing eases. You help <<him>> stand and leave the temple together.
+  <<option 'CN'>>
+    你不顾周围人的目光抱住罗宾。“你没有辜负我，”你告诉<<him>>。<<He>>紧紧抓着你，直到抽泣渐渐平息。你扶<<him>>站起来，一起走出神殿。
 <</language>>
 <br><br>
 <<language>>
-  <<option 'EN'>>"We can try again when you're ready." Robin nods against your shoulder. For now, you stay close as you walk home.
-  <<option 'CN'>>“等你准备好了，我们可以再来。”罗宾靠着你的肩膀点点头。你陪在<<his>>身边，慢慢往家走。
+  <<option 'EN'>>
+    "We can try again when you're ready." Robin nods against your shoulder. For now, you stay close as you walk home.
+  <<option 'CN'>>
+    “等你准备好了，我们可以再来。”罗宾靠着你的肩膀点点头。你陪在<<his>>身边，慢慢往家走。
 <</language>>
 <br><br>
 <<robin-temple-return-home 25>>
@@ -277,16 +347,20 @@
 :: RobinTemple Retry
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>Robin takes the old receipt from a drawer. The folds have softened, but the date is still there. "I want to try again," <<he>> says.
-  <<option 'CN'>>罗宾从抽屉里拿出那张旧收据。折痕已经软了，圈出的日期还在。“我想再试一次，”<<he>>说。
+  <<option 'EN'>>
+    Robin takes the old receipt from a drawer. The folds have softened, but the date is still there. "I want to try again," <<he>> says.
+  <<option 'CN'>>
+    罗宾从抽屉里拿出那张旧收据。折痕已经软了，圈出的日期还在。“我想再试一次，”<<he>>说。
 <</language>>
 <br><br>
 <<if !$RobinTemple.abandoned or C.npc.Robin.dom gt 70 and C.npc.Robin.trauma lt 10 and C.npc.Robin.love gte 95>>
   <<socialiseicon "ask">><<lanLink '约好两天后再参加考核' 'RobinTemple Scheduled'>><<set $RobinTemple.stage to "scheduled">><<set $RobinTemple.exam_day to Time.days + 2>><<set $RobinTemple.abandoned to false>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin folds the receipt away again. "I'm sorry. I don't want to go through that again." <<He>> turns away, wiping <<his>> eyes.
-    <<option 'CN'>>罗宾又把收据折起来。“对不起，我不想再经历一次了。”<<He>>转过脸，擦了擦眼睛。
+    <<option 'EN'>>
+      Robin folds the receipt away again. "I'm sorry. I don't want to go through that again." <<He>> turns away, wiping <<his>> eyes.
+    <<option 'CN'>>
+      罗宾又把收据折起来。“对不起，我不想再经历一次了。”<<He>>转过脸，擦了擦眼睛。
   <</language>><br><br>
 <</if>>
 <<getouticon>><<lanLink '改天再说' 'Robin Options'>><</lanLink>><br>
@@ -294,8 +368,10 @@
 :: RobinTemple Abandon
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>You push Robin away and leave <<him>> in the hall. <<He>> looks after you, bewildered, but you turn toward the door without answering.
-  <<option 'CN'>>你推开罗宾，把<<him>>留在大厅。<<He>>茫然地望着你，你没有回应，转身朝门口走去。
+  <<option 'EN'>>
+    You push Robin away and leave <<him>> in the hall. <<He>> looks after you, bewildered, but you turn toward the door without answering.
+  <<option 'CN'>>
+    你推开罗宾，把<<him>>留在大厅。<<He>>茫然地望着你，你没有回应，转身朝门口走去。
 <</language>>
 <br><br>
 <<getouticon>><<lanLink 'revelation-the-book-of-return:robinTemple:link:leaveAlone' 'Wolf Street'>><<pass 1>><</lanLink>><br>
@@ -305,13 +381,17 @@
 <<if !$RobinTemple.pendant and ['holy pendant', 'stone pendant'].includes($worn.neck.name)>>
   <<neckruined>><<set $RobinTemple.pendant to true>>
   <<language>>
-    <<option 'EN'>>You give your pendant to Robin. <<He>> cups it in <<his>> hand before carefully putting it in the drawer. "Thank you. I'll keep it safe. Wish me luck with the temple assessment."
-    <<option 'CN'>>你把吊坠送给罗宾。<<He>>把它捧在手心，随后小心收进抽屉。“谢谢你，我一定会好好保留的。祝我神殿考核顺利吧。”
+    <<option 'EN'>>
+      You give your pendant to Robin. <<He>> cups it in <<his>> hand before carefully putting it in the drawer. "Thank you. I'll keep it safe. Wish me luck with the temple assessment."
+    <<option 'CN'>>
+      你把吊坠送给罗宾。<<He>>把它捧在手心，随后小心收进抽屉。“谢谢你，我一定会好好保留的。祝我神殿考核顺利吧。”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You no longer have a pendant to give Robin.
-    <<option 'CN'>>你已经没有可以送给罗宾的吊坠了。
+    <<option 'EN'>>
+      You no longer have a pendant to give Robin.
+    <<option 'CN'>>
+      你已经没有可以送给罗宾的吊坠了。
   <</language>>
 <</if>>
 <br><br>

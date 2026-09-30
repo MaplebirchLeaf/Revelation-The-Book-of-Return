@@ -4,47 +4,63 @@
   or !['monk', 'priest'].includes($temple_rank) or $RobinTemple.service lt 3
   or $RobinTemple.penance_day gte 0>>
   <<language>>
-    <<option 'EN'>>Jordan asks you to establish your own place in the temple and to work alongside Robin before requesting a shared vow.
-    <<option 'CN'>>约旦请你先在神殿站稳脚跟，再与罗宾一同完成几次工作，之后才申请共同立誓。
+    <<option 'EN'>>
+      Jordan asks you to establish your own place in the temple and to work alongside Robin before requesting a shared vow.
+    <<option 'CN'>>
+      约旦请你先在神殿站稳脚跟，再与罗宾一同完成几次工作，之后才申请共同立誓。
   <</language>>
 <<elseif $templePromised is 'Sydney' and !$RobinTemple.joint_consent>>
   <<language>>
-    <<option 'EN'>>You have made a promise to Sydney. Robin asks to speak with <<him>> before deciding whether there is room for another.
-    <<option 'CN'>>你已经与悉尼立誓。罗宾想先亲自和<<he>>谈谈，再决定是否还能接纳另一份承诺。
+    <<option 'EN'>>
+      You have made a promise to Sydney. Robin asks to speak with <<him>> before deciding whether there is room for another.
+    <<option 'CN'>>
+      你已经与悉尼立誓。罗宾想先亲自和<<he>>谈谈，再决定是否还能接纳另一份承诺。
   <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼谈谈' 'RobinTemple Joint Consent'>><</lanLink>><br>
 <<elseif $templePromised isnot '' and $templePromised isnot 'Sydney'>>
   <<language>>
-    <<option 'EN'>>You have already made a promise in the temple. Robin deserves an honest answer before either of you asks Jordan for anything else.
-    <<option 'CN'>>你已经在神殿立下过誓言。无论你们想向约旦提出什么，都该先把这件事对罗宾说清楚。
+    <<option 'EN'>>
+      You have already made a promise in the temple. Robin deserves an honest answer before either of you asks Jordan for anything else.
+    <<option 'CN'>>
+      你已经在神殿立下过誓言。无论你们想向约旦提出什么，都该先把这件事对罗宾说清楚。
   <</language>>
 <<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true
   or $templePromised is 'Sydney' and C.npc.Sydney.virginity.temple isnot true>>
   <<language>>
-    <<option 'EN'>>Jordan will not approve the rite while one of your temple vows stands broken. You and Robin agree to settle that first.
-    <<option 'CN'>>你们之中仍有人违背着神殿誓言，约旦不会批准仪式。你和罗宾决定先处理这件事。
+    <<option 'EN'>>
+      Jordan will not approve the rite while one of your temple vows stands broken. You and Robin agree to settle that first.
+    <<option 'CN'>>
+      你们之中仍有人违背着神殿誓言，约旦不会批准仪式。你和罗宾决定先处理这件事。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You ask Robin whether <<he>> would want a promise recognised by the temple. <<He>> puts down the work list and takes time to answer.
-    <<option 'CN'>>你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了许久才回答。
+    <<option 'EN'>>
+      You ask Robin whether <<he>> would want a promise recognised by the temple. <<He>> puts down the work list and takes time to answer.
+    <<option 'CN'>>
+      你问罗宾，<<he>>是否愿意让神殿见证你们的承诺。<<He>>放下工作表，想了许久才回答。
   <</language>>
   <br><br>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
-      <<option 'EN'>>Robin takes a while to answer. "I do want to," <<he>> whispers. "Will you stay near me while I talk to Jordan?"
-      <<option 'CN'>>罗宾过了一会儿才回答。“我确实愿意，”<<he>>低声说，“我和约旦说话时，你能陪在旁边吗？”
+      <<option 'EN'>>
+        Robin takes a while to answer. "I do want to," <<he>> whispers. "Will you stay near me while I talk to Jordan?"
+      <<option 'CN'>>
+        罗宾过了一会儿才回答。“我确实愿意，”<<he>>低声说，“我和约旦说话时，你能陪在旁边吗？”
     <</language>>
   <<elseif C.npc.Robin.dom lte 50>>
     <<language>>
-      <<option 'EN'>>"Y-yes," <<he>> says, looking down. "I want to tell Jordan too. Could we go together?"
-      <<option 'CN'>>“愿、愿意，”<<he>>垂下目光，“我也想告诉约旦。我们一起去，好吗？”
+      <<option 'EN'>>
+        "Y-yes," <<he>> says, looking down. "I want to tell Jordan too. Could we go together?"
+      <<option 'CN'>>
+        “愿、愿意，”<<he>>垂下目光，“我也想告诉约旦。我们一起去，好吗？”
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>"Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."
-      <<option 'CN'>>“愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”
+      <<option 'EN'>>
+        "Yes," <<he>> says. "But I want Jordan to hear why. I do not want you to speak for me."
+      <<option 'CN'>>
+        “愿意，”<<he>>说，“但我想亲自告诉约旦原因。我不想让你替我说。”
     <</language>>
   <</if>>
   <br><br>
@@ -52,8 +68,10 @@
     <<templeicon "altar">><<lanLink '请约旦为你们评估' 'RobinTemple Evaluation'>><</lanLink>><br>
   <<else>>
     <<language>>
-      <<option 'EN'>><span class="blue">Jordan asked you to wait a week before trying again.</span>
-      <<option 'CN'>><span class="blue">约旦让你们过一周再来。</span>
+      <<option 'EN'>>
+        <span class="blue">Jordan asked you to wait a week before trying again.</span>
+      <<option 'CN'>>
+        <span class="blue">约旦让你们过一周再来。</span>
     <</language>><br>
   <</if>>
 <</if>>
@@ -68,19 +86,25 @@
   and ($templePromised isnot 'Sydney' or $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
   <<if $templePromised is 'Sydney'>>
     <<language>>
-      <<option 'EN'>>Jordan sets a new page beside the record of your promise to Sydney. Robin stands beside you, trying to keep <<his>> hands still.
-      <<option 'CN'>>约旦在你与悉尼立誓的记录旁放上新的一页。罗宾站在你身边，努力让双手不再发抖。
+      <<option 'EN'>>
+        Jordan sets a new page beside the record of your promise to Sydney. Robin stands beside you, trying to keep <<his>> hands still.
+      <<option 'CN'>>
+        约旦在你与悉尼立誓的记录旁放上新的一页。罗宾站在你身边，努力让双手不再发抖。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>The small chapel has been cleared for you. Jordan sets two silver rings on the altar. Robin stands beside you, trying to keep <<his>> hands still.
-      <<option 'CN'>>小礼拜堂已经为你们腾出来。约旦把两枚银戒放在祭坛上。罗宾站在你身边，努力让双手不再发抖。
+      <<option 'EN'>>
+        The small chapel has been cleared for you. Jordan sets two silver rings on the altar. Robin stands beside you, trying to keep <<his>> hands still.
+      <<option 'CN'>>
+        小礼拜堂已经为你们腾出来。约旦把两枚银戒放在祭坛上。罗宾站在你身边，努力让双手不再发抖。
     <</language>>
   <</if>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"You may leave now," Jordan says, "or speak in your own words. No one will make this choice for you."
-    <<option 'CN'>>“你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。不会有人替你们作决定。”
+    <<option 'EN'>>
+      "You may leave now," Jordan says, "or speak in your own words. No one will make this choice for you."
+    <<option 'CN'>>
+      “你们现在仍可以离开，”约旦说，“也可以用自己的话立誓。不会有人替你们作决定。”
   <</language>>
   <br><br>
   <<if $templePromised is 'Sydney'>>
@@ -91,8 +115,10 @@
   <<getouticon>><<lanLink '请求再多一点时间' 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Jordan cannot hold the rite while your vows are unsettled.
-    <<option 'CN'>>你们的誓言尚未厘清，约旦现在不能主持仪式。
+    <<option 'EN'>>
+      Jordan cannot hold the rite while your vows are unsettled.
+    <<option 'CN'>>
+      你们的誓言尚未厘清，约旦现在不能主持仪式。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
@@ -120,48 +146,64 @@
   <</if>>
   <<if $templePromised is 'Sydney'>>
     <<language>>
-      <<option 'EN'>>You, Robin, and Sydney speak in turn. Neither partner promises on behalf of the other. Jordan repeats each promise separately before recording that all three of you have agreed.
-      <<option 'CN'>>你、罗宾和悉尼轮流开口。没有人替另一人立誓。约旦逐一复述你们的承诺，确认三人都同意，才将它记下。
+      <<option 'EN'>>
+        You, Robin, and Sydney speak in turn. Neither partner promises on behalf of the other. Jordan repeats each promise separately before recording that all three of you have agreed.
+      <<option 'CN'>>
+        你、罗宾和悉尼轮流开口。没有人替另一人立誓。约旦逐一复述你们的承诺，确认三人都同意，才将它记下。
     <</language>>
     <br><br>
     <<if _templeClaspReleased>>
       <<language>>
-        <<option 'EN'>>Jordan releases Robin's chastity lock. Sydney remains beside you as Robin takes your hand.
-        <<option 'CN'>>约旦解开罗宾的贞操锁。悉尼仍站在你身边，罗宾握住了你的手。
+        <<option 'EN'>>
+          Jordan releases Robin's chastity lock. Sydney remains beside you as Robin takes your hand.
+        <<option 'CN'>>
+          约旦解开罗宾的贞操锁。悉尼仍站在你身边，罗宾握住了你的手。
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>Jordan leaves Robin's other equipment untouched. Sydney remains beside you as Robin takes your hand.
-        <<option 'CN'>>约旦没有更动罗宾原有的其他装置。悉尼仍站在你身边，罗宾握住了你的手。
+        <<option 'EN'>>
+          Jordan leaves Robin's other equipment untouched. Sydney remains beside you as Robin takes your hand.
+        <<option 'CN'>>
+          约旦没有更动罗宾原有的其他装置。悉尼仍站在你身边，罗宾握住了你的手。
       <</language>>
     <</if>>
   <<else>>
     <<language>>
-      <<option 'EN'>>You speak first, and Robin answers without looking at Jordan for permission. <<He>> promises to return when things become difficult, to listen, and to let you do the same.
-      <<option 'CN'>>你先开口。罗宾回答时没有看约旦的脸色。<<He>>答应遇到难处也会回来，会听你说话，也会给你同样的机会。
+      <<option 'EN'>>
+        You speak first, and Robin answers without looking at Jordan for permission. <<He>> promises to return when things become difficult, to listen, and to let you do the same.
+      <<option 'CN'>>
+        你先开口。罗宾回答时没有看约旦的脸色。<<He>>答应遇到难处也会回来，会听你说话，也会给你同样的机会。
     <</language>>
     <br><br>
     <<if _templeClaspReleased>>
       <<language>>
-        <<option 'EN'>>Jordan opens Robin's chastity lock and puts the key away.
-        <<option 'CN'>>约旦解开罗宾的贞操锁，收好了钥匙。
+        <<option 'EN'>>
+          Jordan opens Robin's chastity lock and puts the key away.
+        <<option 'CN'>>
+          约旦解开罗宾的贞操锁，收好了钥匙。
       <</language>>
       <br><br>
     <</if>>
     <<language>>
-      <<option 'EN'>>Jordan places two silver rings in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.
-      <<option 'CN'>>约旦把两枚银戒交到你们手中。罗宾把其中一枚戴在你的手指上。你也为<<him>>戴好时，<<he>>终于松了口气。
+      <<option 'EN'>>
+        Jordan places two silver rings in your hands. Robin slides one onto your finger. When you do the same for <<him>>, <<he>> finally lets out a breath.
+      <<option 'CN'>>
+        约旦把两枚银戒交到你们手中。罗宾把其中一枚戴在你的手指上。你也为<<him>>戴好时，<<he>>终于松了口气。
     <</language>>
   <</if>>
   <br><br>
   <<language>>
-    <<option 'EN'>><span class="gold">The temple recognises your promise to Robin.</span>
-    <<option 'CN'>><span class="gold">神殿见证了你与罗宾的承诺。</span>
+    <<option 'EN'>>
+      <span class="gold">The temple recognises your promise to Robin.</span>
+    <<option 'CN'>>
+      <span class="gold">神殿见证了你与罗宾的承诺。</span>
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The ceremony cannot continue. You need to speak to Jordan and Robin again.
-    <<option 'CN'>>仪式现在无法继续。你需要再与约旦和罗宾谈谈。
+    <<option 'EN'>>
+      The ceremony cannot continue. You need to speak to Jordan and Robin again.
+    <<option 'CN'>>
+      仪式现在无法继续。你需要再与约旦和罗宾谈谈。
   <</language>>
 <</if>>
 <br><br>

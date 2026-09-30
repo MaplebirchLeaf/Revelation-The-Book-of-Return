@@ -22,29 +22,40 @@
   <<set $RobinTemple.prayer_event_day to Time.days>>
   <<set $RobinTemple.prayer_event to random(1, 6)>>
   <<set $RobinTemple.prayer_event_done to false>>
+  <<set $RobinTemple.prayer_event_resolved to false>>
 <</if>>
 <<language>>
-  <<option 'EN'>>Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.
-  <<option 'CN'>>罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
+  <<option 'EN'>>
+    Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.
+  <<option 'CN'>>
+    罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
 <</language>>
 <br><br>
 <<if !$RobinTemple.prayer_event_done and $RobinTemple.prayer_event lte 4>>
   <<switch $RobinTemple.prayer_event>>
     <<case 1>><<language>>
-      <<option 'EN'>>A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.
-      <<option 'CN'>>一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。
+      <<option 'EN'>>
+        A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.
+      <<option 'CN'>>
+        一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。
     <</language>>
     <<case 2>><<language>>
-      <<option 'EN'>>A younger initiate lingers in the aisle with a torn work list.
-      <<option 'CN'>>一名年幼的见习者拿着撕破的工作表，在过道里迟迟不走。
+      <<option 'EN'>>
+        A younger initiate lingers in the aisle with a torn work list.
+      <<option 'CN'>>
+        一名年幼的见习者拿着撕破的工作表，在过道里迟迟不走。
     <</language>>
     <<case 3>><<language>>
-      <<option 'EN'>>A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.
-      <<option 'CN'>>一名疲惫的访客坐在长椅另一头，双手抱住了头。
+      <<option 'EN'>>
+        A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.
+      <<option 'CN'>>
+        一名疲惫的访客坐在长椅另一头，双手抱住了头。
     <</language>>
     <<case 4>><<language>>
-      <<option 'EN'>>The side-room door closes. Robin catches the uneasy look on your face.
-      <<option 'CN'>>侧室的门合上了。罗宾注意到你脸上的不安。
+      <<option 'EN'>>
+        The side-room door closes. Robin catches the uneasy look on your face.
+      <<option 'CN'>>
+        侧室的门合上了。罗宾注意到你脸上的不安。
     <</language>>
   <</switch>>
   <br><br>
@@ -52,16 +63,20 @@
 <</if>>
 <<if $RobinTemple.prayer_day isnot Time.days>>
   <<language>>
-    <<option 'EN'>>The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.
-    <<option 'CN'>>最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
+    <<option 'EN'>>
+      The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.
+    <<option 'CN'>>
+      最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
   <</language>>
   <br><br>
   <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><br>
   <<loveicon 'hug'>><<lanLink '和罗宾谈谈心里的疑虑 (0:30)' 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.
-    <<option 'CN'>>今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。
+    <<option 'EN'>>
+      You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.
+    <<option 'CN'>>
+      今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。
   <</language>>
   <br><br>
 <</if>>
@@ -106,20 +121,26 @@
 <<if $RobinTemple.prayer_day isnot Time.days>>
   <<set $RobinTemple.prayer_day to Time.days>>
   <<language>>
-    <<option 'EN'>>You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.
-    <<option 'CN'>>你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。
+    <<option 'EN'>>
+      You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.
+    <<option 'CN'>>
+      你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.
-    <<option 'CN'>>一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
+    <<option 'EN'>>
+      When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.
+    <<option 'CN'>>
+      一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
   <</language>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<grace 2>><<stress -4>><br><br><<ggrace>><<lstress>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You have already prayed together today.
-    <<option 'CN'>>今天你们已经一起祈祷过。
+    <<option 'EN'>>
+      You have already prayed together today.
+    <<option 'CN'>>
+      今天你们已经一起祈祷过。
   <</language>>
 <</if>>
 <br><br>
@@ -131,25 +152,33 @@
   <<set $RobinTemple.prayer_day to Time.days>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
-      <<option 'EN'>>You tell Robin what has been troubling you. <<He>> listens with <<his>> hands tucked into <<his>> sleeves. "I do not know what to say," <<he>> admits. "But I can stay."
-      <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>把手藏在袖口里，安静地听着。“我不知道该说什么，”<<he>>承认，“不过我可以陪着你。”
+      <<option 'EN'>>
+        You tell Robin what has been troubling you. <<He>> listens with <<his>> hands tucked into <<his>> sleeves. "I do not know what to say," <<he>> admits. "But I can stay."
+      <<option 'CN'>>
+        你把心里的烦恼告诉罗宾。<<He>>把手藏在袖口里，安静地听着。“我不知道该说什么，”<<he>>承认，“不过我可以陪着你。”
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>You tell Robin what has been troubling you. <<He>> listens, then admits that <<he>> has wondered about some of the same things. You try to put your questions into words together.
-      <<option 'CN'>>你把心里的烦恼告诉罗宾。<<He>>听完，承认自己也想过其中一些问题。你们一起试着把疑问说清楚。
+      <<option 'EN'>>
+        You tell Robin what has been troubling you. <<He>> listens, then admits that <<he>> has wondered about some of the same things. You try to put your questions into words together.
+      <<option 'CN'>>
+        你把心里的烦恼告诉罗宾。<<He>>听完，承认自己也想过其中一些问题。你们一起试着把疑问说清楚。
     <</language>>
   <</if>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.
-    <<option 'CN'>>“如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
+    <<option 'EN'>>
+      "We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.
+    <<option 'CN'>>
+      “如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
   <</language>>
   <<npcincr Robin love 1>><<stress -5>><br><br><<glove>><<lstress>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You have already talked today.
-    <<option 'CN'>>今天你们已经谈过了。
+    <<option 'EN'>>
+      You have already talked today.
+    <<option 'CN'>>
+      今天你们已经谈过了。
   <</language>>
 <</if>>
 <br><br>
@@ -158,13 +187,17 @@
 :: RobinTemple Rest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.
-  <<option 'CN'>>你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。
+  <<option 'EN'>>
+    You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.
+  <<option 'CN'>>
+    你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。
 <</language>>
 <br><br>
 <<language>>
-  <<option 'EN'>>Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
-  <<option 'CN'>>罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
+  <<option 'EN'>>
+    Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
+  <<option 'CN'>>
+    罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
 <</language>>
 <<stress -12>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<bedicon>><<lanLink '在罗宾床边再坐一会儿' 'RobinTemple Bunk'>><</lanLink>><br>

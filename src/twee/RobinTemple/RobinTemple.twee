@@ -13,8 +13,10 @@
 
 <<widget 'robin-temple-room-note'>>
   <<language>>
-    <<option 'EN'>>You go to Robin's room. A note on the door says <<he>> is at the temple.
-    <<option 'CN'>>你来到罗宾的房间。门上的字条写着，<<he>>去了神殿。
+    <<option 'EN'>>
+      You go to Robin's room. A note on the door says <<he>> is at the temple.
+    <<option 'CN'>>
+      你来到罗宾的房间。门上的字条写着，<<he>>去了神殿。
   <</language>>
   <br><br>
   <<main_hall_icon>><<lanLink '返回孤儿院大厅 (0:01)' 'Orphanage'>><<pass 1>><</lanLink>><br>
@@ -31,8 +33,10 @@
         <<socialiseicon "ask">><<lanLink '和罗宾谈谈神殿' 'RobinTemple Invitation'>><</lanLink>><br>
       <<else>>
         <<language>>
-          <<option 'EN'>><span class="teal">Robin notices you have not put on a chastity device for your temple vow.</span>
-          <<option 'CN'>><span class="teal">罗宾注意到你还没有为神殿誓言戴上贞操装置。</span>
+          <<option 'EN'>>
+            <span class="teal">Robin notices you have not put on a chastity device for your temple vow.</span>
+          <<option 'CN'>>
+            <span class="teal">罗宾注意到你还没有为神殿誓言戴上贞操装置。</span>
         <</language>><br>
       <</if>>
     <<elseif $RobinTemple.stage is "invited">>
@@ -109,22 +113,28 @@
   <<npc Jordan>><<person1>>
   <<if !$RobinTemple.joint_consent>>
     <<language>>
-      <<option 'EN'>>Jordan sees both names on your records and closes the examination book. "First, the three of you must tell me whether this was a choice you all made."
-      <<option 'CN'>>约旦看见记录上写着罗宾和悉尼的名字，合上了检查簿。“先告诉我，这是不是你们三个人共同作出的选择。”
+      <<option 'EN'>>
+        Jordan sees both names on your records and closes the examination book. "First, the three of you must tell me whether this was a choice you all made."
+      <<option 'CN'>>
+        约旦看见记录上写着罗宾和悉尼的名字，合上了检查簿。“先告诉我，这是不是你们三个人共同作出的选择。”
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '请罗宾与悉尼一起谈清楚' 'RobinTemple Joint Reconcile'>><</lanLink>><br>
   <<elseif $RobinTemple.joint_sydney_penance>>
     <<language>>
-      <<option 'EN'>>Jordan points to the unfinished work list. "Finish what we agreed first. Then we will speak about the vows again."
-      <<option 'CN'>>约旦指向尚未完成的工作表。“先做完约定的事，然后我们再谈誓言。”
+      <<option 'EN'>>
+        Jordan points to the unfinished work list. "Finish what we agreed first. Then we will speak about the vows again."
+      <<option 'CN'>>
+        约旦指向尚未完成的工作表。“先做完约定的事，然后我们再谈誓言。”
     <</language>>
     <br><br>
     <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
   <<else>>
     <<language>>
-      <<option 'EN'>>Jordan meets you at the altar. "Sydney and Robin have both made promises with you. I will hear from all three of you today," <<he>> says.
-      <<option 'CN'>>约旦在祭坛前等着你。“悉尼和罗宾都与你立过誓。今天我要听你们三个人亲口回答。”<<he>>说。
+      <<option 'EN'>>
+        Jordan meets you at the altar. "Sydney and Robin have both made promises with you. I will hear from all three of you today," <<he>> says.
+      <<option 'CN'>>
+        约旦在祭坛前等着你。“悉尼和罗宾都与你立过誓。今天我要听你们三个人亲口回答。”<<he>>说。
     <</language>>
     <br><br>
     <<templeicon 'altar'>><<lanLink '请罗宾与悉尼一同接受检查' 'RobinTemple Joint Examination'>><</lanLink>><br>
@@ -136,8 +146,10 @@
 <<widget "robin-temple-monthly-examination">>
   <<npc Jordan>><<person1>>
   <<language>>
-    <<option 'EN'>>Jordan stops you near the altar. "It is time to examine the vow you and Robin made together. I have sent for <<him>>."
-    <<option 'CN'>>约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<him>>。”
+    <<option 'EN'>>
+      Jordan stops you near the altar. "It is time to examine the vow you and Robin made together. I have sent for <<him>>."
+    <<option 'CN'>>
+      约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<him>>。”
   <</language>>
   <br><br>
   <<templeicon "altar">><<lanLink '和罗宾一起接受检查' 'RobinTemple Monthly Examination'>><</lanLink>><br>

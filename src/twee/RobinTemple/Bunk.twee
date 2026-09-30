@@ -9,20 +9,26 @@
   and !Time.schoolDay and !Time.isWeekEnd()
   and Time.hour gte 13 and Time.hour lt 16>>
 <<language>>
-  <<option 'EN'>>Robin’s bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.
-  <<option 'CN'>>罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
+  <<option 'EN'>>
+    Robin’s bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.
+  <<option 'CN'>>
+    罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
 <</language>>
 <<if maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin')>>
   <<language>>
-    <<option 'EN'>>Robin uses it during temple shifts. At night <<he>> returns to your home.
-    <<option 'CN'>>罗宾值班时会用这张床，夜里则回到与你同住的家。
+    <<option 'EN'>>
+      Robin uses it during temple shifts. At night <<he>> returns to your home.
+    <<option 'CN'>>
+      罗宾值班时会用这张床，夜里则回到与你同住的家。
   <</language>>
 <</if>>
 <br><br>
 <<if _robinHere>>
   <<language>>
-    <<option 'EN'>>After the Saturday shift, Robin stays here until morning. <<He>> shifts aside when you approach, leaving room on the mattress.
-    <<option 'CN'>>星期六的值班结束后，罗宾会在这里待到天亮。见你走近，<<he>>往旁边挪了挪，在床垫上给你留出位置。
+    <<option 'EN'>>
+      After the Saturday shift, Robin stays here until morning. <<He>> shifts aside when you approach, leaving room on the mattress.
+    <<option 'CN'>>
+      星期六的值班结束后，罗宾会在这里待到天亮。见你走近，<<he>>往旁边挪了挪，在床垫上给你留出位置。
   <</language>>
   <<if $robinromance is 1>>
     <br><br>
@@ -44,20 +50,26 @@
   <</if>>
 <<elseif getRobinLocation() is 'temple' and !$robinmissing and C.npc.Robin.trauma lt 80>>
   <<language>>
-    <<option 'EN'>>Robin is helping elsewhere in the quarters. <<His>> bunk is empty for now.
-    <<option 'CN'>>罗宾在宿舍别处帮忙，床铺暂时空着。
+    <<option 'EN'>>
+      Robin is helping elsewhere in the quarters. <<His>> bunk is empty for now.
+    <<option 'CN'>>
+      罗宾在宿舍别处帮忙，床铺暂时空着。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin is away. The bed has been made, and the space beside it is quiet.
-    <<option 'CN'>>罗宾不在。床铺已经整理好，旁边一片安静。
+    <<option 'EN'>>
+      Robin is away. The bed has been made, and the space beside it is quiet.
+    <<option 'CN'>>
+      罗宾不在。床铺已经整理好，旁边一片安静。
   <</language>>
 <</if>>
 <br><br>
 <<if $earSlime.event and $earSlime.noSleep>>
   <<language>>
-    <<option 'EN'>><span class='red'>The slime will not let you sleep yet.</span>
-    <<option 'CN'>><span class='red'>史莱姆现在不肯让你睡。</span>
+    <<option 'EN'>>
+      <span class='red'>The slime will not let you sleep yet.</span>
+    <<option 'CN'>>
+      <span class='red'>史莱姆现在不肯让你睡。</span>
   <</language>><br>
 <<else>>
   <<icon 'temple/RobinTemplebed.png'>><<lanLink '脱衣钻进被窝' 'RobinTemple Bed'>><<undressSleep 'RobinTemple Bed'>><</lanLink>><br>
@@ -76,19 +88,25 @@
   and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
-    <<option 'EN'>>Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
-    <<option 'CN'>>罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习者。
+    <<option 'EN'>>
+      Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
+    <<option 'CN'>>
+      罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习者。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.
-    <<option 'CN'>>“我告诉<<him>>，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
+    <<option 'EN'>>
+      "I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.
+    <<option 'CN'>>
+      “我告诉<<him>>，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
   <</language>>
   <<stress -3>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin has already left for the day.
-    <<option 'CN'>>罗宾已经离开了。
+    <<option 'EN'>>
+      Robin has already left for the day.
+    <<option 'CN'>>
+      罗宾已经离开了。
   <</language>>
 <</if>>
 <br><br>
@@ -101,13 +119,17 @@
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
 <<if _robinHere>>
   <<language>>
-    <<option 'EN'>>You settle beside Robin beneath the blanket. <<He>> waits for you to get comfortable before drawing it over both of you.
-    <<option 'CN'>>你在毯子下挨着罗宾躺好。<<He>>等你安顿下来，才把毯子拉过你们两人。
+    <<option 'EN'>>
+      You settle beside Robin beneath the blanket. <<He>> waits for you to get comfortable before drawing it over both of you.
+    <<option 'CN'>>
+      你在毯子下挨着罗宾躺好。<<He>>等你安顿下来，才把毯子拉过你们两人。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
-    <<option 'CN'>>罗宾那侧空着。你盖上毯子，听着其他见习者渐渐安静下来。
+    <<option 'EN'>>
+      Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
+    <<option 'CN'>>
+      罗宾那侧空着。你盖上毯子，听着其他见习者渐渐安静下来。
   <</language>>
 <</if>>
 <br><br>
@@ -125,19 +147,25 @@
 <<if $robinromance is 1 and !$robinmissing and getRobinLocation() is 'temple'
   and C.npc.Robin.trauma lt 80>>
   <<language>>
-    <<option 'EN'>>You kiss Robin beneath the blanket. <<He>> returns it softly, one hand closing around yours when the bunk creaks.
-    <<option 'CN'>>你在毯子下吻了罗宾。<<He>>轻轻回吻。床铺一响，<<he>>便握住你的手。
+    <<option 'EN'>>
+      You kiss Robin beneath the blanket. <<He>> returns it softly, one hand closing around yours when the bunk creaks.
+    <<option 'CN'>>
+      你在毯子下吻了罗宾。<<He>>轻轻回吻。床铺一响，<<he>>便握住你的手。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>A neighbouring initiate turns over. You both wait until the room is quiet again.
-    <<option 'CN'>>旁边的见习者翻了个身。你们等到屋里重新安静下来。
+    <<option 'EN'>>
+      A neighbouring initiate turns over. You both wait until the room is quiet again.
+    <<option 'CN'>>
+      旁边的见习者翻了个身。你们等到屋里重新安静下来。
   <</language>>
   <<npcincr Robin love 1>><<npcincr Robin lust 1>><br><br><<glove>><<glust>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin is not beside you.
-    <<option 'CN'>>罗宾不在你身边。
+    <<option 'EN'>>
+      Robin is not beside you.
+    <<option 'CN'>>
+      罗宾不在你身边。
   <</language>>
 <</if>>
 <br><br>
@@ -149,16 +177,20 @@
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
-    <<option 'EN'>>Robin lifts the edge of the blanket. "You can stay," <<he>> whispers. "But ask me again if I seem worried. I will do the same for you."
-    <<option 'CN'>>罗宾掀开毯子一角。“你可以留下，”<<he>>轻声说，“如果我看起来不安，再问我一遍。我也会这样对你。”
+    <<option 'EN'>>
+      Robin lifts the edge of the blanket. "You can stay," <<he>> whispers. "But ask me again if I seem worried. I will do the same for you."
+    <<option 'CN'>>
+      罗宾掀开毯子一角。“你可以留下，”<<he>>轻声说，“如果我看起来不安，再问我一遍。我也会这样对你。”
   <</language>>
   <br><br>
   <<loveicon 'hug'>><<lanLink '靠着罗宾睡' 'RobinTemple Bed Close'>><</lanLink>><br>
   <<bedicon>><<lanLink '让罗宾先睡' 'RobinTemple Bed'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin is not here now. You settle back beneath the blanket.
-    <<option 'CN'>>罗宾现在不在。你重新躺回毯子下。
+    <<option 'EN'>>
+      Robin is not here now. You settle back beneath the blanket.
+    <<option 'CN'>>
+      罗宾现在不在。你重新躺回毯子下。
   <</language>>
   <br><br>
   <<bedicon>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
@@ -167,8 +199,10 @@
 :: RobinTemple Bed Close
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
-  <<option 'CN'>>你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习者在床上翻身。
+  <<option 'EN'>>
+    You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
+  <<option 'CN'>>
+    你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习者在床上翻身。
 <</language>>
 <<stress -2>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
 <<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
@@ -204,24 +238,34 @@
     <<sleepeffects>>
     <<switch $RobinTemple.night_scene>>
       <<case 'rain'>><<language>>
-        <<option 'EN'>>Rain taps the high window. Robin is awake beside you, watching the water run down the glass.
-        <<option 'CN'>>雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。
+        <<option 'EN'>>
+          Rain taps the high window. Robin is awake beside you, watching the water run down the glass.
+        <<option 'CN'>>
+          雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。
       <</language>>
       <<case 'voice'>><<language>>
-        <<option 'EN'>>A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
-        <<option 'CN'>>隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习者盖好滑落的毯子。
+        <<option 'EN'>>
+          A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
+        <<option 'CN'>>
+          隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习者盖好滑落的毯子。
       <</language>>
       <<case 'embers'>><<language>>
-        <<option 'EN'>>Robin wakes with a start. <<He>> stares at the dark ceiling as if the fire were still there.
-        <<option 'CN'>>罗宾猛地醒来，盯着黑暗中的天花板，仿佛那堆火还在眼前。
+        <<option 'EN'>>
+          Robin wakes with a start. <<He>> stares at the dark ceiling as if the fire were still there.
+        <<option 'CN'>>
+          罗宾猛地醒来，盯着黑暗中的天花板，仿佛那堆火还在眼前。
       <</language>>
       <<case 'ledger'>><<language>>
-        <<option 'EN'>>A page turns beside you. Robin is awake with the business ledger open on <<his>> knees.
-        <<option 'CN'>>身旁传来翻页声。罗宾还醒着，膝上摊着生意账本。
+        <<option 'EN'>>
+          A page turns beside you. Robin is awake with the business ledger open on <<his>> knees.
+        <<option 'CN'>>
+          身旁传来翻页声。罗宾还醒着，膝上摊着生意账本。
       <</language>>
       <<default>><<language>>
-        <<option 'EN'>>You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.
-        <<option 'CN'>>罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。
+        <<option 'EN'>>
+          You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.
+        <<option 'CN'>>
+          罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。
       <</language>>
     <</switch>>
     <br><br>
@@ -230,8 +274,10 @@
     <<nightmareWake>>
   <<elseif !_wakingEffect>>
     <<language>>
-      <<option 'EN'>>You sleep beneath the temple’s quiet roof.
-      <<option 'CN'>>你在神殿安静的屋檐下睡了一觉。
+      <<option 'EN'>>
+        You sleep beneath the temple’s quiet roof.
+      <<option 'CN'>>
+        你在神殿安静的屋檐下睡了一觉。
     <</language>>
   <</if>>
   <<if !_nightWake>>
@@ -248,28 +294,38 @@
 <<switch $RobinTemple.night_scene>>
   <<case 'rain'>>
     <<language>>
-      <<option 'EN'>>Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It is strange to lie still and not fetch a bucket."
-      <<option 'CN'>>罗宾陪你听雨。“孤儿院的屋顶遇到这种天气会漏水，”<<he>>说，“躺着不去拿水桶，真有点不习惯。”
+      <<option 'EN'>>
+        Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It is strange to lie still and not fetch a bucket."
+      <<option 'CN'>>
+        罗宾陪你听雨。“孤儿院的屋顶遇到这种天气会漏水，”<<he>>说，“躺着不去拿水桶，真有点不习惯。”
     <</language>>
   <<case 'voice'>>
     <<language>>
-      <<option 'EN'>>Robin settles back beside you. "The child was dreaming about home," <<he>> whispers. "Jordan says the first nights can be difficult."
-      <<option 'CN'>>罗宾重新在你身边躺下。“那孩子梦见家了，”<<he>>低声说，“约旦说，刚来的几晚会很难熬。”
+      <<option 'EN'>>
+        Robin settles back beside you. "The child was dreaming about home," <<he>> whispers. "Jordan says the first nights can be difficult."
+      <<option 'CN'>>
+        罗宾重新在你身边躺下。“那孩子梦见家了，”<<he>>低声说，“约旦说，刚来的几晚会很难熬。”
     <</language>>
   <<case 'embers'>>
     <<language>>
-      <<option 'EN'>>You remind Robin of the route out of the cloister. <<He>> names each door with you. When <<he>> reaches the last one, <<he>> lies back down.
-      <<option 'CN'>>你陪罗宾回忆离开回廊的路。<<He>>和你一起说出每扇门的位置。数到最后一扇，<<he>>重新躺了下来。
+      <<option 'EN'>>
+        You remind Robin of the route out of the cloister. <<He>> names each door with you. When <<he>> reaches the last one, <<he>> lies back down.
+      <<option 'CN'>>
+        你陪罗宾回忆离开回廊的路。<<He>>和你一起说出每扇门的位置。数到最后一扇，<<he>>重新躺了下来。
     <</language>>
   <<case 'ledger'>>
     <<language>>
-      <<option 'EN'>>Robin has been working out what <<he>> can afford for the business next week. You point out that the figures will still be there in the morning. <<He>> closes the book and moves it out of the bed.
-      <<option 'CN'>>罗宾正算下周还能给生意添些什么。你提醒<<him>>，账本明早也不会跑掉。<<He>>合上本子，把它从床上挪开。
+      <<option 'EN'>>
+        Robin has been working out what <<he>> can afford for the business next week. You point out that the figures will still be there in the morning. <<He>> closes the book and moves it out of the bed.
+      <<option 'CN'>>
+        罗宾正算下周还能给生意添些什么。你提醒<<him>>，账本明早也不会跑掉。<<He>>合上本子，把它从床上挪开。
     <</language>>
   <<default>>
     <<language>>
-      <<option 'EN'>>"I thought you were cold," Robin whispers. <<He>> draws the blanket over both of you and waits for your breathing to slow.
-      <<option 'CN'>>“我以为你冷，”罗宾轻声说。<<He>>把毯子盖在你们身上，等你的呼吸渐渐平稳。
+      <<option 'EN'>>
+        "I thought you were cold," Robin whispers. <<He>> draws the blanket over both of you and waits for your breathing to slow.
+      <<option 'CN'>>
+        “我以为你冷，”罗宾轻声说。<<He>>把毯子盖在你们身上，等你的呼吸渐渐平稳。
     <</language>>
 <</switch>>
 <br><br>
@@ -281,18 +337,24 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.night_scene is 'embers'>>
   <<language>>
-    <<option 'EN'>>You find Robin's hand beneath the blanket. <<He>> holds on while you name the familiar sounds of the quarters, one by one.
-    <<option 'CN'>>你在毯子下握住罗宾的手。你一件件说起宿舍里熟悉的声音，<<he>>一直牵着你。
+    <<option 'EN'>>
+      You find Robin's hand beneath the blanket. <<He>> holds on while you name the familiar sounds of the quarters, one by one.
+    <<option 'CN'>>
+      你在毯子下握住罗宾的手。你一件件说起宿舍里熟悉的声音，<<he>>一直牵着你。
   <</language>>
 <<elseif $RobinTemple.night_scene is 'ledger'>>
   <<language>>
-    <<option 'EN'>>You take Robin's hand away from the closed ledger. <<He>> laughs quietly and settles beside you.
-    <<option 'CN'>>你把罗宾的手从合上的账本边牵开。<<He>>轻声笑了笑，挨着你躺好。
+    <<option 'EN'>>
+      You take Robin's hand away from the closed ledger. <<He>> laughs quietly and settles beside you.
+    <<option 'CN'>>
+      你把罗宾的手从合上的账本边牵开。<<He>>轻声笑了笑，挨着你躺好。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You find Robin's hand beneath the blanket. <<He>> holds yours until the quarters are quiet again.
-    <<option 'CN'>>你在毯子下握住罗宾的手。<<He>>一直牵着你，直到宿舍再次安静下来。
+    <<option 'EN'>>
+      You find Robin's hand beneath the blanket. <<He>> holds yours until the quarters are quiet again.
+    <<option 'CN'>>
+      你在毯子下握住罗宾的手。<<He>>一直牵着你，直到宿舍再次安静下来。
   <</language>>
 <</if>>
 <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>

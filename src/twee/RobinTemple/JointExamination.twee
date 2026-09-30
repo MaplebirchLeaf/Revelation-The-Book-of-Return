@@ -2,32 +2,42 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
   <<language>>
-    <<option 'EN'>>Jordan asks you, Robin, and Sydney to speak in turn. Each of you answers without being interrupted. Jordan checks the three vows against the temple record.
-    <<option 'CN'>>约旦请你、罗宾和悉尼轮流回答。每个人说话时，另外两人都没有打断。约旦照着神殿的记录，逐一核对三人的誓言。
+    <<option 'EN'>>
+      Jordan asks you, Robin, and Sydney to speak in turn. Each of you answers without being interrupted. Jordan checks the three vows against the temple record.
+    <<option 'CN'>>
+      约旦请你、罗宾和悉尼轮流回答。每个人说话时，另外两人都没有打断。约旦照着神殿的记录，逐一核对三人的誓言。
   <</language>>
   <br><br>
   <<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true and C.npc.Sydney.virginity.temple is true>>
     <<language>>
-      <<option 'EN'>>The small jar gives a brief golden glow. Jordan nods. Sydney lets out a breath, and Robin reaches for your hand.
-      <<option 'CN'>>小罐闪过一瞬金光。约旦点了点头。悉尼长出一口气，罗宾伸手握住你。
+      <<option 'EN'>>
+        The small jar gives a brief golden glow. Jordan nods. Sydney lets out a breath, and Robin reaches for your hand.
+      <<option 'CN'>>
+        小罐闪过一瞬金光。约旦点了点头。悉尼长出一口气，罗宾伸手握住你。
     <</language>>
     <br><br><<language>>
-      <<option 'EN'>><span class='green'>All three promises remain intact.</span>
-      <<option 'CN'>><span class='green'>三人的誓言都仍然完好。</span>
+      <<option 'EN'>>
+        <span class='green'>All three promises remain intact.</span>
+      <<option 'CN'>>
+        <span class='green'>三人的誓言都仍然完好。</span>
     <</language>><br><br>
     <<templeicon 'altar'>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
   <<else>>
     <<language>>
-      <<option 'EN'>>The jar stays dark. Jordan asks you to speak with <<him>> before anyone decides what happens next.
-      <<option 'CN'>>小罐没有亮起。约旦请你们先说清经过，再决定接下来怎么办。
+      <<option 'EN'>>
+        The jar stays dark. Jordan asks you to speak with <<him>> before anyone decides what happens next.
+      <<option 'CN'>>
+        小罐没有亮起。约旦请你们先说清经过，再决定接下来怎么办。
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '把事情讲清楚' 'RobinTemple Joint Failure'>><</lanLink>><br>
   <</if>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The three-person examination is no longer due.
-    <<option 'CN'>>现在没有需要三人共同接受的检查。
+    <<option 'EN'>>
+      The three-person examination is no longer due.
+    <<option 'CN'>>
+      现在没有需要三人共同接受的检查。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
@@ -38,18 +48,24 @@
 <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
   <<set $temple_chastity_timer to 7>>
   <<language>>
-    <<option 'EN'>>You ask Jordan to wait. Jordan agrees to call you back in seven days, without declaring anyone guilty. Robin and Sydney want to know your reason once you are ready to tell them.
-    <<option 'CN'>>你请约旦暂缓检查。约旦同意七天后再请你们回来，没有认定任何人有错。罗宾和悉尼都想等你准备好，再听你解释原因。
+    <<option 'EN'>>
+      You ask Jordan to wait. Jordan agrees to call you back in seven days, without declaring anyone guilty. Robin and Sydney want to know your reason once you are ready to tell them.
+    <<option 'CN'>>
+      你请约旦暂缓检查。约旦同意七天后再请你们回来，没有认定任何人有错。罗宾和悉尼都想等你准备好，再听你解释原因。
   <</language>>
   <<npcincr Robin love -1>><<npcincr Sydney love -1>><br><br><<lllove>>
   <<language>>
-    <<option 'EN'>><span class='blue'>The examination will be offered again in seven days.</span>
-    <<option 'CN'>><span class='blue'>七天后可以再次接受检查。</span>
+    <<option 'EN'>>
+      <span class='blue'>The examination will be offered again in seven days.</span>
+    <<option 'CN'>>
+      <span class='blue'>七天后可以再次接受检查。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>The three-person examination is no longer due.
-    <<option 'CN'>>现在没有需要三人共同接受的检查。
+    <<option 'EN'>>
+      The three-person examination is no longer due.
+    <<option 'CN'>>
+      现在没有需要三人共同接受的检查。
   <</language>>
   <br><br>
 <</if>>
@@ -60,27 +76,35 @@
 <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'>>
   <<if $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true or C.npc.Sydney.virginity.temple isnot true>>
     <<language>>
-      <<option 'EN'>>You ask Jordan to listen before the examination begins. Robin and Sydney give their own accounts. Jordan writes down each answer separately.
-      <<option 'CN'>>你请约旦先听你说完。罗宾和悉尼也分别讲出自己的经过。约旦把三人的话各自记下。
+      <<option 'EN'>>
+        You ask Jordan to listen before the examination begins. Robin and Sydney give their own accounts. Jordan writes down each answer separately.
+      <<option 'CN'>>
+        你请约旦先听你说完。罗宾和悉尼也分别讲出自己的经过。约旦把三人的话各自记下。
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '听约旦说明后续安排' 'RobinTemple Joint Failure'>><</lanLink>><br>
   <<else>>
     <<set $temple_chastity_timer to 14>>
     <<language>>
-      <<option 'EN'>>You admit that you are afraid of the result. Jordan says fear is not itself a broken vow. Robin and Sydney stay beside you while Jordan postpones the examination.
-      <<option 'CN'>>你承认自己害怕检查结果。约旦说，害怕本身并不算背誓。推迟检查时，罗宾和悉尼都留在你身边。
+      <<option 'EN'>>
+        You admit that you are afraid of the result. Jordan says fear is not itself a broken vow. Robin and Sydney stay beside you while Jordan postpones the examination.
+      <<option 'CN'>>
+        你承认自己害怕检查结果。约旦说，害怕本身并不算背誓。推迟检查时，罗宾和悉尼都留在你身边。
     <</language>>
     <br><br><<language>>
-      <<option 'EN'>><span class='blue'>Jordan will ask again in fourteen days.</span>
-      <<option 'CN'>><span class='blue'>约旦将在十四天后再问。</span>
+      <<option 'EN'>>
+        <span class='blue'>Jordan will ask again in fourteen days.</span>
+      <<option 'CN'>>
+        <span class='blue'>约旦将在十四天后再问。</span>
     <</language>><br><br>
     <<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
   <</if>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The three-person examination is no longer due.
-    <<option 'CN'>>现在没有需要三人共同接受的检查。
+    <<option 'EN'>>
+      The three-person examination is no longer due.
+    <<option 'CN'>>
+      现在没有需要三人共同接受的检查。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
@@ -100,19 +124,28 @@
   <</if>>
   <<set $RobinTemple.penance_day to Time.days + 7>>
   <<set $RobinTemple.penance_service to 0>>
+  <<set $RobinTemple.penance_hearing_done to false>>
+  <<set $RobinTemple.penance_trial_done to false>>
+  <<set $RobinTemple.penance_response to ''>>
   <<set $RobinTemple.penance_work_day to -1>>
   <<language>>
-    <<option 'EN'>>Jordan does not ask one person to answer for another. Jordan gives you seven days and a shared work list. What each of you must renew will depend on the vow that was broken.
-    <<option 'CN'>>约旦没有让任何人替别人承担责任，又给你们七天时间和一份共同的工作表。之后各自需要重新立下什么誓言，要看哪一份曾被违背。
+    <<option 'EN'>>
+      Jordan does not ask one person to answer for another. Jordan gives you seven days and a shared work list. What each of you must renew will depend on the vow that was broken.
+    <<option 'CN'>>
+      约旦没有让任何人替别人承担责任，又给你们七天时间和一份共同的工作表。之后各自需要重新立下什么誓言，要看哪一份曾被违背。
   <</language>>
   <br><br><<language>>
-    <<option 'EN'>><span class='red'>The examination found a broken vow.</span>
-    <<option 'CN'>><span class='red'>检查发现有人违背了誓言。</span>
+    <<option 'EN'>>
+      <span class='red'>The examination found a broken vow.</span>
+    <<option 'CN'>>
+      <span class='red'>检查发现有人违背了誓言。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Jordan has already recorded the result of this examination.
-    <<option 'CN'>>约旦已经记录了这次检查的结果。
+    <<option 'EN'>>
+      Jordan has already recorded the result of this examination.
+    <<option 'CN'>>
+      约旦已经记录了这次检查的结果。
   <</language>>
   <br><br>
 <</if>>
@@ -125,14 +158,18 @@
   <<set $RobinTemple.penance_work_day to Time.days>>
   <<set $RobinTemple.penance_service += 1>>
   <<language>>
-    <<option 'EN'>>Sydney checks the kitchen stores while Robin sorts blankets. You carry the completed lists between them. They compare notes before signing their own names.
-    <<option 'CN'>>悉尼核对厨房存货，罗宾整理毯子。你把填好的清单送到他们手里。两人对完记录，分别签上自己的名字。
+    <<option 'EN'>>
+      Sydney checks the kitchen stores while Robin sorts blankets. You carry the completed lists between them. They compare notes before signing their own names.
+    <<option 'CN'>>
+      悉尼核对厨房存货，罗宾整理毯子。你把填好的清单送到他们手里。两人对完记录，分别签上自己的名字。
   <</language>>
   <<grace 1>><br><br><<ggrace>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Today’s shared work is already finished.
-    <<option 'CN'>>今天的共同工作已经做完了。
+    <<option 'EN'>>
+      Today’s shared work is already finished.
+    <<option 'CN'>>
+      今天的共同工作已经做完了。
   <</language>>
 <</if>>
 <br><br>
@@ -149,19 +186,26 @@
   <</if>>
   <<set $RobinTemple.penance_day to -1>>
   <<set $RobinTemple.joint_sydney_penance to false>>
+  <<run maplebirch.get('RobinTemple').restorePromise()>>
   <<set $RobinTemple.breach to ''>>
   <<language>>
-    <<option 'EN'>>Jordan accepts the three signed work lists. Sydney’s promise is renewed. Robin thanks <<him>> for hearing each of you separately, then asks what the next week’s work will be.
-    <<option 'CN'>>约旦收下三人签过名的工作表，重新接纳悉尼的誓言。罗宾谢过约旦愿意分别听他们说话，随后问起下周还有什么工作。
+    <<option 'EN'>>
+      Jordan accepts the three signed work lists. Sydney’s promise is renewed. Robin thanks <<him>> for hearing each of you separately, then asks what the next week’s work will be.
+    <<option 'CN'>>
+      约旦收下三人签过名的工作表，重新接纳悉尼的誓言。罗宾谢过约旦愿意分别听他们说话，随后问起下周还有什么工作。
   <</language>>
   <br><br><<language>>
-    <<option 'EN'>><span class='green'>The broken vows have been restored.</span>
-    <<option 'CN'>><span class='green'>违背的誓言已经重新立下。</span>
+    <<option 'EN'>>
+      <span class='green'>The broken vows have been restored.</span>
+    <<option 'CN'>>
+      <span class='green'>违背的誓言已经重新立下。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>The work is not finished. Complete shifts on three separate days, then return after the seventh day.
-    <<option 'CN'>>工作还没有结束。至少在三个不同的日子完成值班，第七天后再回来。
+    <<option 'EN'>>
+      The work is not finished. Complete shifts on three separate days, then return after the seventh day.
+    <<option 'CN'>>
+      工作还没有结束。至少在三个不同的日子完成值班，第七天后再回来。
   <</language>>
   <br><br>
 <</if>>

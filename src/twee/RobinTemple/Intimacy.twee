@@ -32,8 +32,10 @@
   <<loveicon 'kiss'>><<lanLink '问罗宾要不要更亲近些' 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin is not at the bunk now.
-    <<option 'CN'>>罗宾现在不在床铺旁。
+    <<option 'EN'>>
+      Robin is not at the bunk now.
+    <<option 'CN'>>
+      罗宾现在不在床铺旁。
   <</language>><br><br>
 <</if>>
 <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
@@ -57,8 +59,10 @@
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin has already left.
-    <<option 'CN'>>罗宾已经离开了。
+    <<option 'EN'>>
+      Robin has already left.
+    <<option 'CN'>>
+      罗宾已经离开了。
   <</language>>
 <</if>>
 <br><br>
@@ -82,8 +86,10 @@
   <<loveicon 'hug'>><<lanLink '只抱着罗宾待一会儿' 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin cannot stay with you now.
-    <<option 'CN'>>罗宾现在不能留下陪你。
+    <<option 'EN'>>
+      Robin cannot stay with you now.
+    <<option 'CN'>>
+      罗宾现在不能留下陪你。
   <</language>><br><br>
 <</if>>
 <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
@@ -102,8 +108,10 @@
   <<npcincr Robin love 1>><br><br><<glove>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin has already left.
-    <<option 'CN'>>罗宾已经离开了。
+    <<option 'EN'>>
+      Robin has already left.
+    <<option 'CN'>>
+      罗宾已经离开了。
   <</language>><br><br>
 <</if>>
 <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
@@ -136,8 +144,10 @@
 <<else>>
   <<set $sexstart to 0>>
   <<language>>
-    <<option 'EN'>>Robin is not at the bunk now.
-    <<option 'CN'>>罗宾现在不在床铺旁。
+    <<option 'EN'>>
+      Robin is not at the bunk now.
+    <<option 'CN'>>
+      罗宾现在不在床铺旁。
   <</language>><br><br>
   <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 <</if>>
@@ -150,8 +160,10 @@
   <</if>>
   <<if $consensual isnot 1>>
     <<language>>
-      <<option 'EN'>>Robin draws back. You give <<him>> room, and neither of you tries to continue.
-      <<option 'CN'>>罗宾退开了。你给<<him>>让出地方，谁也没有继续。
+      <<option 'EN'>>
+        Robin draws back. You give <<him>> room, and neither of you tries to continue.
+      <<option 'CN'>>
+        罗宾退开了。你给<<him>>让出地方，谁也没有继续。
     <</language>>
   <<else>>
     <<takeKissVirginity 'Robin' 'loveInterest'>>
@@ -168,8 +180,10 @@
   <<set $RobinTemple.intimacy_active to false>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The bunk is quiet again.
-    <<option 'CN'>>床铺旁又安静下来。
+    <<option 'EN'>>
+      The bunk is quiet again.
+    <<option 'CN'>>
+      床铺旁又安静下来。
   <</language>><br><br>
 <</if>>
 <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>

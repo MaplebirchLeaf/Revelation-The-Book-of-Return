@@ -4,24 +4,30 @@
 <<switch $RobinTemple.prayer_event>>
   <<case 1>>
     <<language>>
-      <<option 'EN'>>The visitor has come from Wolf Street. The soup kitchen needs clean bowls before evening. Robin offers to carry a box from the shelves.
-      <<option 'CN'>>那名访客从狼街来。施粥所在开门前缺一批干净的碗。罗宾提出从架上搬一箱过去。
+      <<option 'EN'>>
+        The visitor has come from Wolf Street. The soup kitchen needs clean bowls before evening. Robin offers to carry a box from the shelves.
+      <<option 'CN'>>
+        那名访客从狼街来。施粥所在开门前缺一批干净的碗。罗宾提出从架上搬一箱过去。
     <</language>>
     <br><br>
     <<templeicon 'quarters'>><<lanLink '帮忙送碗 (0:30)' 'RobinTemple Prayer Bowls'>><<pass 30>><</lanLink>><br>
     <<socialiseicon 'ask'>><<lanLink '记下施粥所需要什么' 'RobinTemple Prayer Note'>><</lanLink>><br>
   <<case 2>>
     <<language>>
-      <<option 'EN'>>The initiate has written the wrong number beside the linen and fears Jordan will think a whole bundle is missing.
-      <<option 'CN'>>见习者说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
+      <<option 'EN'>>
+        The initiate has written the wrong number beside the linen and fears Jordan will think a whole bundle is missing.
+      <<option 'CN'>>
+        见习者说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '和罗宾一起核对清单 (0:15)' 'RobinTemple Prayer List'>><<pass 15>><</lanLink>><br>
     <<loveicon 'hug'>><<lanLink '请罗宾先安慰见习者' 'RobinTemple Prayer Comfort'>><</lanLink>><br>
   <<case 3>>
     <<language>>
-      <<option 'EN'>>The visitor has nowhere quiet to sit tonight. Robin looks toward the quarters, then offers a cup of water first.
-      <<option 'CN'>>访客说今晚找不到安静的地方坐一会儿。罗宾望向宿舍方向，先端来一杯水。
+      <<option 'EN'>>
+        The visitor has nowhere quiet to sit tonight. Robin looks toward the quarters, then offers a cup of water first.
+      <<option 'CN'>>
+        访客说今晚找不到安静的地方坐一会儿。罗宾望向宿舍方向，先端来一杯水。
     <</language>>
     <br><br>
     <<socialiseicon 'ask'>><<lanLink '帮罗宾去问约旦 (0:15)' 'RobinTemple Prayer Shelter'>><<pass 15>><</lanLink>><br>
@@ -29,18 +35,24 @@
   <<case 4>>
     <<if C.npc.Robin.trauma gte 40>>
       <<language>>
-        <<option 'EN'>>Robin flinches at a raised voice behind the door. <<He>> moves closer to you and looks toward the hall. "Could we ask Jordan?" <<he>> whispers.
-        <<option 'CN'>>门后有人提高了嗓门，罗宾一颤，朝你靠近了一些，又望向大厅。“能去问问约旦吗？”<<he>>小声说。
+        <<option 'EN'>>
+          Robin flinches at a raised voice behind the door. <<He>> moves closer to you and looks toward the hall. "Could we ask Jordan?" <<he>> whispers.
+        <<option 'CN'>>
+          门后有人提高了嗓门，罗宾一颤，朝你靠近了一些，又望向大厅。“能去问问约旦吗？”<<he>>小声说。
       <</language>>
     <<elseif C.npc.Robin.dom lte 50>>
       <<language>>
-        <<option 'EN'>>Robin says <<he>> heard arguing behind the door. Neither of you knows what happened. <<He>> looks at you. "Should we ask Jordan?"
-        <<option 'CN'>>罗宾说听见门后有人争执。你们都不知道发生了什么。<<He>>看向你：“要不要问问约旦？”
+        <<option 'EN'>>
+          Robin says <<he>> heard arguing behind the door. Neither of you knows what happened. <<He>> looks at you. "Should we ask Jordan?"
+        <<option 'CN'>>
+          罗宾说听见门后有人争执。你们都不知道发生了什么。<<He>>看向你：“要不要问问约旦？”
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>Robin says <<he>> heard someone arguing behind the side-room door. Neither of you knows what happened. "We can ask Jordan," <<he>> says, "rather than guessing."
-        <<option 'CN'>>罗宾说听见侧室里有人争执。你们都不知道发生了什么。“可以去问约旦，”<<he>>说，“别只在这里猜。”
+        <<option 'EN'>>
+          Robin says <<he>> heard someone arguing behind the side-room door. Neither of you knows what happened. "We can ask Jordan," <<he>> says, "rather than guessing."
+        <<option 'CN'>>
+          罗宾说听见侧室里有人争执。你们都不知道发生了什么。“可以去问约旦，”<<he>>说，“别只在这里猜。”
       <</language>>
     <</if>>
     <br><br>
@@ -50,97 +62,209 @@
 
 :: RobinTemple Prayer Bowls
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>You and Robin wrap the bowls in linen and carry them to the kitchen on Wolf Street. The cook counts them before setting a pot on the stove.
-  <<option 'CN'>>你和罗宾用布巾包好碗，送到狼街的厨房。厨师数过碗，才把锅架上炉灶。
-<</language>>
-<<set $soup_kitchen_known to 1>><<set $RobinTemple.service += 1>>
-<<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      You and Robin wrap the bowls in linen and carry them to the kitchen on Wolf Street. The cook counts them before setting a pot on the stove.
+    <<option 'CN'>>
+      你和罗宾用布巾包好碗，送到狼街的厨房。厨师数过碗，才把锅架上炉灶。
+  <</language>>
+  <<set $soup_kitchen_known to 1>><<set $RobinTemple.service += 1>>
+  <<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<getouticon>><<lanLink '回到神殿' 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Note
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>The visitor shows you the kitchen’s address and hours. Robin copies them into <<his>> schoolbook so neither of you has to rely on memory.
-  <<option 'CN'>>访客告诉你厨房的位置和开放时间。罗宾把它们抄进课本，免得你们全靠记忆。
-<</language>>
-<<set $soup_kitchen_known to 1>>
-<<language>>
-  <<option 'EN'>><span class='gold'>You learned where to find the soup kitchen.</span>
-  <<option 'CN'>><span class='gold'>你得知了施粥所的位置。</span>
-<</language>><br><br>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      The visitor shows you the kitchen’s address and hours. Robin copies them into <<his>> schoolbook so neither of you has to rely on memory.
+    <<option 'CN'>>
+      访客告诉你厨房的位置和开放时间。罗宾把它们抄进课本，免得你们全靠记忆。
+  <</language>>
+  <<set $soup_kitchen_known to 1>>
+  <<language>>
+    <<option 'EN'>>
+      <span class='gold'>You learned where to find the soup kitchen.</span>
+    <<option 'CN'>>
+      <span class='gold'>你得知了施粥所的位置。</span>
+  <</language>><br><br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer List
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>You count each bundle with Robin. The missing linen is on a shelf in the next room. The initiate corrects the entry while you hold the pages together.
-  <<option 'CN'>>你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习者把数字改好。
-<</language>>
-<<set $RobinTemple.service += 1>>
-<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
-<<grace 1>><br><br><<ggrace>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      You count each bundle with Robin. The missing linen is on a shelf in the next room. The initiate corrects the entry while you hold the pages together.
+    <<option 'CN'>>
+      你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习者把数字改好。
+  <</language>>
+  <<set $RobinTemple.service += 1>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
+  <<grace 1>><br><br><<ggrace>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Comfort
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>Robin sits with the initiate until the mistake can be explained. "We should check the shelves," Robin says. The two of you find the bundle and correct the list together.
-  <<option 'CN'>>罗宾陪见习者坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
-<</language>>
-<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
-<<npcincr Robin love 1>><br><br><<glove>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      Robin sits with the initiate until the mistake can be explained. "We should check the shelves," Robin says. The two of you find the bundle and correct the list together.
+    <<option 'CN'>>
+      罗宾陪见习者坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
+  <</language>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
+  <<npcincr Robin love 1>><br><br><<glove>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Shelter
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>Jordan listens to the visitor and offers a place to rest until morning. Robin fetches water and a clean blanket, then asks whether the visitor needs anything else.
-  <<option 'CN'>>约旦听完访客的情况，同意让对方留到天亮。罗宾端来水和干净的毯子，又问还有没有别的需要。
-<</language>>
-<<set $RobinTemple.service += 1>>
-<<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan listens to the visitor and offers a place to rest until morning. Robin fetches water and a clean blanket, then asks whether the visitor needs anything else.
+    <<option 'CN'>>
+      约旦听完访客的情况，同意让对方留到天亮。罗宾端来水和干净的毯子，又问还有没有别的需要。
+  <</language>>
+  <<set $RobinTemple.service += 1>>
+  <<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Wait
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>You stay beside the visitor while Robin speaks to Jordan. When <<he>> returns, <<he>> has a blanket and permission for the visitor to rest in the quarters.
-  <<option 'CN'>>罗宾去找约旦时，你留在访客身边。<<He>>带着毯子回来，也带来了让访客在宿舍休息的许可。
-<</language>>
-<<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      You stay beside the visitor while Robin speaks to Jordan. When <<he>> returns, <<he>> has a blanket and permission for the visitor to rest in the quarters.
+    <<option 'CN'>>
+      罗宾去找约旦时，你留在访客身边。<<He>>带着毯子回来，也带来了让访客在宿舍休息的许可。
+  <</language>>
+  <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Ask Jordan
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>Jordan says an initiate became frightened during a task. "It is being dealt with," <<nnpc_he 'Jordan'>> says. "Leave the attendants to me."
-  <<option 'CN'>>约旦说，一名见习者在做事时受了惊吓。“这件事正在处理，”<<nnpc_he 'Jordan'>>说，“侍从那边由我来问。”
-<</language>>
-<<if C.npc.Robin.trauma gte 40>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
-    <<option 'EN'>>Robin nods without asking anything more. Outside the room, <<he>> asks you to sit with <<him>> for a while.
-    <<option 'CN'>>罗宾点点头，没有再问。出了房间，<<he>>请你陪<<him>>坐一会儿。
+    <<option 'EN'>>
+      Jordan says an initiate became frightened during a task. "It is being dealt with," <<nnpc_he 'Jordan'>> says. "Leave the attendants to me."
+    <<option 'CN'>>
+      约旦说，一名见习者在做事时受了惊吓。“这件事正在处理，”<<nnpc_he 'Jordan'>>说，“侍从那边由我来问。”
   <</language>>
-<<elseif C.npc.Robin.dom lte 50>>
-  <<language>>
-    <<option 'EN'>>"Is the initiate all right?" Robin asks quietly. Jordan says they are resting. Robin looks relieved.
-    <<option 'CN'>>“那名见习者还好吗？”罗宾小声问。约旦说对方正在休息。罗宾松了口气。
-  <</language>>
+  <<if C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        Robin nods without asking anything more. Outside the room, <<he>> asks you to sit with <<him>> for a while.
+      <<option 'CN'>>
+        罗宾点点头，没有再问。出了房间，<<he>>请你陪<<him>>坐一会儿。
+    <</language>>
+  <<elseif C.npc.Robin.dom lte 50>>
+    <<language>>
+      <<option 'EN'>>
+        "Is the initiate all right?" Robin asks quietly. Jordan says they are resting. Robin looks relieved.
+      <<option 'CN'>>
+        “那名见习者还好吗？”罗宾小声问。约旦说对方正在休息。罗宾松了口气。
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go.
+      <<option 'CN'>>
+        罗宾问能不能给那名见习者送些水。约旦点头，告诉<<him>>该去哪里。
+    <</language>>
+  <</if>>
+  <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
+  <<npcincr Robin dom 1>><br><br><<gdom>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go.
-    <<option 'CN'>>罗宾问能不能给那名见习者送些水。约旦点头，告诉<<him>>该去哪里。
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
   <</language>>
 <</if>>
-<<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
-<<npcincr Robin dom 1>><br><br><<gdom>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Leave
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<language>>
-  <<option 'EN'>>You leave the side room behind. Robin walks with you to the hall, then says <<he>> will ask Jordan tomorrow what happened.
-  <<option 'CN'>>你离开侧室门前。罗宾陪你走到大厅，说<<he>>明天会向约旦问清楚。
-<</language>>
+<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved>>
+  <<set $RobinTemple.prayer_event_resolved to true>>
+  <<language>>
+    <<option 'EN'>>
+      You leave the side room behind. Robin walks with you to the hall, then says <<he>> will ask Jordan tomorrow what happened.
+    <<option 'CN'>>
+      你离开侧室门前。罗宾陪你走到大厅，说<<he>>明天会向约旦问清楚。
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      There is no unfinished encounter here today.
+    <<option 'CN'>>
+      今天这里已经没有尚未处理的偶遇事件。
+  <</language>>
+<</if>>
+<br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>

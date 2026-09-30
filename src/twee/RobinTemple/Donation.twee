@@ -1,8 +1,10 @@
 :: RobinTemple Donation
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>An initiate carries the collection plate along the benches. Robin checks <<his>> pocket and looks at you. The temple also needs linen and food for the people it shelters.
-  <<option 'CN'>>一名见习者捧着奉献盘走过长椅。罗宾摸了摸口袋，望向你。神殿还需要为收容的人准备布巾和食物。
+  <<option 'EN'>>
+    An initiate carries the collection plate along the benches. Robin checks <<his>> pocket and looks at you. The temple also needs linen and food for the people it shelters.
+  <<option 'CN'>>
+    一名见习者捧着奉献盘走过长椅。罗宾摸了摸口袋，望向你。神殿还需要为收容的人准备布巾和食物。
 <</language>>
 <br><br>
 <<if $RobinTemple.donation_day isnot Time.days>>
@@ -23,19 +25,25 @@
 <<set _donationAmount to $RobinTemple.donation_amount>>
 <<set $RobinTemple.donation_amount to 0>>
 <<language>>
-  <<option 'EN'>>You place your contribution on the plate. The initiate thanks you. Robin looks at the shelves by the door, already working out where the next delivery should go.
-  <<option 'CN'>>你把钱放进奉献盘。见习者向你道谢。罗宾望向门边的架子，已经在想下一批物资该放在哪里。
+  <<option 'EN'>>
+    You place your contribution on the plate. The initiate thanks you. Robin looks at the shelves by the door, already working out where the next delivery should go.
+  <<option 'CN'>>
+    你把钱放进奉献盘。见习者向你道谢。罗宾望向门边的架子，已经在想下一批物资该放在哪里。
 <</language>>
 <br><br>
 <<if _donationAmount gte 2500 and !$soup_kitchen_known>>
   <<set $soup_kitchen_known to 1>>
   <<language>>
-    <<option 'EN'>>The initiate mentions the soup kitchen on Wolf Street. Its kitchen opens in the evening, and extra hands are welcome.
-    <<option 'CN'>>见习者提起狼街的施粥所。厨房在晚间开放，很欢迎有人帮忙。
+    <<option 'EN'>>
+      The initiate mentions the soup kitchen on Wolf Street. Its kitchen opens in the evening, and extra hands are welcome.
+    <<option 'CN'>>
+      见习者提起狼街的施粥所。厨房在晚间开放，很欢迎有人帮忙。
   <</language>>
   <br><br><<language>>
-    <<option 'EN'>><span class='gold'>You learned where to help at the soup kitchen.</span>
-    <<option 'CN'>><span class='gold'>你得知了施粥所的位置。</span>
+    <<option 'EN'>>
+      <span class='gold'>You learned where to help at the soup kitchen.</span>
+    <<option 'CN'>>
+      <span class='gold'>你得知了施粥所的位置。</span>
   <</language>>
 <</if>>
 <<if _donationAmount gte 2500>>

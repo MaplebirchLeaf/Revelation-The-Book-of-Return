@@ -123,7 +123,12 @@ export async function createZipPackage(root: string): Promise<PackageAsset> {
   };
 
   const zip = new AdmZip();
-  for (const name of names) zip.addFile(name, files.get(name)!);
+  for (const name of names) {
+    const contents = files.get(name)!;
+    // 源码将语言正文另起一行供审查；移除分支开头的排版换行，保留明确的 <br>。
+    const packaged = name.endsWith('.twee') ? Buffer.from(contents.toString('utf8').replace(/(<<option ['"](?:EN|CN)['"]>>)\r?\n[\t ]+/g, '$1')) : contents;
+    zip.addFile(name, packaged);
+  }
   zip.addFile('boot.json', Buffer.from(JSON.stringify(boot, null, 2)));
   return { fileName: `${pkg.name}-v${pkg.version}.mod.zip`, buffer: zip.toBuffer() };
 }

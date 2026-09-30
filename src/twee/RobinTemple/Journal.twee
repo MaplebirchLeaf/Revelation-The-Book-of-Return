@@ -3,142 +3,192 @@
   <<if $RobinTemple?.stage and $RobinTemple.stage isnot 'none'>>
     <hr>
     <<language>>
-      <<option 'EN'>><h1 class='header gold bold'>Robin and the temple</h1>
-      <<option 'CN'>><h1 class='header gold bold'>罗宾与神殿</h1>
+      <<option 'EN'>>
+        <h1 class='header gold bold'>Robin and the temple</h1>
+      <<option 'CN'>>
+        <h1 class='header gold bold'>罗宾与神殿</h1>
     <</language>>
     <ul class='journal'>
       <<switch $RobinTemple.stage>>
         <<case 'invited'>>
           <li><<language>>
-            <<option 'EN'>>Robin has questions about joining the temple. Talk in Robin’s room after making your own vow.
-            <<option 'CN'>>罗宾对加入神殿还有疑问。立下自己的誓言后，去罗宾的房间谈谈。
+            <<option 'EN'>>
+              Robin has questions about joining the temple. Talk in Robin’s room after making your own vow.
+            <<option 'CN'>>
+              罗宾对加入神殿还有疑问。立下自己的誓言后，去罗宾的房间谈谈。
           <</language>></li>
         <<case 'scheduled'>>
           <li><<language>>
-            <<option 'EN'>>Jordan will assess Robin on day <span class='gold'><<= $RobinTemple.exam_day>></span>. Before then, find Robin at the orphanage from 17:00 to 19:15 and go to the temple together.
-            <<option 'CN'>>约旦将在第 <span class='gold'><<= $RobinTemple.exam_day>></span> 天考核罗宾。在此之前，17:00 至 19:15 可以去孤儿院找罗宾，一起到神殿准备。
+            <<option 'EN'>>
+              Jordan will assess Robin on day <span class='gold'><<= $RobinTemple.exam_day>></span>. Before then, find Robin at the orphanage from 17:00 to 19:15 and go to the temple together.
+            <<option 'CN'>>
+              约旦将在第 <span class='gold'><<= $RobinTemple.exam_day>></span> 天考核罗宾。在此之前，17:00 至 19:15 可以去孤儿院找罗宾，一起到神殿准备。
           <</language>></li>
         <<case 'failed'>>
           <li><<language>>
-            <<option 'EN'>>Robin needs time to decide freely. Ask again in Robin’s room after day <span class='gold'><<= $RobinTemple.exam_day + 7>></span>.
-            <<option 'CN'>>罗宾需要时间自己考虑。第 <span class='gold'><<= $RobinTemple.exam_day + 7>></span> 天后再去房间询问。
+            <<option 'EN'>>
+              Robin needs time to decide freely. Ask again in Robin’s room after day <span class='gold'><<= $RobinTemple.exam_day + 7>></span>.
+            <<option 'CN'>>
+              罗宾需要时间自己考虑。第 <span class='gold'><<= $RobinTemple.exam_day + 7>></span> 天后再去房间询问。
           <</language>></li>
         <<case 'member'>>
           <li><<language>>
-            <<option 'EN'>>Robin has a place in the temple quarters. You can work together during the evening shift.
-            <<option 'CN'>>罗宾在神殿宿舍有自己的位置。晚间值班时可以一起做事。
+            <<option 'EN'>>
+              Robin has a place in the temple quarters. You can work together during the evening shift.
+            <<option 'CN'>>
+              罗宾在神殿宿舍有自己的位置。晚间值班时可以一起做事。
           <</language>></li>
           <li><<language>>
-              <<option 'EN'>>On school-free weekdays, you can invite Robin from <<his>> room to help at the temple between 09:00 and 16:00. You can also go together after 17:00. Robin helps with the Sunday service.
-              <<option 'CN'>>不上学的工作日，09:00 至 16:00 可以到罗宾房间约<<him>>去神殿帮忙。17:00 后也可以同行。罗宾会协助星期日礼拜。
+              <<option 'EN'>>
+                On school-free weekdays, you can invite Robin from <<his>> room to help at the temple between 09:00 and 16:00. You can also go together after 17:00. Robin helps with the Sunday service.
+              <<option 'CN'>>
+                不上学的工作日，09:00 至 16:00 可以到罗宾房间约<<him>>去神殿帮忙。17:00 后也可以同行。罗宾会协助星期日礼拜。
             <</language>></li>
           <<if !(maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin'))>>
             <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
           <</if>>
           <<if $RobinTemple.penance_day gte 0>>
             <li><<language>>
-              <<option 'EN'>>The temple work ends on day <span class='red'><<= $RobinTemple.penance_day>></span>. Complete three evening shifts together, then return to the temple quarters.
-              <<option 'CN'>>神殿安排的工作在第 <span class='red'><<= $RobinTemple.penance_day>></span> 天结束。先陪罗宾完成三个晚间班次，再去神殿宿舍。
+              <<option 'EN'>>
+                The temple work ends on day <span class='red'><<= $RobinTemple.penance_day>></span>. Complete three evening shifts together, then return to the temple quarters.
+              <<option 'CN'>>
+                神殿安排的工作在第 <span class='red'><<= $RobinTemple.penance_day>></span> 天结束。先陪罗宾完成三个晚间班次，再去神殿宿舍。
             <</language>></li>
             <li><<language>>
-              <<option 'EN'>>Evening shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
-              <<option 'CN'>>已完成的晚间班次：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
+              <<option 'EN'>>
+                Evening shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
+              <<option 'CN'>>
+                已完成的晚间班次：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
             <</language>></li>
           <<elseif $robinromance is 1 and $RobinTemple.service gte 3>>
             <li><<language>>
-              <<option 'EN'>>Ask Robin about making a promise during an evening shift. Jordan will weigh both your contributions, your shared work and Robin’s conviction.
-              <<option 'CN'>>晚间值班时可以和罗宾谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信念。
+              <<option 'EN'>>
+                Ask Robin about making a promise during an evening shift. Jordan will weigh both your contributions, your shared work and Robin’s conviction.
+              <<option 'CN'>>
+                晚间值班时可以和罗宾谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信念。
             <</language>></li>
           <<else>>
             <li><<language>>
-              <<option 'EN'>>Shared temple shifts: <span class='teal'><<= $RobinTemple.service>></span>/3
-              <<option 'CN'>>已一起完成的神殿值班：<span class='teal'><<= $RobinTemple.service>></span>/3
+              <<option 'EN'>>
+                Shared temple shifts: <span class='teal'><<= $RobinTemple.service>></span>/3
+              <<option 'CN'>>
+                已一起完成的神殿值班：<span class='teal'><<= $RobinTemple.service>></span>/3
             <</language>></li>
           <</if>>
         <<case 'approved'>>
           <li><<language>>
-            <<option 'EN'>>Jordan approved the rite. Meet Robin in the temple quarters in the evening.
-            <<option 'CN'>>约旦批准了仪式。傍晚去神殿宿舍见罗宾。
+            <<option 'EN'>>
+              Jordan approved the rite. Meet Robin in the temple quarters in the evening.
+            <<option 'CN'>>
+              约旦批准了仪式。傍晚去神殿宿舍见罗宾。
           <</language>></li>
         <<case 'promised'>>
           <<if $templePromised is 'Sydney'>>
             <li><<language>>
-              <<option 'EN'>>The temple records promises with Robin and Sydney. Jordan will examine all three vows together.
-              <<option 'CN'>>神殿记录着你与罗宾、悉尼立下的承诺。约旦会一起检查三人的誓言。
+              <<option 'EN'>>
+                The temple records promises with Robin and Sydney. Jordan will examine all three vows together.
+              <<option 'CN'>>
+                神殿记录着你与罗宾、悉尼立下的承诺。约旦会一起检查三人的誓言。
             <</language>></li>
           <<else>>
             <li><<language>>
-              <<option 'EN'>>Your promise to Robin is recognised by the temple. Jordan will examine your vows together.
-              <<option 'CN'>>神殿见证了你和罗宾的承诺。约旦会一同检查你们的誓言。
+              <<option 'EN'>>
+                Your promise to Robin is recognised by the temple. Jordan will examine your vows together.
+              <<option 'CN'>>
+                神殿见证了你和罗宾的承诺。约旦会一同检查你们的誓言。
             <</language>></li>
           <</if>>
           <li><<language>>
-            <<option 'EN'>>Days until the next examination: <span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
-            <<option 'CN'>>距离下次检查还有：<span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
+            <<option 'EN'>>
+              Days until the next examination: <span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
+            <<option 'CN'>>
+              距离下次检查还有：<span class='gold'><<= Math.max(0, $temple_chastity_timer)>></span>
           <</language>></li>
       <</switch>>
       <<if $RobinTemple.vigil_result is 'passed'>>
         <li><<language>>
-          <<option 'EN'>>You led Robin through the vigil. Robin joined the monks beside you.
-          <<option 'CN'>>你带罗宾走过守夜。罗宾与你一同晋升为修士。
+          <<option 'EN'>>
+            You led Robin through the vigil. Robin joined the monks beside you.
+          <<option 'CN'>>
+            你带罗宾走过守夜。罗宾与你一同晋升为修士。
         <</language>></li>
       <<elseif $temple_rank is 'initiate'
         and $RobinTemple.vigil_day gte Time.days>>
         <li><<language>>
-          <<option 'EN'>>You and Robin arranged to attempt the vigil on day <span class='gold'><<= $RobinTemple.vigil_day>></span>. Prepare with Robin on two separate days before Sunday at 20:00. Preparation: <span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20.
-          <<option 'CN'>>你与罗宾约好在第 <span class='gold'><<= $RobinTemple.vigil_day>></span> 天参加守夜。星期日 20:00 前，至少在两个不同的日子陪罗宾准备。准备程度：<span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20。
+          <<option 'EN'>>
+            You and Robin arranged to attempt the vigil on day <span class='gold'><<= $RobinTemple.vigil_day>></span>. Prepare with Robin on two separate days before Sunday at 20:00. Preparation: <span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20.
+          <<option 'CN'>>
+            你与罗宾约好在第 <span class='gold'><<= $RobinTemple.vigil_day>></span> 天参加守夜。星期日 20:00 前，至少在两个不同的日子陪罗宾准备。准备程度：<span class='teal'><<= $RobinTemple.vigil_readiness>></span>/20。
         <</language>></li>
       <<elseif $temple_rank is 'initiate'
         and $RobinTemple.vigil_result is 'failed'>>
         <li><<language>>
-          <<option 'EN'>>Your joint vigil failed. Speak with Robin, then arrange another attempt for a later Sunday while you are both initiates.
-          <<option 'CN'>>你与罗宾未能通过守夜。先与罗宾谈谈，再趁你们仍是见习者时另约一个星期日。
+          <<option 'EN'>>
+            Your joint vigil failed. Speak with Robin, then arrange another attempt for a later Sunday while you are both initiates.
+          <<option 'CN'>>
+            你与罗宾未能通过守夜。先与罗宾谈谈，再趁你们仍是见习者时另约一个星期日。
         <</language>></li>
       <<elseif ['monk', 'priest'].includes($temple_rank)
         and $RobinTemple.vigil_result isnot 'passed'
         and ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
         <li><<language>>
-          <<option 'EN'>>You have already passed your own vigil. Robin cannot join you in a second trial and remains an initiate.
-          <<option 'CN'>>你已经通过自己的守夜，不能再次参加同一场试炼。罗宾仍是见习者。
+          <<option 'EN'>>
+            You have already passed your own vigil. Robin cannot join you in a second trial and remains an initiate.
+          <<option 'CN'>>
+            你已经通过自己的守夜，不能再次参加同一场试炼。罗宾仍是见习者。
         <</language>></li>
       <</if>>
       <<if $RobinTemple.joint_sydney_penance>>
         <li><<language>>
-          <<option 'EN'>>Work with Robin and Sydney on three separate days, then return after day <span class='red'><<= $RobinTemple.penance_day>></span> to renew the broken vows.
-          <<option 'CN'>>与罗宾、悉尼在三个不同的日子完成工作，第 <span class='red'><<= $RobinTemple.penance_day>></span> 天后再去重新立誓。
+          <<option 'EN'>>
+            Work with Robin and Sydney on three separate days, then return after day <span class='red'><<= $RobinTemple.penance_day>></span> to renew the broken vows.
+          <<option 'CN'>>
+            与罗宾、悉尼在三个不同的日子完成工作，第 <span class='red'><<= $RobinTemple.penance_day>></span> 天后再去重新立誓。
         <</language>></li>
         <li><<language>>
-          <<option 'EN'>>Shared shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
-          <<option 'CN'>>已完成的共同值班：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
+          <<option 'EN'>>
+            Shared shifts completed: <span class='teal'><<= $RobinTemple.penance_service>></span>/3
+          <<option 'CN'>>
+            已完成的共同值班：<span class='teal'><<= $RobinTemple.penance_service>></span>/3
         <</language>></li>
       <</if>>
       <<if C.npc.Robin.revelationConviction gt 0>>
         <li><<language>>
-          <<option 'EN'>>Robin’s temple conviction: <span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
-          <<option 'CN'>>罗宾的神殿信念：<span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
+          <<option 'EN'>>
+            Robin’s temple conviction: <span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
+          <<option 'CN'>>
+            罗宾的神殿信念：<span class='teal'><<= C.npc.Robin.revelationConviction>></span>/200
         <</language>></li>
       <</if>>
       <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)>>
         <li><<language>>
-          <<option 'EN'>>Robin's temple contribution: <span class='teal'><<= $RobinTemple.grace>></span>/100.
-          <<option 'CN'>>罗宾的神殿贡献：<span class='teal'><<= $RobinTemple.grace>></span>/100。
+          <<option 'EN'>>
+            Robin's temple contribution: <span class='teal'><<= $RobinTemple.grace>></span>/100.
+          <<option 'CN'>>
+            罗宾的神殿贡献：<span class='teal'><<= $RobinTemple.grace>></span>/100。
         <</language>></li>
         <<if maplebirch.get('RobinExpansion')>>
           <li><<language>>
-            <<option 'EN'>>Temple duties add <span class='gold'>£<<= $RobinTemple.grace * 10>></span> to Robin's weekly income. This is included in <<his>> business and rent accounts.
-            <<option 'CN'>>神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<his>>的经营收入与房租结算。
+            <<option 'EN'>>
+              Temple duties add <span class='gold'>£<<= $RobinTemple.grace * 10>></span> to Robin's weekly income. This is included in <<his>> business and rent accounts.
+            <<option 'CN'>>
+              神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<his>>的经营收入与房租结算。
           <</language>></li>
         <</if>>
       <</if>>
       <<if $temple_spear_mission is 1 and !$RobinTemple.spear_seen>>
         <li><<language>>
-          <<option 'EN'>>Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.
-          <<option 'CN'>>罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。
+          <<option 'EN'>>
+            Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.
+          <<option 'CN'>>
+            罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。
         <</language>></li>
       <<elseif $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
         <li><<language>>
-          <<option 'EN'>>You promised to tell Robin how the spear journey went. Find <<him>> at the temple bench.
-          <<option 'CN'>>你答应把取矛的经过告诉罗宾。去神殿长椅找<<him>>。
+          <<option 'EN'>>
+            You promised to tell Robin how the spear journey went. Find <<him>> at the temple bench.
+          <<option 'CN'>>
+            你答应把取矛的经过告诉罗宾。去神殿长椅找<<him>>。
         <</language>></li>
       <</if>>
     </ul>

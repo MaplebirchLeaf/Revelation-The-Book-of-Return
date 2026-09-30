@@ -1,32 +1,42 @@
 :: RobinTemple Corner
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>Robin has been given a narrow shelf and a place at the long table in the quarters. A schoolbook rests beside temple notes.
-  <<option 'CN'>>罗宾在宿舍里分到一小格书架和长桌旁的座位。课本挨着神殿笔记。
+  <<option 'EN'>>
+    Robin has been given a narrow shelf and a place at the long table in the quarters. A schoolbook rests beside temple notes.
+  <<option 'CN'>>
+    罗宾在宿舍里分到一小格书架和长桌旁的座位。课本挨着神殿笔记。
 <</language>>
 <<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
   <<language>>
-    <<option 'EN'>>A page from the shop ledger marks Robin's place.
-    <<option 'CN'>>店铺账本的一页夹在书里作书签。
+    <<option 'EN'>>
+      A page from the shop ledger marks Robin's place.
+    <<option 'CN'>>
+      店铺账本的一页夹在书里作书签。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>A stall receipt marks Robin's place.
-    <<option 'CN'>>一张摊位收据夹在书页之间。
+    <<option 'EN'>>
+      A stall receipt marks Robin's place.
+    <<option 'CN'>>
+      一张摊位收据夹在书页之间。
   <</language>>
 <</if>>
 <br><br>
 <<if maplebirch.get('VP') and maplebirch.VP.realEstate.residenceOf('Robin')>>
   <<language>>
-    <<option 'EN'>>Robin keeps a bunk for temple duties, but goes home to you when the work is done.
-    <<option 'CN'>>罗宾在神殿留着床位，值班结束后会回到与你同住的家。
+    <<option 'EN'>>
+      Robin keeps a bunk for temple duties, but goes home to you when the work is done.
+    <<option 'CN'>>
+      罗宾在神殿留着床位，值班结束后会回到与你同住的家。
   <</language>>
   <br><br>
 <</if>>
 <<if $RobinTemple.vigil_result is 'passed'>>
   <<language>>
-    <<option 'EN'>>Robin's new cloak hangs by the bunk. <<He>> still checks the work list with the older monks before taking a task, but no longer looks to Jordan for permission to enter the hall.
-    <<option 'CN'>>罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍先请教年长的修士，却不再需要约旦准许才能走进大厅。
+    <<option 'EN'>>
+      Robin's new cloak hangs by the bunk. <<He>> still checks the work list with the older monks before taking a task, but no longer looks to Jordan for permission to enter the hall.
+    <<option 'CN'>>
+      罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍先请教年长的修士，却不再需要约旦准许才能走进大厅。
   <</language>>
   <br><br>
 <</if>>
@@ -35,18 +45,24 @@
   and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
 <<if !_robinAtTemple>>
   <<language>>
-    <<option 'EN'>>Robin is away. The work list and <<his>> schoolbook have been left on the table.
-    <<option 'CN'>>罗宾现在不在。工作表和<<his>>的课本还放在桌上。
+    <<option 'EN'>>
+      Robin is away. The work list and <<his>> schoolbook have been left on the table.
+    <<option 'CN'>>
+      罗宾现在不在。工作表和<<his>>的课本还放在桌上。
   <</language>>
 <<elseif (Time.weekDay is 7 and Time.hour gte 21) or (Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
-    <<option 'EN'>>Robin has turned in for the night. <<His>> schoolbook lies closed beside the bunk.
-    <<option 'CN'>>罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。
+    <<option 'EN'>>
+      Robin has turned in for the night. <<His>> schoolbook lies closed beside the bunk.
+    <<option 'CN'>>
+      罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。
   <</language>>
 <<elseif Time.weekDay is 1 and Time.hour is 11>>
   <<language>>
-    <<option 'EN'>>Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.
-    <<option 'CN'>>罗宾在帮忙准备星期日礼拜。结束后，<<he>>会回宿舍。
+    <<option 'EN'>>
+      Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.
+    <<option 'CN'>>
+      罗宾在帮忙准备星期日礼拜。结束后，<<he>>会回宿舍。
   <</language>>
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
@@ -55,25 +71,33 @@
   <</if>>
 <<elseif Time.weekDay is 1 and Time.hour is 12>>
   <<language>>
-    <<option 'EN'>>The Sunday service has begun. Robin is near the back of the hall, helping late arrivals find their seats.
-    <<option 'CN'>>星期日礼拜已经开始。罗宾在大厅后方帮晚到的人找座位。
+    <<option 'EN'>>
+      The Sunday service has begun. Robin is near the back of the hall, helping late arrivals find their seats.
+    <<option 'CN'>>
+      星期日礼拜已经开始。罗宾在大厅后方帮晚到的人找座位。
   <</language>>
 <<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9 and Time.hour lt 13>>
   <<if Time.hour lt 11>>
     <<language>>
-      <<option 'EN'>>Robin is carrying tools between the temple garden and the quarters. <<He>> has left a note to say when <<he>> will return.
-      <<option 'CN'>>罗宾正带着工具往返神殿花园和宿舍。<<He>>留下纸条，写了回来的时间。
+      <<option 'EN'>>
+        Robin is carrying tools between the temple garden and the quarters. <<He>> has left a note to say when <<he>> will return.
+      <<option 'CN'>>
+        罗宾正带着工具往返神殿花园和宿舍。<<He>>留下纸条，写了回来的时间。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>Robin is helping in the hall. You hear <<his>> voice when the doors open.
-      <<option 'CN'>>罗宾在大厅帮忙。门一开，你就听见了<<his>>的声音。
+      <<option 'EN'>>
+        Robin is helping in the hall. You hear <<his>> voice when the doors open.
+      <<option 'CN'>>
+        罗宾在大厅帮忙。门一开，你就听见了<<his>>的声音。
     <</language>>
   <</if>>
 <<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 13 and Time.hour lt 16>>
   <<language>>
-    <<option 'EN'>>Robin has the afternoon work list spread across the table. <<He>> moves a stack of clean linen so you can sit.
-    <<option 'CN'>>罗宾把下午的工作表摊在桌上，挪开一叠干净布巾，让你坐下。
+    <<option 'EN'>>
+      Robin has the afternoon work list spread across the table. <<He>> moves a stack of clean linen so you can sit.
+    <<option 'CN'>>
+      罗宾把下午的工作表摊在桌上，挪开一叠干净布巾，让你坐下。
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
@@ -82,13 +106,17 @@
   <</if>>
 <<elseif Time.hour lt 17 or Time.hour gte 20>>
   <<language>>
-    <<option 'EN'>>Robin is elsewhere. The work list puts <<his>> next shift after school and work.
-    <<option 'CN'>>罗宾现在不在这里。工作表上写着下一次值班，排在上学和生意之后。
+    <<option 'EN'>>
+      Robin is elsewhere. The work list puts <<his>> next shift after school and work.
+    <<option 'CN'>>
+      罗宾现在不在这里。工作表上写着下一次值班，排在上学和生意之后。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You find Robin reviewing the evening list. When <<he>> sees you, <<he>> turns the page so you can read it too.
-    <<option 'CN'>>你找到罗宾时，<<he>>正在核对晚间工作表。看见你，<<he>>把纸转过来，让你也能看清。
+    <<option 'EN'>>
+      You find Robin reviewing the evening list. When <<he>> sees you, <<he>> turns the page so you can read it too.
+    <<option 'CN'>>
+      你找到罗宾时，<<he>>正在核对晚间工作表。看见你，<<he>>把纸转过来，让你也能看清。
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
@@ -115,8 +143,10 @@
   and !(Time.weekDay is 1 and Time.hour lt 13)>>
   <br><br>
   <<language>>
-    <<option 'EN'>><span class='teal'>A thin silver ring catches the light when Robin reaches for your hand.</span>
-    <<option 'CN'>><span class='teal'>罗宾伸手牵你时，细银戒在光里一闪。</span>
+    <<option 'EN'>>
+      <span class='teal'>A thin silver ring catches the light when Robin reaches for your hand.</span>
+    <<option 'CN'>>
+      <span class='teal'>罗宾伸手牵你时，细银戒在光里一闪。</span>
   <</language>><br>
   <<if $RobinTemple.clasp_request isnot ''
     and Time.days gt $RobinTemple.clasp_request_day>>
@@ -148,19 +178,25 @@
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<language>>
-    <<option 'EN'>>You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
-    <<option 'CN'>>你整理床铺，罗宾在床位之间扫地。<<He>>停下来帮一名年幼的见习者找回毯子，随后回来和你收拾完最后一排。
+    <<option 'EN'>>
+      You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
+    <<option 'CN'>>
+      你整理床铺，罗宾在床位之间扫地。<<He>>停下来帮一名年幼的见习者找回毯子，随后回来和你收拾完最后一排。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Jordan looks in before you leave. "Thank you, both of you."
-    <<option 'CN'>>离开前约旦来巡视。“谢谢你们两个。”
+    <<option 'EN'>>
+      Jordan looks in before you leave. "Thank you, both of you."
+    <<option 'CN'>>
+      离开前约旦来巡视。“谢谢你们两个。”
   <</language>>
   <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The work is already done today.
-    <<option 'CN'>>今天的工作已经做完了。
+    <<option 'EN'>>
+      The work is already done today.
+    <<option 'CN'>>
+      今天的工作已经做完了。
   <</language>>
 <</if>>
 <br><br>
@@ -172,19 +208,25 @@
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<language>>
-    <<option 'EN'>>A delivery has been left by the stairwell. Robin checks the list while you carry the lighter boxes inside. Some are meant for the kitchen; others hold clean sheets.
-    <<option 'CN'>>楼梯旁堆着一批刚送到的物资。罗宾核对清单，你把较轻的箱子搬进屋里。一部分要送去厨房，其余装着干净床单。
+    <<option 'EN'>>
+      A delivery has been left by the stairwell. Robin checks the list while you carry the lighter boxes inside. Some are meant for the kitchen; others hold clean sheets.
+    <<option 'CN'>>
+      楼梯旁堆着一批刚送到的物资。罗宾核对清单，你把较轻的箱子搬进屋里。一部分要送去厨房，其余装着干净床单。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Robin catches a mistaken count before it reaches the storeroom. <<He>> adds a note for the next shift, then hands you the pencil.
-    <<option 'CN'>>罗宾发现有一项数量记错了。<<He>>给下一班留了张便条，随后把铅笔递给你。
+    <<option 'EN'>>
+      Robin catches a mistaken count before it reaches the storeroom. <<He>> adds a note for the next shift, then hands you the pencil.
+    <<option 'CN'>>
+      罗宾发现有一项数量记错了。<<He>>给下一班留了张便条，随后把铅笔递给你。
   <</language>>
   <<grace 1>><<npcincr Robin dom 1>><br><br><<ggrace>><<gdom>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The work is already done today.
-    <<option 'CN'>>今天的工作已经做完了。
+    <<option 'EN'>>
+      The work is already done today.
+    <<option 'CN'>>
+      今天的工作已经做完了。
   <</language>>
 <</if>>
 <br><br>
@@ -197,34 +239,44 @@
   <<set $RobinTemple.work_day to Time.days>>
   <<set $RobinTemple.service += 1>>
   <<language>>
-    <<option 'EN'>>The hall is filling. Robin lays out the prayer books while you help an older visitor find a seat. When the last row is ready, Robin checks the count with Jordan.
-    <<option 'CN'>>大厅里渐渐坐满了人。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。
+    <<option 'EN'>>
+      The hall is filling. Robin lays out the prayer books while you help an older visitor find a seat. When the last row is ready, Robin checks the count with Jordan.
+    <<option 'CN'>>
+      大厅里渐渐坐满了人。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。
   <</language>>
   <br><br>
   <<if $RobinTemple.vigil_result is 'passed'>>
     <<if C.npc.Robin.dom gt 50>>
       <<language>>
-        <<option 'EN'>>Jordan asks Robin to read a short passage aloud. <<He>> marks the line with a finger and speaks clearly enough for the back row to hear. Afterwards, <<he>> finds you by the remaining books. "How was that?"
-        <<option 'CN'>>约旦请罗宾朗读一小段经文。<<He>>用手指沿着字行，读得后排也能听清。结束后，<<he>>在剩下的祈祷书旁找到你。“刚才读得怎么样？”
+        <<option 'EN'>>
+          Jordan asks Robin to read a short passage aloud. <<He>> marks the line with a finger and speaks clearly enough for the back row to hear. Afterwards, <<he>> finds you by the remaining books. "How was that?"
+        <<option 'CN'>>
+          约旦请罗宾朗读一小段经文。<<He>>用手指沿着字行，读得后排也能听清。结束后，<<he>>在剩下的祈祷书旁找到你。“刚才读得怎么样？”
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>Jordan asks Robin to read a short passage aloud. <<He>> loses <<his>> place once and glances toward you. You find the line and point to it. Robin finishes the reading, then returns to the work list with you.
-        <<option 'CN'>>约旦请罗宾朗读一小段经文。<<He>>一时找不到读到哪儿，朝你望来。你替<<him>>找到那一行，指给<<him>>看。罗宾读完，和你一起回到工作表前。
+        <<option 'EN'>>
+          Jordan asks Robin to read a short passage aloud. <<He>> loses <<his>> place once and glances toward you. You find the line and point to it. Robin finishes the reading, then returns to the work list with you.
+        <<option 'CN'>>
+          约旦请罗宾朗读一小段经文。<<He>>一时找不到读到哪儿，朝你望来。你替<<him>>找到那一行，指给<<him>>看。罗宾读完，和你一起回到工作表前。
       <</language>>
     <</if>>
   <<else>>
     <<language>>
-      <<option 'EN'>>"Working the counter taught me to count quickly," Robin says. <<He>> leaves the front row clear for those who arrived late.
-      <<option 'CN'>>“做生意倒让我学会了算得快，”罗宾说。<<He>>把前排留给晚到的人。
+      <<option 'EN'>>
+        "Working the counter taught me to count quickly," Robin says. <<He>> leaves the front row clear for those who arrived late.
+      <<option 'CN'>>
+        “做生意倒让我学会了算得快，”罗宾说。<<He>>把前排留给晚到的人。
     <</language>>
   <</if>>
   <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 3)>>
   <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
 <<else>>
   <<language>>
-    <<option 'EN'>>The service has already begun, or today’s work is finished.
-    <<option 'CN'>>礼拜已经开始，或是今天的工作已经做完了。
+    <<option 'EN'>>
+      The service has already begun, or today’s work is finished.
+    <<option 'CN'>>
+      礼拜已经开始，或是今天的工作已经做完了。
   <</language>>
 <</if>>
 <br><br>

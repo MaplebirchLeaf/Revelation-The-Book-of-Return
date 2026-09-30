@@ -2,31 +2,41 @@
 <<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.walk_day is Time.days>>
   <<language>>
-    <<option 'EN'>>Robin has already walked with you today. <<He>> still has work to finish before going home.
-    <<option 'CN'>>今天罗宾已经陪你走过一趟。回家前，<<he>>还有活要做。
+    <<option 'EN'>>
+      Robin has already walked with you today. <<He>> still has work to finish before going home.
+    <<option 'CN'>>
+      今天罗宾已经陪你走过一趟。回家前，<<he>>还有活要做。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin comes down the temple steps beside you, folding <<his>> work list into a pocket. The evening air feels cooler after the hall.
-    <<option 'CN'>>罗宾与你一起走下神殿台阶，把工作表折好塞进口袋。离开大厅，晚风显得凉了些。
+    <<option 'EN'>>
+      Robin comes down the temple steps beside you, folding <<his>> work list into a pocket. The evening air feels cooler after the hall.
+    <<option 'CN'>>
+      罗宾与你一起走下神殿台阶，把工作表折好塞进口袋。离开大厅，晚风显得凉了些。
   <</language>>
   <br><br>
   <<if Weather.precipitation is 'rain'>>
     <<language>>
-      <<option 'EN'>>Rain has darkened the stones. Robin pulls up <<his>> hood and keeps to the sheltered side of the street with you.
-      <<option 'CN'>>雨水把石阶染深了。罗宾拉起兜帽，与你沿着街道有遮挡的一侧走。
+      <<option 'EN'>>
+        Rain has darkened the stones. Robin pulls up <<his>> hood and keeps to the sheltered side of the street with you.
+      <<option 'CN'>>
+        雨水把石阶染深了。罗宾拉起兜帽，与你沿着街道有遮挡的一侧走。
     <</language>>
   <<elseif Weather.isSnow>>
     <<language>>
-      <<option 'EN'>>Snow catches in Robin’s hair. <<He>> shakes it free and offers you the warmer side of the path.
-      <<option 'CN'>>雪落在罗宾的头发上。<<He>>摇掉雪花，把背风的一侧让给你。
+      <<option 'EN'>>
+        Snow catches in Robin’s hair. <<He>> shakes it free and offers you the warmer side of the path.
+      <<option 'CN'>>
+        雪落在罗宾的头发上。<<He>>摇掉雪花，把背风的一侧让给你。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>The last shops are closing. You can hear someone sweeping a doorway further down the street.
-      <<option 'CN'>>最后几家店正要关门。街道那头传来有人清扫门前的声音。
+      <<option 'EN'>>
+        The last shops are closing. You can hear someone sweeping a doorway further down the street.
+      <<option 'CN'>>
+        最后几家店正要关门。街道那头传来有人清扫门前的声音。
     <</language>>
   <</if>>
   <br><br>
@@ -42,8 +52,10 @@
     <</if>>
   <<else>>
     <<language>>
-      <<option 'EN'>><span class='blue'>Robin still has a shift to finish before a longer outing.</span>
-      <<option 'CN'>><span class='blue'>罗宾还有一班工作没做完，现在只能在附近走走。</span>
+      <<option 'EN'>>
+        <span class='blue'>Robin still has a shift to finish before a longer outing.</span>
+      <<option 'CN'>>
+        <span class='blue'>罗宾还有一班工作没做完，现在只能在附近走走。</span>
     <</language>><br>
   <</if>>
   <br>
@@ -56,35 +68,47 @@
 <<if C.npc.Robin.revelationConviction gte 120>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
-      <<option 'EN'>>"I still want to help here," Robin says quietly. "Some days it is hard to talk to people. I can at least put the blankets away."
-      <<option 'CN'>>“我还是想在这里帮忙，”罗宾低声说，“有时很难和别人说话。不过，我至少能把毯子收好。”
+      <<option 'EN'>>
+        "I still want to help here," Robin says quietly. "Some days it is hard to talk to people. I can at least put the blankets away."
+      <<option 'CN'>>
+        “我还是想在这里帮忙，”罗宾低声说，“有时很难和别人说话。不过，我至少能把毯子收好。”
     <</language>>
   <<elseif C.npc.Robin.dom lte 50>>
     <<language>>
-      <<option 'EN'>>"I used to come here because you were here," Robin says. "But I think I can help too. Even when you are busy." <<He>> looks at you, then gives a small smile.
-      <<option 'CN'>>“以前我来这里，是因为你也在，”罗宾说，“不过，我想自己也能帮上忙。就算你忙，也没关系。”<<He>>看向你，露出一个小小的笑容。
+      <<option 'EN'>>
+        "I used to come here because you were here," Robin says. "But I think I can help too. Even when you are busy." <<He>> looks at you, then gives a small smile.
+      <<option 'CN'>>
+        “以前我来这里，是因为你也在，”罗宾说，“不过，我想自己也能帮上忙。就算你忙，也没关系。”<<He>>看向你，露出一个小小的笑容。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>"I used to come here because you were here," Robin says. "Now I want to stay even when you're busy. Someone has to look after the new initiates." <<He>> smiles. "I know how they feel."
-      <<option 'CN'>>“以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。新来的见习者总得有人照顾。”<<He>>笑了笑，“我知道他们是什么心情。”
+      <<option 'EN'>>
+        "I used to come here because you were here," Robin says. "Now I want to stay even when you're busy. Someone has to look after the new initiates." <<He>> smiles. "I know how they feel."
+      <<option 'CN'>>
+        “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。新来的见习者总得有人照顾。”<<He>>笑了笑，“我知道他们是什么心情。”
     <</language>>
   <</if>>
 <<elseif C.npc.Robin.revelationConviction lt 80>>
   <<language>>
-    <<option 'EN'>>"I like helping," Robin says, looking back toward the temple. "But sometimes I say the prayers and wonder if I mean them. Did you ever feel like that?"
-    <<option 'CN'>>“我喜欢帮忙，”罗宾说，回头望了望神殿，“可有时念完祷词，我都不知道自己是不是真的相信。你也有过这种感觉吗？”
+    <<option 'EN'>>
+      "I like helping," Robin says, looking back toward the temple. "But sometimes I say the prayers and wonder if I mean them. Did you ever feel like that?"
+    <<option 'CN'>>
+      “我喜欢帮忙，”罗宾说，回头望了望神殿，“可有时念完祷词，我都不知道自己是不是真的相信。你也有过这种感觉吗？”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>"I like the work," Robin says. "I do not always understand what everyone here believes. Jordan lets me ask questions. That helps."
-    <<option 'CN'>>“我喜欢这里的工作，”罗宾说，“这里的人相信的事，我不是每件都懂。约旦肯让我提问，这让我安心些。”
+    <<option 'EN'>>
+      "I like the work," Robin says. "I do not always understand what everyone here believes. Jordan lets me ask questions. That helps."
+    <<option 'CN'>>
+      “我喜欢这里的工作，”罗宾说，“这里的人相信的事，我不是每件都懂。约旦肯让我提问，这让我安心些。”
   <</language>>
 <</if>>
 <br><br>
 <<language>>
-  <<option 'EN'>><<He>> asks what brought you to the temple in the first place. You tell <<him>> as much as you want to, and <<he>> listens until the street turns toward home.
-  <<option 'CN'>><<He>>问你最初为何来到神殿。你挑愿意说的告诉<<him>>，<<he>>一直听到街道拐向家的方向。
+  <<option 'EN'>>
+    <<He>> asks what brought you to the temple in the first place. You tell <<him>> as much as you want to, and <<he>> listens until the street turns toward home.
+  <<option 'CN'>>
+    <<He>>问你最初为何来到神殿。你挑愿意说的告诉<<him>>，<<he>>一直听到街道拐向家的方向。
 <</language>>
 <<set C.npc.Robin.revelationConviction to Math.min(200, C.npc.Robin.revelationConviction + 2)>>
 <<npcincr Robin dom 1>><br><br><<gdom>>
@@ -95,19 +119,25 @@
 <<set $RobinTemple.walk_day to Time.days>>
 <<if maplebirch.get('RobinExpansion') and $RobinExpansion?.shop>>
   <<language>>
-    <<option 'EN'>>Robin tells you which child has learned to tie their own shoes, and which one keeps asking to help at the shop. "Helping mostly means asking for a drink," <<he>> adds with a smile.
-    <<option 'CN'>>罗宾告诉你，哪个孩子学会了自己系鞋带，哪个孩子总想去店里帮忙。“说是帮忙，其实多半是来讨饮料的。”<<he>>笑着补了一句。
+    <<option 'EN'>>
+      Robin tells you which child has learned to tie their own shoes, and which one keeps asking to help at the shop. "Helping mostly means asking for a drink," <<he>> adds with a smile.
+    <<option 'CN'>>
+      罗宾告诉你，哪个孩子学会了自己系鞋带，哪个孩子总想去店里帮忙。“说是帮忙，其实多半是来讨饮料的。”<<he>>笑着补了一句。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin tells you which child has learned to tie their own shoes, and which one keeps asking when the lemonade stall will open again.
-    <<option 'CN'>>罗宾告诉你，哪个孩子学会了自己系鞋带，哪个孩子一直追问柠檬水摊什么时候再开。
+    <<option 'EN'>>
+      Robin tells you which child has learned to tie their own shoes, and which one keeps asking when the lemonade stall will open again.
+    <<option 'CN'>>
+      罗宾告诉你，哪个孩子学会了自己系鞋带，哪个孩子一直追问柠檬水摊什么时候再开。
   <</language>>
 <</if>>
 <br><br>
 <<language>>
-  <<option 'EN'>>"I thought joining the temple meant choosing between them and this place," <<he>> says. "I am glad I asked."
-  <<option 'CN'>>“我起初以为加入神殿，就得在他们和这里之间选一个，”<<he>>说，“幸好我问清楚了。”
+  <<option 'EN'>>
+    "I thought joining the temple meant choosing between them and this place," <<he>> says. "I am glad I asked."
+  <<option 'CN'>>
+    “我起初以为加入神殿，就得在他们和这里之间选一个，”<<he>>说，“幸好我问清楚了。”
 <</language>>
 <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
 <<robin-temple-return-home 15>>
@@ -117,13 +147,17 @@
 <<set $RobinTemple.walk_day to Time.days>>
 <<takeHandholdingVirginity 'Robin' 'romantic'>>
 <<language>>
-  <<option 'EN'>>You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the shuttered shops without hurrying.
-  <<option 'CN'>>你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过已经打烊的店铺。
+  <<option 'EN'>>
+    You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the shuttered shops without hurrying.
+  <<option 'CN'>>
+    你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过已经打烊的店铺。
 <</language>>
 <br><br>
 <<language>>
-  <<option 'EN'>>At the turn toward home, Robin hesitates just long enough to ask whether you will walk together again tomorrow.
-  <<option 'CN'>>到了回家的路口，罗宾迟疑片刻，问你明天还会不会陪<<him>>一起走。
+  <<option 'EN'>>
+    At the turn toward home, Robin hesitates just long enough to ask whether you will walk together again tomorrow.
+  <<option 'CN'>>
+    到了回家的路口，罗宾迟疑片刻，问你明天还会不会陪<<him>>一起走。
 <</language>>
 <<npcincr Robin love 2>><br><br><<glove>>
 <<robin-temple-return-home 15>>

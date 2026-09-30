@@ -4,21 +4,27 @@
   and $robinromance is 1 and $sydneyromance is 1
   and $player.virginity.temple is true and C.npc.Sydney.virginity.temple is true>>
   <<language>>
-    <<option 'EN'>>You ask Sydney to meet Robin in the side room. Robin says <<he>> will not ask Sydney to give up a promise already made. Sydney says the same of Robin.
-    <<option 'CN'>>你请悉尼到侧室见罗宾。罗宾说，<<he>>不会要求悉尼放弃已经立下的誓言。悉尼也说，不会替罗宾作决定。
+    <<option 'EN'>>
+      You ask Sydney to meet Robin in the side room. Robin says <<he>> will not ask Sydney to give up a promise already made. Sydney says the same of Robin.
+    <<option 'CN'>>
+      你请悉尼到侧室见罗宾。罗宾说，<<he>>不会要求悉尼放弃已经立下的誓言。悉尼也说，不会替罗宾作决定。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>They ask what you want, then speak to each other without you prompting them. Jordan agrees to hear a request from all three, provided each person answers for their own vow.
-    <<option 'CN'>>他们先问你想要什么，接着不等你插话，就各自把话说清楚。约旦愿意听你们三人的申请，但要求每个人为自己的誓言负责。
+    <<option 'EN'>>
+      They ask what you want, then speak to each other without you prompting them. Jordan agrees to hear a request from all three, provided each person answers for their own vow.
+    <<option 'CN'>>
+      他们先问你想要什么，接着不等你插话，就各自把话说清楚。约旦愿意听你们三人的申请，但要求每个人为自己的誓言负责。
   <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink '与罗宾、悉尼一起提出申请' 'RobinTemple Promise Talk'>><<set $RobinTemple.joint_consent to true>><</lanLink>><br>
   <<getouticon>><<lanLink '让他们再考虑' 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin will not turn this into a contest for your attention. Speak to Sydney about the vow you have already made before asking anyone to change it.
-    <<option 'CN'>>罗宾不愿与你、悉尼争个先后。你该先和悉尼谈清已经立下的誓言，再请任何人考虑另一份承诺。
+    <<option 'EN'>>
+      Robin will not turn this into a contest for your attention. Speak to Sydney about the vow you have already made before asking anyone to change it.
+    <<option 'CN'>>
+      罗宾不愿与你、悉尼争个先后。你该先和悉尼谈清已经立下的誓言，再请任何人考虑另一份承诺。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
@@ -31,21 +37,27 @@
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
   and C.npc.Sydney.virginity.temple is true>>
   <<language>>
-    <<option 'EN'>>Sydney arrives before Jordan calls you in. Robin checks once more that neither of you feels pressed to continue. You both answer in your own words.
-    <<option 'CN'>>约旦请你们进去之前，悉尼赶到了。罗宾又问了一遍，是否有人觉得自己是在勉强答应。你和悉尼各自回答。
+    <<option 'EN'>>
+      Sydney arrives before Jordan calls you in. Robin checks once more that neither of you feels pressed to continue. You both answer in your own words.
+    <<option 'CN'>>
+      约旦请你们进去之前，悉尼赶到了。罗宾又问了一遍，是否有人觉得自己是在勉强答应。你和悉尼各自回答。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Jordan places a new page beside the record of your first promise. "If you proceed, I will hear three separate answers," Jordan says. Robin and Sydney stand on either side of you.
-    <<option 'CN'>>约旦在你第一次立誓的记录旁放上新的一页。“若要继续，我会分别听你们三个人回答。”罗宾和悉尼站在你的两侧。
+    <<option 'EN'>>
+      Jordan places a new page beside the record of your first promise. "If you proceed, I will hear three separate answers," Jordan says. Robin and Sydney stand on either side of you.
+    <<option 'CN'>>
+      约旦在你第一次立誓的记录旁放上新的一页。“若要继续，我会分别听你们三个人回答。”罗宾和悉尼站在你的两侧。
   <</language>>
   <br><br>
   <<loveicon 'hug'>><<lanLink '三人一同立誓' 'RobinTemple Promise End'>><</lanLink>><br>
   <<getouticon>><<lanLink '请求再多一点时间' 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>Someone is not ready to renew the request. Jordan leaves the record open for another day.
-    <<option 'CN'>>有人还没有准备好再次提出申请。约旦把记录留待改日。
+    <<option 'EN'>>
+      Someone is not ready to renew the request. Jordan leaves the record open for another day.
+    <<option 'CN'>>
+      有人还没有准备好再次提出申请。约旦把记录留待改日。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
@@ -56,13 +68,17 @@
 <<if $RobinTemple.stage is 'promised' and $templePromised is 'Sydney'
   and !$RobinTemple.joint_consent>>
   <<language>>
-    <<option 'EN'>>Robin learns of your promise to Sydney from you, rather than from Jordan’s examination book. <<He>> asks Sydney to stay. They want to know what each of you understood when the second promise was made.
-    <<option 'CN'>>罗宾从你口中得知你又与悉尼立了誓，而不是从约旦的检查簿里听说。<<He>>请悉尼留下，想弄清第二份誓言立下时，每个人究竟明白了什么。
+    <<option 'EN'>>
+      Robin learns of your promise to Sydney from you, rather than from Jordan’s examination book. <<He>> asks Sydney to stay. They want to know what each of you understood when the second promise was made.
+    <<option 'CN'>>
+      罗宾从你口中得知你又与悉尼立了誓，而不是从约旦的检查簿里听说。<<He>>请悉尼留下，想弄清第二份誓言立下时，每个人究竟明白了什么。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Jordan leaves the door open. No one can answer for the other two.
-    <<option 'CN'>>约旦把门留着，没有人能替另外两人回答。
+    <<option 'EN'>>
+      Jordan leaves the door open. No one can answer for the other two.
+    <<option 'CN'>>
+      约旦把门留着，没有人能替另外两人回答。
   <</language>>
   <br><br>
   <<if $robinromance is 1 and $sydneyromance is 1
@@ -74,8 +90,10 @@
   <<templeicon 'quarters'>><<lanLink '约改天继续谈' 'Temple Quarters'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>There is no unresolved promise to discuss.
-    <<option 'CN'>>现在没有尚未谈清的誓言。
+    <<option 'EN'>>
+      There is no unresolved promise to discuss.
+    <<option 'CN'>>
+      现在没有尚未谈清的誓言。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
@@ -88,24 +106,32 @@
   and $player.virginity.temple is true and C.npc.Robin.virginity.temple is true
   and C.npc.Sydney.virginity.temple is true>>
   <<language>>
-    <<option 'EN'>>Sydney says what <<he>> promised. Robin follows with <<his>> own words. You say what you can offer each of them, and what you cannot promise on anyone’s behalf.
-    <<option 'CN'>>悉尼说出<<he>>立下的誓言，罗宾也用自己的话回答。你说清自己能为他们各自付出什么，也说清哪些事不能替任何人保证。
+    <<option 'EN'>>
+      Sydney says what <<he>> promised. Robin follows with <<his>> own words. You say what you can offer each of them, and what you cannot promise on anyone’s behalf.
+    <<option 'CN'>>
+      悉尼说出<<he>>立下的誓言，罗宾也用自己的话回答。你说清自己能为他们各自付出什么，也说清哪些事不能替任何人保证。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Jordan asks each of you once more. Only after all three answer does Jordan add a note to the record. Robin is still unsettled, but <<he>> takes Sydney’s offered hand.
-    <<option 'CN'>>约旦又分别问了一遍。三个人都亲口答应后，约旦才在记录上添了说明。罗宾仍有些不安，却握住了悉尼伸来的手。
+    <<option 'EN'>>
+      Jordan asks each of you once more. Only after all three answer does Jordan add a note to the record. Robin is still unsettled, but <<he>> takes Sydney’s offered hand.
+    <<option 'CN'>>
+      约旦又分别问了一遍。三个人都亲口答应后，约旦才在记录上添了说明。罗宾仍有些不安，却握住了悉尼伸来的手。
   <</language>>
   <<set $RobinTemple.joint_consent to true>>
   <<set $temple_chastity_timer to Math.min($temple_chastity_timer, 7)>>
   <br><br><<language>>
-    <<option 'EN'>><span class='green'>The three of you have agreed to the shared examination.</span>
-    <<option 'CN'>><span class='green'>你们三人同意一起接受检查。</span>
+    <<option 'EN'>>
+      <span class='green'>The three of you have agreed to the shared examination.</span>
+    <<option 'CN'>>
+      <span class='green'>你们三人同意一起接受检查。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>You cannot settle this while one of the promises remains uncertain.
-    <<option 'CN'>>其中一份誓言尚未厘清，现在不能作出共同决定。
+    <<option 'EN'>>
+      You cannot settle this while one of the promises remains uncertain.
+    <<option 'CN'>>
+      其中一份誓言尚未厘清，现在不能作出共同决定。
   <</language>>
   <br><br>
 <</if>>
@@ -118,18 +144,24 @@
   <<set $RobinTemple.stage to 'member'>>
   <<set $temple_chastity_timer to Math.min($temple_chastity_timer, 7)>>
   <<language>>
-    <<option 'EN'>>You tell Robin that you cannot keep both promises as they stand. <<He>> asks Jordan to strike the shared promise from the record, but keeps <<his>> place at the temple. "I needed to hear it from you," <<he>> says.
-    <<option 'CN'>>你告诉罗宾，自己无法同时遵守现有的两份承诺。<<He>>请约旦划去与你共同立誓的记录，却仍留在神殿。“我需要听你亲口说。”<<he>>说。
+    <<option 'EN'>>
+      You tell Robin that you cannot keep both promises as they stand. <<He>> asks Jordan to strike the shared promise from the record, but keeps <<his>> place at the temple. "I needed to hear it from you," <<he>> says.
+    <<option 'CN'>>
+      你告诉罗宾，自己无法同时遵守现有的两份承诺。<<He>>请约旦划去与你共同立誓的记录，却仍留在神殿。“我需要听你亲口说。”<<he>>说。
   <</language>>
   <<npcincr Robin love -5>><br><br><<lllove>>
   <<language>>
-    <<option 'EN'>><span class='red'>Your shared promise to Robin has ended.</span>
-    <<option 'CN'>><span class='red'>你与罗宾共同立下的承诺已经结束。</span>
+    <<option 'EN'>>
+      <span class='red'>Your shared promise to Robin has ended.</span>
+    <<option 'CN'>>
+      <span class='red'>你与罗宾共同立下的承诺已经结束。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>The record is already settled.
-    <<option 'CN'>>这份记录已经处理过了。
+    <<option 'EN'>>
+      The record is already settled.
+    <<option 'CN'>>
+      这份记录已经处理过了。
   <</language>>
   <br><br>
 <</if>>

@@ -74,6 +74,21 @@ class RobinTemple extends Module {
     state.assessment_passed = Math.floor(Math.random() * 100) + 1 + state.assessment_bonus >= threshold;
   }
 
+  /** 赎罪完成后恢复原有承诺；不替已经结束的恋爱关系重新立誓。 */
+  public restorePromise(): void {
+    const state = V.RobinTemple;
+    if (
+      state.stage !== 'member' ||
+      !state.breach ||
+      V.robinromance !== 1 ||
+      V.player.virginity.temple !== true ||
+      C.npc.Robin.virginity.temple !== true ||
+      (V.templePromised !== '' && (V.templePromised !== 'Sydney' || !state.joint_consent || V.sydneyromance !== 1 || C.npc.Sydney.virginity.temple !== true))
+    )
+      return;
+    state.stage = 'promised';
+  }
+
   private isTempleTime(): boolean {
     if (
       !V.RobinTemple ||

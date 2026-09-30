@@ -6,30 +6,40 @@
 :: RobinTemple Monthly Examination
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
-  <<option 'EN'>>Robin joins you in the side room. Jordan asks each of you in turn about the promise. Robin answers for <<himself>> and waits while you answer for yourself.
-  <<option 'CN'>>罗宾来到侧室。约旦轮流问起你们立下的誓言。罗宾自己作答，也等着你自己回答。
+  <<option 'EN'>>
+    Robin joins you in the side room. Jordan asks each of you in turn about the promise. Robin answers for <<himself>> and waits while you answer for yourself.
+  <<option 'CN'>>
+    罗宾来到侧室。约旦轮流问起你们立下的誓言。罗宾自己作答，也等着你自己回答。
 <</language>>
 <br><br>
 <<if $player.virginity.temple is true and C.npc.Robin.virginity.temple is true>>
   <<language>>
-    <<option 'EN'>>Jordan sets down the small jar used for the examination. A brief golden spark rises from it. "Your vows stand," Jordan says.
-    <<option 'CN'>>约旦放下检验用的小罐。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。
+    <<option 'EN'>>
+      Jordan sets down the small jar used for the examination. A brief golden spark rises from it. "Your vows stand," Jordan says.
+    <<option 'CN'>>
+      约旦放下检验用的小罐。罐中闪过短暂的金光。“你们仍遵守着誓言。”约旦说。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>Robin catches your eye on the way out and squeezes your hand.
-    <<option 'CN'>>出门时罗宾望向你，轻轻握了握你的手。
+    <<option 'EN'>>
+      Robin catches your eye on the way out and squeezes your hand.
+    <<option 'CN'>>
+      出门时罗宾望向你，轻轻握了握你的手。
   <</language>>
   <br><br><<language>>
-    <<option 'EN'>><span class="green">Your promise remains intact.</span>
-    <<option 'CN'>><span class="green">你们的承诺依然完好。</span>
+    <<option 'EN'>>
+      <span class="green">Your promise remains intact.</span>
+    <<option 'CN'>>
+      <span class="green">你们的承诺依然完好。</span>
   <</language>>
   <br><br>
   <<templeicon "altar">><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>The jar gives no light. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."
-    <<option 'CN'>>小罐没有亮起。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”
+    <<option 'EN'>>
+      The jar gives no light. Jordan looks from one of you to the other. "The promise has been broken. You must both make amends before asking to renew it."
+    <<option 'CN'>>
+      小罐没有亮起。约旦看看你，又看看罗宾。“你们违背了誓言。想重新立誓，必须先各自赎罪。”
   <</language>>
   <br><br>
   <<templeicon "altar">><<lanLink '听约旦说明赎罪要求' 'RobinTemple Monthly Failure'>><</lanLink>><br>
@@ -43,17 +53,25 @@
   <<set $RobinTemple.stage to "member">>
   <<set C.npc.Robin.revelationConviction to Math.max(0, C.npc.Robin.revelationConviction - 15)>>
   <<set $RobinTemple.penance_day to Time.days + 7>>
+  <<set $RobinTemple.penance_work_day to -1>>
   <<set $RobinTemple.penance_service to 0>>
+  <<set $RobinTemple.penance_hearing_done to false>>
+  <<set $RobinTemple.penance_trial_done to false>>
+  <<set $RobinTemple.penance_response to ''>>
   <<grace -10>><<npcincr Robin love -2>>
   <<language>>
-    <<option 'EN'>>Jordan gives each of you a week to reckon with what happened. Robin reaches toward you, then waits for your answer before the attendants take either of you away.
-    <<option 'CN'>>约旦给你们一周时间面对发生的事。罗宾向你伸出手，在侍从带走你们之前，等你作出回应。
+    <<option 'EN'>>
+      Jordan gives each of you a week to reckon with what happened. Robin reaches toward you, then waits for your answer before the attendants take either of you away.
+    <<option 'CN'>>
+      约旦给你们一周时间面对发生的事。罗宾向你伸出手，在侍从带走你们之前，等你作出回应。
   <</language>>
   <br><br><<llgrace>><<lllove>>
 <<else>>
   <<language>>
-    <<option 'EN'>>You have already answered for this examination.
-    <<option 'CN'>>这次检查的结果已经处理完了。
+    <<option 'EN'>>
+      You have already answered for this examination.
+    <<option 'CN'>>
+      这次检查的结果已经处理完了。
   <</language>>
 <</if>>
 <br><br>
@@ -68,23 +86,31 @@
 <<if $RobinTemple.stage is 'promised'>>
   <<set $temple_chastity_timer to 7>>
   <<language>>
-    <<option 'EN'>>You refuse the examination. Jordan does not declare either of you guilty. "I will ask again in a week," Jordan says. Robin leaves with you, but does not speak until you reach the doors.
-    <<option 'CN'>>你拒绝了检查。约旦没有认定你们任何一人有罪。“一周后我会再问。”约旦说。罗宾跟你一起离开，直到门口都没有开口。
+    <<option 'EN'>>
+      You refuse the examination. Jordan does not declare either of you guilty. "I will ask again in a week," Jordan says. Robin leaves with you, but does not speak until you reach the doors.
+    <<option 'CN'>>
+      你拒绝了检查。约旦没有认定你们任何一人有罪。“一周后我会再问。”约旦说。罗宾跟你一起离开，直到门口都没有开口。
   <</language>>
   <br><br>
   <<language>>
-    <<option 'EN'>>"You can tell me why," <<he>> says at last. "I would rather hear it from you than guess."
-    <<option 'CN'>>“你可以告诉我原因，”<<he>>终于说，“我宁愿听你亲口讲，也不想自己猜。”
+    <<option 'EN'>>
+      "You can tell me why," <<he>> says at last. "I would rather hear it from you than guess."
+    <<option 'CN'>>
+      “你可以告诉我原因，”<<he>>终于说，“我宁愿听你亲口讲，也不想自己猜。”
   <</language>>
   <<npcincr Robin love -1>><br><br><<lllove>>
   <<language>>
-    <<option 'EN'>><span class='blue'>Jordan will ask again in seven days.</span>
-    <<option 'CN'>><span class='blue'>约旦将在七天后再次提出检查。</span>
+    <<option 'EN'>>
+      <span class='blue'>Jordan will ask again in seven days.</span>
+    <<option 'CN'>>
+      <span class='blue'>约旦将在七天后再次提出检查。</span>
   <</language>><br><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>The joint examination is no longer due.
-    <<option 'CN'>>现在没有需要你们共同接受的检查。
+    <<option 'EN'>>
+      The joint examination is no longer due.
+    <<option 'CN'>>
+      现在没有需要你们共同接受的检查。
   <</language>>
   <br><br>
 <</if>>
@@ -94,28 +120,36 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage isnot 'promised'>>
   <<language>>
-    <<option 'EN'>>The joint examination is no longer due.
-    <<option 'CN'>>现在没有需要你们共同接受的检查。
+    <<option 'EN'>>
+      The joint examination is no longer due.
+    <<option 'CN'>>
+      现在没有需要你们共同接受的检查。
   <</language>>
   <br><br>
   <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
 <<elseif $player.virginity.temple isnot true or C.npc.Robin.virginity.temple isnot true>>
   <<language>>
-    <<option 'EN'>>You ask Jordan to listen before beginning the examination. Robin adds <<his>> own account. Jordan writes down what each of you says, then explains what must be answered separately.
-    <<option 'CN'>>你请约旦先听你说完，再开始检查。罗宾也说出自己的经过。约旦分别记下你们的话，接着说明各自需要面对什么。
+    <<option 'EN'>>
+      You ask Jordan to listen before beginning the examination. Robin adds <<his>> own account. Jordan writes down what each of you says, then explains what must be answered separately.
+    <<option 'CN'>>
+      你请约旦先听你说完，再开始检查。罗宾也说出自己的经过。约旦分别记下你们的话，接着说明各自需要面对什么。
   <</language>>
   <br><br>
   <<templeicon 'altar'>><<lanLink '听约旦说明赎罪要求' 'RobinTemple Monthly Failure'>><</lanLink>><br>
 <<else>>
   <<language>>
-    <<option 'EN'>>You tell Jordan you are afraid of what the examination might mean. Jordan listens, then says fear alone is not a broken vow. Robin remains beside you.
-    <<option 'CN'>>你告诉约旦，自己害怕检查的结果。约旦听完说，害怕本身不算背誓。罗宾仍站在你身旁。
+    <<option 'EN'>>
+      You tell Jordan you are afraid of what the examination might mean. Jordan listens, then says fear alone is not a broken vow. Robin remains beside you.
+    <<option 'CN'>>
+      你告诉约旦，自己害怕检查的结果。约旦听完说，害怕本身不算背誓。罗宾仍站在你身旁。
   <</language>>
   <<set $temple_chastity_timer to 14>>
   <<stress -2>><br><br><<lstress>>
   <<language>>
-    <<option 'EN'>><span class='blue'>Jordan will give you time to return for the examination.</span>
-    <<option 'CN'>><span class='blue'>约旦会给你们一点时间，再进行检查。</span>
+    <<option 'EN'>>
+      <span class='blue'>Jordan will give you time to return for the examination.</span>
+    <<option 'CN'>>
+      <span class='blue'>约旦会给你们一点时间，再进行检查。</span>
   <</language>><br><br>
   <<getouticon>><<lanLink '返回大厅' 'Temple'>><<endevent>><</lanLink>><br>
 <</if>>

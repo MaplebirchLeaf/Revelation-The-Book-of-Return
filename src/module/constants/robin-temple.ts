@@ -29,6 +29,10 @@ export interface RobinTempleState {
   evaluation_style: 'honest' | 'protective' | '';
   evaluation_marks: number;
   evaluation_memory: 'first' | 'care' | 'rescue' | 'work' | 'sky' | '';
+  evaluation_records_done: boolean;
+  evaluation_memory_done: boolean;
+  evaluation_interview: '' | 'wait' | 'heard' | 'caught';
+  evaluation_result: '' | 'passed' | 'failed';
   evaluation_belief_done: boolean;
   joint_consent: boolean;
   joint_sydney_penance: boolean;
@@ -37,12 +41,15 @@ export interface RobinTempleState {
   penance_work_day: number;
   breach: '' | 'pc' | 'robin' | 'both';
   penance_response: 'hold' | 'speak' | 'endure' | '';
+  penance_trial_done: boolean;
+  penance_hearing_done: boolean;
   confession_day: number;
   confession_recognized: boolean;
   prayer_day: number;
   prayer_event_day: number;
   prayer_event: number;
   prayer_event_done: boolean;
+  prayer_event_resolved: boolean;
   walk_day: number;
   night_day: number;
   night_scene: 'rain' | 'voice' | 'blanket' | 'embers' | 'ledger' | '';
@@ -88,6 +95,10 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   evaluation_style: '',
   evaluation_marks: 0,
   evaluation_memory: '',
+  evaluation_records_done: false,
+  evaluation_memory_done: false,
+  evaluation_interview: '',
+  evaluation_result: '',
   evaluation_belief_done: false,
   joint_consent: false,
   joint_sydney_penance: false,
@@ -96,12 +107,15 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   penance_work_day: -1,
   breach: '',
   penance_response: '',
+  penance_trial_done: false,
+  penance_hearing_done: false,
   confession_day: -1,
   confession_recognized: false,
   prayer_day: -1,
   prayer_event_day: -1,
   prayer_event: 0,
   prayer_event_done: false,
+  prayer_event_resolved: false,
   walk_day: -1,
   night_day: -1,
   night_scene: '',
