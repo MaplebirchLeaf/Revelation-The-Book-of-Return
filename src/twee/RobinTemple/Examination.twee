@@ -8,19 +8,19 @@
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. Your behaviour has been remarkable. <span class="green">You're a credit to our faith, and every one of us could learn from you.</span> Thank you."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
 
         <<elseif $grace gte 50>>
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="teal">You've been an upstanding member of our faith,</span> and deserve every penny."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
 
         <<elseif $grace gte 1>>
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="lblue">You've been an upstanding member of our faith.</span> There is room for improvement, but such is true of us all. We should strive to be better each day."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ($grace * 40)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
 
         <<else>>
           <span class="red">"Though pure, your behaviour hasn't been appropriate for a member of our faith,"</span> <<he>> says. "We know you can do better. As such, we've decided to withhold your allowance this month. I hope I can pay you next time."
@@ -30,19 +30,19 @@
 
           <<he>>没有看你，只是把一个信封放在了你旁边的架子上。“这是你的月度津贴。你的表现非常出色。<span class="green">你是我们信仰中值得称赞的人，我们每个人都可以向你学习。</span>谢谢。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
 
         <<elseif $grace gte 50>>
 
           <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="teal">你一直是我们教会的杰出成员，</span>每一分钱都对应着你的付出。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
 
         <<elseif $grace gte 1>>
 
           <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="lblue">你一直是我们教会中表现良好的成员。</span>当然，还有提高的空间，但我们所有人都需要进步。我们应该每天努力变得更好。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ($grace * 40)>></span>。
+          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
 
         <<else>>
           <span class="red">"尽管你很纯洁，但作为信徒，你的行为并不合乎我们的信仰，"</span><<he>>说道，"我们知道你可以做得更好。因此，我们决定暂停发放你这个月的津贴。希望下次我能发放给你。"
@@ -55,7 +55,7 @@
     <<elseif $grace gte 1>>
       <<wearProp 'cash two'>>
     <</if>>
-    <<if $grace gt 0>><<money ($grace * 4000)>><</if>>
+    <<if $grace gt 0>><<money `(maplebirch.get('TempleChoir')?.settle() ?? ($grace * 4000))`>><</if>>
     <br><br>
   <</if>>
 <</widget>>

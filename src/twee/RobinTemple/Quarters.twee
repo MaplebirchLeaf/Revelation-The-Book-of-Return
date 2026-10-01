@@ -67,12 +67,12 @@
     <<option 'CN'>>
       罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。
   <</language>>
-<<elseif Time.weekDay is 1 and Time.hour is 11>>
+<<elseif Time.weekDay is 1 and Time.hour is 10>>
   <<language>>
     <<option 'EN'>>
       Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.
     <<option 'CN'>>
-      罗宾在帮忙准备星期日弥撒。结束后，<<he>>会回宿舍。
+      罗宾在帮忙准备周日弥撒。结束后，<<he>>会回宿舍。
   <</language>>
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
@@ -84,7 +84,7 @@
     <<option 'EN'>>
       The Sunday service has begun. Robin is near the back of the hall, helping late arrivals find their seats.
     <<option 'CN'>>
-      星期日弥撒已经开始。罗宾在大厅后方帮晚到的人找座位。
+      周日弥撒已经开始。罗宾在大厅后方帮晚到的人找座位。
   <</language>>
 <<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 9 and Time.hour lt 13>>
   <<if Time.hour lt 11>>
@@ -139,18 +139,18 @@
     and !$RobinTemple.clasp_discussed>>
     <<socialiseicon 'ask'>><<lanLink '问罗宾贞操带的事' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
-  <<if $RobinTemple.stage is "approved">>
+  <<if $RobinTemple.stage is "approved" and $templePromised is ''>>
     <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Altar'>><</lanLink>><br>
   <</if>>
 <</if>>
 <!-- 承诺入口在罗宾到场时显示，避免被晚间工作分支限制而无法访问。 -->
 <<if _robinAtTemple and $robinromance is 1 and $RobinTemple.stage is 'member'
   and !$RobinTemple.punish and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
-  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.dual_promise)>>
+  and $templePromised is ''>>
   <br><br>
   <<loveicon 'hug'>><<lanLink '和罗宾谈谈承诺仪式' 'RobinTemple Evaluation'>><</lanLink>><br>
 <</if>>
-<<if _robinAtTemple and $RobinTemple.templePromised is 'Robin'
+<<if _robinAtTemple and maplebirch.get('RobinTemple').publicPromise is 'Robin'
   and Time.hour gte 11 and Time.hour lt 20
   and !(Time.weekDay is 1 and Time.hour lt 13)>>
   <br><br>
@@ -232,7 +232,7 @@
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if Time.weekDay is 1 and Time.hour is 11
+<<if Time.weekDay is 1 and Time.hour is 10
   and $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>>
   <<set $RobinTemple.service += 1>>
@@ -247,11 +247,11 @@
     <<run $robinSeen.pushUnique('mass')>>
     <<language>>
       <<option 'EN'>>
-        You don't notice who sits down beside you until you hear <<his>> voice. It's Robin. "Hey, you're here too?" <<he>> whispers, then quickly bows <<his>> head like Sydney as Jordan's gaze passes over the pews.
+        You don't notice who sits down beside you until you hear <<his>> voice. It's Robin. "Hey, you're here too?" <<he>> whispers, then quickly bows <<his>> head as Jordan's gaze passes over the pews.
         <br><br>
         When you're called up to take communion, Robin keeps sneaking glances at you.
       <<option 'CN'>>
-        你没有发觉身边坐下了另一个人，直到听见<<his>>的声音——是罗宾。“你也在这祷告吗？”<<he>>小声问，随即在约旦的目光扫过座位时，像悉尼一样迅速低下头。
+        你没有发觉身边坐下了另一个人，直到听见<<his>>的声音——是罗宾。“你也在这祷告吗？”<<he>>小声问，随即在约旦的目光扫过座位时迅速低下头。
         <br><br>
         你被叫到前面领受圣餐时，罗宾一直在偷偷瞄着你。
       <</language>>
@@ -280,7 +280,7 @@
         罗宾的位置离你有些远。<<He>>看见了你，朝你挥了挥手，等最后的祷告一结束就赶过来找你。
     <</language>>
     <br><br>
-  <<</if>>
+  <</if>>
   <<if $angel gte 6>>
     <<language>>
       <<option 'EN'>>

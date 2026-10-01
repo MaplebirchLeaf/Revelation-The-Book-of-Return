@@ -1,14 +1,21 @@
 // ./src/module/RobinTemple.ts
 
 import Module from './Module';
+import SecretPromise from './SecretPromise';
 import { DEFAULT_ROBIN_TEMPLE_STATE } from './constants';
-import type { RobinTemplePunishment } from './constants/robin-temple';
+import type { RobinTempleForm, RobinTemplePunishment } from './constants/robin-temple';
 
 interface ResidentialModule {
   realEstate: { residenceOf(name: string): unknown };
 }
 
 class RobinTemple extends Module {
+  public readonly secret = new SecretPromise(this);
+
+  public get publicPromise(): string {
+    return V.RobinTemple.dual_promise ? this.secret.state.first : V.RobinTemple.templePromised || V.templePromised;
+  }
+
   constructor(core: typeof maplebirch) {
     super(core, 'RobinTemple', DEFAULT_ROBIN_TEMPLE_STATE);
   }
@@ -45,7 +52,16 @@ class RobinTemple extends Module {
       }
     });
     super.preInit();
-    this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple' });
+    this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple', before: 'robin-location' });
+    this.core.once(':storyready', () => {
+      const location = window.getRobinLocation;
+      window.getRobinLocation = () => {
+        const current = location();
+        if (!this.templeTime) return current;
+        T.robin_location = 'temple';
+        return 'temple';
+      };
+    });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
       action: () => this.dailyUpdate()
@@ -70,6 +86,26 @@ class RobinTemple extends Module {
   /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
   public get available(): boolean {
     return C.npc.Robin?.init === 1 && !V.robinmissing && V.robin.timer.hurt === 0 && C.npc.Robin.trauma < 80 && !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted');
+  }
+
+  /** 互动只使用未隐藏的部位，更多转化停用后不读取残留的转化等级。 */
+  public get forms(): RobinTempleForm[] {
+    const parts = V.transformationParts;
+    const visible = (name: string, part: string): boolean => {
+      const value = parts?.[name]?.[part];
+      return typeof value === 'string' && value !== 'hidden' && value !== 'disabled';
+    };
+    const forms: RobinTempleForm[] = [];
+    if (V.fox >= 6 && visible('fox', 'tail')) forms.push('fox');
+    if (V.wolfgirl >= 6 && visible('wolf', 'ears')) forms.push('wolf');
+    if (V.cat >= 6 && visible('cat', 'ears')) forms.push('cat');
+    if (V.harpy >= 6 && visible('bird', 'wings')) forms.push('bird');
+    if (V.cow >= 6 && visible('cow', 'horns')) forms.push('cow');
+    if (this.core.get('MoreTransformations')) {
+      if (V.maplebirch?.transformation?.horse?.level >= 6 && visible('horse', 'tail')) forms.push('horse');
+      if (V.maplebirch?.transformation?.fish?.level >= 6 && visible('fish', 'fins')) forms.push('fish');
+    }
+    return forms;
   }
 
   private dailyUpdate(): void {
@@ -271,13 +307,19 @@ class RobinTemple extends Module {
 
   private get templeTime(): boolean {
     if (!this.member || !this.available) return false;
+    // 预约与剧情覆盖优先，原版地点函数会处理它们。
+    if (V.robinlocationoverride?.during?.includes(Time.hour)) return false;
 
     const housing = this.core.get('VanillaPlus') as ResidentialModule | undefined;
     const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));
     const overnight = !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
     const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
     const freeWeekday = !Time.schoolDay && !Time.isWeekEnd() && Time.hour >= 9 && Time.hour < 16;
-    const vigil = V.RobinTemple.vigil_result !== 'passed' && ((Time.weekDay === 1 && Time.hour >= 20) || (Time.weekDay === 2 && Time.hour < 7));
+    const shopOpen = this.core.get('Robin') && V.RobinExpansion?.shop && (Time.hour > 18 || (Time.hour === 18 && Time.minute >= 30)) && Time.hour < 21;
+    const vigil =
+      V.RobinTemple.vigil_result !== 'passed' &&
+      (!shopOpen || (V.RobinTemple.vigil_attending && V.RobinTemple.vigil_with_robin)) &&
+      ((Time.weekDay === 1 && Time.hour >= 20) || (Time.weekDay === 2 && Time.hour < 7));
     return overnight || sundayService || freeWeekday || vigil;
   }
 }

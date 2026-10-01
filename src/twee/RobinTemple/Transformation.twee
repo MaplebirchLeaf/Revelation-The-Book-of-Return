@@ -4,13 +4,9 @@
   <<set $RobinTemple.transformation_day to Time.days>>
   <<set $RobinTemple.transformation_count to 0>>
 <</if>>
-<<set _robinTfParts to checkTFparts()>>
 <<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10
-  and ($RobinTemple.transformation_kind is 'fox' and $fox gte 6 and _robinTfParts.foxTail
-  or $RobinTemple.transformation_kind is 'wolf' and $wolfgirl gte 6
-  or $RobinTemple.transformation_kind is 'cat' and $cat gte 6
-  or $RobinTemple.transformation_kind is 'bird' and $harpy gte 6
-  or $RobinTemple.transformation_kind is 'cow' and $cow gte 6)>>
+  and maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
+  and maplebirch.get('RobinTemple').forms.includes($RobinTemple.transformation_kind)>>
   <<set $RobinTemple.transformation_count += 1>>
   <<switch $RobinTemple.transformation_kind>>
     <<case 'fox'>>
@@ -48,16 +44,28 @@
         <<option 'CN'>>
           你用头轻碰罗宾的肩。<<He>>伸手想摸你的角，又停住了。“碰它会疼吗？”<<he>>问过才靠近。
       <</language>>
+    <<case 'horse'>>
+      <<language>>
+        <<option 'EN'>>
+          Robin fetches a comb from beside <<his>> bunk. "Tell me if I pull," <<he>> says. <<He>> works from the ends of your tail upward, easing apart the tangles caught by your clothes. When someone passes the doorway, <<he>> lowers <<his>> voice. "There. Better?"
+        <<option 'CN'>>
+          罗宾从床铺旁取来一把梳子。“扯疼了就告诉我，”<<he>>说。<<He>>从尾巴末端一点点往上梳，把衣服缠乱的毛发慢慢理开。有人从门前经过时，<<he>>放低了声音。“好了。舒服些了吗？”
+      <</language>>
+    <<case 'fish'>>
+      <<language>>
+        <<option 'EN'>>
+          Robin leans closer to look at your fins, careful not to touch them. "Do they move when you hear something?" <<he>> whispers. A bell rings from the hall, and the movement answers for you. <<He>> smiles, then makes room for you on the bench.
+        <<option 'CN'>>
+          罗宾凑近看你的耳鳍，小心地没有伸手碰。“听见声音时，它们也会动吗？”<<he>>轻声问。大厅里响起钟声，耳鳍的动作替你作了回答。<<He>>笑起来，随后在长椅上给你腾出位置。
+      <</language>>
   <</switch>>
   <<npcincr Robin love 2>>
   <<switch $RobinTemple.transformation_kind>>
     <<case 'fox' 'cow'>><<trauma -2>><<glove>><<ltrauma>><br><br>
-    <<case 'wolf'>><<stress -2>><<glove>><<lstress>><br><br>
+    <<case 'wolf' 'horse' 'fish'>><<stress -2>><<glove>><<lstress>><br><br>
     <<case 'cat'>><<tiredness -2>><<glove>><<ltiredness>><br><br>
-    <<case 'bird'>><<tiredness -1>><<glove>><<ltiredness>><br><br>
+    <<case 'bird'>><<tiredness -1>><<glove>><<ltiredness>><<if maplebirch.get('TempleChoir')>><<singingskill 3>><<gsingingskill>><</if>><br><br>
   <</switch>>
-  <!-- 消耗这次从长椅选择的互动，重访结果页不会重复结算。 -->
-  <<set $RobinTemple.transformation_kind to ''>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -66,4 +74,6 @@
       这次互动已经结束，或是现在无法进行。
   <</language>><br><br>
 <</if>>
+<!-- 消耗这次从长椅选择的互动，重访结果页不会重复结算。 -->
+<<set $RobinTemple.transformation_kind to ''>>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>

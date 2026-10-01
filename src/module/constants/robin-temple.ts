@@ -28,6 +28,24 @@ export interface RobinTempleConfession {
 }
 
 /** 路线状态保存在当前 SugarCube 存档中，不属于浏览器会话。 */
+export type RobinTempleForm = 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | 'horse' | 'fish';
+
+/** 亵渎仪式只记录玩家实际完成的调查、谈话与选择。 */
+export interface SecretPromiseState {
+  stage: 'none' | 'research' | 'travelling' | 'ritual' | 'complete';
+  first: '' | 'Robin' | 'Sydney';
+  robin_day: number;
+  sydney_day: number;
+  survey_day: number;
+  prepared: boolean;
+  night: number;
+  trial: '' | 'burden' | 'exit';
+  /** 仪式许下后保持为真，直到三人同席结算；读档后仍能回到该场景。 */
+  rite_active: boolean;
+  /** 三人同席已经离开废墟，后日谈据此收束。 */
+  rite_done: boolean;
+}
+
 export interface RobinTempleState {
   stage: 'none' | 'invited' | 'scheduled' | 'failed' | 'member' | 'approved' | 'promised';
   templePromised: '' | 'Robin';
@@ -58,6 +76,7 @@ export interface RobinTempleState {
   evaluation_phase: number;
   /** 是否已由剧情解锁第二份誓约。 */
   dual_promise: boolean;
+  secret: SecretPromiseState;
   punish: RobinTemplePunishment | null;
   confession_day: number;
   /** 罗宾最近一次与 PC 亲密的日子与累计次数，供告解事件与原版口径对齐。 */
@@ -81,7 +100,7 @@ export interface RobinTempleState {
   spear_return_seen: boolean;
   transformation_day: number;
   transformation_count: number;
-  transformation_kind: 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | '';
+  transformation_kind: RobinTempleForm | '';
   donation_day: number;
   donation_amount: number;
   clasp_discussed: boolean;
@@ -119,6 +138,18 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   evaluation_answer: '',
   evaluation_phase: 1,
   dual_promise: false,
+  secret: {
+    stage: 'none',
+    first: '',
+    robin_day: -1,
+    sydney_day: -1,
+    survey_day: -1,
+    prepared: false,
+    night: -1,
+    trial: '',
+    rite_active: false,
+    rite_done: false
+  },
   punish: null,
   confession_day: -1,
   intimacy_day: -1,

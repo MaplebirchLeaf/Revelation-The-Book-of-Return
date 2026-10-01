@@ -1,6 +1,6 @@
 :: RobinTemple Evaluation
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin 1>><<npc Jordan 2>><<person1>>
-<<if $templePromised isnot '' and ($templePromised isnot 'Sydney' or !$RobinTemple.dual_promise)>>
+<<if $templePromised isnot ''>>
   <<robin-temple-promise-blocked>>
   <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <<elseif $RobinTemple.stage isnot 'member' or $robinromance isnot 1 or $RobinTemple.punish

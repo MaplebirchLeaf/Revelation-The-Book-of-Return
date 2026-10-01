@@ -1,3 +1,5 @@
+// ./src/module/constants/temple-choir.ts
+
 export interface TempleChoirState {
   joined: boolean;
   singing: number;
@@ -8,7 +10,8 @@ export interface TempleChoirState {
   services: number;
   practices: number;
   exercise: string;
-  shift: { round: number; score: number; result: string; pay: number; paid: boolean } | null;
+  bonus: number;
+  shift: { round: number; score: number; result: string; bonus: number; done: boolean } | null;
 }
 
 export const DEFAULT_TEMPLE_CHOIR_STATE: TempleChoirState = {
@@ -21,5 +24,6 @@ export const DEFAULT_TEMPLE_CHOIR_STATE: TempleChoirState = {
   services: 0,
   practices: 0,
   exercise: '',
+  bonus: 0,
   shift: null
 };

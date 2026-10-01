@@ -29,25 +29,60 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       colour: broken ? 'red' : 'blue',
       has: () => Boolean(V.templePromised || V.RobinTemple?.templePromised === 'Robin') && (broken ? V.player.virginity.temple !== true : V.player.virginity.temple === true),
       text: () =>
-        broken
-          ? lanSwitch('The temple will know.', '神殿的人会知道的。')
-          : lanSwitch("You've been bound to another member of the temple. Sex with this person will not break your vows.", '你已经与神殿中另一人缔结承诺，与这个人性交不会破坏你们的誓言。')
+        V.RobinTemple?.dual_promise
+          ? broken
+            ? lanSwitch('You have broken your shared vows.', '你打破了彼此的誓言。')
+            : lanSwitch('You are bound to two partners. Intimacy with either will not break your vows.', '你已与两人缔结承诺，与他们亲密不会破坏你们的誓言。')
+          : broken
+            ? lanSwitch('The temple will know.', '神殿的人会知道的。')
+            : lanSwitch("You've been bound to another member of the temple. Sex with this person will not break your vows.", '你已经与神殿中另一人缔结承诺，与这个人性交不会破坏你们的誓言。')
     }))
   );
 
+  maplebirch.tool.patch.traits.add({
+    title: 'NPC Traits',
+    name: () => lanSwitch('Confounded Vow', '混乱誓约'),
+    colour: 'wraith',
+    has: () => V.RobinTemple?.dual_promise === true,
+    text: () => lanSwitch('Inside becomes outside. Betrayal, or belonging? Promise partners +1.', '表里相易，内外相别，此是背叛，还是同在？承诺对象 +1。')
+  });
+
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-links', passage: 'Temple Quarters' }, { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
+
+  // 守夜对白放在原版选择前，保留涉及原句替换与判定的精确补丁。
+  maplebirch.tool.addTo(
+    'BeforeLinkZone',
+    { widget: 'robin-temple-vigil-arrival', passage: 'Temple Vigil 3' },
+    { widget: 'robin-temple-vigil-cold', passage: 'Temple Vigil 7' },
+    { widget: 'robin-temple-vigil-whisper', passage: 'Temple Vigil 8' },
+    { widget: 'robin-temple-vigil-bell', passage: 'Temple Vigil 9' },
+    { widget: 'robin-temple-vigil-pyre', passage: 'Temple Vigil 10' },
+    { widget: 'robin-temple-vigil-failed', passage: 'Temple Vigil Refuse 2' },
+    { widget: 'robin-temple-vigil-focus', passage: 'Temple Vigil Focus' },
+    { widget: 'robin-temple-vigil-yield', passage: 'Temple Vigil Yield' },
+    { widget: 'robin-temple-vigil-failure', passage: ['Temple Vigil End', 'Temple Vigil End Sydney'] },
+    { widget: 'robin-temple-vigil-return', passage: ['Temple Vigil Refuse 2', 'Temple Vigil 15', 'Temple Vigil 15 Sydney', 'Temple Vigil End 2', 'Temple Vigil End Sydney 2'] }
+  );
+  // 从末尾定位拒绝选项，悉尼的牵手选择出现时不改变插入位置。
+  maplebirch.tool.addTo('CustomLinkZone', { widget: [-1, 'robin-temple-vigil-options 8'], passage: 'Temple Vigil 10' }, { widget: [-1, 'robin-temple-vigil-options'], passage: 'Temple Vigil Refuse' });
 
   maplebirch.tool.inject({
     locationPassage: {
       Temple: [
+        // 亵渎仪式后由本模组的三人联合检查统一处理，避免原版只检查 PC 与悉尼。
         {
-          // 在原版大厅入口计算月检条件，具体流程交由 widget 处理。
+          src: '$temple_chastity_timer lte 0 and $temple_rank',
+          to: '$temple_chastity_timer lte 0 and !$RobinTemple.dual_promise and $temple_rank',
+          expected: 1
+        },
+        // 在原版大厅入口计算月检条件，具体流程交由 widget 处理。
+        {
           src: '<<effects>>',
           applyafter: '<<robin-temple-examination-ready>>',
           expected: 1
         },
+        // 罗宾月检优先进入，保留原版悉尼检查分支。
         {
-          // 罗宾月检优先进入，保留原版悉尼检查分支。
           src: '<<elseif $temple_chastity_timer lte 0',
           applybefore: '<<elseif _robinTempleExamDue>><<robin-temple-examination>>\n',
           expected: 1
@@ -59,10 +94,18 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Sydney Temple Pure': [
+        // 神殿不主持第二份誓约，亵渎仪式独立结算。
         {
-          // 原版悉尼入口也遵守第二誓约的剧情解锁条件。
           src: '<<if !_sydneyStatus.includes("pure")>>',
           to: '<<robin-temple-promise-limit>><<if _robinPromiseBlocked>><<robin-temple-promise-blocked>><<sydneyOptions>><<elseif !_sydneyStatus.includes("pure")>>',
+          expected: 1
+        }
+      ],
+      'Lake Shore': [
+        {
+          // 正常离开分支内，不能在原版危险事件发生时另开出行入口。
+          src: '<<foresticon>>',
+          applybefore: '<<secret-promise-lake>>',
           expected: 1
         }
       ],
@@ -80,20 +123,6 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 1
         }
       ],
-      'Temple Vigil 3': [
-        {
-          src: '<<gstress>>',
-          applyafter: '<<robin-temple-vigil-arrival>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil 7': [
-        {
-          src: '<<effects>>',
-          applyafter: '<<robin-temple-vigil-cold>>',
-          expected: 1
-        }
-      ],
       'Temple Vigil 8': [
         {
           srcmatch: /The four of you|你们四人/,
@@ -101,41 +130,8 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 1
         },
         {
-          src: '<<gtrauma>>',
-          applyafter: '<<robin-temple-vigil-whisper>>',
-          expected: 1
-        },
-        {
           srcmatch: /, and Sydney,|还有悉尼/,
           to: '<<robin-temple-vigil-companions>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil 9': [
-        {
-          src: '<<templeicon "trialcontinue">>',
-          applybefore: '<<robin-temple-vigil-bell>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil 10': [
-        {
-          src: '<<refuseicon>>',
-          applybefore: '<<robin-temple-vigil-pyre>><<robin-temple-vigil-options 8>>\n',
-          expected: 1
-        }
-      ],
-      'Temple Vigil Refuse': [
-        {
-          src: '<<templeicon "trialbail">>',
-          applybefore: '<<robin-temple-vigil-options>>\n',
-          expected: 1
-        }
-      ],
-      'Temple Vigil Refuse 2': [
-        {
-          src: '<<effects>>',
-          applyafter: '<<robin-temple-vigil-failed>><<robin-temple-vigil-return>>',
           expected: 1
         }
       ],
@@ -145,8 +141,8 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           applyafter: '<<robin-temple-vigil-hand>>',
           expected: 1
         },
+        // 罗宾牵手沿用原版悉尼的 -10 疼痛判定修正。
         {
-          // 罗宾牵手沿用原版悉尼的 -10 疼痛判定修正。
           src: '($pain + random(0, 10))',
           to: '(($pain - ($RobinTemple.vigil_with_robin ? 10 : 0)) + random(0, 10))',
           expected: 1
@@ -158,30 +154,16 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           applyafter: '<<robin-temple-vigil-fire-result>>',
           expected: 1
         },
+        // 罗宾与悉尼同时牵手时，原版的「你和悉尼互相搀扶」应包含罗宾。
         {
-          // 罗宾与悉尼同时牵手时，原版的「你和悉尼互相搀扶」应包含罗宾。
           srcmatch: /You and Sydney carry each other forwards\.|你和悉尼互相搀扶着前进。/,
           to: '<<robin-temple-vigil-carry>>',
           expected: 1
         }
       ],
-      'Temple Vigil Focus': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple Vigil 14\]\]>>/,
-          applybefore: '<<robin-temple-vigil-focus>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil Yield': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple Vigil 14\]\]>>/,
-          applybefore: '<<robin-temple-vigil-yield>>',
-          expected: 1
-        }
-      ],
       'Temple Vigil 14': [
+        // 在原版成功结局外追加罗宾同行分支，保留原文锚点。
         {
-          // 在原版成功结局外追加罗宾同行分支，保留原文锚点。
           src: '<<if $phase is 2>>',
           applybefore: '<<if $RobinTemple.vigil_attending and $RobinTemple.vigil_with_robin>><<robin-temple-vigil-success>><<else>>\n',
           expected: 1
@@ -197,57 +179,15 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 2
         }
       ],
-      'Temple Vigil 15': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple Cloister\]\]>>/,
-          applybefore: '<<robin-temple-vigil-return>>\n',
-          expected: 1
-        }
-      ],
-      'Temple Vigil 15 Sydney': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple Cloister\]\]>>/,
-          applybefore: '<<robin-temple-vigil-return>>\n',
-          expected: 1
-        }
-      ],
-      'Temple Vigil End': [
-        {
-          src: '<<person1>>',
-          applyafter: '<<robin-temple-vigil-failure>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil End Sydney': [
-        {
-          src: '<<person1>>',
-          applyafter: '<<robin-temple-vigil-failure>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil End 2': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple\]\]>>/,
-          applybefore: '<<robin-temple-vigil-return>>',
-          expected: 1
-        }
-      ],
-      'Temple Vigil End Sydney 2': [
-        {
-          srcmatch: /<<link[^>\n]+\|Temple\]\]>>/,
-          applybefore: '<<robin-temple-vigil-return>>',
-          expected: 1
-        }
-      ],
       'Temple Confess': [
+        // 在怨灵清空事件池之前添加罗宾告解事件。
         {
-          // 在怨灵清空事件池之前添加罗宾告解事件。
           src: '<<if _wraithConfess>>',
           applybefore: '<<robin-temple-confession-event>>\n',
           expected: 1
         },
+        // 罗宾是忏悔者，因此回应项走模组自己的 Forgive/Repent/Contrition/Purge，其余忏悔者保留原版。
         {
-          // 罗宾是忏悔者，因此回应项走模组自己的 Forgive/Repent/Contrition/Purge，其余忏悔者保留原版。
           src: '<<if !_noOptions>>',
           to: `<<if $attendant.includes('robin')>>\n\t\t<<robin-temple-confession-options>>\n<<elseif !_noOptions>>`,
           expected: 1
@@ -258,13 +198,20 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       'Widgets Robin': [
         {
           src: '<<robinbully>>',
-          applybefore: '<<robin-temple-room-link>>\n\t\t',
+          applybefore: '<<robin-temple-room-link>><<secret-promise-talk "Robin">>\n\t\t',
+          expected: 1
+        }
+      ],
+      'Widgets Sydney': [
+        {
+          src: '<<widget "sydneyOptionsTalk">>',
+          applyafter: '<<secret-promise-talk "Sydney">>',
           expected: 1
         }
       ],
       Widgets: [
+        // 原版变身判定也要识别独立誓约，避免和罗宾相处时误判为违誓。
         {
-          // 原版变身判定也要识别独立誓约，避免和罗宾相处时误判为违誓。
           src: '$templePromised isnot $NPCList[$vaginatarget].fullDescription',
           applyafter: ' and !($RobinTemple.templePromised is "Robin" and $NPCList[$vaginatarget].fullDescription is "Robin")',
           expected: 1
@@ -274,8 +221,8 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           applyafter: ' and !($RobinTemple.templePromised is "Robin" and $NPCList[$penistarget].fullDescription is "Robin")',
           expected: 1
         },
+        // 只扩展原版伴侣条件，继续使用原版的结果提示。
         {
-          // 只扩展原版伴侣条件，继续使用原版的结果提示。
           src: '$templePromised is _args[0]',
           applyafter: ' or ($RobinTemple.templePromised is "Robin" and _args[0] is "Robin")',
           expected: 1
@@ -289,8 +236,8 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Widgets Combat': [
+        // 扩展誓约伴侣比较，保留原版及其他模组追加的条件。
         {
-          // 扩展誓约伴侣比较，保留原版及其他模组追加的条件。
           srcmatchgroup: /\$templePromised isnot \$_taker/g,
           applyafter: ' and !($RobinTemple.templePromised is "Robin" and $_taker is "Robin")',
           expected: 2
@@ -309,5 +256,5 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
     }
   });
 
-  maplebirch.tool.addTo('Journal', 'robin-temple-journal');
+  maplebirch.tool.addTo('Journal', 'robin-temple-journal', 'secret-promise-journal');
 }

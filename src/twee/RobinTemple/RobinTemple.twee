@@ -100,7 +100,7 @@
 
 <<widget 'robin-temple-examination-ready'>>
   <!-- 任一日历到期都进入同一轮月检，暂时无法到场时不会让 PC 先重复检查。 -->
-  <<set _robinTempleExamDue to $RobinTemple.templePromised is 'Robin'
+  <<set _robinTempleExamDue to (maplebirch.get('RobinTemple').publicPromise is 'Robin' or $RobinTemple.dual_promise)
     and ($RobinTemple.chastity_timer lte 0
     or $temple_chastity_timer lte 0
     or !$RobinTemple.monthly_checked)
@@ -125,7 +125,7 @@
     <<set $RobinTemple.monthly_checked to false>>
     <<set $RobinTemple.chastity_timer to 30>>
     <<set $temple_chastity_timer to 30>>
-    <<if $templePromised is 'Sydney'>>
+    <<if $RobinTemple.dual_promise or $templePromised is 'Sydney'>>
       <<robin-temple-joint-examination>>
     <<else>>
       <<robin-temple-monthly-examination>>

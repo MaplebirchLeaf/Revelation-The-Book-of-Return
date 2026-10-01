@@ -1,3 +1,5 @@
+// ./src/module/TempleChoir.ts
+
 import { DEFAULT_TEMPLE_CHOIR_STATE } from './constants';
 import Module from './Module';
 
@@ -18,7 +20,7 @@ class TempleChoir extends Module {
   }
 
   public get member(): boolean {
-    return ['initiate', 'monk', 'priest', 'bishop'].includes(V.temple_rank) && V.exposed <= 0 && C.npc.Jordan.init === 1;
+    return ['initiate', 'monk', 'priest'].includes(V.temple_rank) && V.exposed <= 0 && C.npc.Jordan.init === 1;
   }
 
   public get practice(): boolean {
@@ -33,7 +35,7 @@ class TempleChoir extends Module {
     if (!this.service) return false;
     V.TempleChoir.serviceDay = Time.days;
     V.daily.massAttended = 1;
-    V.TempleChoir.shift = { round: 0, score: 0, result: '', pay: 0, paid: false };
+    V.TempleChoir.shift = { round: 0, score: 0, result: '', bonus: 0, done: false };
     return true;
   }
 
@@ -41,7 +43,7 @@ class TempleChoir extends Module {
   public sing(style: 'follow' | 'harmony' | 'lead'): boolean {
     const state = V.TempleChoir;
     const shift = state.shift;
-    if (!shift || shift.round >= 3 || shift.paid || (style === 'lead' && !state.lead)) return false;
+    if (!shift || shift.round >= 3 || shift.done || (style === 'lead' && !state.lead)) return false;
     const threshold = style === 'lead' ? 700 : style === 'harmony' ? 400 : 100;
     const prepared = Time.days - state.practiceDay <= 2 && state.practiceDay >= 0 ? 100 : 0;
     const value = this.singing + prepared + random(-100, 100);
@@ -52,12 +54,26 @@ class TempleChoir extends Module {
     return true;
   }
 
+  /** 原版月度津贴加上尚未领取的唱诗收入，单位为便士。 */
+  public get allowance(): number {
+    return V.grace * 4000 + V.TempleChoir.bonus;
+  }
+
+  public settle(): number {
+    if (V.grace <= 0) return 0;
+    const amount = this.allowance;
+    V.TempleChoir.bonus = 0;
+    return amount;
+  }
+
   public finish(): boolean {
     const state = V.TempleChoir;
     const shift = state.shift;
-    if (!shift || shift.round !== 3 || shift.paid) return false;
-    shift.paid = true;
-    shift.pay = 1200 + Math.min(6, shift.score) * 200;
+    if (!shift || shift.round !== 3 || shift.done) return false;
+    shift.done = true;
+    // 完整值班保底 £70，每分增加 £20，领唱的九分表现也计入津贴。
+    shift.bonus = 7000 + Math.min(9, shift.score) * 2000;
+    state.bonus += shift.bonus;
     state.services++;
     if (state.services >= 3 && state.practices >= 3 && state.singing >= 600 && shift.score >= 5) state.lead = true;
     return true;

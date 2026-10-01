@@ -41,10 +41,6 @@
   <</if>>
 <</widget>>
 
-<<widget "gsingingskill">>
-  <span class="green"> | + <<language>><<option 'EN'>>Singing<<option 'CN'>>歌唱<</language>></span>
-<</widget>>
-
 :: TempleChoir Audition
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>>
 <<if !maplebirch.get('TempleChoir').member>>
@@ -68,9 +64,9 @@
   <<npc Jordan>><<person1>>
   <<language>>
     <<option 'EN'>>
-      Jordan listens without interrupting while you repeat a short line from the service book. <<He>> raises one hand when your voice fades.
+      Jordan listens without interrupting while you repeat a short line from the prayer book. <<He>> raises one hand when your voice fades.
     <<option 'CN'>>
-      你照着礼拜书唱出一小段句子，约旦没有打断。等你的声音落下后，<<he>>才抬起一只手。
+      你照着祈祷书唱出一小段句子，约旦没有打断。等你的声音落下后，<<he>>才抬起一只手。
   <</language>>
   <br><br>
   <<if maplebirch.get('TempleChoir').singing gte 300>>
@@ -78,7 +74,7 @@
       <<option 'EN'>>
         "You can hear the line before you sing it," <<he>> says. "That will help the others. Join us at practice, and be punctual for Sunday service."
       <<option 'CN'>>
-        “你在开口前听得见旋律，”<<he>>说，“这能帮到其他人。来练习吧，周日礼拜不要迟到。”
+        “你在开口前听得见旋律，”<<he>>说，“这能帮到其他人。来练习吧，周日弥撒不要迟到。”
     <</language>>
   <<else>>
     <<language>>
@@ -94,11 +90,11 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      Jordan shows you where the service books are kept. "Practice during the day. On Sundays, report between eleven and one. You will sing the opening hymn, the response and the final hymn. Finish all three, and the temple will pay for your time."<br><br>
-      <span class='teal'>Practice takes thirty minutes. Paid service takes one hour and pays £12 to £24. Your journal records the schedule.</span>
+      Jordan shows you where the prayer books are kept. "Practice during the day. On Sundays, report between eleven and one. You will sing the opening hymn, the response and the final hymn. Finish all three, and the temple will pay for your time."<br><br>
+      <span class='teal'>Practice takes thirty minutes. A full service takes one hour and adds £70–£250 to your monthly temple allowance. The money is collected after your monthly examination. Your journal records the schedule.</span>
     <<option 'CN'>>
-      约旦指给你看礼拜书放在哪里。“白天来练习。星期日十一点到一点之间报到，开场圣诗、应答诗和结束诗都要唱。三部分做完，神殿会为你花费的时间付补贴。”<br><br>
-      <span class='teal'>练习耗时三十分钟，带薪唱诗耗时一小时，补贴为 £12 至 £24。时间安排已记入日志。</span>
+      约旦指给你看祈祷书放在哪里。“白天来练习。周日十一点到一点之间报到，开场赞美诗、答唱和结束赞美诗都要唱。三部分做完，神殿会为你花费的时间付报酬。”<br><br>
+      <span class='teal'>练习耗时三十分钟。完整唱诗耗时一小时，为月度神殿津贴增加 £70–£250。加款在月度检查后领取。时间安排已记入日志。</span>
   <</language>><br><br>
   <<templeicon "altar">><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 <</if>>

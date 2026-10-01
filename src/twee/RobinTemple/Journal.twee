@@ -41,7 +41,7 @@
           <<option 'EN'>>
             On school-free weekdays, you can invite Robin from <<his>> room to help at the temple from 09:00 until just before 15:45. You can also go together from 17:00 until just before 19:45. Robin helps with the Sunday service.
           <<option 'CN'>>
-            不上学的工作日，09:00 起至 15:45 前，可以到罗宾房间约<<him>>去神殿帮忙。17:00 起至 19:45 前也可以同行。罗宾会协助星期日弥撒。
+            不上学的工作日，09:00 起至 15:45 前，可以到罗宾房间约<<him>>去神殿帮忙。17:00 起至 19:45 前也可以同行。罗宾会协助周日弥撒。
         <</language>></li>
         <<if !(maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin'))>>
           <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
@@ -71,12 +71,12 @@
             约旦批准了仪式。傍晚去神殿宿舍见罗宾。
         <</language>></li>
       <<case 'promised'>>
-        <<if $templePromised is 'Sydney'>>
+        <<if $RobinTemple.dual_promise>>
           <li><<language>>
             <<option 'EN'>>
-              The temple records promises with Robin and Sydney. Jordan will examine all three vows together.
+              You brought Robin and Sydney into the ruin beneath the lake, and made your promises there. The temple knows only the first, and will summon all three of you for the next examination.
             <<option 'CN'>>
-              神殿记录着你与罗宾、悉尼立下的承诺。约旦会一起检查三人的誓言。
+              你带着罗宾与悉尼进了湖底废墟，在那里立下承诺。神殿只知道第一份，下次检查会将你们三人一并召去。
           <</language>></li>
         <<else>>
           <li><<language>>
@@ -88,9 +88,9 @@
         <</if>>
         <li><<language>>
           <<option 'EN'>>
-            Days until the next examination: <span class='gold'><<= Math.max(0, $RobinTemple.chastity_timer)>></span>
+            Days until the next examination: <span class='gold'><<= Math.max(0, maplebirch.get('RobinTemple').publicPromise is 'Sydney' ? $temple_chastity_timer : $RobinTemple.chastity_timer)>></span>
           <<option 'CN'>>
-            距离下次检查还有：<span class='gold'><<= Math.max(0, $RobinTemple.chastity_timer)>></span>
+            距离下次检查还有：<span class='gold'><<= Math.max(0, maplebirch.get('RobinTemple').publicPromise is 'Sydney' ? $temple_chastity_timer : $RobinTemple.chastity_timer)>></span>
         <</language>></li>
     <</switch>>
     <<if maplebirch.get('RobinTemple').member>>

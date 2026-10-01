@@ -22869,5 +22869,23 @@ sugarcube-2:
       name: robin-temple-punishment-cleanup
     singingskill:
       name: singingskill
+    temple-choir-hall-link:
+      name: temple-choir-hall-link
+    temple-choir-mass-link:
+      name: temple-choir-mass-link
+    temple-choir-skill-bonus:
+      name: temple-choir-skill-bonus
+    temple-choir-skill-box:
+      name: temple-choir-skill-box
+    temple-choir-round:
+      name: temple-choir-round
+    temple-choir-journal:
+      name: temple-choir-journal
     gsingingskill:
       name: gsingingskill
+    secret-promise-talk:
+      name: secret-promise-talk
+    secret-promise-lake:
+      name: secret-promise-lake
+    secret-promise-journal:
+      name: secret-promise-journal

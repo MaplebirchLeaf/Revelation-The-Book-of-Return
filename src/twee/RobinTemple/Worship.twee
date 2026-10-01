@@ -121,17 +121,27 @@
   <<set $RobinTemple.transformation_count to 0>>
 <</if>>
 <<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
-  <<set _parts to checkTFparts()>>
-  <<if $fox gte 6 and _parts.foxTail>>
+  <<set _robinForms to maplebirch.get('RobinTemple').forms>>
+  <<if _robinForms.includes('fox')>>
     <<tficon 'fox'>><<lanLink '让罗宾靠在你的尾巴上 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
-  <<elseif $wolfgirl gte 6>>
+  <</if>>
+  <<if _robinForms.includes('wolf')>>
     <<tficon 'wolf'>><<lanLink '用头轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
-  <<elseif $cat gte 6>>
+  <</if>>
+  <<if _robinForms.includes('cat')>>
     <<tficon 'cat'>><<lanLink '挨着罗宾坐下 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
-  <<elseif $harpy gte 6>>
+  <</if>>
+  <<if _robinForms.includes('bird')>>
     <<birdicon 'sing'>><<lanLink '为罗宾唱歌 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
-  <<elseif $cow gte 6>>
+  <</if>>
+  <<if _robinForms.includes('cow')>>
     <<tficon 'cow'>><<lanLink '用角轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
+  <</if>>
+  <<if _robinForms.includes('horse')>>
+    <<= maplebirch.get('MoreTransformations').Horse.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><<pass 10>><</lanLink>><br>
+  <</if>>
+  <<if _robinForms.includes('fish')>>
+    <<= maplebirch.get('MoreTransformations').Fish.icon>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fish'>><<pass 10>><</lanLink>><br>
   <</if>>
 <</if>>
 <br>
