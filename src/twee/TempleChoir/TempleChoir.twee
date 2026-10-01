@@ -1,0 +1,104 @@
+:: TempleChoir Widgets [widget]
+<<widget "temple-choir-hall-link">>
+  <<if maplebirch.get('TempleChoir').member>>
+    <<if !$TempleChoir.joined>>
+      <<templeicon 'hymnbook'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
+    <<elseif maplebirch.get('TempleChoir').practice>>
+      <<templeicon 'hymnbook'>><<lanLink ['Attend choir practice (0:30)', '参加唱诗练习 (0:30)'] 'TempleChoir Practice'>><</lanLink>><br>
+    <</if>>
+  <</if>>
+<</widget>>
+
+<<widget "temple-choir-mass-link">>
+  <<if maplebirch.get('TempleChoir').service>>
+    <<templeicon 'choir'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget "temple-choir-skill-bonus">>
+  <<silently>>
+    <<set _singingConfig = { name : "Singing", cn_name : "歌唱", displayType : "grade", currentValue : $TempleChoir.singing, modifier : maplebirch.get('TempleChoir').modifier, modTypes : { good : [], bad : [] }, states : _detailedSkillGrades }>>
+    <<if $harpy gte 3>>
+      <<set _singingConfig.modTypes.good.pushUnique(lanSwitch('Harpy', '哈比'))>>
+    <</if>>
+    <<if $tiredness gte ($tirednessmax / 2)>>
+      <<set _singingConfig.modTypes.bad.pushUnique(lanSwitch('tiredness', '疲劳'))>>
+    <</if>>
+    <<if $drunk gt 0>>
+      <<set _singingConfig.modTypes.bad.pushUnique(lanSwitch('alcohol', '醉酒'))>>
+    <</if>>
+  <</silently>>
+<</widget>>
+
+<<widget "temple-choir-skill-box">>
+  <<characteristic-box _singingConfig>>
+<</widget>>
+
+<<widget "singingskill">>
+  <<if _args[0] and $statFreeze isnot true>>
+    <<set $TempleChoir.singing += _args[0]>>
+    <<set $TempleChoir.singing to Math.clamp($TempleChoir.singing, 0, 1000)>>
+  <</if>>
+<</widget>>
+
+<<widget "gsingingskill">>
+  <span class="green"> | + <<language>><<option 'EN'>>Singing<<option 'CN'>>歌唱<</language>></span>
+<</widget>>
+
+:: TempleChoir Audition
+<<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>>
+<<if !maplebirch.get('TempleChoir').member>>
+  <<language>>
+    <<option 'EN'>>
+      The choir is for members of the temple. Jordan will not discuss it with you yet.
+    <<option 'CN'>>
+      唱诗班只接纳神殿成员。约旦现在还不会与你谈这件事。
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
+<<elseif $TempleChoir.joined>>
+  <<language>>
+    <<option 'EN'>>
+      You have already joined the choir. Your journal records the practice and service times.
+    <<option 'CN'>>
+      你已经加入唱诗班。练习与唱诗的时间安排记在日志里。
+  <</language>><br><br>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
+<<else>>
+  <<npc Jordan>><<person1>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan listens without interrupting while you repeat a short line from the service book. <<He>> raises one hand when your voice fades.
+    <<option 'CN'>>
+      你照着礼拜书唱出一小段句子，约旦没有打断。等你的声音落下后，<<he>>才抬起一只手。
+  <</language>>
+  <br><br>
+  <<if maplebirch.get('TempleChoir').singing gte 300>>
+    <<language>>
+      <<option 'EN'>>
+        "You can hear the line before you sing it," <<he>> says. "That will help the others. Join us at practice, and be punctual for Sunday service."
+      <<option 'CN'>>
+        “你在开口前听得见旋律，”<<he>>说，“这能帮到其他人。来练习吧，周日礼拜不要迟到。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "You lose the pitch when you run out of breath," <<he>> says, not unkindly. "That is what practice is for. Stand with the quieter voices until you learn the line."
+      <<option 'CN'>>
+        “换气时你会丢掉音准，”<<he>>说，语气并不严厉，“练习就是为了这个。先站在声音轻些的人旁边，把旋律学稳。”
+    <</language>>
+  <</if>>
+  <<set $TempleChoir.joined to true>>
+  <<set $TempleChoir.auditionDay to Time.days>>
+  <<singingskill 20>><<grace 1>><<gsingingskill>><<ggrace>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      Jordan shows you where the service books are kept. "Practice during the day. On Sundays, report between eleven and one. You will sing the opening hymn, the response and the final hymn. Finish all three, and the temple will pay for your time."<br><br>
+      <span class='teal'>Practice takes thirty minutes. Paid service takes one hour and pays £12 to £24. Your journal records the schedule.</span>
+    <<option 'CN'>>
+      约旦指给你看礼拜书放在哪里。“白天来练习。星期日十一点到一点之间报到，开场圣诗、应答诗和结束诗都要唱。三部分做完，神殿会为你花费的时间付补贴。”<br><br>
+      <span class='teal'>练习耗时三十分钟，带薪唱诗耗时一小时，补贴为 £12 至 £24。时间安排已记入日志。</span>
+  <</language>><br><br>
+  <<templeicon "altar">><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
+<</if>>
