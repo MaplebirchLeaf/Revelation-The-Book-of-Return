@@ -143,6 +143,9 @@
   <<if _robinForms.includes('fish')>>
     <<= maplebirch.get('MoreTransformations').Fish.icon>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fish'>><<pass 10>><</lanLink>><br>
   <</if>>
+  <<if _robinForms.includes('raven')>>
+    <<= maplebirch.get('MoreTransformations').Raven.icon>><<lanLink ['Let Robin tidy your wing feathers (0:10)', '让罗宾帮你理顺羽毛 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'raven'>><<pass 10>><</lanLink>><br>
+  <</if>>
 <</if>>
 <br>
 <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>

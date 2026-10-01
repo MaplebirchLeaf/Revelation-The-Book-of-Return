@@ -1,40 +1,46 @@
 :: RobinTemple Chastity Widgets [widget]
+<!-- 原版从不为罗宾配置贞操器具，因此 speech-robin / ejaculation-robin 里完全没有器具分支。
+     罗宾的器具全部来自本模组的 Clasp 线。这里照原版 speech-SYDNEY / ejaculation-SYDNEY
+     的写法补齐反应，再由 RobinTemple.ts 把对应 elseif 注入原版 widget。
+     $speechNPCChastity = 罗宾被锁住（原版只在罗宾本人那格被锁时才置位）。$speechchastity = PC 被锁住。
+     罗宾的语气基准见 Clasp.twee：「得去问约旦，不能自己摘」「我想自己说明白」「你陪我一起去，好吗？」
+     所以他不会说 Sydney 的 break this thing / proper / senseless，也不会把每次高潮都变成催约旦。 -->
 
 <<widget 'robin-chastity-speech-device'>>
-  <!-- 罗宾自己戴着神殿器具，PC 的触碰被挡下。对应原版 Sydney 的 $speechNPCChastity。 -->
+  <!-- PC 碰到罗宾自己的器具。对应原版 Sydney 的 $speechNPCChastity。 -->
   <<language>>
     <<option 'EN'>>
       <<if C.npc.Robin.trauma gte 40>>
         <<print either(
-          `Robin flinches away. "S-sorry. It's the belt from the temple. It needs special equipment to come off."`,
-          `"Don't," Robin blurts out, hands over <<his>> crotch. "I can't take it off. Only Jordan can."`
+          `"S-sorry." Robin pulls back, hands over <<his>> crotch. "I can't... it's the temple's. I'd have to ask."`,
+          `"Don't," Robin whispers, flinching. "Not while it can't come off."`
         )>>
       <<elseif C.npc.Robin.dom gte 70>>
         <<print either(
-          `Robin holds your hand against the belt anyway. "It stays on. That doesn't mean stop."`,
-          `"You want it off," Robin says. "Then come with me to ask Jordan to remove it."`
+          `Robin presses your hand flat against the belt and keeps it there. "It doesn't come off. That doesn't mean stop."`,
+          `"If you want it gone, we go to Jordan together," Robin says. "I won't go behind his back."`
         )>>
       <<else>>
         <<print either(
-          `Robin goes red and covers <<himself>>. "S-sorry, it's the temple's. I'd have to ask Jordan to remove it."`,
-          `"It's locked on," Robin says. "I can't just take it off. I'd have to ask."`
+          `Robin goes red and covers <<himself>>. "S-sorry. It's from the temple. Jordan would have to take it off."`,
+          `"It's locked," Robin says, and looks away. "I can't just... I'd have to ask."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.trauma gte 40>>
         <<print either(
-          `罗宾缩了一下。“对、对不起。这是神殿的贞操带，要用专门的设备才能取下。”`,
-          `“别，”罗宾脱口而出，双手护住下面，“我自己取不下来，只有约旦可以。”`
+          `“对、对不起。”罗宾缩回去，双手护着下面。“我……这是神殿的，得去问才行。”`,
+          `“别，”罗宾小声说，缩了一下，“别在摘不下来的时候碰那里。”`
         )>>
       <<elseif C.npc.Robin.dom gte 70>>
         <<print either(
-          `罗宾反而按住你的手。“带子不摘。这不代表要停。”`,
-          `“你想让我摘下来，”罗宾说，“那就跟我一起去请约旦拆除。”`
+          `罗宾反而把你的手按在带子上，不让它挪开。“它摘不下来。这不代表要停。”`,
+          `“你要是想让它下来，我们一起去找约旦，”罗宾说，“我不想瞒着他。”`
         )>>
       <<else>>
         <<print either(
-          `罗宾满脸通红地护住自己。“对、对不起，这是神殿的东西，要摘就得去找约旦。”`,
-          `“锁着的，”罗宾说，“我取不下来，要摘就得去问。”`
+          `罗宾满脸通红地护住自己。“对、对不起，这是神殿的。要摘得约旦动手。”`,
+          `“锁着的，”罗宾别开脸，“我不能自己……得去问才行。”`
         )>>
       <</if>>
   <</language>>
@@ -46,35 +52,35 @@
     <<option 'EN'>>
       <<if C.npc.Robin.trauma gte 40>>
         <<print either(
-          `Robin stares at your <<printChastity>>, then relaxes a fraction. "Oh. You too. Then we're both still keeping it."`,
-          `Robin sees the lock and looks faintly relieved. "You have one as well," <<he>> says. "That... that makes it easier."`
+          `Robin stares at your <<printChastity>>, and some of the tension goes out of <<him>>. "Oh. You too."`,
+          `"You have one as well," Robin says quietly. "That... helps, somehow."`
         )>>
       <<elseif C.npc.Robin.dom gte 70>>
         <<print either(
-          `Robin stares at your <<printChastity>>, then smiles. "So we match. I like that more than I should."`,
-          `"You're wearing one too?" Robin asks, and <<his>> voice drops. "Then we can be patient together."`
+          `Robin looks at your <<printChastity>> for a long moment, then smiles. "Good. Then you know how it feels."`,
+          `"So we're the same now," Robin says, and <<his>> voice drops. "I don't mind that."`
         )>>
       <<else>>
         <<print either(
-          `Robin stares at your <<printChastity>>. "Oh. You too? Then... then I'm not the only one."`,
-          `"You have one as well," Robin says, and looks oddly relieved. "Then I'm not the only one."`
+          `Robin stares at your <<printChastity>>. "Oh. You too?"`,
+          `"That's the same as mine," Robin says, and looks relieved.`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.trauma gte 40>>
         <<print either(
-          `罗宾盯着你的<<printChastity>>，稍微放松了一点。“啊，你也是。那我们都还守着。”`,
-          `罗宾看到锁，像是松了口气。“你也戴着，”<<he>>说，“那……那还容易些。”`
+          `罗宾盯着你的<<printChastity>>，绷着的那点劲松了下来。“啊，你也是。”`,
+          `“你也戴着，”罗宾轻声说，“那……那多少好一点。”`
         )>>
       <<elseif C.npc.Robin.dom gte 70>>
         <<print either(
-          `罗宾盯着你的<<printChastity>>，然后笑了。“那我们是一对。我好像比应该的更喜欢这样。”`,
-          `“你也戴着？”罗宾问，声音低下去，“那我们可以一起慢慢等。”`
+          `罗宾看了你的<<printChastity>>好一会儿，然后笑了。“好。那你该知道这是什么感觉。”`,
+          `“这下我们一样了，”罗宾说，声音低下去，“我不介意。”`
         )>>
       <<else>>
         <<print either(
-          `罗宾盯着你的<<printChastity>>。“啊，你也……那我就不算唯一一个了。”`,
-          `“你也有一个，”罗宾说，竟像是松了口气，“那我就不是唯一一个了。”`
+          `罗宾盯着你的<<printChastity>>。“啊，你也是？”`,
+          `“和我的是一样的，”罗宾说，像是松了口气。`
         )>>
       <</if>>
   <</language>>
@@ -86,25 +92,25 @@
     <<option 'EN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>> cums with a bitten-off cry, grinding against you through <<his>> chastity belt. "Don't stop."`,
-          `<<He>> shudders through <<his>> climax. "That thing's in the way," <<he>> pants, "but I still felt all of it."`
+          `<<He>> cums with a sharp, caught breath, grinding against you through the belt. "Don't stop."`,
+          `<<He>> shakes through it, then looks at you. "You felt that too."`
         )>>
       <<else>>
         <<print either(
-          `<<He>> cums gasping against <<his>> chastity belt. "S-sorry, I can't help it..."`,
-          `<<He>> shakes through <<his>> climax, face red. "It... it still works. That's so unfair."`
+          `<<He>> cums gasping, <<his>> thighs pressed to yours through the belt. "S-sorry, I couldn't..."`,
+          `<<He>> goes red and shivers. "It still... I still felt everything."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>>咬着声音高潮了，隔着贞操带蹭着你。“不许停。”`,
-          `<<He>>在高潮里发抖。“这东西挡着，”<<he>>喘着气，“可我全都感觉到了。”`
+          `<<He>>猛地吸了口气就高潮了，隔着贞操带蹭着你。“不许停。”`,
+          `<<He>>抖完，看着你。“你也感觉到了。”`
         )>>
       <<else>>
         <<print either(
-          `<<He>>喘着气隔着贞操带高潮了。“对、对不起，我忍不住……”`,
-          `<<He>>红着脸抖完了。“这样……这样也算数。太不公平了。”`
+          `<<He>>喘着气高潮了，隔着带子贴紧你。“对、对不起，我没忍住……”`,
+          `<<He>>红着脸发抖。“还是……还是全都感觉到了。”`
         )>>
       <</if>>
   <</language>>
@@ -116,24 +122,24 @@
     <<option 'EN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>> cums pressed against <<his>> anal shield, the plate hardly giving at all. "That was so close," <<he>> mutters. "I'm asking Jordan to take it off."`,
-          `<<He>> clutches at <<his>> anal shield as <<he>> finishes, thwarted by the plate. "I could feel you through it. Don't stop."`
+          `<<He>> cums pressed hard against <<his>> anal shield, close enough that <<he>> can feel exactly how little is left. "Next time," <<he>> says, breathless. "Come with me to Jordan."`,
+          `<<He>> grinds against <<his>> own shield as <<he>> finishes. "You felt all of that through it," <<he>> says. "Don't stop."`
         )>>
       <<else>>
         <<print either(
-          `<<He>> cums straining against <<his>> anal shield, the plate hardly giving at all. "Th-that was so close," <<he>> whispers.`,
-          `<<He>> clutches at <<his>> anal shield as <<he>> finishes. "I could feel you through it..."`
+          `<<He>> cums straining against <<his>> anal shield, <<his>> whole body tight. "Th-that was so close," <<he>> whispers.`,
+          `<<He>> clutches at <<his>> shield as <<he>> finishes. "I could feel you through it..."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>>顶着护肛板高潮了，那块板几乎没有让开。“就差一点，”<<he>>咬牙说，“我要请约旦把它摘下来。”`,
-          `<<He>>在高潮时抓住自己的护肛板。“隔着它我都感觉得到。别停。”`
+          `<<He>>顶着护肛板高潮了，就差那么一点。“下次，”<<he>>喘着气，“陪我去找约旦。”`,
+          `<<He>>蹭着自己的护肛板高潮了。“隔着它你都够到了，”<<he>>说，“别停。”`
         )>>
       <<else>>
         <<print either(
-          `<<He>>顶着护肛板高潮了，那块板几乎没有让开。“差、就差一点，”<<he>>小声说。`,
+          `<<He>>顶着护肛板高潮，全身都绷着。“差、就差一点，”<<he>>小声说。`,
           `<<He>>在高潮时抓住自己的护肛板。“隔着它我都感觉得到……”`
         )>>
       <</if>>
@@ -146,86 +152,85 @@
     <<option 'EN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>> comes pressed hard against your <<penis>>, belt and all. "Still counts," <<he>> says, breathless.`,
-          `<<He>> grinds through <<his>> final shudder. "I'm going to ask Jordan to remove it. Come with me?"`
+          `<<He>> presses hard against your <<penis>> and cums anyway. "Still counts," <<he>> says, breathless.`,
+          `<<He>> grinds through <<his>> last shudder. "I'm not going to pretend that's enough," <<he>> says.`
         )>>
       <<else>>
         <<print either(
-          `<<He>> shudders against your <<penis>> through <<his>> chastity belt. "It... it happened anyway."`,
-          `<<He>> comes with a small, frustrated sound. "Sorry. I got your... you're all wet now."`
+          `<<He>> shudders against your <<penis>> through the belt and makes a small, unhappy sound. "I wanted to feel you, not..." <<He>> doesn't finish.`,
+          `<<He>> cums with a small, unhappy breath. "Sorry. I got you all wet."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>>隔着贞操带用力贴着你高潮了。“这样也算数，”<<he>>喘着说。`,
-          `<<He>>在最后一次战栗里蹭着你。“我要去请约旦拆除。你陪我去吗？”`
+          `<<He>>隔着贞操带用力贴着你，还是高潮了。“这样也算数，”<<he>>喘着说。`,
+          `<<He>>在最后一次战栗里蹭着你。“我不会假装这样就够了。”`
         )>>
       <<else>>
         <<print either(
-          `<<He>>隔着贞操带贴着你抖了起来。“还、还是发生了……”`,
-          `<<He>>闷闷地高潮了一声。“对不起。我把你……你现在全湿了。”`
+          `<<He>>隔着贞操带贴着你抖了一下，发出一声很轻的、不太好受的声音。“我想感觉的是你，不是……”<<He>>没有说完。`,
+          `<<He>>闷闷地高潮了一声。“对不起。我把你弄湿了。”`
         )>>
       <</if>>
   <</language>>
 <</widget>>
 
 <<widget 'robin-chastity-ejac-penis'>>
-  <!-- 罗宾的阴茎戴着贞操带或贞操笼。对应原版 Sydney 的男性区块 `_sydneyChastity` 分支。
-       罗宾只会拿到带子，笼子的分支留作将来放宽时使用。 -->
+  <!-- 罗宾的阴茎戴着器具。对应原版 Sydney 的男性区块 `_sydneyChastity` 分支。 -->
   <<language>>
     <<option 'EN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>> finishes into <<his>> chastity belt with a low, frustrated sound, then tugs at it uselessly. "I want to be inside you. I'll get this off."`,
-          `<<He>> comes straining against <<his>> belt. "Next time," <<he>> says, hoarse. "Next time it's off."`
+          `<<He>> finishes into <<his>> own belt and tugs at it once, hard. "I want more than this," <<he>> says. "I'll tell him so myself."`,
+          `<<He>> cums straining against <<his>> belt. "Next time," <<he>> says, hoarse. "Please. Next time."`
         )>>
       <<else>>
         <<print either(
-          `<<He>> comes with a pained gasp, spilling into <<his>> chastity belt instead of into you. "S-sorry..."`,
-          `<<He>> shudders and looks down at <<his>> belt, mortified. "That's... that's so embarrassing."`
+          `<<He>> cums with a pained little gasp, spilling into <<his>> own belt. "S-sorry..."`,
+          `<<He>> goes still, <<his>> face burning, and hides it against you. "Don't look at me."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>>闷哼着射进了贞操带里，然后徒劳地扯了扯它。“我想进去。我会把它摘下来的。”`,
-          `<<He>>顶着带子高潮了。“下次，”<<he>>哑着声音说，“下次一定摘掉。”`
+          `<<He>>射进自己的带子里，用力扯了一下。“我想要的不止这些，”<<he>>说，“我会亲自跟他说。”`,
+          `<<He>>顶着带子高潮了。“下次，”<<he>>哑着声音说，“求你了。下次。”`
         )>>
       <<else>>
         <<print either(
-          `<<He>>痛苦地抽了口气，射在了贞操带里。“对、对不起……”`,
-          `<<He>>抖了一下，低头看着自己的带子，羞得说不出话。“太、太丢脸了。”`
+          `<<He>>痛苦地抽了口气，射进了自己的带子里。“对、对不起……”`,
+          `<<He>>僵住不动了，脸烧得厉害，把脸埋进你身上。“别看我。”`
         )>>
       <</if>>
   <</language>>
 <</widget>>
 
 <<widget 'robin-chastity-ejac-blocked'>>
-  <!-- 罗宾戴着器具，进不来或者在体外就结束。`_args[0]` 为 'cheeks' 时为护肛板，其余为贞操带。 -->
+  <!-- 罗宾戴着器具，进不来或者在体外就结束。`_args[0]` 为 'cheeks' 时罗宾的阴茎顶在你的股间，其余为体外。两种情况挡住他的都是他自己的贞操带。 -->
   <<language>>
     <<option 'EN'>>
       <<if _args[0] is 'cheeks'>>
         <<if C.npc.Robin.dom gte 70>>
           <<print either(
-            `<<He>> comes pressed against <<his>> anal shield, frustratingly short. "I was right there," <<he>> mutters. "I'm asking Jordan to remove it."`,
-            `<<He>> grinds into <<his>> own anal shield and lets out a frustrated breath. "We should go and ask Jordan."`
+            `<<He>> comes pressed against <<his>> belt, <<his>> hips still grinding. "I don't care about the vow right now," <<he>> says. "I care about you."`,
+            `<<He>> grinds against <<his>> own belt and takes a shaky breath. "You have no idea how close that was."`
           )>>
         <<else>>
           <<print either(
-            `<<He>> shudders to a stop against <<his>> anal shield, spilling into <<his>> own belt instead. "I... I couldn't."`,
-            `<<He>> comes with a small, awful sound, blocked by <<his>> anal shield. "Sorry. I'm so sorry."`
+            `<<He>> shudders to a stop, spilling into <<his>> own belt instead. "I... I couldn't."`,
+            `<<He>> cums with a small, hurt sound, spilling into <<his>> own belt. "Sorry. I'm sorry."`
           )>>
         <</if>>
       <<else>>
         <<if C.npc.Robin.dom gte 70>>
           <<print either(
-            `<<He>> comes straining uselessly against <<his>> chastity belt. "So close," <<he>> says through <<his>> teeth. "I'm asking Jordan to take it off."`,
-            `<<He>> finishes locked away from you and glares down at <<his>> own belt. "I'm done with this thing."`
+            `<<He>> comes straining against <<his>> belt. "So close," <<he>> says, and then, quieter, "I'll ask him."`,
+            `<<He>> finishes locked away from you and glares down at <<his>> belt. "If I could take it off, I'd have you right now."`
           )>>
         <<else>>
           <<print either(
-            `<<He>> comes before <<he>> can reach you, gripping <<his>> chastity belt in dismay. "I'm so sorry. I didn't mean to..."`,
+            `<<He>> comes before <<he>> can reach you, gripping <<his>> belt in dismay. "I'm so sorry. I didn't mean to..."`,
             `<<He>> shudders and goes still, spilling into <<his>> own belt instead. "Th-that's not how I wanted it."`
           )>>
         <</if>>
@@ -234,20 +239,20 @@
       <<if _args[0] is 'cheeks'>>
         <<if C.npc.Robin.dom gte 70>>
           <<print either(
-            `<<He>>顶着护肛板高潮了，就差那么一点。“我都到那儿了，”<<he>>咬牙说，“我要请约旦拆除。”`,
-            `<<He>>蹭着自己的护肛板，懊恼地吐出一口气。“我们该去问问约旦。”`
+            `<<He>>隔着贞操带贴着你高潮了，腰还在往前蹭。“我现在不管什么誓言了，”<<he>>说，“我只在乎你。”`,
+            `<<He>>蹭着自己的贞操带，吸了口气才缓过来。“你根本不知道刚才有多近。”`
           )>>
         <<else>>
           <<print either(
-            `<<He>>顶着护肛板抖着停了下来，全射进了自己的带子里。“我、我没能……”`,
-            `<<He>>被护肛板挡着，闷闷地高潮了一声。“对不起。真的对不起。”`
+            `<<He>>隔着贞操带抖着停了下来，全射进了自己的带子里。“我、我没能……”`,
+            `<<He>>隔着带子，闷闷地高潮了一声，声音很不好受。“对不起。真的对不起。”`
           )>>
         <</if>>
       <<else>>
         <<if C.npc.Robin.dom gte 70>>
           <<print either(
-            `<<He>>徒劳地顶着贞操带高潮了。“就快到了，”<<he>>牙缝里挤出声音，“我要请约旦把它摘下来。”`,
-            `<<He>>隔着带子射了出来，低头瞪着自己的带子。“我受够这东西了。”`
+            `<<He>>徒劳地顶着贞操带高潮了。“就快到了，”<<he>>说，然后声音低下去，“我会去问他的。”`,
+            `<<He>>隔着带子射了出来，低头瞪着自己的带子。“要是能摘下来，我现在就要你。”`
           )>>
         <<else>>
           <<print either(
@@ -265,25 +270,25 @@
     <<option 'EN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>> cums straining against <<his>> chastity belt, <<his>> hips twitching without purchase. "Not like this," <<he>> grunts. "Next time I want your mouth properly."`,
-          `<<He>> finishes into <<his>> own belt and tugs at it in frustration. "I don't want to keep waiting."`
+          `<<He>> cums straining against <<his>> belt, <<his>> hips twitching with nowhere to go. "Not like this," <<he>> says. "I want your mouth. Please."`,
+          `<<He>> finishes into <<his>> own belt. "I don't want to wait anymore," <<he>> says.`
         )>>
       <<else>>
         <<print either(
-          `<<He>> cums into <<his>> belt with a small, mortified sound. "Th-that's not what I wanted..."`,
-          `<<He>> shudders and goes quiet, hands over <<his>> belt. "S-sorry. I couldn't help it."`
+          `<<He>> cums into <<his>> belt, face hot. "Th-that's not what I wanted..."`,
+          `<<He>> shudders and covers <<his>> belt with both hands. "S-sorry. I couldn't help it."`
         )>>
       <</if>>
     <<option 'CN'>>
       <<if C.npc.Robin.dom gte 70>>
         <<print either(
-          `<<He>>顶着贞操带射了出来，腰无处可去地抖着。“不是这样，”<<he>>闷声说，“下次我要好好用你的嘴。”`,
-          `<<He>>射进了自己的带子里，烦躁地扯了扯它。“我不想再等了。”`
+          `<<He>>顶着带子射了出来，腰无处可去地抖着。“不是这样，”<<he>>说，“我想要你的嘴。求你了。”`,
+          `<<He>>射进自己的带子里。“我不想再等了，”<<he>>说。`
         )>>
       <<else>>
         <<print either(
-          `<<He>>射在带子里，发出一声羞愧的小动静。“这、这不是我想要的……”`,
-          `<<He>>抖了一下就安静下来，双手盖在带子上。“对、对不起，我控制不住。”`
+          `<<He>>射在带子里，脸烫得厉害。“这、这不是我想要的……”`,
+          `<<He>>抖了一下，双手盖在带子上。“对、对不起，我控制不住。”`
         )>>
       <</if>>
   <</language>>

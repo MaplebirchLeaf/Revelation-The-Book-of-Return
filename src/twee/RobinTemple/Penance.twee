@@ -25,7 +25,8 @@
   <<if maplebirch.get('RobinTemple').punishmentChoice(_args[0], _args[1])>>
     <<switch _args[0]>>
       <<case 'hold'>>
-        <<pain (_args[1] is 'both' and $RobinTemple.punish.joint ? -6 : -3)>>
+        <<set $_pain to _args[1] is 'both' and $RobinTemple.punish.joint ? -6 : -3>>
+        <<pain $_pain>>
       <<case 'belt'>>
         <<arousal -2500>>
       <<case 'hit'>>

@@ -28,7 +28,7 @@ export interface RobinTempleConfession {
 }
 
 /** 路线状态保存在当前 SugarCube 存档中，不属于浏览器会话。 */
-export type RobinTempleForm = 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | 'horse' | 'fish';
+export type RobinTempleForm = 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | 'horse' | 'fish' | 'raven';
 
 /** 异教仪式路线只记录实际完成的调查、共同见闻、谈话与选择。 */
 export interface SecretPromiseState {

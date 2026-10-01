@@ -88,7 +88,20 @@ Ask for a walk at the bench **before 19:00**, once daily. Discuss temple life or
 
 After receiving Jordan's original spear mission, discuss it with Robin before departure for reassurance or preparation. Afterwards, return to describe the journey. These are conversations around the quest, **not a replacement for completing it or a direct way to obtain the spear**.
 
-Full animal transformations with visible, enabled relevant parts offer interactions involving tails, ears, wings or horns. Fox, wolf, cat, harpy and cow are supported. Horse and fish additionally require Deadwood Reblooms' **More transformations**. Each takes ten minutes, with **three daily interactions shared across all forms**. They increase love and ease stress, with some affecting tiredness or singing.
+Full animal transformations with visible, enabled relevant parts offer interactions involving tails, ears, wings or horns. Fox, wolf, cat, harpy and cow are supported. Horse, fish and raven additionally require Deadwood Reblooms' **More transformations**. Each takes ten minutes, with **three daily interactions shared across all forms**. They increase love and ease stress, with some affecting tiredness or singing.
+
+After Robin joins the temple, use **Temple hall → Pray with Robin** between **11:00 and 20:00**, while Robin is at the temple and ordinary prayer is available. Robin must be available, with at least a little love, and the shared daily transformation allowance must not be exhausted.
+
+| Form  | Required visible part | Bench action and effects                                                                            |
+| ----- | --------------------- | --------------------------------------------------------------------------------------------------- |
+| Fox   | Tail                  | Let Robin rest on your tail, increasing love and easing trauma                                      |
+| Wolf  | Ears                  | Nudge Robin with your head, increasing love and easing stress                                       |
+| Cat   | Ears                  | Sit close to Robin, increasing love and easing tiredness                                            |
+| Harpy | Wings                 | Sing for Robin, increasing love and easing tiredness, with singing practice if the choir is enabled |
+| Cow   | Horns                 | Nudge Robin with your horns, increasing love and easing trauma                                      |
+| Horse | Tail                  | Let Robin brush your tail, increasing love and easing stress                                        |
+| Fish  | Fins                  | Show Robin your fins, increasing love and easing stress                                             |
+| Raven | Wings                 | Let Robin tidy your wing feathers, increasing love and easing stress                                |
 
 ### Trial of anguish: taking the vigil together
 
@@ -146,7 +159,7 @@ At the bench, very high stress below collapse allows a daily half-hour rest with
 | Unyielding Will                        | Resists ear-slime bodily control during Confounded Vow, while retaining stimulation, pursuit and costs, and records the shared vigil experience         |
 | More love interests and social avatars | Select Robin and Sydney in Attitudes, requiring awareness rank four or above for two retained partners, with a normal day change after gaining the rank |
 | NPC sidebar portraits                  | Novice clothing, post-vigil monk/nun clothing and bunk pyjamas follow the scene                                                                         |
-| More transformations                   | Visible full horse and fish forms offer bench interactions                                                                                              |
+| More transformations                   | Visible full horse, fish and raven forms offer bench interactions                                                                                       |
 | Temple choir                           | Singing for Robin trains singing, and joint examinations collect pending choir earnings                                                                 |
 
 Absent optional modules disable their integrations without preventing the basic temple route. Confounded Vow does not select love interests or arrange cohabitation for you.

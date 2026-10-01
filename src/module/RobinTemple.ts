@@ -131,9 +131,11 @@ class RobinTemple extends Module {
     if (V.cat >= 6 && visible('cat', 'ears')) forms.push('cat');
     if (V.harpy >= 6 && visible('bird', 'wings')) forms.push('bird');
     if (V.cow >= 6 && visible('cow', 'horns')) forms.push('cow');
-    if (this.core.get('MoreTransformations')) {
+    const transformations = this.core.get('MoreTransformations');
+    if (transformations) {
       if (V.maplebirch?.transformation?.horse?.level >= 6 && visible('horse', 'tail')) forms.push('horse');
       if (V.maplebirch?.transformation?.fish?.level >= 6 && visible('fish', 'fins')) forms.push('fish');
+      if (V.maplebirch?.transformation?.raven?.level >= 6 && visible('raven', 'wings')) forms.push('raven');
     }
     return forms;
   }

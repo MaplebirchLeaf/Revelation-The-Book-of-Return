@@ -58,11 +58,18 @@
         <<option 'CN'>>
           罗宾凑近看你的耳鳍，小心地没有伸手碰。“听见声音时，它们也会动吗？”<<he>>轻声问。大厅里响起钟声，耳鳍的动作替你作了回答。<<He>>笑起来，随后在长椅上给你腾出位置。
       <</language>>
+    <<case 'raven'>>
+      <<language>>
+        <<option 'EN'>>
+          You turn on the bench and ease one black wing towards Robin. A few feathers near your back stick out where your clothes have caught them. "Here?" <<he>> asks, touching one lightly. You nod, and <<he>> smooths it into place, pausing whenever your wing twitches. "You can't reach these yourself, can you?" <<He>> moves aside so you can fold your wing again. "Come and find me if it happens again."
+        <<option 'CN'>>
+          你在长椅上转过身，把一侧黑色羽翼缓缓伸向罗宾。靠近背部的几根羽毛被衣服挤乱，翘了起来。“这里吗？”<<he>>轻轻碰了一根，问道。你点点头，<<he>>便顺着羽毛理过去，每当你的翅膀轻颤，就停一停。“这几根，你自己够不到吧？”<<He>>往旁边挪了挪，让你收起翅膀。“以后再弄乱，就来找我。”
+      <</language>>
   <</switch>>
   <<npcincr Robin love 2>>
   <<switch $RobinTemple.transformation_kind>>
     <<case 'fox' 'cow'>><<trauma -2>><<glove>><<ltrauma>><br><br>
-    <<case 'wolf' 'horse' 'fish'>><<stress -2>><<glove>><<lstress>><br><br>
+    <<case 'wolf' 'horse' 'fish' 'raven'>><<stress -2>><<glove>><<lstress>><br><br>
     <<case 'cat'>><<tiredness -2>><<glove>><<ltiredness>><br><br>
     <<case 'bird'>><<tiredness -1>><<glove>><<ltiredness>><<if maplebirch.get('TempleChoir')>><<singingskill 3>><<gsingingskill>><</if>><br><br>
   <</switch>>
