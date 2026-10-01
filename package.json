@@ -22,7 +22,7 @@
   "devDependencies": {
     "@rspack/cli": "^2.2.7",
     "@rspack/core": "^2.2.7",
-    "@scml-dol-maplebirch/types": "5.1.0",
+    "@scml-dol-maplebirch/types": "5.2.0",
     "@types/adm-zip": "^0.5.8",
     "@types/bun": "^1.4.2",
     "@types/twine-sugarcube": "^2.37.0",
