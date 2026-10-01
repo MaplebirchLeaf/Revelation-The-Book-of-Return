@@ -9,7 +9,7 @@ import ChoirCN from '@/assets/hint/CN/TempleChoir.md';
 
 interface GuideModule {
   guide: {
-    render(id: string, intro: string, sections: readonly { id: string; title: string; content: string; module: string }[]): string;
+    add(id: string, sections: () => readonly { id: string; title: string; content: string; module: string }[]): void;
   };
 }
 
@@ -22,17 +22,11 @@ export default class Revelation extends Module {
   public preInit(): void {
     super.preInit();
     this.core.tool.onInit(() => {
-      if (this.core.get('DeadwoodReblooms')) setup.maplebirch.hint.push('<<= maplebirch.get("RBR").wiki>>');
-    });
-  }
-
-  public get wiki(): string {
-    const deadwood = this.core.get('DeadwoodReblooms') as GuideModule | undefined;
-    return (
-      deadwood?.guide.render('revelation-guide', lanSwitch('Temple routes and choir work.', '神殿路线与唱诗工作。'), [
+      const deadwood = this.core.get('DeadwoodReblooms') as GuideModule | undefined;
+      deadwood?.guide.add('revelation-guide', () => [
         { id: 'RobinTemple', title: lanSwitch('Robin · Temple route', '罗宾 · 神殿路线'), content: lanSwitch(RobinEN, RobinCN), module: 'RobinTemple' },
         { id: 'TempleChoir', title: lanSwitch('Temple choir · Singing', '神殿唱诗班 · 歌唱'), content: lanSwitch(ChoirEN, ChoirCN), module: 'TempleChoir' }
-      ]) ?? ''
-    );
+      ]);
+    });
   }
 }
