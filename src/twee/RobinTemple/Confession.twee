@@ -76,7 +76,7 @@
     <<run statusCheck('Robin')>>
     <<if $RobinTemple.templePromised is 'Robin' and $RobinTemple.intimacy_day is Time.days>>
       <<addinlineevent 'confession_robin_promised_1' 4>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_promised'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_promised'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<if $robinSeen.includes('confessionRevealed')>>
           <<lanSwitch '<span class="blue">You hear three knocks on the door frame.</span>' '<span class="blue">你听到门框上传来三声敲门声。</span>'>>
@@ -95,10 +95,11 @@
             <br><br>
             “我爱人和我。我们进行了承诺仪式，但是……我们今天已经做过亲密的事了。这感觉很罪恶，可我就是无法抗拒<<pher>>的触碰。”
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <<elseif $RobinTemple.templePromised is 'Robin' and $RobinTemple.intimacy_count gte 3>>
       <<addinlineevent 'confession_robin_promised_2' 3>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_promised'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_promised'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<if $robinSeen.includes('confessionRevealed')>>
           <<lanSwitch '<span class="blue">You hear three knocks on the door frame.</span>' '<span class="blue">你听到门框上传来三声敲门声。</span>'>>
@@ -117,10 +118,11 @@
             <br><br>
             “我爱人和我。我们进行了承诺仪式，但是……我们之间的亲密行为真的是很罪恶。”
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <<elseif $robinromance is 1 and $RobinTemple.intimacy_count gte 1>>
       <<addinlineevent 'confession_robin_romance' 2>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_romance'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_romance'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<if $robinSeen.includes('confessionRevealed')>>
           <<lanSwitch '<span class="blue">You hear three knocks on the door frame.</span>' '<span class="blue">你听到门框上传来三声敲门声。</span>'>>
@@ -145,10 +147,11 @@
               我们做了……很多。”
             <</if>>
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <<elseif !($robinromance is 1) and C.npc.Robin.love gte 60>>
       <<addinlineevent 'confession_robin_love' 1>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_love'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_love'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<language>>
           <<option 'EN'>>
@@ -170,11 +173,12 @@
             <br><br>
             “<<Sister>>……<<he>>根本不知道。这些感觉赶不走。它快把我从里面撕开了。”
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <</if>>
     <<if $RobinTemple.templePromised is 'Robin' and $robinSeen.includes('punishment')>>
       <<addinlineevent 'confession_robin_doubt' 1>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_doubt'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_doubt'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<if $robinSeen.includes('confessionRevealed')>>
           <<lanSwitch '<span class="blue">You hear three knocks on the door frame.</span>' '<span class="blue">你听到门框上传来三声敲门声。</span>'>>
@@ -219,11 +223,12 @@
             <br><br>
             <<He>>止住眼泪。“<<Sister>>，我该怎么做呢？”
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <</if>>
     <<if $robinpaid is 1>>
       <<addinlineevent 'confession_robin_things' 1>>
-        <<npc Robin>><<person1>><<set $attendant to 'robin_things'>>
+        <<set _noOptions to true>><<npc Robin>><<person1>><<set $attendant to 'robin_things'>>
         <<set $RobinTemple.confession_day to Time.days>>
         <<if $robinSeen.includes('confessionRevealed')>>
           <<lanSwitch '<span class="blue">You hear three knocks on the door frame.</span>' '<span class="blue">你听到门框上传来三声敲门声。</span>'>>
@@ -242,6 +247,7 @@
             <br><br>
             外面的人的声音细小，“我不知道该怎么做，我的内心始终有道坎，能宽恕我吗？<<sister>>。”
         <</language>>
+        <<robin-temple-confession-options>>
       <</addinlineevent>>
     <</if>>
   <</if>>

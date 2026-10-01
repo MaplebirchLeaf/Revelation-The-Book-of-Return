@@ -1,6 +1,6 @@
 :: TempleChoir Widgets [widget]
 <<widget "temple-choir-hall-link">>
-  <<if maplebirch.get('TempleChoir').member>>
+  <<if _revelationTempleLinks is 'pray' and maplebirch.get('TempleChoir').member>>
     <<if !$TempleChoir.joined>>
       <<templeicon 'hymnbook'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
     <<elseif maplebirch.get('TempleChoir').practice>>
@@ -10,7 +10,7 @@
 <</widget>>
 
 <<widget "temple-choir-mass-link">>
-  <<if maplebirch.get('TempleChoir').service>>
+  <<if _revelationTempleLinks is 'mass' and maplebirch.get('TempleChoir').service>>
     <<templeicon 'choir'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
   <</if>>
 <</widget>>

@@ -17,7 +17,7 @@
 <</widget>>
 
 <<widget 'robin-temple-hall-link'>>
-  <<if maplebirch.get('RobinTemple').member
+  <<if _revelationTempleLinks is 'pray' and maplebirch.get('RobinTemple').member
     and $stress lt $stressmax and $exposed lte 0
     and Time.hour gte 11 and Time.hour lt 20
     and getRobinLocation() is 'temple' and !$robinmissing>>

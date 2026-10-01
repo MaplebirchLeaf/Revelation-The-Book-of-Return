@@ -72,6 +72,18 @@ class RobinTemple extends Module {
     return ['member', 'approved', 'promised'].includes(V.RobinTemple?.stage);
   }
 
+  /** 任一月检日历到期时共同检查，罗宾暂时缺席也不拆成两轮。 */
+  public get examinationDue(): boolean {
+    const state = V.RobinTemple;
+    return (
+      (this.publicPromise === 'Robin' || state.dual_promise) &&
+      (state.chastity_timer <= 0 || V.temple_chastity_timer <= 0 || !state.monthly_checked) &&
+      V.temple_rank !== undefined &&
+      V.temple_rank !== 'prospective' &&
+      V.exposed <= 0
+    );
+  }
+
   /** 未承诺且保有初次贞洁时，拆除沿用原版神殿的 £80 捐赠。 */
   public get claspFee(): number {
     return V.RobinTemple.templePromised !== 'Robin' && C.npc.Robin.virginity.vaginal === true && C.npc.Robin.virginity.penile === true ? 8000 : 0;

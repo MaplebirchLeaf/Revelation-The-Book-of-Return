@@ -48,6 +48,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   });
 
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-links', passage: 'Temple Quarters' }, { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' }, { widget: 'robin-temple-hall-link', passage: 'Temple' });
 
   // 守夜对白放在原版选择前，保留涉及原句替换与判定的精确补丁。
   maplebirch.tool.addTo(
@@ -69,27 +70,10 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   maplebirch.tool.inject({
     locationPassage: {
       Temple: [
-        // 亵渎仪式后由本模组的三人联合检查统一处理，避免原版只检查 PC 与悉尼。
-        {
-          src: '$temple_chastity_timer lte 0 and $temple_rank',
-          to: '$temple_chastity_timer lte 0 and !$RobinTemple.dual_promise and $temple_rank',
-          expected: 1
-        },
-        // 在原版大厅入口计算月检条件，具体流程交由 widget 处理。
-        {
-          src: '<<effects>>',
-          applyafter: '<<robin-temple-examination-ready>>',
-          expected: 1
-        },
-        // 罗宾月检优先进入，保留原版悉尼检查分支。
+        // 同一条月检分支优先处理罗宾，不拆改原版悉尼与单人检查的条件。
         {
           src: '<<elseif $temple_chastity_timer lte 0',
-          applybefore: '<<elseif _robinTempleExamDue>><<robin-temple-examination>>\n',
-          expected: 1
-        },
-        {
-          src: '<<templeicon "pray">>',
-          applybefore: '<<robin-temple-vigil-reminder>><<robin-temple-hall-link>>\n',
+          applybefore: "<<elseif maplebirch.get('RobinTemple').examinationDue>><<robin-temple-examination>>\n",
           expected: 1
         }
       ],
@@ -97,7 +81,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         // 神殿不主持第二份誓约，亵渎仪式独立结算。
         {
           src: '<<if !_sydneyStatus.includes("pure")>>',
-          to: '<<robin-temple-promise-limit>><<if _robinPromiseBlocked>><<robin-temple-promise-blocked>><<sydneyOptions>><<elseif !_sydneyStatus.includes("pure")>>',
+          to: '<<if $RobinTemple.templePromised is "Robin">><<robin-temple-promise-blocked>><<sydneyOptions>><<elseif !_sydneyStatus.includes("pure")>>',
           expected: 1
         }
       ],
@@ -162,15 +146,10 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Temple Vigil 14': [
-        // 在原版成功结局外追加罗宾同行分支，保留原文锚点。
+        // 在同一条件链中增加罗宾结局，不再跨正文寻找最后一个 </if>。
         {
           src: '<<if $phase is 2>>',
-          applybefore: '<<if $RobinTemple.vigil_attending and $RobinTemple.vigil_with_robin>><<robin-temple-vigil-success>><<else>>\n',
-          expected: 1
-        },
-        {
-          srcmatch: /<<\/if>>(?![\s\S]*<<\/if>>)/,
-          applyafter: '<</if>>',
+          to: '<<if $RobinTemple.vigil_attending and $RobinTemple.vigil_with_robin>><<robin-temple-vigil-success>><<elseif $phase is 2>>',
           expected: 1
         },
         {
@@ -185,12 +164,6 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           src: '<<if _wraithConfess>>',
           applybefore: '<<robin-temple-confession-event>>\n',
           expected: 1
-        },
-        // 罗宾是忏悔者，因此回应项走模组自己的 Forgive/Repent/Contrition/Purge，其余忏悔者保留原版。
-        {
-          src: '<<if !_noOptions>>',
-          to: `<<if $attendant.includes('robin')>>\n\t\t<<robin-temple-confession-options>>\n<<elseif !_noOptions>>`,
-          expected: 1
         }
       ]
     },
@@ -200,7 +173,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         {
           // 罗宾的器具挡下 PC（$speechNPCChastity），以及 PC 的器具被罗宾看见
           //（$speechgenitals + playerChastity()）。顺序照原版 Sydney，插在无名台词兜底之前。
-          src: '\t<<else>>\n\t\t<<set _noNameComment to true>>',
+          srcmatch: /<<else>>\s*<<set _noNameComment to true>>/,
           applybefore:
             // 多 NPC 同场时 $speechNPCChastity 是全局标记，再确认罗宾本人确实戴着器具。
             '\t<<elseif $speechNPCChastity is 1 and (C.npc.Robin.chastity.penis.includes("chastity") or C.npc.Robin.chastity.vagina.includes("chastity") or C.npc.Robin.chastity.anus.includes("shield")) and !$robinUniqueComments.includes("NPCChastity")>>\n' +
@@ -213,78 +186,24 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Widgets Ejaculation-ROBIN': [
-        // 女性罗宾：磨蹭、护肛板、与 PC 的阴茎相抵。
-        {
-          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "vagina">>',
-          applybefore: '\t\t\t<<elseif $NPCList[_nn].vagina is "vagina" and $NPCList[_nn].chastity.vagina.includes("chastity")>>\n\t\t\t\t<<robin-chastity-ejac-trib>>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "otheranusfrot" or $NPCList[_nn].vagina is "otheranusentrance">>',
-          applybefore:
-            '\t\t\t<<elseif ($NPCList[_nn].vagina is "otheranusfrot" or $NPCList[_nn].vagina is "otheranusentrance") and $NPCList[_nn].chastity.anus.includes("shield")>>\n\t\t\t\t<<robin-chastity-ejac-otheranus>>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "frot">>',
-          applybefore: '\t\t\t<<elseif $NPCList[_nn].vagina is "frot" and $NPCList[_nn].chastity.vagina.includes("chastity")>>\n\t\t\t\t<<robin-chastity-ejac-frot>>\n',
-          expected: 1
-        },
-        // 男性罗宾：被自己的器具挡在体外。
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "vaginaentrance">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "vaginaentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "vagina">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "vaginaimminent">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "vaginaimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "vagina">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "cheeks">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "cheeks" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "cheeks">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "anusentrance">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "anusentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "anusimminent">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "anusimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "otheranusfrot" or $NPCList[_nn].penis is "otheranusentrance" or $NPCList[_nn].penis is "otheranusimminent">>',
-          applybefore:
-            '\t\t<<elseif ($NPCList[_nn].penis is "otheranusfrot" or $NPCList[_nn].penis is "otheranusentrance" or $NPCList[_nn].penis is "otheranusimminent") and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "penis">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "penis" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "penis">>\n',
-          expected: 1
-        },
-        // 男性罗宾在被 PC 的器具挡下时用不到；这里补齐阴茎互相摩擦的状态。
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "penisentrance" or $NPCList[_nn].penis is "penisimminent">>',
-          applybefore:
-            '\t\t<<elseif ($NPCList[_nn].penis is "penisentrance" or $NPCList[_nn].penis is "penisimminent") and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-penis>>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "mouthentrance">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "mouthentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-mouth>>\n',
-          expected: 1
-        },
-        {
-          src: '\t\t<<elseif $NPCList[_nn].penis is "mouthimminent">>',
-          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "mouthimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-mouth>>\n',
-          expected: 1
-        }
-      ],
+        ['$NPCList[_nn].vagina is "vagina"', 'vagina', 'robin-chastity-ejac-trib'],
+        ['$NPCList[_nn].vagina is "otheranusfrot" or $NPCList[_nn].vagina is "otheranusentrance"', 'anus', 'robin-chastity-ejac-otheranus'],
+        ['$NPCList[_nn].vagina is "frot"', 'vagina', 'robin-chastity-ejac-frot'],
+        ['$NPCList[_nn].penis is "vaginaentrance"', 'penis', 'robin-chastity-ejac-blocked "vagina"'],
+        ['$NPCList[_nn].penis is "vaginaimminent"', 'penis', 'robin-chastity-ejac-blocked "vagina"'],
+        ['$NPCList[_nn].penis is "cheeks"', 'penis', 'robin-chastity-ejac-blocked "cheeks"'],
+        ['$NPCList[_nn].penis is "anusentrance"', 'penis', 'robin-chastity-ejac-blocked "anus"'],
+        ['$NPCList[_nn].penis is "anusimminent"', 'penis', 'robin-chastity-ejac-blocked "anus"'],
+        ['$NPCList[_nn].penis is "otheranusfrot" or $NPCList[_nn].penis is "otheranusentrance" or $NPCList[_nn].penis is "otheranusimminent"', 'penis', 'robin-chastity-ejac-blocked "anus"'],
+        ['$NPCList[_nn].penis is "penis"', 'penis', 'robin-chastity-ejac-blocked "penis"'],
+        ['$NPCList[_nn].penis is "penisentrance" or $NPCList[_nn].penis is "penisimminent"', 'penis', 'robin-chastity-ejac-penis'],
+        ['$NPCList[_nn].penis is "mouthentrance"', 'penis', 'robin-chastity-ejac-mouth'],
+        ['$NPCList[_nn].penis is "mouthimminent"', 'penis', 'robin-chastity-ejac-mouth']
+      ].map(([condition, part, widget]) => ({
+        src: `<<elseif ${condition}>>`,
+        applybefore: `<<elseif (${condition}) and $NPCList[_nn].chastity.${part}.includes("${part === 'anus' ? 'shield' : 'chastity'}")>><<${widget}>>\n`,
+        expected: 1
+      })),
       'Widgets Robin': [
         {
           src: '<<robinbully>>',

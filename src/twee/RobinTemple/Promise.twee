@@ -16,10 +16,6 @@
   <</if>>
 <</widget>>
 
-<<widget 'robin-temple-promise-limit'>>
-  <<set _robinPromiseBlocked to $RobinTemple.templePromised is 'Robin'>>
-<</widget>>
-
 <<widget 'robin-temple-promise-blocked'>>
   <<language>>
     <<option 'EN'>>
