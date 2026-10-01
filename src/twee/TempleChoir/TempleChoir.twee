@@ -85,7 +85,6 @@
     <</language>>
   <</if>>
   <<set $TempleChoir.joined to true>>
-  <<set $TempleChoir.auditionDay to Time.days>>
   <<singingskill 20>><<grace 1>><<gsingingskill>><<ggrace>>
   <br><br>
   <<language>>

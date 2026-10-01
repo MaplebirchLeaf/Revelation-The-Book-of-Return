@@ -6,25 +6,25 @@
   <<if $RobinTemple.clasp_equipped>>
     <<language>>
       <<option 'EN'>>
-        Robin touches the clasp when you ask about it. "Jordan gave me this one when we made our vows," <<he>> says. "It's the temple's. If I ever want it off, I have to ask <<nnpc_him 'Jordan'>>, not just take it off myself."
+        Robin touches the clasp when you ask about it. "This one's from the temple," <<he>> says. "If I ever want it off, I have to ask <<nnpc_him 'Jordan'>>, not just take it off myself."
       <<option 'CN'>>
-        你问起贞操带，罗宾碰了碰扣锁。“立誓的时候，约旦给我戴上了这个，”<<he>>说，“这是神殿的东西。如果我哪天想取下来，得去问<<nnpc_him 'Jordan'>>，不能自己摘。”
+        你问起贞操带，罗宾碰了碰扣锁。“这是神殿给我的，”<<he>>说，“如果我哪天想取下来，得去问<<nnpc_him 'Jordan'>>，不能自己摘。”
     <</language>>
   <<elseif C.npc.Robin.chastity.anus is ''
     and C.npc.Robin.chastity.vagina is ''
     and C.npc.Robin.chastity.penis is ''>>
     <<language>>
       <<option 'EN'>>
-        Robin puts down the storeroom list. Jordan removed the clasp and kept it. "Our promise still stands," <<he>> says, "whether I wear it or not."
+        Robin puts down the storeroom list. The temple fitting was destroyed when Jordan removed it. "Our promise still stands," <<he>> says, "whether I wear it or not."
       <<option 'CN'>>
-        罗宾放下储藏室清单。贞操带已经被约旦取下并收了回去。“我们的承诺还在，”<<he>>说，“戴不戴它，都不会改变这件事。”
+        罗宾放下储藏室清单。神殿的器具已经在约旦拆除时毁掉了。“我们的承诺还在，”<<he>>说，“戴不戴它，都不会改变这件事。”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        Robin puts down the storeroom list. "<<nnpc_He 'Jordan'>> said this one was the wrong size and swapped it," <<he>> explains. "It's still the temple's, so the same rules apply."
+        Robin puts down the storeroom list. "This isn't the set Jordan fitted," <<he>> says. "I'd have to ask whoever put it on me."
       <<option 'CN'>>
-        罗宾放下储藏室清单。“约旦说这一件尺寸不对，给我换了一套，”<<he>>说，“还是神殿的东西，所以规矩也一样。”
+        罗宾放下储藏室清单。“这一套不是约旦给我戴上的，”<<he>>说，“得去问给我戴上它的人。”
     <</language>>
   <</if>>
 <<elseif C.npc.Robin.conviction gte 20>>
@@ -43,32 +43,68 @@
   <</language>>
 <</if>>
 <br><br>
-<<if $RobinTemple.templePromised is 'Robin'>>
+<<if maplebirch.get('RobinTemple').member>>
   <<if $RobinTemple.clasp_request isnot ''>>
     <<language>>
       <<option 'EN'>>
-        Robin has already spoken to Jordan. <<He>> will tell you what they decided tomorrow.
+        Robin remembers your earlier conversation. "I want to tell Jordan myself," <<he>> says. "Will you come with me?"
       <<option 'CN'>>
-        罗宾已经去找过约旦。明天<<he>>会告诉你，他们商量出了什么结果。
+        罗宾记得你们先前的谈话。“我想亲口告诉约旦，”<<he>>说，“你陪我一起去，好吗？”
     <</language>>
     <br><br>
+    <<if maplebirch.get('RobinTemple').claspReady>>
+      <<if $RobinTemple.clasp_request is 'remove'>>
+        <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <<else>>
+        <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <</if>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          <span class='teal'>Return together during daylight, when Jordan is available outside Sunday mass.</span>
+        <<option 'CN'>>
+          <span class='teal'>白天约旦在场、没有主持周日弥撒时，再一起去找约旦。</span>
+      <</language>><br>
+    <</if>>
   <<elseif $RobinTemple.clasp_equipped
     and C.npc.Robin.chastity.anus is 'anal shield'
     and C.npc.Robin.chastity.vagina is 'chastity belt'
     and C.npc.Robin.chastity.penis is 'chastity belt'>>
-    <<lockicon 'unlock'>><<lanLink '问罗宾是否想取下贞操带 (0:15)' 'RobinTemple Clasp Request'>>
-      <<set $RobinTemple.clasp_request to 'remove'>>
-      <<set $RobinTemple.clasp_request_day to Time.days>>
-      <<pass 15>>
-    <</lanLink>><br>
+    <<if maplebirch.get('RobinTemple').claspFee gt 0>>
+      <<language>>
+        <<option 'EN'>>
+          <span class='teal'>Without a promise, Jordan asks for an £80 donation to remove a virgin's temple fitting. Removing it does not release Robin from the vow.</span>
+        <<option 'CN'>>
+          <span class='teal'>尚未承诺、仍保有初次贞洁时，约旦要求捐赠 £80 才会拆除神殿器具。取下它不代表罗宾可以违背誓言。</span>
+      <</language>><br><br>
+    <</if>>
+    <<if $money gte maplebirch.get('RobinTemple').claspFee>>
+      <<lockicon 'unlock'>><<lanLink '问罗宾是否想取下贞操带 (0:15)' 'RobinTemple Clasp Request'>>
+        <<if $RobinTemple.clasp_request is '' and $RobinTemple.clasp_equipped
+          and C.npc.Robin.chastity.anus is 'anal shield'
+          and C.npc.Robin.chastity.vagina is 'chastity belt'
+          and C.npc.Robin.chastity.penis is 'chastity belt'
+          and $money gte maplebirch.get('RobinTemple').claspFee>>
+          <<money `-maplebirch.get('RobinTemple').claspFee`>>
+          <<set $RobinTemple.clasp_request to 'remove'>>
+          <<pass 15>>
+        <</if>>
+      <</lanLink>><br>
+    <<else>>
+      <<language>><<option 'EN'>><span class='red'>You do not have the donation in cash.</span><<option 'CN'>><span class='red'>你没有足够的现金支付这笔捐赠。</span><</language>><br>
+    <</if>>
   <<elseif !$RobinTemple.clasp_equipped
     and C.npc.Robin.chastity.anus is ''
     and C.npc.Robin.chastity.vagina is ''
     and C.npc.Robin.chastity.penis is ''>>
     <<lockicon>><<lanLink '问罗宾是否想重新戴上贞操带 (0:15)' 'RobinTemple Clasp Request'>>
-      <<set $RobinTemple.clasp_request to 'refit'>>
-      <<set $RobinTemple.clasp_request_day to Time.days>>
-      <<pass 15>>
+      <<if $RobinTemple.clasp_request is '' and !$RobinTemple.clasp_equipped
+        and C.npc.Robin.chastity.anus is ''
+        and C.npc.Robin.chastity.vagina is ''
+        and C.npc.Robin.chastity.penis is ''>>
+        <<set $RobinTemple.clasp_request to 'refit'>>
+        <<pass 15>>
+      <</if>>
     <</lanLink>><br>
   <<else>>
     <<language>>
@@ -79,21 +115,24 @@
     <</language>>
     <br><br>
   <</if>>
-<<else>>
+<</if>>
+<<if maplebirch.get('RobinTemple').publicPromise is ''>>
   <<socialiseicon 'ask'>><<lanLink '请罗宾亲自向约旦询问' 'RobinTemple Clasp Jordan'>><</lanLink>><br>
 <</if>>
 <<loveicon 'hug'>><<lanLink '先听罗宾说完' 'RobinTemple Clasp Listen'>><</lanLink>><br>
 
 :: RobinTemple Clasp Request
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.templePromised is 'Robin'
-  and $RobinTemple.clasp_request_day is Time.days>>
+<<if maplebirch.get('RobinTemple').member
+  and $RobinTemple.clasp_request isnot ''>>
   <<if $RobinTemple.clasp_request is 'remove'>>
     <<language>>
       <<option 'EN'>>
-        "Do you want to ask Jordan about taking the lock off?" you say. Robin looks down at the clasp, then nods. "I want to explain it myself," <<he>> says. "Wait until tomorrow, and I'll tell you what Jordan said."
+        "Do you want to ask Jordan about taking the lock off?" you say. Robin looks down at the clasp, then nods. "I want to explain it myself," <<he>> says. "Will you come with me?"
+        <<if $RobinTemple.templePromised isnot 'Robin'>><br><br>Robin takes the receipt for the arrangement. "I'm still keeping my vow," <<he>> says. "I want to tell Jordan that myself."<</if>>
       <<option 'CN'>>
-        “你想不想去问约旦，能不能取下贞操带？”你问。罗宾低头看了看扣锁，点点头。“我想自己说明白，”<<he>>说，“等明天，我再告诉你约旦怎么说。”
+        “你想不想去问约旦，能不能取下贞操带？”你问。罗宾低头看了看扣锁，点点头。“我想自己说明白，”<<he>>说，“你陪我一起去，好吗？”
+        <<if $RobinTemple.templePromised isnot 'Robin'>><br><br>罗宾收好办理的凭条。“我还是会遵守誓言，”<<he>>说，“这句话，我想亲口告诉约旦。”<</if>>
     <</language>>
   <<else>>
     <<language>>
@@ -101,6 +140,21 @@
         You ask whether Robin wants to wear the chastity belt again. <<He>> thinks for a moment. "I might," <<he>> says. "But I will speak to Jordan myself before deciding."
       <<option 'CN'>>
         你问罗宾是否想重新戴上贞操带。<<He>>想了一会儿。“也许想，”<<he>>说，“但我会先亲自与约旦谈，再作决定。”
+    <</language>>
+  <</if>>
+  <br><br>
+  <<if maplebirch.get('RobinTemple').claspReady>>
+    <<if $RobinTemple.clasp_request is 'remove'>>
+      <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+    <<else>>
+      <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+    <</if>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        "We'll have to wait until Jordan is free," Robin says. <span class='teal'>Come back together during daylight, outside Sunday mass.</span>
+      <<option 'CN'>>
+        “得等约旦有空才行，”罗宾说。<span class='teal'>白天约旦在场、没有主持周日弥撒时，再一起回来。</span>
     <</language>>
   <</if>>
 <<else>>
@@ -116,9 +170,7 @@
 
 :: RobinTemple Clasp Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.templePromised is 'Robin'
-  and $RobinTemple.clasp_request isnot ''
-  and Time.days gt $RobinTemple.clasp_request_day>>
+<<if maplebirch.get('RobinTemple').claspReady and $RobinTemple.clasp_request isnot ''>>
   <<if $RobinTemple.clasp_request is 'remove'
     and $RobinTemple.clasp_equipped
     and C.npc.Robin.chastity.anus is 'anal shield'
@@ -128,14 +180,28 @@
     <<set C.npc.Robin.chastity.vagina to ''>>
     <<set C.npc.Robin.chastity.penis to ''>>
     <<set $RobinTemple.clasp_equipped to false>>
+    <<pass 15>>
     <<language>>
       <<option 'EN'>>
-        Robin meets you outside the side room. "Jordan checked our promise," <<he>> says, "then used a tool to take it off. It looked a bit frightening." <<He>> reaches for your hand. "I still meant what I said when we made our vows."
+        Robin leads you to the side room. Jordan checks the earlier request, then asks Robin if <<he>> is certain. <<if $RobinTemple.templePromised is 'Robin'>>Robin glances at your matching rings before nodding. "We still mean our promise."<<else>>Robin nods, keeping hold of your hand. "I know my vow still stands."<</if>>
+        <br><br>
+        Jordan fetches a sinister-looking blade and takes Robin inside. You wait in the corridor while the fittings are removed. A few members pass on their way to the hall before the door opens again.
+        <br><br>
+        Robin steps out, straightening <<his>> clothes. "That tool looked a bit frightening," <<he>> admits. <<He>> reaches for your hand again. <<if $RobinTemple.templePromised is 'Robin'>>"But I still meant what I said when we made our vows."<<else>>"Thank you for waiting."<</if>>
       <<option 'CN'>>
-        罗宾在侧室外等你。“约旦核实了我们的誓言，”<<he>>说，“才用工具把它取下来。那东西看着有点吓人。”<<He>>伸手牵住你。“立誓时说的话，我还是认真的。”
+        罗宾带你来到侧室门口。约旦核对先前的申请，又问罗宾是不是想好了。<<if $RobinTemple.templePromised is 'Robin'>>罗宾看了看你们手上的戒指，点点头。“我们立下的承诺还是算数的。”<<else>>罗宾牵着你的手，点点头。“我知道，入教时的誓言还在。”<</if>>
+        <br><br>
+        约旦拿来阴森的刀片，领罗宾进了侧室。你留在走廊等候，几名成员从你身旁走向大厅。等门再次打开时，器具已经拆除了。
+        <br><br>
+        罗宾走出来，理了理衣服。“那个工具看着有点吓人，”<<he>>承认，又伸手牵住你。<<if $RobinTemple.templePromised is 'Robin'>>“不过，立誓时说的话，我还是认真的。”<<else>>“谢谢你等我。”<</if>>
     <</language>>
     <br><br>
-    <span class='green'><<lanSwitch 'Robin asked for the belt to be removed.' '罗宾自己要求取下了贞操带。'>></span>
+    <<language>>
+      <<option 'EN'>>
+        <span class='green'>Jordan has removed Robin's temple chastity belt and anal shield.</span>
+      <<option 'CN'>>
+        <span class='green'>约旦已拆除罗宾的神殿贞操带与护肛板。</span>
+    <</language>>
   <<elseif $RobinTemple.clasp_request is 'refit'
     and !$RobinTemple.clasp_equipped
     and C.npc.Robin.chastity.anus is ''
@@ -145,14 +211,28 @@
     <<set C.npc.Robin.chastity.vagina to 'chastity belt'>>
     <<set C.npc.Robin.chastity.penis to 'chastity belt'>>
     <<set $RobinTemple.clasp_equipped to true>>
+    <<pass 5>>
     <<language>>
       <<option 'EN'>>
-        Robin comes back from speaking to Jordan with the belt fastened again. "I asked to wear it," <<he>> says. "Jordan reminded me that our vows still count, with or without it." <<He>> takes your hand before returning to the work list.
+        You accompany Robin to the side room. Jordan checks the request and asks if <<he>> still wants the fittings. Robin nods. "I'd like to wear them again."
+        <br><br>
+        Jordan brings a new set and takes Robin inside. You wait in the corridor while the fittings are secured and checked. When Robin returns, <<he>> takes a few careful steps before relaxing.
+        <br><br>
+        "It feels all right," <<he>> says, taking your hand. "Jordan reminded me that <<if $RobinTemple.templePromised is 'Robin'>>our vows<<else>>my vow<</if>> still <<if $RobinTemple.templePromised is 'Robin'>>count<<else>>counts<</if>>, with or without it." Together, you head back to the work list.
       <<option 'CN'>>
-        罗宾与约旦谈过之后，重新戴好了贞操带。“是我自己要求的，”<<he>>说，“约旦提醒我，戴不戴都得遵守我们的誓言。”<<He>>牵了牵你的手，才回到工作表前。
+        你陪罗宾来到侧室。约旦核对申请，问<<he>>是否仍然想戴上器具。罗宾点点头。“我想重新戴好。”
+        <br><br>
+        约旦拿来一套新的器具，领罗宾进去。你在走廊等候，约旦为<<he>>戴好后又检查了一遍。罗宾出来时小心地走了几步，才放松下来。
+        <br><br>
+        “没有不舒服，”<<he>>说，牵住你的手。“约旦提醒我，戴不戴都得遵守<<if $RobinTemple.templePromised is 'Robin'>>我们的誓言<<else>>入教时的誓言<</if>>。”你们一起回到工作表前。
     <</language>>
     <br><br>
-    <span class='green'><<lanSwitch 'Robin asked for the belt to be refitted.' '罗宾自己要求重新戴上了贞操带。'>></span>
+    <<language>>
+      <<option 'EN'>>
+        <span class='green'>Jordan has refitted Robin's temple chastity belt and anal shield.</span>
+      <<option 'CN'>>
+        <span class='green'>约旦已为罗宾重新戴好神殿贞操带与护肛板。</span>
+    <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
@@ -165,9 +245,9 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Robin has no news from Jordan yet.
+      <<if $RobinTemple.clasp_request isnot ''>>Robin keeps the arrangements in mind. You will need to return together during daylight, when Jordan is free outside Sunday mass.<<else>>There is nothing to arrange right now.<</if>>
     <<option 'CN'>>
-      罗宾还没收到约旦的答复。
+      <<if $RobinTemple.clasp_request isnot ''>>罗宾还记着这件事。得等白天约旦在场、没有主持周日弥撒时，你们再一起回来。<<else>>现在没有需要办理的事。<</if>>
   <</language>>
 <</if>>
 <br><br>

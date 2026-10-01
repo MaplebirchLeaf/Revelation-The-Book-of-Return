@@ -195,6 +195,96 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       ]
     },
     widgetPassage: {
+      // 原版没有 Robin 的贞操器具战斗反应，按 Sydney 的写法把区块补进原版 widget。
+      'Widgets speech-Robin': [
+        {
+          // 罗宾的器具挡下 PC（$speechNPCChastity），以及 PC 的器具被罗宾看见
+          //（$speechgenitals + playerChastity()）。顺序照原版 Sydney，插在无名台词兜底之前。
+          src: '\t<<else>>\n\t\t<<set _noNameComment to true>>',
+          applybefore:
+            // 多 NPC 同场时 $speechNPCChastity 是全局标记，再确认罗宾本人确实戴着器具。
+            '\t<<elseif $speechNPCChastity is 1 and (C.npc.Robin.chastity.penis.includes("chastity") or C.npc.Robin.chastity.vagina.includes("chastity") or C.npc.Robin.chastity.anus.includes("shield")) and !$robinUniqueComments.includes("NPCChastity")>>\n' +
+            '\t\t<<set $robinUniqueComments.pushUnique("NPCChastity")>>\n' +
+            '\t\t<<robin-chastity-speech-device>>\n' +
+            '\t<<elseif $speechgenitals is 1 and playerChastity() and !$robinUniqueComments.includes("chastity")>>\n' +
+            '\t\t<<set $robinUniqueComments.pushUnique("chastity")>>\n' +
+            '\t\t<<robin-chastity-speech-player>>\n',
+          expected: 1
+        }
+      ],
+      'Widgets Ejaculation-ROBIN': [
+        // 女性罗宾：磨蹭、护肛板、与 PC 的阴茎相抵。
+        {
+          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "vagina">>',
+          applybefore: '\t\t\t<<elseif $NPCList[_nn].vagina is "vagina" and $NPCList[_nn].chastity.vagina.includes("chastity")>>\n\t\t\t\t<<robin-chastity-ejac-trib>>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "otheranusfrot" or $NPCList[_nn].vagina is "otheranusentrance">>',
+          applybefore:
+            '\t\t\t<<elseif ($NPCList[_nn].vagina is "otheranusfrot" or $NPCList[_nn].vagina is "otheranusentrance") and $NPCList[_nn].chastity.anus.includes("shield")>>\n\t\t\t\t<<robin-chastity-ejac-otheranus>>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t\t<<elseif $NPCList[_nn].vagina is "frot">>',
+          applybefore: '\t\t\t<<elseif $NPCList[_nn].vagina is "frot" and $NPCList[_nn].chastity.vagina.includes("chastity")>>\n\t\t\t\t<<robin-chastity-ejac-frot>>\n',
+          expected: 1
+        },
+        // 男性罗宾：被自己的器具挡在体外。
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "vaginaentrance">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "vaginaentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "vagina">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "vaginaimminent">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "vaginaimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "vagina">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "cheeks">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "cheeks" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "cheeks">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "anusentrance">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "anusentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "anusimminent">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "anusimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "otheranusfrot" or $NPCList[_nn].penis is "otheranusentrance" or $NPCList[_nn].penis is "otheranusimminent">>',
+          applybefore:
+            '\t\t<<elseif ($NPCList[_nn].penis is "otheranusfrot" or $NPCList[_nn].penis is "otheranusentrance" or $NPCList[_nn].penis is "otheranusimminent") and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "anus">>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "penis">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "penis" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-blocked "penis">>\n',
+          expected: 1
+        },
+        // 男性罗宾在被 PC 的器具挡下时用不到；这里补齐阴茎互相摩擦的状态。
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "penisentrance" or $NPCList[_nn].penis is "penisimminent">>',
+          applybefore:
+            '\t\t<<elseif ($NPCList[_nn].penis is "penisentrance" or $NPCList[_nn].penis is "penisimminent") and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-penis>>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "mouthentrance">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "mouthentrance" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-mouth>>\n',
+          expected: 1
+        },
+        {
+          src: '\t\t<<elseif $NPCList[_nn].penis is "mouthimminent">>',
+          applybefore: '\t\t<<elseif $NPCList[_nn].penis is "mouthimminent" and $NPCList[_nn].chastity.penis.includes("chastity")>>\n\t\t\t<<robin-chastity-ejac-mouth>>\n',
+          expected: 1
+        }
+      ],
       'Widgets Robin': [
         {
           src: '<<robinbully>>',

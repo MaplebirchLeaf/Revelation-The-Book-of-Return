@@ -3,7 +3,6 @@
 export interface TempleChoirState {
   joined: boolean;
   singing: number;
-  auditionDay: number;
   practiceDay: number;
   serviceDay: number;
   lead: boolean;
@@ -17,7 +16,6 @@ export interface TempleChoirState {
 export const DEFAULT_TEMPLE_CHOIR_STATE: TempleChoirState = {
   joined: false,
   singing: 0,
-  auditionDay: -1,
   practiceDay: -1,
   serviceDay: -1,
   lead: false,

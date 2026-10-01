@@ -39,9 +39,9 @@
         <</language>></li>
         <li><<language>>
           <<option 'EN'>>
-            On school-free weekdays, you can invite Robin from <<his>> room to help at the temple from 09:00 until just before 15:45. You can also go together from 17:00 until just before 19:45. Robin helps with the Sunday service.
+            On school-free weekdays, you can invite Robin from <<nnpc_his 'Robin'>> room to help at the temple from 09:00 until just before 15:45. You can also go together from 17:00 until just before 19:45. Robin helps with the Sunday service.
           <<option 'CN'>>
-            不上学的工作日，09:00 起至 15:45 前，可以到罗宾房间约<<him>>去神殿帮忙。17:00 起至 19:45 前也可以同行。罗宾会协助周日弥撒。
+            不上学的工作日，09:00 起至 15:45 前，可以到罗宾房间约<<nnpc_him 'Robin'>>去神殿帮忙。17:00 起至 19:45 前也可以同行。罗宾会协助周日弥撒。
         <</language>></li>
         <<if !(maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin'))>>
           <li><<lanSwitch 'Robin stays overnight at the temple on Saturday.' '罗宾星期六夜里会留宿神殿。'>></li>
@@ -96,9 +96,9 @@
     <<if maplebirch.get('RobinTemple').member>>
       <li><<language>>
         <<option 'EN'>>
-          Robin's trial of anguish: <<if $RobinTemple.vigil_result is 'passed'>>passed; Robin is now a monk.<<else>>not yet passed; Robin remains an initiate.<</if>>
+          Robin's trial of anguish: <<if $RobinTemple.vigil_result is 'passed'>>passed; Robin is now a <<if C.npc.Robin.pronoun is 'm'>>monk<<else>>nun<</if>>.<<else>>not yet passed; Robin remains an initiate.<</if>>
         <<option 'CN'>>
-          罗宾的苦难审判：<<if $RobinTemple.vigil_result is 'passed'>>已通过，现为修士。<<else>>尚未通过，仍是见习教徒。<</if>>
+          罗宾的苦难审判：<<if $RobinTemple.vigil_result is 'passed'>>已通过，现为<<if C.npc.Robin.pronoun is 'm'>>修士<<else>>修女<</if>>。<<else>>尚未通过，仍是见习教徒。<</if>>
       <</language>></li>
     <</if>>
     <<if $RobinTemple.faith_transition isnot ''>>
@@ -125,9 +125,9 @@
       <<if maplebirch.get('Robin')>>
         <li><<language>>
           <<option 'EN'>>
-            Temple duties add <span class='gold'>£<<= $RobinTemple.grace * 10>></span> to Robin's weekly income. This is included in <<his>> business and rent accounts.
+            Temple duties add <span class='gold'>£<<= $RobinTemple.grace * 10>></span> to Robin's weekly income. This is included in <<nnpc_his 'Robin'>> business and rent accounts.
           <<option 'CN'>>
-            神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<his>>的经营收入与房租结算。
+            神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<nnpc_his 'Robin'>>的经营收入与房租结算。
         <</language>></li>
       <</if>>
     <</if>>
@@ -141,9 +141,9 @@
     <<elseif $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
       <li><<language>>
         <<option 'EN'>>
-          You promised to tell Robin how the spear journey went. Find <<him>> at the temple bench.
+          You promised to tell Robin how the spear journey went. Find <<nnpc_him 'Robin'>> at the temple bench.
         <<option 'CN'>>
-          你答应把取矛的经过告诉罗宾。去神殿长椅找<<him>>。
+          你答应把取矛的经过告诉罗宾。去神殿长椅找<<nnpc_him 'Robin'>>。
       <</language>></li>
     <</if>>
     </ul>

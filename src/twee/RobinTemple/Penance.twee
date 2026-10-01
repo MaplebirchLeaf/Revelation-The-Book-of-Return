@@ -149,7 +149,7 @@
           <<if $RobinTemple.punish.repeats gte 10>>
             <<person3>><<priest>>向你们鞠了一躬。<<He>>慢慢抬起手，这让你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>都害怕地一缩。
             <br><br>
-            鞭子没有再落下。相反，你听见金属落地的声音。"恭喜，我的孩子们，"<<he>>一字一句地说着，"你们共同经历了痛苦。尽管多次失败，但你们向我们证明了你们的羁绊足够牢固。<span class="green">你们再次纯洁了。</span>"你们的束缚全部解开。一位<<monk>>走了过来，解开你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还摘下了罗宾的项圈。<<else>><<He>>还摘下了你们的项圈。<</if>><<tearful>>你和罗宾仍保持相拥的姿势，彼此支撑着站起。你的膝盖仍然在打颤。
+            鞭子没有再落下。相反，你听见金属落地的声音。"恭喜，我的孩子们，"<<he>>一字一句地说着，"你们共同经历了痛苦。尽管多次失败，但你们向我们证明了你们的羁绊足够牢固。<span class="green">你们再次纯洁了。</span>"你们的束缚全部解开。一位<<monk>>走了过来，解开你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还摘下了罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈。<<else>><<He>>还摘下了你们的项圈。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖仍然在打颤。
             <br><br>
             "一个警告，"<<priest>>说，"不要向任何人透露此事。无论朋友，还是约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
             <br><br>
@@ -167,7 +167,7 @@
           <<else>>
             <<person3>><<priest>>举起了一只手，"够了。"<<monks>>停了下来，掐灭了燃香盏。<<He>>慢慢靠近你们，把手伸了出来，你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>惊恐地后退。
             <br><br>
-            鞭子没有再落下。相反，你听见金属落地的声音。“恭喜，我的孩子们，”<<he>>说，“你们共同经历了痛苦，也一同抵御了欲望。你们证明了你们的羁绊比欲望和痛苦更强大。<span class="green">你们再次纯洁了。</span>”你们的束缚全部解开。一个<<monk>>走了过来，拔掉你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还把罗宾的项圈解开了。<<else>><<He>>还把你们的项圈解开了。<</if>><<tearful>>你和罗宾仍保持相拥的姿势，彼此支撑着站起。你的膝盖打着颤。
+            鞭子没有再落下。相反，你听见金属落地的声音。“恭喜，我的孩子们，”<<he>>说，“你们共同经历了痛苦，也一同抵御了欲望。你们证明了你们的羁绊比欲望和痛苦更强大。<span class="green">你们再次纯洁了。</span>”你们的束缚全部解开。一个<<monk>>走了过来，拔掉你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还把罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈解开了。<<else>><<He>>还把你们的项圈解开了。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖打着颤。
             <br><br>
             "一个警告，"<<priest>>继续说道，"不要向任何人透露此事。不要告诉你的朋友。不要告诉约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
             <br><br>
@@ -222,11 +222,11 @@
           <br><br>
 
           <<if playerBellySize() gte 15>>
-            You feel a third, faint heartbeat between you.
+            You feel another faint heartbeat between you.
             <br><br>
           <</if>>
         <<option 'CN'>>
-          <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">疼痛已经无法承受。</span>你弯下腰，和罗宾一起瘫倒在地。
+          <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">疼痛已经无法承受。</span>你弯下腰，和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>一起瘫倒在地。
           <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">已经到了极限。</span>
           <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>隔着口球发出一声撕心裂肺的叫喊。</span>
           <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
@@ -761,20 +761,20 @@
         <<option 'EN'>>
           <<switch _punishActionCount>>
             <<case 1>>
-              You stare the <<person3>><<priest>> in the eyes. <<if _punishBoth>>They<<else>><<He>><</if>> falters.
+              You stare the <<person3>><<priest>> in the eyes. <<He>> falters.
             <<case 2>>
-              You silently plead to the <<person3>><<priest>>. <<if _punishBoth>>Their<<else>><<His>><</if>> whip doesn't raise with as much conviction.
+              You silently plead to the <<person3>><<priest>>. <<His>> whip doesn't raise with as much conviction.
             <<case 3>>
               The tears in your eyes seem to make the <<person3>><<priest>> pause for a moment.
             <<case 4>>
-              The <<person3>><<priest>> shakes <<if _punishBoth>>their<<else>><<his>><</if>> head, and readies to strike with conviction again. <span class="red">Your pleading seems to have no further effect.</span>
+              The <<person3>><<priest>> shakes <<his>> head, and readies to strike with conviction again. <span class="red">Your pleading seems to have no further effect.</span>
           <</switch>>
         <<option 'CN'>>
           <<switch _punishActionCount>>
             <<case 1>>
-              你凝视着<<person3>><<priest>>的眼睛，<<if _punishBoth>>他们<<else>><<He>><</if>>动摇了。
+              你凝视着<<person3>><<priest>>的眼睛，<<He>>动摇了。
             <<case 2>>
-              你无声地向<<person3>><<priest>>乞求，<<if _punishBoth>>他们<<else>><<His>><</if>>举鞭的动作没有那么坚定了。
+              你无声地向<<person3>><<priest>>乞求，<<His>>举鞭的动作没有那么坚定了。
             <<case 3>>
               你眼里的泪水似乎让<<person3>><<priest>>迟疑了一瞬。
             <<case 4>>

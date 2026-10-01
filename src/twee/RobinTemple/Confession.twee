@@ -799,7 +799,7 @@
         <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> flees the confessional. <<grace -4>><<lgrace>>
         <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
       <<else>>
-        Robin releases your <<if $mouthuse>>neck<<else>>neck.<</if>> He withdraws, and the booth stills.
+        Robin draws back, giving you room to speak. The booth stills.
         <br><br>
         How do you respond?
         <br>
@@ -818,7 +818,7 @@
         <<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>从忏悔室跑了出去。<<grace -4>><<lgrace>>
         <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
       <<else>>
-        罗宾松开了你的<<if $mouthuse>>脖子<<else>>脖子。<</if>><<He>>抽身退开，隔间重新安静下来。
+        罗宾退开了一些，让你能开口回答。隔间重新安静下来。
         <br><br>
         你打算如何回应？
         <br>
@@ -1235,9 +1235,9 @@
       <<if _robinBand is 'doubt'>>
         罗宾靠在木壁上喘着气，笑出了声。“我没想过自己会说这种话，但是……我喜欢这样。很喜欢。”<<his>>脸还是红的，却没有移开视线。“你会把我带坏的，你知道吗？”
       <<elseif _robinBand is 'belief'>>
-        之后罗宾低头不语了很久，等他终于抬起头时，整张脸连耳根都红透了。“我……对不起。我知道这是神殿，我只是……我忍不住。”<<He>>还是握住了你的手。
+        之后罗宾低头不语了很久，等<<he>>终于抬起头时，整张脸连耳根都红透了。“我……对不起。我知道这是神殿，我只是……我忍不住。”<<He>>还是握住了你的手。
       <<else>>
-        罗宾一时没说话，只是往你身上靠。等他开口时，声音很小。“刚才的感觉……我不知道该怎么形容。但幸好是你。”
+        罗宾一时没说话，只是往你身上靠。等<<he>>开口时，声音很小。“刚才的感觉……我不知道该怎么形容。但幸好是你。”
       <</if>>
       <<if !(C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>
         <<pass 2>>

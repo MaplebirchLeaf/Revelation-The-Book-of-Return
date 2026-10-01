@@ -72,6 +72,24 @@ class RobinTemple extends Module {
     return ['member', 'approved', 'promised'].includes(V.RobinTemple?.stage);
   }
 
+  /** 未承诺且保有初次贞洁时，拆除沿用原版神殿的 £80 捐赠。 */
+  public get claspFee(): number {
+    return V.RobinTemple.templePromised !== 'Robin' && C.npc.Robin.virginity.vaginal === true && C.npc.Robin.virginity.penile === true ? 8000 : 0;
+  }
+
+  /** 沿用旧模组的白天办理流程，约旦缺席或弥撒期间等待。 */
+  public get claspReady(): boolean {
+    return (
+      this.member &&
+      this.available &&
+      window.getRobinLocation() === 'temple' &&
+      Time.dayState !== 'night' &&
+      Time.dayState !== 'dusk' &&
+      V.daily.jordanMissing !== 1 &&
+      !(Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13)
+    );
+  }
+
   /** 两项属性都存正值，增减时先抵消另一侧，零为中立。 */
   public get faith(): number {
     return C.npc.Robin.conviction - C.npc.Robin.doubt;
@@ -110,7 +128,6 @@ class RobinTemple extends Module {
 
   private dailyUpdate(): void {
     const state = V.RobinTemple;
-    const robin = C.npc.Robin;
     // 检查日历不因罗宾受伤、失踪或暂停值班而停止。
     if (state?.chastity_timer > 0) state.chastity_timer--;
     if (!state || !this.available) return;
@@ -200,20 +217,21 @@ class RobinTemple extends Module {
       p.result = 'rest';
       p.cause = 'arousal';
       p.repeats++;
-    } else if ((['Robin', 'Sydney'] as const).some(name => (p.partners[name]?.pain ?? -1) >= 6)) {
-      p.result = 'rest';
-      p.cause = 'partnerPain';
-      p.causeTarget = (['Robin', 'Sydney'] as const).find(name => (p.partners[name]?.pain ?? -1) >= 6) ?? '';
-      p.repeats++;
-    } else if ((['Robin', 'Sydney'] as const).some(name => (p.partners[name]?.arousal ?? -1) >= 6)) {
-      p.result = 'rest';
-      p.cause = 'partnerArousal';
-      p.causeTarget = (['Robin', 'Sydney'] as const).find(name => (p.partners[name]?.arousal ?? -1) >= 6) ?? '';
-      p.repeats++;
     } else {
-      // 按本轮参与者抽取动作，三人净化时包含悉尼。
-      const actions: RobinTemplePunishment['action'][] = ['Player', 'Robin', ...(p.joint ? ['Sydney' as const] : []), 'Vibrate'];
-      p.action = p.action === '' ? 'Player' : actions[random(1, actions.length) - 1];
+      const names = ['Robin', 'Sydney'] as const;
+      const painTarget = names.find(name => (p.partners[name]?.pain ?? -1) >= 6);
+      const arousalTarget = names.find(name => (p.partners[name]?.arousal ?? -1) >= 6);
+      const target = painTarget ?? arousalTarget;
+      if (target) {
+        p.result = 'rest';
+        p.cause = painTarget ? 'partnerPain' : 'partnerArousal';
+        p.causeTarget = target;
+        p.repeats++;
+      } else {
+        // 按本轮参与者抽取动作，三人净化时包含悉尼。
+        const actions: RobinTemplePunishment['action'][] = ['Player', 'Robin', ...(p.joint ? ['Sydney' as const] : []), 'Vibrate'];
+        p.action = p.action === '' ? 'Player' : actions[random(1, actions.length) - 1];
+      }
     }
   }
 

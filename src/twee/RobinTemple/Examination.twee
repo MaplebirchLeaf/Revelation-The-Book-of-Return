@@ -283,7 +283,7 @@
         你看着约旦在手上涂抹了更多的粉末。
         <<if C.npc.Robin.gender is "m">>
           <<if $player.penisExist>>
-            约旦给罗宾做着同样的工作，<<if C.npc.Robin.lust gte 50>>在手指的抚弄下，<<person2>><<he>>的阴茎缓缓立起，罗宾把脸别向了一旁<<else>>但罗宾的阴茎丝毫没有反应<</if>>。
+            约旦给罗宾做着同样的工作，<<if C.npc.Robin.lust gte 50>>在手指的抚弄下，<<person2>><<his>>阴茎缓缓立起，罗宾把脸别向了一旁<<else>>但罗宾的阴茎丝毫没有反应<</if>>。
           <<else>>
             <<He>>用两根食指夹住罗宾的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了柱身上，用以细致地检查里面包皮的状况。<<if C.npc.Robin.lust gte 50>>只见阴茎缓缓立起，罗宾把脸别向了一旁<<else>>但罗宾的阴茎丝毫没有反应<</if>>。<<person2>>
           <</if>>
@@ -346,7 +346,7 @@
           你看着约旦在手上涂抹了更多的粉末。
           <<if C.npc.Sydney.gender is "m">>
             <<if $player.penisExist>>
-              约旦给悉尼做着同样的工作，<<if _sydneyStatus.includes("Lust")>>在手指的抚弄下，<<person3>><<he>>的阴茎缓缓立起，悉尼把脸别向了一旁<<else>>但悉尼的阴茎丝毫没有反应<</if>>。
+              约旦给悉尼做着同样的工作，<<if _sydneyStatus.includes("Lust")>>在手指的抚弄下，<<person3>><<his>>阴茎缓缓立起，悉尼把脸别向了一旁<<else>>但悉尼的阴茎丝毫没有反应<</if>>。
             <<else>>
               <<He>>用两根食指夹住悉尼的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了柱身上，用以细致地检查里面包皮的状况。<<if _sydneyStatus.includes("Lust")>>只见阴茎缓缓立起，悉尼把脸别向了一旁<<else>>但悉尼的阴茎丝毫没有反应<</if>>。<<person3>>
             <</if>>

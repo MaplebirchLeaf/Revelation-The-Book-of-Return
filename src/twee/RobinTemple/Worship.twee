@@ -457,7 +457,7 @@
 
     You awaken in a bed at the civic hospital. You see Robin on the same bed, asleep. You're still holding each other.
     <<generate1>><<person1>>
-    "About time." It's a nurse. "The doctor tried to separate you two, but even unconscious you wouldn't let go." <<He>> points to Robin. "Eventually <<nnpc_he "Robin">> sat upright and... growled at me in <<nnpc_his "Robin">> sleep. Then went right back down like nothing happened. That's when we stopped trying."
+    "About time." It's a nurse. "The doctor tried to separate you two, but even unconscious you wouldn't let go." <<He>> points to Robin. "Eventually <<nnpc_he "Robin">> stirred and asked us not to take you away. Then <<nnpc_he "Robin">> held on tighter and fell asleep again. Once we'd checked you both, we let you rest together."
 
     The nurse explains that you have suffered a severe stress response, but you are both otherwise physically healthy. <<He>> asks you to wait a moment while <<he>> fetches the doctor.
     <br><br>
@@ -493,7 +493,7 @@
 
     你在医院的床上醒来。罗宾就在你的身旁，你们还紧紧相拥着。
     <<generate1>><<person1>>
-    “终于醒了。”一个护士说。“医生试图分开你们两个，但即使在昏迷时，你们也不肯松手。”<<He>>指着罗宾。“最后<<nnpc_he "Robin">>坐了起来……在睡梦中对我嘶吼着。然后就像什么都没发生过一样又躺了下去。于是我们放弃了。”
+    “终于醒了。”一个护士说。“医生试图分开你们两个，但即使在昏迷时，你们也不肯松手。”<<He>>指着罗宾。“后来<<nnpc_he "Robin">>迷迷糊糊地醒了一下，求我们别把你带走，抱得更紧了，随后又睡了过去。确认你们都没有大碍后，我们就让你们一起休息了。”
 
     护士说你们似乎是因为压力导致的昏厥，但身体并无大碍。<<He>>让你们先候着，等自己去喊医生来。
     <br><br>

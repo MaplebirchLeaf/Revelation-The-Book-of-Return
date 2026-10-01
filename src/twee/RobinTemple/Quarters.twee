@@ -34,7 +34,7 @@
 <<if $RobinTemple.vigil_result is 'passed'>>
   <<language>>
     <<option 'EN'>>
-      Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before he carries a task into the hall.
+      Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before <<he>> carries a task into the hall.
     <<option 'CN'>>
       罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
   <</language>>
@@ -134,11 +134,6 @@
     <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 
-  <<if $robinromance is 1 and $RobinTemple.stage is 'member'
-    and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2
-    and !$RobinTemple.clasp_discussed>>
-    <<socialiseicon 'ask'>><<lanLink '问罗宾贞操带的事' 'RobinTemple Clasp'>><</lanLink>><br>
-  <</if>>
   <<if $RobinTemple.stage is "approved" and $templePromised is ''>>
     <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Altar'>><</lanLink>><br>
   <</if>>
@@ -150,19 +145,25 @@
   <br><br>
   <<loveicon 'hug'>><<lanLink '和罗宾谈谈承诺仪式' 'RobinTemple Evaluation'>><</lanLink>><br>
 <</if>>
-<<if _robinAtTemple and maplebirch.get('RobinTemple').publicPromise is 'Robin'
+<<if _robinAtTemple and (maplebirch.get('RobinTemple').publicPromise is 'Robin'
+  or $robinromance is 1 and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2)
   and Time.hour gte 11 and Time.hour lt 20
   and !(Time.weekDay is 1 and Time.hour lt 13)>>
   <br><br>
-  <<language>>
-    <<option 'EN'>>
-      <span class='teal'>A thin silver ring catches the light when Robin reaches for your hand.</span>
-    <<option 'CN'>>
-      <span class='teal'>罗宾伸手牵你时，细银戒在光里一闪。</span>
-  <</language>><br>
-  <<if $RobinTemple.clasp_request isnot ''
-    and Time.days gt $RobinTemple.clasp_request_day>>
-    <<lockicon 'unlock'>><<lanLink '听罗宾与约旦商量的结果' 'RobinTemple Clasp Result'>><</lanLink>><br>
+  <<if maplebirch.get('RobinTemple').publicPromise is 'Robin'>>
+    <<language>>
+      <<option 'EN'>>
+        <span class='teal'>A thin silver ring catches the light when Robin reaches for your hand.</span>
+      <<option 'CN'>>
+        <span class='teal'>罗宾伸手牵你时，细银戒在光里一闪。</span>
+    <</language>><br>
+  <</if>>
+  <<if $RobinTemple.clasp_request isnot '' and maplebirch.get('RobinTemple').claspReady>>
+    <<if $RobinTemple.clasp_request is 'remove'>>
+      <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+    <<else>>
+      <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+    <</if>>
   <<else>>
     <<lockicon>><<lanLink '和罗宾谈谈贞操带' 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
@@ -238,72 +239,35 @@
   <<set $RobinTemple.service += 1>>
   <<language>>
     <<option 'EN'>>
-      The hall is filling. Robin lays out the prayer books while you help an older visitor find a seat. When the last row is ready, Robin checks the count with Jordan.
+      A few visitors arrive early. Robin lays out the prayer books while you help an older visitor find a seat. When the last row is ready, Robin checks the count with Jordan.
     <<option 'CN'>>
-      大厅里渐渐坐满了人。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。
+      几位访客早早来到了大厅。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。
   <</language>>
   <br><br>
-  <<if !$robinSeen.includes('mass')>>
-    <<run $robinSeen.pushUnique('mass')>>
+  <<if C.npc.Robin.trauma gte 40>>
     <<language>>
       <<option 'EN'>>
-        You don't notice who sits down beside you until you hear <<his>> voice. It's Robin. "Hey, you're here too?" <<he>> whispers, then quickly bows <<his>> head as Jordan's gaze passes over the pews.
-        <br><br>
-        When you're called up to take communion, Robin keeps sneaking glances at you.
+        Robin stays close as you carry the remaining books to the table. "Are you staying for the service?" <<he>> asks quietly.
       <<option 'CN'>>
-        你没有发觉身边坐下了另一个人，直到听见<<his>>的声音——是罗宾。“你也在这祷告吗？”<<he>>小声问，随即在约旦的目光扫过座位时迅速低下头。
-        <br><br>
-        你被叫到前面领受圣餐时，罗宾一直在偷偷瞄着你。
-      <</language>>
-    <br><br>
-  <<elseif C.npc.Robin.trauma gte 40>>
-    <<language>>
-      <<option 'EN'>>
-        Robin stays close through the service. When the hall fills, <<he>> presses <<his>> shoulder against yours and keeps <<his>> eyes down.
-      <<option 'CN'>>
-        整场弥撒罗宾都靠得很近。大厅坐满之后，<<he>>把肩膀抵着你，一直没有抬头。
+        你把剩下的书搬到桌上时，罗宾一直跟在你身边。“你会留下来参加弥撒吗？”<<he>>小声问。
     <</language>>
     <br><br>
   <<elseif C.npc.Robin.dom gt 50>>
     <<language>>
       <<option 'EN'>>
-        Robin sits beside you and, once Jordan has moved on, leans in. "I'm glad you're here," <<he>> whispers.
+        Robin sets the last book down and, once Jordan has moved on, leans in. "I'm glad you're here," <<he>> whispers.
       <<option 'CN'>>
-        罗宾坐在你旁边，等约旦走开后才凑过来。“我很高兴你在这里。”<<he>>低声说。
+        罗宾放下最后一本书，等约旦走开后才凑过来。“我很高兴你在这里。”<<he>>低声说。
     <</language>>
     <br><br>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        Robin ends up a few rows away. <<He>> catches your eye and waves, then hurries to find you once the final prayer is over.
+        Robin finishes checking the next row. <<He>> catches your eye and waves, then comes over to thank you for helping.
       <<option 'CN'>>
-        罗宾的位置离你有些远。<<He>>看见了你，朝你挥了挥手，等最后的祷告一结束就赶过来找你。
+        罗宾检查完下一排座位。<<He>>看见了你，朝你挥了挥手，随后走过来感谢你的帮忙。
     <</language>>
     <br><br>
-  <</if>>
-  <<if $angel gte 6>>
-    <<language>>
-      <<option 'EN'>>
-        Robin senses the halo above your head, and doesn't stop smiling for the rest of the service.
-      <<option 'CN'>>
-        罗宾感受到了你头上的光环，之后的整场弥撒都在笑。
-    <</language>>
-    <br><br>
-  <<elseif $fallenangel gte 2>>
-    <<language>>
-      <<option 'EN'>>
-        The monks refuse to look at you when you kneel for communion. The bread slips from Jordan's fingers; the wine evaporates before it reaches your lips. Robin sympathises with you afterwards.
-      <<option 'CN'>>
-        你跪下领受圣餐时，其他<<monks>>都拒绝看你。面包从约旦的指间滑落，葡萄酒在碰到你的嘴唇之前就蒸发了。之后，罗宾对你感同身受。
-    <</language>>
-    <br><br>
-  <<elseif $demon gte 6>>
-    <<language>>
-      <<option 'EN'>>
-        The bread tastes like ash, and the wine like blood. Robin doesn't understand why, and frowns at you expectantly.
-      <<option 'CN'>>
-        面包尝起来像灰烬，酒像血一样。罗宾不明白为什么会这样，皱着眉期待地看向你。
-    <</language>>
   <</if>>
   <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<grace 1>><<npcincr Robin love 1>><<ggrace>><<glove>>

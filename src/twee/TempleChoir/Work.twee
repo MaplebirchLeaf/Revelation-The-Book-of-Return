@@ -14,13 +14,13 @@
         Practice is available from 09:00 to 18:00, once a day, outside Sunday mass. Choir service begins on Sunday between 11:00 and 13:00 and takes one hour. Each completed service adds <span class='gold'>£70</span> plus <span class='gold'>£20</span> per performance point to your monthly allowance, up to <span class='gold'>£250</span> per service. The extra money is paid with your temple allowance after a successful monthly examination.<br>
         Uncollected choir earnings: <span class='gold'><<printmoney $TempleChoir.bonus>></span>.<br>
         Practices completed: <<= $TempleChoir.practices>>. Services completed: <<= $TempleChoir.services>>.<br>
-        <<if $TempleChoir.lead>><span class='green'>Jordan trusts you to lead the responses.</span><<else>>Jordan considers a lead singer after three practices, three services, a base singing skill of 600 and at least five points in one service.<</if>>
+        <<if $TempleChoir.lead>><span class='green'>Jordan trusts you to lead the responses.</span><<else>>Jordan considers a lead singer after three practices, three services, base singing at grade B and at least five points in one service.<</if>>
       <<option 'CN'>>
         <h2 class='gold'>神殿唱诗班</h2>
         每天 09:00 至 18:00 可练习一次，周日弥撒期间暂停。唱诗在周日 11:00 至 13:00 之间开始，耗时一小时。每次完成唱诗为月度津贴增加 <span class='gold'>£70</span>，每分表现再增加 <span class='gold'>£20</span>，单次最高增加 <span class='gold'>£250</span>。加款在月度检查通过后随神殿津贴一并领取。<br>
         尚未领取的唱诗加款：<span class='gold'><<printmoney $TempleChoir.bonus>></span>。<br>
         已完成练习：<<= $TempleChoir.practices>> 次。已完成唱诗：<<= $TempleChoir.services>> 次。<br>
-        <<if $TempleChoir.lead>><span class='green'>约旦已允许你领唱答唱。</span><<else>>完成三次练习和三次唱诗，基础歌唱技能达到 600，并在一次唱诗中取得至少五分后，约旦会考虑让你领唱。<</if>>
+        <<if $TempleChoir.lead>><span class='green'>约旦已允许你领唱答唱。</span><<else>>完成三次练习和三次唱诗，基础歌唱达到 B 级，并在一次唱诗中取得至少五分后，约旦会考虑让你领唱。<</if>>
     <</language>>
     <hr>
   <</if>>
@@ -68,7 +68,7 @@
 
 :: TempleChoir Mass
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
-<<if $TempleChoir.shift and !$TempleChoir.shift.done and $TempleChoir.shift.round lt 3>>
+<<if maplebirch.get('TempleChoir').active and $TempleChoir.shift.round lt 3>>
   <<if $TempleChoir.shift.round gt 0>>
     <<switch $TempleChoir.shift.result>>
       <<case 'clear'>>
@@ -76,7 +76,7 @@
       <<case 'unsteady'>>
         <<language>><<option 'EN'>>You waver on the ending. A neighbouring singer holds the note until you find it again.<<option 'CN'>>你的尾音晃了一下。身旁的歌者托住那一个音，等你重新跟上。<</language>><<gtiredness>><<lstress>><<gsingingskill>>
       <<case 'lost'>>
-        <<language>><<option 'EN'>><span class='red'>You miss the entrance.</span> Jordan keeps the service moving while the choir covers the silence.<<option 'CN'>><span class='red'>你错过了起句。</span>约旦继续主持礼拜，唱诗班接过声音，填上短暂的空白。<</language>><<gtiredness>><<gstress>><<gsingingskill>>
+        <<language>><<option 'EN'>><span class='red'>You miss the entrance.</span> Jordan keeps the service moving while the choir covers the silence.<<option 'CN'>><span class='red'>你错过了起句。</span>约旦继续主持弥撒，唱诗班接过声音，填上短暂的空白。<</language>><<gtiredness>><<gstress>><<gsingingskill>>
     <</switch>><br><br>
   <</if>>
   <<switch $TempleChoir.shift.round>>
@@ -102,7 +102,7 @@
   <</language>><br><br>
   <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗'] 'Temple'>><<set $TempleChoir.shift to null>><<endevent>><</lanLink>><br>
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
-<<elseif $TempleChoir.shift and $TempleChoir.shift.round is 3>>
+<<elseif maplebirch.get('TempleChoir').active and $TempleChoir.shift.round is 3>>
   <<set _choirWasLead to $TempleChoir.lead>>
   <<if maplebirch.get('TempleChoir').finish()>>
     <<purity 10>><<grace 2>>
@@ -139,7 +139,7 @@
         <<option 'EN'>>
           "Next time, stay with the quieter line until you are sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
         <<option 'CN'>>
-          “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了礼拜，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
+          “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了弥撒，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
       <</language>>
     <</if>><br><br>
     <<language>>

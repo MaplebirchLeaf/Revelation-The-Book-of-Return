@@ -30,19 +30,25 @@ export interface RobinTempleConfession {
 /** 路线状态保存在当前 SugarCube 存档中，不属于浏览器会话。 */
 export type RobinTempleForm = 'fox' | 'wolf' | 'cat' | 'bird' | 'cow' | 'horse' | 'fish';
 
-/** 亵渎仪式只记录玩家实际完成的调查、谈话与选择。 */
+/** 异教仪式路线只记录实际完成的调查、共同见闻、谈话与选择。 */
 export interface SecretPromiseState {
-  stage: 'none' | 'research' | 'travelling' | 'ritual' | 'complete';
+  stage: 'none' | 'research' | 'travelling' | 'decision' | 'ritual' | 'complete';
+  /** 调查开始时已有的承诺，第二份誓约不改变第一份的归属。 */
   first: '' | 'Robin' | 'Sydney';
   robin_day: number;
   sydney_day: number;
   survey_day: number;
+  /** 初次同行的共同见闻，后续决定可在当晚谈妥，也可留待私下谈话。 */
+  witness_day: number;
+  /** 当晚的诱导及单次诡术检定结果，不因重访重新抽取。 */
+  appeal: '' | 'promise' | 'danger';
+  persuaded: boolean;
   prepared: boolean;
   night: number;
   trial: '' | 'burden' | 'exit';
-  /** 仪式许下后保持为真，直到三人同席结算；读档后仍能回到该场景。 */
+  /** 岸边后续同席的进行状态，读档后仍能回到该场景。 */
   rite_active: boolean;
-  /** 三人同席已经离开废墟，后日谈据此收束。 */
+  /** 完成誓约后，由岸上的后日谈消费此标记以免重复结算。 */
   rite_done: boolean;
 }
 
@@ -106,7 +112,6 @@ export interface RobinTempleState {
   clasp_discussed: boolean;
   clasp_equipped: boolean;
   clasp_request: '' | 'remove' | 'refit';
-  clasp_request_day: number;
 }
 
 export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
@@ -144,6 +149,9 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
     robin_day: -1,
     sydney_day: -1,
     survey_day: -1,
+    witness_day: -1,
+    appeal: '',
+    persuaded: false,
     prepared: false,
     night: -1,
     trial: '',
@@ -177,6 +185,5 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   donation_amount: 0,
   clasp_discussed: false,
   clasp_equipped: false,
-  clasp_request: '',
-  clasp_request_day: -1
+  clasp_request: ''
 };

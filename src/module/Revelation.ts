@@ -1,10 +1,13 @@
 // ./src/module/Revelation.ts
 
-import { version } from './constants';
+import { DEFAULT_REVELATION_STATE } from './constants/revelation';
+import Module from './Module';
 import RobinEN from '@/assets/hint/EN/RobinTemple.md';
 import RobinCN from '@/assets/hint/CN/RobinTemple.md';
 import ChoirEN from '@/assets/hint/EN/TempleChoir.md';
 import ChoirCN from '@/assets/hint/CN/TempleChoir.md';
+import LambEN from '@/assets/hint/EN/LostLamb.md';
+import LambCN from '@/assets/hint/CN/LostLamb.md';
 
 interface GuideModule {
   guide: {
@@ -13,12 +16,13 @@ interface GuideModule {
 }
 
 /** 指南借用枯木逢春的提示弹窗，剧情模块保持独立。 */
-export default class Revelation {
-  public readonly version = version;
-
-  public constructor(private readonly core: typeof maplebirch) {}
+export default class Revelation extends Module {
+  public constructor(core: typeof maplebirch) {
+    super(core, 'RBR', DEFAULT_REVELATION_STATE);
+  }
 
   public preInit(): void {
+    super.preInit();
     this.core.tool.onInit(() => {
       if (this.core.get('DeadwoodReblooms')) setup.maplebirch.hint.push('<<= maplebirch.get("RBR").wiki>>');
     });
@@ -27,9 +31,10 @@ export default class Revelation {
   public get wiki(): string {
     const deadwood = this.core.get('DeadwoodReblooms') as GuideModule | undefined;
     return (
-      deadwood?.guide.render('revelation-guide', lanSwitch('Temple routes and work in Revelation: The Book of Return.', '默示录：归途之书的神殿路线与工作指南。'), [
+      deadwood?.guide.render('revelation-guide', lanSwitch('Temple routes, choir work and manor discoveries.', '神殿路线、唱诗工作与庄园见闻。'), [
         { id: 'RobinTemple', title: lanSwitch('Robin · Temple route', '罗宾 · 神殿路线'), content: lanSwitch(RobinEN, RobinCN), module: 'RobinTemple' },
-        { id: 'TempleChoir', title: lanSwitch('Temple choir · Singing', '神殿唱诗班 · 歌唱'), content: lanSwitch(ChoirEN, ChoirCN), module: 'TempleChoir' }
+        { id: 'TempleChoir', title: lanSwitch('Temple choir · Singing', '神殿唱诗班 · 歌唱'), content: lanSwitch(ChoirEN, ChoirCN), module: 'TempleChoir' },
+        { id: 'LostLamb', title: lanSwitch('Lost lamb · Kylar', '迷途羔羊 · 凯拉尔'), content: lanSwitch(LambEN, LambCN), module: 'LostLamb' }
       ]) ?? ''
     );
   }

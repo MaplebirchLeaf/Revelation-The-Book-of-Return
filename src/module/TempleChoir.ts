@@ -39,11 +39,15 @@ class TempleChoir extends Module {
     return true;
   }
 
+  public get active(): boolean {
+    return this.member && V.TempleChoir.joined && V.location === 'temple' && V.TempleChoir.serviceDay === Time.days && Boolean(V.TempleChoir.shift && !V.TempleChoir.shift.done);
+  }
+
   /** 在链接中结算一次，再进入下一段正文，避免重访页面重复工作。 */
   public sing(style: 'follow' | 'harmony' | 'lead'): boolean {
     const state = V.TempleChoir;
     const shift = state.shift;
-    if (!shift || shift.round >= 3 || shift.done || (style === 'lead' && !state.lead)) return false;
+    if (!this.active || !shift || shift.round >= 3 || !['follow', 'harmony', 'lead'].includes(style) || (style === 'lead' && !state.lead)) return false;
     const threshold = style === 'lead' ? 700 : style === 'harmony' ? 400 : 100;
     const prepared = Time.days - state.practiceDay <= 2 && state.practiceDay >= 0 ? 100 : 0;
     const value = this.singing + prepared + random(-100, 100);
@@ -69,7 +73,7 @@ class TempleChoir extends Module {
   public finish(): boolean {
     const state = V.TempleChoir;
     const shift = state.shift;
-    if (!shift || shift.round !== 3 || shift.done) return false;
+    if (!this.active || !shift || shift.round !== 3) return false;
     shift.done = true;
     // 完整值班保底 £70，每分增加 £20，领唱的九分表现也计入津贴。
     shift.bonus = 7000 + Math.min(9, shift.score) * 2000;

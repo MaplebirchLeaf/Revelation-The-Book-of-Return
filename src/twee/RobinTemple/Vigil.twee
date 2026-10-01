@@ -54,7 +54,14 @@
 
 <<widget 'robin-temple-vigil-group'>><<lanSwitch ($RobinTemple.vigil_attending ? 'The five of you' : 'The four of you') ($RobinTemple.vigil_attending ? '你们五人' : '你们四人')>><</widget>>
 
-<<widget 'robin-temple-vigil-carry'>><<if $RobinTemple.vigil_attending and $phase is 2>>You, Robin and Sydney carry each other forwards.<<elseif $phase is 2>>You and Sydney carry each other forwards.<<else>>You and Robin hold each other up as you move forwards.<</if>><<if $RobinTemple.vigil_attending and $phase is 2>>你、罗宾和悉尼互相搀扶着前进。<<elseif $phase is 2>>你和悉尼互相搀扶着前进。<<else>>你和罗宾互相搀扶着前进。<</if>>><</widget>>
+<<widget 'robin-temple-vigil-carry'>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $RobinTemple.vigil_attending and $phase is 2>>You, Robin and Sydney carry each other forwards.<<elseif $phase is 2>>You and Sydney carry each other forwards.<<else>>You and Robin hold each other up as you move forwards.<</if>>
+    <<option 'CN'>>
+      <<if $RobinTemple.vigil_attending and $phase is 2>>你、罗宾和悉尼互相搀扶着前进。<<elseif $phase is 2>>你和悉尼互相搀扶着前进。<<else>>你和罗宾互相搀扶着前进。<</if>>
+  <</language>>
+<</widget>>
 
 <<widget 'robin-temple-vigil-companions'>><<lanSwitch ($RobinTemple.vigil_attending ? ', Sydney, and Robin,' : ', and Sydney,') ($RobinTemple.vigil_attending ? '还有悉尼、罗宾' : '还有悉尼')>><</widget>>
 

@@ -47,7 +47,7 @@
     <<option 'CN'>>
       <<effects>>
       <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
-      约旦将你带到罗宾的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。"怎么样？我们……? "
+      约旦将你带到罗宾等候的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。"怎么样？我们……? "
       <br><br>
       “是的，我的孩子们，我在此向你们二位表示祝贺，你们通过了。在神殿所有兄弟姐妹的见证下，你们的结合将会得到主的认可。主教将会立马知晓，你们的戒指也已经在准备了。” <<npcincr "Jordan" love 5>><<gglove "Jordan">>
       <br><br>
