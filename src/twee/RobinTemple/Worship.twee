@@ -266,7 +266,11 @@
   and $RobinTemple.hospital_stage is ''>>
   <<socialiseicon 'ask'>><<lanLink '请罗宾陪你去医院检查 (0:30)' 'RobinTemple Hospital Arrival'>><</lanLink>><br>
 <</if>>
-<<bedicon>><<lanLink '在罗宾床边再坐一会儿' 'RobinTemple Bunk'>><</lanLink>><br>
+<<if maplebirch.get('RobinTemple').bunk>>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '在罗宾床边再坐一会儿' 'RobinTemple Bunk'>><</lanLink>><br>
+<<else>>
+  <<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<</if>>
 <<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Quiet

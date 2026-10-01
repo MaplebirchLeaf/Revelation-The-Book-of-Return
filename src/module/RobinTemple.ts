@@ -72,6 +72,16 @@ class RobinTemple extends Module {
     return ['member', 'approved', 'promised'].includes(V.RobinTemple?.stage);
   }
 
+  /** 当前路线的身份来自入殿与晋升结果，不另存一份等级。 */
+  public get rank(): string {
+    return !this.member ? 'prospective' : V.RobinTemple.vigil_result === 'passed' ? 'monk' : 'initiate';
+  }
+
+  /** 床铺属于修士及以上身份，承诺仪式不替代晋升。 */
+  public get bunk(): boolean {
+    return ['monk', 'priest'].includes(this.rank);
+  }
+
   /** 任一月检日历到期时共同检查，罗宾暂时缺席也不拆成两轮。 */
   public get examinationDue(): boolean {
     const state = V.RobinTemple;
@@ -344,7 +354,7 @@ class RobinTemple extends Module {
 
     const housing = this.core.get('VanillaPlus') as ResidentialModule | undefined;
     const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));
-    const overnight = !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
+    const overnight = this.bunk && !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
     const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
     const freeWeekday = !Time.schoolDay && !Time.isWeekEnd() && Time.hour >= 9 && Time.hour < 16;
     const shopOpen = this.core.get('Robin') && V.RobinExpansion?.shop && (Time.hour > 18 || (Time.hour === 18 && Time.minute >= 30)) && Time.hour < 21;

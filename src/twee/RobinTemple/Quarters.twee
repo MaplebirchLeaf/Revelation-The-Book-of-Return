@@ -22,7 +22,8 @@
   <</language>>
 <</if>>
 <br><br>
-<<if maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
+<<if maplebirch.get('RobinTemple').bunk
+  and maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
   <<language>>
     <<option 'EN'>>
       Robin keeps a bunk for temple duties, but goes home to you when the work is done.
@@ -31,7 +32,7 @@
   <</language>>
   <br><br>
 <</if>>
-<<if $RobinTemple.vigil_result is 'passed'>>
+<<if maplebirch.get('RobinTemple').bunk>>
   <<language>>
     <<option 'EN'>>
       Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before <<he>> carries a task into the hall.
@@ -39,8 +40,17 @@
       罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
   <</language>>
   <br><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
+  <br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      <span class='teal'>The temple assigns bunks to monks and nuns. Robin is still an initiate.</span>
+    <<option 'CN'>>
+      <span class='teal'>神殿为修士与修女分配床铺。罗宾目前仍是见习教徒。</span>
+  <</language>>
+  <br><br>
 <</if>>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
 <<set _robinAtTemple to getRobinLocation() is 'temple' and !$robinmissing
   and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
 <<if !_robinAtTemple>>
@@ -56,11 +66,12 @@
   and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7)>>
   <<language>>
     <<option 'EN'>>
-      Robin is taking part in the trial of anguish. <<His>> belongings have been left beside the bunk.
+      Robin is taking part in the trial of anguish. <<His>> belongings have been left on the table.
     <<option 'CN'>>
-      罗宾正在参加苦难审判。<<His>>的物品留在床铺旁。
+      罗宾正在参加苦难审判。<<His>>的物品留在桌上。
   <</language>>
-<<elseif (Time.weekDay is 7 and Time.hour gte 21) or (Time.weekDay is 1 and Time.hour lt 7)>>
+<<elseif maplebirch.get('RobinTemple').bunk
+  and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
   <<language>>
     <<option 'EN'>>
       Robin has turned in for the night. <<His>> schoolbook lies closed beside the bunk.

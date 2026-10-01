@@ -85,7 +85,9 @@
   <<listsleepoutfits 'RobinTemple Bed'>>
 <</if>>
 <br>
-<<bedicon>><<lanLink '你的床铺' 'Temple Bunk'>><</lanLink>><br>
+<<if $temple_rank is 'monk'>>
+  <<bedicon>><<lanLink '你的床铺' 'Temple Bunk'>><</lanLink>><br>
+<</if>>
 <<wardrobeicon>><<lanLink '衣柜' 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink '镜子' 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
 <<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
@@ -149,7 +151,7 @@
   <<loveicon 'hug'>><<lanLink '问罗宾要不要你留下' 'RobinTemple Bed Invite'>><</lanLink>><br>
 <</if>>
 <br>
-<<bedicon>><<lanLink '起床' 'RobinTemple Bunk'>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '起床' 'RobinTemple Bunk'>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
 
 :: RobinTemple Bed Kiss
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -178,7 +180,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<bedicon>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
 
 :: RobinTemple Bed Invite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -193,7 +195,7 @@
   <</language>>
   <br><br>
   <<loveicon 'hug'>><<lanLink '靠着罗宾睡' 'RobinTemple Bed Close'>><</lanLink>><br>
-  <<bedicon>><<lanLink '让罗宾先睡' 'RobinTemple Bed'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '让罗宾先睡' 'RobinTemple Bed'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -202,7 +204,7 @@
       罗宾现在不在。你重新躺回毯子下。
   <</language>>
   <br><br>
-  <<bedicon>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '躺回床上' 'RobinTemple Bed'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Bed Close
@@ -214,7 +216,7 @@
     你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
 <</language>>
 <<stress -2>><<npcincr Robin love 1>><<lstress>><<glove>><br><br>
-<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 
 :: RobinTemple Sleep
 <<set $outside to 0>><<set $location to 'temple'>>
@@ -283,7 +285,7 @@
         <</language>>
     <</switch>>
     <br><br>
-    <<bedicon>><<lanLink '睁开眼' 'RobinTemple Night Wake'>><</lanLink>><br>
+    <<icon 'temple/robin-temple-bed.png'>><<lanLink '睁开眼' 'RobinTemple Night Wake'>><</lanLink>><br>
   <<elseif $nightmares gte 1 and $controlled is 0>>
     <<nightmareWake>>
   <<elseif !_wakingEffect>>
@@ -298,7 +300,7 @@
     <<sleepeffects>>
     <<set $wardrobe_location to 'temple'>><<wardrobeSelection true>><<radiooutfits>>
     <br><br>
-    <<bedicon>><<lanLink '起床' 'RobinTemple Bunk'>><</lanLink>><br>
+    <<icon 'temple/robin-temple-bed.png'>><<lanLink '起床' 'RobinTemple Bunk'>><</lanLink>><br>
   <</if>>
   <<set $phase to 0>>
 <</if>>
@@ -344,7 +346,7 @@
 <</switch>>
 <br><br>
 <<loveicon 'hug'>><<lanLink '握住罗宾的手' 'RobinTemple Night Wake Hand'>><</lanLink>><br>
-<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 <<getouticon>><<lanLink '起床' 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
 
 :: RobinTemple Night Wake Hand
@@ -372,5 +374,5 @@
   <</language>>
 <</if>>
 <<npcincr Robin love 1>><<stress -2>><<glove>><<lstress>><br><br>
-<<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 <<getouticon>><<lanLink '起床' 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>

@@ -96,9 +96,9 @@
     <<if maplebirch.get('RobinTemple').member>>
       <li><<language>>
         <<option 'EN'>>
-          Robin's trial of anguish: <<if $RobinTemple.vigil_result is 'passed'>>passed; Robin is now a <<if C.npc.Robin.pronoun is 'm'>>monk<<else>>nun<</if>>.<<else>>not yet passed; Robin remains an initiate.<</if>>
+          Robin's trial of anguish: <<if $RobinTemple.vigil_result is 'passed'>>passed; Robin is now a <<if C.npc.Robin.pronoun is 'm'>>monk<<else>>nun<</if>> and has a bunk in the quarters.<<else>>not yet passed; Robin remains an initiate and has not been assigned a bunk.<</if>>
         <<option 'CN'>>
-          罗宾的苦难审判：<<if $RobinTemple.vigil_result is 'passed'>>已通过，现为<<if C.npc.Robin.pronoun is 'm'>>修士<<else>>修女<</if>>。<<else>>尚未通过，仍是见习教徒。<</if>>
+          罗宾的苦难审判：<<if $RobinTemple.vigil_result is 'passed'>>已通过，现为<<if C.npc.Robin.pronoun is 'm'>>修士<<else>>修女<</if>>，已分到宿舍床铺。<<else>>尚未通过，仍是见习教徒，尚未分到床铺。<</if>>
       <</language>></li>
     <</if>>
     <<if $RobinTemple.faith_transition isnot ''>>

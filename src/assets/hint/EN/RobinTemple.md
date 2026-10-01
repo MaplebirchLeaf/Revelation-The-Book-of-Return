@@ -29,7 +29,7 @@ The main location is **Temple → Quarters → Robin's seat**. Shared prayer sta
 | Weekdays without school, 09:00–16:00                     | Robin helps at the temple, often in the garden or hall before noon and at the seat from 13:00–16:00 |
 | Evening, 17:00 until just before 19:45                   | Invite Robin from the room for a fifteen-minute journey, then work an evening shift                 |
 | Sunday, 11:00–13:00                                      | Robin helps with mass and may be occupied away from the seat                                        |
-| Saturday 21:00 to Sunday 07:00                           | Robin stays overnight unless living at your property, allowing bunk companionship                   |
+| Saturday 21:00 to Sunday 07:00                           | At monk rank or above, Robin stays overnight unless living at your property                         |
 | Sunday night to Monday morning                           | Robin may attend the trial of anguish until passing, rather than chatting at the bunk               |
 | Injury, disappearance, severe trauma or asylum admission | Daily activities pause until the condition is resolved                                              |
 
@@ -144,9 +144,9 @@ After Confounded Vow, all three vows are examined and all three take part in sha
 
 ### Bunks, nighttime companionship and hospital
 
-Visit Robin's bunk from the seat to access the temple wardrobe, mirror and your own bunk. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
+**Robin receives a bunk at monk rank or above.** Joining the temple or completing a promise alone does not unlock it. Then visit Robin's bunk from the seat to access the temple wardrobe and mirror. Your own bunk still requires the original PC promotion. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
 
-After promising, invite Robin to the bedside on weekdays without school, **13:00 until just before 15:45**, with Robin present, available and without an active shared purification. Discuss the new vow, choose intimacy or simply hug. Intimacy is not mandatory for completing the route.
+Once Robin has reached monk rank and you have promised, invite Robin to the bedside on weekdays without school, **13:00 until just before 15:45**, with Robin present, available and without an active shared purification. Discuss the new vow, choose intimacy or simply hug. Intimacy is not mandatory for completing the route.
 
 At the bench, very high stress below collapse allows a daily half-hour rest with Robin, improving love, easing stress and recording the rescue experience. Afterwards, ask for a hospital visit. Low trauma permits departure, moderate trauma may arrange treatment, and severe trauma requires **Sydney's relationship support, with both Sydney and Sirris introduced**, for the assisted departure branch. Otherwise the original hospital sequence resumes. Continue unfinished visits from the hospital entrance.
 

@@ -47,9 +47,9 @@
     <<case 'horse'>>
       <<language>>
         <<option 'EN'>>
-          Robin fetches a comb from beside <<his>> bunk. "Tell me if I pull," <<he>> says. <<He>> works from the ends of your tail upward, easing apart the tangles caught by your clothes. When someone passes the doorway, <<he>> lowers <<his>> voice. "There. Better?"
+          Robin fetches a comb from <<his>> shelf. "Tell me if I pull," <<he>> says. <<He>> works from the ends of your tail upward, easing apart the tangles caught by your clothes. When someone passes the doorway, <<he>> lowers <<his>> voice. "There. Better?"
         <<option 'CN'>>
-          罗宾从床铺旁取来一把梳子。“扯疼了就告诉我，”<<he>>说。<<He>>从尾巴末端一点点往上梳，把衣服缠乱的毛发慢慢理开。有人从门前经过时，<<he>>放低了声音。“好了。舒服些了吗？”
+          罗宾从书架上取来一把梳子。“扯疼了就告诉我，”<<he>>说。<<He>>从尾巴末端一点点往上梳，把衣服缠乱的毛发慢慢理开。有人从门前经过时，<<he>>放低了声音。“好了。舒服些了吗？”
       <</language>>
     <<case 'fish'>>
       <<language>>
