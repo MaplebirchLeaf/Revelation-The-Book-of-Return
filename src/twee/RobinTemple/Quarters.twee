@@ -40,9 +40,9 @@
   <</language>>
   <br><br>
 <</if>>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
 <<set _robinAtTemple to getRobinLocation() is 'temple' and !$robinmissing
-and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
+  and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
 <<if !_robinAtTemple>>
   <<language>>
     <<option 'EN'>>
@@ -77,7 +77,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
+    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
   <</if>>
 <<elseif Time.weekDay is 1 and Time.hour is 12>>
   <<language>>
@@ -111,8 +111,8 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
-    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction>><br>
+    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 <<elseif Time.hour lt 17 or Time.hour gte 20>>
   <<language>>
@@ -130,8 +130,8 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction>><br>
-    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction>><br>
+    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 
   <<if $robinromance is 1 and $RobinTemple.stage is 'member'
@@ -174,7 +174,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
+  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<language>>
     <<option 'EN'>>
       You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
@@ -188,7 +188,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
     <<option 'CN'>>
       离开前约旦来巡视。“谢谢你们两个。”
   <</language>>
-  <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+  <<grace 1>><<npcincr Robin love 1>><<ggrace>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -198,13 +198,13 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Supplies
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
+  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<language>>
     <<option 'EN'>>
       A delivery has been left by the stairwell. Robin checks the list while you carry the lighter boxes inside. Some are meant for the kitchen; others hold clean sheets.
@@ -218,7 +218,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
     <<option 'CN'>>
       罗宾发现有一项数量记错了。<<He>>给下一班留了张便条，随后把铅笔递给你。
   <</language>>
-  <<grace 1>><<npcincr Robin dom 1>><br><br><<ggrace>><<gdom>>
+  <<grace 1>><<npcincr Robin dom 1>><<ggrace>><<gdom>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -228,7 +228,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -243,39 +243,70 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
       大厅里渐渐坐满了人。罗宾摆好祈祷书，你扶一位年长的访客找到座位。最后一排准备妥当后，罗宾与约旦核对人数。
   <</language>>
   <br><br>
-  <<if $RobinTemple.vigil_result is 'passed'>>
-    <<if C.npc.Robin.trauma gte 40>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan asks Robin to read a short passage. <<He>> looks down at the book, then towards you. You stand nearby while <<he>> reads, quietly enough that the hall has to fall silent to hear. Afterwards, <<he>> stays beside you.
-        <<option 'CN'>>
-          约旦请罗宾朗读一小段经文。<<He>>低头看着书，又望向你。你站在附近陪着<<him>>。<<His>>声音很轻，大厅里安静下来才听得清。读完后，<<he>>仍待在你身旁。
+  <<if !$robinSeen.includes('mass')>>
+    <<run $robinSeen.pushUnique('mass')>>
+    <<language>>
+      <<option 'EN'>>
+        You don't notice who sits down beside you until you hear <<his>> voice. It's Robin. "Hey, you're here too?" <<he>> whispers, then quickly bows <<his>> head like Sydney as Jordan's gaze passes over the pews.
+        <br><br>
+        When you're called up to take communion, Robin keeps sneaking glances at you.
+      <<option 'CN'>>
+        你没有发觉身边坐下了另一个人，直到听见<<his>>的声音——是罗宾。“你也在这祷告吗？”<<he>>小声问，随即在约旦的目光扫过座位时，像悉尼一样迅速低下头。
+        <br><br>
+        你被叫到前面领受圣餐时，罗宾一直在偷偷瞄着你。
       <</language>>
-    <<elseif C.npc.Robin.dom gt 50>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan asks Robin to read a short passage aloud. <<He>> follows the line with a finger and keeps going even when <<his>> voice wavers. Afterwards, <<he>> finds you by the remaining books. "How was that?"
-        <<option 'CN'>>
-          约旦请罗宾朗读一小段经文。<<He>>用手指沿着字行，声音发颤时也没有停下。结束后，<<he>>在剩下的祈祷书旁找到你。“刚才读得怎么样？”
-      <</language>>
-    <<else>>
-      <<language>>
-        <<option 'EN'>>
-          Jordan asks Robin to read a short passage aloud. <<He>> loses <<his>> place once and glances toward you. You find the line and point to it. Robin finishes the reading, then returns to the work list with you.
-        <<option 'CN'>>
-          约旦请罗宾朗读一小段经文。<<He>>一时找不到读到哪儿，朝你望来。你替<<him>>找到那一行，指给<<him>>看。罗宾读完，和你一起回到工作表前。
-      <</language>>
-    <</if>>
+    <br><br>
+  <<elseif C.npc.Robin.trauma gte 40>>
+    <<language>>
+      <<option 'EN'>>
+        Robin stays close through the service. When the hall fills, <<he>> presses <<his>> shoulder against yours and keeps <<his>> eyes down.
+      <<option 'CN'>>
+        整场弥撒罗宾都靠得很近。大厅坐满之后，<<he>>把肩膀抵着你，一直没有抬头。
+    <</language>>
+    <br><br>
+  <<elseif C.npc.Robin.dom gt 50>>
+    <<language>>
+      <<option 'EN'>>
+        Robin sits beside you and, once Jordan has moved on, leans in. "I'm glad you're here," <<he>> whispers.
+      <<option 'CN'>>
+        罗宾坐在你旁边，等约旦走开后才凑过来。“我很高兴你在这里。”<<he>>低声说。
+    <</language>>
+    <br><br>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "Working the counter taught me to count quickly," Robin says. <<He>> leaves the front row clear for those who arrived late.
+        Robin ends up a few rows away. <<He>> catches your eye and waves, then hurries to find you once the final prayer is over.
       <<option 'CN'>>
-        “做生意倒让我学会了算得快，”罗宾说。<<He>>把前排留给晚到的人。
+        罗宾的位置离你有些远。<<He>>看见了你，朝你挥了挥手，等最后的祷告一结束就赶过来找你。
+    <</language>>
+    <br><br>
+  <<</if>>
+  <<if $angel gte 6>>
+    <<language>>
+      <<option 'EN'>>
+        Robin senses the halo above your head, and doesn't stop smiling for the rest of the service.
+      <<option 'CN'>>
+        罗宾感受到了你头上的光环，之后的整场弥撒都在笑。
+    <</language>>
+    <br><br>
+  <<elseif $fallenangel gte 2>>
+    <<language>>
+      <<option 'EN'>>
+        The monks refuse to look at you when you kneel for communion. The bread slips from Jordan's fingers; the wine evaporates before it reaches your lips. Robin sympathises with you afterwards.
+      <<option 'CN'>>
+        你跪下领受圣餐时，其他<<monks>>都拒绝看你。面包从约旦的指间滑落，葡萄酒在碰到你的嘴唇之前就蒸发了。之后，罗宾对你感同身受。
+    <</language>>
+    <br><br>
+  <<elseif $demon gte 6>>
+    <<language>>
+      <<option 'EN'>>
+        The bread tastes like ash, and the wine like blood. Robin doesn't understand why, and frowns at you expectantly.
+      <<option 'CN'>>
+        面包尝起来像灰烬，酒像血一样。罗宾不明白为什么会这样，皱着眉期待地看向你。
     <</language>>
   <</if>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
-  <<grace 1>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
+  <<grace 1>><<npcincr Robin love 1>><<ggrace>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -285,7 +316,7 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Whereabouts
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -405,4 +436,4 @@ and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <</switch>>
 <</if>>
 <br><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>

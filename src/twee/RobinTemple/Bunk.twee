@@ -4,7 +4,7 @@
 <<set _robinHere to $RobinTemple.stage isnot 'none' and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
-<<set _robinAfternoon to ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+<<set _robinAfternoon to maplebirch.get('RobinTemple').member
   and !$robinmissing and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and !Time.schoolDay and !Time.isWeekEnd()
   and Time.hour gte 13 and Time.hour lt 16>>
@@ -46,7 +46,7 @@
     and $robin.timer.hurt is 0
     and (Time.hour lt 15 or Time.hour is 15 and Time.minute lt 45)>>
     <br><br>
-    <<icon 'temple/RobinTemplebed.png'>><<lanLink '请罗宾到床边坐坐 (0:10)' 'RobinTemple Bed Afternoon'>><<pass 10>><</lanLink>><br>
+    <<icon 'temple/robin-temple-bed.png'>><<lanLink '请罗宾到床边坐坐 (0:10)' 'RobinTemple Bed Afternoon'>><<pass 10>><</lanLink>><br>
   <</if>>
 <<elseif getRobinLocation() is 'temple' and !$robinmissing
   and $RobinTemple.vigil_result isnot 'passed'
@@ -81,14 +81,14 @@
       <span class='red'>史莱姆现在不肯让你睡。</span>
   <</language>><br>
 <<else>>
-  <<icon 'temple/RobinTemplebed.png'>><<lanLink '脱衣钻进被窝' 'RobinTemple Bed'>><<undressSleep 'RobinTemple Bed'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '脱衣钻进被窝' 'RobinTemple Bed'>><<undressSleep 'RobinTemple Bed'>><</lanLink>><br>
   <<listsleepoutfits 'RobinTemple Bed'>>
 <</if>>
 <br>
 <<bedicon>><<lanLink '你的床铺' 'Temple Bunk'>><</lanLink>><br>
 <<wardrobeicon>><<lanLink '衣柜' 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink '镜子' 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
 <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Bunk Talk
@@ -100,16 +100,16 @@
     <<option 'EN'>>
       Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
     <<option 'CN'>>
-      罗宾合上课本，靠在你身边。<<He>>先说起今天的生意，又说起一名总问天什么时候亮的年幼见习教徒。
+      罗宾合上课本，靠在你身边。<<He>>先说起今天的工作，又说起一名总问天什么时候亮的年幼见习教徒。
   <</language>>
   <br><br>
   <<language>>
     <<option 'EN'>>
       "I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.
     <<option 'CN'>>
-      “我告诉<<him>>，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
+      “我告诉对方，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
   <</language>>
-  <<stress -3>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
+  <<stress -3>><<npcincr Robin love 1>><<lstress>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -119,7 +119,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<wearoutfit>><<npc Robin>><<person1>>
@@ -168,7 +168,7 @@
     <<option 'CN'>>
       旁边的见习教徒翻了个身。你们等到屋里重新安静下来。
   <</language>>
-  <<npcincr Robin love 1>><<npcincr Robin lust 1>><br><br><<glove>><<glust>>
+  <<npcincr Robin love 1>><<npcincr Robin lust 1>><<glove>><<glust>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -213,7 +213,7 @@
   <<option 'CN'>>
     你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
 <</language>>
-<<stress -2>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
+<<stress -2>><<npcincr Robin love 1>><<lstress>><<glove>><br><br>
 <<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 
 :: RobinTemple Sleep
@@ -246,36 +246,41 @@
     <<set $sleephour to Math.max(1, _requestedHours - $sleepHoursTotal)>>
     <<sleepeffects>>
     <<switch $RobinTemple.night_scene>>
-      <<case 'rain'>><<language>>
-        <<option 'EN'>>
-          Rain taps the high window. Robin is awake beside you, watching the water run down the glass.
-        <<option 'CN'>>
-          雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。
-      <</language>>
-      <<case 'voice'>><<language>>
-        <<option 'EN'>>
-          A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
-        <<option 'CN'>>
-          隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习教徒盖好滑落的毯子。
-      <</language>>
-      <<case 'embers'>><<language>>
-        <<option 'EN'>>
-          Robin wakes with a start. <<He>> stares at the dark ceiling as if the fire were still there.
-        <<option 'CN'>>
-          罗宾猛地醒来，盯着黑暗中的天花板，仿佛那堆火还在眼前。
-      <</language>>
-      <<case 'ledger'>><<language>>
-        <<option 'EN'>>
-          A page turns beside you. Robin is awake with the business ledger open on <<his>> knees.
-        <<option 'CN'>>
-          身旁传来翻页声。罗宾还醒着，膝上摊着生意账本。
-      <</language>>
-      <<default>><<language>>
-        <<option 'EN'>>
-          You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.
-        <<option 'CN'>>
-          罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。
-      <</language>>
+      <<case 'rain'>>
+        <<language>>
+          <<option 'EN'>>
+            Rain taps the high window. Robin is awake beside you, watching the water run down the glass.
+          <<option 'CN'>>
+            雨点敲着高处的窗。罗宾在你身边醒着，望着水痕顺玻璃流下。
+        <</language>>
+      <<case 'voice'>>
+        <<language>>
+          <<option 'EN'>>
+            A voice from the next bunk wakes you. Robin has already pulled the fallen blanket back over the younger initiate.
+          <<option 'CN'>>
+            隔壁床传来的声音惊醒了你。罗宾已经替那名年幼的见习教徒盖好滑落的毯子。
+        <</language>>
+      <<case 'embers'>>
+        <<language>>
+          <<option 'EN'>>
+            Robin wakes with a start. <<He>> stares at the dark ceiling as if the fire were still there.
+          <<option 'CN'>>
+            罗宾猛地醒来，盯着黑暗中的天花板，仿佛那堆火还在眼前。
+        <</language>>
+      <<case 'ledger'>>
+        <<language>>
+          <<option 'EN'>>
+            A page turns beside you. Robin is awake with the business ledger open on <<his>> knees.
+          <<option 'CN'>>
+            身旁传来翻页声。罗宾还醒着，膝上摊着生意账本。
+        <</language>>
+      <<default>>
+        <<language>>
+          <<option 'EN'>>
+            You wake when Robin tucks the blanket around your shoulder. <<He>> withdraws <<his>> hand, then notices your eyes are open.
+          <<option 'CN'>>
+            罗宾替你掖好肩上的毯子时，你醒了。<<He>>收回手，随后发现你正望着<<him>>。
+        <</language>>
     <</switch>>
     <br><br>
     <<bedicon>><<lanLink '睁开眼' 'RobinTemple Night Wake'>><</lanLink>><br>
@@ -304,7 +309,7 @@
   <<case 'rain'>>
     <<language>>
       <<option 'EN'>>
-        Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It is strange to lie still and not fetch a bucket."
+        Robin listens to the rain with you. "The roof at the orphanage leaks in weather like this," <<he>> says. "It's strange to lie still and not fetch a bucket."
       <<option 'CN'>>
         罗宾陪你听雨。“孤儿院的屋顶遇到这种天气会漏水，”<<he>>说，“躺着不去拿水桶，真有点不习惯。”
     <</language>>
@@ -366,6 +371,6 @@
       你在毯子下握住罗宾的手。<<He>>一直牵着你，直到宿舍再次安静下来。
   <</language>>
 <</if>>
-<<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+<<npcincr Robin love 1>><<stress -2>><<glove>><<lstress>><br><br>
 <<bedicon>><<lanLink '继续睡觉' 'RobinTemple Sleep'>><</lanLink>><br>
 <<getouticon>><<lanLink '起床' 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>

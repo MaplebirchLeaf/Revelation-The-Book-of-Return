@@ -14,7 +14,7 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "I meant what I said at the altar," <<he>> says. "Even when I have to leave for work or the orphanage."
+      "I meant what I said at the altar," <<he>> says. "Even when I've got work, or the orphanage needs me."
     <<option 'CN'>>
       “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
   <</language>>
@@ -29,7 +29,7 @@
       罗宾现在不在床铺旁。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Talk
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -73,7 +73,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Invite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -98,9 +98,9 @@
   <<elseif C.npc.Robin.dom gte 50>>
     <<language>>
       <<option 'EN'>>
-        "I've been thinking about this," <<he>> murmurs, close to your ear. "All day. I want to hold you down, and feel you against me until neither of us can think. Only if you want it too."
+        "I've been thinking about this," <<he>> murmurs, close to your ear. "All day. About... being close to you. Until neither of us can think about anything else. Only if you want it too."
       <<option 'CN'>>
-        “这件事我想了一整天，”<<he>>凑到你耳边低声说，“想按住你，贴着你不放，直到谁都想不了别的。你要是也愿意，就告诉我。”
+        “这件事我想了一整天，”<<he>>凑到你耳边低声说，“想和你贴得很近，近到谁都想不了别的。你要是也愿意，就告诉我。”
     <</language>>
   <<else>>
     <<language>>
@@ -121,7 +121,7 @@
       罗宾现在不能留下陪你。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Hold
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -150,7 +150,7 @@
         “就抱一会儿？”罗宾问。你点点头，<<he>>也抱住了你。你们安静地坐了一阵。“这样就很好，”<<he>>终于说，话出口又有些不好意思。钟声响起后，你帮<<him>>收起屏风。
     <</language>>
   <</if>>
-  <<npcincr Robin love 1>><br><br><<glove>>
+  <<npcincr Robin love 1>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -159,7 +159,7 @@
       罗宾已经离开了。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Sex
 <<set $outside to 0>><<set $location to 'temple'>>
@@ -170,6 +170,7 @@
   and C.npc.Robin.trauma lt 80
   and $robin.timer.hurt is 0>>
   <<set $sexstart to 0>><<set $RobinTemple.intimacy_active to true>>
+  <<set $RobinTemple.intimacy_day to Time.days>><<set $RobinTemple.intimacy_count += 1>>
   <<clearnpc>><<npc Robin>><<person1>><<run statusCheck('Robin')>>
   <<consensual>><<set $consensual to 1>><<neutral 1>>
   <<if $exposed lt 2>><<strip>><</if>>
@@ -185,9 +186,9 @@
   <<elseif C.npc.Robin.dom gte 50>>
     <<language>>
       <<option 'EN'>>
-        Robin presses you back onto the mattress. "I want this," <<he>> says. "Let me have you." <<He>> takes your hand and holds it over <<his>> own, not letting go.
+        Robin leans into you, then pulls back just far enough to speak. "I want this," <<he>> says. "I... I want you." <<He>> takes your hand and holds it over <<his>> own, not letting go.
       <<option 'CN'>>
-        罗宾把你按倒在床垫上。“我想要这个，”<<he>>说，“让我来一次。”<<He>>牵起你的手，按在<<his>>自己手背上，没有松开。
+        罗宾向你倾过来，又退开一点才开口。“我想要这个，”<<he>>说，“我……我想要你。”<<He>>牵起你的手，按在<<his>>自己手背上，没有松开。
     <</language>>
   <<else>>
     <<language>>
@@ -215,7 +216,7 @@
     <<option 'CN'>>
       罗宾现在不在床铺旁。
   <</language>><br><br>
-  <<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Bed Sex Finish
@@ -281,4 +282,4 @@
       床铺旁又安静下来。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/RobinTemplebed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>

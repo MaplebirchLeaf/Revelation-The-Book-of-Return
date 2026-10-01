@@ -1,9 +1,9 @@
 :: RobinTemple Promise Widgets [widget]
 <<widget 'robin-temple-promise-ready'>>
   <<set _robinPromiseReady to $RobinTemple.stage is 'approved' and $robinromance is 1
-  and !$RobinTemple.punish
-  and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.dual_promise
-  and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
+    and !$RobinTemple.punish
+    and ($templePromised is '' or $templePromised is 'Sydney' and $RobinTemple.dual_promise
+    and $sydneyromance is 1 and C.npc.Sydney.virginity.temple is true)>>
 <</widget>>
 
 <<widget 'robin-temple-promise-trait-name'>>
@@ -66,20 +66,15 @@
 <</if>>
 
 :: RobinTemple Promise Altar
-<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对；保留当前模组的状态变量与跳转。
-原版 passage：Sydney Temple Pure Pass。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Pass.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Pass.twee:2
-原版 passage：Sydney Temple Pure Ritual。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Ritual.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Ritual.twee:2
--->
+<!-- 原版 passage：Sydney Temple Pure Pass / Sydney Temple Pure Ritual。仪式流程照原版。三人立誓时补上悉尼的参与。 -->
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<robin-temple-promise-ready>>
 <<if _robinPromiseReady>>
   <<endevent>><<npc Robin 1>><<npc Jordan 2>><<person2>>
   <<language>>
     <<option 'EN'>>
+      Jordan smiles. "While we wait for your rings, I'll ready the two of you for the ritual. Please undress fully." Robin shows some hesitation, but follows your lead.
+      <br><br>
       <<if playerChastity() and $worn.genitals.origin is "temple">>
         <<He>> produces a sinister bladed instrument from <<his>> robes and kneels in front of you. Seconds later, the belt lies ruined on the floor and your <<genitals 1>>
         <<if $player.penisExist and $player.vaginaExist>>
@@ -108,11 +103,13 @@
         <</if>>
         <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
       <<else>>
-        <<He>> moves right to Robin.
+        With your chastity belt already removed, <<He>> moves right to Robin.
       <</if>>
       <br><br>
       <<undress "ritual">>
     <<option 'CN'>>
+      约旦笑了笑。“在等待戒指的这段时间里，我会为你们准备好仪式。请把衣服全部脱掉。”罗宾有些迟疑，但跟在你后头照做了。
+      <br><br>
       <<if playerChastity() and $worn.genitals.origin is "temple">>
         <<He>>从斗篷里拿出一个不祥的片状物体，然后跪在了你的面前。瞬间，你的贞操带哐当落地，<<genitals 1>>
         <<if $player.penisExist and $player.vaginaExist>>
@@ -141,7 +138,7 @@
         <</if>>
         <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
       <<else>>
-        <<He>>转向了罗宾。
+        你的贞操带已经被拆掉，于是<<he>>转向了罗宾。
       <</if>>
       <br><br>
       <<undress "ritual">>
@@ -166,7 +163,7 @@
     <<option 'EN'>>
       Jordan produces a bell from <<person2>><<his>> robes and rings it four times. Robin quickly attempts to hide <<person1>><<his>> exposure with <<his>> hands. A moment later, four <<person2>><<monks>> enter the room. Two of them bear clear jars full of grey powder, and the other two bring in various cushions, blankets, and candles. They begin to place them on the table, and the candles are lit. All other lights in the room seem to become dimmer.
       <br><br>
-      "Please lie on the altar," Jordan says, placing a hand on your shoulder. You comply, lying on your back, the blankets protecting you from the cold material underneath. The <<monks>> begin softly speaking, but you can't make out their words. "<<nnpc_Brother "Robin">> Robin. Please join your beloved on the altar. Take <<pher>> hands in yours, face to face." Robin hesitates, but complies.
+      "Please lie on the altar," Jordan says, placing a hand on your shoulder. You comply, lying on your back, the blankets protecting you from the cold material underneath. The <<monks>> begin softly speaking, but you can't make out their words. "<<nnpc_Brother "Robin">> Robin. Please join the one you love on the altar. Take <<pher>> hands in yours, face to face." Robin hesitates, but complies.
       <br><br>
       <<person1>><<He>> climbs on top of you, taking your hands in <<his>> own. <<His>> face is becoming more red by the second as you both maintain eye contact, trying to ignore your mutual exposure. <<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
       <br><br>
@@ -224,17 +221,7 @@
 <</if>>
 
 :: RobinTemple Promise End
-<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对；保留当前模组的状态变量与跳转。
-原版 passage：Sydney Temple Pure Ritual 2。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Ritual 2.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Ritual 2.twee:2
-原版 passage：Sydney Temple Pure Sex。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex.twee:2
-原版 passage：Sydney Temple Pure Sex Finish。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex Finish.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex Finish.twee:2
--->
+<!-- 原版 passage：Sydney Temple Pure Ritual 2 / Sydney Temple Pure Sex / Sydney Temple Pure Sex Finish。流程与结算照原版。罗宾的性爱台词按其人设重写（原版爱语为 "I love you."，不是悉尼的 "I really, really love you."）。 -->
 
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<if $RobinTemple.stage is 'promised' and $RobinTemple.templePromised is 'Robin'>>
@@ -250,7 +237,7 @@
       <br><br>
       "You are bound. Congratulations again." You notice a pair of <<monks>> folding your clothes, before placing them on the altar. "We will give you<<if $templePromised is 'Sydney'>> three<<else>> two<</if>> some... privacy, and clean up when you're done. The cushions and blankets will be burned to remove any impurities from this site. What you do now, the order will be blinded to." Jordan gives you both a gentle smile, and begins to leave with the other <<monks>>. "I hope you both find happiness in this decision."
       <br><br>
-      You're left alone with Robin<<if $templePromised is 'Sydney'>> and Sydney<</if>>, hearing the doors lock. <<person1>>"S...so, now we can just...?" Robin looks to you, still attempting to keep <<person1>><<his>> eyes off your body.
+      You're left alone with Robin<<if $templePromised is 'Sydney'>> and Sydney<</if>>, hearing the doors lock. <<person1>>"S...so this is it?" Robin looks to you, still attempting to keep <<person1>><<his>> eyes off your body.
       <br><br>
       <<if $speech_attitude is "meek">>
         "I... I think so. Are you ready?" you ask quietly.
@@ -273,7 +260,7 @@
       <br><br>
       "你们正式结为伴侣了，再次向你们<<if $templePromised is 'Sydney'>>三位<<else>>二位<</if>>表示祝贺。"你注意到一对<<monk>>整理好你们的衣服，放在一旁的圣坛上。"我们会给你们<<if $templePromised is 'Sydney'>>三人<<else>>二人<</if>>一些……私密空间，在你们完事后再来清扫干净。这些软垫和毯子都将会被烧毁，以去除任何留在此处的不洁之物。你们在这里做的任何事情都不会被其他同修知道。"约旦朝你们温和一笑，和其他<<monks>>一起离开了。"希望你们通过这个决定找到彼此的幸福。"
       <br><br>
-      门咔哒上锁，你和罗宾<<if $templePromised is 'Sydney'>>、悉尼<</if>>被留在了屋内。<<person1>>"所……所以，我们现在是可以……? "罗宾看着你，依旧有意避免瞟到你赤裸的身体。<<person1>>
+      门咔哒上锁，你和罗宾<<if $templePromised is 'Sydney'>>、悉尼<</if>>被留在了屋内。<<person1>>“所……所以，就是现在了吗？”罗宾看着你，依旧有意避免瞟到你赤裸的身体。<<person1>>
       <br><br>
       <<if $speech_attitude is "meek">>
         "我……我想是的。你准备好了吗？"你悄声问道。
@@ -309,6 +296,7 @@
 <<run statusCheck('Robin')>>
 <<if $sexstart is 1>>
   <<set $sexstart to 0>><<set $RobinTemple.intimacy_active to true>>
+  <<set $RobinTemple.intimacy_day to Time.days>><<set $RobinTemple.intimacy_count += 1>>
   <<npc Robin>><<person1>>
   <<consensual>><<set $consensual to 1>><<neutral 1>>
   <<maninit>><<npcexpose>>
@@ -331,18 +319,75 @@
 :: RobinTemple Promise Sex Finish
 <<effects>>
 <<if $RobinTemple.intimacy_active>>
-  <!-- TODO（作者）：本页各结算分支的露骨正文需要人工核对，代码保留原版的分支和恢复着装顺序。
-  原版 passage：Sydney Temple Pure Sex Finish。
-  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Sex Finish.twee:4
-  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Sex Finish.twee:4
-  -->
+<!-- 原版 passage：Sydney Temple Pure Sex Finish。分支、着装恢复与返回顺序照原版。罗宾的台词按其人设重写。 -->
   <<if $enemyarousal gte $enemyarousalmax>>
     <<ejaculation>>
+    <<language>>
+      <<option 'EN'>>
+        Robin collapses on you, breathing heavily. "That... that was..." <<He>> doesn't manage to finish the sentence. You hold <<him>> close, and continue to lie on the altar for some time. "I love you," <<he>> says at last, into your shoulder. "I'm so happy." <<He>> kisses you on the cheek again.
+        <br>
+        Robin reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
+        <br><br>
+      <<option 'CN'>>
+        罗宾瘫倒在你身上，不停地喘着粗气。“这……这是……”<<he>>没能把话说完。你搂紧<<him>>，又在圣坛上躺了一会儿。“我爱你，”<<he>>终于靠在你肩上说，“我好高兴。”<<He>>再次在你脸上印下一吻。
+        <br>
+        罗宾不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
+        <br><br>
+    <</language>>
   <<elseif $enemyhealth lte 0>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
+          Robin lets out a pained moan, and quickly covers <<his>> mouth to stifle it. <<He>> looks down in shame. "I... I think that's enough for me..."
+        <<else>>
+          "W-wait! Please, that..." Robin clings to you. "Th-that really hurt. I mean, I... I still kind of liked it, but..." <<His>> face flushes, and <<he>> looks away. "C...can we finish this another time?"
+        <</if>>
+      <<option 'CN'>>
+        <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
+          罗宾漏出一丝痛苦的呻吟，然后迅速用手捂住了自己的嘴巴。<<He>>羞愧地埋下了头，“我……我到这里就好……”
+        <<else>>
+          “等，等一下！求你，那个……”罗宾紧紧抱着你，“那、那真的有点痛……我的意思是，我还是很喜欢的，但……”<<his>>脸红了，看向一边，“能……能不能下次再做完？”
+        <</if>>
+    <</language>>
     <<npcincr Robin lust 5>><<gglust 'Robin'>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        "I love you," <<he>> says. "I'm so happy." <<He>> kisses you on the cheek again, and <<he>> reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
+      <<option 'CN'>>
+        “我爱你，”<<he>>说，“我好高兴。”<<He>>再次在你脸上印下一吻，然后不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
+    <</language>>
   <<else>>
-    <<npcincr Robin lust 5>><<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gglust 'Robin'>><<gconviction>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
+          "S...stop? But I..." <<he>> stammers off while still clinging on to you. "O-okay..."
+        <<else>>
+          Robin looks at you nervously. "Did I... did I do something wrong?"
+        <</if>>
+      <<option 'CN'>>
+        <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
+          “不……不做了？可是我……”<<he>>仍紧紧拥着你，话说到一半就断了，“好，好吧……”
+        <<else>>
+          罗宾紧张地看着你。“我……我做错什么了吗？”
+        <</if>>
+    <</language>>
+    <<npcincr Robin lust 5>><<set maplebirch.get('RobinTemple').faith += 2>><<gglust 'Robin'>><<gconviction 'Robin'>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        "I love you," <<he>> says. "I'm so happy." <<He>> kisses you on the cheek again, and <<he>> reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
+      <<option 'CN'>>
+        “我爱你，”<<he>>说，“我好高兴。”<<He>>再次在你脸上印下一吻，然后不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
+    <</language>>
   <</if>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      You retrieve your neatly folded clothing, and Robin does the same. "It still doesn't feel real," <<he>> says quietly. "That we can just... be together." <<He>> places <<his>> head on your shoulder.
+    <<option 'CN'>>
+      你拿回你整齐叠好的衣服，罗宾也紧随其后。“还是觉得不太真实，”<<he>>轻声说，“我们竟然可以……就这样在一起。”<<He>>把手搭在你的肩上。
+  <</language>>
   <<storeon 'ritual'>><<clotheson>><<endcombat>>
   <<set $RobinTemple.intimacy_active to false>>
   <<npc Robin>><<person1>>

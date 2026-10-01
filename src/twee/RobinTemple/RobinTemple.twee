@@ -57,7 +57,7 @@
       <</lanLink>><br>
     <<elseif $RobinTemple.stage is "failed" and Time.days gte $RobinTemple.exam_day + 7>>
       <<socialiseicon "ask">><<lanLink '问罗宾愿不愿意再试一次纯洁试炼' 'RobinTemple Retry'>><</lanLink>><br>
-    <<elseif ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+    <<elseif maplebirch.get('RobinTemple').member
       and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
       and getRobinLocation() is 'orphanage'
       and !(maplebirch.get('Robin') and $RobinExpansion?.tutor and Time.schoolDay
@@ -79,8 +79,8 @@
       <<if Time.days gte $RobinTemple.exam_day and Time.hour gte 6 and (Time.hour lt 8 or !Time.schoolDay and Time.hour lt 18)>>
         <<templeicon "altar">><<lanLink '陪罗宾参加纯洁试炼' 'RobinTemple Assessment'>><</lanLink>><br>
       <</if>>
-    <<elseif ["member", "approved", "promised"].includes($RobinTemple.stage)>>
-      <<icon 'temple/Robinquarters.png'>><<lanLink '去罗宾在宿舍的座位' 'RobinTemple Corner'>><</lanLink>><br>
+    <<elseif maplebirch.get('RobinTemple').member>>
+      <<icon 'temple/robin-quarters.png'>><<lanLink '去罗宾在宿舍的座位' 'RobinTemple Corner'>><</lanLink>><br>
       <<if $RobinTemple.punish>>
         <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] ($RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance')>><</lanLink>><br>
       <</if>>
@@ -99,13 +99,13 @@
 <</widget>>
 
 <<widget 'robin-temple-examination-ready'>>
-  <!-- 任一日历到期都进入同一轮月检；暂时无法到场时不会让 PC 先重复检查。 -->
+  <!-- 任一日历到期都进入同一轮月检，暂时无法到场时不会让 PC 先重复检查。 -->
   <<set _robinTempleExamDue to $RobinTemple.templePromised is 'Robin'
-  and ($RobinTemple.chastity_timer lte 0
-  or $temple_chastity_timer lte 0
-  or !$RobinTemple.monthly_checked)
-  and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
-  and $exposed lte 0>>
+    and ($RobinTemple.chastity_timer lte 0
+    or $temple_chastity_timer lte 0
+    or !$RobinTemple.monthly_checked)
+    and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
+    and $exposed lte 0>>
 <</widget>>
 
 <<widget 'robin-temple-examination'>>
@@ -124,7 +124,6 @@
   <<else>>
     <<set $RobinTemple.monthly_checked to false>>
     <<set $RobinTemple.chastity_timer to 30>>
-    <!-- 两份日历在同一轮检查中重置，PC 不会另行接受单人月检。 -->
     <<set $temple_chastity_timer to 30>>
     <<if $templePromised is 'Sydney'>>
       <<robin-temple-joint-examination>>

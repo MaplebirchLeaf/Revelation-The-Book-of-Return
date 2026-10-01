@@ -12,8 +12,9 @@
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <<else>>
   <<robin-temple-examination-partners true>>
-  <<run statusCheck('Robin')>><<run statusCheck('Sydney')>>
-  <<if (_robinVirgin and _sydneyVirgin and $player.virginity.penile is true and $player.virginity.vaginal is true)
+  <<if (C.npc.Robin.virginity.vaginal and C.npc.Robin.virginity.penile
+    and C.npc.Sydney.virginity.vaginal and C.npc.Sydney.virginity.penile
+    and $player.virginity.penile is true and $player.virginity.vaginal is true)
     or ($player.virginity.temple is true and C.npc.Robin.virginity.temple is true and C.npc.Sydney.virginity.temple is true)>>
     <<language>>
       <<option 'EN'>>
@@ -27,7 +28,7 @@
         <<option 'EN'>>
           With one anxious motion, Jordan returns your $worn.genitals.name to its place, guarding your crotch.
         <<option 'CN'>>
-          约旦小心地将你的$worn.genitals.name归回原位，遮住你的胯部。
+          约旦小心地将你的$worn.genitals.cn_name_cap归回原位，遮住你的胯部。
       <</language>>
     <</if>>
     <<robin-temple-examination-success>>

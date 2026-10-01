@@ -1,7 +1,7 @@
 :: RobinTemple Vigil Widgets [widget]
 <<widget 'robin-temple-vigil-init'>>
   <<set $RobinTemple.vigil_attending to C.npc.Robin.init is 1
-    and ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+    and maplebirch.get('RobinTemple').member
     and $RobinTemple.vigil_result isnot 'passed'
     and !$robinmissing and $robin.timer.hurt is 0
     and C.npc.Robin.trauma lt 80 and getRobinLocation() isnot 'asylum'>>
@@ -53,6 +53,8 @@
 <</widget>>
 
 <<widget 'robin-temple-vigil-group'>><<lanSwitch ($RobinTemple.vigil_attending ? 'The five of you' : 'The four of you') ($RobinTemple.vigil_attending ? '你们五人' : '你们四人')>><</widget>>
+
+<<widget 'robin-temple-vigil-carry'>><<if $RobinTemple.vigil_attending and $phase is 2>>You, Robin and Sydney carry each other forwards.<<elseif $phase is 2>>You and Sydney carry each other forwards.<<else>>You and Robin hold each other up as you move forwards.<</if>><<if $RobinTemple.vigil_attending and $phase is 2>>你、罗宾和悉尼互相搀扶着前进。<<elseif $phase is 2>>你和悉尼互相搀扶着前进。<<else>>你和罗宾互相搀扶着前进。<</if>>><</widget>>
 
 <<widget 'robin-temple-vigil-companions'>><<lanSwitch ($RobinTemple.vigil_attending ? ', Sydney, and Robin,' : ', and Sydney,') ($RobinTemple.vigil_attending ? '还有悉尼、罗宾' : '还有悉尼')>><</widget>>
 
@@ -138,9 +140,9 @@
     <<if $RobinTemple.vigil_with_robin>>
       <<language>>
         <<option 'EN'>>
-          You and Robin hold each other up as you move forwards.
+          <<if $phase is 2>>You, Robin and Sydney hold each other up as you move forwards.<<else>>You and Robin hold each other up as you move forwards.<</if>>
         <<option 'CN'>>
-          你和罗宾互相搀扶着前进。
+          <<if $phase is 2>>你、罗宾和悉尼互相搀扶着前进。<<else>>你和罗宾互相搀扶着前进。<</if>>
       <</language>>
     <<else>>
       <<robin-temple-vigil-failed>>
@@ -157,7 +159,7 @@
 
 <<widget 'robin-temple-vigil-focus'>>
   <<if $RobinTemple.vigil_with_robin>>
-    <<if C.npc.Robin.conviction gte 120>>
+    <<if C.npc.Robin.conviction gte 20>>
       <<language>>
         <<option 'EN'>>
           You feel Robin's mind reject the revelation, even as <<nnpc_his 'Robin'>> body melds with yours.
@@ -178,7 +180,7 @@
 
 <<widget 'robin-temple-vigil-yield'>>
   <<if $RobinTemple.vigil_with_robin>>
-    <<if C.npc.Robin.conviction lte 80>>
+    <<if C.npc.Robin.doubt gte 20>>
       <<language>>
         <<option 'EN'>>
           There is conflict. You feel Robin's curiosity as if it were your own, searching for an answer within the light.
@@ -221,9 +223,9 @@
 <<widget 'robin-temple-vigil-success'>>
   <<language>>
     <<option 'EN'>>
-      There is no sign of the fire. An unlit pyre lies beneath you; dawn shines above the temple. The bell rings three times. Jordan hurries over and wraps you and Robin in a warm cloth.
+      There is no sign of the fire. An unlit pyre lies beneath you; dawn shines above the temple. The bell rings three times. Jordan hurries over and wraps you<<if $phase is 2>> and Sydney<</if>> and Robin in a warm cloth.
     <<option 'CN'>>
-      火已不见踪影，身下只剩未燃的柴堆。神殿屋顶亮起晨光，钟声急促地响了三下。约旦赶来，用暖和的布裹住你和罗宾。
+      火已不见踪影，身下只剩未燃的柴堆。神殿屋顶亮起晨光，钟声急促地响了三下。约旦赶来，用暖和的布裹住你<<if $phase is 2>>、悉尼<</if>>和罗宾。
   <</language>>
   <<npcincr Jordan love 5>><<gglove 'Jordan'>><br><br>
   <<if $phase is 2>>
@@ -276,6 +278,13 @@
         Robin clings to you beneath the cloth. "We made it," <<nnpc_he 'Robin'>> whispers, as if <<nnpc_he 'Robin'>> still cannot believe it.
       <<option 'CN'>>
         罗宾在布下紧紧抱住你。“我们过了，”<<nnpc_he 'Robin'>>轻声说，像是仍不敢相信。
+    <</language>>
+  <<elseif $phase is 2>>
+    <<language>>
+      <<option 'EN'>>
+        Robin hugs you both, smiling through tears. "I couldn't have done it without you," <<nnpc_he 'Robin'>> says, looking between you and Sydney.
+      <<option 'CN'>>
+        罗宾抱住你们两个，眼里含着泪，脸上却带着笑。“没有你们，我做不到。”<<he>>说着，看向你和悉尼。
     <</language>>
   <<else>>
     <<language>>
@@ -330,7 +339,7 @@
 <<widget 'robin-temple-vigil-reminder'>>
   <<if ['monk', 'priest'].includes($temple_rank)
     and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7)>>
-    <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+    <<if maplebirch.get('RobinTemple').member
       and $RobinTemple.vigil_result isnot 'passed'
       and !$robinmissing and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80
       and getRobinLocation() is 'temple'>>
@@ -389,4 +398,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/Robinquarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>

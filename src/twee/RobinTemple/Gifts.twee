@@ -22,7 +22,7 @@
 <<if $gift is 'sticky_toffee_pudding'>>
   <<language>>
     <<option 'EN'>>
-      Robin stares at the sticky toffee pudding. "That is my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.
+      Robin stares at the sticky toffee pudding. "That's my favourite," <<he>> says, almost too quietly to hear. <<He>> takes a careful bite, then another.
     <<option 'CN'>>
       罗宾望着粘稠的太妃布丁。“这是我最喜欢的。”<<he>>说得很轻，几乎听不清。<<He>>小心尝了一口，接着又吃了一口。
   <</language>>
@@ -33,7 +33,7 @@
     <<option 'CN'>>
       “贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”
   <</language>>
-  <<npcincr Robin love 3>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><br><br><<gglove>>
+  <<npcincr Robin love 3>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><<gglove>>
 <<elseif _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
     <<option 'EN'>>
@@ -41,7 +41,7 @@
     <<option 'CN'>>
       罗宾双手接过辣味食物。第一口下去，<<his>>的眼睛就湿了，但<<he>>没有放下。
   <</language>>
-  <<npcincr Robin love 1>><br><br><<glove>>
+  <<npcincr Robin love 1>><<glove>>
 <<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>
   <<language>>
     <<option 'EN'>>
@@ -49,15 +49,15 @@
     <<option 'CN'>>
       罗宾看了看饮料，从口袋里摸出另一根吸管。“一起喝吗？”<<he>>问。
   <</language>>
-  <<npcincr Robin love 1>><br><br><<glove>>
+  <<npcincr Robin love 1>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Robin thanks you and sets the food between you. "I can wash the plate when we are done," <<he>> says.
+      Robin thanks you and sets the food between you. "I can wash the plate when we're done," <<he>> says.
     <<option 'CN'>>
       罗宾道了谢，把食物放在你们中间。“吃完我来洗盘子，”<<he>>说。
   <</language>>
-  <<npcincr Robin love 1>><br><br><<glove>>
+  <<npcincr Robin love 1>><<glove>>
 <</if>>
 <br><br>
 <<if $gift is 'sticky_toffee_pudding'>>
@@ -92,7 +92,7 @@
   <<option 'CN'>>
     “对不起，我忘了问你。”罗宾把盘子推过来。你们一起吃完布丁，<<he>>坚持要把盘子洗干净。
 <</language>>
-<<npcincr Robin dom -1>><br><br><<ldom>>
+<<npcincr Robin dom -1>><<ldom>><br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Pudding Watch
@@ -103,7 +103,7 @@
   <<option 'CN'>>
     你看着罗宾吃完布丁。最后一口咽下后，<<he>>闭上眼笑了笑，随后才发现你还在看<<him>>。
 <</language>>
-<<npcincr Robin dom 1>><br><br><<gdom>>
+<<npcincr Robin dom 1>><<gdom>><br><br>
 <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Share

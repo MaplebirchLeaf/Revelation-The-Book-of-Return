@@ -20,8 +20,8 @@
         见习教徒说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
     <</language>>
     <br><br>
-    <<socialiseicon 'ask'>><<lanLink '和罗宾一起核对清单 (0:15)' 'RobinTemple Prayer List'>><<pass 15>><</lanLink>><<ggrace>><<gconviction>><br>
-    <<loveicon 'hug'>><<lanLink '请罗宾先安慰见习教徒' 'RobinTemple Prayer Comfort'>><</lanLink>><<glove>><<ggconviction>><br>
+    <<socialiseicon 'ask'>><<lanLink '和罗宾一起核对清单 (0:15)' 'RobinTemple Prayer List'>><<pass 15>><</lanLink>><<ggrace>><<gconviction 'Robin'>><br>
+    <<loveicon 'hug'>><<lanLink '请罗宾先安慰见习教徒' 'RobinTemple Prayer Comfort'>><</lanLink>><<glove>><<ggconviction 'Robin'>><br>
   <<case 3>>
     <<language>>
       <<option 'EN'>>
@@ -56,7 +56,7 @@
       <</language>>
     <</if>>
     <br><br>
-    <<socialiseicon 'ask'>><<lanLink '请约旦说明情况' 'RobinTemple Prayer Ask Jordan'>><</lanLink>><<gdom>><<gconviction>><br>
+    <<socialiseicon 'ask'>><<lanLink '请约旦说明情况' 'RobinTemple Prayer Ask Jordan'>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
     <<getouticon>><<lanLink '先和罗宾离开' 'RobinTemple Prayer Leave'>><</lanLink>><br>
 <</switch>>
 
@@ -71,7 +71,7 @@
       你和罗宾用布巾包好碗，送到狼街的厨房。厨师数过碗，才把锅架上炉灶。
   <</language>>
   <<set $soup_kitchen_known to 1>><<set $RobinTemple.service += 1>>
-  <<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+  <<grace 2>><<npcincr Robin love 1>><<ggrace>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -122,8 +122,8 @@
       你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习教徒把数字改好。
   <</language>>
   <<set $RobinTemple.service += 1>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gconviction>>
-  <<grace 1>><br><br><<ggrace>>
+  <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
+  <<grace 1>><<ggrace>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -145,8 +145,8 @@
     <<option 'CN'>>
       罗宾陪见习教徒坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
   <</language>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
-  <<npcincr Robin love 1>><br><br><<glove>>
+  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
+  <<npcincr Robin love 1>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -169,7 +169,7 @@
       约旦听完访客的情况，同意让对方留到天亮。罗宾端来水和干净的毯子，又问还有没有别的需要。
   <</language>>
   <<set $RobinTemple.service += 1>>
-  <<grace 2>><<npcincr Robin love 1>><br><br><<ggrace>><<glove>>
+  <<grace 2>><<npcincr Robin love 1>><<ggrace>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -191,7 +191,7 @@
     <<option 'CN'>>
       罗宾去找约旦时，你留在访客身边。<<He>>带着毯子回来，也带来了让访客在宿舍休息的许可。
   <</language>>
-  <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+  <<npcincr Robin love 1>><<stress -2>><<glove>><<lstress>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -235,8 +235,8 @@
         罗宾问能不能给那名见习教徒送些水。约旦点头，告诉<<him>>该去哪里。
     <</language>>
   <</if>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gconviction>>
-  <<npcincr Robin dom 1>><br><br><<gdom>>
+  <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
+  <<npcincr Robin dom 1>><<gdom>>
 <<else>>
   <<language>>
     <<option 'EN'>>

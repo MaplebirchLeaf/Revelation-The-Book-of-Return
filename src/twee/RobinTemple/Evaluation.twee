@@ -5,7 +5,7 @@
   <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <<elseif $RobinTemple.stage isnot 'member' or $robinromance isnot 1 or $RobinTemple.punish
   or $temple_rank is undefined or $temple_rank is 'prospective'
-  or C.npc.Robin.conviction lt 80 or Time.dayState is 'night' or Time.dayState is 'dusk'
+  or C.npc.Robin.doubt gt 20 or Time.dayState is 'night' or Time.dayState is 'dusk'
   or ($RobinTemple.evaluation_day gte 0 and Time.days lt $RobinTemple.evaluation_day + 30)>>
   <<language>>
     <<option 'EN'>>
@@ -23,11 +23,11 @@
         <br><br>
         <<nnpc_He "Jordan">> turns to greet you as you near. "Welcome back," <<nnpc_he "Jordan">> says. Robin's grip on your hand tightens.
         <br><br>
-        "W-we'd like to make a request," Robin stammers. You give <<him>> a reassuring look, and <<his>> doubt rapidly fades. "We... really love each other. A lot. We wanted to request a... a pardon from the First Vow, permission to..." Robin looks down, <<his>> face heating up. Jordan smiles.
+        "W-we have something to ask," Robin stammers. You give <<him>> a reassuring look, and <<his>> hesitation eases. "We... I mean, we love each other. So we wanted to ask about... about the First Vow. Whether we could..." Robin trails off and looks down, <<his>> face heating up. Jordan smiles.
         <br><br>
         "I understand. You know the rules, Robin. A union of two of our members will be permitted if, and only if, the love between the two is deemed to be absolutely pure of heart, and they undergo a rite of promise or marriage. Now, you're both still in school, yes? I'd personally advise against marriage at this time."
         <br><br>
-        You can feel Robin's pulse through <<his>> hand. "Y-yes, we agree." <<He>> steps forward, and motions for you to do the same. "We'd like to be evaluated for the rite of promise."
+        You can feel Robin's pulse through <<his>> hand. "Y-yes. We agree." <<He>> steps forward, and motions for you to do the same. "We'd like to be evaluated. For the rite."
       <<else>>
         You tell Robin you're ready. The two of you approach Jordan again. "Welcome back," <<nnpc_he "Jordan">> says. "I take it you're here to be evaluated again?" You both nod.
       <</if>>
@@ -43,7 +43,7 @@
         <br><br>
         约旦见你们走来，向你们打招呼。"欢迎回来。" 罗宾紧紧握住了你的手。
         <br><br>
-        "我，我们想提出一个申请，"罗宾断断续续地说着。你给了<<he>>一个安抚的目光，<<he>>便很快不再迟疑。"我们……真的很爱彼此，真的真的。我们想申请一个——一个对于第一誓约的赦免。就是允许……"罗宾埋下头，脸唰的一下变红了。约旦笑了。
+        “我、我们有件事想问问，”罗宾断断续续地说着。你给了<<him>>一个安抚的目光，<<he>>的迟疑缓和了些。“我们……我是说，我们爱着彼此。所以想问问……关于第一誓约的事。能不能……”罗宾说不下去，埋下了头，脸唰的一下变红了。约旦笑了。
         <br><br>
         "我明白了。你也知道规矩，罗宾。当且仅当两个人之间的爱被认为是纯洁无瑕的，并且他们经历了结为伴侣或结婚的仪式时，两个人的结合才被允许。你们俩都还在上学，对吧？我个人建议不要在这个时候结婚。"
         <br><br>
@@ -107,13 +107,13 @@
       <<set $RobinTemple.evaluation_marks += 5>>
       <<He>> runs <<his>> thumb against the roses on your clothes. "While not necessarily appropriate for this Rite, I can appreciate that you're wearing your heart on your sleeve with this wedding attire."
       <br><br>
-      Robin blushes. "I... I hope to see <<phim>> wearing that again some day."
+      Robin blushes and looks away. "I... I'd like to see that again. Some day."
       <br><br>
     <</if>>
     Jordan produces a small bell from <<his>> robes, and rings it four times. <<person3>>An older <<monk>> enters the room, and nods to Jordan. "Please stand," the <<monk>> says.
     <<He>> examines Robin very closely, although <<person1>><<he>> shows no discomfort.<<person3>>
     <br>
-    <<if C.npc.Robin.conviction gte 120>>
+    <<if C.npc.Robin.conviction gte 20>>
       "<span class="green">You are as pure as the day you joined us,</span> <<nnpc_brother "Robin">> Robin. May you stay this way forevermore," the <<monk>> says through a hearty smile.
       <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
@@ -174,7 +174,7 @@
     <<He>>从斗篷里拿出一枚小铃铛摇了几次。<<person3>>一个年长的<<monk>>进入房间，向约旦点点头。“请站直了。”那个<<monk>>说。
     <<He>>非常仔细地打量罗宾，尽管<<person1>><<he>>没表现出丝毫不适。<<person3>>
     <br>
-    <<if C.npc.Robin.conviction gte 120>>
+    <<if C.npc.Robin.conviction gte 20>>
       "<span class="green">你和加入我们那天一样纯洁，</span>罗宾<<nnpc_brother "Robin">>。祝你永远保持这样。"<<monk>>露出了亲和的微笑。
       <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
@@ -411,7 +411,7 @@
     <br><br>
     "I'm sorry. I'll leave you two alone for as long as you need." Jordan begins to exit. "Should you need to talk, you know where to find me."
     <br><br>
-    Robin takes you by the hand. "It's... it's okay. I... can wait. As long as it takes. I promise." <<His>> eyes begin to water. You pull <<him>> into a tight hug, and stay there for what feels like hours.
+    Robin takes you by the hand. "Don't... don't worry about me," <<he>> says, though <<his>> voice isn't steady. "We can try again. However long it takes." <<His>> eyes begin to water. You pull <<him>> into a tight hug, and stay there for what feels like hours.
     <<tearful>> you exit back into the temple with <<him>>.
     <br><br>
     <<endevent>><<npc "Robin">><<person1>>
@@ -540,40 +540,168 @@
 <</if>>
 
 :: RobinTemple Evaluation Examination
-<!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
-原版 passage：Sydney Temple Pure Test。
-英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Pure Test.twee:2
-中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Pure Test.twee:2
--->
-
 <<effects>><<npc Jordan 2>><<person2>>
 <<language>>
   <<option 'EN'>>
-    Jordan administers the off-schedule examination.
+    Jordan gives you a solemn nod. "Please undress."
+    You remove your clothing, wishing it wasn't quite so cold in here. Jordan rubs white powder between <<his>> hands, then kneels in front of you.
+    <<if playerChastity() and $worn.genitals.origin is "temple">>
+      <<He>> holds a strange rod against your $worn.genitals.name, and the device clatters to the floor.
+    <</if>>
+    <<if $player.penisExist>>
+      <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
+        <<He>> holds your $worn.genitals.name between both forefingers, gently manipulating it while <<he>> inspects it. You try to distract yourself, but soon feel your <<penis>> attempt to harden under <<his>> scrutiny.
+      <<else>>
+        <<He>> holds your penis between both forefingers and stares at it, gently manipulating the length. You try to distract yourself, but soon feel it hardening under <<his>> scrutiny.
+      <</if>>
+    <</if>>
+    <<if $player.vaginaExist>>
+      <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
+        <<He>> places <<his>> thumbs against the side of your $worn.genitals.name and attempts to inspect your pussy.
+        <br>
+      <<else>>
+        <<He>> places <<his>> thumbs against your pussy and gently opens your
+        <<if setup.bodyliquid.combined("vagina") gte 2>>
+          <<if setup.bodyliquid.combined("vagina") gte 6>>
+            lips. Cum bursts out, spraying across Jordan's face and running in streams down both <<his>> arms.
+            <<He>> falls back in shock, hurriedly wiping cum from <<his>> eyes and mouth.
+            <br>
+            <<He>> looks at you.
+          <<elseif setup.bodyliquid.combined("vagina") gte 4>>
+            lips. A thick stream of lewd fluids gushes out. Some runs down Jordan's arm and disappears up <<his>> sleeve.
+            <<He>> jumps back with a yelp, shaking <<his>> arms in alarm.
+            <br>
+          <<else>>
+            lips. Cum runs out in a thin stream down your legs. Jordan withdraws <<his>> hands in surprise.
+            <br>
+          <</if>>
+          "That's a bad sign," <<he>> mutters.
+          <br><br>
+        <<else>>
+          lips, giving <<him>> a clear view inside.
+          <br>
+        <</if>>
+      <</if>>
+      You don't want to admit it, but your body responds lewdly to being examined like this.
+    <</if>>
+    <br><br>
+    The fondling continues for a few minutes. Finally, <<he>> finishes <<his>> work. <<He>> stands back and looks at you.
+    <<arousal 1000 "genitals">>
+    <<if $player.virginity.penile is true and $player.virginity.vaginal is true or $player.virginity.temple is true>>
+      "Congratulations. You are unblemished, and may it stay that way. This evaluation is complete, and you've passed."
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>> doesn't return your chastity belt. "The next part will require this to be removed anyways." <<set $phase2 to 1>>
+        <<set $worn.genitals.type.push("broken")>>
+        <<genitalsruined>>
+        <<if $vaginalchastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $vaginalchastityparasite fall out of your vagina.</span>
+          <br>
+          <<set $vaginalchastityparasite to 0>>
+        <</if>>
+        <<if $penilechastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $penilechastityparasite fall off of your penis.</span>
+          <br>
+          <<set $penilechastityparasite to 0>>
+        <</if>>
+        <<if $analchastityparasite isnot 0>>
+          <span class="pink">With the chastity belt gone, the $analchastityparasite fall out of your anus.</span>
+          <br>
+          <<set $analchastityparasite to 0>>
+        <</if>>
+        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
+      <</if>>
+      <br><br>
+      <<He>> turns away to let you dress.
+      <br><br>
+    <<else>>
+      <<set $templetest to "failed">>
+      "I'm sorry, but you are spoilt." <<His>> voice shakes slightly, you're not sure if you imagined it. "You must be purified. I will summon the specialists. Please cooperate with them." <<He>> produces a small bell from <<his>> robes, and rings. "Robin will not be punished, or informed of this, for your sake."
+      <br><br>
+      <<endevent>>
+    <</if>>
   <<option 'CN'>>
-    约旦为你进行临时贞洁检查。
-<</language>>
-
-<<arousal 1000 "genitals">>
-<<if ($player.virginity.penile is true and $player.virginity.vaginal is true) or $player.virginity.temple is true>>
-  <<language>>
-    <<option 'EN'>>
-      "Congratulations. You are unblemished, and may it stay that way. This evaluation is complete, and you have passed."
-    <<option 'CN'>>
+    约旦向你郑重点头。“请脱掉衣服。”
+    你脱掉衣物，希望这里别这么冷。约旦在两手间擦拭上白色粉末，然后跪在了你的面前。
+    <<if playerChastity() and $worn.genitals.origin is "temple">>
+      <<He>>拿着一根奇怪的杆状物抵住你的$worn.genitals.cn_name_cap，装置随即咔嗒落地。
+    <</if>>
+    <<if $player.penisExist>>
+      <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
+        <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，一边检查一边轻轻摆弄。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>的审视下变得更硬了。
+      <<else>>
+        <<He>>用两根食指夹住你的阴茎，一边紧盯着，一边温柔套弄着柱身。你试图分散自己的注意力，但阴茎还是在<<his>>的抚摸下慢慢挺立。
+      <</if>>
+    <</if>>
+    <<if $player.vaginaExist>>
+      <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
+        <<He>>用<<his>>双手的拇指放在你的$worn.genitals.cn_name_cap边上，试图检查你的阴部。
+        <br>
+      <<else>>
+        <<He>>用<<his>>双手的拇指轻触着你的阴部，温柔地打开了你的
+        <<if setup.bodyliquid.combined("vagina") gte 2>>
+          <<if setup.bodyliquid.combined("vagina") gte 6>>
+            阴唇。淫液喷涌而出，溅了约旦一脸，沿着<<his>>的双手流下。
+            <<He>>震惊地跌坐在地，慌忙擦掉了眼中和嘴里的液体。
+            <br>
+            <<He>>看向你。
+          <<elseif setup.bodyliquid.combined("vagina") gte 4>>
+            阴唇。一股淫液涌出，滴在了约旦的手上，很快浸没到<<his>>的袖子里。
+            <<He>>惊叫地向后跳去，惊恐地甩着双手。
+            <br>
+          <<else>>
+            阴唇。淫液如细流淌下你的双腿，约旦吃惊地抽出双手。
+            <br>
+          <</if>>
+          "那可不是一个好兆头。"<<he>>喃喃道。
+          <br><br>
+        <<else>>
+          阴唇，以便<<him>>能清晰查看里面的景象。
+          <br>
+        <</if>>
+      <</if>>
+      你不愿承认，但你的身体确实在淫荡地回应着这个检验。
+    <</if>>
+    <br><br>
+    抚弄持续了几分钟。最后，<<he>>完成了手里的活儿。<<He>>退后一步，看着你。
+    <<arousal 1000 "genitals">>
+    <<if $player.virginity.penile is true and $player.virginity.vaginal is true or $player.virginity.temple is true>>
       “恭喜，你依然纯洁无瑕，希望你继续保持。评估结束了，你通过了。”
-  <</language>>
-  <br><br>
-  <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
+      <<if playerChastity() and $worn.genitals.origin is "temple">>
+        <<He>>没有把贞操带还给你。“接下来的步骤本来也需要把它取下来。”<<set $phase2 to 1>>
+        <<set $worn.genitals.type.push("broken")>>
+        <<genitalsruined>>
+        <<if $vaginalchastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($vaginalchastityparasite)>>从你的阴道中脱落。</span>
+          <br>
+          <<set $vaginalchastityparasite to 0>>
+        <</if>>
+        <<if $penilechastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($penilechastityparasite)>>从你的阴茎上脱落下来。</span>
+          <br>
+          <<set $penilechastityparasite to 0>>
+        <</if>>
+        <<if $analchastityparasite isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($analchastityparasite)>>从你的肛门掉了出来。</span>
+          <br>
+          <<set $analchastityparasite to 0>>
+        <</if>>
+        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
+      <</if>>
+      <br><br>
+      <<He>>转过身，让你将衣物穿好。
+      <br><br>
+    <<else>>
+      <<set $templetest to "failed">>
+      “很抱歉，你已经不再纯洁。”<<His>>的声音有些颤抖，你不确定自己是否听错了。“你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一个小铃铛，摇了摇。“为了你，罗宾不会被惩罚，也不会知晓此事。”
+      <br><br>
+      <<endevent>>
+    <</if>>
+<</language>>
+<br><br>
+<<if $templetest is 'failed'>>
+  <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>><br>
 <<else>>
-  <<set $templetest to 'failed'>>
-  <<language>>
-    <<option 'EN'>>
-      "I am sorry, but you must be purified. Robin will not be punished, or informed of this, for your sake."
-    <<option 'CN'>>
-      “很抱歉，你需要接受净化。为了你，我不会惩罚罗宾，也不会告知罗宾此事。”
-  <</language>>
-  <br><br>
-  <<endevent>><<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>><br>
+  <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Evaluation Eavesdrop Followup
@@ -595,7 +723,7 @@
     <br><br>
     "Have you had any sexual contact with <<phim>>?" There's a very long pause.
     <br>
-    "Y...y...yes. Not... not anything that would have broken my vow, though."
+    "Y-yes. B-but nothing that would have broken my vow. I wouldn't."
     <br>
     "Thank you for being honest. I trust your word. Your section of this evaluation is complete."
     <br><br>

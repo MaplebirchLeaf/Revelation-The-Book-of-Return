@@ -9,9 +9,22 @@ export interface RobinTemplePunishment {
   phase: number;
   action: '' | 'Player' | 'Robin' | 'Sydney' | 'Vibrate';
   result: 'active' | 'rest' | 'passed' | 'hospital';
+  /** 记录本轮失败原因，供原版同款文本分流。 */
+  cause: '' | 'pain' | 'arousal' | 'partnerPain' | 'partnerArousal' | 'hospital' | 'passed';
+  /** 由哪一位同伴触发同伴类失败，供三名参与者时的文本选用。 */
+  causeTarget: 'Robin' | 'Sydney' | '';
   choice: 'hold' | 'belt' | 'hit' | 'plead' | 'touch' | 'close';
   target: 'Robin' | 'Sydney' | 'both';
   partners: Partial<Record<'Robin' | 'Sydney', { pain: number; arousal: number; hold: number; belt: number; hit: number; plead: number; touch: number }>>;
+}
+
+/** 与原版 $sydneyConfession 同构，供忏悔室亲密分支在战斗读档后仍能续接。 */
+export interface RobinTempleConfession {
+  sound: number;
+  attendant: string;
+  state: '' | 'present' | 'leaving' | 'gone' | 'exposed';
+  pronoun: 'm' | 'f';
+  choice: '' | 'forgive' | 'repent' | 'contrition' | 'correct';
 }
 
 /** 路线状态保存在当前 SugarCube 存档中，不属于浏览器会话。 */
@@ -46,10 +59,11 @@ export interface RobinTempleState {
   /** 是否已由剧情解锁第二份誓约。 */
   dual_promise: boolean;
   punish: RobinTemplePunishment | null;
-  confession_response: 'hold' | 'speak' | '';
   confession_day: number;
-  confession_recognized: boolean;
-  confession_resolved: boolean;
+  /** 罗宾最近一次与 PC 亲密的日子与累计次数，供告解事件与原版口径对齐。 */
+  intimacy_day: number;
+  intimacy_count: number;
+  confession: RobinTempleConfession | null;
   prayer_day: number;
   rest_day: number;
   hospital_day: number;
@@ -106,10 +120,10 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   evaluation_phase: 1,
   dual_promise: false,
   punish: null,
-  confession_response: '',
   confession_day: -1,
-  confession_recognized: false,
-  confession_resolved: false,
+  intimacy_day: -1,
+  intimacy_count: 0,
+  confession: null,
   prayer_day: -1,
   rest_day: -1,
   hospital_day: -1,

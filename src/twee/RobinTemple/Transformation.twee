@@ -7,10 +7,10 @@
 <<set _robinTfParts to checkTFparts()>>
 <<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10
   and ($RobinTemple.transformation_kind is 'fox' and $fox gte 6 and _robinTfParts.foxTail
-    or $RobinTemple.transformation_kind is 'wolf' and $wolfgirl gte 6
-    or $RobinTemple.transformation_kind is 'cat' and $cat gte 6
-    or $RobinTemple.transformation_kind is 'bird' and $harpy gte 6
-    or $RobinTemple.transformation_kind is 'cow' and $cow gte 6)>>
+  or $RobinTemple.transformation_kind is 'wolf' and $wolfgirl gte 6
+  or $RobinTemple.transformation_kind is 'cat' and $cat gte 6
+  or $RobinTemple.transformation_kind is 'bird' and $harpy gte 6
+  or $RobinTemple.transformation_kind is 'cow' and $cow gte 6)>>
   <<set $RobinTemple.transformation_count += 1>>
   <<switch $RobinTemple.transformation_kind>>
     <<case 'fox'>>
@@ -51,10 +51,10 @@
   <</switch>>
   <<npcincr Robin love 2>>
   <<switch $RobinTemple.transformation_kind>>
-    <<case 'fox' 'cow'>><<trauma -2>><br><br><<glove>><<ltrauma>>
-    <<case 'wolf'>><<stress -2>><br><br><<glove>><<lstress>>
-    <<case 'cat'>><<tiredness -2>><br><br><<glove>><<ltiredness>>
-    <<case 'bird'>><<tiredness -1>><br><br><<glove>><<ltiredness>>
+    <<case 'fox' 'cow'>><<trauma -2>><<glove>><<ltrauma>><br><br>
+    <<case 'wolf'>><<stress -2>><<glove>><<lstress>><br><br>
+    <<case 'cat'>><<tiredness -2>><<glove>><<ltiredness>><br><br>
+    <<case 'bird'>><<tiredness -1>><<glove>><<ltiredness>><br><br>
   <</switch>>
   <!-- 消耗这次从长椅选择的互动，重访结果页不会重复结算。 -->
   <<set $RobinTemple.transformation_kind to ''>>

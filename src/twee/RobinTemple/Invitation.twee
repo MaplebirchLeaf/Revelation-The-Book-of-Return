@@ -33,14 +33,14 @@
 <<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
   <<language>>
     <<option 'EN'>>
-      "I have the shop to run," Robin says. "And the children here. Would I have to leave them?"
+      "I've got the shop to run," Robin says. "And the children here. Would I have to leave them?"
     <<option 'CN'>>
       “我还要照看店铺，”罗宾说，“院里的孩子们也需要人照顾。我得离开他们吗？”
   <</language>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      "I still have my stall," Robin says. "And the children here. Would I have to leave them?"
+      "I've still got my stall," Robin says. "And the children here. Would I have to leave them?"
     <<option 'CN'>>
       “我还有摊位，”罗宾说，“院里的孩子们也需要人照看。我得离开他们吗？”
   <</language>>
@@ -255,9 +255,6 @@
 <<if $RobinTemple.stage is "scheduled" and $RobinTemple.assessment_passed>>
   <<set $RobinTemple.stage to "member">>
   <<set $RobinTemple.grace to 0>><<set $RobinTemple.assessment_bonus to 0>>
-  <<if C.npc.Robin.conviction is undefined or C.npc.Robin.conviction is 0>>
-    <<set C.npc.Robin.conviction to 100>>
-  <</if>>
   <<set C.npc.Robin.virginity.temple to true>>
   <<if C.npc.Robin.chastity.anus is ''
     and C.npc.Robin.chastity.vagina is ''

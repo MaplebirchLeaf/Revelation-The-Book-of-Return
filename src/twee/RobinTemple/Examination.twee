@@ -92,26 +92,28 @@
 <</widget>>
 
 <<widget 'robin-temple-examination-prepare'>>
-  <!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
-  原版 passage：Sydney Temple Test。
-  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Test.twee:2
-  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Test.twee:2
-  -->
+<!-- 原版 passage：Sydney Temple Test。机制、宏顺序与分流照原版。罗宾的台词按其人设重写，不逐字照搬悉尼。 -->
 
   <<npc Jordan 1>><<npc Robin 2>><<person1>>
   <<if _args[0]>><<npc Sydney 3>><</if>>
   <<language>>
     <<option 'EN'>>
       Jordan gives you a solemn nod. "Please come with me."
+      <<if getRobinLocation() is 'temple'>>
 
-      You and Robin follow.
+        You<<if _args[0]>>, Robin and Sydney<</if>><<if !_args[0]>> and Robin<</if>> follow.
+      <</if>>
 
       <br><br>
       <<He>> leads you out of the main hall and into a small room. "There's a ritual to this, nothing complicated. It differs from the usual examination. I'll prepare while you undress."
+      <<if getRobinLocation() isnot 'temple'>>
+
+        The door opens behind you, giving you a start. A <<monk>> enters with Robin in tow. <<nnpc_He "Robin">> yawns, before smiling and waving at you.
+      <</if>>
 
       <br><br>
-      <<npc "Robin" 2>><<person2>>
-      You both remove your clothing, wishing it wasn't quite so cold in here. Jordan rubs grey powder between <<person1>><<his>> hands, then kneels in front of you.
+      <<npc "Robin" 2>><<person1>>
+      <<if _args[0]>>You three remove your clothing, wishing it wasn't quite so cold in here.<<else>>You both remove your clothing, wishing it wasn't quite so cold in here.<</if>> Jordan rubs grey powder between <<person1>><<his>> hands, then kneels in front of you.
       <<if playerChastity() and $worn.genitals.origin is "temple">>
         <<He>> holds a strange rod against your $worn.genitals.name, and the device clatters to the floor.
       <</if>>
@@ -164,15 +166,21 @@
       <br><br>
     <<option 'CN'>>
       约旦向你郑重点头。“请随我来。”
+      <<if getRobinLocation() is 'temple'>>
 
-      你和罗宾跟了上去。
+        你<<if _args[0]>>、罗宾和悉尼<</if>><<if !_args[0]>>和罗宾<</if>>跟了上去。
+      <</if>>
 
       <br><br>
       <<He>>带你离开主厅，来到一个小房间。“还有个仪式，和平常有些不一样，但没什么复杂的。我来准备，你先脱衣服吧。”
+      <<if getRobinLocation() isnot 'temple'>>
+
+        门在你身后打开，吓了你一跳。一名<<monk>>带着罗宾走了进来。<<nnpc_He "Robin">>打了个哈欠，微笑着朝你挥了挥手。
+      <</if>>
 
       <br><br>
       <<npc "Robin" 2>><<person2>>
-      你俩脱掉衣服，都希望不会很冷。约旦在两手间擦拭上白色粉末，然后跪在了你们的面前。<<person1>>
+      <<if _args[0]>>你们三人脱掉衣服，都希望不会很冷。<<else>>你俩脱掉衣服，都希望不会很冷。<</if>>约旦在两手间擦拭上白色粉末，然后跪在了你们的面前。<<person1>>
       <<if playerChastity() and $worn.genitals.origin is "temple">>
         <<He>>拿着一根奇怪的杆状物抵住你的$worn.genitals.cn_name_cap，装置随即咔嗒落地。
       <</if>>
@@ -232,16 +240,12 @@
         悉尼站在罗宾身旁，等着接受同一场检查。
     <</language>>
   <</if>>
-  <<socialiseicon 'ask'>><<lanLink ['Look away', '移开视线'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 1>><<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><</lanLink>><<gconviction>><br>
-  <<socialiseicon 'ask'>><<lanLink ['Watch', '看着'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 2>><<npcincr Robin lust 1>><<set C.npc.Robin.conviction to Math.max(0, C.npc.Robin.conviction - 2)>><</lanLink>><<glust 'Robin'>><<lconviction>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Look away', '移开视线'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 1>><<set maplebirch.get('RobinTemple').faith += 2>><</lanLink>><<gconviction 'Robin'>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Watch', '看着'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 2>><<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 2>><</lanLink>><<glust 'Robin'>><<lconviction 'Robin'>><br>
 <</widget>>
 
 <<widget 'robin-temple-examination-partners'>>
-  <!-- TODO（作者）：此处露骨正文尚未与原版完整对齐，请人工核对。
-  原版 passage：Sydney Temple Test 2。
-  英文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260918_204628/passage/Sydney Temple Test 2.twee:2
-  中文原版：/home/maplebirch-leaf/下载/Degrees-of Lewdity_ExportData_20260924_201541/passage/Sydney Temple Test 2.twee:2
-  -->
+<!-- 原版 passage：Sydney Temple Test 2。联合检查的机制照原版。三人同场时补上悉尼的反应。 -->
 
   <<npc Jordan 1>><<npc Robin 2>><<person1>>
   <<language>>
@@ -392,8 +396,8 @@
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <<else>>
   <<robin-temple-examination-partners false>>
-  <<run statusCheck('Robin')>>
-  <<if (_robinVirgin and $player.virginity.penile is true and $player.virginity.vaginal is true)
+  <<if (C.npc.Robin.virginity.vaginal and C.npc.Robin.virginity.penile
+    and $player.virginity.penile is true and $player.virginity.vaginal is true)
     or ($player.virginity.temple is true and C.npc.Robin.virginity.temple is true)>>
     <<language>>
       <<option 'EN'>>
@@ -426,38 +430,10 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        <span class="gold">It begins to intensely sparkle.</span> Jordan smiles.
-        "You have been faithful to one another, and may it stay that way."
-        <<if playerChastity() and $worn.genitals.origin is "temple">>
-          With one anxious motion, <<he>> returns your $worn.genitals.name to its place, guarding your crotch.
-        <</if>>
-        <br><br>
-        <<person1>><<He>> turns away to let you both dress.
-        <<robin-temple-examination-success>>
-        Robin hugs you. "I love you." <<stress -6>><<lstress>>
-        <br><br>
-        <<clotheson>>
-        <<link [[Next|Temple]]>><<endevent>><</link>>
+        <span class='red'>It remains inert.</span> Jordan frowns.
+        "I'm sorry, but one of you is spoilt." <<person1>><<His>> voice shakes slightly, you're not sure if you imagined it.
       <<option 'CN'>>
-        <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
-        “你们对彼此忠诚，希望继续保持。”
-        <<if playerChastity() and $worn.genitals.origin is "temple">>
-          <<he>>飞快地将$worn.genitals.cn_name_cap装了回去，护住你的裆部。
-        <</if>>
-        <br><br>
-        <<person1>><<He>>转过身，让你们将衣物穿好。
-        <<robin-temple-examination-success>>
-        罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
-        <br><br>
-        <<clotheson>>
-        <<link [[继续|Temple]]>><<endevent>><</link>>
-    <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        <span class='red'>It remains inert.</span> Jordan frowns. "I’m sorry. One of you has become impure."
-      <<option 'CN'>>
-        <span class='red'>粉末毫无反应。</span>约旦皱起眉头。“抱歉，你们有人已经污浊了。”
+        <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们有人已经不洁了。”<<person1>><<His>>的声音有些颤抖，你不确定自己是否听错了。
     <</language>>
     <br><br>
     <<robin-temple-purification-summons false>>

@@ -40,7 +40,7 @@
     <</language>>
   <</if>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction>><br>
+  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
   <<loveicon 'hug'>><<lanLink '问起孤儿院的孩子 (0:30)' 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
   <<if $robinromance is 1>>
     <<loveicon 'kiss'>><<lanLink '牵住罗宾的手 (0:30)' 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
@@ -66,7 +66,7 @@
 <<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.walk_day isnot Time.days>>
   <<set $RobinTemple.walk_day to Time.days>>
-  <<if C.npc.Robin.conviction gte 120>>
+  <<if C.npc.Robin.conviction gte 20>>
     <<if C.npc.Robin.trauma gte 40>>
       <<language>>
         <<option 'EN'>>
@@ -77,7 +77,7 @@
     <<elseif C.npc.Robin.dom lte 50>>
       <<language>>
         <<option 'EN'>>
-          "I used to come here because you were here," Robin says. "But I think I can help too. Even when you are busy." <<He>> looks at you, then gives a small smile.
+          "I used to come here because you were here," Robin says. "But I think I can help too. Even when you're busy." <<He>> looks at you, then gives a small smile.
         <<option 'CN'>>
           “以前我来这里，是因为你也在，”罗宾说，“不过，我想自己也能帮上忙。就算你忙，也没关系。”<<He>>看向你，露出一个小小的笑容。
       <</language>>
@@ -89,7 +89,7 @@
           “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。比我晚来的，我也能帮上一点。”<<He>>笑了笑，“我知道他们是什么心情。”
       <</language>>
     <</if>>
-  <<elseif C.npc.Robin.conviction lt 80>>
+  <<elseif C.npc.Robin.doubt gt 20>>
     <<language>>
       <<option 'EN'>>
         "I like helping," Robin says, looking back toward the temple. "But sometimes I say the prayers and wonder if I mean them. Did you ever feel like that?"
@@ -99,9 +99,9 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I like the work," Robin says. "I don't always understand what everyone here believes. Jordan lets me ask questions. That helps."
+        "I like the work," Robin says. "I don't understand everything the others believe yet. I'm trying to." <<He>> looks at you. "You don't have to have it all figured out either."
       <<option 'CN'>>
-        “我喜欢这里的工作，”罗宾说，“这里的人相信的事，我不是每件都懂。约旦肯让我提问，这让我安心些。”
+        “我喜欢这里的工作，”罗宾说，“这里的人相信的事，我还没有全懂，但我在慢慢学。”<<He>>看向你，“你也用不着什么都想明白。”
     <</language>>
   <</if>>
   <br><br>
@@ -111,8 +111,8 @@
     <<option 'CN'>>
       <<He>>问你最初为何来到神殿。你挑愿意说的告诉<<him>>，<<he>>一直听到街道拐向家的方向。
   <</language>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 2)>><<gconviction>>
-  <<npcincr Robin dom 1>><br><br><<gdom>>
+  <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
+  <<npcincr Robin dom 1>><<gdom>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -149,7 +149,7 @@
     <<option 'CN'>>
       “我起初以为加入神殿，就得在他们和这里之间选一个，”<<he>>说，“幸好我问清楚了。”
   <</language>>
-  <<npcincr Robin love 1>><<stress -2>><br><br><<glove>><<lstress>>
+  <<npcincr Robin love 1>><<stress -2>><<glove>><<lstress>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -178,7 +178,7 @@
     <<option 'CN'>>
       到了回家的路口，罗宾迟疑片刻，问你明天还会不会陪<<him>>一起走。
   <</language>>
-  <<npcincr Robin love 2>><br><br><<glove>>
+  <<npcincr Robin love 2>><<glove>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>

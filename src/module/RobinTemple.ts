@@ -14,24 +14,62 @@ class RobinTemple extends Module {
   }
 
   public preInit(): void {
-    // 属性默认值为 0；社交卡片仅在罗宾加入神殿后显示这项属性。
+    // 属性默认值为 0，社交卡片仅在罗宾加入神殿后显示这项属性。
     this.core.npc.addStats({
       conviction: {
         default: 0,
+        min: 0,
+        max: 100,
         minValue: 0,
-        maxValue: 200,
+        maxValue: 100,
         position: 7,
-        name: this.core.t('revelation-the-book-of-return:robinTemple:stat:conviction'),
-        activeIcon: 'img/ui/robin-temple-conviction.svg',
-        color: 'white'
+        name: () => lanSwitch('Faith', '信仰'),
+        value: () => T.npcData.conviction,
+        activeIcon: 'img/ui/robin-temple-conviction.png',
+        color: 'white',
+        requirements: () => T.npcData.nam === 'Robin' && this.member
+      },
+      doubt: {
+        default: 0,
+        min: 0,
+        max: 100,
+        minValue: 0,
+        maxValue: 100,
+        position: 8,
+        name: () => lanSwitch('Doubt', '动摇'),
+        value: () => T.npcData.doubt,
+        activeIcon: 'img/ui/robin-temple-doubt.png',
+        color: 'lblue',
+        iconOrientation: 'horizontal-inverted',
+        requirements: () => T.npcData.nam === 'Robin' && this.member
       }
     });
     super.preInit();
-    this.core.npc.Schedule.get('Robin').when(() => this.isTempleTime(), 'temple', { id: 'revelation-robin-temple' });
+    this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple' });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
       action: () => this.dailyUpdate()
     });
+  }
+
+  public get member(): boolean {
+    return ['member', 'approved', 'promised'].includes(V.RobinTemple?.stage);
+  }
+
+  /** 两项属性都存正值，增减时先抵消另一侧，零为中立。 */
+  public get faith(): number {
+    return C.npc.Robin.conviction - C.npc.Robin.doubt;
+  }
+
+  public set faith(value: number) {
+    const amount = Math.clamp(value, -100, 100);
+    C.npc.Robin.conviction = Math.max(0, amount);
+    C.npc.Robin.doubt = Math.max(0, -amount);
+  }
+
+  /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
+  public get available(): boolean {
+    return C.npc.Robin?.init === 1 && !V.robinmissing && V.robin.timer.hurt === 0 && C.npc.Robin.trauma < 80 && !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted');
   }
 
   private dailyUpdate(): void {
@@ -39,28 +77,27 @@ class RobinTemple extends Module {
     const robin = C.npc.Robin;
     // 检查日历不因罗宾受伤、失踪或暂停值班而停止。
     if (state?.chastity_timer > 0) state.chastity_timer--;
-    if (!state || robin?.init !== 1 || V.robinmissing || V.robin.timer.hurt !== 0 || robin.trauma >= 80 || (this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted')) return;
+    if (!state || !this.available) return;
     if (state.stage === 'scheduled' || state.stage === 'failed') {
       state.assessment_bonus = Math.min(15, state.assessment_bonus + (state.pendant ? 3 : 1));
       return;
     }
-    if (!['member', 'approved', 'promised'].includes(state.stage)) return;
+    if (!this.member) return;
     // 罗宾的信仰在中立区间之外逐日变化，贡献按上学与休息日增减。
-    const conviction = robin.conviction ?? 0;
-    if (conviction >= 120) robin.conviction = Math.min(200, conviction + 1);
-    else if (conviction < 80) robin.conviction = Math.max(0, conviction - 1);
+    const faith = this.faith;
+    if (faith >= 20) this.faith++;
+    else if (faith < -20) this.faith--;
     this.reviewFaith();
     const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
     if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
   }
 
-  /** 罗宾在信仰阈值 80/120 处以 35% 概率触发转折，同一天只抽取一次。 */
+  /** 信仰或动摇达到 20 时以 35% 概率触发转折，同一天只抽取一次。 */
   public reviewFaith(): void {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;
-    if (!state || !['member', 'approved', 'promised'].includes(state.stage) || robin?.init !== 1) return;
-    const conviction = robin.conviction ?? 0;
-    const band = conviction >= 120 ? 'belief' : conviction <= 80 ? 'doubt' : 'steady';
+    if (!state || !this.member || robin?.init !== 1) return;
+    const band = robin.conviction >= 20 ? 'belief' : robin.doubt >= 20 ? 'doubt' : 'steady';
     if (band === 'steady' || band === state.faith_band || state.faith_review_day === Time.days) return;
     state.faith_review_day = Time.days;
     if (Math.random() >= 0.35) return;
@@ -96,6 +133,8 @@ class RobinTemple extends Module {
       phase: 1,
       action: '',
       result: 'active',
+      cause: '',
+      causeTarget: '',
       choice: 'close',
       target: 'Robin',
       partners: joint ? { Robin: partner(), Sydney: partner() } : { Robin: partner() }
@@ -111,10 +150,29 @@ class RobinTemple extends Module {
       partner.arousal = Math.max(0, partner.arousal + 1);
     }
     p.timer--;
-    if (V.stress >= V.stressmax) p.result = 'hospital';
-    else if (p.timer <= 0) p.result = 'passed';
-    else if ((V.pain >= 100 && V.willpowerpain === 0) || V.arousal >= V.arousalmax || Object.values(p.partners).some(npc => npc.pain >= 6 || npc.arousal >= 6)) {
+    if (V.stress >= V.stressmax) {
+      p.result = 'hospital';
+      p.cause = 'hospital';
+    } else if (p.timer <= 0) {
+      p.result = 'passed';
+      p.cause = 'passed';
+    } else if (V.pain >= 100 && V.willpowerpain === 0) {
       p.result = 'rest';
+      p.cause = 'pain';
+      p.repeats++;
+    } else if (V.arousal >= V.arousalmax) {
+      p.result = 'rest';
+      p.cause = 'arousal';
+      p.repeats++;
+    } else if ((['Robin', 'Sydney'] as const).some(name => (p.partners[name]?.pain ?? -1) >= 6)) {
+      p.result = 'rest';
+      p.cause = 'partnerPain';
+      p.causeTarget = (['Robin', 'Sydney'] as const).find(name => (p.partners[name]?.pain ?? -1) >= 6) ?? '';
+      p.repeats++;
+    } else if ((['Robin', 'Sydney'] as const).some(name => (p.partners[name]?.arousal ?? -1) >= 6)) {
+      p.result = 'rest';
+      p.cause = 'partnerArousal';
+      p.causeTarget = (['Robin', 'Sydney'] as const).find(name => (p.partners[name]?.arousal ?? -1) >= 6) ?? '';
       p.repeats++;
     } else {
       // 按本轮参与者抽取动作，三人净化时包含悉尼。
@@ -123,7 +181,7 @@ class RobinTemple extends Module {
     }
   }
 
-  /** 选择只影响当前净化的参与者；PC 数值效果由原版宏在链接内执行。 */
+  /** 选择只影响当前净化的参与者，PC 数值效果由原版宏在链接内执行。 */
   public punishmentChoice(choice: RobinTemplePunishment['choice'], target: RobinTemplePunishment['target'] = 'both'): boolean {
     const p: RobinTemplePunishment | null = V.RobinTemple.punish;
     if (!p || p.result !== 'active') return false;
@@ -192,6 +250,8 @@ class RobinTemple extends Module {
     }
     p.timer = 14;
     p.result = p.repeats >= 10 ? 'passed' : 'active';
+    p.cause = p.result === 'passed' ? 'passed' : '';
+    p.causeTarget = '';
   }
 
   /** 沿用原版结算：正常结束和昏倒送医均恢复参与者的神殿誓言状态。 */
@@ -209,17 +269,8 @@ class RobinTemple extends Module {
     return true;
   }
 
-  private isTempleTime(): boolean {
-    if (
-      !V.RobinTemple ||
-      !['member', 'approved', 'promised'].includes(V.RobinTemple.stage) ||
-      C.npc.Robin?.init !== 1 ||
-      V.robinmissing ||
-      V.robin.timer.hurt !== 0 ||
-      C.npc.Robin.trauma >= 80 ||
-      (this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted')
-    )
-      return false;
+  private get templeTime(): boolean {
+    if (!this.member || !this.available) return false;
 
     const housing = this.core.get('VanillaPlus') as ResidentialModule | undefined;
     const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));

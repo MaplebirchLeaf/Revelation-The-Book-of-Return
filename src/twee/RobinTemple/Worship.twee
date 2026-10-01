@@ -17,7 +17,7 @@
 <</widget>>
 
 <<widget 'robin-temple-hall-link'>>
-  <<if ['member', 'approved', 'promised'].includes($RobinTemple.stage)
+  <<if maplebirch.get('RobinTemple').member
     and $stress lt $stressmax and $exposed lte 0
     and Time.hour gte 11 and Time.hour lt 20
     and getRobinLocation() is 'temple' and !$robinmissing>>
@@ -84,7 +84,7 @@
       最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><<ggrace>><<ggconviction>><<lstress>><br>
+  <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><<ggrace>><<ggconviction 'Robin'>><<lstress>><br>
   <<loveicon 'hug'>><<lanLink '和罗宾谈谈心里的疑虑 (0:30)' 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
   <<templeicon 'altar'>><<lanLink '留意神殿里的人群 (1:00)' 'RobinTemple Prayer Observe'>><</lanLink>><br>
   <<templeicon 'altar'>><<lanLink '不说出自己的祈祷，安静坐一会儿 (0:30)' 'RobinTemple Prayer Quiet'>><</lanLink>><<ggrace>><<lstress>><br>
@@ -148,7 +148,7 @@
       <<option 'CN'>>
         你为明天需要帮助的人祈祷。罗宾听着，随后轻声添上孤儿院孩子们的名字。<<He>>没有再说什么，你也没有催促。
     <</language>>
-  <<elseif C.npc.Robin.conviction lte 80>>
+  <<elseif C.npc.Robin.doubt gte 20>>
     <<language>>
       <<option 'EN'>>
         You pray for the people who will need help tomorrow, and for a future where things might be better. Robin keeps <<his>> hands together. "I still want that," <<he>> says. "Even when I don't know what I'm doing here." You stay beside <<him>> rather than answering for <<him>>.
@@ -170,8 +170,8 @@
     <<option 'CN'>>
       一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
   <</language>>
-  <<set C.npc.Robin.conviction to Math.min(200, C.npc.Robin.conviction + 3)>><<ggconviction>>
-  <<grace 2>><<stress -4>><br><br><<ggrace>><<lstress>>
+  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
+  <<grace 2>><<stress -4>><<ggrace>><<lstress>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -209,7 +209,7 @@
     <<option 'CN'>>
       “如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
   <</language>>
-  <<npcincr Robin love 1>><<stress -5>><br><br><<glove>><<lstress>>
+  <<npcincr Robin love 1>><<stress -5>><<glove>><<lstress>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -240,7 +240,7 @@
   <</language>>
   <<set $RobinTemple.rest_day to Time.days>><<pass 30>>
   <<run $robinSeen.pushUnique('templeRescue')>>
-  <<stress -12>><<npcincr Robin love 1>><br><br><<lstress>><<glove>>
+  <<stress -12>><<npcincr Robin love 1>><<lstress>><<glove>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -295,7 +295,7 @@
       <<option 'CN'>>
         你的视线移向阴影笼罩的天花板。一瞬间，上方的黑暗仿佛裂成深渊。恐惧传遍全身，你无法再看下去。
     <</language>>
-    <<trauma 6>><<stress 6>><br><br><<gtrauma>><<gstress>>
+    <<trauma 6>><<stress 6>><<gtrauma>><<gstress>><br><br>
   <</if>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
@@ -304,7 +304,7 @@
       <<option 'CN'>>
         罗宾顺着你的目光看过去，又低头看着自己的手。你不再盯着那些门，安静地陪<<him>>坐着。
     <</language>>
-  <<elseif C.npc.Robin.conviction lte 80>>
+  <<elseif C.npc.Robin.doubt gte 20>>
     <<language>>
       <<option 'EN'>>
         Robin has been watching the side-room doors too. "What are they doing in there?" <<he>> whispers. Neither of you has an answer. You agree that guessing will not help, and leave the question for Jordan.
@@ -407,7 +407,7 @@
   <<set $RobinTemple.hospital_day to Time.days>>
   <<set $RobinTemple.hospital_stage to 'waiting'>>
   <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1
-  and C.npc.Sirris.init is 1 and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
+    and C.npc.Sirris.init is 1 and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
   <<pass 30>>
 <</if>>
 <<if $RobinTemple.hospital_stage is 'waiting'>>
@@ -611,7 +611,7 @@
       <<option 'EN'>>
         Sirris waits while everyone fastens their seat belts. You give directions to where you and Robin live now. Sydney sits beside you; Robin checks once more that you have everything before the car sets off.
       <<option 'CN'>>
-        西里斯等大家系好安全带。你说清自己和罗宾现在住在哪里。悉尼坐在你旁边；汽车出发前，罗宾又确认了一遍，你有没有落下东西。
+        西里斯等大家系好安全带。你说清自己和罗宾现在住在哪里。悉尼坐在你旁边，汽车出发前，罗宾又确认了一遍，你有没有落下东西。
     <</language>>
   <<else>>
     <<language>>

@@ -2,15 +2,17 @@
 
 /** 注册罗宾神殿线的属性提示、日记入口和原版流程补丁。 */
 export default function RobinTemple(maplebirch: typeof window.maplebirch): void {
-  // 与枯木逢春相同：提示宏只显示变化方向，不再次修改存档数值。
   maplebirch.once(':sugarcube', () => {
     const { macro } = maplebirch.tool;
-    macro.create('gconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), 1, 'white'));
-    macro.create('ggconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), 2, 'white'));
-    macro.create('gggconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), 3, 'white'));
-    macro.create('lconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), -1, 'lblue'));
-    macro.create('llconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), -2, 'lblue'));
-    macro.create('lllconviction', () => macro.statChange(lanSwitch("Robin's Faith", '罗宾的信仰'), -3, 'lblue'));
+    for (const direction of [1, -1]) {
+      for (let amount = 1; amount <= 3; amount++) {
+        const name = (direction > 0 ? 'g' : 'l').repeat(amount) + 'conviction';
+        macro.create(name, (npc: string) => {
+          const label = maplebirch.auto(npc) + lanSwitch("'s Faith", '的信仰');
+          return macro.statChange(label, direction * amount, direction > 0 ? 'gold' : 'lblue');
+        });
+      }
+    }
   });
 
   maplebirch.tool.patch.traits.add(
@@ -155,6 +157,12 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           src: '<<set $fire to 2>>',
           applyafter: '<<robin-temple-vigil-fire-result>>',
           expected: 1
+        },
+        {
+          // 罗宾与悉尼同时牵手时，原版的「你和悉尼互相搀扶」应包含罗宾。
+          srcmatch: /You and Sydney carry each other forwards\.|你和悉尼互相搀扶着前进。/,
+          to: '<<robin-temple-vigil-carry>>',
+          expected: 1
         }
       ],
       'Temple Vigil Focus': [
@@ -236,6 +244,12 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           // 在怨灵清空事件池之前添加罗宾告解事件。
           src: '<<if _wraithConfess>>',
           applybefore: '<<robin-temple-confession-event>>\n',
+          expected: 1
+        },
+        {
+          // 罗宾是忏悔者，因此回应项走模组自己的 Forgive/Repent/Contrition/Purge，其余忏悔者保留原版。
+          src: '<<if !_noOptions>>',
+          to: `<<if $attendant.includes('robin')>>\n\t\t<<robin-temple-confession-options>>\n<<elseif !_noOptions>>`,
           expected: 1
         }
       ]
