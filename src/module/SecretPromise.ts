@@ -33,6 +33,27 @@ export default class SecretPromise {
     return { Robin: C.npc.Robin.lust >= 60, Sydney: C.npc.Sydney.lust >= 60 };
   }
 
+  /** 沿用原版日程与交谈地点，谈完返回当前地点，不固定在午休图书馆。 */
+  public get sydneyMeeting(): { available: boolean; passage: string } {
+    const places: Record<string, [string, string]> = {
+      school: ['library', 'School Library'],
+      temple: ['temple', 'Temple'],
+      adult_shop: ['shop', 'Adult Shop']
+    };
+    const [location, passage] = places[V.location] ?? ['', 'Temple'];
+    return {
+      available:
+        Boolean(location) &&
+        T.sydney_location === location &&
+        (V.location !== 'school' || V.bus === 'schoollibrary') &&
+        (V.location !== 'temple' || !['sleep', 'mass', 'anguish'].includes(V.sydney_templeWork)) &&
+        V.combat !== 1 &&
+        this.state.stage === 'research' &&
+        this.state.sydney_day < 0,
+      passage
+    };
+  }
+
   /** 检查实际器具，不以讨论过拆除或完成过承诺代替当前状态。 */
   public get unfitted(): boolean {
     if (window.playerChastity() || window.playerChastity(['penis', 'vagina', 'anus'])) return false;
