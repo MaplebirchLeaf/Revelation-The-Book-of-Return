@@ -583,13 +583,19 @@
       <</if>>
       <br><br>
       <<He>> stops.
-      <<if maplebirch.get('RobinTemple').faith lte -20>>
-        "Oh wow, you really had me going for a minute there."
+      <<if C.npc.Robin.trauma gte 40>>
+        "Don't... don't do that again." <<He>> holds <<his>> arms close, still watching the door. "I thought... can we leave?"
+      <<elseif C.npc.Robin.dom gte 50>>
+        "That wasn't funny." <<He>> looks straight at you. "Tell me it's you next time. Don't scare me like that."
       <<else>>
-        "You... you really scared me. I mean... it was a little funny. Sort of."
+        "You... you really scared me." <<He>> looks away. "I thought you were someone else. Please don't do that again."
       <</if>>
-      <<He>> laughs it off after a moment. "But we... maybe we should have a signal, so we know it's each other in here." <<He>> thinks about it.
-      "Oh! How about this. I'll <span class="blue">knock on the door frame three times</span> whenever I come in. That way you'll know it's me."
+      <<if C.npc.Robin.trauma lt 40>>
+        After a pause, <<he>> speaks again. "Maybe we should have a signal, so we know it's each other in here."
+        "I'll <span class="blue">knock on the door frame three times</span> whenever I come in. That way you'll know it's me."
+      <<else>>
+        Before leaving, <<he>> speaks again, very quietly. "Next time I'll <span class="blue">knock three times</span>. Please tell me it's you."
+      <</if>>
       <br><br>
       <<run $robinSeen.pushUnique('confessionRevealed')>>
     <<option 'CN'>>
@@ -602,18 +608,23 @@
       <</if>>
       <br><br>
       <<He>>停了下来。
-      <<if maplebirch.get('RobinTemple').faith lte -20>>
-        “哇，你刚才真的把我骗到了。”
+      <<if C.npc.Robin.trauma gte 40>>
+        “别……别再这样了。”<<He>>抱紧自己的胳膊，还在看着门口。“我还以为……我们能出去吗？”
+      <<elseif C.npc.Robin.dom gte 50>>
+        “一点也不好笑。”<<He>>直视着你。“下次先告诉我是你，别这样吓我。”
       <<else>>
-        “你……你真的吓到我了。不过……是有点好笑。大概吧。”
+        “你……你真的吓到我了。”<<He>>别开脸。“我还以为是别人。别再这样了，好吗？”
       <</if>>
-      <<He>>很快就对刚才发生的事一笑了之。“但是，我们……要不要想一个暗号或者别的什么，这样我们下次就能认出对方。”<<He>>说着陷入了思考。
-      “啊！这个怎么样。下次我会在进门前<span class="blue">敲三下门框</span>这样你就能知道是我来了。”
+      <<if C.npc.Robin.trauma lt 40>>
+        过了一会儿，<<he>>才又开口。“也许我们该有个暗号，这样就能知道里面是谁了。”
+        “下次我会在进门前<span class="blue">敲三下门框</span>，这样你就能知道是我来了。”
+      <<else>>
+        离开前，<<he>>又很小声地开口。“下次我会<span class="blue">敲三下门框</span>。告诉我是你，好吗？”
+      <</if>>
       <br><br>
       <<run $robinSeen.pushUnique('confessionRevealed')>>
   <</language>>
   <br><br>
-  <<loveicon 'kiss'>><<lanLink ['Invite Robin to your side of the booth', '请罗宾到你的这一侧来'] 'RobinTemple Confession Tempt'>><<set $phase to 1>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>Robin knows you are on the other side of the screen.<<option 'CN'>>罗宾知道屏风后坐着你。
@@ -653,7 +664,28 @@
     <<option 'EN'>>Robin seems relieved to recognise your voice.<<option 'CN'>>罗宾认出了你的声音后，似乎松了口气。
   <</language>>
 <</if>>
-<<if maplebirch.get('RobinTemple').faith lte -20>>
+<<if C.npc.Robin.trauma gte 40>>
+  <<language>>
+    <<option 'EN'>>
+      <<He>> glances at the closed door, hands unsteady.
+      <<if C.npc.Robin.dom gte 50>>
+        "Not here," <<he>> says. "I need some air. Come outside with me?"
+      <<else>>
+        "I... can we just go outside?" <<He>> reaches for your hand. "Please stay with me."
+      <</if>>
+      You give <<him>> room and walk out together.
+    <<option 'CN'>>
+      <<He>>看了看紧闭的门，双手仍有些发抖。
+      <<if C.npc.Robin.dom gte 50>>
+        “别在这里，”<<he>>说，“我想透透气。陪我出去，好吗？”
+      <<else>>
+        “我……我们能出去吗？”<<He>>伸手找你的手。“陪着我，好吗？”
+      <</if>>
+      你让出些空间，陪<<him>>一起走了出去。
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink ['Leave the confessional together', '一起离开忏悔室'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
+<<elseif maplebirch.get('RobinTemple').faith lte -20 and C.npc.Robin.lust gte 50>>
   <<language>>
     <<option 'EN'>>
       "You... again? Here?" <<He>> exits the booth. "Th-thank you, <<sister>>. For listening." <<He>> spends a moment just outside, making sure no one is watching. You open your door for <<him>>.
@@ -693,7 +725,7 @@
         <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
       <<else>>
         <br><br>
-        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) - maplebirch.get('RobinTemple').faith>>
+        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) + maplebirch.get('RobinTemple').faith>>
         <<seductioncheck>>
         <<seductionskilluptext>>
         <<seductionskilluse>>
@@ -709,12 +741,12 @@
           You decide to take it slow in light of <<his>> hesitation.
           You begin to <<handtext>> fondle <<his>> <<robin-temple-punishment-genitals 'Robin'>> through <<his>> underwear<<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>, <span class="lewd">but you feel something obstructing you</span><</if>>. <<He>> looks nervous, but doesn't stop you. <<He>> gingerly spreads <<his>> legs to give you easier access. You remove <<his>> underwear.
           <br><br>
-          <<robin-temple-confession-expose>> You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if $player.penisExist>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
+          <<robin-temple-confession-expose>> You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if C.npc.Robin.penis isnot 'none'>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
           <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
             However, with the belt in the way, there's no way you can bring <<him>> to orgasm. You settle for teasing <<him>>.
           <<else>>
             With nothing obstructing you, you
-            <<if $player.penisExist>>
+            <<if C.npc.Robin.penis isnot 'none'>>
               take hold of <<his>> penis and begin rubbing the tip with your thumb.
             <<else>>
               slowly insert a finger. <<Hes>> surprisingly wet, and it goes in easily.
@@ -737,7 +769,7 @@
         <<loveicon 'kiss'>><<lanLink ['继续', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
       <<else>>
         <br><br>
-        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) - maplebirch.get('RobinTemple').faith>>
+        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) + maplebirch.get('RobinTemple').faith>>
         <<seductioncheck>>
         <<seductionskilluptext>>
         <<seductionskilluse>>
@@ -753,12 +785,12 @@
           照顾到<<his>>的犹豫，你决定放慢节奏。
           你开始隔着<<his>>的内裤<<handtext>>爱抚<<his>>的<<robin-temple-punishment-genitals 'Robin'>><<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>，<span class="lewd">但你感觉到有什么东西阻碍了你</span><</if>>。<<He>>看起来非常的紧张，但没有试图去阻止你。<<He>>温柔地放开了你的手，然后把双腿分开，以便你更容易地接触。你脱下了<<his>>的内裤。
           <br><br>
-          <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>的贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if $player.penisExist>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>的脖子上轻吻，引得<<he>>发出呻吟。
+          <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>的贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>的脖子上轻吻，引得<<he>>发出呻吟。
           <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
             然而，由于有贞操带遮挡，你无法让<<him>>达到高潮。你只能选择继续挑逗<<him>>。
           <<else>>
             再也没有能阻挡你的东西，你
-            <<if $player.penisExist>>
+            <<if C.npc.Robin.penis isnot 'none'>>
               抓住<<his>>的阴茎，然后用拇指开始摩擦龟头。
             <<else>>
               慢慢地插入一根手指。<<Hes>>出奇的湿润，手指很轻松地进去了。

@@ -144,17 +144,17 @@
     <<choreicon "sweep">><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
     <<templeicon "garden">><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
-
-  <<if $RobinTemple.stage is "approved" and $templePromised is ''>>
-    <<templeicon "altar">><<lanLink ['Meet Jordan for the promise rite', '和罗宾去见约旦举行仪式'] 'RobinTemple Promise Altar'>><</lanLink>><br>
-  <</if>>
 <</if>>
 <!-- 承诺入口在罗宾到场时显示，避免被晚间工作分支限制而无法访问。 -->
-<<if _robinAtTemple and $robinromance is 1 and $RobinTemple.stage is 'member'
+<<if _robinAtTemple and $robinromance is 1 and ['member', 'approved'].includes($RobinTemple.stage)
   and !$RobinTemple.punish and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
   and $templePromised is ''>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink ['Discuss a promise with Robin', '和罗宾谈谈承诺仪式'] 'RobinTemple Evaluation'>><</lanLink>><br>
+  <<if $RobinTemple.stage is 'approved'>>
+    <<templeicon 'altar'>><<lanLink ['Meet Jordan for the promise rite', '和罗宾去见约旦举行仪式'] 'RobinTemple Promise Rite'>><</lanLink>><br>
+  <<else>>
+    <<loveicon 'hug'>><<lanLink ['Discuss a promise with Robin', '和罗宾谈谈承诺仪式'] 'RobinTemple Evaluation'>><</lanLink>><br>
+  <</if>>
 <</if>>
 <<if _robinAtTemple and (maplebirch.get('RobinTemple').publicPromise is 'Robin'
   or $robinromance is 1 and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2)

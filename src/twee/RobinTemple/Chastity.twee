@@ -90,7 +90,7 @@
   <!-- 女性罗宾戴着贞操带与 PC 磨蹭。对应原版 Sydney 的 `vagina is "vagina"` + `_sydneyChastity`。 -->
   <<language>>
     <<option 'EN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>> cums with a sharp, caught breath, grinding against you through the belt. "Don't stop."`,
           `<<He>> shakes through it, then looks at you. "You felt that too."`
@@ -102,7 +102,7 @@
         )>>
       <</if>>
     <<option 'CN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>>猛地吸了口气就高潮了，隔着贞操带蹭着你。“不许停。”`,
           `<<He>>抖完，看着你。“你也感觉到了。”`
@@ -120,7 +120,7 @@
   <!-- PC 的阴茎抵着罗宾的护肛板。对应原版 Sydney 的 `otheranusfrot/entrance` + anal shield。 -->
   <<language>>
     <<option 'EN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>> cums pressed hard against <<his>> anal shield, close enough that <<he>> can feel exactly how little is left. "Next time," <<he>> says, breathless. "Come with me to Jordan."`,
           `<<He>> grinds against <<his>> own shield as <<he>> finishes. "You felt all of that through it," <<he>> says. "Don't stop."`
@@ -132,7 +132,7 @@
         )>>
       <</if>>
     <<option 'CN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>>顶着护肛板高潮了，就差那么一点。“下次，”<<he>>喘着气，“陪我去找约旦。”`,
           `<<He>>蹭着自己的护肛板高潮了。“隔着它你都够到了，”<<he>>说，“别停。”`
@@ -150,7 +150,7 @@
   <!-- 罗宾的贞操带与 PC 的阴茎相抵。对应原版 Sydney 的 `frot` + `_sydneyChastity`。 -->
   <<language>>
     <<option 'EN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>> presses hard against your <<penis>> and cums anyway. "Still counts," <<he>> says, breathless.`,
           `<<He>> grinds through <<his>> last shudder. "I'm not going to pretend that's enough," <<he>> says.`
@@ -162,7 +162,7 @@
         )>>
       <</if>>
     <<option 'CN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>>隔着贞操带用力贴着你，还是高潮了。“这样也算数，”<<he>>喘着说。`,
           `<<He>>在最后一次战栗里蹭着你。“我不会假装这样就够了。”`
@@ -180,7 +180,7 @@
   <!-- 罗宾的阴茎戴着器具。对应原版 Sydney 的男性区块 `_sydneyChastity` 分支。 -->
   <<language>>
     <<option 'EN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>> finishes into <<his>> own belt and tugs at it once, hard. "I want more than this," <<he>> says. "I'll tell him so myself."`,
           `<<He>> cums straining against <<his>> belt. "Next time," <<he>> says, hoarse. "Please. Next time."`
@@ -192,7 +192,7 @@
         )>>
       <</if>>
     <<option 'CN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>>射进自己的带子里，用力扯了一下。“我想要的不止这些，”<<he>>说，“我会亲自跟他说。”`,
           `<<He>>顶着带子高潮了。“下次，”<<he>>哑着声音说，“求你了。下次。”`
@@ -211,9 +211,9 @@
   <<language>>
     <<option 'EN'>>
       <<if _args[0] is 'cheeks'>>
-        <<if C.npc.Robin.dom gte 70>>
+        <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
           <<print either(
-            `<<He>> comes pressed against <<his>> belt, <<his>> hips still grinding. "I don't care about the vow right now," <<he>> says. "I care about you."`,
+            `<<if maplebirch.get('RobinTemple').faith lte -20>>"I want to be with you," <<he>> says. "I'll decide what to tell Jordan."<<else>>"I haven't forgotten my vow," <<he>> says. "I still want to be close to you."<</if>>`,
             `<<He>> grinds against <<his>> own belt and takes a shaky breath. "You have no idea how close that was."`
           )>>
         <<else>>
@@ -223,7 +223,7 @@
           )>>
         <</if>>
       <<else>>
-        <<if C.npc.Robin.dom gte 70>>
+        <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
           <<print either(
             `<<He>> comes straining against <<his>> belt. "So close," <<he>> says, and then, quieter, "I'll ask him."`,
             `<<He>> finishes locked away from you and glares down at <<his>> belt. "If I could take it off, I'd have you right now."`
@@ -237,9 +237,9 @@
       <</if>>
     <<option 'CN'>>
       <<if _args[0] is 'cheeks'>>
-        <<if C.npc.Robin.dom gte 70>>
+        <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
           <<print either(
-            `<<He>>隔着贞操带贴着你高潮了，腰还在往前蹭。“我现在不管什么誓言了，”<<he>>说，“我只在乎你。”`,
+            `<<if maplebirch.get('RobinTemple').faith lte -20>>“我想和你在一起，”<<he>>说，“我会自己决定怎么跟约旦说。”<<else>>“我没忘记誓约，”<<he>>说，“可我还是想靠近你。”<</if>>`,
             `<<He>>蹭着自己的贞操带，吸了口气才缓过来。“你根本不知道刚才有多近。”`
           )>>
         <<else>>
@@ -249,7 +249,7 @@
           )>>
         <</if>>
       <<else>>
-        <<if C.npc.Robin.dom gte 70>>
+        <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
           <<print either(
             `<<He>>徒劳地顶着贞操带高潮了。“就快到了，”<<he>>说，然后声音低下去，“我会去问他的。”`,
             `<<He>>隔着带子射了出来，低头瞪着自己的带子。“要是能摘下来，我现在就要你。”`
@@ -268,7 +268,7 @@
   <!-- 罗宾的阴茎戴着器具抵在 PC 嘴边。对应原版 Sydney 的 `mouthentrance/imminent` + `_sydneyChastity`。 -->
   <<language>>
     <<option 'EN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>> cums straining against <<his>> belt, <<his>> hips twitching with nowhere to go. "Not like this," <<he>> says. "I want your mouth. Please."`,
           `<<He>> finishes into <<his>> own belt. "I don't want to wait anymore," <<he>> says.`
@@ -280,7 +280,7 @@
         )>>
       <</if>>
     <<option 'CN'>>
-      <<if C.npc.Robin.dom gte 70>>
+      <<if C.npc.Robin.dom gte 70 and C.npc.Robin.trauma lt 40>>
         <<print either(
           `<<He>>顶着带子射了出来，腰无处可去地抖着。“不是这样，”<<he>>说，“我想要你的嘴。求你了。”`,
           `<<He>>射进自己的带子里。“我不想再等了，”<<he>>说。`

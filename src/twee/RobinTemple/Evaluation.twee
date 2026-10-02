@@ -345,16 +345,17 @@
     <<effects>>
     Jordan steps away from the table.
     <<if $RobinTemple.evaluation_phase is 1>>
-      "Honesty is an important virtue. Thank you." <<set $RobinTemple.evaluation_marks += 10>>
+      "Very well. Until the rite is complete, neither of you is released from your current vows." <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
-      "Honesty is an important virtue. I'm disappointed that one of you has lied to me." <<set $RobinTemple.evaluation_marks -= 10>>
+      "Then you still have doubts. You may ask for more time, but I must take those doubts into account." <<set $RobinTemple.evaluation_marks -= 10>>
     <</if>>
     <br><br>
     <<if $RobinTemple.evaluation_marks gte 60>>
-      "I have little doubt that you'll take this seriously. Congratulations. <span class="green">You've both passed</span><<if $RobinTemple.evaluation_phase isnot 1>>, despite that final lie<</if>>."
+      "Your devotion is clear. Congratulations. <span class="green">You've both passed</span>. You may still ask for more time before taking the rite."
       <br><br>
       <<link [[Next|RobinTemple Promise Rite]]>><<set $RobinTemple.stage to 'approved'>><</link>>
       <br>
+      <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
     <<elseif $RobinTemple.evaluation_marks gte 40>>
       "You are devoted. That much is plain. However, I still question your true motivations. I will administer an off-schedule chastity exam, and should you still be found pure, you will pass this evaluation. Otherwise... <span class="blue">you will be purified, and allowed to take this test again in one month's time.</span>"
       <br><br>
@@ -375,16 +376,17 @@
     <<effects>>
     约旦离开了桌子。
     <<if $RobinTemple.evaluation_phase is 1>>
-      "诚实是一种重要的美德，谢谢你。"<<set $RobinTemple.evaluation_marks += 10>>
+      “很好。在仪式完成之前，你们仍需遵守现有誓约。”<<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
-      "诚实是一种重要的美德，我很失望你们有人撒了慌。"<<set $RobinTemple.evaluation_marks -= 10>>
+      “那么，你仍有顾虑。你可以要求更多考虑的时间，但我必须把这些顾虑纳入评估。”<<set $RobinTemple.evaluation_marks -= 10>>
     <</if>>
     <br><br>
     <<if $RobinTemple.evaluation_marks gte 60>>
-      "我不会怀疑你们对待这份承诺的诚意了，恭喜。<span class="green">你们都通过了</span><<if $RobinTemple.evaluation_phase isnot 1>>，尽管最后撒了谎<</if>>。"
+      “你们的虔诚已得到证明。恭喜，<span class="green">你们都通过了</span>。在参加仪式之前，你们仍可以要求更多考虑的时间。”
       <br><br>
       <<link [[继续|RobinTemple Promise Rite]]>><<set $RobinTemple.stage to 'approved'>><</link>>
       <br>
+      <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
     <<elseif $RobinTemple.evaluation_marks gte 40>>
       “你确实做出了非常大的贡献，这一点有目共睹。然而，我仍然对你的真正动机表示怀疑，因此我将进行一次非计划的贞洁测试，如果你依然纯洁无瑕，你将通过这次评估。否则……<span class="blue">你将被净化，并可在一个月后再次参与这次评估。</span>”
       <br><br>
@@ -492,11 +494,11 @@
     <</if>>
     <<He>> stands up.
     <br><br>
-    "One final question. Have you had any sexual contact of any kind with <<nnpc_brother "Robin">> Robin?"
+    "One final question. Are you willing to keep your current vows until the rite is complete?"
     <br><br>
     <<link [[Yes|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</link>><<ggstress>>
     <br>
-    <<link [[No|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 2>><</link>>
+    <<link [[I'm not sure|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 2>><</link>>
     <br>
 
   <<option 'CN'>>
@@ -508,11 +510,11 @@
     <</if>>
     <<He>>站起身来。
     <br><br>
-    "最后一个问题。你有和罗宾<<nnpc_brother "Robin">>发生过任何类型的性行为吗？"
+    “最后一个问题。在仪式完成之前，你愿意继续遵守现有誓约吗？”
     <br><br>
-    <<link [[有|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</link>><<ggstress>>
+    <<link [[愿意|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</link>><<ggstress>>
     <br>
-    <<link [[没有|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 2>><</link>>
+    <<link [[还没想好|RobinTemple Evaluation Result]]>><<set $RobinTemple.evaluation_phase to 2>><</link>>
     <br>
 
 <</language>>
@@ -702,6 +704,7 @@
   <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>><br>
 <<else>>
   <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
+  <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Evaluation Eavesdrop Followup
@@ -721,9 +724,13 @@
 
     You hear something drop on the other side of the door, which startles you. You prepare to rush back to your seat, until you hear Jordan speak again.
     <br><br>
-    "Have you had any sexual contact with <<phim>>?" There's a very long pause.
+    "Will you keep your current vows until the rite is complete?" There's a pause.
     <br>
-    "Y-yes. B-but nothing that would have broken my vow. I wouldn't."
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
+      "Y-yes. I want to do this properly. We can wait."
+    <<else>>
+      "Y-yes. If it means we can be together, I... I'll wait."
+    <</if>>
     <br>
     "Thank you for being honest. I trust your word. Your section of this evaluation is complete."
     <br><br>
@@ -744,9 +751,13 @@
 
     你继续伏在门上偷听。另一侧似乎有什么东西掉了下来，吓得你连忙准备跑回座位，直到你听见约旦的声音再次响起。
     <br><br>
-    "你有和<<phim>>发生过性行为吗？"一个长长的停顿。
+    “在仪式完成之前，你会继续遵守现有誓约吗？”一个短暂的停顿。
     <br>
-    "有……有……有过。但……但并没有到违背我誓约的程度。"
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
+      “会、会的。我想好好完成这件事。我们可以等。”
+    <<else>>
+      “会、会的。只要这样能让我们在一起，我……我会等的。”
+    <</if>>
     <br>
     "谢谢你的坦诚，我信任你。你这部分的评估已经完成了。"
     <br><br>

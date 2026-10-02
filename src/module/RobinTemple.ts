@@ -230,6 +230,8 @@ class RobinTemple extends Module {
     state.punish = {
       joint,
       started: false,
+      robinTrauma: 0,
+      robinComfort: 0,
       timer: 16,
       repeats: 0,
       phase: 1,
@@ -298,6 +300,7 @@ class RobinTemple extends Module {
     if (choice === 'touch' && partners.some(npc => npc.touch > 0 && !hasSexStat('promiscuity', npc.touch + 1))) return false;
     p.choice = choice;
     p.target = target;
+    if (names.includes('Robin') && (choice === 'hold' || choice === 'hit')) p.robinComfort = Math.min(6, (p.robinComfort ?? 0) + 1);
     for (const npc of partners) {
       if (choice !== 'close') npc[choice]++;
       if (choice === 'hold') npc.pain--;
@@ -321,6 +324,7 @@ class RobinTemple extends Module {
           npc.pain += 2;
           npc.arousal--;
         }
+        if (defenders.some(([name]) => name === 'Robin')) p.robinTrauma = Math.min(20, (p.robinTrauma ?? 16) + 1);
         return defenders.map(([name]) => name).join(',');
       }
       return 'Player';
@@ -335,6 +339,7 @@ class RobinTemple extends Module {
       if (npc) {
         npc.pain += 2;
         npc.arousal--;
+        if (p.action === 'Robin') p.robinTrauma = Math.min(20, (p.robinTrauma ?? 16) + 1);
       }
       return p.action;
     }
@@ -357,11 +362,18 @@ class RobinTemple extends Module {
     p.causeTarget = '';
   }
 
-  /** 沿用原版结算：正常结束和昏倒送医均恢复参与者的神殿誓言状态。 */
+  /** 正常结束和送医均只结算一次创伤，未完成的净化保留存档进度。 */
   public finishPunishment(): boolean {
     const state = V.RobinTemple;
     const p: RobinTemplePunishment | null = state.punish;
     if (!p || (p.result !== 'passed' && p.result !== 'hospital')) return false;
+    // 支持沿用原版安慰的恢复倍率，净增交给 npcincr 限幅，避免先到顶再减而反降。
+    const trauma = Math.clamp(p.robinTrauma ?? (p.started ? 16 : 0), 0, 20);
+    const comfort = -Math.round(-Math.clamp(p.robinComfort ?? 0, 0, 6) * (V.robinTraumaMultiplier || 1));
+    if (trauma > 0) {
+      this.core.SugarCube.Wikifier.wikifyEval(`<<npcincr Robin trauma ${Math.max(0, trauma - comfort)}>>`);
+      C.npc.Robin.comforted = 0;
+    }
     V.player.virginity.temple = true;
     C.npc.Robin.virginity.temple = true;
     if (p.joint) {

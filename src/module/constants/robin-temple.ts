@@ -4,6 +4,9 @@
 export interface RobinTemplePunishment {
   joint: boolean;
   started: boolean;
+  /** 净化经历与支持跨休息保存，只在结束时结算持续创伤。 */
+  robinTrauma: number;
+  robinComfort: number;
   timer: number;
   repeats: number;
   phase: number;

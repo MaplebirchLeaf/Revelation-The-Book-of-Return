@@ -512,6 +512,7 @@
 <<if $RobinTemple.punish>>
   <<if !$RobinTemple.punish.started>>
     <<set $RobinTemple.punish.started to true>>
+    <<set $RobinTemple.punish.robinTrauma to 10>>
     <<undress 'duopunish'>><<bindtemp>><<shackle_feet>>
     <<run $robinSeen.pushUnique('punishment')>>
     <<if $RobinTemple.punish.joint>><<run $sydneySeen.pushUnique('punishment')>><</if>>
@@ -561,9 +562,9 @@
     <</language>>
   <</if>>
   <br><br>
-  <<lanLink ['Reassure Robin', '安抚罗宾'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -1>><</if>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><</lanLink>><<glove 'Robin'>><br>
+  <<lanLink ['Reassure Robin', '安抚罗宾'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -1>><</if>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.robinComfort to Math.min(6, ($RobinTemple.punish.robinComfort ?? 0) + 2)>><</lanLink>><<glove 'Robin'>><br>
   <<if $RobinTemple.punish.joint>>
-    <<lanLink ['Reassure Robin and Sydney', '安抚罗宾和悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
+    <<lanLink ['Reassure Robin and Sydney', '安抚罗宾和悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.robinComfort to Math.min(6, ($RobinTemple.punish.robinComfort ?? 0) + 2)>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
     <<lanLink ['Reassure Sydney', '安抚悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 2>><<npcincr Sydney love 1>><<npcincr Robin love -1>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Sydney'>><<llove 'Robin'>><br>
   <</if>>
   <<lanLink ['Close your eyes', '闭上眼睛'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 4 : 2)>><<stress -3>><<pain -10>><</lanLink>><<lstress>><<lpain>><br>
@@ -574,6 +575,7 @@
 
 <<set $outside to 0>><<set $location to 'temple'>><<effects>>
 <<if $RobinTemple.punish>>
+  <<set $RobinTemple.punish.robinTrauma to Math.max($RobinTemple.punish.robinTrauma ?? 0, 16)>>
   <<if $RobinTemple.punish.joint>>
     <<language>>
       <<option 'EN'>>
@@ -909,5 +911,5 @@
 
 :: RobinTemple Penance Genitals Widgets [widget]
 <<widget 'robin-temple-punishment-genitals'>>
-  <<if _args[1]>><<lanSwitch 'genitals' '下体'>><<else>><<lanSwitch (C.npc[_args[0]].gender is 'm' ? 'penis' : 'vagina') (C.npc[_args[0]].gender is 'm' ? '阴茎' : '阴部')>><</if>>
+  <<if _args[1]>><<lanSwitch 'genitals' '下体'>><<else>><<lanSwitch (C.npc[_args[0]].penis isnot 'none' ? 'penis' : 'vagina') (C.npc[_args[0]].penis isnot 'none' ? '阴茎' : '阴部')>><</if>>
 <</widget>>
