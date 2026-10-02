@@ -80,6 +80,10 @@ export async function createZipPackage(root: string): Promise<PackageAsset> {
     if (!files.has(required)) throw new Error(`Missing build output: ${required}`);
   }
 
+  // 图片交由 BSA 管理，清单和图片目录都必须登记在包内。
+  const images = [...files.keys()].filter(name => /\.(?:png|jpe?g|webp|gif|svg)$/i.test(name)).sort();
+  const imageList = 'Revelation-The-Book-of-Return-Images.json';
+  if (images.length) files.set(imageList, Buffer.from(JSON.stringify(images, null, 2)));
   const names = [...files.keys()].sort();
   const [tweeRules, scriptRules] = await Promise.all([
     readFile(path.join(root, 'src', 'TweeReplacer.yaml'), 'utf8').then(content => patchRules(content, 'twee')),
@@ -103,7 +107,7 @@ export async function createZipPackage(root: string): Promise<PackageAsset> {
     nickName: pkg.scml.nickName,
     alias: [],
     version: pkg.version,
-    imgFileList: names.filter(name => /\.(?:png|jpe?g|webp|gif|svg)$/i.test(name)),
+    imgFileList: [],
     styleFileList: names.filter(name => name.endsWith('.css')),
     tweeFileList: names.filter(name => name.endsWith('.twee')),
     additionFile: names.filter(name => /\.(?:ya?ml|json)$/i.test(name)),
@@ -111,10 +115,20 @@ export async function createZipPackage(root: string): Promise<PackageAsset> {
     scriptFileList_preload: names.filter(name => name === 'dist/preload.js'),
     scriptFileList_earlyload: names.filter(name => name === 'dist/earlyload.js'),
     scriptFileList_inject_early: names.filter(name => name === 'dist/inject_early.js'),
-    additionDir: [],
+    additionDir: [...new Set(images.map(name => name.split('/')[0]))],
     additionBinaryFile: [],
     addonPlugin: [
       framework,
+      ...(images.length
+        ? [
+            {
+              modName: 'BeautySelectorAddon',
+              addonName: 'BeautySelectorAddon',
+              modVersion: '>=2.0.0',
+              params: { types: [{ type: 'Revelation-The-Book-of-Return-Images', imgFileListFile: imageList }] }
+            }
+          ]
+        : []),
       { modName: 'TweeReplacer', addonName: 'TweeReplacerAddon', modVersion: '1.0.0', params: tweeRules },
       { modName: 'ReplacePatcher', addonName: 'ReplacePatcherAddon', modVersion: '1.0.0', params: { js: scriptRules } },
       ...(pkg.scml.addonPlugin ?? [])

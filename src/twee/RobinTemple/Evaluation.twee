@@ -5,7 +5,7 @@
   <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <<elseif $RobinTemple.stage isnot 'member' or $robinromance isnot 1 or $RobinTemple.punish
   or $temple_rank is undefined or $temple_rank is 'prospective'
-  or C.npc.Robin.doubt gt 20 or Time.dayState is 'night' or Time.dayState is 'dusk'
+  or maplebirch.get('RobinTemple').faith lt -20 or Time.dayState is 'night' or Time.dayState is 'dusk'
   or ($RobinTemple.evaluation_day gte 0 and Time.days lt $RobinTemple.evaluation_day + 30)>>
   <<language>>
     <<option 'EN'>>
@@ -113,7 +113,7 @@
     Jordan produces a small bell from <<his>> robes, and rings it four times. <<person3>>An older <<monk>> enters the room, and nods to Jordan. "Please stand," the <<monk>> says.
     <<He>> examines Robin very closely, although <<person1>><<he>> shows no discomfort.<<person3>>
     <br>
-    <<if C.npc.Robin.conviction gte 20>>
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
       "<span class="green">You are as pure as the day you joined us,</span> <<nnpc_brother "Robin">> Robin. May you stay this way forevermore," the <<monk>> says through a hearty smile.
       <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
@@ -174,7 +174,7 @@
     <<He>>从斗篷里拿出一枚小铃铛摇了几次。<<person3>>一个年长的<<monk>>进入房间，向约旦点点头。“请站直了。”那个<<monk>>说。
     <<He>>非常仔细地打量罗宾，尽管<<person1>><<he>>没表现出丝毫不适。<<person3>>
     <br>
-    <<if C.npc.Robin.conviction gte 20>>
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
       "<span class="green">你和加入我们那天一样纯洁，</span>罗宾<<nnpc_brother "Robin">>。祝你永远保持这样。"<<monk>>露出了亲和的微笑。
       <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>

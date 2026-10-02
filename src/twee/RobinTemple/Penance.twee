@@ -306,16 +306,16 @@
         <br><br>
         Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with each other remains strong.<<else>>rely on each other, as you've all sinned.<</if>> Stay still."
         <br><br>
-        <<if C.npc.Robin.doubt gte 20 and _sydneyStatus.includes('corrupt')>>
+        <<if maplebirch.get('RobinTemple').faith lte -20 and _sydneyStatus.includes('corrupt')>>
           Robin and Sydney try to step between you and the <<monks>>.
         <<elseif _sydneyStatus.includes('corrupt')>>
           Sydney tries to step between you and the <<monks>>, while Robin holds you tighter.
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           Robin tries to step between you and the <<monks>>, while Sydney holds you tighter.
         <<else>>
           Robin and Sydney hold you tighter.
         <</if>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "It's... it's okay. Whatever they do, we did it together." Robin says it like <<he>>'s trying to convince <<himself>>.
           <br>
           Sydney says nothing, and just holds on.
@@ -331,16 +331,16 @@
         <br><br>
         一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须证明你们之间的羁绊依旧牢固。请不要动。"
         <br><br>
-        <<if C.npc.Robin.doubt gte 20 && _sydneyStatus.includes("corrupt")>>
+        <<if maplebirch.get('RobinTemple').faith lte -20 && _sydneyStatus.includes("corrupt")>>
           悉尼和罗宾走到你和<<monks>>的中间，努力想把你挡在身后。
         <<elseif _sydneyStatus.includes("corrupt")>>
           悉尼走到你和<<monks>>的中间，努力想把你挡在身后，而罗宾紧紧地搂着你。
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           罗宾走到你和<<monks>>的中间，努力想把你挡在身后，而悉尼紧紧地搂着你。
         <<else>>
           悉尼和罗宾把你搂得更紧了。
         <</if>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “没、没事的。不管他们要做什么，我们是一起做的。”罗宾说着，像是在说服自己。
           <br>
           悉尼什么也没说，只是抓紧了你。
@@ -359,7 +359,7 @@
         <br><br>
         Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with each other remains strong.<<else>>rely on each other, as you've both sinned.<</if>> Stay still."
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           Robin tries to step between you and the <<monks>>.
         <<else>>
           Robin holds you tighter.
@@ -379,7 +379,7 @@
         <br><br>
         一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须<<if $RobinTemple.templePromised is "Robin">>证明你们之间的羁绊依旧牢固。<<else>>得彼此依靠，因为你们都有罪。<</if>>请不要动。"
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           罗宾走到你和<<monks>>的中间，努力想把你挡在身后。
         <<else>>
           罗宾把你搂得更紧了。

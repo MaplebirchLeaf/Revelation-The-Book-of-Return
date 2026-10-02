@@ -160,7 +160,7 @@
       <<option 'CN'>>
         你为明天需要帮助的人祈祷。罗宾听着，随后轻声添上孤儿院孩子们的名字。<<He>>没有再说什么，你也没有催促。
     <</language>>
-  <<elseif C.npc.Robin.doubt gte 20>>
+  <<elseif maplebirch.get('RobinTemple').faith lte -20>>
     <<language>>
       <<option 'EN'>>
         You pray for the people who will need help tomorrow, and for a future where things might be better. Robin keeps <<his>> hands together. "I still want that," <<he>> says. "Even when I don't know what I'm doing here." You stay beside <<him>> rather than answering for <<him>>.
@@ -327,7 +327,7 @@
       <<option 'CN'>>
         罗宾顺着你的目光看过去，又低头看着自己的手。你不再盯着那些门，安静地陪<<him>>坐着。
     <</language>>
-  <<elseif C.npc.Robin.doubt gte 20>>
+  <<elseif maplebirch.get('RobinTemple').faith lte -20>>
     <<language>>
       <<option 'EN'>>
         Robin has been watching the side-room doors too. "What are they doing in there?" <<he>> whispers. Neither of you has an answer. You agree that guessing will not help, and leave the question for Jordan.

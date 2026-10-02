@@ -166,7 +166,7 @@
 
 <<widget 'robin-temple-vigil-focus'>>
   <<if $RobinTemple.vigil_with_robin>>
-    <<if C.npc.Robin.conviction gte 20>>
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
       <<language>>
         <<option 'EN'>>
           You feel Robin's mind reject the revelation, even as <<nnpc_his 'Robin'>> body melds with yours.
@@ -187,7 +187,7 @@
 
 <<widget 'robin-temple-vigil-yield'>>
   <<if $RobinTemple.vigil_with_robin>>
-    <<if C.npc.Robin.doubt gte 20>>
+    <<if maplebirch.get('RobinTemple').faith lte -20>>
       <<language>>
         <<option 'EN'>>
           There is conflict. You feel Robin's curiosity as if it were your own, searching for an answer within the light.

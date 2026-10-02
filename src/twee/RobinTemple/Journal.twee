@@ -110,9 +110,9 @@
     <<if maplebirch.get('RobinTemple').member>>
       <li><<language>>
         <<option 'EN'>>
-          <<= C.npc.Robin.doubt gt 0 ? "Robin’s doubt" : "Robin’s faith" >>: <span class='teal'><<= Math.max(C.npc.Robin.conviction, C.npc.Robin.doubt)>></span>/100
+          <<= maplebirch.get('RobinTemple').faith lt 0 ? "Robin’s doubt" : "Robin’s faith" >>: <span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
         <<option 'CN'>>
-          罗宾的<<= C.npc.Robin.doubt gt 0 ? '动摇' : '信仰' >>：<span class='teal'><<= Math.max(C.npc.Robin.conviction, C.npc.Robin.doubt)>></span>/100
+          罗宾的<<= maplebirch.get('RobinTemple').faith lt 0 ? '动摇' : '信仰' >>：<span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
       <</language>></li>
     <</if>>
     <<if maplebirch.get('RobinTemple').member>>

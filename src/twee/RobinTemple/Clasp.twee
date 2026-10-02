@@ -27,7 +27,7 @@
         罗宾放下储藏室清单。“这一套不是约旦给我戴上的，”<<he>>说，“得去问给我戴上它的人。”
     <</language>>
   <</if>>
-<<elseif C.npc.Robin.conviction gte 20>>
+<<elseif maplebirch.get('RobinTemple').faith gte 20>>
   <<language>>
     <<option 'EN'>>
       Robin closes the storeroom list when you ask about the chastity belt. <<He>> does not want to leave the temple. <<He>> only wants to know whether <<he>> can put a promise into <<his>> own words, belt or no belt.

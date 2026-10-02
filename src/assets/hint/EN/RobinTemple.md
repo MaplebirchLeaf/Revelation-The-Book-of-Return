@@ -65,7 +65,7 @@ With Robin at the temple, choose **Pray with Robin** in the hall between **11:00
 
 The bench offers one daily encounter involving the soup kitchen, lists, visitors or temple rules. Returning does not reroll it or repeat rewards after resolution. Delivering bowls or noting supplies can reveal the soup kitchen.
 
-After joining, Robin's social card and journal show **Faith and Doubt**. Changes cancel the opposite side first. Neutrality does not mean firm belief. Shared work builds faith, while some choices deepen doubt. A changed outlook may offer a conversation about Robin's recent thoughts at the bench. Every small change does not immediately trigger it.
+After joining, Robin's social card and journal show **Faith and Doubt**. These are opposing sides of the same outlook and cannot both be positive. Changes cancel the opposite side first, with both at zero when neutral. Shared work builds faith, while some choices deepen doubt. A changed outlook may offer a conversation about Robin's recent thoughts at the bench. Every small change does not immediately trigger it.
 
 ### Food gifts and donations
 

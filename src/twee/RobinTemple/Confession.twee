@@ -1,7 +1,7 @@
 :: RobinTemple Confession Widgets [widget]
 <<widget 'robin-temple-confession-band'>>
   <!-- 原版以 _sydneyStatus 分档，罗宾用信念值对应 belief/doubt/steady。 -->
-  <<set _robinBand to C.npc.Robin.conviction gte 20 ? 'belief' : C.npc.Robin.doubt gte 20 ? 'doubt' : 'steady'>>
+  <<set _robinBand to maplebirch.get('RobinTemple').band>>
 <</widget>>
 
 <<widget 'robin-temple-confession-lewd'>>
@@ -9,13 +9,13 @@
     <<set $robinSeen.pushUnique('lewd')>>
     <<language>>
       <<option 'EN'>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "<span class="green">I've been waiting for this since I joined.</span> I was starting to think we'd never get the chance again."
         <<else>>
           "<span class="green">I... I've never done anything like this in here before.</span>" <<He>> can't look at you. You take <<his>> hand and tell <<him>> you'll stop the moment <<he>> asks. It takes <<him>> a while to answer. "O-okay. I trust you."
         <</if>>
       <<option 'CN'>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “<span class="green">进神殿之后我一直在等这一天。</span>我本来以为再也没有机会了。”
         <<else>>
           “<span class="green">我……我在这种地方从来没做过。</span>”<<He>>不敢看你。你握住<<his>>手，告诉<<him>>只要开口你就会停下。<<He>>过了好一会儿才回答。“好、好的。我相信你。”
@@ -186,7 +186,7 @@
         <<language>>
           <<option 'EN'>>
             A <<personssimple>> voice greets you. "Forgive me, <<sister>>, for I have sinned," <<he>> says.
-            <<if C.npc.Robin.doubt gte 20>>
+            <<if maplebirch.get('RobinTemple').faith lte -20>>
               <br><br>
               "I've got doubts. I'm promised to someone, and we get to... do it, whenever we want because of it. But if either of us break our vows with someone else, we'll both get punished. I get that happening if we cheat on each other willingly. But what happens if either of us is assaulted? This town is full of holes, and there are many eager to reach through them to harm others."
               <br><br>
@@ -205,7 +205,7 @@
             <<He>> sighs. "<<Sister>>, what should I do?"
           <<option 'CN'>>
             一个<<personssimple>>的声音向你问候。“请宽恕我，<<sister>>，我犯下了罪过。”<<he>>说道。
-            <<if C.npc.Robin.doubt gte 20>>
+            <<if maplebirch.get('RobinTemple').faith lte -20>>
               <br><br>
               “我心怀疑虑。我与他人结成誓约，因此我们理所应当地想做就做。但如果我们中的任何一个违背誓言，和别人在一起，我们都会受到惩罚。要是因为自愿出轨，我可以理解。但要是我们中的任何一个被袭击了呢？这个小镇到处都是坏人，很多东西都想钻进去伤害别人。”
               <br><br>
@@ -583,7 +583,7 @@
       <</if>>
       <br><br>
       <<He>> stops.
-      <<if C.npc.Robin.doubt gte 20>>
+      <<if maplebirch.get('RobinTemple').faith lte -20>>
         "Oh wow, you really had me going for a minute there."
       <<else>>
         "You... you really scared me. I mean... it was a little funny. Sort of."
@@ -602,7 +602,7 @@
       <</if>>
       <br><br>
       <<He>>停了下来。
-      <<if C.npc.Robin.doubt gte 20>>
+      <<if maplebirch.get('RobinTemple').faith lte -20>>
         “哇，你刚才真的把我骗到了。”
       <<else>>
         “你……你真的吓到我了。不过……是有点好笑。大概吧。”
@@ -653,7 +653,7 @@
     <<option 'EN'>>Robin seems relieved to recognise your voice.<<option 'CN'>>罗宾认出了你的声音后，似乎松了口气。
   <</language>>
 <</if>>
-<<if C.npc.Robin.doubt gte 20>>
+<<if maplebirch.get('RobinTemple').faith lte -20>>
   <<language>>
     <<option 'EN'>>
       "You... again? Here?" <<He>> exits the booth. "Th-thank you, <<sister>>. For listening." <<He>> spends a moment just outside, making sure no one is watching. You open your door for <<him>>.
@@ -783,9 +783,9 @@
   <<set $RobinTemple.confession to { sound: 0, attendant: '', state: '', pronoun: 'f', choice: '' }>>
   <<consensual>><<set $consensual to 1>><<neutral 1>>
   <<maninit>><<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
-  <<if C.npc.Robin.doubt gte 20>>
+  <<if maplebirch.get('RobinTemple').faith lte -20>>
     <<set $enemyarousalmax += 100>>
-  <<elseif C.npc.Robin.conviction gte 20>>
+  <<elseif maplebirch.get('RobinTemple').faith gte 20>>
     <<set $enemyarousalmax -= 100>>
   <</if>>
   <<if (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')) and C.npc.Robin.chastity.anus.includes('shield')>>
@@ -878,13 +878,13 @@
     <<option 'EN'>>
       Robin sighs with relief.
       <<if $enemyarousal gte ($enemyarousalmax / 5) * 3>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "Finally. Come here."
         <<else>>
           "P-please, I... I don't know how long I can wait."
         <</if>>
       <<else>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "So... where were we?"
         <<else>>
           "Do you... do you still want to?"
@@ -893,13 +893,13 @@
     <<option 'CN'>>
       罗宾松了一口气。
       <<if $enemyarousal gte ($enemyarousalmax / 5) * 3>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “终于。过来吧。”
         <<else>>
           “求、求你……我不知道还能忍多久。”
         <</if>>
       <<else>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “那……刚才我们说到哪儿了？”
         <<else>>
           “你……你还想继续吗？”
@@ -921,18 +921,18 @@
         <span class="red">The other door opens.</span> You both freeze. You quickly cover Robin's mouth.
         <br><br>
         <<if $enemyarousal gte ($enemyarousalmax / 5) * 3>>
-          <<if C.npc.Robin.doubt gte 20>>"O-oh no!" <<he>> whispers<<else>><<He>> whimpers<</if>>
+          <<if maplebirch.get('RobinTemple').faith lte -20>>"O-oh no!" <<he>> whispers<<else>><<He>> whimpers<</if>>
         <<else>>
-          <<if C.npc.Robin.doubt gte 20>>"Oh no," <<he>> whispers<<else>>"I'll... I'll try to keep quiet," <<he>> whispers<</if>>
+          <<if maplebirch.get('RobinTemple').faith lte -20>>"Oh no," <<he>> whispers<<else>>"I'll... I'll try to keep quiet," <<he>> whispers<</if>>
         <</if>>
         as someone sits on the other side.
       <<option 'CN'>>
         <span class="red">对面的门开了。</span>你们俩都僵住了，你赶紧捂住了罗宾的嘴。
         <br><br>
         <<if $enemyarousal gte ($enemyarousalmax / 5) * 3>>
-          <<if C.npc.Robin.doubt gte 20>>“不、不好！”<<he>>低声说<<else>><<He>>轻轻呜咽了一声<</if>>
+          <<if maplebirch.get('RobinTemple').faith lte -20>>“不、不好！”<<he>>低声说<<else>><<He>>轻轻呜咽了一声<</if>>
         <<else>>
-          <<if C.npc.Robin.doubt gte 20>>“糟糕，”<<he>>低声说<<else>>“我、我尽量不出声。”<<he>>低声说<</if>>
+          <<if maplebirch.get('RobinTemple').faith lte -20>>“糟糕，”<<he>>低声说<<else>>“我、我尽量不出声。”<<he>>低声说<</if>>
         <</if>>
         有人在对面的隔间坐了下来。
     <</language>>
@@ -1021,7 +1021,7 @@
       <<option 'EN'>>
         "Is there someone else in here?!" Your penitent sounds outraged.
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "Y-yes. Sorry," Robin manages, then goes quiet.
         <<else>>
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
@@ -1033,7 +1033,7 @@
       <<option 'CN'>>
         “那边难道还有其他人吗？！”忏悔者听起来非常愤怒。
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “是、是的。对不起。”罗宾勉强挤出一句，随后沉默下来。
         <<else>>
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
@@ -1047,13 +1047,13 @@
     <<ejaculation>>
     <<language>>
       <<option 'EN'>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "That was... I don't know why <<if $RobinTemple.confession.pronoun is 'm'>>he<<else>>she<</if>> was so angry," <<he>> says, still catching <<his>> breath.
         <<else>>
           "Sorry... I made a mess of that," <<he>> mutters, half-laughing.
         <</if>>
       <<option 'CN'>>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “刚才那是……我不知道<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>为什么那么生气，”<<he>>说，还没缓过气来。
         <<else>>
           “抱歉……我搞砸了，”<<he>>低声说着，笑了一半又停下。
@@ -1063,17 +1063,17 @@
     <<ejaculation>>
     <<language>>
       <<option 'EN'>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           "And... f-forgive me for my sins," <<he>> says, the words coming out in a rush.
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           "I never knew confessing could feel like that," <<he>> says with a small, embarrassed smile.
         <<else>>
           "I'm glad nobody can hear us in here," <<he>> giggles.
         <</if>>
       <<option 'CN'>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           “还有……请、请宽恕我的罪孽，”<<he>>一口气说完，像是怕自己反悔。
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           “我从没想过忏悔会是这种感觉，”<<he>>不好意思地笑了笑。
         <<else>>
           “还好这里面听不见，”<<he>>咯咯笑起来。
@@ -1098,7 +1098,7 @@
         <br><br>
         "Is there someone else in here?!" Your penitent sounds outraged.
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "Y-yes. Sorry," Robin manages, then goes quiet.
         <<else>>
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
@@ -1110,7 +1110,7 @@
         <br><br>
         “那边难道还有其他人吗？！”忏悔者听起来非常愤怒。
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “是、是的。对不起。”罗宾勉强挤出一句，随后沉默下来。
         <<else>>
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
@@ -1121,25 +1121,25 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
             Robin lets out a pained moan and quickly covers <<his>> mouth to stifle it. <<He>> looks down in shame. "I... I think that's enough for me..."
           <<else>>
             "W-wait! Please, that..." Robin quickly separates from you. "Th-that really hurt. I mean, I... I still kind of liked it, but..." <<his>> face flushes, and <<he>> looks away. "C...can we finish this another time?"
           <</if>>
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           Robin backs away from you, breathing heavily. "I... I liked that," <<he>> admits, "but maybe we should save the rest for later."
         <<else>>
           "Ouch! Please, not so rough!" <<He>> quickly backs away from you. "I... I think I need to go slower."
         <</if>>
       <<option 'CN'>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
             罗宾漏出一丝痛苦的呻吟，然后迅速用手捂住了自己的嘴巴。<<He>>羞愧地埋下了头，“我……我到这里就好……”
           <<else>>
             “等，等一下！求你，那个……”罗宾迅速和你分开了，“刚、刚才真的好痛……，但……”<<his>>脸红了，看向一边，“能……能不能下次再做完？”
           <</if>>
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           罗宾喘着气退开。“我……我喜欢刚才那样，”<<he>>承认道，“不过剩下的留到以后吧。”
         <<else>>
           “哎！求你了，别这么用力！”<<He>>迅速退开。“我……我想我得慢一点。”
@@ -1157,7 +1157,7 @@
       <<if $RobinTemple.confession.state is 'present'>>
         "Stop? Stop what? Is there someone else in here?!" Your penitent sounds outraged.
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           "Y-yes. Sorry," Robin manages, then goes quiet.
         <<else>>
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
@@ -1165,13 +1165,13 @@
         <br><br>
         "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<grace -4>><<llgrace>>
       <<else>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
             "S...stop? But I..." <<he>> stammers off while still clinging on to you. "O-okay..."
           <<else>>
             Robin looks at you nervously. "Did I... did I do something wrong?"
           <</if>>
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           Robin looks disappointed, but steps away. "Maybe... later?" <<he>> says. "Please?"
         <<else>>
           "Oh. Okay. We can stop." <<He>> looks down for a moment, then manages a small smile.
@@ -1181,7 +1181,7 @@
       <<if $RobinTemple.confession.state is 'present'>>
         “不做了？什么不做了？那边还有别人吗？！”忏悔者听起来非常愤怒。
         <br><br>
-        <<if C.npc.Robin.doubt gte 20>>
+        <<if maplebirch.get('RobinTemple').faith lte -20>>
           “是、是的。对不起。”罗宾勉强挤出一句，随后沉默下来。
         <<else>>
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
@@ -1189,13 +1189,13 @@
         <br><br>
         “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<grace -4>><<llgrace>>
       <<else>>
-        <<if C.npc.Robin.conviction gte 20>>
+        <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
             “不……不做了？可是我……”<<he>>仍紧紧拥着你，话说到一半就断了，“好，好吧……”
           <<else>>
             罗宾紧张地看着你。“我……我做错什么了吗？”
           <</if>>
-        <<elseif C.npc.Robin.doubt gte 20>>
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
           罗宾有些失落，还是退开了。“要不……以后？”<<he>>说，“行吗？”
         <<else>>
           “这样啊。好，我们可以停。”<<He>>低头沉默了一瞬，随后勉强笑了笑。

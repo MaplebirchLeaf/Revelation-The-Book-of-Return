@@ -64,6 +64,10 @@
         "version": ">=0.5.12.13"
       },
       {
+        "modName": "BeautySelectorAddon",
+        "version": ">=2.0.0"
+      },
+      {
         "modName": "ReplacePatcher",
         "version": ">=1.0.0"
       },

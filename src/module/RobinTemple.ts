@@ -123,6 +123,10 @@ class RobinTemple extends Module {
     C.npc.Robin.doubt = Math.max(0, -amount);
   }
 
+  public get band(): 'belief' | 'doubt' | 'steady' {
+    return this.faith >= 20 ? 'belief' : this.faith <= -20 ? 'doubt' : 'steady';
+  }
+
   /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
   public get available(): boolean {
     return C.npc.Robin?.init === 1 && !V.robinmissing && V.robin.timer.hurt === 0 && C.npc.Robin.trauma < 80 && !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted');
@@ -163,7 +167,7 @@ class RobinTemple extends Module {
     // 罗宾的信仰在中立区间之外逐日变化，贡献按上学与休息日增减。
     const faith = this.faith;
     if (faith >= 20) this.faith++;
-    else if (faith < -20) this.faith--;
+    else if (faith <= -20) this.faith--;
     this.reviewFaith();
     const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
     if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
@@ -174,8 +178,17 @@ class RobinTemple extends Module {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;
     if (!state || !this.member || robin?.init !== 1) return;
-    const band = robin.conviction >= 20 ? 'belief' : robin.doubt >= 20 ? 'doubt' : 'steady';
-    if (band === 'steady' || band === state.faith_band || state.faith_review_day === Time.days) return;
+    // 以净信念判定并维持两侧互斥，避免直接修改 NPC 数值后分支各自成立。
+    const faith = this.faith;
+    this.faith = faith;
+    const band = this.band;
+    if (band === 'steady') {
+      state.faith_band = 'steady';
+      state.faith_transition = '';
+      return;
+    }
+    if (state.faith_transition && state.faith_transition !== band) state.faith_transition = '';
+    if (band === state.faith_band || state.faith_review_day === Time.days) return;
     state.faith_review_day = Time.days;
     if (Math.random() >= 0.35) return;
     state.faith_band = band;
