@@ -212,7 +212,7 @@
     <<option 'CN'>>
       仪式现在无法继续。你需要再与约旦和罗宾谈谈。
   <</language>>
-  <<clotheson>><<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<clotheson>><<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Promise End

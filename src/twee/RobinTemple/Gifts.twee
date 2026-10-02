@@ -9,9 +9,9 @@
 <br><br>
 <<food_gift_list>>
 <<if _food_gift_found is true>>
-  <<skinicon 'give'>><<lanLink '送给罗宾 (0:05)' 'RobinTemple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
+  <<skinicon 'give'>><<lanLink ['Give the food to Robin (0:05)', '送给罗宾 (0:05)'] 'RobinTemple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
 <</if>>
-<<getouticon>><<lanLink '重新考虑' 'RobinTemple Prayer'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Reconsider', '重新考虑'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
@@ -61,11 +61,11 @@
 <</if>>
 <br><br>
 <<if $gift is 'sticky_toffee_pudding'>>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾能不能尝一口' 'RobinTemple Gift Pudding Ask'>><</lanLink>><br>
-  <<loveicon 'hug'>><<lanLink '看罗宾吃完' 'RobinTemple Gift Pudding Watch'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin for a taste', '问罗宾能不能尝一口'] 'RobinTemple Gift Pudding Ask'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Let Robin finish the pudding', '看罗宾吃完'] 'RobinTemple Gift Pudding Watch'>><</lanLink>><br>
 <<else>>
-  <<loveicon 'hug'>><<lanLink '与罗宾分享' 'RobinTemple Gift Share'>><</lanLink>><br>
-  <<socialiseicon 'ask'>><<lanLink '让罗宾自己享用' 'RobinTemple Gift Alone'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Share it with Robin', '与罗宾分享'] 'RobinTemple Gift Share'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Let Robin enjoy it', '让罗宾自己享用'] 'RobinTemple Gift Alone'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Gift Pudding Ask
@@ -93,7 +93,7 @@
     “对不起，我忘了问你。”罗宾把盘子推过来。你们一起吃完布丁，<<he>>坚持要把盘子洗干净。
 <</language>>
 <<npcincr Robin dom -1>><<ldom>><br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Pudding Watch
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
@@ -104,7 +104,7 @@
     你看着罗宾吃完布丁。最后一口咽下后，<<he>>闭上眼笑了笑，随后才发现你还在看<<him>>。
 <</language>>
 <<npcincr Robin dom 1>><<gdom>><br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Share
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
@@ -132,7 +132,7 @@
 <</if>>
 <br><br>
 <<if $gift is 'sticky_toffee_pudding'>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><</if>>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Alone
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
@@ -159,4 +159,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

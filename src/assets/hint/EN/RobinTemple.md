@@ -56,13 +56,12 @@ Check **Journal → Robin and the temple** for appointments, shifts, contributio
 
 With Robin at the temple, choose **Pray with Robin** in the hall between **11:00 and 20:00**, covered and below maximum stress. Choose one daily prayer. Encounters, donations, gifts and walks have their own conditions.
 
-| Choice                                   | Duration   | Effects and conditions                                                                                            |
-| ---------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------- |
-| Pray for people in need                  | 1 hour     | Robin's faith, PC grace and stress relief                                                                         |
-| Discuss doubts                           | 30 minutes | Robin's love and stress relief                                                                                    |
-| Keep your prayer private and sit quietly | 30 minutes | Quiet companionship, using the day's prayer opportunity                                                           |
-| Observe people in the temple             | 1 hour     | Responses vary, with high awareness potentially causing fear, stress and trauma                                   |
-| Discuss mockery of your body             | 1 hour     | Requires a relevant insecurity and no original related prayer that day, improves that acceptance and eases stress |
+| Choice                       | Duration   | Effects and conditions                                                                                                                           |
+| ---------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pray for people in need      | 1 hour     | Robin's faith, PC grace and stress relief                                                                                                        |
+| Discuss doubts               | 30 minutes | Robin's love and stress relief                                                                                                                   |
+| Observe people in the temple | 1 hour     | Raises awareness and stress using vanilla observation rules. Purity affects the gains, and high awareness can cause additional stress and trauma |
+| Discuss mockery of your body | 1 hour     | Requires a relevant insecurity and no original related prayer that day, raises the relevant acceptance and stress, with gains affected by purity |
 
 The bench offers one daily encounter involving the soup kitchen, lists, visitors or temple rules. Returning does not reroll it or repeat rewards after resolution. Delivering bowls or noting supplies can reveal the soup kitchen.
 

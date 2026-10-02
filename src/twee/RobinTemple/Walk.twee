@@ -8,7 +8,7 @@
       今天罗宾已经陪你走过一趟。回家前，<<he>>还有活要做。
   <</language>>
   <br><br>
-  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -40,15 +40,15 @@
     <</language>>
   <</if>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾在神殿过得怎样 (0:30)' 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
-  <<loveicon 'hug'>><<lanLink '问起孤儿院的孩子 (0:30)' 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask how Robin feels at the temple (0:30)', '问罗宾在神殿过得怎样 (0:30)'] 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
+  <<loveicon 'hug'>><<lanLink ['Ask about the children at the orphanage (0:30)', '问起孤儿院的孩子 (0:30)'] 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
   <<if $robinromance is 1>>
-    <<loveicon 'kiss'>><<lanLink '牵住罗宾的手 (0:30)' 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
+    <<loveicon 'kiss'>><<lanLink ['Take Robin\'s hand (0:30)', '牵住罗宾的手 (0:30)'] 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
   <</if>>
   <<if $RobinTemple.work_day is Time.days>>
-    <<foresticon>><<lanLink '和罗宾去森林 (0:30)' 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><<glove>><br>
+    <<foresticon>><<lanLink ['Go to the forest with Robin (0:30)', '和罗宾去森林 (0:30)'] 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><<glove>><br>
     <<if C.npc.Robin.love gte 20 and $money gte 1500 and !$daily.robin.cinema and Time.hour lt 19>>
-      <<socialiseicon 'cinema'>><<lanLink '和罗宾去电影院 (£15 0:15)' 'Robin Walk Cinema'>><<set $RobinTemple.walk_day to Time.days>><<pass 15>><</lanLink>><br>
+      <<socialiseicon 'cinema'>><<lanLink ['Go to the cinema with Robin (£15 0:15)', '和罗宾去电影院 (£15 0:15)'] 'Robin Walk Cinema'>><<set $RobinTemple.walk_day to Time.days>><<pass 15>><</lanLink>><br>
     <</if>>
   <<else>>
     <<language>>
@@ -59,7 +59,7 @@
     <</language>><br>
   <</if>>
   <br>
-  <<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Walk Faith

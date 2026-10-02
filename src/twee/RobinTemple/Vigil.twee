@@ -104,13 +104,13 @@
 <<widget 'robin-temple-vigil-options'>>
   <<if $RobinTemple.vigil_attending and ($robinromance is 1 or C.npc.Robin.love gte 90)>>
     <<if $sydneyromance is 1 or C.npc.Sydney.love gte 90>>
-      <<templeicon 'trialcontinue'>><<lanLink '牵起罗宾与悉尼的手 (1:00)' 'Temple Vigil 11'>>
+      <<templeicon 'trialcontinue'>><<lanLink ['Take Robin and Sydney by the hand (1:00)', '牵起罗宾与悉尼的手 (1:00)'] 'Temple Vigil 11'>>
         <<set $RobinTemple.vigil_with_robin to true>><<set $phase to 2>>
         <<pain 8>><<if _args[0]>><<stress 8>><</if>>
       <</lanLink>><<gpain>><<if _args[0]>><<gstress>><</if>><<handholdingvirginitywarning>>
       <<NPCvirginitywarning 'Robin' 'handholding'>><<NPCvirginitywarning 'Sydney' 'handholding'>><br>
     <</if>>
-    <<templeicon 'trialcontinue'>><<lanLink '牵起罗宾的手 (1:00)' 'Temple Vigil 11'>>
+    <<templeicon 'trialcontinue'>><<lanLink ['Take Robin by the hand (1:00)', '牵起罗宾的手 (1:00)'] 'Temple Vigil 11'>>
       <<set $RobinTemple.vigil_with_robin to true>><<set $phase to 1>>
       <<pain 8>><<if _args[0]>><<stress 8>><</if>>
     <</lanLink>><<gpain>><<if _args[0]>><<gstress>><</if>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
@@ -311,9 +311,9 @@
   <<set $temple_monk_days to 0>><<set $wardrobes.temple.unlocked to true>>
   <<earnFeat 'Defy the Night'>><<specialClothesUnlock 'set' 'temple_monk_and_nun'>>
   <<if $phase is 2>>
-    <<lanLink '继续' 'Temple Vigil 15 Sydney'>><<clotheson>><<endevent>><</lanLink>><br>
+    <<lanLink ['Continue', '继续'] 'Temple Vigil 15 Sydney'>><<clotheson>><<endevent>><</lanLink>><br>
   <<else>>
-    <<lanLink '继续' 'Temple Vigil 15'>><<clotheson>><<endevent>><</lanLink>><br>
+    <<lanLink ['Continue', '继续'] 'Temple Vigil 15'>><<clotheson>><<endevent>><</lanLink>><br>
   <</if>>
 <</widget>>
 
@@ -405,4 +405,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

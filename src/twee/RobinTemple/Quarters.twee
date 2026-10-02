@@ -40,7 +40,7 @@
       罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
   <</language>>
   <br><br>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink '看看罗宾的床铺' 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Look at Robin\'s bunk', '看看罗宾的床铺'] 'RobinTemple Bunk'>><</lanLink>><br>
   <br>
 <<else>>
   <<language>>
@@ -61,7 +61,7 @@
       罗宾现在不在。工作表和<<his>>的课本还放在桌上。
   <</language>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '问值班侍从罗宾去了哪里' 'RobinTemple Whereabouts'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask the attendant where Robin went', '问值班侍从罗宾去了哪里'] 'RobinTemple Whereabouts'>><</lanLink>><br>
 <<elseif $RobinTemple.vigil_result isnot 'passed'
   and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7)>>
   <<language>>
@@ -88,7 +88,7 @@
   <<if $RobinTemple.work_day isnot Time.days
     and Time.minute lt 30>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink '去帮罗宾准备弥撒 (0:30)' 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon 'altar'>><<lanLink ['Help Robin prepare for mass (0:30)', '去帮罗宾准备弥撒 (0:30)'] 'RobinTemple Sunday Service'>><<pass 30>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
   <</if>>
 <<elseif Time.weekDay is 1 and Time.hour is 12>>
   <<language>>
@@ -122,8 +122,8 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon 'sweep'>><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon 'garden'>><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
+    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon 'garden'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 <<elseif Time.hour lt 17 or Time.hour gte 20>>
   <<language>>
@@ -141,12 +141,12 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon "sweep">><<lanLink '和罗宾一起打扫宿舍 (1:00)' 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon "garden">><<lanLink '帮罗宾整理神殿物资 (1:00)' 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
+    <<choreicon "sweep">><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon "garden">><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 
   <<if $RobinTemple.stage is "approved" and $templePromised is ''>>
-    <<templeicon "altar">><<lanLink '和罗宾去见约旦举行仪式' 'RobinTemple Promise Altar'>><</lanLink>><br>
+    <<templeicon "altar">><<lanLink ['Meet Jordan for the promise rite', '和罗宾去见约旦举行仪式'] 'RobinTemple Promise Altar'>><</lanLink>><br>
   <</if>>
 <</if>>
 <!-- 承诺入口在罗宾到场时显示，避免被晚间工作分支限制而无法访问。 -->
@@ -154,7 +154,7 @@
   and !$RobinTemple.punish and $temple_rank isnot undefined and $temple_rank isnot 'prospective'
   and $templePromised is ''>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink '和罗宾谈谈承诺仪式' 'RobinTemple Evaluation'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Discuss a promise with Robin', '和罗宾谈谈承诺仪式'] 'RobinTemple Evaluation'>><</lanLink>><br>
 <</if>>
 <<if _robinAtTemple and (maplebirch.get('RobinTemple').publicPromise is 'Robin'
   or $robinromance is 1 and C.npc.Robin.dom gte 60 and $RobinTemple.service gte 2)
@@ -176,11 +176,11 @@
       <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
     <</if>>
   <<else>>
-    <<lockicon>><<lanLink '和罗宾谈谈贞操带' 'RobinTemple Clasp'>><</lanLink>><br>
+    <<lockicon>><<lanLink ['Talk to Robin about the chastity lock', '和罗宾谈谈贞操带'] 'RobinTemple Clasp'>><</lanLink>><br>
   <</if>>
 <</if>>
 <br>
-<<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Cleaning
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -210,7 +210,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Supplies
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -240,7 +240,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -291,7 +291,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Whereabouts
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -411,4 +411,4 @@
   <</switch>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

@@ -9,16 +9,16 @@
 <br><br>
 <<if $RobinTemple.donation_day isnot Time.days>>
   <<if $money gte 100>>
-    <<templeicon 'altar'>><<lanLink '捐出 £1' 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 100>><<money -100>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ['Donate £1', '捐出 £1'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 100>><<money -100>><</lanLink>><br>
   <</if>>
   <<if $money gte 500>>
-    <<templeicon 'altar'>><<lanLink '捐出 £5' 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 500>><<money -500>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ['Donate £5', '捐出 £5'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 500>><<money -500>><</lanLink>><br>
   <</if>>
   <<if $money gte 2500>>
-    <<templeicon 'altar'>><<lanLink '捐出 £25' 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 2500>><<money -2500>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ['Donate £25', '捐出 £25'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 2500>><<money -2500>><</lanLink>><br>
   <</if>>
 <</if>>
-<<getouticon>><<lanLink '收回手' 'RobinTemple Prayer'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Withdraw your hand', '收回手'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Donation Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -52,4 +52,4 @@
   <<grace 1>><<ggrace>>
 <</if>>
 <<if _donationAmount gt 0>><<npcincr Robin love 1>><<glove>><</if>><br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

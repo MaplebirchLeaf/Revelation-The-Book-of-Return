@@ -5,13 +5,13 @@
     and !(maplebirch.get('Robin') and $RobinExpansion?.asylum?.status is 'admitted')>>
     <<switch $RobinTemple.hospital_stage>>
       <<case 'waiting'>>
-        <<socialiseicon 'ask'>><<lanLink '回到罗宾陪同的就诊' 'RobinTemple Hospital Arrival'>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink ['Continue your hospital visit with Robin', '回到罗宾陪同的就诊'] 'RobinTemple Hospital Arrival'>><</lanLink>><br>
       <<case 'discharged' 'therapy'>>
-        <<getouticon>><<lanLink '与罗宾完成出院手续' 'RobinTemple Hospital Home'>><</lanLink>><br>
+        <<getouticon>><<lanLink ['Complete the discharge paperwork with Robin', '与罗宾完成出院手续'] 'RobinTemple Hospital Home'>><</lanLink>><br>
       <<case 'rescue'>>
-        <<socialiseicon 'ask'>><<lanLink '继续与罗宾离开医院' 'RobinTemple Hospital Rescue'>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink ['Continue leaving the hospital with Robin', '继续与罗宾离开医院'] 'RobinTemple Hospital Rescue'>><</lanLink>><br>
       <<case 'vanilla'>>
-        <<socialiseicon 'ask'>><<lanLink '继续医院检查' 'RobinTemple Hospital Examination'>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink ['Continue the hospital examination', '继续医院检查'] 'RobinTemple Hospital Examination'>><</lanLink>><br>
     <</switch>>
   <</if>>
 <</widget>>
@@ -21,7 +21,7 @@
     and $stress lt $stressmax and $exposed lte 0
     and Time.hour gte 11 and Time.hour lt 20
     and getRobinLocation() is 'temple' and !$robinmissing>>
-    <<templeicon 'altar'>><<lanLink '和罗宾一起祈祷' 'RobinTemple Prayer'>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ['Pray with Robin', '和罗宾一起祈祷'] 'RobinTemple Prayer'>><</lanLink>><br>
     <br>
   <</if>>
 <</widget>>
@@ -44,7 +44,7 @@
 <</language>>
 <br><br>
 <<if $RobinTemple.faith_transition isnot ''>>
-  <<socialiseicon 'ask'>><<lanLink '听罗宾说说最近的想法' 'RobinTemple Faith Transition'>><</lanLink>><br><br>
+  <<socialiseicon 'ask'>><<lanLink ['Listen to Robin talk about their recent thoughts', '听罗宾说说最近的想法'] 'RobinTemple Faith Transition'>><</lanLink>><br><br>
 <</if>>
 <<if !$RobinTemple.prayer_event_done and $RobinTemple.prayer_event lte 4>>
   <<switch $RobinTemple.prayer_event>>
@@ -74,7 +74,7 @@
       <</language>>
   <</switch>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '和罗宾看看发生了什么' 'RobinTemple Prayer Event'>><</lanLink>><br><br>
+  <<socialiseicon 'ask'>><<lanLink ['See what happened with Robin', '和罗宾看看发生了什么'] 'RobinTemple Prayer Event'>><</lanLink>><br><br>
 <</if>>
 <<if $RobinTemple.prayer_day isnot Time.days>>
   <<language>>
@@ -84,12 +84,11 @@
       最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '为需要帮助的人祈祷 (1:00)' 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><<ggrace>><<ggconviction 'Robin'>><<lstress>><br>
-  <<loveicon 'hug'>><<lanLink '和罗宾谈谈心里的疑虑 (0:30)' 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
-  <<templeicon 'altar'>><<lanLink '留意神殿里的人群 (1:00)' 'RobinTemple Prayer Observe'>><</lanLink>><br>
-  <<templeicon 'altar'>><<lanLink '不说出自己的祈祷，安静坐一会儿 (0:30)' 'RobinTemple Prayer Quiet'>><</lanLink>><<ggrace>><<lstress>><br>
+  <<templeicon 'pray'>><<lanLink ['Pray for those in need (1:00)', '为需要帮助的人祈祷 (1:00)'] 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><<ggrace>><<ggconviction 'Robin'>><<lstress>><br>
+  <<loveicon 'hug'>><<lanLink ['Talk to Robin about your doubts (0:30)', '和罗宾谈谈心里的疑虑 (0:30)'] 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
+  <<crimeicon 'mark'>><<lanLink ['Observe the people in the temple (1:00)', '留意神殿里的人群 (1:00)'] 'RobinTemple Prayer Observe'>><</lanLink>><<gawareness>><<gstress>><br>
   <<if $daily.templePray isnot 1 and ['penis_small', 'penis_big', 'breasts_small', 'breasts_big', 'pregnancy'].some(insecurityExists)>>
-    <<socialiseicon 'ask'>><<lanLink '谈谈别人对你身体的嘲笑' 'RobinTemple Prayer Insecurity'>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about people mocking your body', '谈谈别人对你身体的嘲笑'] 'RobinTemple Prayer Insecurity'>><</lanLink>><br>
   <</if>>
 <<else>>
   <<language>>
@@ -102,20 +101,20 @@
 <</if>>
 <<if $stress gte $stressmax * 0.8 and $stress lt $stressmax
   and $RobinTemple.rest_day isnot Time.days>>
-  <<loveicon 'hug'>><<lanLink '告诉罗宾你快撑不住了 (0:30)' 'RobinTemple Rest'>><</lanLink>><<glove>><<lstress>><br>
+  <<loveicon 'hug'>><<lanLink ['Tell Robin you need to rest (0:30)', '告诉罗宾你快撑不住了 (0:30)'] 'RobinTemple Rest'>><</lanLink>><<glove>><<lstress>><br>
 <</if>>
-<<skinicon 'give'>><<lanLink '给罗宾带来的食物' 'RobinTemple Gifts List'>><</lanLink>><br>
+<<skinicon 'give'>><<lanLink ['Give Robin something to eat', '给罗宾带来的食物'] 'RobinTemple Gifts List'>><</lanLink>><br>
 <<if Time.hour lt 19 and $RobinTemple.walk_day isnot Time.days>>
-  <<loveicon 'hug'>><<lanLink '问罗宾要不要一起走走' 'RobinTemple Walk'>><</lanLink>><br>
+  <<walkicon>><<lanLink ['Ask Robin to take a walk', '问罗宾要不要一起走走'] 'RobinTemple Walk'>><</lanLink>><br>
 <</if>>
 <<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾取矛任务的事' 'RobinTemple Spear'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the spear mission', '问罗宾取矛任务的事'] 'RobinTemple Spear'>><</lanLink>><br>
 <</if>>
 <<if $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
-  <<socialiseicon 'ask'>><<lanLink '把取矛的经过告诉罗宾' 'RobinTemple Spear Return'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Tell Robin how the spear journey went', '把取矛的经过告诉罗宾'] 'RobinTemple Spear Return'>><</lanLink>><br>
 <</if>>
 <<if $RobinTemple.donation_day isnot Time.days>>
-  <<templeicon 'altar'>><<lanLink '和罗宾一起为神殿捐赠' 'RobinTemple Donation'>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
 <</if>>
 <<if $RobinTemple.transformation_day isnot Time.days>>
   <<set $RobinTemple.transformation_count to 0>>
@@ -123,19 +122,19 @@
 <<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
   <<set _robinForms to maplebirch.get('RobinTemple').forms>>
   <<if _robinForms.includes('fox')>>
-    <<tficon 'fox'>><<lanLink '让罗宾靠在你的尾巴上 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
+    <<tficon 'fox'>><<lanLink ['Let Robin rest on your tail (0:10)', '让罗宾靠在你的尾巴上 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
   <</if>>
   <<if _robinForms.includes('wolf')>>
-    <<tficon 'wolf'>><<lanLink '用头轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
+    <<tficon 'wolf'>><<lanLink ['Nudge Robin (0:10)', '用头轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
   <</if>>
   <<if _robinForms.includes('cat')>>
-    <<tficon 'cat'>><<lanLink '挨着罗宾坐下 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
+    <<tficon 'cat'>><<lanLink ['Sit close to Robin (0:10)', '挨着罗宾坐下 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
   <</if>>
   <<if _robinForms.includes('bird')>>
-    <<birdicon 'sing'>><<lanLink '为罗宾唱歌 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
+    <<birdicon 'sing'>><<lanLink ['Sing for Robin (0:10)', '为罗宾唱歌 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
   <</if>>
   <<if _robinForms.includes('cow')>>
-    <<tficon 'cow'>><<lanLink '用角轻碰罗宾 (0:10)' 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
+    <<tficon 'cow'>><<lanLink ['Touch Robin with your horn (0:10)', '用角轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
   <</if>>
   <<if _robinForms.includes('horse')>>
     <<= maplebirch.get('MoreTransformations').Horse.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><<pass 10>><</lanLink>><br>
@@ -148,7 +147,7 @@
   <</if>>
 <</if>>
 <br>
-<<getouticon>><<lanLink '返回神殿大厅' 'Temple'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Others
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -194,7 +193,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Doubt
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -232,7 +231,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Rest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -264,46 +263,53 @@
 <</if>>
 <<if $RobinTemple.rest_day is Time.days and $RobinTemple.hospital_day isnot Time.days
   and $RobinTemple.hospital_stage is ''>>
-  <<socialiseicon 'ask'>><<lanLink '请罗宾陪你去医院检查 (0:30)' 'RobinTemple Hospital Arrival'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to accompany you to the hospital (0:30)', '请罗宾陪你去医院检查 (0:30)'] 'RobinTemple Hospital Arrival'>><</lanLink>><br>
 <</if>>
 <<if maplebirch.get('RobinTemple').bunk>>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink '在罗宾床边再坐一会儿' 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Sit beside Robin’s bunk a while longer', '在罗宾床边再坐一会儿'] 'RobinTemple Bunk'>><</lanLink>><br>
 <<else>>
-  <<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+  <<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <</if>>
-<<getouticon>><<lanLink '返回大厅' 'Temple'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Quiet
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days>>
-  <<set $RobinTemple.prayer_day to Time.days>><<pass 30>>
-  <<language>>
-    <<option 'EN'>>
-      You decide to keep your prayer to yourself. Robin looks concerned, but does not press you. <<He>> sets <<his>> schoolbook aside and stays on the bench with you until you are ready to leave.
-    <<option 'CN'>>
-      你决定不说出自己的祈祷。罗宾有些担心，却没有追问。<<He>>把课本放到一旁，陪你坐在长椅上，等你愿意起身。
-  <</language>>
-<<else>>
-  <<language>>
-    <<option 'EN'>>
-      You have already spent time together in prayer today.
-    <<option 'CN'>>
-      今天你们已经一起祈祷过了。
-  <</language>>
-<</if>>
+<<language>>
+  <<option 'EN'>>
+    You decide to keep it to yourself. Robin looks concerned, but does not press you. <<He>> stays beside you.
+  <<option 'CN'>>
+    你决定暂时不说。罗宾有些担心，却没有追问。<<He>>留在你身旁。
+<</language>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Observe
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.prayer_day isnot Time.days>>
   <<set $RobinTemple.prayer_day to Time.days>><<pass 60>>
+  <!-- 沿用原版 prayoptions 的观察结算，按纯洁决定意识与压力变化。 -->
+  <<if $purity gte 1000>>
+    <<stress 5>><<awareness 2>>
+  <<elseif $purity gte (1000 / 7) * 6>>
+    <<stress 5>><<awareness 1>>
+  <<elseif $purity gte (1000 / 7) * 5>>
+    <<stress 6>><<awareness 1>>
+  <<elseif $purity gte (1000 / 7) * 4>>
+    <<stress 7>><<awareness 1>>
+  <<elseif $purity gte (1000 / 7) * 3>>
+    <<stress 8>><<awareness 1>>
+  <<elseif $purity gte (1000 / 7) * 2>>
+    <<stress 10>><<awareness 1>>
+  <<else>>
+    <<stress 12>><<awareness 1>>
+  <</if>>
   <<language>>
     <<option 'EN'>>
       You open one eye and watch the hall. Visitors kneel along the benches while attendants move quietly between the side rooms, passing messages. Robin notices you counting the people who come and go.
     <<option 'CN'>>
       你睁开一只眼，打量大厅。访客跪在长椅旁，侍从轻手轻脚地往返侧室，相互传递消息。罗宾注意到你在数进进出出的人。
   <</language>>
+  <<gawareness>><<gstress>>
   <br><br>
   <<if $awareness gte 400>>
     <<language>>
@@ -345,7 +351,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Faith Transition
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -415,7 +421,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Hospital Arrival
 <<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
@@ -444,7 +450,7 @@
     <</language>><br><br>
   <</if>>
   <<socialiseicon 'ask'>><<lanLink '接受检查' 'RobinTemple Hospital Examination'>><</lanLink>><br>
-  <<getouticon>><<lanLink '暂时不作决定' 'Hospital front'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Leave the decision for now', '暂时不作决定'] 'Hospital front'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -452,7 +458,7 @@
     <<option 'CN'>>
       这次就诊已经处理过，或是你尚未安排这次就诊。
   <</language>><br><br>
-  <<getouticon>><<lanLink '返回医院前厅' 'Hospital front'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the hospital entrance', '返回医院前厅'] 'Hospital front'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Hospital Bed
@@ -585,13 +591,13 @@
         哈珀说你可以离开，下次再出现这种情况要多加小心。罗宾帮你收好东西。
     <</language>>
   <</if>><br><br>
-  <<getouticon>><<lanLink '和罗宾离开医院 (0:10)' 'RobinTemple Hospital Home'>><<pass 10>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Leave the hospital with Robin (0:10)', '和罗宾离开医院 (0:10)'] 'RobinTemple Hospital Home'>><<pass 10>><</lanLink>><br>
 <<elseif $RobinTemple.hospital_stage is 'rescue'>>
-  <<getouticon>><<lanLink '继续' 'RobinTemple Hospital Rescue'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Continue', '继续'] 'RobinTemple Hospital Rescue'>><</lanLink>><br>
 <<elseif $RobinTemple.hospital_stage is 'vanilla'>>
-  <<socialiseicon 'ask'>><<lanLink '继续' 'Hospital Bed Examination'>><<set $RobinTemple.hospital_stage to ''>><<npc Harper 1>><<person1>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Continue', '继续'] 'Hospital Bed Examination'>><<set $RobinTemple.hospital_stage to ''>><<npc Harper 1>><<person1>><</lanLink>><br>
 <<elseif $RobinTemple.hospital_stage isnot ''>>
-  <<getouticon>><<lanLink '返回医院前厅' 'Hospital front'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the hospital entrance', '返回医院前厅'] 'Hospital front'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Hospital Rescue
@@ -614,9 +620,9 @@
   <br><br>
 <</if>>
 <<if $RobinTemple.hospital_stage is 'discharged'>>
-  <<getouticon>><<lanLink '一起离开' 'RobinTemple Hospital Home'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Leave together', '一起离开'] 'RobinTemple Hospital Home'>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink '返回医院前厅' 'Hospital front'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the hospital entrance', '返回医院前厅'] 'Hospital front'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Hospital Home
@@ -642,12 +648,13 @@
   <br><br>
   <<robin-temple-return-home 10>>
 <<else>>
-  <<getouticon>><<lanLink '返回医院前厅' 'Hospital front'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the hospital entrance', '返回医院前厅'] 'Hospital front'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Prayer Insecurity
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1>>
+<<if $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1
+  and ['penis_small', 'penis_big', 'breasts_small', 'breasts_big', 'pregnancy'].some(insecurityExists)>>
   <<language>>
     <<option 'EN'>>
       Robin waits while you decide what you want to tell <<him>>. You do not have to explain everything.
@@ -655,20 +662,21 @@
       罗宾等着你决定想说什么。你不必把所有事都解释清楚。
   <</language>><br><br>
   <<if insecurityExists('penis_small')>>
-    <<socialiseicon 'ask'>><<lanLink '说起被嘲笑尺寸太小的困扰' 'RobinTemple Prayer Acceptance'>><<set $phase to 4>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about being mocked for having a small penis', '说起被嘲笑尺寸太小的困扰'] 'RobinTemple Prayer Acceptance'>><<set $phase to 4>><</lanLink>><br>
   <</if>>
   <<if insecurityExists('penis_big')>>
-    <<socialiseicon 'ask'>><<lanLink '说起被嘲笑尺寸太大的困扰' 'RobinTemple Prayer Acceptance'>><<set $phase to 6>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about being mocked for having a large penis', '说起被嘲笑尺寸太大的困扰'] 'RobinTemple Prayer Acceptance'>><<set $phase to 6>><</lanLink>><br>
   <</if>>
   <<if insecurityExists('breasts_small')>>
-    <<socialiseicon 'ask'>><<lanLink '说起别人对你胸部偏小的评价' 'RobinTemple Prayer Acceptance'>><<set $phase to 7>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about comments on your small breasts', '说起别人对你胸部偏小的评价'] 'RobinTemple Prayer Acceptance'>><<set $phase to 7>><</lanLink>><br>
   <</if>>
   <<if insecurityExists('breasts_big')>>
-    <<socialiseicon 'ask'>><<lanLink '说起别人对你胸部偏大的评价' 'RobinTemple Prayer Acceptance'>><<set $phase to 9>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about comments on your large breasts', '说起别人对你胸部偏大的评价'] 'RobinTemple Prayer Acceptance'>><<set $phase to 9>><</lanLink>><br>
   <</if>>
   <<if insecurityExists('pregnancy')>>
-    <<socialiseicon 'ask'>><<lanLink '说起对孕期外形的困扰' 'RobinTemple Prayer Acceptance'>><<set $phase to 10>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk about worries about your pregnant appearance', '说起对孕期外形的困扰'] 'RobinTemple Prayer Acceptance'>><<set $phase to 10>><</lanLink>><br>
   <</if>>
+  <<refuseicon>><<lanLink ['Keep it to yourself for now', '暂时不说'] 'RobinTemple Prayer Quiet'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -677,7 +685,7 @@
       今天你已经谈过或为这件事祈祷过了。
   <</language>><br><br>
 <</if>>
-<<templeicon 'altar'>><<lanLink '先不说，回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Leave it unsaid and return to the bench', '先不说，回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Acceptance
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -740,4 +748,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

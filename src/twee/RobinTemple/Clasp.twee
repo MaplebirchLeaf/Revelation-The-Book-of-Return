@@ -79,7 +79,7 @@
       <</language>><br><br>
     <</if>>
     <<if $money gte maplebirch.get('RobinTemple').claspFee>>
-      <<lockicon 'unlock'>><<lanLink '问罗宾是否想取下贞操带 (0:15)' 'RobinTemple Clasp Request'>>
+      <<lockicon 'unlock'>><<lanLink ['Ask if Robin wants the chastity lock removed (0:15)', '问罗宾是否想取下贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
         <<if $RobinTemple.clasp_request is '' and $RobinTemple.clasp_equipped
           and C.npc.Robin.chastity.anus is 'anal shield'
           and C.npc.Robin.chastity.vagina is 'chastity belt'
@@ -97,7 +97,7 @@
     and C.npc.Robin.chastity.anus is ''
     and C.npc.Robin.chastity.vagina is ''
     and C.npc.Robin.chastity.penis is ''>>
-    <<lockicon>><<lanLink '问罗宾是否想重新戴上贞操带 (0:15)' 'RobinTemple Clasp Request'>>
+    <<lockicon>><<lanLink ['Ask if Robin wants the chastity lock put back on (0:15)', '问罗宾是否想重新戴上贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
       <<if $RobinTemple.clasp_request is '' and !$RobinTemple.clasp_equipped
         and C.npc.Robin.chastity.anus is ''
         and C.npc.Robin.chastity.vagina is ''
@@ -117,9 +117,9 @@
   <</if>>
 <</if>>
 <<if maplebirch.get('RobinTemple').publicPromise is ''>>
-  <<socialiseicon 'ask'>><<lanLink '请罗宾亲自向约旦询问' 'RobinTemple Clasp Jordan'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to speak to Jordan directly', '请罗宾亲自向约旦询问'] 'RobinTemple Clasp Jordan'>><</lanLink>><br>
 <</if>>
-<<loveicon 'hug'>><<lanLink '先听罗宾说完' 'RobinTemple Clasp Listen'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink ['Let Robin finish', '先听罗宾说完'] 'RobinTemple Clasp Listen'>><</lanLink>><br>
 
 :: RobinTemple Clasp Request
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -166,7 +166,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -251,7 +251,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Jordan
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -279,8 +279,8 @@
 <</if>>
 <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
 <<npcincr Robin dom 1>><<gdom>><br><br>
-<<templeicon 'altar'>><<lanLink '谈谈共同立誓' 'RobinTemple Evaluation'>><</lanLink>><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Talk about a shared vow', '谈谈共同立誓'] 'RobinTemple Evaluation'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Listen
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -307,4 +307,4 @@
   <</language>>
 <</if>>
 <<npcincr Robin love 2>><<npcincr Robin trauma -2>><<glove 'Robin'>><<lltrauma 'Robin'>><br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink '回到罗宾的座位' 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

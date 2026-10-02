@@ -83,9 +83,9 @@
   <</language>>
 <</if>>
 <br><br>
-<<loveicon "hug">><<lanLink '让罗宾慢慢考虑' 'Robin Options'>><<set $RobinTemple.stage to "invited">><<npcincr Robin love 1>><</lanLink>><<glove>><br>
-<<socialiseicon "ask">><<lanLink '提议一起去问约旦' 'RobinTemple Schedule'>><<set $RobinTemple.stage to "invited">><</lanLink>><br>
-<<getouticon>><<lanLink '暂时不提这件事' 'Robin Options'>><</lanLink>><br>
+<<loveicon "hug">><<lanLink ['Give Robin time to decide', '让罗宾慢慢考虑'] 'Robin Options'>><<set $RobinTemple.stage to "invited">><<npcincr Robin love 1>><</lanLink>><<glove>><br>
+<<socialiseicon "ask">><<lanLink ['Offer to ask Jordan together', '提议一起去问约旦'] 'RobinTemple Schedule'>><<set $RobinTemple.stage to "invited">><</lanLink>><br>
+<<getouticon>><<lanLink ['Leave the subject alone', '暂时不提这件事'] 'Robin Options'>><</lanLink>><br>
 
 :: RobinTemple Schedule
 <<set $outside to 0>><<set $location to "home">><<effects>><<npc Robin>><<person1>>
@@ -104,8 +104,8 @@
       “我们一起去问约旦，”你说，“试炼仍得由你自己参加，我不能替你。”罗宾折好收据，点了点头。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '陪罗宾去见约旦 (0:10)' 'RobinTemple Jordan Introduction'>><<pass 10>><</lanLink>><br>
-  <<getouticon>><<lanLink '再给罗宾一些时间' 'Robin Options'>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink ['Meet Jordan with Robin (0:10)', '陪罗宾去见约旦 (0:10)'] 'RobinTemple Jordan Introduction'>><<pass 10>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Let Robin think longer', '再给罗宾一些时间'] 'Robin Options'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -114,7 +114,7 @@
       罗宾已经作了决定。等时机合适，你们还可以再谈。
   <</language>>
   <br><br>
-  <<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Jordan Introduction
@@ -134,7 +134,7 @@
       “你可以继续上学和工作，”约旦说，“神殿也会分给你一些事务。首先，你得通过纯洁试炼。”罗宾说想先花两天准备。约旦答应了。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '与罗宾约定试炼日期' 'RobinTemple Scheduled'>><<set $RobinTemple.stage to 'scheduled'>><<set $RobinTemple.exam_day to Time.days + 2>><<pass 10>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink ['Arrange a trial date with Robin', '与罗宾约定试炼日期'] 'RobinTemple Scheduled'>><<set $RobinTemple.stage to 'scheduled'>><<set $RobinTemple.exam_day to Time.days + 2>><<pass 10>><</lanLink>><br>
 <<else>>
   <<getouticon>><<lanLink '返回神殿' 'Temple'>><</lanLink>><br>
 <</if>>
@@ -156,12 +156,12 @@
 <</language>>
 <br><br>
 <<if !$RobinTemple.pendant and ['holy pendant', 'stone pendant'].includes($worn.neck.name)>>
-  <<skinicon 'give'>><<lanLink 'revelation-the-book-of-return:robinTemple:link:pendant' 'RobinTemple Pendant'>><</lanLink>><br>
+  <<skinicon 'give'>><<lanLink ['Give Robin your pendant', '把吊坠送给罗宾'] 'RobinTemple Pendant'>><</lanLink>><br>
 <</if>>
 <<if $location is 'temple'>>
-  <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Prepare
@@ -198,7 +198,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<templeicon "quarters">><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Assessment
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -228,7 +228,7 @@
         罗宾微笑着穿过大厅。“嘿，你来接我啦？”<<He>>伸手抱住你，“我通过了。谢谢你告诉我这个地方。”
     <</language>>
     <br><br>
-    <<templeicon "altar">><<lanLink '听约旦宣布结果' 'RobinTemple Pass'>><</lanLink>><br>
+    <<templeicon "altar">><<lanLink ['Hear Jordan\'s decision', '听约旦宣布结果'] 'RobinTemple Pass'>><</lanLink>><br>
   <<else>>
     <<language>>
       <<option 'EN'>>
@@ -237,7 +237,7 @@
         看见你，罗宾低下头，一滴眼泪落在地上。“对不起，”<<he>>说，“我辜负了你的期待。”你走近<<him>>，<<his>>的声音已经哽咽。
     <</language>>
     <br><br>
-    <<templeicon "altar">><<lanLink '听约旦宣布结果' 'RobinTemple Fail'>><</lanLink>><br>
+    <<templeicon "altar">><<lanLink ['Hear Jordan\'s decision', '听约旦宣布结果'] 'RobinTemple Fail'>><</lanLink>><br>
   <</if>>
 <<else>>
   <<language>>
@@ -247,7 +247,7 @@
       试炼已经不在日程上了。
   <</language>>
   <br><br>
-  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Pass
@@ -309,7 +309,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon "quarters">><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+<<templeicon "quarters">><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Fail
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -330,10 +330,10 @@
       罗宾盯着折好的收据。<<He>>没有被逐出，也没有受罚，但失望写在<<his>>的脸上。
   <</language>>
   <br><br>
-  <<loveicon "hug">><<lanLink '陪罗宾待一会儿' 'RobinTemple Comfort'>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><</lanLink>><<glove>><br>
-  <<getouticon>><<lanLink 'revelation-the-book-of-return:robinTemple:link:abandon' 'RobinTemple Abandon'>><<set $RobinTemple.abandoned to true>><<npcincr Robin love -5>><<npcincr Robin dom -10>><<npcincr Robin trauma 5>><</lanLink>><<llove>><<ldom>><<grtrauma>><br>
+  <<loveicon "hug">><<lanLink ['Stay with Robin', '陪罗宾待一会儿'] 'RobinTemple Comfort'>><<npcincr Robin love 1>><<npcincr Robin trauma -3>><</lanLink>><<glove>><br>
+  <<getouticon>><<lanLink ['Push Robin away and leave alone', '推开罗宾，独自离开'] 'RobinTemple Abandon'>><<set $RobinTemple.abandoned to true>><<npcincr Robin love -5>><<npcincr Robin dom -10>><<npcincr Robin trauma 5>><</lanLink>><<llove>><<ldom>><<grtrauma>><br>
 <<else>>
-  <<getouticon>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Comfort
@@ -364,7 +364,7 @@
 <</language>>
 <br><br>
 <<if !$RobinTemple.abandoned or C.npc.Robin.dom gt 70 and C.npc.Robin.trauma lt 10 and C.npc.Robin.love gte 95>>
-  <<socialiseicon "ask">><<lanLink '约好两天后再试一次' 'RobinTemple Scheduled'>><<set $RobinTemple.stage to "scheduled">><<set $RobinTemple.exam_day to Time.days + 2>><<set $RobinTemple.abandoned to false>><</lanLink>><br>
+  <<socialiseicon "ask">><<lanLink ['Arrange to try again in two days', '约好两天后再试一次'] 'RobinTemple Scheduled'>><<set $RobinTemple.stage to "scheduled">><<set $RobinTemple.exam_day to Time.days + 2>><<set $RobinTemple.abandoned to false>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -373,7 +373,7 @@
       罗宾又把收据折起来。“对不起，我不想再经历一次了。”<<He>>转过脸，擦了擦眼睛。
   <</language>><br><br>
 <</if>>
-<<getouticon>><<lanLink '改天再说' 'Robin Options'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Wait for another day', '改天再说'] 'Robin Options'>><</lanLink>><br>
 
 :: RobinTemple Abandon
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -384,7 +384,7 @@
     你推开罗宾，把<<him>>留在大厅。<<He>>茫然地望着你，你没有回应，转身朝门口走去。
 <</language>>
 <br><br>
-<<getouticon>><<lanLink 'revelation-the-book-of-return:robinTemple:link:leaveAlone' 'Wolf Street'>><<pass 1>><</lanLink>><br>
+<<getouticon>><<lanLink ['Leave the temple alone (0:01)', '独自离开神殿 (0:01)'] 'Wolf Street'>><<pass 1>><</lanLink>><br>
 
 :: RobinTemple Pendant
 <<set $outside to 0>><<effects>><<npc Robin>><<person1>>
@@ -406,7 +406,7 @@
 <</if>>
 <br><br>
 <<if $location is 'temple'>>
-  <<templeicon 'quarters'>><<lanLink '返回神殿宿舍' 'Temple Quarters'>><</lanLink>><br>
+  <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink '返回罗宾的房间' 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>

@@ -19,8 +19,8 @@
       “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
   <</language>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink '问罗宾是否习惯了新的誓言' 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
-  <<loveicon 'kiss'>><<lanLink '问罗宾要不要更亲近些' 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin how the new vow feels', '问罗宾是否习惯了新的誓言'] 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
+  <<loveicon 'kiss'>><<lanLink ['Ask Robin if they want to be closer', '问罗宾要不要更亲近些'] 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -29,7 +29,7 @@
       罗宾现在不在床铺旁。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Talk
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -73,7 +73,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Invite
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -111,8 +111,8 @@
     <</language>>
   <</if>>
   <br><br>
-  <<loveicon 'kiss'>><<lanLink '与罗宾做爱' 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
-  <<loveicon 'hug'>><<lanLink '只抱着罗宾待一会儿' 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
+  <<loveicon 'kiss'>><<lanLink ['Make love with Robin', '与罗宾做爱'] 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
+  <<loveicon 'hug'>><<lanLink ['Just hold Robin for a while', '只抱着罗宾待一会儿'] 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -121,7 +121,7 @@
       罗宾现在不能留下陪你。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Afternoon Hold
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -159,7 +159,7 @@
       罗宾已经离开了。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><</lanLink>><br>
 
 :: RobinTemple Bed Sex
 <<set $outside to 0>><<set $location to 'temple'>>
@@ -204,9 +204,9 @@
   <<effects>><<effectsman>><<man>><<stateman>>
   <br><br><<actionsman>>
   <<if _combatend or $consensual isnot 1>>
-    <span id='next'><<lanLink '继续' 'RobinTemple Bed Sex Finish'>><</lanLink>></span><<nexttext>>
+    <span id='next'><<lanLink ['Continue', '继续'] 'RobinTemple Bed Sex Finish'>><</lanLink>></span><<nexttext>>
   <<else>>
-    <span id='next'><<lanLink '继续' 'RobinTemple Bed Sex'>><</lanLink>></span><<nexttext>>
+    <span id='next'><<lanLink ['Continue', '继续'] 'RobinTemple Bed Sex'>><</lanLink>></span><<nexttext>>
   <</if>>
 <<else>>
   <<set $sexstart to 0>>
@@ -216,7 +216,7 @@
     <<option 'CN'>>
       罗宾现在不在床铺旁。
   <</language>><br><br>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Bed Sex Finish
@@ -282,4 +282,4 @@
       床铺旁又安静下来。
   <</language>><br><br>
 <</if>>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink '回到床边' 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Return to the bunk', '回到床边'] 'RobinTemple Bunk'>><<endevent>><</lanLink>><br>

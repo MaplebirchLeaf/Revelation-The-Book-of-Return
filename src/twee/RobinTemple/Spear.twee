@@ -16,8 +16,8 @@
       罗宾说，约旦建议先去博物馆，那里只在周末开放。“可以去问温特，”<<he>>说，“回来以后，告诉我发生了什么。”
   <</language>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink '答应回来告诉罗宾' 'RobinTemple Spear Reassure'>><</lanLink>><br>
-  <<socialiseicon 'ask'>><<lanLink '请罗宾帮你检查准备' 'RobinTemple Spear Prepare'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Promise to tell Robin when you return', '答应回来告诉罗宾'] 'RobinTemple Spear Reassure'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to check your preparations', '请罗宾帮你检查准备'] 'RobinTemple Spear Prepare'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -26,7 +26,7 @@
       罗宾已经把自己知道的长矛线索告诉你了。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Spear Reassure
@@ -38,7 +38,7 @@
     “我会的。”你说。罗宾沿着旧折痕把收据折好，交给你。<<He>>一直陪着你，直到约旦召集晚祷。
 <</language>>
 <<npcincr Robin love 2>><<stress -2>><<glove>><<lstress>><br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Prepare
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -65,7 +65,7 @@
   <</language>>
 <</if>>
 <<willpower 1>><<npcincr Robin dom 1>><br><br><<gwillpower>><<gdom>>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Return
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -110,4 +110,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink '回到长椅' 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
