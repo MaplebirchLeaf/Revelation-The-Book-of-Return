@@ -151,15 +151,15 @@ At the bench, very high stress below collapse allows a daily half-hour rest with
 
 ### Deadwood Reblooms integrations
 
-| Module or trait                        | Integration                                                                                                                                             |
-| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Robin expansion                        | Tutoring, the shop and asylum admission affect schedules, with temple income in the existing weekly accounts                                            |
-| Vanilla Plus                           | Homeward options use Robin's shared property, adjusting ordinary overnight stays                                                                        |
-| Unyielding Will                        | Resists ear-slime bodily control during Confounded Vow, while retaining stimulation, pursuit and costs, and records the shared vigil experience         |
-| More love interests and social avatars | Select Robin and Sydney in Attitudes, requiring awareness rank four or above for two retained partners, with a normal day change after gaining the rank |
-| NPC sidebar portraits                  | Novice clothing, post-vigil monk/nun clothing and bunk pyjamas follow the scene                                                                         |
-| More transformations                   | Visible full horse, fish and raven forms offer bench interactions                                                                                       |
-| Temple choir                           | Singing for Robin trains singing, and joint examinations collect pending choir earnings                                                                 |
+| Module or trait                        | Integration                                                                                                                                                                                                                                   |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Robin expansion                        | Tutoring, the shop and asylum admission affect schedules, with temple income in the existing weekly accounts                                                                                                                                  |
+| Vanilla Plus                           | Homeward options use Robin's shared property, adjusting ordinary overnight stays                                                                                                                                                              |
+| Unyielding Will                        | Resists ear-slime bodily control during Confounded Vow, while retaining stimulation, pursuit and costs, and records the shared vigil experience                                                                                               |
+| More love interests and social avatars | Keeping Robin and Sydney in Attitudes requires awareness rank four or above, followed by a normal day change. With the matching avatar module, Robin's temple icon wears novice or monk/nun clothing while retaining relationship expressions |
+| NPC sidebar portraits                  | Novice clothing, post-vigil monk/nun clothing and bunk pyjamas follow the scene                                                                                                                                                               |
+| More transformations                   | Visible full horse, fish and raven forms offer bench interactions                                                                                                                                                                             |
+| Temple choir                           | Singing for Robin trains singing, and joint examinations collect pending choir earnings                                                                                                                                                       |
 
 Absent optional modules disable their integrations without preventing the basic temple route. Confounded Vow does not select love interests or arrange cohabitation for you.
 
@@ -173,7 +173,7 @@ This route uses clues about pagan rites to attempt a second promise. The eventua
 - Experience the Underground Compound ending in which the gaoler and witch live together, sharing her suffering, and see the vision in the prison beneath the lake.
 - Reach vanilla **Promiscuity 6**, maintain romances with both Robin and Sydney, and hold exactly one promise. With **Sydney first**, complete the original promise rite, then reach a corrupt outlook. Sydney's corrupt rite is not required in this branch. With **Robin first**, complete Robin's promise rite, while Sydney must have a corrupt outlook and have completed the corrupt rite with you.
 - In the Robin-first branch, finish the original corrupt rite's story. Unlocking its option, starting it or removing a chastity device is not enough. Both branches require Sydney's current **corrupt** outlook. Returning to a pure or neutral outlook prevents agreement.
-- Robin has joined the temple, with deep love, sufficient confidence, low trauma and normal availability. Sydney has deep love. Preserve the existing promise. The rite does not change Sydney's outlook for you.
+- Robin has joined the temple, with deep love and **persistently high trauma**, while still able to take part in normal activities. Confidence does not restrict this route. Being missing, injured, too traumatised to function or still admitted to the asylum prevents the journey. Sydney has deep love. Preserve the existing promise. The rite does not change Sydney's outlook for you.
 - All three temple vows remain intact. The PC has passed the entrance trial, without an active punishment or possession.
 - **None of the three wears a chastity belt, cage or anal shield.** Request removal of Robin's temple fitting as described above, then accompany Robin to Jordan during daylight while Jordan is available. This can be completed on the same day. Handle the PC's and Sydney's equipment too. Discussion or a pending request does not replace checking the actual fittings.
 
@@ -189,7 +189,7 @@ This route uses clues about pagan rites to attempt a second promise. The eventua
 
 #### Continue tonight or arrange a second journey
 
-**Robin and Sydney must both have strong lust to take part in the rite.** The initial investigation does not require it. Each companion's desire is checked separately, and one willing companion is not enough. Love, Robin's confidence and trauma, and Sydney's corrupt outlook must still meet the prerequisites.
+**Robin and Sydney must both have strong lust to take part in the rite.** The initial investigation does not require it. Each companion's desire is checked separately, and one willing companion is not enough. Love, Robin's high trauma and Sydney's corrupt outlook must still meet the prerequisites.
 
 After witnessing the response, two forms of deception use the original **Skulduggery check** and difficulty display.
 
@@ -200,7 +200,7 @@ After success, choose **Continue with both companions** only if both have enough
 
 Answering the private conversations honestly increases love, and reassuring Robin can ease trauma. Successful promise framing increases love and, when a companion responds intimately, lust. The danger framing increases Robin's trauma and lowers both companions' lust, potentially taking a barely sufficient desire below the requirement. Being caught damages love and lust, with a greater cost when a frightening lie is exposed. Retracting the claim that escape is impossible eases Robin slightly after reaching safety, but damages both companions' love. Changes use the original NPC stats and feedback beside the corresponding option or dialogue, and settle only once.
 
-The existing romances, Sydney's current corrupt outlook and both promise-order requirements still apply. Love, confidence, trauma, desire and equipment conditions still apply. **Unyielding Will** resists ear-slime control without improving Skulduggery odds or answering for an NPC.
+The existing romances, Sydney's current corrupt outlook and both promise-order requirements still apply. Love, trauma, desire and equipment conditions still apply. **Robin's high trauma is checked against the current state throughout the route, rather than only when it unlocks.** Reassurance during conversations or ordinary recovery can lower trauma below the requirement. Investigation records remain, but agreement, preparation, departure and further progress through the rite are blocked. Recovery after completion does not revoke Confounded Vow. **Unyielding Will** resists ear-slime control without improving Skulduggery odds or answering for an NPC.
 
 If you return first, allow at least three days after the shared investigation. Return to **Robin's room** and **the library counter during lunch** to hear their separate decisions. The existing promise partner considers whether that promise is still cherished, while the other considers a place beside it. Sydney also addresses jealousy and the risks of blasphemy. Changes to your relationships, outlook or vows can prevent agreement.
 

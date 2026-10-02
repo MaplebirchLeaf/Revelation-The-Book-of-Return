@@ -9,6 +9,10 @@ interface ResidentialModule {
   realEstate: { residenceOf(name: string): unknown };
 }
 
+interface NPCAvatarModule {
+  overlay(name: string, resolve: (npc: { pronoun?: string }) => { src: string } | undefined): void;
+}
+
 class RobinTemple extends Module {
   public readonly secret = new SecretPromise(this);
 
@@ -52,6 +56,14 @@ class RobinTemple extends Module {
       }
     });
     super.preInit();
+    this.core.tool.onInit(() => {
+      const avatars = this.core.get('MoreLoveInterestsAndNPCAvatars') as NPCAvatarModule | undefined;
+      // 前景只更换神殿衣装，底图继续使用头像模块的关系表情。
+      avatars?.overlay('Robin', npc => {
+        if (!this.member || window.getRobinLocation() !== 'temple') return;
+        return { src: `img/misc/icon/social/robin/temple_${npc.pronoun === 'm' ? 'm' : 'f'}.png` };
+      });
+    });
     this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple', before: 'robin-location' });
     this.core.once(':storyready', () => {
       const location = window.getRobinLocation;
