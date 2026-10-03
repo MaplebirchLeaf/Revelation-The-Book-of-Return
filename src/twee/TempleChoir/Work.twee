@@ -37,9 +37,9 @@
       唱诗班围在一排长椅旁。有人把祈祷书翻到周日要唱的赞美诗，另一人给出起音。一名资深歌者问你，今天想练哪一部分。<br><br>
       <span class='teal'>选择一项练习，耗时三十分钟。最近两天的练习有助于你在弥撒中稳住旋律。</span>
   <</language>><br><br>
-  <<templeicon 'hymnbook'>><<lanLink ['Practise breathing (0:30)', '练习换气 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'breath'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 12>><<pass 30>><<tiredness 1>><<stress -3>><</lanLink>><<gtiredness>><<lstress>><<gsingingskill>><br>
-  <<templeicon 'hymnbook'>><<lanLink ['Match the pitch (0:30)', '练习音准 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'pitch'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 18>><<pass 30>><<tiredness 2>><</lanLink>><<gtiredness>><<gsingingskill>><br>
-  <<templeicon 'choir'>><<lanLink ['Rehearse with the choir (0:30)', '排练合唱 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'choir'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 15>><<pass 30>><<tiredness 1>><<grace 1>><</lanLink>><<gtiredness>><<ggrace>><<gsingingskill>><br>
+  <<icon 'temple/hymnbook.png'>><<lanLink ['Practise breathing (0:30)', '练习换气 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'breath'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 12>><<pass 30>><<tiredness 1>><<stress -3>><</lanLink>><<gtiredness>><<lstress>><<gsingingskill>><br>
+  <<icon 'temple/hymnbook.png'>><<lanLink ['Match the pitch (0:30)', '练习音准 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'pitch'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 18>><<pass 30>><<tiredness 2>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<lanLink ['Rehearse with the choir (0:30)', '排练合唱 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'choir'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 15>><<pass 30>><<tiredness 1>><<grace 1>><</lanLink>><<gtiredness>><<ggrace>><<gsingingskill>><br>
 <<else>>
   <<language>><<option 'EN'>>There is no practice available now. Check the choir schedule in your journal.<<option 'CN'>>现在没有可参加的练习。可以在日志中查看唱诗班的时间安排。<</language>><br><br>
 <</if>>
@@ -87,10 +87,10 @@
     <<case 2>>
       <<language>><<option 'EN'>>A child rustles the prayer book as the final hymn begins. The congregation joins in. You must listen carefully to keep the choir together beneath their uneven voices.<<option 'CN'>>结束赞美诗开始时，一个孩子把祈祷书翻得沙沙响。信众也加入歌唱。你得仔细听，在参差的声音下稳住唱诗班的节奏。<</language>>
   <</switch>><br><br>
-  <<templeicon 'choir'>><<lanLink ['Follow the choir (0:20)', '跟随合唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
-  <<templeicon 'choir'>><<lanLink ['Support the harmony (0:20)', '支撑和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<lanLink ['Follow the choir (0:20)', '跟随合唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<lanLink ['Support the harmony (0:20)', '支撑和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <<if $TempleChoir.lead>>
-    <<templeicon 'choir'>><<lanLink ['Lead the verse (0:20)', '领唱这一节 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'lead'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+    <<icon 'temple/choir.png'>><<lanLink ['Lead the verse (0:20)', '领唱这一节 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'lead'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <</if>>
   <<language>>
     <<option 'EN'>>

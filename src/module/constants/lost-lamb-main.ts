@@ -242,6 +242,7 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
         change: { doubt: -12 }
       }),
       choice('main-message-break-silence', 'Write where to find you, even though you promised silence', '写下接你的地方，哪怕答应过保密', 'main-message', {
+        icon: 'lost-lamb/open-note.png',
         once: true,
         when: ['verdict-vow-sealed'],
         unless: ['contact-left'],
@@ -251,6 +252,7 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
       }),
       choice('main-make-rest', 'Arrange somewhere to sit with the way out clear', '留出退路，整理一个能坐的位置', 'main-rest', { once: true, mark: 'rest-space', minutes: 20, change: { fear: -15 } }),
       choice('main-keep-silence', 'Put the note away and follow the voice inside', '收起字条，循着屋里的声音走', 'main-attempt', {
+        icon: 'lost-lamb/folded-note.png',
         when: ['verdict-vow-sealed'],
         unless: ['contact-left'],
         mark: 'kept-silence',
@@ -264,7 +266,7 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
   'main-message': {
     part: 'main',
     note: ['The message gives a place to meet. It does not need to explain the silver nails.', '消息写清了见面地点，不必先解释银色指甲。'],
-    choices: [choice('main-message-return', 'Leave the message where it can be seen', '把消息留在能被看见的位置', 'main-late', { mark: 'contact-left', minutes: 5 })]
+    choices: [choice('main-message-return', 'Leave the message where it can be seen', '把消息留在能被看见的位置', 'main-late', { icon: 'lost-lamb/open-note.png', mark: 'contact-left', minutes: 5 })]
   },
   'main-rest': { part: 'main', choices: [choice('main-rest-return', 'Stand when your legs are steady enough', '等腿稳住再站起来', 'main-late', { minutes: 5 })] },
   'main-attempt': {
@@ -297,7 +299,10 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
       })
     ]
   },
-  'main-latch': { part: 'main', choices: [choice('main-latch-bed', 'Move to the bed after checking the catch', '检查门闩后，移到床边', 'main-inbed', { minutes: 5, change: { fear: -10 } })] },
+  'main-latch': {
+    part: 'main',
+    choices: [choice('main-latch-bed', 'Move to the bed after checking the catch', '检查门闩后，移到床边', 'main-inbed', { icon: 'lost-lamb/silver-latch.png', minutes: 5, change: { fear: -10 } })]
+  },
   'main-brace': {
     part: 'main',
     choices: [choice('main-brace-rug', 'Keep your shoulder against it and pull the corner with your foot', '肩膀抵住，用脚拖开一角', 'main-inbed', { minutes: 15, change: { fear: -5, notice: 12 } })]
@@ -310,8 +315,13 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
     part: 'main',
     note: ['One voice offers to keep everyone inside. Another calls from beyond the window.', '一个声音许诺把所有人留下。另一个声音从窗外喊你。'],
     choices: [
-      choice('main-offer-vow', 'Promise to keep everyone inside the door', '答应把门里的人都留下', 'main', { mark: 'main-vow-offered', minutes: 5 }),
-      choice('main-refuse-vow', 'Refuse and call to the person outside', '不答应，喊门外的人', 'main', { mark: ['main-vow-refused', 'verdict-vow-broken'], minutes: 5, change: { fear: 10 } })
+      choice('main-offer-vow', 'Promise to keep everyone inside the door', '答应把门里的人都留下', 'main', { icon: 'lost-lamb/empty-pillow.png', mark: 'main-vow-offered', minutes: 5 }),
+      choice('main-refuse-vow', 'Refuse and call to the person outside', '不答应，喊门外的人', 'main', {
+        icon: 'lost-lamb/knocking-window.png',
+        mark: ['main-vow-refused', 'verdict-vow-broken'],
+        minutes: 5,
+        change: { fear: 10 }
+      })
     ]
   },
   main: { part: 'main', gate: 'branches', ending: 'main', choices: [] }

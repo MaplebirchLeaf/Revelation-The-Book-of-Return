@@ -2,16 +2,16 @@
 <<widget "temple-choir-hall-link">>
   <<if _revelationTempleLinks is 'pray' and maplebirch.get('TempleChoir').member>>
     <<if !$TempleChoir.joined>>
-      <<templeicon 'hymnbook'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
+      <<icon 'temple/hymnbook.png'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
     <<elseif maplebirch.get('TempleChoir').practice>>
-      <<templeicon 'hymnbook'>><<lanLink ['Attend choir practice (0:30)', '参加唱诗练习 (0:30)'] 'TempleChoir Practice'>><</lanLink>><br>
+      <<icon 'temple/hymnbook.png'>><<lanLink ['Attend choir practice (0:30)', '参加唱诗练习 (0:30)'] 'TempleChoir Practice'>><</lanLink>><br>
     <</if>>
   <</if>>
 <</widget>>
 
 <<widget "temple-choir-mass-link">>
   <<if _revelationTempleLinks is 'mass' and maplebirch.get('TempleChoir').service>>
-    <<templeicon 'choir'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
+    <<icon 'temple/choir.png'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
   <</if>>
 <</widget>>
 

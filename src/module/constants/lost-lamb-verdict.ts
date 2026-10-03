@@ -128,6 +128,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
     note: ['The words seem clearer when nobody is speaking.', '没人说话时，那些话反而更清楚。'],
     choices: [
       choice('verdict-copy-check', 'Leave a gap for the words you missed', '给没听见的地方留空', 'verdict-gap', {
+        icon: 'lost-lamb/open-note.png',
         test: { stat: 'doubt', threshold: 95, pass: 'verdict-gap', fail: 'verdict-complete' },
         change: { fear: 4 }
       })
@@ -240,6 +241,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
     part: 'verdict',
     choices: [
       choice('verdict-map-fold', 'Fold the paper without covering the gap', '折起纸，但不遮住空白', 'verdict-laboratory', {
+        icon: 'lost-lamb/folded-note.png',
         when: ['verdict-copy-check-pass'],
         mark: 'verdict-preserved-gap',
         change: { doubt: 8 }
@@ -249,7 +251,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
         mark: 'verdict-kept-contradiction',
         change: { doubt: 10, fear: -6 }
       }),
-      choice('verdict-map-pocket', 'Put the paper away', '把纸收起来', 'verdict-laboratory', { change: { fear: -4 } })
+      choice('verdict-map-pocket', 'Put the paper away', '把纸收起来', 'verdict-laboratory', { icon: 'lost-lamb/folded-note.png', change: { fear: -4 } })
     ]
   },
   'verdict-laboratory': {

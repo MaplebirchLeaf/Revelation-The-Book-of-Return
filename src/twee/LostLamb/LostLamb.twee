@@ -120,6 +120,7 @@
   <br><br>
   <<for _choice range maplebirch.get('LostLamb').choices>>
     <<capture _choice>>
+      <<if _choice.icon>><<icon _choice.icon>><</if>>
       <<lanLink _choice.text 'Lost Lamb Memory'>><<run maplebirch.get('LostLamb').choose(_choice.id)>><</lanLink>><<= maplebirch.get('LostLamb').hint(_choice)>><br>
     <</capture>>
   <</for>>

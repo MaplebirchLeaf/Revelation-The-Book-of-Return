@@ -109,8 +109,8 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
   'stay-note': {
     part: 'stay',
     choices: [
-      choice('stay-note-send', 'Leave the note with the post', '把字条放进待寄的信里', 'stay-questions', { mark: 'stay-sent' }),
-      choice('stay-note-pocket', 'Keep the note in your pocket', '把字条留在口袋里', 'stay-questions', { mark: 'stay-unsent', change: { fear: 3 } })
+      choice('stay-note-send', 'Leave the note with the post', '把字条放进待寄的信里', 'stay-questions', { icon: 'lost-lamb/folded-note.png', mark: 'stay-sent' }),
+      choice('stay-note-pocket', 'Keep the note in your pocket', '把字条留在口袋里', 'stay-questions', { icon: 'lost-lamb/folded-note.png', mark: 'stay-unsent', change: { fear: 3 } })
     ]
   },
   'stay-questions': {
@@ -147,7 +147,11 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     ]
   },
   'stay-supper': { part: 'stay', choices: [choice('stay-second-cup', 'Leave the second cup out', '把第二只杯子留在桌上', 'stay-lamp', { change: { notice: 5 } })] },
-  'stay-lamp': { part: 'stay', clock: [0, 20, 10], choices: [choice('stay-lamp-look', 'See where the light is coming from', '看看光是从哪里来的', 'stay-knock', { change: { fear: 8 } })] },
+  'stay-lamp': {
+    part: 'stay',
+    clock: [0, 20, 10],
+    choices: [choice('stay-lamp-look', 'See where the light is coming from', '看看光是从哪里来的', 'stay-knock', { icon: 'lost-lamb/paper-tower.png', change: { fear: 8 } })]
+  },
   'stay-knock': {
     part: 'stay',
     note: ['Sydney’s signal has a pause. The sound below did not wait.', '悉尼的暗号中间会停一下。下面的声音没有等。'],
@@ -165,6 +169,7 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     choices: [
       choice('stay-back-room', 'Return to the room with the picture', '回放着画纸的房间', 'stay-morning-return', { change: { notice: -5 } }),
       choice('stay-back-latch', 'Check the latch without opening the door', '不开门，只试门扣', 'stay-morning-return', {
+        icon: 'lost-lamb/silver-latch.png',
         when: ['stay-knock-test-pass'],
         needs: { stat: 'fear', max: 60 },
         mark: 'stay-latch-checked',
@@ -277,8 +282,16 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     part: 'stay',
     outside: true,
     choices: [
-      choice('stay-bind-vow', 'Promise never to let Sydney leave again', '答应以后不让悉尼走', 'stay-gate-closes', { mark: 'stay-vow-bound', change: { fear: -12, doubt: -10 } }),
-      choice('stay-break-vow', 'Make it let go, even if the afternoon ends', '让它松手，哪怕下午结束', 'stay-gate-closes', { mark: 'stay-vow-broken', change: { fear: 15, doubt: 8 } })
+      choice('stay-bind-vow', 'Promise never to let Sydney leave again', '答应以后不让悉尼走', 'stay-gate-closes', {
+        icon: 'lost-lamb/paper-tower.png',
+        mark: 'stay-vow-bound',
+        change: { fear: -12, doubt: -10 }
+      }),
+      choice('stay-break-vow', 'Make it let go, even if the afternoon ends', '让它松手，哪怕下午结束', 'stay-gate-closes', {
+        icon: 'lost-lamb/torn-tower.png',
+        mark: 'stay-vow-broken',
+        change: { fear: 15, doubt: 8 }
+      })
     ]
   },
   'stay-gate-closes': {
@@ -286,8 +299,8 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     outside: true,
     note: ['The last knock comes from the window. You remember what you promised at the lock.', '最后的敲击来自窗边。你记得自己在锁前作出的约定。'],
     choices: [
-      choice('stay-final-lock', 'Try to take your hand off the latch', '试着把手从门闩上拿开', 'stay', { when: ['stay-vow-bound'] }),
-      choice('stay-final-leave', 'Run with the torn paper in your hand', '握着撕破的纸，跑出去', 'stay', { when: ['stay-vow-broken'] })
+      choice('stay-final-lock', 'Try to take your hand off the latch', '试着把手从门闩上拿开', 'stay', { icon: 'lost-lamb/silver-latch.png', when: ['stay-vow-bound'] }),
+      choice('stay-final-leave', 'Run with the torn paper in your hand', '握着撕破的纸，跑出去', 'stay', { icon: 'lost-lamb/torn-tower.png', when: ['stay-vow-broken'] })
     ]
   },
   stay: { part: 'stay', ending: 'stay', choices: [] }

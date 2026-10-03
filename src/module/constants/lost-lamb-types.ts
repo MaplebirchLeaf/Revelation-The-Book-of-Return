@@ -9,6 +9,7 @@ export interface LostLambChoice {
   id: string;
   text: readonly [string, string];
   to: string;
+  icon?: string;
   mark?: string | readonly string[];
   once?: boolean;
   minutes?: number;
