@@ -1,0 +1,1766 @@
+:: Lost Lamb Main Widgets [widget]
+<<widget 'lost-lamb-main'>>
+  <<switch $LostLamb.scene>>
+    <<case 'main-start'>>
+      <<language>>
+        <<option 'EN'>>
+          You put out two cups without being told. The handles face the same way. You lift the book off the drawing and lay out the pencils, including the short one Sydney always chooses after saying it is useless.
+          <br><br>
+          The clock strikes. You carry a chair to the window, then stand on the floor again because Sydney will laugh if <<nnpc_he 'Sydney'>> catches you watching. Nobody knocks.
+          <br><br>
+          Your parent comes through with a basket of washing. "What are you doing there?"
+          <br><br>
+          You point to the cups. The basket is set down before they answer. "Sydney isn't coming today."
+          <br><br>
+          You ask about tomorrow. Your parent looks towards the laboratory, then picks the basket up again. "We'll have to see."
+          <br><br>
+          Outside, a shop delivery goes past the gate. You watch it until it has gone. Inside, the square of sunlight still reaches almost to the stairs. You glance at the clock. Its hands have moved much farther than the light.
+          <br><br>
+          You shift Sydney's cup closer to your own so nobody will mistake it for one that needs putting away.
+          <br><br>
+          You arrange the things you meant to show Sydney beside the place you made for the bag. They look as though somebody has only left the room for a minute. You go to the window with that minute in mind, and stay there until the sunlight has moved off that empty place.
+          <br><br>
+          There are people in the street. None is coming through the gate yet. You leave the window to look from closer by.
+        <<option 'CN'>>
+          不用人提醒，你就摆出两个杯子，杯柄转向同一侧。你挪开压着画纸的书，摆出铅笔，包括悉尼每次都说没用了、却每次都选的那支短笔。
+          <br><br>
+          钟响了。你把椅子搬到窗边，又站回地上，免得悉尼发现你在盯着外面，拿这件事笑你。没人敲门。
+          <br><br>
+          父母抱着装衣服的篮子经过。“在那里做什么？”
+          <br><br>
+          你指指杯子。篮子先被放下，对方才回答。“悉尼今天不来。”
+          <br><br>
+          你问明天呢。父母看向实验室，又把篮子抱起来。“到时候再说。”
+          <br><br>
+          商店送货的车经过门外。你一直看到它不见。屋里，那块方形的日光仍然差一点就碰到楼梯。你看看钟。指针走得比光远多了。
+          <br><br>
+          你把悉尼的杯子挪得离自己的更近些，免得有人以为那是需要收起来的。
+          <br><br>
+          你把本来想给悉尼看的东西摆好，旁边还留着放包的位置。看起来，好像那个人只是离开了一分钟。你想着，只要等过这一分钟就好，在窗前一直站到日光离开那块空地。
+          <br><br>
+          街上有人来来往往，却还没有一个走进大门。隔着窗户，你始终看不清他们会不会在路口转过来。你离开窗边，想再走近一些，从门口看。
+      <</language>>
+    <<case 'main-missed'>>
+      <<language>>
+        <<option 'EN'>>
+          Your parent answers the first question while putting things away. At the second, the cupboard stays open. At the third, a cup lands hard enough to click against the one beside it.
+          <br><br>
+          "Sydney can't visit. Sydney's family has said so."
+          <br><br>
+          "For how long?"
+          <br><br>
+          "Kylar."
+          <br><br>
+          You wait. Your parent closes the cupboard and turns to you. Their face looks tired. They reach to smooth your hair, but you duck beneath the hand and ask whether you did something wrong.
+          <br><br>
+          "No." This answer comes at once. The hand stops in the air, then rests on your shoulder instead. "You haven't done anything."
+          <br><br>
+          You ask if they can go and talk to Sydney's parent. Your parent squeezes your shoulder, harder than before. "You mustn't go over there yourself. Do you understand?"
+          <br><br>
+          From the laboratory, your other parent calls. The hand leaves you. A key is taken from the table and slipped into a pocket. You hear it turn in the lock after your parent has gone inside. You stand by the cupboard with your next question ready.
+          <br><br>
+          Later you stand where the two coats used to touch. Yours is on the hook. Sydney's is not. You press the empty sleeve of your own coat against your cheek, feeling the cold wool, then stop when you hear a parent coming.
+          <br><br>
+          You have been told what you cannot do. You have not been told what will happen if you see Sydney somewhere else. There is a place where children leave at the same time, and you remember which gate.
+        <<option 'CN'>>
+          父母一边收东西，一边回答第一个问题。问第二个时，柜门一直没关。问到第三个，杯子放得太重，和旁边的那只磕出一声脆响。
+          <br><br>
+          “悉尼不能来。<<nnpc_his 'Sydney'>>家里这么说了。”
+          <br><br>
+          “要多久？”
+          <br><br>
+          “凯拉尔。”
+          <br><br>
+          你等着。父母关上柜门，转向你，脸上很疲倦。对方想替你抚平头发，你从手底下躲开，问是不是自己做错了什么。
+          <br><br>
+          “不是。”这次立刻得到回答。那只手停在半空，改落到肩上。“你没做错什么。”
+          <br><br>
+          你问，能不能去找悉尼的家长说说。肩膀被捏了一下，比刚才重。“你不能自己跑去那里。明白吗？”
+          <br><br>
+          实验室里，另一位父母喊了一声。肩上的手离开了。桌上的钥匙被拿起，塞进口袋。父母进门后，你听见钥匙在锁里转动。你站在柜子旁，下一句要问的话还在嘴边。
+          <br><br>
+          后来，你站在两件外套以前会碰到一起的位置。自己的外套仍挂在钩子上，悉尼的那件却不在。你把自己空着的袖子贴在脸颊上，感觉羊毛冷冷的。听见父母靠近的脚步，你赶紧放下，不想让对方看见自己这样。
+          <br><br>
+          你已经被告知，有些事不能再做。可要是在别的地方碰见悉尼，又会怎样，没有人告诉你。你记得，有个地方的孩子们会同时出来，自己也仍然记得他们会从哪扇大门离开。
+      <</language>>
+    <<case 'main-school'>>
+      <<language>>
+        <<option 'EN'>>
+          You find Sydney near the yard gate as everyone begins to leave. A bag knocks against somebody's knees. Children hurry past you, shouting things you cannot follow. One has a sleeve turned inside out and is being called back to fix it.
+          <br><br>
+          Sydney sees you and slows. You almost lift both hands, the way you did from the bedroom window. <<nnpc_He 'Sydney'>> looks behind <<nnpc_himself 'Sydney'>> instead. An adult is waiting beyond the gate.
+          <br><br>
+          You say <<nnpc_his 'Sydney'>> name louder than you meant to. Sydney comes close before you can call again. There is still a little pencil lead on <<nnpc_his 'Sydney'>> thumb. You want to point it out. You want to tell <<nnpc_him 'Sydney'>> how many afternoons you waited.
+          <br><br>
+          "I can't come over," <<nnpc_he 'Sydney'>> says.
+          <br><br>
+          "You already didn't."
+          <br><br>
+          Sydney's face changes. You meant the words to make <<nnpc_him 'Sydney'>> understand, but <<nnpc_he 'Sydney'>> lowers <<nnpc_his 'Sydney'>> eyes as though you have said something in front of everyone. You step away from the gate so the others can pass. The bell is still sounding behind you, far longer than it usually does.
+          <br><br>
+          You try to think of something else to say first. A game, a complaint about the walk, the thing on your shelf. All of them depend on an afternoon that has not happened.
+          <br><br>
+          Sydney keeps looking towards the adult at the gate. You move so that you are in the way of that look for a moment. Then you see the worry on Sydney's face and move aside again. You want an answer from Sydney, not just an answer said because there is nowhere else to look.
+        <<option 'CN'>>
+          你在院子大门附近找到悉尼，大家正开始离开。有人走动，书包撞着膝盖。孩子们从身边匆匆经过，喊着你没听明白的话。一个人的袖子翻了出来，被叫回去整理。
+          <br><br>
+          悉尼看见你，脚步慢了。你差点像在卧室窗前那样，两只手都抬起来。<<nnpc_He 'Sydney'>>却先往身后看。大门外有个大人在等。
+          <br><br>
+          你喊出<<nnpc_his 'Sydney'>>的名字，比自己想的响。没等再喊，悉尼就走近了。悉尼的拇指上还留着一点铅笔灰。你想指出来，也想告诉<<nnpc_him 'Sydney'>>，自己等了多少个下午。
+          <br><br>
+          “我不能去你家。”<<nnpc_He 'Sydney'>>说。
+          <br><br>
+          “你已经没去了。”
+          <br><br>
+          悉尼的表情变了。你想让<<nnpc_he 'Sydney'>>明白，可<<nnpc_he 'Sydney'>>垂下眼，像你当着所有人的面说了什么。你挪到门旁，让别人过去。身后的铃还在响，比平时长得多。
+          <br><br>
+          你努力想着，能不能先说点别的。可以说某个游戏，可以抱怨走过来的路，也可以提自己架子上的那样东西。可每一句话似乎都需要那个没有发生的下午，先好好发生过才行。
+          <br><br>
+          悉尼不断望向门边的大人。你往旁边挪了一点，一时挡住了那道视线。随后，你看见悉尼脸上的担忧，又慢慢让开。你想要的是悉尼自己的回答，不是因为已经没有别的地方可看，才被迫向你说出的话。
+      <</language>>
+    <<case 'main-return'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('drawing-carried')>>You unfold the drawing. Sydney touches the pencilled window with one finger. "I remember." You ask why <<nnpc_he 'Sydney'>> cannot finish it. <<nnpc_He 'Sydney'>> takes the finger away, leaving the window just as it was. You hold the paper closer so <<nnpc_he 'Sydney'>> can see the door too.<<else>>You ask why the visits stopped. Sydney opens <<nnpc_his 'Sydney'>> mouth, stops, then tries again. You wait. If you speak now, <<nnpc_he 'Sydney'>> might answer the easier question instead.<</if>>
+          <br><br>
+          "I'm not allowed. They said..."
+          <br><br>
+          The bell covers the next few words. You lean closer. It stops at last. Sydney has stopped too. <<nnpc_He 'Sydney'>> looks at the adult beyond the gate, whose face you cannot see past the other people.
+          <br><br>
+          "Ask again," you say.
+          <br><br>
+          "I did."
+          <br><br>
+          You begin to tell Sydney that <<nnpc_he 'Sydney'>> could come without asking. Then you remember your own parent's hand on your shoulder. Sydney steps backwards before you can finish.
+          <br><br>
+          Someone calls <<nnpc_his 'Sydney'>> name. <<nnpc_He 'Sydney'>> says goodbye, quietly, and walks through the gate. The adult takes the bag. You watch until a cart crosses in front of them. When it has passed, you cannot find the two figures among the others. Your hand is still raised with nothing in it.
+          <br><br>
+          You leave without saying the sentence you practised. On the pavement you try it under your breath. The question sounds like a complaint now, so you stop before the end.
+          <br><br>
+          The woman outside the shop is putting bread in a bag. You know the brown paper your parents bring home. A child waits beside her, eating a piece before the rest has been wrapped. You slow down to watch, then hurry when the woman looks at you.
+          <br><br>
+          You could go straight home. You could take the lane past the other shops and make your parents wait for a change. You imagine somebody coming to the gate to look for you. Then you imagine having to say where you have been.
+          <br><br>
+          <<if $LostLamb.marks.includes('drawing-carried')>>The drawing rubs against your sleeve. A corner has bent. You smooth it on your leg as you walk, but it turns up again at once.<<else>>You look at your empty hand. You could have brought the drawing. Sydney might have stayed to look at it. You curl your fingers into your palm and walk on.<</if>>
+          <br><br>
+          At the junction, you can see the manor roof between two houses. You turn your head towards the other road. The roof is there too, farther off, though that road should lead away from home. A cart goes by. You wait for it to pass and look again. Whichever road you take, you can still see one bright upstairs window.
+          <br><br>
+          At home your parent asks about your day. You say it was fine before remembering that it was not. The question has already moved on to supper. You sit down and find that being angry does not stop you being hungry.
+          <br><br>
+          For several days there is ordinary food, ordinary work, and an ordinary place beside you that nobody uses. Even without Sydney, the coat still needs hanging up, and a loose button does not wait until you want to deal with it.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('drawing-carried')>>你展开画纸。悉尼用一根手指碰了碰铅笔画的窗。“我记得。”你问为什么不能把它画完。<<nnpc_He 'Sydney'>>把手指收走，窗还是原来的样子。你将纸拿近些，让<<nnpc_he 'Sydney'>>也看看那扇门。<<else>>你问为什么不再来了。悉尼张口，停住，又重新试了一遍。你等着。如果现在插话，<<nnpc_he 'Sydney'>>也许就会挑容易的那个问题回答。<</if>>
+          <br><br>
+          “不让我去。我的另一位家长说……”
+          <br><br>
+          后面几句话被铃声盖住。你靠近些。铃终于停了，悉尼也停了。<<nnpc_He 'Sydney'>>看向门外的大人，人群挡着，你看不清那人的脸。
+          <br><br>
+          “再问一次。”你说。
+          <br><br>
+          “我问过。”
+          <br><br>
+          你开始说，不用问也能来。随后想起自己肩上那只父母的手。没说完，悉尼已经往后退了一步。
+          <br><br>
+          有人喊<<nnpc_his 'Sydney'>>的名字。<<nnpc_He 'Sydney'>>轻轻说了再见，穿过大门，大人接过书包。你一直看着，一辆车从两人前面驶过。车走了，你却在其他人中找不到那两道身影了。手还抬着，里面什么也没有。
+          <br><br>
+          你没说出练习过的那句话就走了。在人行道上，又低声试一遍。问题现在听着像抱怨，你没说到最后就停下。
+          <br><br>
+          商店门外，一个女人正把面包装进袋子。那种牛皮纸你认得，父母也会拎回家。旁边的孩子等着，面包还没包好，就已经拿了一片吃。你慢下来，看了看。女人抬眼时，你又赶紧走快。
+          <br><br>
+          可以直接回家，也可以沿另一条巷子经过更多商店，让父母也等一回。你想象有人到门边找自己。接着，又想到得解释去了哪里。
+          <br><br>
+          <<if $LostLamb.marks.includes('drawing-carried')>>画纸擦着袖子，一角弯了。你边走边在腿上把它抹平，它却立刻又翘起来。<<else>>你看看空着的手。本来可以带画来的，悉尼也许会为看它多留一会儿。你把手指蜷进掌心，继续走。<</if>>
+          <br><br>
+          岔路口，两座房子中间露出庄园的屋顶。你转头看向另一条路，屋顶在那里也能看见，更远些，尽管那条路应该离家越来越远。一辆车驶过。你等它过去，又看了一次。不管选哪条路，都看得见楼上那一扇明亮的窗。
+          <br><br>
+          回到家时，父母问起你今天过得怎样。你先说了很好，随后才想起来，其实并不好。可话题已经转到了晚饭。你坐到桌旁，这才发现，即使生气，肚子也还是会饿。
+          <br><br>
+          接下来的几天，家里照常吃饭，照常干活，旁边那个再普通不过的位置却始终没有人坐。即使悉尼不来，外套还是得挂好。快要松脱的扣子，也不会等到你想管它的时候才掉下来。
+      <</language>>
+    <<case 'main-small-help'>>
+      <<language>>
+        <<option 'EN'>>
+          A button comes off your coat while you are trying to hang it up. You hear it hit the floor and put a shoe over it before it can roll beneath the cupboard. For a moment you are pleased with yourself. Then you remember that the button should not have come off at all.
+          <br><br>
+          Your parent finds you holding it. You explain too quickly: you were not pulling, it was already loose, you had only been putting the coat away. The explanation grows longer than anything that happened. Your parent holds out a hand.
+          <br><br>
+          "The coat as well, Kylar. I can't sew it onto your hand."
+          <br><br>
+          You give both things over. They fetch the little box and sit in the good light. You remain standing until they tap the place beside them. You sit without saying that you had wanted to be asked.
+          <br><br>
+          The thread will not go through the needle. Your parent tries twice, complains, then puts the needle in your hand. You get it through on the first try and wish somebody else had seen. Your parent says not to look so pleased. They are smiling while they say it.
+          <br><br>
+          You watch the button turn with each stitch. Nothing about it needs to be kept secret. You can ask why the thread is doubled, and receive an answer about thread. You ask whether Sydney would be good at this. Your parent says they do not know, then shows you how to keep the knot on the inside.
+          <br><br>
+          You almost ask the other question. Whether anyone could speak to Sydney's family. Whether something could be mended there too. Your parent has already put the coat across your knees and is checking the button with a gentle tug.
+          <br><br>
+          "There. Don't pull it off to check my work."
+          <br><br>
+          You nearly pull it. They catch your wrist before you can and laugh. You put the coat on, try the button once, and find it holds. The adult's hand has let you go. For this one small thing, nobody needs another answer. You take the coat back to the hall.
+        <<option 'CN'>>
+          你想把外套挂好时，一颗扣子掉了下来。你听见它碰到地板，赶在它滚进柜子底下之前，用鞋盖住了它。有那么一瞬间，你为自己反应这么快有些得意。随后才想起来，扣子本来就不该掉。
+          <br><br>
+          父母中的一人发现了你，你正把扣子捏在手里。你急急忙忙解释：自己没有拉它，它本来就松了，你只是想把外套放好。解释说得比刚才发生过的全部事情还长。对方朝你伸出了手。
+          <br><br>
+          “外套也给我，凯拉尔。我总不能把它缝在你手上。”
+          <br><br>
+          你把两样东西都递过去。对方取来装针线的小盒子，坐到光线好的地方。你一直站在旁边，直到对方拍拍身侧的位置，你才坐下。你没有说，其实自己一直想被这样叫过去。
+          <br><br>
+          线怎么也穿不过针眼。对方试了两次，抱怨了一句，随后把针放进你手里。你第一次就穿了过去，恨不得有别人在这里也能看见。对方说，别那么得意。说这句话的时候，脸上却带着笑。
+          <br><br>
+          你看着扣子随每一针慢慢转动。这里没有哪一件事需要保密。你可以问，为什么要把线折成两股，然后得到一个真的只讲针线的回答。你问悉尼会不会也做得很好。对方说不知道，接着教你怎样把打好的结留在外套里面。
+          <br><br>
+          你差一点问出另一个问题。能不能找悉尼的家人说说话，那边是不是也有可以重新补好的东西。可外套已经被放在你膝上，扣子被轻轻拉了一下，检查是否缝牢。
+          <br><br>
+          “好了。别为了检查我缝得好不好，又把它扯掉。”
+          <br><br>
+          你差一点真的拉了。对方提前捉住你的手腕，笑了起来。你穿上外套，试着扣了一次，扣子没有松。那只大人的手已经把你放开。这一件小事终于做好了，不需要谁再给别的答案。你拿着外套回到大厅。
+      <</language>>
+    <<case 'main-evening'>>
+      <<language>>
+        <<option 'EN'>>
+          Your parents are excited. They keep interrupting each other, then laughing as though the interruptions are part of a joke you have missed. One of them has already set out a clean cup without putting anything in it.
+          <br><br>
+          You scrape the last food from your plate. Nobody tells you to stop making that noise. Both heads turn towards the hall instead. You turn too, expecting someone in the doorway. There is only the coat hanging from its hook.
+          <br><br>
+          "Who's coming?"
+          <br><br>
+          Your parent looks back at you. The smile stays, but the answer does not arrive. "Bedtime."
+          <br><br>
+          You point at the window. It is not dark yet. Usually this would be enough to earn you another few minutes. Tonight your parent takes your plate while you are still holding the spoon. The spoon knocks against the table.
+          <br><br>
+          "Early tonight."
+          <br><br>
+          You tuck your feet under the chair. Perhaps there is a present. Perhaps they need you out of the way to carry it in. You try to hear whether anything is waiting outside, but your parents have begun talking again. One puts a hand on the back of your chair. You know you have to get up.
+          <br><br>
+          Before you leave the table, you ask whether the cup is for Sydney's parent. Both adults hear the name. One shakes their head; the other puts the cup farther from your elbow. Nobody says Sydney is coming.
+          <br><br>
+          You look at the empty chair. A moment ago you were sure the evening was going to give something back. Now you do not know what the excitement is for, and the ordinary bedtime words have come too early.
+        <<option 'CN'>>
+          父母很兴奋。他们不断打断对方，然后笑起来，仿佛打断也是某个笑话的一部分，只有你没听懂。其中一人已经摆出一只干净杯子，里面却什么也没倒。
+          <br><br>
+          你用勺子刮盘里最后一点食物。没人让你别弄出这种声音。两个人都转头看向大厅。你也跟着转，以为门口会有人。那里只有挂在钩子上的外套。
+          <br><br>
+          “谁要来？”
+          <br><br>
+          父母转回来。笑容还在，却没有回答。“该睡觉了。”
+          <br><br>
+          你指指窗外。天还没黑。平时，这就足够换来几分钟。今晚，你还握着勺子，父母就拿走了盘子。勺子敲在桌上。
+          <br><br>
+          “今晚早点睡。”
+          <br><br>
+          你把脚缩到椅子下面。也许是礼物。也许搬进来时得先把你支开。你想听听外面是不是有什么在等，父母却又聊了起来。一只手搭上椅背。你知道该起身了。
+          <br><br>
+          离开餐桌以前，你忍不住问，那只杯子是不是给悉尼的家长准备的。两位父母都听见了那个名字。其中一人摇摇头，另一人把杯子挪得离你的手肘远些。没有人说，悉尼今晚会来。
+          <br><br>
+          你望着空椅子。片刻之前，你几乎确信，这个傍晚终于要把什么还给自己。现在，你不明白他们究竟在兴奋什么。那些再熟悉不过的睡觉前的话，也比平时来得早了太多。
+      <</language>>
+    <<case 'main-bed'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('eve-ask')>>You ask again on the stairs. "What are you happy about?" Your parent almost answers, then looks past you towards the landing. "Tomorrow." You ask whether that is a promise. This time the reply is your name, said sharply enough to make you stop.<<else>>You ask to stay up until the visitor arrives. Your parent says you will be tired tomorrow. You say you are not tired now. The hand at your back keeps you moving up the stairs while you explain.<</if>>
+          <br><br>
+          Your shirt is twisted at the neck. You pull it straight while your parent checks the window. The catch clicks. It is tried once more, harder. You have never noticed how small that piece of metal is.
+          <br><br>
+          The covers are smoothed over your knees. You ask for the usual gap in the door, enough to see the landing light. Your parent leaves it, then comes back and pulls the door almost shut. The bright strip becomes a thread. You wait for an explanation. Footsteps go downstairs instead.
+          <br><br>
+          You sit up to reach the handle, then hear a chair dragged below. You lie down before you have put your feet on the floor. If you open the door, they will know you are still awake. If you leave it alone, you cannot see who crosses the landing.
+          <br><br>
+          For an instant you remember another bedroom, and a way up to an attic. Neither is anywhere you can reach with your legs curled beneath these covers. You turn your pillow over to the cool side. The door remains shut. You are supposed to sleep, and there is nobody left here to ask how.
+          <br><br>
+          You put one shoe beside the other so you will not have to search in the morning. They look smaller side by side than they did on your feet.
+          <br><br>
+          You nearly call for your parent to come back. It would be an ordinary reason: the door, the light, a drink of water. You rehearse one of them beneath your breath. Downstairs somebody laughs, and you decide to wait until the laugh is finished.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('eve-ask')>>上楼时，你又问了一次。“你们为什么那么高兴？”父母差点回答，随后越过你看向楼梯间。“明天。”你问是不是答应了。这次对方只喊了你的名字，语气重得让你住了口。<<else>>你想等到来客到时再睡。父母说，明天会累。你说现在一点也不累。你解释着，背后的手却一直带你往楼上走。<</if>>
+          <br><br>
+          上衣在领口拧住了。你把它拉正，父母去检查窗户。搭扣咔哒一声，又被更用力地试了一次。你从没注意过，这一小块金属有多小。
+          <br><br>
+          被子在膝上抚平。你要门留下平时那条缝，够看见楼梯间的灯。父母留下了，又回来把门拉到几乎关紧。亮条变成一根线。你等着听解释，脚步却下楼去了。
+          <br><br>
+          你坐起来，想去够门把，楼下忽然拖动了一把椅子。脚还没落地，你便躺了回去。开门，他们就知道你没睡。不打开，就看不见谁经过楼梯间。
+          <br><br>
+          一瞬间，你想起另一间卧室，还有一条通往阁楼的路。双腿蜷在这床被子下面，哪里也走不到。你把枕头翻到凉的一面。门仍关着。你应该睡觉，这里却已经没有人能让你问该怎样睡。
+          <br><br>
+          你把两只鞋并排摆好，想着早晨就不用四处找。它们放在一起时，看起来比穿在脚上还要小。你看了好一会儿，才把脚收回床上。
+          <br><br>
+          你差一点叫父母回来。理由可以非常普通：门还没弄好，灯太亮，或者你想喝一杯水。你在嘴里小声练习其中一个理由。楼下忽然有人笑了起来，你又决定，先等那个笑声结束。
+      <</language>>
+    <<case 'main-noise'>>
+      <<language>>
+        <<option 'EN'>>
+          The crash throws you upright before you know you were asleep. Something small strikes the floor below, then many small things at once. Glass. You know that sound from the cup you once dropped, only this keeps going.
+          <br><br>
+          Another window breaks downstairs. The wall beside your bed gives a little shudder. You put your palm against it, then take it away. You do not want to touch anything connected to the room below.
+          <br><br>
+          Someone shouts. A heavier sound cuts through it. You wait for your parents to call up that you are safe, that you should stay in bed, even that you are being silly. Nobody calls up at all.
+          <br><br>
+          The landing light is still on. A shadow passes across the thread beneath your door. It stops where a pair of feet ought to stop. You pull the covers to your chest and look at the handle. It remains level. You find yourself wishing it would turn, then wishing so hard that it will not turn that your teeth hurt.
+          <br><br>
+          The hem of your shirt is caught beneath one knee. When you try to move, it holds you for a moment. You nearly cry out. You free the cloth slowly, keeping your eyes on the door, while something drags along the other side of the wall.
+          <br><br>
+          Your mouth is open, but the first sound has not come out yet. You know two things you want: a familiar answer, and nobody beyond the door knowing exactly where your face is.
+          <br><br>
+          You can call. You can keep watching the handle. You try to make yourself choose before the next window breaks for you.
+        <<option 'CN'>>
+          巨响让你猛地坐起来，这才知道刚才已经睡着。楼下先有个小东西撞上地板，随后许多小东西一起响。玻璃。你摔过杯子，认得这种声音，可这次一直不停。
+          <br><br>
+          楼下又一扇窗碎了。床旁的墙轻轻一震。你把手掌贴上去，又立即缩回。不想碰任何与楼下房间相连的东西。
+          <br><br>
+          有人喊了一声。更沉的声音把叫喊截断。你等父母朝楼上说你是安全的，说该待在床上，哪怕说你在胡闹。没有人朝楼上说话。
+          <br><br>
+          楼梯间的灯还亮着。一道影子经过门底那根细线，停在一双脚应该停的地方。你把被子拉到胸前，盯着门把。它仍然平着。你先盼它转动，随后又用力盼它千万别转，咬得牙都疼了。
+          <br><br>
+          衣摆压在一边膝盖下。你一动，它把你拽住了一瞬。你差点叫出来。你慢慢抽出布，眼睛始终盯着门，墙的另一边有什么拖了过去。
+          <br><br>
+          你的嘴已经张开，第一个声音却仍没有出来。你知道自己同时想要两件事：有人用熟悉的声音回答，也没有任何门外的东西知道，你的脸究竟藏在哪里。
+          <br><br>
+          你可以叫人，也可以继续盯着门把手。你竭力想让自己先选出一个，而不是等到下一扇窗户碎掉，替你决定该做什么。
+      <</language>>
+    <<case 'main-listen'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('called')>>You call for your parents. Your first try is too small. You try again, and the scraping outside stops. You hear the handle dip against its latch. You pull the covers over your head before you can see whether the door opens. No familiar voice answers your call.<<else>>You keep watching the door. The shadow underneath widens until the thread of light is gone. The handle dips, very slowly. You pull the covers over your head. For one moment you can still see its shape through the cloth. Then you shut your eyes.<</if>>
+          <br><br>
+          The covers stick to your mouth when you breathe in. You make a little hollow with both hands and breathe into that. Your heel has slipped out at the bottom. You draw it back, afraid of touching something that was not there when you went to bed.
+          <br><br>
+          You remember Sydney's knock. Two, then one. You listen for it so hard that the next three sounds almost become it. The last is a heavy blow from downstairs. You cannot make yourself stop waiting for the first two to come again.
+          <br><br>
+          A floorboard creaks outside. Another answers it closer to the bed, or seems to. You cannot check without uncovering your face. You press your knees together to keep the mattress still. Something brushes the wood with a dry, patient sound.
+          <br><br>
+          You start counting between noises. You reach four before a word interrupts you. It is too close to hear properly through the cloth. You stop counting, and the next silence lasts much longer than four.
+          <br><br>
+          You draw air in too quickly and the fabric touches your lips. You push it away with both hands. <span class="blue">There is room to breathe if you can keep the hollow open.</span>
+          <br><br>
+          You try not to count every noise as somebody reaching the bed. The next breath has to be yours before you can listen for theirs.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('called')>>你喊父母。第一次太轻。你又喊，外面的刮擦停了。你听见门把压下去，碰到门闩。还没看清门有没有开，你就把被子拉过头顶。没有熟悉的声音回答。<<else>>你仍盯着门。下面的影子变宽，直到那根亮线消失。门把压下去，很慢。你把被子拉过头顶。有一瞬还能隔着布看见它的形状，随后闭紧了眼。<</if>>
+          <br><br>
+          吸气时，被子贴住嘴。你用双手撑出一个小空洞，朝里面呼吸。一只脚跟露在被外。你赶紧缩回来，怕碰到上床时还没有的东西。
+          <br><br>
+          你想起悉尼的敲门声。先两下，再一下。你听得太用力，接下来的三个声音几乎就变成了它。最后那声却是楼下的重击。你没办法不再等前两声重新响起。
+          <br><br>
+          房外一块地板响了。另一声似乎离床更近。想看清，就得露出脸。你把双膝并紧，让床垫别动。有什么擦着木头，干燥，缓慢，不像急着离开。
+          <br><br>
+          你开始数两次声响之间的间隔。数到四，一个词打断了你。它太近，隔着布反而听不清。你停下数数，接下来的沉默比四长得多。
+          <br><br>
+          你吸气太急，被子上的布一下贴到嘴唇。你用两只手把它撑开。<span class="blue">只要能把这个小空隙留住，你就有地方呼吸。</span>
+          <br><br>
+          你试着不把每一声响都想成，有什么正在伸手够向床边。在继续听它们的呼吸之前，你得先把下一口自己的气好好吸进去。
+      <</language>>
+    <<case 'main-count'>>
+      <<language>>
+        <<option 'EN'>>
+          You hold the covers away from one ear without losing the hollow beneath them. There is your name, perhaps. A voice says something like "please", and another sound swallows the rest. You lift the cloth a finger's width. Cold air reaches your ear. At once something knocks against the door, and you cover it again. You heard more before you tried to listen.
+          <br><br>
+          You know where your parents' shoes are usually left. If one of them is walking outside, the shoes ought to knock against the boards. You listen for that ordinary noise. The next sound is softer, as though something is being pulled without being lifted.
+          <br><br>
+          <<if $LostLamb.known.bishop>>"Spare the child." You suddenly hear the whole phrase, the words you have made from the bishop's account years after this night. His voice cannot belong outside this door, yet the words sound near enough to touch. You press the pillow over your ear. When you lift it, the voice is gone. You cannot tell what the child heard and what you have brought here.<<else>>You try to keep one sentence in your head for tomorrow. Each time you repeat it, a different word fits. You are afraid that an adult will ask what you heard, and that you will have to choose one.<</if>>
+          <br><br>
+          The handle moves again. This time you hear the latch catch before you see anything. You can decide that you know who is out there. You can make a picture of them and keep looking at it with your eyes shut. The real door will still be on the other side of the covers.
+          <br><br>
+          <span class="green">You have made a little room that stays open when you breathe.</span> You keep your hands there until the words outside become a sound rather than something you must answer.
+          <br><br>
+          One finger finds the loose stitch. It gives you a place that does not move whenever somebody passes the door. You stay with it, not because you know what is happening, but because you cannot leave the bed tonight.
+        <<option 'CN'>>
+          你撑开一边耳朵上的被子，仍留着下面的小空洞。也许是你的名字。有个声音说了像“求你”的话，剩下的被另一声响吞没。你把布抬起一指宽，冷空气碰到耳朵。立刻有什么撞上门，你又盖了回去。没试着听之前，反而听得更多。
+          <br><br>
+          你知道父母平时把鞋留在哪里。假如外面走的是他们，鞋底应该敲在木板上。你想听见那个普通的声音。下一声却更轻，像有什么一直被拖着，没有抬起来。
+          <br><br>
+          <<if $LostLamb.known.bishop>>“放过孩子。”整句话突然清晰了。这是你从多年后主教的讲述里拼出的句子。门外不该有他的声音，可这些字近得仿佛能碰到。你把枕头压在耳朵上。再抬起时，声音消失了。你分不清哪些是孩子听到的，哪些是你带进来的。<<else>>你想把一句话留在脑海里，明天好说。每重复一次，就有另一个词能填进去。你怕大人问听见了什么，怕到时候必须选一个。<</if>>
+          <br><br>
+          门把又动了。这次，什么都还没看见，你先听见门闩卡住。你可以认定自己知道外面是谁，可以拼出那个人，闭着眼一直看着。真正的门仍在被子的另一边。
+          <br><br>
+          <span class="green">你终于撑出一小块地方，呼吸时也不会重新合拢。</span>你把双手留在那里，听着外面的词句。慢慢地，那些字只像一种声音，不再每一句都像非得由你回答不可。
+          <br><br>
+          一根手指摸到了松脱的那针线。无论有谁经过房门，它都不会跟着挪走。你继续勾着它，不是因为自己已经明白正在发生什么，只是因为这个晚上，你还没办法离开这张床。
+      <</language>>
+    <<case 'main-choke'>>
+      <<language>>
+        <<option 'EN'>>
+
+          The cloth closes against your mouth. You suck at it once before understanding why <span class="red">no air comes</span>. Your knees kick the frame. Outside, a movement stops at the sound.
+
+          <br><br>
+
+          You get two fingers between your lips and the cover, and pull. Air comes with a little sob you cannot hide. The shadow below the door thickens. You stay still until you can breathe again without kicking. You have not been brave enough to be quiet. You are still here beneath the cover.
+          <br><br>
+          "I don't know," you whisper into the space between your hands. The words are swallowed by the cloth. You say them again, louder, and hear a scrape outside. You hold your breath until it passes.
+
+          <br><br>
+
+          There is a loose stitch near the edge of the cover. You hook a finger through it. The thread hurts when you pull, but it stays where you left it. You find it again whenever a noise makes you forget which way you are facing.
+
+          <br><br>
+
+          The bed gives a small jolt. Perhaps you have kicked its frame. You hold both feet above the sheet until your legs ache. Nothing jolts it again. You lower them a little at a time, waiting after each movement.
+
+          <br><br>
+
+          You need the toilet. You try not to think about the bare floor, the handle, the distance to the next door. You decide to wait for your parent. Then you decide to wait until the landing is quiet. It becomes quiet, and you still cannot leave the bed.
+
+          <br><br>
+
+          At some point the darkness inside the covers turns grey. You do not remember sleeping. You uncover one eye first. The door is closed, your shirt is twisted again, and there is no one beside the bed to tell you whether it is safe to get up.
+        <<option 'CN'>>
+
+          布贴住了你的嘴。你先用力吸了一次，随后才明白，为什么<span class="red">一直吸不到气</span>。膝盖踢中了床架。外面那阵移动的声音，循着这一响停了下来。
+
+          <br><br>
+
+          你把两根手指挤进嘴唇和被子之间，用力往外拉。空气终于进来，也带出了一声藏不住的抽泣。门下的影子更浓了。你一动不动，直到不再踢腿也能呼吸。你没有安静得够勇敢，不过，你仍然活在这层被子下面。
+          <br><br>
+          你对双手之间的小空隙轻声说：“我不知道。”布吞掉了这些字。你又说一次，大声一点，外面便响起刮擦。你屏住气，等它过去。
+
+          <br><br>
+
+          被子边缘有一针松线。你把手指勾进去。拉紧时有点疼，可线仍在留下的位置。每次声响让你忘了自己朝哪边，你就再找一次。
+
+          <br><br>
+
+          床轻轻震了一下。也许是你踢到了床架。你把两只脚悬在床单上方，直到腿酸。床没再震。你一点一点放下，每动一次都等一会儿。
+
+          <br><br>
+
+          你想去厕所。你努力不去想地板、门把，以及到下一扇门的距离。你决定等父母来，再决定等楼梯间安静。终于安静了，你却仍然离不开床。
+
+          <br><br>
+
+          不知什么时候，被子里的黑变成灰。你记不得睡过。先露出一只眼。门关着，上衣又拧住了，床边没有人告诉你现在能不能下床。
+      <</language>>
+    <<case 'main-grey'>>
+      <<language>>
+        <<option 'EN'>>
+          You wake expecting to be late for breakfast. You listen for the cupboard door, a spoon against a bowl, the voice that will tell you how much time you have wasted. The house waits with you.
+          <br><br>
+          You put one foot out, then pull it back when a board creaks. The collar of your shirt is damp. You tug it away from your neck and look at the door, waiting for a second creak. It does not come.
+          <br><br>
+          The handle turns normally. You open the door a little and find the landing where it ought to be. No one is there. A piece of glass catches the morning light on the first stair. There are more on the next one. You cannot see whether any have reached the bottom of the stairs.
+          <br><br>
+          You tie your trainers tightly and choose the parts of each step you can see. Halfway down, the banister shifts under your hand. You freeze. Something breathes from the upper passage behind you, and you wait until its next breath before you move your foot.
+          <br><br>
+          You are not thinking about what this morning will mean years later. You want a clear place to put your feet. You want someone to tell you off for coming down before you were called, because then there would be someone here who knew what to do.
+          <br><br>
+          At the last stair, you stop. You can see a piece of ordinary bread on the table. Yesterday somebody would have swept the glass before asking you to come down.
+          <br><br>
+          You put your foot where you can see the board and feel the sole meet it. There is still a whole shoe between you and the broken things. The next breath comes from upstairs. You look towards the bread, then turn back. You climb to the upper passage again, keeping your hand near the rail's post. Your parents' door is beside the family portrait, not down here among the empty chairs.
+        <<option 'CN'>>
+          你醒来，以为自己又要赶不上早餐。你听着柜门、勺子碰碗，还有会告诉你已经耽搁多久的声音。房子和你一起等。
+          <br><br>
+          你先伸出一只脚，一块木板响了，又赶紧缩回来。上衣领口潮了。你把它拉得离脖子远一点，看着门，等第二声木板响。没有来。
+          <br><br>
+          门把照常转动。你把门开一点，楼梯间还在该在的位置，没人。第一阶上有片玻璃映着晨光，下一阶还有。你看不见它们有没有一直落到楼梯底下。
+          <br><br>
+          你系紧运动鞋，挑每一阶看得清的地方落脚。走到一半，扶手在掌下动了。你僵住。身后的上层过道传来呼吸，你等到下一口气响起，才挪动脚。
+          <br><br>
+          你没有想这个早晨在多年后会意味着什么。你想找到能落脚的空处，想让人训你为什么没等叫就下来，那样，这里就还有一个知道该怎么办的人。
+          <br><br>
+          走到最后一级楼梯，你又停下来。桌上还能看见一片普通的面包。窗户破掉以前，会先有人把玻璃扫净，再叫你下来吃。
+          <br><br>
+          你把脚慢慢放到能看清的木板上，感觉鞋底确实碰到了它。至少，在你和那些破碎的东西之间，还隔着一整只鞋。下一口呼吸又从楼上传来。你望向面包，随后还是转回身，扶着靠近柱子的那段栏杆，重新爬到上层过道。父母的房门就在全家画像旁，不在楼下那些空椅子之间。
+      <</language>>
+    <<case 'main-landing'>>
+      <<language>>
+        <<option 'EN'>>
+          The upper passage is not empty. There is breathing beyond your parents' door, beside the family portrait. Sometimes it seems to come from the boards themselves. You cannot hear whether there are two breaths or one breath with a pause in the middle.
+          <br><br>
+          A chair lies on its side beside the narrow table. You know the scrape on its leg from dragging it to the upstairs window to look down at the garden. You nearly put it upright before seeing the grooves cut into the wood beside it. You set your hand back against your own leg instead.
+          <br><br>
+          No one is beside the narrow table. A broken cup lies underneath it. You look for its handle. It would be easier if you could recognise one broken thing. From the bedroom, a scrape moves towards the door, and you stop looking.
+          <br><br>
+          You call once. The breathing stops. You wait for your name, but only the breathing returns, much closer to the bottom of the door.
+          <br><br>
+          Both the kitchen and the front entrance are downstairs. To reach either, you have to turn away from this door and get back to the stairs. There is room beside the overturned chair if you turn sideways. You can call from here, or keep your shoulder against the opposite wall and try to get past before anything hears your soles on the glass.
+          <br><br>
+          Downstairs, the kitchen is closer to daylight and food. Here, your parents' room is closer to the sound. You have never had to choose between seeing a parent and finding a place to stand before.
+          <br><br>
+          Your name is ready in your mouth. You could use it at their door. You could put the table between yourself and whatever is making that breath, then call from there. You look at the spaces, not at the faces you wish were in them.
+        <<option 'CN'>>
+          上层过道并不是空的。全家画像旁，父母的房门后传来呼吸，有时像从脚下木板本身传出来。你听不出是两口气，还是一口中间停了停的气。
+          <br><br>
+          窄桌旁倒着一把椅子。你认得椅腿上的擦痕，以前把它拖到楼上窗前、往下看花园时，就弄出了这道痕迹。你差点去扶，随后看见旁边木头上刻出的深沟。你把手收回来，贴在自己的腿上。
+          <br><br>
+          窄桌旁没有人，桌下躺着一只碎掉的杯子。你找它的把手。要是能认出一样碎掉的东西，事情似乎会容易些。卧室里，刮擦朝房门靠过来，你不再找了。
+          <br><br>
+          你喊了一声。呼吸停了。你等着自己的名字，却只有呼吸回来，贴近门的下沿。
+          <br><br>
+          厨房和前门都在楼下，要去任何一处，都得先离开这扇门，回到楼梯口。倒着的椅子旁还有一点空隙，侧身能走。你可以站在这里喊，也可以把肩贴在另一边墙上，试着赶在有什么听见鞋底擦过玻璃前过去。
+          <br><br>
+          楼下的厨房更靠近日光和食物。这里，父母的卧室却更靠近那阵声音。以前，你从来不用在见到父母和找到能站稳的地方之间，先挑选一个。
+          <br><br>
+          自己的名字已经到了嘴边。你可以走到他们门前说出来，也可以先让窄桌隔在自己和那口呼吸之间，再从那里叫人。你看着这些位置，没有继续想象，自己希望在里面看见哪一张脸。
+      <</language>>
+    <<case 'main-door'>>
+      <<language>>
+        <<option 'EN'>>
+          You knock once. Usually you would knock again before waiting. Today the first tap is answered by movement so low down that you look at your feet.
+          <br><br>
+          Nothing tells you to come in. You press your palm to the wood. You think of illness, of the times you were allowed into this room when you could not sleep. "It's me."
+          <br><br>
+          The door moves under your hand. You have pushed it. A strip of the master bedroom appears: the four-poster bed, with its covers still in place. Its posts are whole. The chair beside it is pieces. The cupboard is open in places where a cupboard should not open. Splinters and old fabric cover the carpet.
+          <br><br>
+          You cannot see anyone lying on the bed. The breathing comes from below it.
+          <br><br>
+          You try your name again. The sound underneath stops. Something rubs against the carpet. The room is dark below the covers, even where morning light ought to reach. You keep one foot outside the threshold and your hand on the handle. If you let go, you will have to find it again without looking away from the bed.
+          <br><br>
+          Your arm is not long enough to hold the handle and remain against the opposite wall. You have to step nearer. You move only as far as the wood requires.
+          <br><br>
+          The sheet under the bed lifts, then drops. You want to call it a draught. You wait for the window curtain to move as well. It does not.
+        <<option 'CN'>>
+          你只敲一下。平时，还没开始等，你就会再敲。今天，第一声才响，就有动静回应，位置低得让你看向自己的脚。
+          <br><br>
+          没有声音让你进去。你把手掌贴在木头上，想起生病，想起以前睡不着时可以进这个房间。“是我。”
+          <br><br>
+          门在掌下动了，是你推的。主卧露出一条缝：四帷柱大床，被子还在原处。床柱完好，旁边的椅子却成了碎块。柜子在不该打开的地方裂开。地毯上全是木刺和旧布。
+          <br><br>
+          床上看不见躺着的人。呼吸从床下面来。
+          <br><br>
+          你又说了一遍自己的名字。下面的声音停了，有什么擦着地毯。被单下很黑，连晨光该照到的地方也黑。你留一只脚在门槛外，手仍握着门把。松开，就得在不能把目光从床边移开的情况下重新找到它。
+          <br><br>
+          你的胳膊没有那么长，没办法一边握住门把手，一边仍贴着对面的墙。你必须再靠近一点。你只挪动了开门所需要的那段距离，不肯多迈一步。
+          <br><br>
+          床下垂着的被单抬起来，又落回去。你很想说，那只是穿堂风。你等着窗帘也跟着动一动，好证明自己是对的。窗帘却始终没有动。
+      <</language>>
+    <<case 'main-parent'>>
+      <<language>>
+        <<option 'EN'>>
+          A hand comes out before you see the face. Its fingers spread against the carpet. At their ends, something silver catches the light. You look for a ring, then realise the silver is where the nails should be.
+          <br><br>
+          A gaunt face lifts beneath the hanging sheet. Pale eyes find you. It has scraps of black cloth around it. You cannot tell which parent it is. You cannot tell whether the breathing farther back belongs to someone else.
+          <br><br>
+          "Are you ill?"
+          <br><br>
+          The hand moves at the sound. You know the little impatient tap of a finger, the one you used to hear beside a plate when you were slow sitting down. Then the nails press into the carpet and the whole arm pulls forward. You step back. The head stops, but the hand does not.
+          <br><br>
+          It reaches the threshold just as you lift your foot. A nail touches the side of your shoe. You pull free without waiting to see whether it meant to hold you. The skin behind the silver looks colder than the floor you are standing on.
+          <br><br>
+          You back into the upper passage, still facing the bed. The figure withdraws. The familiar finger taps once more in the dark. You want to answer it. You keep moving until there is a wall between you and that hand.
+          <br><br>
+          You stop by the chair with your heart so loud that the next breath is lost beneath it. You look at your shoe where the nail touched. Nothing has gone through the sole.
+          <br><br>
+          You had asked whether they were ill. You still do not know what other word you can use. At least you know the hand is there, rather than having to put it in every dark corner before you move.
+        <<option 'CN'>>
+          你先看见手，才看见脸。手指在地毯上张开，尖端有银色映着光。你想找戒指，随后明白银色长在本该是指甲的地方。
+          <br><br>
+          垂下的床单下面抬起一张憔悴的脸。苍白的眼睛找到你，周围挂着黑色破布。你认不出是哪位父母，也听不出更深处的呼吸是不是来自另一个。
+          <br><br>
+          “你病了吗？”
+          <br><br>
+          手循着声音动了。你认得那种不耐烦地轻敲一下的动作，以前坐下吃饭太慢，盘边就会响起它。随后指甲按进地毯，整条手臂拉了出来。你退一步。头停了，手没停。
+          <br><br>
+          你抬脚时，它正好够到门槛。一根指甲碰到鞋侧。你赶紧抽回，没等看清它是不是想抓住。银色后面的皮肤，看起来比脚下地板还冷。
+          <br><br>
+          你仍朝着床，退回上层过道。那个身影缩了回去，熟悉的手指在暗处又敲一下。你想回答，却一直退到墙把你和那只手隔开。
+          <br><br>
+          你在椅子旁停下，心跳响得让你听不见接下来的一口呼吸。你低头查看指甲刚才碰过的那只鞋，没有东西扎穿鞋底。
+          <br><br>
+          你问过他们是不是病了，却仍然不知道还能换成什么词。至少，现在知道那只手真正待在哪里。不必每次移动之前，都先把它想象在所有黑暗的角落里。
+      <</language>>
+    <<case 'main-pantry'>>
+      <<language>>
+        <<option 'EN'>>
+          Downstairs, you reach the kitchen. The cupboard catches against something on the floor. You pull, stop at the noise, then pull again. It opens. Inside are bread, jars, the things that were there yesterday. You hold a loaf against your chest for a moment before putting it on the counter.
+          <br><br>
+          <<if !$LostLamb.marks.includes('saw-parent')>>You keep watching the stairs. On the way down, you passed the bedroom without looking inside. A pale hand slid into the upper passage behind you, its silver nails raking the boards where your heel had just been. You ran down the remaining stairs and put the kitchen table between yourself and its doorway. You saw no face, and nothing followed you down. Only when the scraping stopped above could you release the chair you had gripped.<br><br><</if>>
+          The knife is in its usual place. You put it down twice before your hand will hold it steadily. There is nobody to cut the bread, and the loaf does not become smaller however long you look at it. You start with one end, keeping your fingers far from the blade.
+          <br><br>
+          You have not eaten. A scrape from upstairs makes you drop a piece onto the counter. You wait. You pick it up when the scrape stops.
+          <br><br>
+          Three plates fit beside one another. You know how much went on each yesterday. You do not know whether your parents can eat it now. Preparing only your own would be quicker. Preparing theirs would mean climbing back to that doorway with both hands full.
+          <br><br>
+          The first thing you find that has not changed is a jar lid that will not turn. You try twice and give up, annoyed. There is bread that does not need a lid opened.
+          <br><br>
+          Your hunger has not waited for an adult to explain the room. You can feel it pulling below your ribs. <span class="blue">Eating first would steady your hands. Making every portion first would keep them occupied longer.</span>
+        <<option 'CN'>>
+          你下楼走进厨房，柜门却被地上的东西卡住。你拉一下，因为声音停住，又拉。开了。里面有面包、罐子，都是昨天还在的东西。你把一条面包抱在胸前一会儿，才放上柜台。
+          <br><br>
+          <<if !$LostLamb.marks.includes('saw-parent')>>你仍盯着楼梯。刚才下楼时，你没有往卧室里看，直接经过了门口。身后一只苍白的手滑进上层过道，银色指甲刮过刚才脚跟还踩着的木板。你跑完剩下的阶梯，把厨房桌子挡在自己和厨房门口之间。你没有看见脸，也没有什么跟着你下楼。直到上面的刮擦停住，你才放得开一直抓着的椅子。<br><br><</if>>
+          刀还在平时的位置。你放下两次，手才握得稳。没人切面包，你看多久，它都不会变小。你从一端切起，让手指远离刀刃。
+          <br><br>
+          你还没吃东西。楼上的刮擦让一块面包从掌中掉上柜台。你等着，刮擦停了才捡起来。
+          <br><br>
+          三只盘子并排放得下。你知道昨天每只里放多少，不知道现在父母还能不能吃。只准备自己的会快一点。准备他们的，就得双手都端着东西，重新爬到那扇门前。
+          <br><br>
+          你找到的第一件没有变的东西，是一个依然拧不开的罐子。你试了两次，恼火地放弃了。旁边还有面包，不需要先拧开任何盖子，就能吃。
+          <br><br>
+          饥饿没有等一个大人过来，解释那间屋子怎么了。它已经在你的肋骨下面不停拉扯。<span class="blue">先吃一点，双手就会稳一些。先把每个人的份都做好，它们就得忙更久。</span>
+      <</language>>
+    <<case 'main-eat'>>
+      <<language>>
+        <<option 'EN'>>
+          You cut the piece for yourself first. It feels like taking something before you have been told to. You stand at the counter, with the bread in one hand and the other pressed against the wood, until hunger makes the decision you cannot.
+          <br><br>
+          The first mouthful is dry. You take too much water with it, cough, and clamp a hand over your mouth. Nothing comes into the kitchen. After a while you eat the next mouthful. This one goes down.
+          <br><br>
+          You remember the strips of pastry your parent left to cool. You had wanted yours before it was ready. Now you would wait as long as they asked if they would come in and ask. The bread has a torn place where the nick in the knife caught it. You pick a little crumb from it and eat that too.
+          <br><br>
+          Your stomach stops pulling so hard. The cup stays level when you lift it. You put three plates beside one another and realise that eating yours has not used up the others. You can still cut two more pieces. You do not have to make your hands shake again to prove that you remembered everyone.
+          <br><br>
+          A little sound comes from the bedroom upstairs. You stop with the knife flat against the loaf. It is not the sound of someone calling you greedy. You make yourself put the knife down before turning.
+          <br><br>
+          You cut the remaining pieces, one larger than the other, because you know how they used to be. Then you put the cup where your elbow will not knock it. The table is a place you can return to now, with some food still on it. You lift the first plate, leaving the other hand empty.
+        <<option 'CN'>>
+          你先给自己切了一片。还没有人说可以，拿走这片面包就像偷了什么似的。你站在柜台边，一只手握着面包，另一只手抵住木头，迟迟没有动。最后，是饥饿替你做了那个自己一直做不出的决定。
+          <br><br>
+          第一口干得咽不下去。你急着喝水，一下喝得太多，咳了起来，赶紧用手捂住嘴。厨房门口没有出现什么。过了一会儿，你才敢吃下一口。这一次，面包终于咽下去了。
+          <br><br>
+          你想起父母曾经放在一边晾凉的酥皮。那时，你总想趁它还没准备好就先吃。现在，只要对方能走进厨房，亲口让你等，无论等多久，你都愿意。刀刃上的缺口把面包扯破了一小块。你从那里抠下一点碎屑，也放进了嘴里。
+          <br><br>
+          肚子不再揪得那么疼了。你举起杯子，里面的水面也没有刚才晃得厉害。你把三只盘子并排放好，忽然发现，吃掉自己那份，并没有让另外两份消失。你仍然可以再切两块。你不必让双手重新饿得发抖，才能证明自己记得家里还有其他人。
+          <br><br>
+          楼上的卧室里响起一点动静。你停下来，刀刃还平贴着面包。那并不是有人在喊你贪吃。你先让自己把刀放下，随后才转过头去。
+          <br><br>
+          剩下的两块，你切得一大一小，因为以前就是这样分的。你把杯子挪到手肘碰不到的位置。现在，这张桌子至少还有食物留着，等你回来。你举起第一只盘子，把另一只手空出来。
+      <</language>>
+    <<case 'main-share'>>
+      <<language>>
+        <<option 'EN'>>
+          You set out three plates. Your own is the small one. You turn the others until they face the empty chairs, then realise they will not be eaten here. You turn them back. The plates look wrong whichever way they face.
+          <br><br>
+          The knife sticks partway through the loaf. You have seen an adult lift it and bring it down harder. You try that, and the board moves. You put it flat again, move your fingers away, and work slowly. When the slice comes free, it is thick at one end and almost nothing at the other.
+          <br><br>
+          "That'll do," you say, trying out the voice you would have heard.
+          <br><br>
+          It does not sound like either of your parents. You cut the next piece without saying it again. You want to get the portions right. You are afraid that something about this morning might still be your fault if you get them wrong.
+          <br><br>
+          You stop to drink. The cup knocks against a plate. For a moment every sound in the house seems to have heard it. You stand motionless until your stomach makes an ordinary noise of its own. That noise is almost funny. You cannot laugh at it yet.
+          <br><br>
+          All three portions are there at last. You touch one with a fingertip to check it is real, then take your finger away, annoyed with yourself. A parent would tell you not to touch everyone's food. Yesterday you would have argued that it was your bread too.
+          <br><br>
+          You leave yours on the counter. You can come back for it. Carrying the plate through the hall and up the stairs, you watch the bread slide with each small movement. You put your elbow close to your side so it will stop sliding, and try to remember where your next foot ought to land.
+        <<option 'CN'>>
+          你在柜台上摆出三只盘子，把最小的留给自己。另外两只被你转向空着的椅子。过了一会儿，你才想起，这顿饭不会有人坐在那里吃，于是又把它们转了回来。无论盘子朝着哪一边，看起来都不对。
+          <br><br>
+          刀切到一半，卡在面包里。你见过大人把刀抬起来，再更用力地落下。你学着试了一次，案板却也跟着动了。你重新把它放平，让手指远离刀刃，一点一点往下切。面包片终于脱开时，一头厚得很，另一头却薄得几乎没有了。
+          <br><br>
+          “这样就行了。”你试着学那句本来该听到的话。
+          <br><br>
+          说出来，却不像任何一位父母的声音。你没有再学，直接开始切下一片。你很想把三份食物分得正确，仿佛只要分错，这个早晨发生的某件事就仍然可以算作你的错。
+          <br><br>
+          你停下来喝水，杯沿不小心碰了盘子。有那么一刻，你觉得整座房子里的声音都听见了这一响。你站着不敢动，直到肚子自己发出了一声再普通不过的咕噜。那个声音甚至有点好笑，你却还笑不出来。
+          <br><br>
+          三份终于都做好了。你用指尖碰了一下其中一片，想确认它是真的，随后立刻收回手，有些恼自己。父母以前会说，别随便碰大家的食物。昨天之前，你还会争辩，这明明也是自己的面包。
+          <br><br>
+          你把自己那份留在柜台上，想着回来还能吃。端着盘子经过大厅，再慢慢上楼时，面包随着每一个细小的动作滑动。你把手肘紧贴在身侧，尽量让盘子端稳，努力记起下一只脚应该落在哪里。
+      <</language>>
+    <<case 'main-feed'>>
+      <<language>>
+        <<option 'EN'>>
+
+          Upstairs, beside the portrait, the bedroom door stands open a little. You use your elbow to push it wider and keep it there. The four-poster bed has not moved. Beneath it, black cloth shifts with a breath. You crouch outside the threshold and put the plate down.
+          <br><br>
+          "It's bread. I made it."
+          <br><br>
+          You used to say that when you wanted them to notice your help. You wait for a reply. The breathing grows faster. A hand comes out, feeling along the carpet. Silver points stop short of the plate, then search sideways towards your foot.
+          <br><br>
+          You move your foot back. The hand follows the sound, leaving the bread where it is. You remember a thumb steadying your cup at supper until you had pulled your sleeve back. Now you wait for these fingers to stop moving before you dare bend your knee.
+          <br><br>
+          You could push the plate close enough for the hand to find it. You could remain by the door and let it come forward. <span class="red">There is nothing heavy between your knee and those nails.</span>
+          <br><br>
+          You cannot make your voice sound as though this is a normal breakfast. You stop trying before it gets louder. The hand is finding each sound you make. <span class="blue">You can slide the plate without calling again.</span>
+          <br><br>
+          There is one clear place beside your knees. You keep your weight over it while waiting for the silver to turn away from your sleeve.
+        <<option 'CN'>>
+
+          楼上，画像旁的卧室门开着一点。你用手肘推宽，抵在那里。四帷柱大床没动，下面的黑布随呼吸起伏。你在门槛外蹲下，放下盘子。
+          <br><br>
+          “是面包。我做的。”
+          <br><br>
+          以前想让父母注意你帮了忙，就会这样说。你等回答。呼吸变快，一只手伸出来，沿着地毯摸索。银色尖端没够到盘子，随后往旁边找，朝着你的脚。
+          <br><br>
+          你把脚挪远。手跟着声音，将面包留在原处。你想起晚饭时贴着杯柄的拇指，一直扶到你把袖子收回。如今，你得等这些手指不再动，才敢弯膝。
+          <br><br>
+          你可以把盘子推到手能找到的地方，也可以留在门边，等它自己往前。<span class="red">膝盖和那些指甲之间，没有任何沉重的东西挡着。</span>
+          <br><br>
+          你怎么也没办法，把声音装成这只是一顿普通早餐。你赶在它变得更响之前，放弃继续尝试。那只手正在寻找你每次出声的位置。<span class="blue">你可以不再叫人，只把盘子滑过去。</span>
+          <br><br>
+          膝盖旁还有一小块没有东西的地方。你把身体的重量留在那里，耐心等着那些银色的指甲从自己的袖口转开。
+      <</language>>
+    <<case 'main-food-quiet'>>
+      <<language>>
+        <<option 'EN'>>
+          The plate slides out of your reach. You have kept your fingers behind its rim. When the silver nails come down, <span class="green">they catch porcelain</span>.
+          <br><br>
+          You almost take it back. It is your parent's good plate, the one you have been told not to drop. The thought is so ordinary that for a moment you are more afraid of breaking it than of the hand. You stop reaching. A long, dry breath comes from beneath the bed.
+          <br><br>
+          The bread moves into the dark. You cannot see a mouth. You hear one short sound, then another, and realise you have been staring hard enough to make your eyes water. You look at the carpet beside your foot instead. It is worn where adults used to stand to put their shoes on.
+          <br><br>
+          "There's more," you say, softly enough that you are not sure you said it aloud.
+          <br><br>
+          No answer comes. The plate is drawn farther in. For a moment there is only the sheet, moving with a breath. You move into the upper passage before the hand needs another thing to find, then go downstairs to the kitchen. It does not follow.
+          <br><br>
+          You are relieved, then angry that this small thing has made you relieved. Nobody has sat up. Nobody has asked why you did not make something better. There is still a room you must not stand in, and a house that needs breakfast even when nobody thanks you.
+          <br><br>
+          From the kitchen you can see the garden doorway without crossing the spilled glass. The breathing has settled in the bedroom upstairs. <span class="blue">For now, that side of the hall is free.</span> You remember where the free space begins. If you want to leave, you can use it before the sound changes place.
+        <<option 'CN'>>
+          你把盘子滑到自己够不到的地方，手指始终藏在盘沿后面。银色的指甲落下来，<span class="green">勾住的是瓷器</span>。
+          <br><br>
+          你差一点又伸手把它拿回来。那是父母珍惜的盘子，以前总有人嘱咐你不要摔坏。这个念头太熟悉了，有那么一瞬间，你怕盘子碎掉，甚至比怕那只手还多。你硬是停住了手。床下传来一口又长又干的呼吸。
+          <br><br>
+          面包被拖进黑暗。你看不见嘴，只听见短短的一声，随后又是一声。眼睛酸起来，你才发现自己一直死死盯着。你改看脚旁的地毯，那一小块已经磨旧，以前大人会站在那里穿鞋。
+          <br><br>
+          “还有。”你轻轻地说，声音小得连自己都不确定有没有真正说出口。
+          <br><br>
+          没有回答。盘子被拉向更深处。片刻之间，你只能看见被单随着呼吸起伏。你赶在那只手开始寻找下一样东西之前，退到上层过道，再下楼回到厨房。它没有跟来。
+          <br><br>
+          你松了一口气，接着又恼火起来，自己竟然为了这样一件小事松气。没有人坐起来，也没有人问你，为什么不做点更好的早餐。那间屋子依然不能随便走进去。整座房子依然需要早餐，哪怕连一句谢谢也没有。
+          <br><br>
+          从厨房这里，你能看见通向花园的门，不必经过那片散落的玻璃。呼吸暂时停在楼上的卧室里，<span class="blue">大厅靠花园的那一侧还没有动静。</span>你记住空出来的路从哪里开始。如果要离开，现在就可以趁声音还没有换位置，先从那边走过去。
+      <</language>>
+    <<case 'main-food-spill'>>
+      <<language>>
+        <<option 'EN'>>
+          You try to slide the plate while speaking. The last word comes out louder than the first. The hand changes direction before the bread reaches it.
+          <br><br>
+          <span class="red">Cold flesh closes over the rim and your cuff together.</span> You pull once, and a silver nail catches a thread. The plate tilts. You try to keep it level with your other hand, bringing that wrist close as well. You stop before it reaches the fingers underneath the sheet.
+          <br><br>
+          "I can get more."
+          <br><br>
+          You say it quickly, as though that could keep somebody from being angry. The hand stops moving for a moment. A face rises where you would once have expected a nod. You recognise it before you want to. The pale eyes are on your mouth.
+          <br><br>
+          You stop talking. The grip has not become looser. Your wrist grows cold through the sleeve, and the plate has become too heavy to hold this way. The bread slides towards the dark. You want to keep one slice from falling, to stop this from becoming another mess.
+          <br><br>
+          Then the nail catches the thread again. The sleeve draws tight above your fingers. You cannot save the bread and take the arm away at the same time. You move your free hand back to the doorframe, where it can hold something that will not close over it.
+          <br><br>
+          The porcelain rests against two nails. If you open your fingers, the plate will fall away from your hand. The cuff might tear. You watch the loose thread rather than the face, trying to find the movement that will leave your arm on this side of the threshold.
+        <<option 'CN'>>
+          你一边说话，一边试着把盘子往前滑。最后一个字比第一个字响。面包还没滑到那只手边，它就先改了方向。
+          <br><br>
+          <span class="red">冰冷的皮肤把盘沿和你的袖口一起握住。</span>你拉了一下，一根银色指甲勾住衣服上的线。盘子歪了。你想用另一只手把它扶平，连那边的手腕也带近了一点。赶在它碰到被单下面的指头之前，你停住了。
+          <br><br>
+          “我还能再拿一些。”
+          <br><br>
+          你急着说出口，像是这样就能让谁不要生气。那只手有一瞬间不再挪动。一张脸从以前本该有人点头的位置抬起。你还没愿意认出它，就已经认出来了。苍白的眼睛望着你的嘴。
+          <br><br>
+          你不敢再讲话。那只手却没有松。隔着袖子，手腕越来越冷，盘子也重得让你难以继续这样拿住。面包开始往黑暗里滑。你还想保住其中一片，不让这里又变得一团糟。
+          <br><br>
+          指甲再次勾住了那根线。手指上方的袖子绷紧了。你没办法既保住面包，又把胳膊抽开。你把空着的那只手收回，放到门框上。至少那块木头不会合拢，将手也抓在里面。
+          <br><br>
+          瓷器抵着两根指甲。只要你张开手，盘子就会从掌中落下，袖口也可能因此撕开。你没有再看那张脸，只盯着松脱的线，努力想出怎样动，才能让自己的胳膊留在门槛这一边。
+      <</language>>
+    <<case 'main-clear'>>
+      <<language>>
+        <<option 'EN'>>
+          You are back downstairs, within reach of the kitchen table. <<if !$LostLamb.marks.includes('path') and !$LostLamb.marks.includes('had-water') and !$LostLamb.marks.includes('outside-view')>>The brush is taller than you want it to be. You move it from one hand to the other, looking at the hall, the sink and the patch of sunlight near the garden doorway. All three places seem to want something from you at once.
+          <br><br>
+          You have not been asked to do a chore. There is no adult to tell you which part matters most. Your feet need somewhere to go. Your mouth is dry. Outside, a cart rattles past and someone shouts an ordinary greeting. You want to be where that person is.
+          <br><br>
+          You put the brush down without letting it fall. There are still things you can do from this side of the table. You look at them one at a time. The bedroom sound does not stop while you decide.<</if>>
+          <<if $LostLamb.marks.includes('path')>>
+          <br><br>
+          The clear strip runs beside the wall. You can fit both feet on it now. You have left the brush flat so it will not fall across the place you worked for. Going out will be easier, although you cannot make the upstairs room quiet.
+          <</if>>
+          <<if $LostLamb.marks.includes('had-water')>>
+          <br><br>
+          The cup is within reach. You swallow once without it, checking that your throat no longer hurts. Your fingers do not tremble as much when you rest them on the table. You are still afraid, but standing has stopped being so difficult.
+          <</if>>
+          <<if $LostLamb.marks.includes('outside-view')>>
+          <br><br>
+          You have seen the street. Someone beyond the gate is putting a bag down. You do not have to explain everything before you open your mouth. You could start with the broken window, with a parent who will not get up, with the fact that you need somebody beside you.
+          <</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('main-offer-pass') and !$LostLamb.marks.includes('path')>>The garden side is still free. <span class="blue">You can leave without sweeping first.</span><<elseif !$LostLamb.marks.includes('path')>><span class="blue">A strip beside the wall would let you reach the entrance without stepping on the glass.</span><<else>>You could use the strip now. You could drink, or look outside first, while there is still daylight.<</if>>
+        <<option 'CN'>>
+          你已经回到楼下，厨房的餐桌仍在够得到的位置。<<if !$LostLamb.marks.includes('path') and !$LostLamb.marks.includes('had-water') and !$LostLamb.marks.includes('outside-view')>>刷子比你希望的还要高。你把它从一只手换到另一只，看着大厅、水槽，还有花园门附近的一片日光。三个地方仿佛同时都在等着，让你去做点什么。
+          <br><br>
+          没有人给你布置家务，也没有大人告诉你，哪一件事最要紧。双脚需要一条能够走的路，嘴里又干得难受。外面有车经过，谁喊了一声普通的招呼。你想站到那个喊话的人所在的地方。
+          <br><br>
+          你把刷子放下，没有让它摔在地上。桌子这一侧，你仍然能做几件事情。你一个一个看过去。即使你还没决定好，卧室里的动静也没有停。<</if>>
+          <<if $LostLamb.marks.includes('path')>>
+          <br><br>
+          清出来的窄路贴着墙往前延伸，现在够两只脚一起站。刷子被你平放在旁边，免得它倒下，又堵住这块费力清出的地方。出去会容易一点，可楼上那间房并不会因此安静。
+          <</if>>
+          <<if $LostLamb.marks.includes('had-water')>>
+          <br><br>
+          杯子留在伸手能够到的位置。你没拿它，先自己咽了一次，确认喉咙已经不那么疼。手指搁到桌面上时，也没有抖得那么厉害。你仍然害怕，不过，站稳已经不再那么难。
+          <</if>>
+          <<if $LostLamb.marks.includes('outside-view')>>
+          <br><br>
+          你已经看过街道。门外有人正在放下袋子。你不必先把全部事情解释清楚，才能开口。可以从那扇碎掉的窗户说起，从一个不肯起床的家长说起，也可以只说，你需要有个人站在旁边。
+          <</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('main-offer-pass') and !$LostLamb.marks.includes('path')>>花园那一侧还没有动静。<span class="blue">你可以不用先扫，就从那里出去。</span><<elseif !$LostLamb.marks.includes('path')>><span class="blue">沿墙清出一条窄路，就能不踩上玻璃，走到入口附近。</span><<else>>你现在就能走那条窄路。也可以趁天还亮，先喝点水，或者往外看一眼。<</if>>
+      <</language>>
+    <<case 'main-sweep'>>
+      <<language>>
+        <<option 'EN'>>
+          You begin beside the wall, where your shoes can already stand. The brush stays ahead of your toes. Glass turns beneath it, showing edges that looked like shadow a moment ago. You do not push hard enough to make the pieces scatter into another place you cannot see.
+          <br><br>
+          A shard rings against the lowest stair. Something moves on the landing above. You stop with the brush still on the floor. The next breath comes closer to the head of the stairs, then draws away. You wait for one more before moving the brush again.
+          <br><br>
+          The strip grows a little at a time. You test the first part with one shoe, keeping the other where it was. The sole does not slide. You work from there rather than reach for the far end you would like to clear. When both feet fit on the new part, you move them together.
+          <br><br>
+          Your sleeve rubs against the handle. <<if $LostLamb.marks.includes('main-offer-fail')>>A thread hangs from the place where the nail caught it. You touch the skin beneath, then try each finger. All of them move. The coat button is still there beside the tear. You leave it fastened, although you want to pull the whole sleeve off.<<else>>Dust from the doorframe has marked the cuff. You brush it away with your thumb. A sound in the hall makes you flinch and brush again, as if the dust has come back while you were listening.<</if>>
+          <br><br>
+          There is room for both shoes now. You have made a way through. You have not made the whole house tidy, and you do not need every piece to disappear before using the way. You leave the brush flat instead of leaning it where it could fall across the strip.
+          <br><br>
+          You look along the wall to the entrance. It is farther along the ground-floor wall than the foot of the stairs you have been watching. You can walk towards it without putting your feet on the broken glass. You rub your palm once along your coat, then leave the brush where you can reach it if you need to come back.
+        <<option 'CN'>>
+          你从靠墙、双脚已经能够站稳的地方开始扫，让刷子始终留在脚尖前面。玻璃被翻动时，刚才还像影子的地方露出了锋利的边。你没有用力推得太猛，免得这些碎片又散进别的看不清的位置。
+          <br><br>
+          一块玻璃碰响了最下面一级楼梯。上层平台有什么动了。你立刻停手，让刷子仍贴着地面。下一口呼吸靠近楼梯口，随后又往里退开。你多等了一次，才敢再次挪动刷子。
+          <br><br>
+          窄路一点一点空出来。你先用一只鞋试探最早清好的那段，另一只脚留在原位。鞋底没有滑动。你从这里继续往前扫，没有直接去够最想清出来的远端。新的一段能够放下两只脚时，你才把它们一起挪过去。
+          <br><br>
+          袖口擦到刷柄。<<if $LostLamb.marks.includes('main-offer-fail')>>指甲勾过的位置垂着一根线。你摸摸下面的皮肤，随后一根一根试着动手指。它们都还能动。外套的扣子仍留在破口旁。你没有解开，虽然很想把整个袖子都从胳膊上扯掉。<<else>>门框上的灰蹭脏了袖口。你用拇指掸掉一点。大厅的声音让你猛地缩了一下，于是又掸了一次，像是刚才听着动静的时候，那点灰也重新回来了。<</if>>
+          <br><br>
+          现在，路上够放下两只鞋了。你已经扫出一个能够经过的地方，没有把整座房子重新收拾好。也不必让每一片碎物都消失，才能用上这条路。你把刷子平放，没有把它靠在可能倒下的位置，免得又横在路中间。
+          <br><br>
+          你沿着楼下的墙望向入口。它比那个一直让你盯着的楼梯底部远一些。你已经能够朝那边走，不必将双脚踩上碎玻璃。你在外套上擦了一次掌心，把刷子留在仍够得到的位置。假如需要回来，至少还能拿到它。
+      <</language>>
+    <<case 'main-wash'>>
+      <<language>>
+        <<option 'EN'>>
+          The tap coughs before any water comes out. You shut it at once. Your ears keep trying to find the bedroom beneath the noise.
+          <br><br>
+          You try again, slowly. A thin stream appears. You put the cup beneath it and watch bubbles gather at the bottom. Nobody is telling you that you have left it running too long. You turn it off before the cup is full, then turn it back on when you realise you are allowed to need more water.
+          <br><br>
+          The first drink tastes of the cup. The next tastes of water. You rest both elbows on the counter and keep drinking in small mouthfuls. Outside, someone drops something and swears. You flinch, then discover that the sound has nothing to do with you. There is no silver at the kitchen doorway.
+          <br><br>
+          When you wash your hands, the ordinary dirt takes several rubs to come off. You check beneath your nails. They are the same small, uneven nails you have always had. You press a thumbnail into your other palm and wait for the white mark to fade. It fades.
+          <br><br>
+          You have not washed away the morning. Your sleeve still has its stain. The broken windows still let cold air in. But your fingers are warmer, and you can hold the cup without gripping it hard enough to hurt.
+          <br><br>
+          You leave it beside the tap. For once you do not turn the handle to match another cup. There is only this one to reach for. If you come back frightened, it will be in a place you chose rather than a place something in the bedroom made you stand.
+          <br><br>
+          Before moving, you drink once more. You hear the swallow, the cup settling, and a distant cart on the street. The next breath from the bedroom no longer fills all the space between them.
+        <<option 'CN'>>
+          龙头先发出了一声咳嗽似的响动。水还没流出来，你就赶紧把它关掉。你的耳朵仍然竭力在那阵噪声底下寻找卧室里的动静。
+          <br><br>
+          你重新试了一次，这次慢慢地转动。一股细细的水终于流出来。你把杯子放到下面，看着气泡在杯底聚拢。没有人责怪你把龙头开得太久。杯子还没装满，你就关了水，随后才想到，自己也可以需要更多，于是又把它打开。
+          <br><br>
+          第一口尝起来是杯子的味道，下一口才像水。你把两只手肘搁在柜台上，一小口一小口地喝。外面有人弄掉什么，骂了一句。你猛地缩了一下，随后才发现，那声音和你没有关系。厨房门口也没有银色的指甲。
+          <br><br>
+          洗手时，连平常的污垢也得搓好几次才掉。你仔细看看指甲下面，那些小小的、不太平整的指甲，还是你一直长着的那几片。你把一边拇指甲压进另一边掌心，等压出的白印消失。它慢慢褪掉了。
+          <br><br>
+          你没有把这个早晨洗掉。袖子上的污迹仍在，破掉的窗户也仍然把冷风放进来。不过，手指已经暖了一些。你不用攥得自己发疼，也能握住杯子了。
+          <br><br>
+          你把杯子留在龙头旁。这一次，没有特意转动杯把，让它和另一只对齐。这里只有这一只，需要时伸手就能够到。即使下一次回来时又很害怕，它也会待在你自己选的位置，不是在卧室里的东西逼着你停下的位置。
+          <br><br>
+          走开之前，你又喝了一口。你听见自己吞咽的声音，杯子落稳的轻响，还有街上远远经过的车声。从卧室来的下一口呼吸，不再填满这几种声音之间的全部空隙。
+      <</language>>
+    <<case 'main-garden'>>
+      <<language>>
+        <<option 'EN'>>
+          The garden has kept its shape. The shrubs still crowd the narrow path. You take two quick steps, expecting Sydney to come after you, and feel foolish when you hear only your own shoes.
+          <br><br>
+          <<if $LostLamb.marks.includes('waited')>>You stop at the bend where you waited for <<nnpc_him 'Sydney'>>. The path behind it is empty. You wait for a breath anyway, then another.<<elseif $LostLamb.marks.includes('shortcut')>>You take the shortcut. A branch catches your sleeve. You wrench free too quickly, certain for an instant that it is the hand from the room.<<else>>You stay on the wider path. You keep the house on one side where you can see its doors. The narrow turn would hide them from you.<</if>>
+          <br><br>
+          At the gate you try the latch twice before lifting it. It has not been locked. Outside, someone carries a bag. Someone stops to adjust a shoe. They walk past the broken windows without looking up. You nearly run after them, then look back at the house.
+          <br><br>
+          The open garden door is a dark rectangle now. You cannot see the corridor from here. You leave the brush against the wall, where you can pick it up on the way back.
+          <br><br>
+          You can cross the gate. You can call from behind it. Neither will put an adult beside the bed unless you say enough to make them follow. You try the first words quietly and find that saying "my parents" is harder than lifting the latch.
+          <br><br>
+          You put your hand on the gate and lift the latch again. It opens again. Nobody in the house has learned to lock it merely because you touched it once.
+          <br><br>
+          You can see the street and the small space beside the wall at the same time. If you come back with someone, this is a place where both of you could wait without entering the bedroom.
+        <<option 'CN'>>
+          花园还保留着原来的样子。灌木仍挤着窄路。你快走两步，等悉尼追来，只听见自己的鞋，便觉得傻。
+          <br><br>
+          <<if $LostLamb.marks.includes('waited')>>你停在以前等<<nnpc_him 'Sydney'>>的转弯处。后面的路空着。你还是等一口气，又一口气。<<elseif $LostLamb.marks.includes('shortcut')>>你走了捷径。枝条勾住袖子，你挣得太急，有一瞬间确信是房里那只手。<<else>>你走宽路，让房子一直在看得见门的那一侧。窄弯会把门挡住。<</if>>
+          <br><br>
+          到大门前，你试了两次搭扣才抬起来。没有锁。外面有人提着包，有人停下来整理鞋。他们经过碎掉的窗户，连头也没抬。你差点跑着追去，随后又看看房子。
+          <br><br>
+          开着的花园门，现在是个黑色长方形。从这里看不见走廊。你把刷子靠墙留着，回来的路上能捡。
+          <br><br>
+          你可以跨过去，也可以隔着门喊。要让一个大人去床边，必须说够多，让对方愿意跟着。你轻声试开头几个字，发现说“我的父母”比抬起搭扣更难。
+          <br><br>
+          你把手放到大门上，再次抬起搭扣。门又打开了。并没有因为你碰过它一次，屋里就有什么学会了把它锁住。
+          <br><br>
+          站在这里，你能够同时看见街道和墙边那一块窄地。假如带着别人回来，你们两个都能在这里等，不必先走进卧室。
+      <</language>>
+    <<case 'main-backgate'>>
+      <<language>>
+        <<option 'EN'>>
+          You leave the brush where it is. The breathing is steady, and you move while it stays steady. The garden doorway is wider than the part of the hall beside the glass. You put a foot outside before remembering to take a coat.
+          <br><br>
+          The air is cold enough to make your face sting. For a moment that is a good feeling. You can see where it comes from. The wind catches the leaves, touches your ears, and moves on. Nothing in it waits for you to call a name.
+          <br><br>
+          You keep the house wall between yourself and the broken windows. A shutter has come loose. Each time it taps, you stop. After the third time you look up and see it moving. You wait for it to hit once more so you can believe the next sound when it comes.
+          <br><br>
+          At the far corner you can see the garden path. <<if $LostLamb.marks.includes('shortcut')>>The little gap you raced through is still there. You take it slowly now, holding the branch aside rather than forcing through.<<elseif $LostLamb.marks.includes('waited')>>You stop at the place where you waited for Sydney. For a moment you leave room beside yourself out of habit. Then you walk on.<<else>>You follow the path without stepping between the shrubs. From here you can see both the house and the gate.<</if>>
+          <br><br>
+          Nobody calls you back. At the gate, that feels worse than being called. You open it and put one shoe on the pavement. The street is not the garden again. A person passing nearly walks into you, says to watch out, and continues.
+          <br><br>
+          You watch that person reach the corner. They do not begin walking past you again. You can follow far enough to speak, or speak to the next person. You pull the gate almost shut, keeping your fingers clear of where it will catch.
+        <<option 'CN'>>
+          你把刷子留在原处。床下的呼吸很稳，你就趁它还没有变化，往花园门口走。那里比散落玻璃旁的那段大厅宽一些。你先把一只脚伸到外面，随后才想起自己没有拿外套。
+          <br><br>
+          冷空气让脸微微发刺。有那么一会儿，那反而是种好的感觉，至少你看得见它从哪里来。风吹动树叶，擦过你的耳朵，又继续往前。里面没有什么在等着你叫出一个名字。
+          <br><br>
+          你贴着屋外的墙走，让它挡在自己和那些碎掉的窗户之间。一扇百叶窗松脱了，每敲响一下，你就停一下。第三次，你终于抬起头，看见它正在风里晃。你特意等它再撞一次，好让下一声响起时，自己能够相信那仍然只是它。
+          <br><br>
+          走到远处的转角，花园小路露了出来。<<if $LostLamb.marks.includes('shortcut')>>你和悉尼比赛时钻过的小缝还在那里。这次，你慢慢走，用手把枝条拨到一边，没有像以前那样硬挤过去。<<elseif $LostLamb.marks.includes('waited')>>你停在以前等悉尼的位置，下意识地在身旁空出一点地方。过了一会儿，你才独自继续往前走。<<else>>你沿着小路走，没有钻进灌木之间。从这里，房子和大门都能同时看见。<</if>>
+          <br><br>
+          没有人喊你回去。到了大门边，这竟然比有人喊还令人难受。你把门打开，先将一只鞋放上人行道。街道没有重新变成花园。一位路人差点和你撞上，让你小心些，随后就继续往前走了。
+          <br><br>
+          你看着那人一直走到街角，没有又从你身旁重新经过。你可以跟上去说句话，也可以等下一个人。你把大门拉得几乎合上，让手指避开门会夹住的地方。
+      <</language>>
+    <<case 'main-street'>>
+      <<language>>
+        <<option 'EN'>>
+          You step through the gate. Nothing catches your shoulder. The street is solid beneath your shoes, and a person passing you turns to ask whether you are looking for someone. You nearly say yes before remembering that the people you need are inside.
+          <br><br>
+          You point towards the broken window. From here it looks small. The stranger asks whether someone has hurt you. You shake your head, then wonder whether that was the right answer.
+          <br><br>
+          "My parents..."
+          <br><br>
+          The person waits for the rest. You look at the gate, at the distance to the garden door, at the hand holding the bag. That hand has ordinary nails. It would be easy to take it. You do not know where it would take you.
+          <br><br>
+          You think of saying they are different, but the stranger would ask how. You think of describing the silver, and cannot make yourself finish that sentence. You have to choose words while the person is still willing to stand here.
+          <br><br>
+          The ordinary hand waits. It has not told you what to think about your parents. You look at its nails again, and at the windows behind you.
+          <br><br>
+          You only need to say enough for this person to stay and listen. If the word you wanted will not come, <span class="blue">the broken window is still something you can point at</span>.
+        <<option 'CN'>>
+          你跨出大门。没有什么抓住肩膀。鞋下的街道很结实，一个路人转头问是不是在找谁。你差点说是，随后才记起需要的人就在里面。
+          <br><br>
+          你指指碎窗。从这里看，它很小。陌生人问，是不是有人伤害你。你摇头，又不确定这样答对不对。
+          <br><br>
+          “我的父母……”
+          <br><br>
+          对方等后半句。你看看大门、到花园门的距离，还有握着包的手。那只手的指甲很普通。牵住它会很容易。你不知道它会带你到哪里。
+          <br><br>
+          你想说他们不一样了，可陌生人会问哪里不一样。你想说银色，怎么也说不完这句。你得赶在对方还愿意站在这里时选好字。
+          <br><br>
+          那只普通的手仍在等着。它还没有告诉你，应该怎样想自己的父母。你又看看那上面的指甲，随后看看身后那些窗户。
+          <br><br>
+          你只需要说出足够让这个人留在这里，听你说话的内容。就算原本想说的那个词始终说不出来，<span class="blue">破掉的窗户仍然在那里，可以指给他看</span>。
+      <</language>>
+    <<case 'main-helper'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('main-call-help-pass')>>"They're ill." The stranger asks whether an adult is with them. You say they are the adults. <span class="green">The person puts the bag down and comes as far as the gate with you.</span> When they ask to be taken inside, you stop moving. You cannot promise that the hand will stay under the bed if somebody else comes near it. You say to wait here, then say it again when they take another step.<<else>>"I'm waiting for someone." The stranger asks whether they are late. You nod. Talking about Sydney is easier. They tell you to wait inside the gate instead of in the street. You obey, and the gate closes between you. By the time you think of telling them about the bed, they have picked up their bag.<</if>>
+
+          <br><br>
+          The person asks your name before moving. You say it, then find that you are waiting for a particular answer, one that sounds like Sydney. They only repeat it to make sure they heard.
+          <br><br>
+          You tell them that the windows broke in the night. They ask if you saw who broke them. You say no. They do not replace that no with a story. They look towards the entrance and ask you to show them where to stand.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('main-call-help-pass')>>“他们病了。”陌生人问有没有大人陪着。你说，他们就是大人。<span class="green">对方放下包，跟你走到大门前</span>，说带自己进去时，你不动了。你不能保证别人靠近，那只手也会留在床下。你说等在这里，对方又迈一步，你再说一次。<<else>>“我在等人。”陌生人问是不是来晚了。你点头。说悉尼更容易。对方让你到大门内等，别待在街上。你照做，门在你们之间关上。等你想到该说床的事，对方已经提起包。<</if>>
+
+          <br><br>
+          动身以前，对方先问了你的名字。你说出来，随后才发现，自己正等着某一种特定的回应，像悉尼以前会说的那样。那人只是重复了一次，确认自己没有听错。
+          <br><br>
+          你告诉他，窗户是在夜里碎的。他问你有没有看见是谁弄碎，你说没有。他没有拿一个故事来替换这个“没有”，只望向入口，问你应该站在哪里。
+      <</language>>
+    <<case 'main-silent'>>
+      <<language>>
+        <<option 'EN'>>
+          You open your mouth. "My parents..."
+          <br><br>
+          The stranger waits. A pale hand is inside your head now, although the hand in front of you has ordinary nails. You are afraid that saying the rest will make them ask you to point at it. You are afraid that they will laugh. You are afraid that they will not laugh at all.
+          <br><br>
+          You shake your head and say you were waiting for somebody. The words come easily because you have been waiting for somebody for so long. The stranger asks whether you know how to get home. You nod. That answer is easy too. You know every step back to the bed.
+          <br><br>
+          They begin to move away. You catch the strap of their bag before you decide to. They look down, startled. You let go immediately and point towards the window.
+          <br><br>
+          "It's broken."
+          <br><br>
+          They look up. From the pavement the broken panes are more obvious than you thought. Their expression changes. They ask whether anyone else is inside. You nod again, then say that your parents will not get up. You cannot say the silver, but you can say those words.
+          <br><br>
+          "Show me from out here," they say. They stay on the pavement while you open the gate. They are not holding your hand. They have stopped walking away.
+          <br><br>
+          <span class="red">You have lost the clear sentence you wanted.</span> The person does not seem to need it to see that something is wrong. They come no closer than you ask, and wait while you find the next thing you can point at. You look back at the bedroom window before leading them to the entrance.
+        <<option 'CN'>>
+          你张开嘴。“我的父母……”
+          <br><br>
+          陌生人在等你说下去。你脑袋里却已经出现了一只苍白的手，尽管眼前这只手长着普通的指甲。你怕说完以后，对方就会让你把那东西指给他看。你怕这人笑，也怕这人根本笑不出来。
+          <br><br>
+          你摇摇头，改口说自己正在等人。这几个字倒是很容易说，因为你已经等了很久。陌生人问，你知不知道怎么回家。你点了头，这个问题也很容易。回到那张床边，每一级台阶在哪里，你都知道。
+          <br><br>
+          那人准备离开。你还没有想好，就已经抓住了袋子的提带。对方吃了一惊，低头看你。你立刻松开手，改为指向窗户。
+          <br><br>
+          “它碎了。”
+          <br><br>
+          对方抬起头。从人行道上看，那些破碎的窗格比你以为的还要显眼。那人的表情变了，问屋里还有没有别人。你再次点头，随后说，父母不肯起床。你仍然说不出那些银色的东西，可这几个字至少能够说出来。
+          <br><br>
+          “从外面给我看看。”对方说。你去打开大门，那人却仍留在人行道上，等你告诉他该看哪里。没有人牵住你的手。那个人也没有继续往远处走。
+          <br><br>
+          <span class="red">你丢掉了原本想说的完整句子。</span>对方似乎并不需要那句话，才能看出有事不对。你让他靠近多少，他就只靠近多少，耐心等着你找到下一样能指的东西。带着他走向入口之前，你又回头看了一眼卧室的窗户。
+      <</language>>
+    <<case 'main-entrance'>>
+      <<language>>
+        <<option 'EN'>>
+          The person waits on the step while you try the entrance. You can feel them behind you without having to keep looking. When the handle catches, you say it always catches. It comes free on the next try.
+          <br><br>
+          The hall is dimmer than the street. You point at the glass first, then the chair. "Don't stand there."
+          <br><br>
+          They move their shoe before asking why. You had expected to have to explain. A scrape reaches you down the stairwell instead. The person stops bending to look at the window and listens.
+          <br><br>
+          "Where are your parents?"
+          <br><br>
+          You point upstairs. A breath comes down the stairwell. The person calls a greeting towards the upper passage, politely, as though there might have been a quarrel about the damage. No human answer comes back. They say it again, with less certainty.
+          <br><br>
+          You want them to be certain. You want their voice to turn the house into the kind of place where a broken window is something to complain about. When they look down at you, you cannot make yourself look up. Their shoes are close to the clear place beside yours. You count their two feet.
+          <br><br>
+          They ask you to stay by the entrance while they try the stairs. You tell them not to call loudly. They lower their voice. The scrape stops for a moment, and both of you wait for what follows it.
+          <br><br>
+          "I'll try the stairs first," they say. They put a foot on the lowest step, not all the way up. You remain where you can reach the outside handle. The room has another ordinary person in it now. You can still hear everything that made you leave it.
+        <<option 'CN'>>
+          那人在台阶上等着，你试着打开入口。不必一直回头，你也能感觉到他在身后。门把手卡住，你赶紧解释，它一直就这样。再试一次，门终于打开了。
+          <br><br>
+          大厅比街上暗。你先指向玻璃，随后指向椅子。“别站那里。”
+          <br><br>
+          对方先把鞋移开，才问你为什么。你本来以为，自己还得好好解释才行。楼梯间传下来的刮擦声却先替你作了回答。那人不再弯腰查看破窗，停下来听着。
+          <br><br>
+          “你的父母在哪儿？”
+          <br><br>
+          你指向楼上。一口呼吸顺着楼梯间传下来。对方向上层过道客气地打了声招呼，像是这里或许只是因为弄坏东西吵过一架。没有人的声音回答。他又招呼了一次，这次已经不那么确定了。
+          <br><br>
+          你很想让他继续确定下去，很想让那个声音把屋子变回一处只需要抱怨窗户破了的地方。对方低头看你，你却怎么也抬不起脸。他的鞋离你的脚很近，都靠着能站稳的地方。你数了数，两只脚，都还在那里。
+          <br><br>
+          他让你留在入口附近，自己先试着往楼梯走。你告诉他，不要大声叫人。对方真的放低了声音。刮擦停了一瞬，你们一起等着，不知道紧接着还会传来什么。
+          <br><br>
+          “我先看看楼梯。”他说。他只踩上最下面一级，没有直接上楼。你仍留在能够到外面门把手的位置。房子里现在多了另一个普通人，可那些曾经让你离开的声音，仍然全都听得见。
+      <</language>>
+    <<case 'main-visitor'>>
+      <<language>>
+        <<option 'EN'>>
+          You follow the person upstairs to show them the door beside the portrait. You stand back, with the stairs behind both of you, while they crouch outside the bedroom. You want to tell them not to crouch, then cannot remember whether you have already said it. They lift the edge of the sheet with the long handle of the brush.
+          <br><br>
+          For a moment nothing moves. Then the black cloth shifts. Something pale turns towards the light. The person's breath catches. They drop the sheet before you can see how much they have seen.
+          <br><br>
+          "Back," they say.
+          <br><br>
+          You move before they touch your shoulder. Their own feet move as well. The brush rolls between you. They do not reach down to pick it up. You have never been so relieved to see an adult leave something on the floor.
+          <br><br>
+          They ask whether anyone has been drinking. You say you do not know. Whether your parents take medicine. You say you do not know that either. Every question sounds sensible on the first word, and wrong by the time you try to fit your parents inside it.
+          <br><br>
+          A nail finds the fallen brush. The handle rotates slowly. The person backs to the head of the stairs, then leads you down towards the entrance. Their palm is warm on your sleeve. You almost cry at that warmth, then become afraid of the sleeve being held and pull a little away. They let you.
+          <br><br>
+          "I'm not going in there alone," they say. They want you on the step beside them. They say they will find somebody who knows what to do. They do not say that they know.
+          <br><br>
+          You ask if that means the person will leave. From the outside step, they look back towards the stairs, then at you. "It means I need more help than just me." They wait while you take a breath. This time you can hear the breath without mistaking it for something under the bed.
+        <<option 'CN'>>
+          你跟着那人上楼，指给他看画像旁的房门。你退开一点，楼梯留在你们两人身后，对方蹲在卧室门外。你想告诉他不要蹲下来，随后却记不清，自己是不是已经说过了。他用刷子的长柄挑起垂下来的床单。
+          <br><br>
+          有那么一会儿，什么也没有动。随后，黑布缓缓挪开，一块苍白的东西转向了光。那人的呼吸猛地一滞。你还没有看清他到底看见多少，他就已经把床单放了下来。
+          <br><br>
+          “退后。”他说。
+          <br><br>
+          不等对方碰到你的肩膀，你就开始往后退。他的两只脚也在动。刷子滚到你们之间，没有人弯腰去捡。你从没有因为一个大人把东西扔在地上，就这么松过一口气。
+          <br><br>
+          那人问，这里有没有谁喝过酒。你说不知道。他又问，父母平时吃不吃药。你连这个也不知道。每一个问题刚开头时都很合理，等你试着把自己的父母放进答案，却又觉得不对。
+          <br><br>
+          一根指甲找到了地上的刷子，木柄慢慢地转动。对方退到楼梯口，随后带着你下楼，走向入口。他的掌心贴在你的袖子上，温暖得让你几乎要哭。随后，你又怕袖子被抓住，稍稍向外抽了抽。他便松开了。
+          <br><br>
+          “我不能一个人进去。”他说。他想让你和他一起站到外面的台阶上，告诉你，他会去找懂得处理的人。他没有说自己就懂。
+          <br><br>
+          你问，那是不是意味着他要走了。站在外面的台阶上，对方先回头望了望楼梯，又看向你。“是说，光靠我一个人还帮不了这个忙。”他等着你慢慢喘过一口气。这次，你听得清那只是自己的呼吸，没有把它错认成床底下的什么。
+      <</language>>
+    <<case 'main-private'>>
+      <<language>>
+        <<option 'EN'>>
+          You sit on the outer step beside the stranger. They put the bag between their shoes and yours. For a while they ask questions about simple things: whether you have eaten, whether there is water, whether you have hurt your feet. You can answer those.
+          <br><br>
+          Then they ask whether you can come with them. You look at the bag. The food in it is ordinary food. It was going to be for all of you. The person says you can take it. You look towards the room instead.
+          <br><br>
+          "They'll know I've gone."
+          <br><br>
+          They do not ask who "they" are. They say you can wait in the garden while help is found. You ask whether the person will stay there too. They cannot stay and go for help at once. For a few seconds both of you are silent about that.
+          <br><br>
+          They leave a folded paper with a name and a place you can ask for. They point out the nearest turn, then make you repeat it. You repeat it wrong. They show you again without sounding angry. The paper does not look like the paper from the laboratory. It has ordinary letters and a little stain from the bag.
+          <br><br>
+          You stay outside while their footsteps reach the gate. They turn back once. You lift the paper so they will know you have kept it. Their bag swings when they start walking again, and you listen until it no longer knocks against their leg.
+          <br><br>
+          There is food on the step and a place to ask for another person. You have not decided that you must stay forever. Right now you can sit here with the gate visible and the bedroom farther away. You unfold the paper once more, trying to make the turn in the street as clear as the small ink line.
+        <<option 'CN'>>
+          你坐到外面的台阶上，陌生人就在旁边。他把袋子放在你们两双鞋之间。一开始，他只问些简单的事：你吃过东西没有，还有没有水喝，脚有没有弄伤。这些问题，你都能回答。
+          <br><br>
+          随后，他问你愿不愿意跟他走。你望向袋子，里面装着普通的食物，本来是要给大家吃的。他说，那些也可以一起带走。你却转头去看那间屋子。
+          <br><br>
+          “他们会知道我走了。”
+          <br><br>
+          那人没有问你，“他们”指的是谁。他说，在找到帮手之前，你可以先在花园里等。你问他会不会也留在那里。可他没办法既陪着你，又出去找人。你们为这件事沉默了好几秒。
+          <br><br>
+          他给你留下一张折起来的纸，上面写着一个名字，还有能去找他的地方。他指给你看最近的转弯，随后让你重复一遍。你说错了。他重新指了一次，没有显得生气。那张纸不像实验室里的纸，上面只是普通的字母，还有袋子蹭上去的一点污迹。
+          <br><br>
+          你仍坐在外面，听着他的脚步走到大门。他回了一次头，你就把纸举起来，好让他知道自己已经留好。再次迈步时，他的袋子来回晃动，你一直听到它不再轻轻撞着他的腿。
+          <br><br>
+          台阶上有食物，纸上也有一个能去找其他人的地方。你没有决定自己必须永远留下。只是现在，你能坐在这里，看得见大门，也离卧室远一些。你又展开那张纸，努力让街上的转弯也像纸上那一小段墨线一样清楚。
+      <</language>>
+    <<case 'main-night-food'>>
+      <<language>>
+        <<option 'EN'>>
+          You find a small scrap for your list. Bread. Water. You write too close to the edge, and the last word turns up the side. You tilt your head to check it. There ought to be something else, but you cannot decide whether it belongs on a list for tomorrow or in a question for an adult.
+          <br><br>
+          The folded paper with the name lies beside your cup. You read it again. It is still the same name. You do not have to choose a face from a room full of faces before knowing what was written. You put the little list beneath it rather than let the two pieces drift apart.
+          <br><br>
+          At supper you put your plate on the table. You lift another by habit, then leave it on the counter. You carry the food upstairs and leave it on the floor outside the bedroom now. You can set it down without crouching beside the gap, then return downstairs to the chair while your own food is still warm.
+          <br><br>
+          You sit where you can see the hall. A scrape comes from upstairs while you are chewing. You stop with the food in your mouth until it stops. Then you force yourself to swallow. Eating takes a long time this way. You move the folded paper farther from the cup so spilled water will not take the ordinary name away.
+          <br><br>
+          Your elbow knocks the cup. You catch it before it falls. For a moment you wait for the hand that would have caught it first. Yours is the only hand here. You find the coat button beneath your other wrist and press it once. It is still sewn on. You move that arm onto your lap before it can knock anything else.
+          <br><br>
+          It is not Sydney's cup. You can see that clearly now. You take another mouthful with your eyes on the doorway. Knowing which cup broke has not brought anybody back to the table. Outside, someone speaks beyond the gate. You cannot hear enough to know whether it is the person from earlier. You remain where the doorway is visible.
+          <br><br>
+          You finish the last piece. It has gone cold. There is still water, still a way to the garden, and still someone who has seen the window from outside. You wait for someone to ask whether you want more, then remember you can stand without permission. The chair makes a noise. The stairwell answers with another scrape.
+          <br><br>
+          You stand still until the scrape stops. At the sink you rinse the plate, turning off the tap between mouthfuls of water so you can listen. You resent how often you have to listen. The loaf is still on the counter. You cover it, then move the knife away from the edge. Your sleeve looks too small to be doing all of this, but the bread will dry if it is left out.
+          <br><br>
+          You carry the cup upstairs in one hand. On the landing, you use the other to keep the empty plate between yourself and the bedroom gap as you pass. A silver nail clicks against its underside. You nearly throw it, then hold on and take another step along the passage. The folded paper is in your pocket now. You keep that side of your coat away from the doorframe.
+          <br><br>
+          In your room you wish Sydney could see that you managed supper. Then you imagine <<nnpc_him 'Sydney'>> carrying a plate past that hand. You put your own plate down, then the cup. You check the door before finding a place for the two papers.
+        <<option 'CN'>>
+          你找到一小片纸，准备写张清单。面包，水。字离边缘太近，最后那个词只好顺着纸边拐上去。你歪着头，确认自己还能读清。似乎还应该再写点什么，可你分不清，那件事究竟应该留在明天的清单上，还是留着问一个大人。
+          <br><br>
+          那张写着名字的折纸就放在杯子旁。你又读了一次，还是同一个名字。不必先从一屋子的脸里选出哪一个，纸上的字才会确定下来。你把小清单放在它下面，免得两片纸各自飘开。
+          <br><br>
+          晚饭时，你把自己的盘子放到桌上。你习惯性地举起另一只，随后又留在柜台。现在，你把给父母的食物送上楼，放在卧室外的地上。你可以不用蹲在那道缝隙旁边，把东西搁下，再趁自己那份还没凉，下楼回到椅子上。
+          <br><br>
+          你挑了能看见大厅的位置坐。咀嚼到一半，楼上的刮擦又响起来。你把食物含在嘴里，等那个声音停了，才逼着自己吞下去。这样吃饭得花很久。你把折纸挪得离杯子远些，免得水洒出来，把那个普通的名字也泡坏。
+          <br><br>
+          手肘还是碰到了杯子。你赶在它掉下去之前抓住。有那么一瞬间，你还等着那只以前会先替你扶稳它的手。这里却只有你自己的手。另一边的手腕下面碰到外套扣子，你用指头压了一次，它还缝得好好的。你把那条胳膊挪到膝上，免得又碰到别的东西。
+          <br><br>
+          这只杯子不是悉尼的，现在你能看得很清楚。你又吃了一口，眼睛始终留意着门口。即使终于知道哪一只碎了，也没有人因此回到桌边。外面有人在大门附近说话，你听不清内容，不知道是不是先前的那个人。你仍留在能看见门口的位置。
+          <br><br>
+          最后一块终于吃完了。它已经凉透。家里仍然有水，仍然有一条去花园的路，也仍然有人从外面看见过破掉的窗户。你等了一会儿，等着谁问还要不要，随后记起，不必再得到允许也能够站起来。椅子挪动的声响刚停，楼梯间就用另一声刮擦回答。
+          <br><br>
+          你一动不动，直到它也停下。在水槽边，你洗了盘子，每喝一口水就把龙头关掉，听听外面的声音。你开始讨厌，自己怎么时时刻刻都得这样听。面包还在柜台上。你把它盖好，将刀挪到远离边缘的位置。做着这些事情的袖子看起来太小了，可要是不盖住，面包明天就会干掉。
+          <br><br>
+          你用一只手拿着杯子上楼。到了上层平台，经过父母门前时，另一只手把空盘子挡在自己和卧室缝隙之间。一根银色指甲敲到盘底。你差一点把它扔了，最后仍握紧，沿着过道继续迈出一步。现在，折纸已经在你的口袋里。你让外套的这一侧避开门框，没有挤过去。
+          <br><br>
+          到了房间，你很想让悉尼看见自己终于做好了晚饭。随后，你却想到，<<nnpc_him 'Sydney'>>也得拿着盘子经过那只手。你把自己的盘子放下，再放好杯子，先检查门，再为那两片纸找一块能够放好的地方。
+      <</language>>
+    <<case 'main-night-room'>>
+      <<language>>
+        <<option 'EN'>>
+          The cup is beside the bed. You check its water before turning away. You have carried it this far without losing all of it. The plate rests by the chair, where nobody has to lift a sheet to reach it.
+          <br><br>
+          You arrange the covers so your feet could get out quickly. You place the chair where you can reach it from the bed, then move it away from the door because you are afraid of being unable to open it yourself. You try the handle before lying down.
+          <br><br>
+          A knock comes from the passage, close to the floor. Two sounds, a pause, another. You sit up expecting Sydney. You remember where the bedroom is. The next knock comes from so low down that it seems to touch the underside of your mattress.
+          <br><br>
+          You put your feet back under the covers. You find the loose stitch. You listen for the stairs without calling any name. You have heard too many sounds answer the wrong things today. The folded paper is at the edge of your pillow. You move it where you could find it in the morning without reaching beneath the bed.
+          <br><br>
+          You have been asked to stay outside, and part of you is angry with yourself for coming upstairs instead. Another part wants the old bed badly enough to hold its edge while you stand. You could still put your shoes on. You remain where you can see the latch.
+          <br><br>
+          The edge of the lamplight has not reached the bed. You keep one finger hooked in the thread, waiting to learn whether that last knock will come again before you are asleep. Tomorrow you can use the name once more. For tonight you lie down with the cup in sight and both of those ordinary things unfinished.
+        <<option 'CN'>>
+          杯子就在床边。转头以前，你先看看里面的水。至少，拿到这么远，也没有把水全洒掉。盘子放在椅子旁，这里不会有谁得掀起一层被单，才能够到它。
+          <br><br>
+          你重新整理被子，好让两只脚能够迅速钻出去。椅子先被挪到从床边就能拿到的位置，随后又被你移开门口，因为你也怕自己会因此打不开门。准备躺下时，你先试了一遍把手。
+          <br><br>
+          过道里响起贴近地板的敲击声。先是两声，停顿以后，又是一声。你坐起来，一时以为会是悉尼。随后，你记起那间卧室究竟在哪里。下一次敲得太低了，仿佛直接碰到你的床垫底下。
+          <br><br>
+          你把双脚收回被子里，重新摸到那针松线。你听着楼梯，没有叫出任何人的名字。今天，已经有太多声音回答过不属于它们的东西。折纸放在枕头边缘，你把它移到早晨伸手就能找到的位置，不必再往床下摸。
+          <br><br>
+          那人本来让你待在外面。有一部分的你为自己又上了楼而生气，另一部分却太想回到这张旧床，连站着也要握住床沿。你仍然可以重新穿上鞋。最后，你留在了能够看见门闩的地方。
+          <br><br>
+          灯光的边缘还没有到床边。你用一根手指勾着线，等着听，最后那声敲击会不会在自己睡着之前再次传来。明天，你还可以再用一次纸上的名字。今晚，你先躺下，让杯子留在眼前，也让这两件普通的事都不必立刻做完。
+      <</language>>
+    <<case 'main-morning'>>
+      <<language>>
+        <<option 'EN'>>
+          You wake with the latch still in sight. The square of window light has moved off your knees. Your cup is where you left it, and nothing has pushed it over while you slept.
+          <br><br>
+          You sit up before remembering the house. For a moment you have an ordinary morning to waste: a sleeve to straighten, a shoe to find, a reason to stay in bed until somebody calls. Then you hear the low movement beneath the room and keep both feet on the mattress.
+          <br><br>
+          The paper with the adult's name has slipped beside your pillow. You find it by touch and unfold it. The ink has not become a drawing. You say the name quietly, then the turn in the street. You can still remember them. You do not know whether the person is coming today.
+          <br><br>
+          You want to look out first. You also want breakfast. The second want comes from your stomach and does not wait for the first to be answered. You fold the paper into your coat pocket, where it cannot drift under the bed, and lace your shoes.
+          <br><br>
+          In the upper passage, your parents' door stands as it did last night. You wait until you can hear the breath from below the bed, rather than somewhere along the boards. Then you pass it and reach the stairs, pausing where the rail is loose. The wood holds when you put your weight nearer the post. You use that part.
+          <br><br>
+          You go down to the kitchen. It smells of yesterday's bread. There is a little food left on the counter. You eat a corner before taking the knife. You have not decided that the morning is safe. You have found enough room to begin it.
+        <<option 'CN'>>
+          你醒来时，还能看见门闩。窗户投下的那块方形光已经离开了你的膝盖。杯子仍在你留下的位置，没有什么趁你睡着，把它推倒。
+          <br><br>
+          你先坐起来，随后才想起这座房子。刚刚那一瞬间，仿佛本来是可以随便磨蹭的普通早晨：整理袖子，找一只鞋，想个理由继续待在床上，直到有人来叫。楼下却传来低低的动静，你立刻把两只脚都留在床垫上。
+          <br><br>
+          写着那个大人名字的纸滑到了枕头旁。你摸索着找到它，展开来，纸上的墨迹没有变成一幅画。你小声念了一遍名字，又念了一遍街上该转的弯。你仍然记得这些。你不知道，那个人今天会不会回来。
+          <br><br>
+          你想先看看外面，也想吃早餐。第二种想法从肚子里来，不肯等第一种得到回答。你把纸折好，放进外套口袋，免得它飘进床底，然后开始系鞋带。
+          <br><br>
+          上层过道里，父母的卧室门和昨晚一样半开着。你耐心等到自己能够听清，那口呼吸是在床底，而不是过道的某一块木板旁。随后，你经过房门，走到楼梯，在扶手松脱的地方停住。靠近柱子压下去时，那里的木头还撑得住，于是你只扶着那一段。
+          <br><br>
+          你下楼走进厨房，闻到昨天面包留下的味道。柜台上仍有一些食物。你先吃掉一小角，再伸手拿刀。你还没有决定这个早晨已经安全，只是找到了足够开始它的一点地方。
+      <</language>>
+    <<case 'main-breakfast'>>
+      <<language>>
+        <<option 'EN'>>
+
+          The old kitchen knife has a smooth dark wooden handle. You turn it until the blade faces away from your fingers, copying a movement you have watched many times. The first slice is too thick. The next breaks. You put the broken pieces on your own plate and feel briefly, fiercely annoyed with the bread.
+          <br><br>
+          Before the windows broke, your parent would have taken the knife and finished. You hold it still until that thought passes. Then you finish the third portion yourself and lay the blade flat, far from the counter's edge.
+          <br><br>
+          Three portions, a cup of water. You can make one trip if you balance everything. You can leave some behind and carry a single plate. <span class="blue">With only one hand occupied, you would still be able to move the chair or catch yourself.</span> You test the weight before lifting anything.
+          <br><br>
+          You check the spoon before filling the cup. There is a little bread stuck to it. You clean it, and for a moment the smallest part of the morning belongs only to that small piece of bread.
+          <br><br>
+          Then you hear the bedroom again. You have finished cutting. It is time to decide how much your hands should hold on the next trip.
+        <<option 'CN'>>
+
+          旧菜刀的深色木柄很光滑。你转了转，让刀刃远离手指，学着看过很多次的动作。第一片太厚，下一片断了。你把碎的放进自己的盘子，一瞬间只觉得这条面包可恨。
+          <br><br>
+          窗户破掉以前，父母会接过刀，替你切完。你停住，等这个念头过去。随后，第三份也由你切好。你把刀平放，离柜台边缘很远。
+          <br><br>
+          三份食物，一杯水。全都端稳，一趟就能拿完。也可以留下一些，只拿一只盘子。<span class="blue">只占用一只手，还能挪椅子，或者在摔倒时撑住。</span>拿起之前，你先试了试分量。
+          <br><br>
+          给杯子装水以前，你看了看勺子。上面粘着一点面包。你把它清掉。有那么一瞬间，这个早晨里最小的部分，终于只和那一点面包有关。
+          <br><br>
+          随后，卧室里的动静又传来。面包已经切完，你得决定，下一趟要让自己的两只手拿多少东西。
+      <</language>>
+    <<case 'main-kitchen'>>
+      <<language>>
+        <<option 'EN'>>
+          The breathing is behind you.
+          <br><br>
+          You stop beside the table. You were listening towards the upstairs bedroom. Now the breath is at the kitchen door. Something has come down the stairs and moved across the part of the hall you could not see from the counter. Below the door's edge is a fold of black cloth, dragging over the floor. The smell reaches you before the pale fingers do.
+          <br><br>
+          <<if $LostLamb.marks.includes('breakfast-full')>>Both hands are full. You try to put everything down before it comes nearer, but the cup slides against a plate. Water strikes the floor. The black cloth moves at once. You let the plates fall onto the table, catch its edge with wet fingers, and pull your legs behind it. A silver nail catches the fallen cup instead of your ankle. You cannot pick the cup up.<<else>>You keep the plate close and seize the chair with your free hand. One leg catches under the table. You jerk it loose and put the chair between your knees and the doorway. Something presses against its back, hard enough to slide it. You put the plate down before bracing both arms against the table. The chair holds for another breath.<</if>>
+          <br><br>
+          "It's breakfast," you say.
+          <br><br>
+          For an instant you expect that to matter. The fingers close around empty air. You move sideways, never closer, until you can reach the garden door. Its handle is cold and ordinary. You get outside and keep hold of it until nothing follows.
+          <br><br>
+          You keep watching from outside. The food is still on the table, and there is enough bread for today. The cloth has not moved into the doorway. You need somewhere to stand where another person can see you, but the small shelf with the household coins is beside that door.
+          <br><br>
+          You stay outside long enough to see that the pale shape has not found the doorway. The chair and the cup do not return to their old places by themselves.
+          <br><br>
+          <<if $LostLamb.marks.includes('breakfast-full')>>You look at your wet hands. They had no room left for the table edge until everything fell.<<else>>You look at the chair you were able to pull. It has bought a little room, not a whole safe house.<</if>> You need to use the room before something else takes it.
+        <<option 'CN'>>
+          呼吸声就在你身后。
+          <br><br>
+          你停在餐桌旁。你一直留意着楼上卧室的方向，现在那口呼吸却已经来到厨房门边。有什么下了楼梯，经过刚才从柜台上看不见的那段大厅。门沿下面，一折黑布拖着地板。苍白的手指还没有出现，你却已经闻到那股气味。
+          <br><br>
+          <<if $LostLamb.marks.includes('breakfast-full')>>你的两只手都拿满了东西。你想趁它还没靠近，把全部放下，杯子却先沿着盘子滑了一下。水洒在地板上，黑布立刻动了。你顾不上放稳，让盘子落到餐桌上，用湿透的手指抓住桌沿，将双腿收进桌子后面。一根银色指甲勾住了掉下去的杯子，没碰到你的脚踝。你却也再捡不回那只杯子。<<else>>你把盘子拿近身体，用空着的手抓住椅子。一条椅腿卡在桌下，你猛地把它扯开，挡在膝盖与门口之间。有什么压上椅背，力气大得让它往后滑。你赶紧放下盘子，用两条胳膊抵住餐桌。椅子又替你挡住了够喘一口气的时间。<</if>>
+          <br><br>
+          “是早餐。”你说。
+          <br><br>
+          有那么一瞬间，你以为这句话应该有用。那些手指却合拢在空处。你往侧面挪，始终没有靠近它，直到终于够到花园门。门把冰凉，仍然只是个普通的门把手。你走出去，一直握着它，等到确定没有什么跟来。
+          <br><br>
+          你继续从外面看。食物仍留在桌上，今天的面包暂时够了。那段布没有挪到门口。你需要一块站在那里就能被别人看见的地方，可放着家用零钱的小架子，偏偏也在这扇门旁。
+          <br><br>
+          你在外面待了一会儿，直到看清那个苍白的身影还没来到门口。椅子和杯子都没有自己回到原来的位置。
+          <br><br>
+          <<if $LostLamb.marks.includes('breakfast-full')>>你低头望着湿透的双手。直到手里的东西全掉下去以前，它们都没有空出来，能够抓住桌沿。<<else>>你看看自己勉强拉动的那把椅子。它只替你换来一点可以站的地方，没有换来一整座安全的房子。<</if>>你需要趁这块地方还没被别的东西占住，就先用上它。
+      <</language>>
+    <<case 'main-cup'>>
+      <<language>>
+        <<option 'EN'>>
+          Outside, you are still holding your hands as though there are plates on them. You lower one, then the other. The wet sleeve sticks to your wrist. You pull it free with your teeth because looking down for long feels unsafe.
+          <br><br>
+          The cup lies inside near the table leg. You can see the handle. It is not broken. You keep thinking that you should fetch it, although the distance between it and the doorway has not become any smaller.
+          <br><br>
+          You put one foot forward. Something shifts behind the table. You take the foot back. The cup is a cup. Your parent will not become angry in the old way because it is left on the floor. You cannot make yourself believe that entirely, but you can make yourself stay outside.
+          <br><br>
+          When the sound moves away, you use the doorway to reach the small shelf beside it. The household coins are there. You take only the loose ones, leaving the container rather than letting it knock against the frame. Your fingers keep losing the smallest coin. You pick it up from the step where you can see both sides of your hand.
+          <br><br>
+          For a moment you think of the stranger's paper in your pocket. You cannot bring yourself to unfold it beside this open doorway. You can remember the shop. People stand there to buy things. You could stand there too, even if you do not have the right words for anything besides bread.
+          <br><br>
+          At the gate you stop and look back. The cup remains by the table. Its absence from your hand is not a secret anybody can point at in the street. You put the coins deep in your pocket and leave your hands outside it, so they will be free if someone asks you to come nearer.
+        <<option 'CN'>>
+          到了外面，你的两只手还维持着端盘子的样子。你先放下一只，再放下另一只。湿透的袖子贴在手腕上。你用牙咬住，把它稍稍拉开，因为一直低头看着手，似乎也会不安全。
+          <br><br>
+          杯子倒在屋里的桌腿附近。你看得见把手，它没有摔碎。你不断想着自己应该去捡，尽管杯子与门口之间的那段距离，始终没有变短。
+          <br><br>
+          你往前伸出一只脚。桌后有什么挪动了一下，你又把脚收回。杯子只是杯子。即使它留在地上，父母也不会再像以前那样为这件事生气。你还不能完全相信这点，却至少能让自己待在外面。
+          <br><br>
+          那阵声音移开以后，你从门口伸手去够旁边的小架子。家里的零钱还在那里。你只拿了几枚散着的，没有带上盛它们的容器，免得容器碰响门框。最小的一枚不断从指间滑脱。你在台阶上捡起它，这里能看见自己的两只手，没有什么遮住。
+          <br><br>
+          有那么一瞬间，你想起口袋里那张陌生人留下的纸。可站在这个敞开的门口，你还不敢把它展开来，慢慢查看上面的字。不过，你仍记得商店在哪儿。人们会站在那里买东西，你也可以站在那里，哪怕除了面包之外，其他事情都还找不到合适的说法。
+          <br><br>
+          走到大门，你停下来回头看。杯子仍在桌边。自己没有把它拿在手上，并不是街上随便谁都能看出的秘密。你把硬币塞进口袋深处，让双手留在外面。假如有人叫你走近一点，它们至少能够空着。
+      <</language>>
+    <<case 'main-chair'>>
+      <<language>>
+        <<option 'EN'>>
+          The chair catches on the garden sill. You keep pulling until you are sure the black cloth has not reached the other side, then let it go. Its legs point into the kitchen. Your own legs are in daylight.
+          <br><br>
+          You sit on the step. You can feel where the chair struck one knee. The mark is small and ordinary. You rub around it instead of on it, and wait for your breath to stop sounding like a shout.
+          <br><br>
+          Inside, something moves the chair by one leg. You stand immediately. It stops. You cannot tell whether it is trying to get through or merely trying to move what you put there. You do not have to decide before stepping away.
+          <br><br>
+          For a while you stand near the wall and watch the ordinary gate. A cart reaches it, passes, and goes on. You wonder if the driver could see you. You try lifting a hand, but the cart has already turned. You have not missed the only person in the town. There will be another.
+          <br><br>
+          You reach the little shelf from the doorway when the movement has gone back into the hall towards the stairs. There are household coins. You take enough that you do not have to search for the smallest at the counter, keeping one hand free while you close the container. You have learned that a free hand matters. You wish the lesson had come from somebody telling you, instead of something pressing against the chair.
+          <br><br>
+          Before leaving, you move just far enough to see that the route from the step to the gate is clear. You do not inspect every window. You go along the path with both hands empty, and try the sentence you might say at the shop. The first word comes out. You try the next.
+        <<option 'CN'>>
+          椅子卡在通往花园的门槛上。你继续拉，直到确定那段黑布还没到门的这一侧，才放开手。椅腿朝着厨房。你自己的两条腿，已经到了日光里。
+          <br><br>
+          你坐上台阶，感觉到膝盖刚才被椅子撞过的位置。那个印子很小，只是普通的碰伤。你用手轻轻揉它周围，没有直接压上去，等着自己的呼吸不再响得像喊叫。
+          <br><br>
+          里面有什么碰着一条椅腿，开始挪动椅子。你立刻站起来。动静停了。你分不清它想挤过来，还是只想挪走你放在那里的东西。你不必先弄清，才能往旁边退开。
+          <br><br>
+          有一阵子，你贴着墙，看着那个普通的大门。一辆车驶来，从门前经过，又继续往前。你不知道车上的人有没有看见你。你试着举起手，车却已经转了弯。你没有错过整个小镇上唯一的人。还会有下一个人经过。
+          <br><br>
+          动静退回大厅、朝楼梯去了以后，你从门口够到小架子。家用零钱还放在那里。你多拿了几枚，免得到了柜台前，还得翻找最小的那一枚。合上容器时，你仍留着一只手空着。你已经学会，空出的手会有用。你很希望这个道理只是有人告诉过你，而不是有什么从另一边抵住了椅子。
+          <br><br>
+          离开之前，你只走到能看清台阶通往大门的路的位置，没有逐一检查所有的窗户。你沿着小路往前，两只手都空着，试着练习自己在商店里可能会说的话。第一个字终于出了口，你又开始试下一个。
+      <</language>>
+    <<case 'main-shop'>>
+      <<language>>
+        <<option 'EN'>>
+          At the corner shop a woman is arguing over the price of a loaf. You wait behind her and listen to every ordinary word. She takes the loaf after all. The person at the counter tells you to come nearer.
+          <br><br>
+          You ask for food. Your first try is too quiet. The question comes again, less patiently, and you have to say it louder. A bag is filled. You count the coins twice. The counter has a worn place where people rest their elbows, and someone has drawn a moustache on a face in the notice beside it.
+          <br><br>
+          You laugh before you know you are going to. The person at the counter looks round, sees the notice, and says they will have to take it down. You apologise. "You didn't draw it," they say, and push the change across.
+          <br><br>
+          The bag is warm on one side. You hold that side against your stomach. For a little while the kitchen seems far enough away to be somewhere you could tell a story about.
+          <br><br>
+          Then you see a pale reflection in the glass behind the counter. You turn so quickly that the bag bumps the wood. Only an ordinary customer is standing behind you. The person at the counter asks whether somebody is waiting for you outside.
+          <br><br>
+          You have an answer ready. It is the easy one. Their eyes drop to your shaking fingers, and they ask again, more gently. You could let them walk part of the way with you. You could take the bag and say someone is waiting at home.
+          <br><br>
+          The person has waited through the startled turn without laughing. You have seen an adult notice something ordinary was not ordinary enough for you.
+          <br><br>
+          You think of the name on yesterday's paper. It was help you could ask for, not the only help the town contained. This person is here now. You can ask for the small thing they can actually do.
+        <<option 'CN'>>
+          街角商店里，一个女人正在为一条面包的价钱争论。你排在后面，听她说每个普通的词。最后，她还是拿走了面包。柜台后的人叫你靠近。
+          <br><br>
+          你要食物。第一次太轻，对方没听清。问题又来一次，语气没那么耐心了，你只好说大声。袋子装好，你数两遍零钱。柜台上，人们搁手肘的位置已经磨旧，旁边告示中的一张脸被人画上胡子。
+          <br><br>
+          你还没反应过来，就笑了。柜台后的人回头，看到告示，说得把它揭下来。你道歉。“又不是你画的。”对方把找零推来。
+          <br><br>
+          袋子一侧是暖的，你让那面贴着肚子。有那么一会儿，厨房远得像一个可以拿来讲故事的地方。
+          <br><br>
+          随后，柜台后的玻璃映出一个苍白的影子。你转得太急，袋子撞到木头。身后只有一位普通顾客。柜台后的人问，外面有没有谁在等你。
+          <br><br>
+          你已经有答案了，容易的那个。对方看向发抖的手指，又问一次，这次轻些。可以让对方陪你走一段，也可以拿着袋子，说家里有人在等。
+          <br><br>
+          对方等着你从刚才惊慌的转身里缓过来，没有发笑。至少，有个大人已经看出，那些再普通不过的东西，对现在的你来说也不再那么普通。
+          <br><br>
+          你想起昨天那张纸上的名字。那是一个可以去找的帮手，不是整个镇子里唯一的帮助。现在，眼前这个人就在这里。你可以问一件他确实能够做的小事。
+      <</language>>
+    <<case 'main-help-home'>>
+      <<language>>
+        <<option 'EN'>>
+          "Something's wrong." You say it before the person can put the change away. The words are louder than you meant. The customer behind you stops reaching for the counter.
+          <br><br>
+          You look at that customer and try to say you meant nothing. The shopkeeper puts one palm flat on the wood, not touching you, and asks what you need right now. You point towards the door. You want somebody along the street beside you. That is a thing you can ask for without naming the thing in the house.
+          <br><br>
+          They arrange for the other person to mind the counter and take off their apron. You wait while they put it somewhere ordinary. You have been afraid they would need to decide everything at once. They only ask which way to go.
+          <br><br>
+          You walk close enough that your sleeve nearly brushes theirs. They slow when you slow, but not like the Sydney who waited for you to choose every word. When you stop entirely, they ask whether you are tired. They choose a place on a low wall for you to sit. You did not have to imagine that place first.
+          <br><br>
+          At the gate they see the broken windows and go quiet. You say there was somebody yesterday. You cannot make the two adults into one adult who will certainly know what to do. The shopkeeper says to keep the paper if you still have it.
+          <br><br>
+          You go no farther than the garden for now. They stand by the entrance and listen, then come back to you instead of pretending there was no sound. They ask where you can sit without being close to that room. You show them the patch beside the wall. They say they will stay near the gate while you make yourself ready to leave it.
+        <<option 'CN'>>
+          “家里不对劲。”你赶在对方把找零收走之前说出了口。声音比你想要的大，身后的顾客也停下了伸向柜台的手。
+          <br><br>
+          你看看那个顾客，想改口说自己没有别的意思。店里的人把一只手平放在木柜台上，没有碰你，只问你现在需要什么。你指向门口。你想有人陪着自己沿街走一段。至少，这件事能问出口，不必先给屋里的东西起一个名字。
+          <br><br>
+          对方托另一个人照看柜台，脱下了围裙。你耐心等着，看围裙被放在一个再普通不过的地方。你原本怕，他必须先一次性弄清所有事情，才肯动身。可他现在只问，应该朝哪个方向走。
+          <br><br>
+          你靠他走得很近，袖子几乎碰到他的。你慢下来，他也跟着放慢，却并不像以前的悉尼，等着你把每一个字都挑好。你完全停住时，他问你是不是累了，在一段矮墙上找了个位置让你坐。不用你先想象出那个地方，才能真的坐下。
+          <br><br>
+          到了大门，他看见碎掉的窗户，安静下来。你告诉他，昨天也有一个人来过。可你不能把两个大人变成一个一定知道该怎么做的大人。他说，假如那张纸还在，就把它留好。
+          <br><br>
+          你暂时只走到花园。他站在入口附近听了一会儿，随后回到你身旁，没有假装自己什么声音都没听见。他问你，哪里能坐，又不必靠近那间屋子。你指向墙旁的一块地方。他说，他会先留在大门附近，等你准备好离开这里。
+      <</language>>
+    <<case 'main-alone-home'>>
+      <<language>>
+        <<option 'EN'>>
+          "Someone's waiting." You hear yourself say it and see the person at the counter relax. Their next words are about something easy: keep the warm food upright, do not lose the change, look before crossing.
+          <br><br>
+          You promise all three. You can manage promises about a bag and a street. The person puts a little more bread in before closing it. You thank them twice. The second time they smile, thinking you are being polite rather than trying to stay another moment.
+          <br><br>
+          At the corner you slow down. Nobody has followed you. You put the bag against your stomach and look back once more. The shopkeeper is helping the next customer. You have not made them vanish by giving the wrong answer. They are still there, and you could turn around.
+          <br><br>
+          You walk to the gate instead. The wall beside it is low enough to sit on. You put the bag down and sit, watching the path into the house. You were going to let the warm side of the bag make the kitchen ordinary again. It cannot do that from here.
+          <br><br>
+          There was a paper yesterday, with a name and a turn in the street. You say the turn aloud. You know how to ask at the shop now. You could give a message, or call to somebody passing, without making them come all the way to the bed.
+          <br><br>
+          You do not go inside immediately. The house has food enough for a little while. On this side of the wall you can be seen from the pavement. A person passes and asks whether you are all right. This time you say, "Not yet." They stop. You keep one hand on the bag and try to find a place in the sentence for what you need next.
+        <<option 'CN'>>
+          “有人在等我。”你听见自己这样说，也看见柜台后的人放松下来。对方接着说的事都很容易：拿稳热食，不要丢掉找零，过马路前看看两边。
+          <br><br>
+          三件事，你都答应了。关于袋子和街道的承诺，你还做得到。那人在封好袋口之前，又往里放了一点面包。你道了两次谢。第二次，他微笑起来，以为你只是在表现得有礼貌，没有看出你想多留一会儿。
+          <br><br>
+          到了街角，你慢慢停下来。没有人跟在身后。你把袋子贴到肚子前，又回头看了一次。店里的人正在招呼下一位顾客。你说错一句话，并没有让他消失。他仍在那里，你也仍然可以转身回去。
+          <br><br>
+          你还是走到了大门旁。那段矮墙可以坐，你放下袋子，坐着望向进屋的小路。本来，你想让袋子暖和的一侧，把厨房也重新变成普通的地方。可隔着这么远，它做不到。
+          <br><br>
+          昨天有人给你留下过一张纸，纸上有名字，也有街上应该转的弯。你把那个转弯说出声来。现在，你已经知道怎么到商店开口了。你可以留下消息，也可以叫住一个路人，不必先把那个人一直带到床边。
+          <br><br>
+          你没有马上进去。屋里的食物还够一小会儿。在墙的这一侧，人行道上的人至少能看见你。一个人经过，问你还好不好。这一次，你说：“还不好。”他停下来。你让一只手留在袋子上，努力在下一句话里，找到能够说出自己需要什么的位置。
+      <</language>>
+    <<case 'main-late'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if !$LostLamb.marks.includes('window-checked') and !$LostLamb.marks.includes('contact-left') and !$LostLamb.marks.includes('rest-space')>>The patch beside the garden wall is still in daylight. You have the bag and the paper. You sit with neither beneath the other, so you can find both without tipping everything out.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The shopkeeper is near the gate. They ask if you are ready. You say you need a little time. They give you that time without making the same question come again.<</if>>
+          You cannot do another morning like this simply by deciding to be braver. There are ordinary things that would make the next hour different: somebody knowing where you are, a place to sit, a view of the gate that does not put you in front of the open garden doorway.
+          <br><br>
+          You spread the paper on the flat part of the wall. The street turns have not become a picture of the house. You press its corners until the breeze cannot fold it over your fingers.<</if>>
+          <<if $LostLamb.marks.includes('window-checked')>>
+          <br><br>
+          You know which opening lets you see the gate without standing in front of it. You lower your eyes from the dark bedroom window upstairs. It cannot tell you whether the ordinary person is still coming.
+          <</if>>
+          <<if $LostLamb.marks.includes('contact-left')>>
+          <br><br>
+          The message says where to find you. You have not used up the name on the paper by asking once. There is somewhere for an answer to arrive besides the side of a bed.
+          <</if>>
+          <<if $LostLamb.marks.includes('rest-space')>>
+          <br><br>
+          Your legs have stopped shaking as much. You can stand without the bag pulling you sideways. You move it closer to the garden doorway, where you will not have to go back for it.
+          <</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('contact-left')>>Someone now knows where you mean to wait. <span class="blue">You can move your things while it is light</span>, or take a little longer to settle yourself first.<<else>>You need to say where you are, not just that something is wrong. The paper gives you a place to send those words.<</if>>
+        <<option 'CN'>>
+          <<if !$LostLamb.marks.includes('window-checked') and !$LostLamb.marks.includes('contact-left') and !$LostLamb.marks.includes('rest-space')>>花园墙边的那块地方仍有日光。你带着袋子和纸坐下，没有把任何一个压在另一个底下。这样就不必把东西全部倒出来，也能找到两样。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>店里的人还在大门附近。他问你准备好没有。你说自己还需要一点时间。他真的给了你这点时间，没有不断重复同一个问题。<</if>>
+          你不能只靠决定再勇敢一点，就重新过完一个这样的早晨。有几件普通的事，至少可以让接下来的一小时不一样：有人知道你在哪里，有一个能坐下的位置，有一处能望见大门、却不必正对那扇敞开的花园门的地方。
+          <br><br>
+          你把纸摊在墙面平整的部分。那些街道的转弯并没有变成房子的图画。你用手压住四角，不让风把纸折过自己的手指。<</if>>
+          <<if $LostLamb.marks.includes('window-checked')>>
+          <br><br>
+          你已经知道，从哪个开口能够看见大门，又不用站在它正前方。你不再仰望楼上那扇黑黑的卧室窗户。它不会告诉你，外面的普通人是不是仍然在路上。
+          <</if>>
+          <<if $LostLamb.marks.includes('contact-left')>>
+          <br><br>
+          消息已经说清，要在哪里找到你。你没有因为问过一次，就把纸上的名字用掉。除了床的一侧，现在还有别的地方可以等来一个回答。
+          <</if>>
+          <<if $LostLamb.marks.includes('rest-space')>>
+          <br><br>
+          双腿不再抖得那么厉害。你能够站起来，也不再被袋子的重量拉向一边。你把袋子挪到靠近花园门的地方，这样不必再为了拿它，走回刚才的位置。
+          <</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('contact-left')>>现在有人知道你打算在哪里等。<span class="blue">你可以趁天还亮把东西挪好</span>，也可以先多坐一会儿，等自己稳下来。<<else>>你需要告诉别人自己在哪里，不只是说这里出事了。纸上已经有一个可以送去这些话的地方。<</if>>
+      <</language>>
+    <<case 'main-window'>>
+      <<language>>
+        <<option 'EN'>>
+          You step just inside the kitchen and stand to one side of its garden-facing window. From here the glass reflects only a little of your face. The gate is beyond it, open far enough for an ordinary person to pass through.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The shopkeeper turns towards somebody outside. You cannot hear the words. They point once towards the house, then lower their arm when they see you watching. You know they have been talking about what they saw. You do not know what name they used for it.<<else>>The person who stopped on the pavement remains near the gate. They ask somebody passing which way the address on your paper is. You can see the other person point. There is a turn beyond the shop you would not have remembered on your own.<</if>>
+          <br><br>
+          You want to open the window and listen. The catch sticks. Before you can pull harder, you hear something from the upstairs bedroom through the stairwell behind you. You let the catch go. From this angle you can see outside without letting every noise outside into the room.
+          <br><br>
+          <<if $LostLamb.marks.includes('flower')>>A dry petal lies near the sill. You think of the flower you gave Sydney and look for the rest. There is no flower here, only a bit of leaf that the wind has pressed flat. You leave it alone.<<else>>A bit of leaf lies near the sill. You cannot remember whether it arrived today. You brush it aside with one finger, watching it move like an ordinary leaf.<</if>>
+          <br><br>
+          The person at the gate looks up. You raise your hand. They raise theirs immediately, then turn to speak again. They do not hold the arm in place until you decide what should happen. You let your own arm drop.
+          <br><br>
+          Inside, the breathing changes. Outside, the conversation continues. You move away from the window and back outside through the garden doorway before the first sound can make you forget there is a second.
+        <<option 'CN'>>
+          你刚踏进厨房，便站到朝向花园的窗户一侧。从这里，玻璃只映出你脸上的一小部分。再往外就是大门，开着的空隙够一个普通人从中间走过。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>店里的人转身，和外面的一个人说话。你听不见他们说什么，只看见他往房子这里指了一次。发现你在看，他又把手臂放低。你知道，他们正在谈论看见的东西，却不知道他们会用什么名字称呼它。<<else>>那位在人行道上停下的人仍在大门旁。他问了一个路过的人，纸上的地址应该怎么走。你看见那个人抬手指路。原来商店过去还得再转一个弯，只靠自己，你不会记起那段路。<</if>>
+          <br><br>
+          你想打开窗户，听清他们的话。窗扣卡住了。你还没敢更用力，楼上卧室的动静就顺着身后的楼梯间传下来。你松开窗扣。从这个角度，仍然能够看见外面，不必把外面的每一种声音都放进屋里。
+          <br><br>
+          <<if $LostLamb.marks.includes('flower')>>窗台边躺着一片干枯的花瓣。你想起给过悉尼的那朵花，低头寻找剩下的部分。这里却没有一朵花，只有一小片被风压平的叶子。你没有碰它。<<else>>窗台旁有一小片叶子。你记不清，它是今天才到这里的，还是已经待了很久。你用一根手指把它拨到旁边，看它像一片普通的叶子那样挪动。<</if>>
+          <br><br>
+          大门旁的人抬起头。你举起手，他立刻也抬手回应，随后又转回去继续说话。他没有一直把手臂举在那里，等着你决定接下来该怎样。你也慢慢把自己的手放下。
+          <br><br>
+          里面的呼吸变了，外面的谈话却还在继续。你赶在前一种声音让自己忘记还有后一种之前，从窗户旁退开，经过花园门回到外面。
+      <</language>>
+    <<case 'main-message'>>
+      <<language>>
+        <<option 'EN'>>
+          You begin with the parents. You stop before the first sentence is finished. If you write everything, somebody will have to believe everything before they can find you.
+          <br><br>
+          You turn the paper over. "At the garden gate." You add the street, though the person who left the paper ought to know it. Then you add that the bedroom is not safe. You do not write a name for what is underneath the bed. You cannot put the silver nails into a sentence without making them sound like something you saw in a picture.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The shopkeeper reads the words you show them. They ask whether you want to wait outside or go with them. You point to "garden gate" and say you want somebody there before you go past the room again. They repeat the place, not the whole story.<<else>>You show the message to the person on the pavement. They read it twice and ask if you can stand where they can see you. You move nearer the gate, then tell them the name on the other side of the paper. They know where to ask for that person.<</if>>
+          <br><br>
+          You want to make them promise an exact minute. They cannot. They can tell you where they are going and say they will come back this way. You write that place in small letters beneath your own. There are now two directions on the paper, and neither leads to Sydney's house.
+          <br><br>
+          The person asks you not to shut the gate. You leave it open. You press the message beneath the corner of the bag so it will not blow away, with the place to meet showing. From the street it is only a piece of paper. From here it means someone will not have to open the bedroom to learn where you went.
+          <br><br>
+          You say the place once more. This time the person answers with the same place. It is a small answer, but nobody has changed it to explain why the house became like this.
+        <<option 'CN'>>
+          你一开始想写父母的事。第一句话还没写完，你就停下来。如果把一切都写上去，别人难道得先相信全部，才知道该到哪里找到你吗？
+          <br><br>
+          你把纸翻过来。“在花园大门。”你又加上街道，虽然留下纸的人应该已经知道。随后，你写明卧室不安全。你没有给床底的东西起一个名字。那些银色指甲只要写进句子，就像你在什么图画里看见过的东西，不像真的会伸过来。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>店里的人读了你举给他看的字，问你想在外面等，还是和他一起走。你指着“花园大门”，告诉他，自己还要经过那间屋子，希望先有人站在这里。他重复了这个地点，没有重新复述整段故事。<<else>>你把纸给人行道上的人看。他读了两遍，问你能不能站到他看得见的地方。你往大门挪近了一点，随后告诉他纸另一面的名字。他知道应该去哪里找那个人。<</if>>
+          <br><br>
+          你想让他答应，在某个准确的分钟回来。他没办法承诺。他能够告诉你要去哪里，能够说回程还会经过这里。你用很小的字，把那个地方写在自己写的地点下面。纸上现在有两个方向，哪一个也不通往悉尼的家。
+          <br><br>
+          他让你不要关大门。你就留着它开着，把消息压在袋子一角下面，免得风吹走，同时让见面的地点露在外面。从街上看，这只是一张纸。从你这里看，这意味着别人不用打开卧室，也可以知道你去了哪里。
+          <br><br>
+          你又说了一遍那个地点。这次，他用同一个地点回答。那只是个很小的答案，却没有被谁改成，整座房子为什么变成这样的解释。
+      <</language>>
+    <<case 'main-rest'>>
+      <<language>>
+        <<option 'EN'>>
+          You move the bag out of the place where your feet will go. Then you sit on the low step with your back against the wall. The wall is warm where the sun has been on it. You had forgotten that something in the house could be warm without coming from a person.
+          <br><br>
+          The paper remains within reach. You do not pick it up again. You let one knee straighten, then the other, watching your shoes rather than the bedroom window. One lace has come loose. You tie it without trying to do anything else at the same time.
+          <br><br>
+          For a minute you are angry. At the bread, the chair, the adults who need more adults, Sydney for not being here. You try to put all the anger on the person who said goodbye at the gate. It will not stay there. You remember the unfinished sentence, the bag being taken, the way Sydney looked back at an adult before speaking.
+          <br><br>
+          You want to say that Sydney should have come anyway. You know the answer that would follow, and do not want it now. You are tired, and Sydney is not sitting beside you. You keep the words here on the step rather than call the wrong voice through the window.
+          <br><br>
+          An ordinary insect crosses your shoe. You jerk, almost sending the bag off the step. Then you watch it go down to the grass. You put the bag farther from your knee and keep sitting. A small mistake has happened without anybody's hand coming out of the dark.
+          <br><br>
+          When you stand, you do it slowly. Your legs ache less. You know where you will put each foot. The sunlight has moved, and you cannot save all of it, but there is still enough to see the next few steps towards the doorway.
+        <<option 'CN'>>
+          你先把袋子从自己落脚的位置挪开，随后坐到低低的台阶上，背靠着墙。太阳晒过的地方很暖。你几乎已经忘记，这座房子里也能有温暖的东西，不是从某个人身上来的。
+          <br><br>
+          纸仍留在够得到的位置，你没有再次拿起来。你先伸直一条腿，再伸直另一条，看着自己的鞋，没有去看卧室的窗户。一根鞋带已经松开。你就只管系好它，不同时试着做任何别的事。
+          <br><br>
+          有那么一分钟，你很生气。你气面包，气椅子，气这些还需要更多大人才能帮忙的大人，也气悉尼没有在这里。你试着把全部怒气都放到那个曾经在门边说再见的人身上，却留不住。你想起那句没有说完的话，被接走的袋子，还有悉尼开口之前，先回头看向大人的样子。
+          <br><br>
+          你想说，悉尼不管怎样都该来的。你知道这句话接下来会得到什么回答，现在却不想听。你很累，悉尼也没有坐在身旁。你把这些话留在台阶上，没有隔着窗户喊出那个名字，让屋里的别的声音回答。
+          <br><br>
+          一只普通的小虫爬过你的鞋面。你猛地缩了一下，差点把袋子碰下台阶，随后才看见它已经爬到草里。你把袋子挪得离膝盖远些，继续坐着。这次也有一个小小的失误，却没有哪只手因此从黑暗中伸出来。
+          <br><br>
+          站起来时，你慢慢地起身。腿已经没有那么酸了，你知道每一只脚应该往哪里放。日光移动了，你没办法把它全部留下，不过，通向门口的接下来几步，仍然亮得足够看清。
+      <</language>>
+    <<case 'main-attempt'>>
+      <<language>>
+        <<option 'EN'>>
+          You mean to move only the things beside the garden door. The bag is there, and a cup you can use outside. From the wall, the doorway looks close enough that you have already made the trip in your head.
+          <br><br>
+          You lift the bag first. Then you see the chair. It is not where you left it. One broken leg lies across the space that was clear. You put the bag down before trying to get past it.
+          <br><br>
+          The kitchen threshold is dark. Something in black cloth is between it and the stairs, lower than a person would be if they stood to speak to you. You cannot see whether the pale shoulder belongs to the thing from the morning or the other parent. You cannot see the upstairs bedroom door from here at all.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>You call to the shopkeeper by the gate. They come along the path, telling you to step back outside. For a moment you have a voice to follow. Then the pale shape moves across the entrance. The adult catches the door before it can strike you, and the noise makes the black cloth shift towards both of you. "Up," they say, seeing the stairs beyond it. "I'll stay here. Go up."<<else>>You turn towards the garden. The bag tips against the frame behind your heel. The pale shape moves at the sound. You have room to step back, but not room to turn without bringing your shoulder near it. You hear the person at the gate calling to ask what happened. Your voice will not reach them before the next movement.<</if>>
+          <br><br>
+          You leave the bag. The table is beside the garden doorway. A small tin sits near its edge, and the door beyond is open. On the other side of the hall a narrow strip runs against the wall towards the stairs. You look at both without moving your feet.
+          <br><br>
+          <span class="red">Yesterday's safe place is occupied. The window light ends before the staircase.</span> You can make a sound somewhere you do not intend to stand. You can try to get through the quiet strip before anything turns back towards you.
+        <<option 'CN'>>
+          你本来只想挪动花园门旁的几样东西。袋子还在那里，旁边也有一只可以拿到外面用的杯子。从墙边望过去，门口近得很，仿佛你已经在脑海里来回走过了一趟。
+          <br><br>
+          你先提起袋子，随后才看见那把椅子。它没有停在你留下的位置。一条折断的椅腿横在曾经空出来的路上。你把袋子放下，才试着从旁边经过。
+          <br><br>
+          厨房门槛很暗。裹在黑布里的东西停在门槛和楼梯之间，比一个站起来跟你说话的人低得多。你看不清，那块苍白的肩膀属于早晨的那一个，还是另一位父母。从这里，你甚至看不见楼上卧室的门。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>你朝大门旁的店里人喊了一声。他沿着小路过来，让你退回外面。有那么一瞬间，你有了一个能够跟随的声音。随后，那块苍白的影子移过入口。他赶在门撞上你之前接住门，发出的响声却让黑布转向了你们两个人。“上去。”他看见它后面的楼梯，“我留在这里。往楼上走。”<<else>>你转向花园。袋子在脚跟后面倾倒，碰响了门框。苍白的影子循着响声挪动。你还能够后退，却没办法转身，除非把肩膀带到离它更近的地方。大门旁的人正在喊，问你发生了什么。你知道，在下一次移动之前，自己的声音已经来不及传到那边。<</if>>
+          <br><br>
+          你把袋子留在原地。桌子靠着通向花园的门，一个小罐放在桌沿，更外面的门还开着。大厅另一边，一条窄窄的地方贴墙通向楼梯。你看着这两个方向，没有挪动自己的脚。
+          <br><br>
+          <span class="red">昨天能够站稳的位置已经被占住。窗户投下的光还没有到楼梯，就断开了。</span>你可以让某个声音出现在自己不打算停留的地方。你也可以试着趁它还没转回来，从那条安静的窄路挤过去。
+      <</language>>
+    <<case 'main-noise-way'>>
+      <<language>>
+        <<option 'EN'>>
+          You knock the tin towards the open garden door. It strikes the sill, bounces, and rolls outside. The cloth shifts after it. You run the other way. For a moment the room gives you the space you expected. Then a pale arm catches the banister above your head. You crouch before you know you have crouched and scramble beneath it. Your shoulder hits a stair. The tin is still rolling when you find the first stair.
+          <br><br>
+          A strip of cloth catches on the stair edge below you. You pull your own shirt up before it can brush that cloth. The tin strikes something in the garden and stops. You wish it would keep rolling.
+          <br><br>
+          The thing beneath you turns back. You hear weight press against the first step, then the wood give a small complaint. You go up the next two without waiting to hear the next. Your breath is louder than your feet now. You stop trying to make both quiet.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The adult at the entrance shouts towards the garden, drawing another movement away from your legs. You cannot see them from here. You keep climbing rather than turn their voice into a reason to go back.<<else>>The person outside calls again. You want to answer, but the breath needed for the next stair uses the whole word. You take the stair. There will be another place to speak if you reach the landing.<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('shortcut')>>You reach the turn and duck through before the thing below can follow, with the same quick movement that won the garden race. This time you do not stop to claim the win.<<elseif $LostLamb.marks.includes('waited')>>At the turn you almost wait for the person behind you, as you waited in the garden. You force your legs on. There is no friend to catch up.<<else>>You go up the narrow side of the stairs, keeping the wider part between yourself and the sound behind you.<</if>>
+          <br><br>
+          You find the rail's firm part by the post. You put your hand there, take the last step of the turn, and look towards the room that is still your room.
+        <<option 'CN'>>
+          你把小罐扫向开着的花园门。它撞上门槛，弹一下，滚到外面。黑布跟着动，你朝另一边跑。有一瞬，屋里果然空出了预想的位置。随后，一条苍白手臂抓上头顶的扶手。你还没想，就已经蹲下，从下面往上爬。肩膀撞到一级楼梯。你找到第一级台阶时，小罐还在滚。
+          <br><br>
+          下面的楼梯边缘勾住了一段布。你赶紧提起自己的上衣，不让衣角擦到它。扔到花园里的小罐撞上什么，终于停了下来。你很希望它还能继续滚，别这么快安静。
+          <br><br>
+          下面那个东西又转回来。你听见重量压上第一级台阶，木头发出一声细响。你不等下一声，就继续爬了两级。自己的呼吸已经比脚步响，你没有再试着让两种声音都安静。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>入口的大人朝花园喊了一声，把另一阵动静从你的腿旁引开。你在这里看不见他，却仍然继续往上，没有把那声喊叫当成应该回去的理由。<<else>>外面的人又在叫你。你想回答，下一阶却已经用掉了一整口气，连一个字也放不进去。你先把那级台阶踩上去。如果能到楼梯间，就还会有别的地方让你开口。<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('shortcut')>>到了转弯，你用赢过花园比赛的同一个急转身钻过去，没让下面的东西跟上。这次，你没停下来宣布自己赢了。<<elseif $LostLamb.marks.includes('waited')>>转弯时，你差点像在花园里那样，等身后的人。你逼着腿继续。没有朋友要追上来。<<else>>你沿楼梯窄的一侧上去，让更宽的那半边隔在自己和后面的动静之间。<</if>>
+          <br><br>
+          你找到靠柱子那段结实的扶手，把掌心放稳，迈过转角的最后一级台阶。那间仍然属于你的房间，就在前面。
+      <</language>>
+    <<case 'main-wall-way'>>
+      <<language>>
+        <<option 'EN'>>
+          You press yourself against the wall and move towards the stairs. You try not to brush the paper peeling near the skirting. Halfway there, the wall seems to end. A pale shoulder is beside it, low enough to be yours if you bent down. You stop. It moves when the bag falls sideways behind you. You slip past before it turns back, keeping your stomach pulled tight so your shirt will not touch it.
+          <br><br>
+          The peeling paper brushes your ear. You nearly swat at it. Instead you hold your arm close, where an ordinary movement will not strike the wall. The pale shoulder turns below you.
+          <br><br>
+          You have found the stairs, but the first board is the one that sounds loudest. You place a foot nearer its edge. The other foot comes up before you have decided whether it made too much noise. If you go back to check, you will be in the hall again.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The adult at the entrance says to keep going. You hear that they are afraid too. The words still help. You put the fear beside theirs for the time it takes to reach the turn, rather than wait for them to sound certain.<<else>>A voice outside asks where you are. You manage to say "upstairs", too quietly. You say it again at the turn. Your foot catches the stair lip while you speak, and you grip the post until it stops sliding.<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('shortcut')>>You reach the turn and duck through before the thing below can follow, with the same quick movement that won the garden race. This time you do not stop to claim the win.<<elseif $LostLamb.marks.includes('waited')>>At the turn you almost wait for the person behind you, as you waited in the garden. You force your legs on. There is no friend to catch up.<<else>>You go up the narrow side of the stairs, keeping the wider part between yourself and the sound behind you.<</if>>
+          <br><br>
+          You no longer know whether the whole route behind you is clear. You know the next stair is clear because you can see it. You take that one, keeping your body close to the rail where a reaching hand would have less room.
+        <<option 'CN'>>
+          你贴墙，往楼梯走，尽量不蹭到踢脚板旁翘起的墙纸。走到一半，墙像是到头了。旁边有一只苍白肩膀，低得你弯腰也会在那里。你停住。身后，袋子倒向一边，它循声动了。你赶在它转回来之前挤过，收紧肚子，不让上衣碰上。
+          <br><br>
+          翘起的墙纸擦到你的耳朵，你差一点抬手拍掉。最后，你只把手臂贴紧身体，没有让这个普通的动作敲响墙面。下面那块苍白的肩膀转动了。
+          <br><br>
+          你找到楼梯，第一块木板却偏偏是平时最响的那一块。你把脚放到更靠边的位置，还没想好刚才的声音会不会太大，另一只脚就已经抬了上来。假如回去检查，你就又得站到大厅里。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>入口的大人让你继续走。你听得出，他也害怕，可那些话仍然有用。爬到转角的这几步里，你让自己的害怕和他的声音一起留着，没有等他先变得完全确定。<<else>>外面的声音问你在哪。你勉强说出“楼上”，却太轻了。到了转角，你又说了一次。讲话的时候，脚尖勾住台阶边缘，你赶紧握紧柱子，等脚终于不再往下滑。<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('shortcut')>>到了转弯，你用赢过花园比赛的同一个急转身钻过去，没让下面的东西跟上。这次，你没停下来宣布自己赢了。<<elseif $LostLamb.marks.includes('waited')>>转弯时，你差点像在花园里那样，等身后的人。你逼着腿继续。没有朋友要追上来。<<else>>你沿楼梯窄的一侧上去，让更宽的那半边隔在自己和后面的动静之间。<</if>>
+          <br><br>
+          你不知道身后整条路是不是仍然空着。可下一阶就在眼前，能够看清，所以至少知道那里还能踩。你迈上去，让身体贴近扶手，尽量不在身旁留出一只手能够伸过来的空隙。
+      <</language>>
+    <<case 'main-upstairs'>>
+      <<language>>
+        <<option 'EN'>>
+          The landing is bright enough to make you blink. You had expected the dark to be waiting at the top as well. The window is still a window, with dust at its edge and a little crack you have seen before.
+          <br><br>
+          You stop for the smallest part of a breath. Below, the stair sounds again. You move before you can count how many steps have been taken. Your own door is ahead. The handle is at the height your hand expects.
+          <br><br>
+          You get inside and push. The door stops. For one instant you know that it has found the same wrong place as the doors in the other dreams. Then you look down. <span class="blue">The rug is bunched at the threshold.</span>
+          <br><br>
+          You could keep pushing. Your shoulder already wants to. It would make more noise and keep the rug there. You plant your shoe on one corner and pull it backwards. The fabric moves. You push again, and the opening grows smaller.
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>The person below calls that they are still at the entrance. You cannot see whether they are looking up. You say "here" while holding the door, giving them a place rather than trying to explain the movement on the stairs.<<else>>The voice outside calls your name. You say "here", then louder, "upstairs". The second word uses a breath you were trying to save. You are glad you used it when the voice answers.<</if>>
+          <br><br>
+          The edge of the rug is nearly out of the opening. You need to pull it a little farther while keeping the door from springing back. Your shoe begins to slip. You set your palm flat against the wood, trying to leave the fabric where it cannot keep the latch from catching.
+        <<option 'CN'>>
+          楼梯间亮得让你眨了眨眼。你原本以为，那片黑暗也会在楼梯顶端等着。窗户却仍是一扇窗，边缘积着灰，玻璃上有一道你以前就见过的小裂纹。
+          <br><br>
+          你只能停下不到一口气。下面的楼梯再次响了。还没来得及数，到底已经被踩过几阶，你就继续往前。自己的房门在前面，门把手仍留在你伸手时所记得的高度。
+          <br><br>
+          你钻进去，推门。门停住了。有那么一瞬间，你觉得它也停在另外两个梦里那些门停错的位置。随后，你低头看见，<span class="blue">地毯挤在了门槛上。</span>
+          <br><br>
+          你还可以继续推，肩膀已经想那样做了。可那只会让声音更响，也让地毯继续留在那里。你把鞋踩住地毯的一角，试着往后拖。布挪动了一点。你再推，门口的空隙终于缩小。
+          <br><br>
+          <<if $LostLamb.marks.includes('brought-help')>>楼下的人喊，他仍在入口。你看不见他有没有抬头。你一边抵门，一边回答“这里”，先给他一个位置，不试着解释楼梯上的那阵动静。<<else>>外面的人正在叫你的名字。你先说“这里”，随后更大声地说“楼上”。第二句话用掉了你本来想省下的一口气。不过，等那个声音答应时，你又庆幸自己用了。<</if>>
+          <br><br>
+          地毯边沿几乎已经挪出门口。你还得再把它拉开一点，同时让门别弹回来。鞋底开始打滑。你把掌心平贴在门上，试着让那块布留在不会挡住门闩的位置。
+      <</language>>
+    <<case 'main-latch'>>
+      <<language>>
+        <<option 'EN'>>
+          The little metal tongue enters its slot. You keep pressure on the wood until you have felt it catch, then move your palm a finger's width. <span class="green">The door stays where it is.</span>
+          <br><br>
+          There is movement on the landing. You look at the handle. It does not turn. Something touches the lower panel, pauses, and moves along the skirting towards another part of the house. You remain by the frame until you can hear it farther away.
+          <br><br>
+          You want to drag the wardrobe across the door. You look at its feet and imagine the sound they would make. It would take longer than a breath. You could leave it halfway across, with no way to pull the door towards you if the latch needed trying again.
+          <br><br>
+          Instead you put the chair beside the bed, where you can reach it without leaving the room. You know it will not hold a whole house safe. You are finding a place for your own body, not trying to pile every piece of furniture between it and the rest of the world.
+          <br><br>
+          You touch the coat pocket where the paper was. You left it beneath the bag beside the garden door. The ordinary name is still clear when you try it under your breath. The shopkeeper's bag, the stranger's shoes, the marked turn in the street: all of them can stay in your head without becoming the thing at the foot of the stairs.
+          <br><br>
+          Outside, somebody calls again. You cannot hear the whole question through the glass. You move close enough to say where you are, keeping the window between yourself and the voice. There is time to answer now. You give the room, then wait for the person to repeat it.
+        <<option 'CN'>>
+          门闩的小金属舌终于进了槽。你仍压着木头，直到确实感觉它已经扣住，才把掌心挪开一指宽。<span class="green">门没有跟着移动。</span>
+          <br><br>
+          楼梯间传来动静。你立刻望向门把手，它没有转动。有什么碰到下面的门板，停了一下，随后沿着踢脚板，向房子的别处移去。你仍待在门框旁，等到那个声音已经听起来离这里远了些。
+          <br><br>
+          你很想把衣柜拖过来堵住门。你看向柜脚，想象它们在地板上划过时会有多响。那肯定不止要花一口气。你也可能只拖到一半就不得不停，反而挡住自己的路。假如门闩还得重新试，你也没法再把门朝自己这里拉。
+          <br><br>
+          最后，你只把椅子放到床旁，这样不必走出房间，就能够到。你知道，它不能让整座房子都安全。你只是替自己找一块能待的地方，没有力气把每一件家具都堆在自己和外面的世界之间。
+          <br><br>
+          你摸摸刚才放纸的外套口袋。纸已经被留在花园门旁，压在袋子下面。可当你试着小声念一次，上面那个普通的名字仍然记得很清楚。店里人的袋子，陌生人的鞋，还有街上被指出的转弯，都仍可以留在你的脑海里，不必变成楼梯底下的东西。
+          <br><br>
+          外面又有人在叫。隔着玻璃，你听不清完整的问题。你挪到能够开口回应的位置，让窗户仍隔在自己和那个声音之间。现在，你终于有时间回答了。你说出自己在哪个房间，随后等那人重复一遍。
+      <</language>>
+    <<case 'main-brace'>>
+      <<language>>
+        <<option 'EN'>>
+          You pull before your foot is clear. The rug folds over itself instead of sliding out. The door strikes its thick edge and rebounds. <span class="red">Your fingers miss the latch.</span>
+          <br><br>
+          A weight meets the other side. You throw your shoulder against the wood. The opening is wider than a finger, narrow enough that you cannot see what is pressing there. A strip of black cloth reaches it first. You stare at that strip, forgetting the rug until the door moves another little distance.
+          <br><br>
+          You need the corner beneath your foot, not the whole rug at once. You put your heel on it. Your shoe slips. You turn the shoe sideways and catch the fabric against its edge, keeping your shoulder where the other weight is pushing.
+          <br><br>
+          Below you, the folded part moves. You draw it back a little, stop when the pressure changes, and draw it again. Your ankle aches before the door has enough room. When the thick edge starts coming clear, the latch is suddenly near your fingers.
+          <br><br>
+          You cannot reach the metal and hold the door steady with the same hand. You keep the shoulder there instead. Your knee is against the rug. You try not to push that down as well, and trap the very corner you have been trying to free.
+          <br><br>
+          Outside, an ordinary person has heard the noise. They ask whether you are hurt. You say your foot hurts. When they ask which window belongs to your room, you answer without taking your shoulder away. The weight on the other side changes, then returns.
+          <br><br>
+          You leave the wardrobe where it is. You cannot move all of it now. The corner of cloth can come towards your heel if you pull it a little farther. You watch that corner, keeping your body against the place that wants to open.
+        <<option 'CN'>>
+          脚还没有让开，你就开始拉了。地毯没滑出去，反而折叠起来。门撞上那条厚厚的边，又弹回你这边。<span class="red">你的手指错过了门闩。</span>
+          <br><br>
+          另一侧压来一股重量。你猛地用肩膀顶住木头。门口的缝比一根手指宽，却又窄得看不清，究竟是什么正压在那里。先挤进来的是一段黑布。你盯住它，一时忘了脚下的地毯，直到门又被推开一点。
+          <br><br>
+          你需要挪的是脚下那个角，不是一下拖走整张地毯。你把脚跟压上去，鞋却滑开了。你重新把鞋转向侧面，用鞋边勾住布，肩膀仍顶在另一侧的重量压来的地方。
+          <br><br>
+          折起来的那部分终于动了。你往后拖一点，门上的压力改变时就停住，随后再拖。门还没有足够合拢的位置，脚踝已经开始酸疼。厚边终于开始让开时，门闩忽然又到了手指能够到的地方。
+          <br><br>
+          你没办法用同一只手，既去够金属，又把门稳住。你只好继续让肩膀顶在那里。膝盖还压着地毯，你努力别让它也跟着用力，重新卡住那个好不容易才拖出来的角。
+          <br><br>
+          外面有个普通人听见了响声，问你有没有受伤。你说脚疼。他又问，哪一扇窗属于你的房间。你回答时没有移开肩膀。另一侧的重量变了一下，随后又压回来。
+          <br><br>
+          你没有试着去够衣柜，现在也搬不动它。只要再多拉一点，那块布的角就能够到脚跟下面。你盯着那个角，仍用自己的身体抵住这扇正想打开的门。
+      <</language>>
+    <<case 'main-inbed'>>
+      <<language>>
+        <<option 'EN'>>
+          The latch has caught. You test it once, then stop. Your knees are on the rug and your fingers are still against the wood. You cannot make them leave merely by noticing that they hurt.
+          <br><br>
+          There is a movement on the other side. Not at the handle. Lower down, close to the floor. You draw your knees back. The door does not open. You keep watching until the dark line underneath is only a dark line.
+          <br><br>
+          <<if $LostLamb.marks.includes('rest-space')>>You remember the place you cleared to sit. The same movement would work here: put the bag aside, straighten one leg, breathe before standing. There is no bag to move now. You straighten a leg and use the bedpost to get up.<<else>>You try to get up too quickly. Your foot has gone numb and will not take your weight. You sit back before falling, rub it, then try one leg at a time. The second try holds.<</if>>
+          <br><br>
+          The bed is close enough that you do not need to cross in front of the window. You sit on its edge. A crease in the cover has the shape your knee left last night. You touch it, making it ordinary fabric before it can become a place for something to hide.
+          <br><br>
+          The daylight moves while you wait. You hear a voice from the street, another from near the entrance. You cannot follow every word. You can tell that they are speaking to each other, not waiting for you to supply the next sentence.
+          <br><br>
+          You put your shoes on the bed rather than take them off. Nobody tells you to keep the cover clean. For a moment you nearly do it anyway. Then the noise below the door starts once more, and you keep both feet where you can see them.
+          <br><br>
+          You can lie down without pretending you are tired enough to sleep. You turn the pillow to its cool side and leave the latch in sight.
+        <<option 'CN'>>
+          门闩已经扣住。你试了一次，终于停手。膝盖压在地毯上，手指却仍抵着木头。即使发现手指已经疼了，你也不能立刻让它们离开。
+          <br><br>
+          另一侧传来动静。不是在门把手附近，而是在更低处，贴近地板。你把膝盖往回收。门没有打开。你一直看着门下的那条暗缝，直到它又像只是一条暗缝。
+          <br><br>
+          <<if $LostLamb.marks.includes('rest-space')>>你想起自己清出的那块坐着休息的地方。相同的动作也能在这里试一次：挪开袋子，伸直一条腿，站起来前先缓口气。现在没有袋子需要挪了。你慢慢伸腿，扶着床柱，让自己站起来。<<else>>你试着一下站起来，却太快了。脚已经发麻，撑不住你的分量。你赶在摔倒之前坐回去，用手揉了揉，再一条腿一条腿地试。第二次，它们终于撑住了。<</if>>
+          <br><br>
+          床离你够近，不必经过窗户前面，就能坐到床沿。被子上留着一道褶皱，像是昨晚膝盖压出来的形状。你用手碰了一下，先让它重新成为普通的布，免得自己又把它看成什么能够藏身的地方。
+          <br><br>
+          等着的时候，窗外的光慢慢移动。你听见街上有人说话，入口附近也有人回答。不是每一个字都听得清，但你至少听出，他们正在互相交谈，并没有等着你补出下一句话。
+          <br><br>
+          你没有脱鞋，连两只鞋一起放到了床上。没有人责怪你把被子弄脏。有那么一瞬间，你差点还是照着以前的规矩做了。随后，门下的动静重新响起，你便把两只脚都留在自己看得见的地方。
+          <br><br>
+          你可以先躺下，不必假装已经累到能够睡着。你把枕头翻到凉的一面，让门闩仍留在视线里。
+      <</language>>
+    <<case 'main-last-call'>>
+      <<language>>
+        <<option 'EN'>>
+          "Kylar?"
+          <br><br>
+          The voice is outside the house. You sit up enough to answer. It asks whether you can hear. You say yes. The answer comes out thin, but it is your answer, and the voice does not ask you to say it in a different way.
+          <br><br>
+          Somebody has brought somebody else. You can hear two people disagreeing about where to stand. One wants the entrance, the other says to stay where the window can be seen. You want them to know everything. You want them to stop making the ground downstairs a place that could hear their feet.
+          <br><br>
+          "Stay where you are for a moment," one says. "We can hear you."
+          <br><br>
+          You ask whether they will go away. There is a pause that does not turn into a perfect answer. They say they are here now. You listen to the ordinary movement outside and cannot tell what happens next. The door still holds between you and the things that are your parents.
+          <br><br>
+          Then, beneath the two voices, you hear another name. The name from before the garden window, before your shoes were small, before you began waiting for Sydney. You try to put it in the adults' mouths. It does not fit either. It is coming from beside another bed.
+          <br><br>
+          Your hand is still a child's hand on this cover. You look from it to the closed door. The house has not repaired itself. You still do not know what happened downstairs. You have reached a room, given somebody a place to find you, and stayed alive long enough to hear them answer.
+          <br><br>
+          The other voice says the name again. This time you know you can answer without making anyone in the garden stay.
+        <<option 'CN'>>
+          “凯拉尔？”
+          <br><br>
+          声音来自房子外面。你稍稍坐起来，准备回答。对方问你听不听得见，你说听得见。声音很细，却毕竟是你自己的回答。那个声音没有要求你换一种说法。
+          <br><br>
+          有人又带来了另一个人。你听见两个人在为该站在哪里争执。其中一人想留在入口，另一人说，要待在能够看见窗户的地方。你想让他们什么都知道，又希望他们别在楼下四处走，让那些东西听见他们的脚步。
+          <br><br>
+          “先待在那里一会儿。”其中一个人说，“我们听得见你。”
+          <br><br>
+          你问，他们会不会走掉。紧接着的停顿，并没有变成一个完美的保证。他们只说，现在就在这里。你听着外面普通的动静，仍不知道接下来会发生什么。那扇门还挡在你和已经变成那副模样的父母之间。
+          <br><br>
+          随后，在那两个声音下面，你又听见另一个名字。那是在你看见花园窗户之前，在你的鞋变得这么小之前，在你开始等悉尼之前，叫过你的名字。你试着把它放进外面大人的嘴里，却不属于其中任何一个。它来自另一张床的旁边。
+          <br><br>
+          落在被子上的，仍是一只孩子的手。你从那只手看向紧闭的门。房子没有自己修好，你仍不知道楼下到底发生了什么。你只走进了一个房间，告诉别人可以在哪里找到你，活到了能够听见他们回答的时候。
+          <br><br>
+          另一个声音又叫了一次那个名字。这次，你知道自己可以回答，不必为了答应它，就把花园里的任何人永远留住。
+      <</language>>
+    <<case 'main'>>
+      <<language>>
+        <<option 'EN'>>
+          You say the name. Your voice is still small. The cover is still the child's cover beneath your fingers. You hold its loose stitch without pulling it tighter.
+          <br><br>
+          Somewhere below, the chair moves. You know the sound now. You do not have to see the whole thing in black rags to know that it has not become an ordinary parent. You do not know whether the next breath belongs to one of them or both.
+          <br><br>
+          Outside, an adult calls again. You answer "here". The word is enough to give them a window to look towards. It does not explain the shattered glass, the silver nails, or the voices heard through the covers. You have no explanation that would make those things easier to stand beside.
+          <br><br>
+          <<if $LostLamb.marks.includes('draw')>>You remember the afternoon when Sydney put a pencil against your fingers and waited for you to decide. The paper remains beneath its book.<<else>>You remember Sydney's things beside yours, and the afternoon you chose to spend without sitting down to finish the picture.<</if>> Nothing about this room makes that afternoon happen again.
+          <br><br>
+          You close your eyes without covering your ears. There are still voices outside. There is still a door, and a small hand that has learned where its handle is. Beyond them, another voice waits beside the bed where you began. You can open your eyes there when you are ready.
+        <<option 'CN'>>
+          你说出那个名字。声音仍然很小，手指下面仍然是孩子的被子。你勾着那针松线，没有继续把它拉紧。
+          <br><br>
+          楼下某个地方，椅子又动了。你已经认识这种声音。不必看清黑色破布里的全部东西，也知道它还没有变回普通的父母。下一口呼吸属于其中一个，还是两个，你仍然分不清。
+          <br><br>
+          外面的大人再次叫你，你回答“这里”。这句话至少足够让他们知道该望向哪扇窗。它没有解释那些碎玻璃、银色的指甲，也没有解释你蒙在被子里听过的声音。你没有一种说法，能够让站在那些东西旁边变得容易。
+          <br><br>
+          <<if $LostLamb.marks.includes('draw')>>你记得那个下午，悉尼把铅笔靠在你的手指旁，耐心等着你做决定。那张纸仍压在书底。<<else>>你记得悉尼的东西曾经挨着自己的东西放，也记得那个下午，你选择去做别的事，没有坐下来完成那幅画。<</if>>这间屋里的任何一样东西，都没有让那个下午重新发生。
+          <br><br>
+          你闭上眼睛，没有捂住耳朵。外面仍然有声音，也仍然有一扇门，还有一只已经学会门把手在哪里的小手。更远的地方，另一个声音等在你一开始躺下的那张床旁。等准备好了，你就能在那边睁开眼。
+      <</language>>
+  <</switch>>
+<</widget>>

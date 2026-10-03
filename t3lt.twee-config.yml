@@ -22909,3 +22909,5 @@ sugarcube-2:
       name: relaxicon
     ggconviction:
       name: ggconviction
+    unfreezePlayerStats:
+      name: unfreezePlayerStats

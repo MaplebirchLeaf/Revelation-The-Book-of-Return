@@ -1,3 +1,6 @@
+// ./types/global.d.ts
+
+import type LostLambModule from '../src/module/LostLamb';
 import type { Security } from '../src/module/VanillaPlus/Finance';
 
 declare module 'twine-sugarcube' {
@@ -11,6 +14,10 @@ declare module 'twine-sugarcube' {
 }
 
 declare global {
+  interface MaplebirchExtensions {
+    LostLamb: LostLambModule;
+  }
+
   interface Array<T> {
     either(weights?: readonly number[], allowNull?: boolean): T | null | undefined;
   }

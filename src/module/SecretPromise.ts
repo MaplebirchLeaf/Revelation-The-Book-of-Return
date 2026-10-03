@@ -72,7 +72,7 @@ export default class SecretPromise {
       V.robinromance === 1 &&
       V.sydneyromance === 1 &&
       C.npc.Robin.love >= 80 &&
-      // 混乱誓约要求罗宾持续处于高创伤；自信不限制这条路线。
+      // 混乱誓约要求罗宾持续处于高创伤。自信不限制这条路线。
       C.npc.Robin.trauma >= 40 &&
       C.npc.Sydney.love >= 125 &&
       // 对齐 sydneyStatusCheck 的堕落分支，纯洁与中立悉尼都不会接受。

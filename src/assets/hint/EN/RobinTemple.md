@@ -1,18 +1,20 @@
 ### Prerequisites and recommended order
 
-Enable **Robin's temple route**. The PC must have passed the original entrance assessment, hold the rank of **initiate, monk/nun or priest**, remain covered and wear a chastity fitting. With deep love, no disappearance or injury, and without overwhelming trauma, Robin offers **Talk to Robin about the temple** in **Orphanage → Robin's room**.
+Enable **Robin's temple route**. The PC must have passed the original entrance assessment, hold the rank of **initiate, monk/nun or priest**, remain covered and stay below maximum stress. With deep love, no disappearance and the ability to take part in normal activities, Robin offers **Talk to Robin about the temple** in **Orphanage → Robin's room**.
 
 Recommended order: **discuss the temple → meet Jordan and book the assessment → prepare and attend → work and pray together → undergo evaluation → make the promise**. The trial of anguish, food gifts, walks and confessions can fit around these steps. You do not need to finish every side scene before applying for a promise.
 
-<span class="teal">If the first option is missing, check your temple rank and clothing, then Robin's relationship, injuries and whereabouts. Deadwood Reblooms' Robin expansion is not required.</span>
+<span class="teal">The option appears in the ordinary conversation menu in Robin's room. Early hours, school hours, nighttime and special story menus do not offer it. If the first option is missing, check your temple rank and clothing, then Robin's relationship, injuries and whereabouts. Chastity fittings only change the opening conversation and are not required for the first invitation. Deadwood Reblooms' Robin expansion is not required.</span>
 
 ### Chastity assessment: booking, preparation and retrying
 
 1. Discuss the temple in Robin's room. Give Robin time or suggest asking Jordan together. Continue the assessment conversation in the room later if needed.
-2. Accompany Robin to Jordan and book the assessment **two days ahead**. The date is recorded only after confirming the appointment.
+2. Accompany Robin to Jordan and book the assessment **two days ahead**. Jordan must be available during morning or daylight under the original schedule and not conducting mass. Robin must be at the orphanage, neither missing nor occupied. Travelling and speaking to Jordan takes **twenty minutes**, so leave enough time before daylight ends. School, stalls, tutoring, a shop without staff and special plans for the day take priority. The date is recorded only after confirming the appointment.
 3. Before that date, choose **Go with Robin to prepare for the assessment (0:45)** in Robin's room. It is available once daily, **17:00–19:15**, with Robin at the orphanage and no tutoring or shop duty taking priority.
-4. On or after the appointment day, visit **Temple → Quarters** to attend the assessment. On school days, arrive between **06:00 and 08:00**. On days without school, the window extends to **18:00**. Remain covered, below maximum stress, and ensure Robin is neither missing nor admitted to the asylum.
-5. Read the result, hear Jordan's announcement and finish the response. Success opens Robin's seat and bunk, and Robin takes a temple vow.
+4. On or after the appointment day, visit **Temple → Quarters** to attend the assessment. On school days, arrive between **06:00 and 08:00**. On days without school, the window extends to **18:00**. Remain covered, below maximum stress, with Robin able to take part in normal activities, neither missing nor admitted to the asylum, and Jordan present outside mass.
+5. Read the result, hear Jordan's announcement and finish the response. Success opens Robin's seat and changing area, and Robin takes a temple vow. The bunk opens after Robin passes the trial of anguish and becomes a monk or nun.
+
+<span class="teal">After booking, illness, injury, severe trauma or asylum admission pauses Robin's attendance. Jordan's absence or mass also requires waiting. Once the appointment day is reached, you can attend in the next permitted window. The appointment remains booked. Being temporarily unable to attend does not count as assessment failure.</span>
 
 With first virginity intact, Robin passes the ordinary examination. Otherwise, a fire trial follows. **Greater confidence and better preparation improve the chance of success.** Revisiting the result does not reroll the same appointment.
 
@@ -143,7 +145,7 @@ After Confounded Vow, all three vows are examined and all three take part in sha
 
 ### Bunks, nighttime companionship and hospital
 
-**Robin receives a bunk at monk rank or above.** Joining the temple or completing a promise alone does not unlock it. Then visit Robin's bunk from the seat to access the temple wardrobe and mirror. Your own bunk still requires the original PC promotion. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
+**Robin receives a bunk after passing the trial of anguish and reaching monk rank or above.** Joining provides a seat and changing area. Completing a promise does not unlock the bunk early. At monk rank, visit Robin's bunk from the seat to access the temple wardrobe and mirror on the bunk page. Your own bunk still requires the original PC promotion. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
 
 Once Robin has reached monk rank and you have promised, invite Robin to the bedside on weekdays without school, **13:00 until just before 15:45**, with Robin present, available and without an active shared purification. Discuss the new vow, choose intimacy or simply hug. Intimacy is not mandatory for completing the route.
 
@@ -218,9 +220,10 @@ Aborting retains the survey and any completed shared investigation, but clears b
 
 | Problem                                          | What to check                                                                                                                                                                                                |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| No first temple invitation                       | PC temple rank, clothing and fitting, then Robin's love, injury, disappearance and trauma                                                                                                                    |
+| No first temple invitation                       | Ordinary conversation hours, PC temple rank and clothing, then Robin's love, injury, disappearance and trauma                                                                                                |
+| Cannot meet Jordan after agreeing                | Jordan available in the morning or daytime outside mass, twenty minutes remaining, Robin at the orphanage and able to take part in normal activities, no school or business schedule conflict                |
 | No preparation after booking                     | Before the assessment date, not prepared today, Robin at the orphanage at 17:00–19:15, no tutoring or shop conflict                                                                                          |
-| No assessment option                             | Date reached, quarters during the applicable time window, clothing, stress and Robin's availability                                                                                                          |
+| No assessment option                             | Date reached, quarters during the applicable time window, clothing, stress and Robin's availability, Jordan present outside mass. A delay retains the appointment                                            |
 | Robin is present but no evening work             | Arrange the journey from the room, visit during an afternoon or evening work window, no work completed today                                                                                                 |
 | Evaluation will not begin or fails               | Daylight, no other promise, no shared purification or strong doubt, then waiting period, contributions and answers                                                                                           |
 | Removal requested but no investigation           | Accompany Robin to Jordan during daylight, while Jordan is present outside Sunday mass, then check all three actual fittings. A request alone does not complete removal                                      |

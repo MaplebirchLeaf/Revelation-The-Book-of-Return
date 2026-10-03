@@ -6,7 +6,7 @@
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.0.0 introduces Robin's temple route, the Confounded Vow and the temple choir.** Future updates will expand character stories and add further story modules.
+**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.1.0 includes Robin's temple route, the Confounded Vow, the temple choir and Kylar's Lost Lamb dream.** Future updates will expand character stories and add further story modules.
 
 ---
 
@@ -14,7 +14,7 @@
 
 - [Installation and dependencies](#installation-and-dependencies)
 - [Modules and game guide](#modules-and-game-guide)
-- [Current content in 1.0.0](#current-content-in-100)
+- [Current content in 1.1.0](#current-content-in-110)
 - [Deadwood Reblooms integration](#deadwood-reblooms-integration)
 - [Future updates](#future-updates)
 - [Acknowledgements and related projects](#acknowledgements-and-related-projects)
@@ -23,7 +23,7 @@
 ## Installation and dependencies
 
 1. Use **DoL 0.5.12.13** with SugarCube 2 ModLoader.
-2. Load the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework), satisfying `maplebirch >= 5.2.0`, together with the mod package's other dependencies.
+2. Load the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework), satisfying `maplebirch >= 5.2.2`, together with the mod package's other dependencies.
 3. Load `revelation-the-book-of-return-*.modpack` from [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases).
 4. Enable the root and desired submodules in the framework's module manager. Save before reloading after a module change.
 
@@ -31,21 +31,22 @@ Deadwood Reblooms is optional and is not required for the base stories. This ver
 
 ## Modules and game guide
 
-| Module        | Content                                                                                 |
-| ------------- | --------------------------------------------------------------------------------------- |
-| `RBR`         | Root module and submodule dependencies                                                  |
-| `RobinTemple` | Robin's admission, temple life, promise ceremony, Confounded Vow and joint examinations |
-| `TempleChoir` | Jordan's choir work, singing skill, lead permission and monthly allowance additions     |
+| Module        | Content                                                                                  |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `RBR`         | Root module and submodule dependencies                                                   |
+| `RobinTemple` | Robin's admission, temple life, promise ceremony, Confounded Vow and joint examinations  |
+| `TempleChoir` | Jordan's choir work, singing skill, lead permission and monthly allowance additions      |
+| `LostLamb`    | Kylar's manor dream, two branches and a main ending, waking conversations and Dream Scar |
 
 Disabling `RBR` stops all Revelation submodules. The choir can be enabled independently and does not require Robin to join the temple.
 
-With **Deadwood Reblooms 1.2.0** installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. Chapters cover prerequisites, unlocking, locations, steps, effects and troubleshooting. Check **Journal → Robin and the Temple / Temple Choir** for current progress and next steps.
+With **Deadwood Reblooms 1.3.0** installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. Chapters cover prerequisites, unlocking, locations, steps, effects and troubleshooting. Check **Journal → Robin and the Temple / Temple Choir / Kylar's manor** for current progress and next steps.
 
-## Current content in 1.0.0
+## Current content in 1.1.0
 
 ### Robin's temple route
 
-After passing the vanilla admission trial, meeting clothing and device requirements, and developing a close relationship with Robin, start in **Orphanage → Robin's room** while Robin is able to participate. Visit Jordan together, book and prepare for the purity trial, then complete the assessment to unlock Robin's temple seat and bunk.
+After passing the vanilla admission trial, remaining fully clothed and below maximum stress, and developing a close relationship with Robin, start in **Orphanage → Robin's room** while Robin is able to participate. Visit Jordan together, book and prepare for the purity trial, then complete the assessment to unlock Robin's seat and changing area. The bunk and Saturday stay require Robin to pass the vigil and reach monk rank. Chastity fittings change the invitation's opening dialogue rather than gating the invitation.
 
 Temple life includes shared duties, mass preparation, prayer, gifts, walks, night companionship and a hospital branch. Robin's faith, doubt, contribution and shared experiences affect the route. Entries follow school, temple and other work schedules.
 
@@ -69,6 +70,16 @@ The new **Singing** skill uses vanilla skill grades. Harpy transformation improv
 
 Completed services accumulate an allowance addition, **paid with the vanilla allowance after a successful monthly examination when payment is authorised**. There is no immediate Sunday payout. Leaving early uses that day's mass opportunity and provides no addition for the unfinished service. The journal records practice, services, lead permission and pending earnings.
 
+### Lost Lamb: Kylar's manor dream
+
+Discover the manor's monstrance, hear Kylar's recollection of the night the parents changed, and experience the first vanilla manor sleep event. Choose **Lie down for a while** in **Kylar's room**, then close your eyes.
+
+Act as the younger Kylar, from Sydney's afternoon visit through missed visits, breaking glass and the following days. Doubt, unease, attention, action order and dream time determine what you hear, whether you are noticed and how you continue. Failed checks offer recovery paths. Games and checks cannot be repeatedly farmed.
+
+**Complete both branches to unlock the main ending.** Wake and resume at any time. After an ending, re-enter directly at the doorway to choose another dream. Each entry advances the present by thirty minutes, while waking restores present appearance, items, money, weather and character states. The journal records dream dates, clues and progress.
+
+Complete the main ending and wake to gain the **Lost Lamb** feat and **Dream Scar** trait, reducing ongoing nightmare stress during sleep by 25%. Afterwards, talk to Kylar once in the evening, with responses reflecting affection and jealousy. The dream does not settle the cause of the parents' transformation or reconcile Kylar and Sydney.
+
 ## Deadwood Reblooms integration
 
 | Enabled content                          | Integration                                                                                                    |
@@ -83,7 +94,7 @@ The full-harpy singing interaction can also practise Singing. Integrations check
 
 ## Future updates
 
-Version 1.0.0 is the first set of Revelation stories, rather than its entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
+Version 1.1.0 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
 
 ## Acknowledgements and related projects
 
@@ -92,8 +103,8 @@ Robin's temple route rebuilds material from the author's earlier Maplebirch mod,
 - [Degrees of Lewdity](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 - [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 - [Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
-- [1.0.0 release notes](.github/release-notes/v1.0.0.md)
+- [1.1.0 release notes](.github/release-notes/v1.1.0.md)
 
 ## Reporting issues
 
-Open an [issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues) with game, framework and mod versions, enabled modules, location, steps and the complete error. For Robin's whereabouts, include the in-game time, shared residence and current work. For promises or choir payments, include the promised partner and monthly-examination progress.
+Open an [issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues) with game, framework and mod versions, enabled modules, location, steps and the complete error. For Robin's whereabouts, include the in-game time, shared residence and current work. For promises or choir payments, include the promised partner and monthly-examination progress. For Lost Lamb, include the dream location, time, selected action and whether the issue occurred during the dream or after waking.

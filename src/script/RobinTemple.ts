@@ -86,7 +86,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Adult Shop Approach Sydney': [
-        // 普通交谈已由 sydneyOptions 输出返回；离店等特殊分支仍保留原页面的退出入口。
+        // 普通交谈已由 sydneyOptions 输出返回。离店等特殊分支仍保留原页面的退出入口。
         {
           srcmatch: /<<link \[\[[^|\]]+\|Adult Shop\]\]>><<\/link>>/,
           to: '<<if ["home", "englishPlay"].includes(_sydney_location)>>$&<</if>>',
@@ -221,7 +221,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       ],
       'Widgets Sydney': [
         {
-          // 普通会面统一接入，日程已计算；不接入 sydneyOptionsLeave 等离开分支。
+          // 普通会面统一接入，日程已计算。不接入 sydneyOptionsLeave 等离开分支。
           srcmatch: /<<widget ["']sydneyOptions["']>>\s*<<sydneySchedule>>/,
           applyafter: '<<secret-promise-talk "Sydney">>',
           expected: 1

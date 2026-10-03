@@ -44,7 +44,7 @@
 <<widget 'robin-temple-punishment-status'>>
   <<language>>
     <<option 'EN'>>
-      <<lanSwitch _args[0] (_args[0] is 'Robin' ? '罗宾' : '悉尼')>> looks
+      <<print lanSwitch(_args[0], _args[0] is 'Robin' ? '罗宾' : '悉尼')>> looks
       <<switch _args[1].pain>>
         <<case 0>><span class="green">unharmed</span>
         <<case 1>><span class="teal">uncomfortable</span>
@@ -64,7 +64,7 @@
       <</switch>>
 
     <<option 'CN'>>
-      <<lanSwitch _args[0] (_args[0] is 'Robin' ? '罗宾' : '悉尼')>>看起来
+      <<print lanSwitch(_args[0], _args[0] is 'Robin' ? '罗宾' : '悉尼')>>看起来
       <<switch _args[1].pain>>
         <<case 0>><span class="green">安然无恙</span>
         <<case 1>><span class="teal">有些不适</span>
@@ -207,8 +207,8 @@
         <<option 'EN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">The pain is too much.</span> You buckle and collapse, tumbling over with <<if $RobinTemple.punish.joint>>Robin and Sydney<<else>>Robin<</if>>.
           <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">It's too much.</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> lets out a blood-curdling cry through <<nnpc_his _punishCauseName>> gag.</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> lets out a blood-curdling cry through <<nnpc_his _punishCauseName>> gag.</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
           <</if>>
           <br><br>
           The <<priest>> holds up <<his>> hand. "Cease." The <<monks>> stop, and snuff the incense burners. "Your bodies betray you. You will be given time to recover, and then we will begin again." <<gggstress>>
@@ -229,8 +229,8 @@
         <<option 'CN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">疼痛已经无法承受。</span>你弯下腰，和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>一起瘫倒在地。
           <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">已经到了极限。</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>隔着口球发出一声撕心裂肺的叫喊。</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<lanSwitch _punishCauseName (_punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>隔着口球发出一声撕心裂肺的叫喊。</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
           <</if>>
           <br><br>
           <<priest>>抬起手。"可以了。"<<monks>>纷纷停下，熄灭了燃香盏。"你们的身体背叛了你。给你们点时间恢复，然后我们重新开始。"<<gggstress>>
@@ -822,7 +822,7 @@
   <</if>>
   <<if _punishAttack is 'blocked'>><<lanSwitch 'You shield your companion from the lash.' '你挡住了抽向同伴的鞭子。'>>
   <<elseif _punishAttack is 'Robin,Sydney'>><<lanSwitch 'Robin and Sydney shield you from the lash.' '罗宾和悉尼为你承受了打击。'>>
-  <<elseif _punishAttack is 'Robin' or _punishAttack is 'Sydney'>><<lanSwitch _punishAttack (_punishAttack is 'Robin' ? '罗宾' : '悉尼')>><<lanSwitch ' bears the lash.' '承受了鞭打。'>>
+  <<elseif _punishAttack is 'Robin' or _punishAttack is 'Sydney'>><<print lanSwitch(_punishAttack, _punishAttack is 'Robin' ? '罗宾' : '悉尼')>><<lanSwitch ' bears the lash.' '承受了鞭打。'>>
   <</if>>
   <br><br>
   <<robin-temple-punishment-options>>
@@ -911,5 +911,5 @@
 
 :: RobinTemple Penance Genitals Widgets [widget]
 <<widget 'robin-temple-punishment-genitals'>>
-  <<if _args[1]>><<lanSwitch 'genitals' '下体'>><<else>><<lanSwitch (C.npc[_args[0]].penis isnot 'none' ? 'penis' : 'vagina') (C.npc[_args[0]].penis isnot 'none' ? '阴茎' : '阴部')>><</if>>
+  <<if _args[1]>><<lanSwitch 'genitals' '下体'>><<else>><<print lanSwitch(C.npc[_args[0]].penis isnot 'none' ? 'penis' : 'vagina', C.npc[_args[0]].penis isnot 'none' ? '阴茎' : '阴部')>><</if>>
 <</widget>>

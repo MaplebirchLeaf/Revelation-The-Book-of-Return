@@ -11,8 +11,8 @@ export default function Tips(core: typeof maplebirch): void {
   if (core.get('RobinTemple'))
     add(
       [
-        'After joining the temple and taking its vow, you can discuss it in Robin’s room. Your relationship and Robin’s health still matter.',
-        '加入神殿并佩戴贞操器具后，可以在罗宾的房间谈起神殿。你们的关系和罗宾的健康状况也会影响入口。'
+        'Temple members can discuss it in Robin’s room when Robin is free and well. Chastity fittings only change the opening conversation.',
+        '加入神殿后，罗宾有空且能够正常活动时，可以在房间里谈起神殿。贞操器具只影响开场对话。'
       ],
       [
         'Robin’s trial needs an appointment with Jordan. Check your journal for the date before returning to the temple quarters.',

@@ -113,15 +113,7 @@ class RobinTemple extends Module {
 
   /** 沿用旧模组的白天办理流程，约旦缺席或弥撒期间等待。 */
   public get claspReady(): boolean {
-    return (
-      this.member &&
-      this.available &&
-      window.getRobinLocation() === 'temple' &&
-      Time.dayState !== 'night' &&
-      Time.dayState !== 'dusk' &&
-      V.daily.jordanMissing !== 1 &&
-      !(Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13)
-    );
+    return this.member && this.available && window.getRobinLocation() === 'temple' && this.jordanAvailable;
   }
 
   /** 两项属性都存正值，增减时先抵消另一侧，零为中立。 */
@@ -142,6 +134,72 @@ class RobinTemple extends Module {
   /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
   public get available(): boolean {
     return C.npc.Robin?.init === 1 && !V.robinmissing && V.robin.timer.hurt === 0 && C.npc.Robin.trauma < 80 && !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted');
+  }
+
+  private get playerReady(): boolean {
+    return ['initiate', 'monk', 'priest'].includes(V.temple_rank) && V.exposed <= 0 && V.stress < V.stressmax;
+  }
+
+  /** 房间里的对话沿用原版实际地点，不把上学、工作或住院中的罗宾拉回来。 */
+  public get canTalk(): boolean {
+    return this.playerReady && this.available && window.getRobinLocation() === 'orphanage';
+  }
+
+  /** 约旦的办理时段沿用原版 Time 日夜状态，周日弥撒期间不接待。 */
+  public get jordanAvailable(): boolean {
+    return C.npc.Jordan?.init === 1 && V.daily.jordanMissing !== 1 && !['night', 'dusk'].includes(Time.dayState) && !(Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13);
+  }
+
+  /** 同行和问询共需二十分钟，预留原版日程边界，预测只修改日期副本。 */
+  public get canMeetJordan(): boolean {
+    if (!this.canTalk || !this.jordanAvailable) return false;
+    const end = new DateTime(Time.date).addMinutes(20);
+    const expansion = this.core.get('Robin');
+    if (['night', 'dusk'].includes(end.dayState)) return false;
+    if (Time.schoolDay && Time.hour < 8 && end.hour >= 8) return false;
+    if (Time.weekDay === 1 && Time.hour < 11 && end.hour >= 11) return false;
+    const rainStall = expansion && (Time.season === 'winter' ? V.RobinExpansion?.chocolate >= 1 : V.RobinExpansion?.lemonade >= 1);
+    if (Time.isWeekEnd() && Time.hour < 9 && end.hour >= 9 && (Weather.precipitation !== 'rain' || rainStall)) return false;
+    if (Time.hour === 16 && Time.minute < 30 && end.hour === 16 && end.minute >= 30) {
+      const watering =
+        V.robin.autoWater &&
+        C.npc.Robin.trauma < 50 &&
+        Weather.precipitation !== 'rain' &&
+        (Weather.precipitation !== 'snow' || V.alex_greenhouse >= 3) &&
+        orphanagePlotsPlanted() &&
+        !orphanagePlotsWatered();
+      if (!V.daily.robin.bath || watering) return false;
+    }
+    if (V.englishPlay === 'ongoing' && V.englishPlayDays === 0 && Time.hour < 17 && end.hour >= 17) return false;
+    if (V.halloween === 1 && Time.monthDay === 31 && Time.hour < 16 && end.hour >= 16) return false;
+    const start = Time.hour * 60 + Time.minute;
+    if (expansion && V.RobinExpansion?.tutor && Time.schoolDay && start < 18 * 60 + 30 && start + 20 >= 17 * 60 + 30) return false;
+    return true;
+  }
+
+  /** 同行时借用原版地点覆盖，结束后恢复出发前的安排，零分钟表示结束。 */
+  public visit(minutes: number): void {
+    const state = V.RobinTemple;
+    if (minutes > 0) {
+      state.visit_override ??= V.robinlocationoverride || { location: 'orphanage', during: [] };
+      V.robinlocationoverride = { location: 'temple', during: [Time.hour, new DateTime(Time.date).addMinutes(minutes).hour] };
+    } else if (state.visit_override) {
+      V.robinlocationoverride = state.visit_override;
+      state.visit_override = null;
+    }
+  }
+
+  /** 预约到期后保留至实际参加，健康、约旦缺席或时段不符都不结算。 */
+  public get assessmentReady(): boolean {
+    return (
+      V.RobinTemple.stage === 'scheduled' &&
+      Time.days >= V.RobinTemple.exam_day &&
+      this.playerReady &&
+      this.available &&
+      this.jordanAvailable &&
+      Time.hour >= 6 &&
+      (Time.hour < 8 || (!Time.schoolDay && Time.hour < 18))
+    );
   }
 
   /** 互动只使用未隐藏的部位，更多转化停用后不读取残留的转化等级。 */
@@ -208,18 +266,21 @@ class RobinTemple extends Module {
   }
 
   /** 每次预约只结算一次，避免重访结果页面时重新抽取火焰考验结果。 */
-  public assess(): void {
+  public assess(): boolean {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;
-    if (state.stage !== 'scheduled' || Time.days < state.exam_day || state.assessment_day === state.exam_day) return;
+    if (!this.assessmentReady) return false;
+    this.visit(1);
+    if (state.assessment_day === state.exam_day) return true;
     state.assessment_day = state.exam_day;
     state.assessment_fire = robin.virginity.vaginal !== true || robin.virginity.penile !== true;
     if (!state.assessment_fire) {
       state.assessment_passed = true;
-      return;
+      return true;
     }
     const threshold = robin.dom >= 100 ? 35 : robin.dom >= 90 ? 55 : robin.dom >= 80 ? 75 : 95;
     state.assessment_passed = Math.floor(Math.random() * 100) + 1 + state.assessment_bonus >= threshold;
+    return true;
   }
 
   /** 沿用原版规则：拒绝、坦白和检查失败均立即进入共同净化。 */

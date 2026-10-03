@@ -1,0 +1,265 @@
+:: Lost Lamb Before Widgets [widget]
+<<widget 'lost-lamb-before'>>
+  <<switch $LostLamb.scene>>
+    <<case 'arrival'>>
+      <<language>>
+        <<option 'EN'>>
+          Your cheek is warm against the pillow. Two knocks, a pause, then one more. You try to sit up before your eyes are open.
+          <br><br>
+          Your knees meet the seat of a chair. The pillow is gone. Below the window, Sydney is shading <<nnpc_his 'Sydney'>> eyes with one hand and waving with the other. The garden path has been swept. A watering can lies on its side beside the flower beds.
+          <br><br>
+          "Kylar! Are you coming down or not?"
+          <br><br>
+          You have been watching the gate all afternoon. Now you are in such a hurry that your shoe catches between the chair rungs. Sydney laughs while you struggle to pull it free. You mouth a threat through the window, and <<nnpc_he 'Sydney'>> laughs harder.
+          <br><br>
+          Downstairs, your parents are talking to Sydney's parent. You can hear cups being moved and the garden door catching against the mat. Your sleeve has an ink stain you meant to hide. You tug it down, climb off the chair carefully, then forget to be careful on the stairs.
+        <<option 'CN'>>
+          你的脸颊暖暖地贴着枕头。两下敲门，停一停，又一下。眼睛还没睁开，你就想坐起来。
+          <br><br>
+          膝盖抵在椅面上。枕头不见了。窗下，悉尼一手遮着眼睛，一手向你挥动。花园小路刚扫过，花坛旁倒着一只洒水壶。
+          <br><br>
+          “凯拉尔！你到底下不下来？”
+          <br><br>
+          你盯着大门等了整个下午。现在急得鞋卡在了椅子横档之间。你使劲抽脚，悉尼就在下面笑。你隔着窗户，用口型威胁<<nnpc_him 'Sydney'>>，<<nnpc_he 'Sydney'>>反而笑得更厉害。
+          <br><br>
+          楼下，父母正在和悉尼的家长说话。杯子挪动，花园门擦过地垫。袖口有一块你本来想藏起来的墨迹。你把袖子往下拉，小心爬下椅子，到了楼梯却忘了小心。
+      <</language>>
+    <<case 'hall'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney hangs <<nnpc_his 'Sydney'>> coat on the low hook beside yours. You move the sleeves out of the way so the two coats can fit. <<nnpc_He 'Sydney'>> has brought a bag, and you ask what is in it before <<nnpc_he 'Sydney'>> has finished taking it off.
+          <br><br>
+          "Wait," Sydney says. Then <<nnpc_he 'Sydney'>> spots the paper beneath a book. "You haven't finished it. You said you would."
+          <br><br>
+          "I was waiting for you."
+          <br><br>
+          Sydney looks pleased, then suspicious. "Did you get stuck?"
+          <br><br>
+          You take the drawing away before <<nnpc_he 'Sydney'>> can check. In the next room, Sydney's parent laughs at something one of yours has said. The kitchen smells of pastry. The garden door is propped open with a shoe, and a patch of sunlight reaches almost to the stairs.
+          <br><br>
+          You show Sydney where to put the bag. It could have gone anywhere, but you have cleared a place beside your own things.
+          <<if $LostLamb.marks.includes('draw') or $LostLamb.marks.includes('garden') or $LostLamb.marks.includes('kitchen')>>
+            <br><br>
+            Sydney asks what you want to do next. You pretend to need time to decide. It is nice being asked again.
+          <</if>>
+        <<option 'CN'>>
+          悉尼把外套挂在你旁边的低挂钩上。你拨开袖子，让两件衣服挨着挂好。<<nnpc_He 'Sydney'>>带了一个包，还没放下来，你就开始问里面装着什么。
+          <br><br>
+          “等一下。”悉尼说。随后<<nnpc_he 'Sydney'>>看见书下面的纸。“你还没画完。你说会画完的。”
+          <br><br>
+          “我在等你。”
+          <br><br>
+          悉尼有点高兴，随后又起了疑心。“是不是你画不下去了？”
+          <br><br>
+          你赶在<<nnpc_he 'Sydney'>>检查之前抽回画纸。隔壁，悉尼的家长被你的父母逗笑了。厨房飘出酥皮的香味。花园门用一只鞋撑着，日光铺到地上，差一点就能碰到楼梯。
+          <br><br>
+          你告诉悉尼把包放在哪儿。其实放哪儿都可以，可你已经在自己的东西旁边清好了位置。
+          <<if $LostLamb.marks.includes('draw') or $LostLamb.marks.includes('garden') or $LostLamb.marks.includes('kitchen')>>
+            <br><br>
+            悉尼问你接下来想玩什么。你假装要考虑一会儿。能再被问一次，你很高兴。
+          <</if>>
+      <</language>>
+    <<case 'drawing'>>
+      <<language>>
+        <<option 'EN'>>
+          You spread the drawing on the floor and lie on your stomach to show Sydney. The house is too big for the paper. You added another floor when <<nnpc_he 'Sydney'>> said the first looked boring. Now the roof is squeezed into a corner and a person on the stairs has nowhere to go.
+          <br><br>
+          Sydney takes a pencil. "There should be another door."
+          <br><br>
+          "You can't put it there. That's the garden wall."
+          <br><br>
+          "It's a drawing."
+          <br><br>
+          You cover the blank space with your hand. The house has a room for your parents, a room for you, and a games room with a window Sydney insisted on. You forgot the passage between them. There is a little figure waiting on the stairs while you decide how to fix it.
+          <br><br>
+          Sydney taps the trapped figure with the pencil. "It needs a way out."
+          <br><br>
+          You want <<nnpc_him 'Sydney'>> to like your house. You also want the door to open where you put it, which seems perfectly reasonable. Sydney has not made a mark without asking. <<nnpc_He 'Sydney'>> waits while you press your hand flatter against the paper.
+        <<option 'CN'>>
+          你把画摊在地上，趴下来给悉尼看。纸上的房子大得放不下。<<nnpc_He 'Sydney'>>说第一层没意思，你就添了另一层。屋顶挤在角落里，楼梯上的小人已经无处可走。
+          <br><br>
+          悉尼拿起一支笔。“应该再开一扇门。”
+          <br><br>
+          “不能放在那里。那是花园的墙。”
+          <br><br>
+          “这是一幅画啊。”
+          <br><br>
+          你用手盖住空白。房子里有父母的房间，有你的房间，还有悉尼坚持要留窗户的游戏室。你忘了画连接它们的走廊。一个小人站在楼梯上，等你想出该怎么改。
+          <br><br>
+          悉尼用笔点了点被困住的小人。“得让它能出去啊。”
+          <br><br>
+          你想让<<nnpc_he 'Sydney'>>喜欢这座房子。你也想让门开在自己选好的地方，这要求明明很合理。没经过你同意，悉尼一笔也没画。你把手掌压得更平，<<nnpc_he 'Sydney'>>还在等。
+      <</language>>
+    <<case 'drawing-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('shared')>>You lift your hand. Sydney draws a low door through the wall and a crooked path beyond it. "There. Now they can leave." You draw yourself on the other side. Sydney adds mud beneath your shoes. "You still have to take those off before coming in." You draw a mat over the mud.<<else>>You draw stairs down to the first floor, then a door where the paper has begun to tear. Sydney says the stairs go through a bedroom. You say the person in the bedroom would not mind. After a moment, Sydney draws a window beside your door. "So they can see who's outside."<</if>>
+          <br><br>
+          You both reach for the same pencil while colouring the roof. Sydney notices the ink on your sleeve and gets a little on <<nnpc_his 'Sydney'>> own, trying to show you how to rub it away. Neither stain comes out.
+          <br><br>
+          You put the paper beneath the same book. Sydney leaves the pencil on top, so you will know where you stopped. You straighten it after <<nnpc_he 'Sydney'>> turns away. There are two sets of marks on the paper now, and you can tell which belong to whom without looking at the colours.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('shared')>>你抬起手。悉尼在墙上画了一扇矮门，又画出一条弯弯曲曲的小路。“这样就能出去了。”你在另一边添上自己。悉尼在你的鞋底画了一摊泥。“进门前还是得脱鞋。”你又在泥上面画了一块地垫。<<else>>你画出通往一楼的台阶，又在快被擦破的纸上添了一扇门。悉尼说台阶穿过了卧室，你说住在卧室里的人不会介意。过了一会儿，悉尼在门旁添了一扇窗。“这样能看见外面是谁。”<</if>>
+          <br><br>
+          涂屋顶的时候，你们同时伸手去抢同一支笔。悉尼发现你袖子上的墨迹，想教你怎么擦掉，反而在自己的袖子上也蹭了一点。两块都没擦干净。
+          <br><br>
+          你把纸放回那本书下面。悉尼把笔留在上面，好让你知道画到了哪里。等<<nnpc_he 'Sydney'>>转身，你又把笔摆正了。纸上现在有两个人的笔迹，不用看颜色，你也分得出哪些是谁画的。
+      <</language>>
+    <<case 'garden'>>
+      <<language>>
+        <<option 'EN'>>
+          Outside, Sydney proposes a race to the far end of the garden. You object to the starting place, then to the finish. You know the path bends behind the shrubs. Sydney doesn't.
+          <br><br>
+          "No going through the flower beds," you say.
+          <br><br>
+          "I wasn't going to."
+          <br><br>
+          You make Sydney count. On two, you run. <<nnpc_He 'Sydney'>> shouts after you and follows, laughing hard enough to lose breath. For a little while you are winning. Then you reach the narrow turn you can squeeze through, and Sydney is still on the wider path.
+          <br><br>
+          You could reach the finish before <<nnpc_he 'Sydney'>> even sees it. But Sydney has stopped to work out where you went.
+        <<option 'CN'>>
+          到了外面，悉尼提议比赛，看谁先跑到花园另一头。你先不满意起点，又不满意终点。你知道树丛后的小路会转弯，悉尼不知道。
+          <br><br>
+          “不能穿过花坛。”你说。
+          <br><br>
+          “我本来就没打算穿。”
+          <br><br>
+          你让悉尼数数。数到二，你就跑了。<<nnpc_He 'Sydney'>>在后面喊你，笑得气都快喘不上来。你领先了一小段。随后，你跑到能挤过去的窄弯，悉尼还在外侧的大路上。
+          <br><br>
+          等<<nnpc_he 'Sydney'>>看见终点，你都能先到了。可是悉尼已经停下来，正在找你跑去了哪里。
+      <</language>>
+    <<case 'race'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('shortcut')>>You dart through the gap and slap the wall at the finish. Sydney arrives with a leaf caught on <<nnpc_his 'Sydney'>> sleeve. "That doesn't count." You say it does. You spend longer arguing about the race than running it, until Sydney insists on another with the same path for both of you.<<else>>You wait behind the shrubs. When Sydney comes round the bend, you jump out. <<nnpc_He 'Sydney'>> nearly runs into you. Neither of you touches the wall first. Sydney says you owe <<nnpc_him 'Sydney'>> a proper race. You say you were only checking <<nnpc_he 'Sydney'>> hadn't got lost.<</if>>
+          <br><br>
+          On the way back, Sydney notices a flower lying on the path. The stem is broken. You look up at the shrub it fell from, thinking of the lecture you will get if anyone assumes you picked it.
+          <br><br>
+          Sydney bends to inspect it anyway. <<nnpc_He 'Sydney'>> is less worried about who will come looking than you are. You wish you could stay out here until everyone had forgotten to ask.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('shortcut')>>你钻过缝隙，在终点拍了一下墙。悉尼跑来时，袖子上挂着一片叶子。“这次不算。”你说当然算。争论的时间比跑的时间还长，最后悉尼坚持要再比一次，两人都走同一条路。<<else>>你在树丛后等着。悉尼转过弯，你忽然跳出来，<<nnpc_he 'Sydney'>>差点撞上你。谁都没先碰到墙。悉尼说，你欠<<nnpc_him 'Sydney'>>一场真正的比赛。你说自己只是确认<<nnpc_he 'Sydney'>>没迷路。<</if>>
+          <br><br>
+          回去时，悉尼发现小路上躺着一朵花，花茎已经断了。你抬头看看它掉下来的那株灌木，想着要是有人以为是你摘的，会怎么训你。
+          <br><br>
+          悉尼还是弯腰去看。<<nnpc_He 'Sydney'>>不像你那么担心谁会找过来。你希望能一直待在这里，待到大家都忘了问。
+      <</language>>
+    <<case 'garden-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('flower')>>You offer Sydney the flower. "It was already broken." Sydney says <<nnpc_he 'Sydney'>> saw. You repeat yourself when your parent opens the garden door. Your parent looks at the flower, then at the leaves stuck to both of you. "Wash before you come to the table." That is all. Sydney tucks the flower into a pocket and nearly crushes it.<<else>>You leave the flower on the edge of the path, where nobody will step on it. Sydney reaches the garden door before you and holds it open. You make a point of walking slowly for the last few steps, as though you were not trying to catch up.<</if>>
+          <br><br>
+          Inside, the floor feels cool through your shoes. Someone has left two cups out. You put your own beside Sydney's and turn the handles the same way. Sydney drinks from the wrong one. You start to protest, then decide it does not matter today.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('flower')>>你把花递给悉尼。“它本来就断了。”悉尼说<<nnpc_he 'Sydney'>>看见了。父母中的一人推开花园门时，你又说了一遍。对方看看花，又看看你们身上挂着的叶子。“吃饭前洗手。”只有这一句。悉尼把花塞进口袋，差点将它压扁。<<else>>你把花放在小路边，这样就不会被踩到。悉尼先到了花园门口，替你把门撑开。最后几步你故意走慢了一点，好像自己并没有在赶上去。<</if>>
+          <br><br>
+          进屋后，隔着鞋底也觉得地板凉。有人留出了两个杯子。你把自己的放在悉尼的旁边，将杯柄转向同一侧。悉尼端错了杯子。你刚想抗议，又决定今天没关系。
+      <</language>>
+    <<case 'kitchen'>>
+      <<language>>
+        <<option 'EN'>>
+          You wait in the kitchen doorway until your parent sees you. "Hungry already?"
+          <br><br>
+          Sydney says yes before you can say you were only looking. Your parent cuts two narrow strips from the edge of the pastry and sets them on a saucer to cool. You try to blow on yours from the doorway.
+          <br><br>
+          "The cups first. Then you can have them."
+          <br><br>
+          A cloth is put in your hand. Beside the chopping board lies the old kitchen knife, with its dark wooden handle worn smooth and one small nick near the heel of the blade. It always leaves a ragged place in the bread. Your parent turns its edge away before passing you the saucer.
+          <br><br>
+          Sydney takes the cutlery. You stay beside the counter. The cooling strips are close enough to reach, and the adults have begun talking about whether the shop will still be open. You could try a little before anyone looks back. Or you could carry the cups out and come back for the whole piece.
+        <<option 'CN'>>
+          你站在厨房门口，等父母中的一人看见你。“已经饿了？”
+          <br><br>
+          你还没来得及说自己只是来看看，悉尼已经说饿了。父母从酥皮边上切下两条，放到小碟里晾凉。你站在门口就想朝自己那条吹气。
+          <br><br>
+          “先摆杯子。然后就可以吃。”
+          <br><br>
+          一块布塞进你手里。案板旁放着家里那把旧菜刀，深色木柄已经磨得光滑，刀刃靠根部有一个小缺口。切面包时，它总在那里扯出毛边。父母先把刀刃转向里面，再把小碟递给你。
+          <br><br>
+          悉尼拿走餐具。你还待在柜台旁，那两条酥皮伸手就够得着。大人已经在讨论商店会不会关门了。可以趁他们回头前尝一点，也可以先把杯子拿出去，再回来吃一整条。
+      <</language>>
+    <<case 'kitchen-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('helped')>>You polish the cups twice. When you finish, your parent gives you and Sydney a piece each. Yours is bigger. Sydney notices, so you break off a corner and put it on <<nnpc_his 'Sydney'>> saucer before <<nnpc_he 'Sydney'>> can ask.<<else>>You take a bite while the adults are looking away. Sydney watches you chew. Your parent spots the missing corner immediately. You say the knife did it. Sydney starts laughing, and you cannot keep a straight face. You have to carry the cups anyway.<</if>>
+          <br><br>
+          Your other parent comes in with papers tucked under an arm. "Don't let yours go cold," says the one at the stove. "I've saved the corner you like."
+          <br><br>
+          The papers are left on the high shelf, safely out of the way. Your parent leans against the counter and eats from the saucer while you explain how Sydney cheated at something. Sydney objects to every part of the story, including the parts you have not reached yet.
+          <br><br>
+          When your fingers leave greasy marks on a cup, your parent gives you the cloth again. You rub one mark away. Sydney puts another beside it. The adults let you laugh for a little before telling you both to stop.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('helped')>>杯子被你擦了两遍。摆好后，父母给你和悉尼各一条酥皮。你的大些。悉尼发现了，你赶在<<nnpc_he 'Sydney'>>开口前，掰下一角放进<<nnpc_his 'Sydney'>>的碟里。<<else>>你趁大人没看，咬了一口。悉尼盯着你嚼。父母立刻就发现缺掉的那一角。你说是刀弄的。悉尼开始笑，你也绷不住了。最后杯子还是得由你来拿。<</if>>
+          <br><br>
+          另一位父母腋下夹着纸走进来。炉边的人说：“别放凉了。给你留了喜欢的那一角。”
+          <br><br>
+          纸被放到高处的架子上，免得碍事。父母靠着柜台，从小碟里拿东西吃。你开始讲悉尼在哪件事上作弊了。悉尼每一段都要反驳，连你还没讲到的部分也不放过。
+          <br><br>
+          手指在杯子上印下油迹，父母又把布递来。你擦掉一个，悉尼就在旁边添一个。大人让你们笑了一会儿，才叫你们两个别闹了。
+      <</language>>
+    <<case 'supper'>>
+      <<language>>
+        <<option 'EN'>>
+          There is room for everyone at the table, although Sydney has to move <<nnpc_his 'Sydney'>> chair nearer yours so an adult can pass behind. Sydney's parent asks whether you have been any trouble. You say no. Sydney says "only a little" at the same time, and you kick <<nnpc_his 'Sydney'>> shoe underneath the table.
+          <br><br>
+          They talk about a delivery that came to the wrong house and somebody they both know from town. You recognise the shop, but not what is funny about the story. Sydney stirs <<nnpc_his 'Sydney'>> drink with the handle of a spoon. You copy <<nnpc_him 'Sydney'>> until your parent silently turns both spoons the right way up.
+          <br><br>
+          The talk moves on to work. A name slips past beneath the scrape of a plate. One of your parents starts explaining something with both hands, then remembers the bread and passes it instead. Sydney's parent asks a question. You have to wait before asking your own.
+          <br><br>
+          When you reach too far, your parent catches the cup before your sleeve can knock it over. A thumb remains against the handle while you pull your arm back. Then the cup is yours again. You drink and look at Sydney, wondering how much longer supper can possibly take.
+        <<option 'CN'>>
+          桌边坐得下所有人，只是为了让大人从后面经过，悉尼得把椅子挪到你旁边。悉尼的家长问你们有没有添麻烦。你说没有，悉尼却同时说“只有一点点”，你在桌下踢了<<nnpc_his 'Sydney'>>的鞋。
+          <br><br>
+          大人说起送错地方的东西，又提到镇上共同认识的人。那家商店你知道，却没听懂故事哪里好笑。悉尼用勺柄搅饮料，你跟着学，直到父母默默把两把勺子都转了过来。
+          <br><br>
+          谈话转到了工作上。一个名字被盘子刮擦声盖住。父母中的一人伸着两只手解释什么，又想起面包，先把它递过去。悉尼的家长问了个问题。你只能等着，自己的还没机会问。
+          <br><br>
+          你伸得太远，父母赶在袖子碰到杯子前扶住了它。拇指贴着杯柄，等你缩回手，杯子就又交给你了。你喝了一口，看看悉尼，不明白这顿饭到底还要吃多久。
+      <</language>>
+    <<case 'departure'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('work')>>When you ask about the papers, your parents exchange a look. "Something that isn't ready yet." You ask whether you can see when it is. "We'll see." Sydney's parent puts a hand on <<nnpc_his 'Sydney'>> shoulder, already thinking about the journey home. You are left with an answer that does not quite promise anything.<<else>>You ask when Sydney is coming back. The adults discuss days as though arranging an appointment. You and Sydney look at each other, impatient. When they finally suggest one, you both agree before they have finished asking.<</if>>
+          <br><br>
+          At the front steps Sydney remembers the drawing. "Don't finish my bit."
+          <br><br>
+          You say you might, if <<nnpc_he 'Sydney'>> takes too long. Sydney starts to object, then sees your face. <<nnpc_He 'Sydney'>> laughs and tells you to leave the pencils out.
+          <br><br>
+          You watch until the figures beyond the gate are too small to recognise. Going inside feels like something you have to do because there is no one left to stay outside with.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('work')>>你问起那些纸，父母交换了一个眼神。“还没弄好的东西。”你问弄好了能不能看。“到时候再说。”悉尼的家长把手放在<<nnpc_his 'Sydney'>>肩上，已经想着回去的路。你得到了一句似乎什么也没有答应的话。<<else>>你问悉尼下次什么时候来。大人开始商量日子，好像在约定一场会面。你和悉尼不耐烦地互相看了一眼。他们终于提出一个时间时，话还没问完，你们就都答应了。<</if>>
+          <br><br>
+          走到门前台阶，悉尼又想起那幅画。“不许把我的部分画完。”
+          <br><br>
+          你说，<<nnpc_he 'Sydney'>>要是来得太慢，你也许会画。悉尼刚要抗议，又看到了你的表情。<<nnpc_He 'Sydney'>>笑起来，让你记得把笔拿出来。
+          <br><br>
+          你一直看着，直到门外的人影小得认不出来。回屋成了一件不得不做的事，因为外面已经没人可以陪你待着了。
+      <</language>>
+    <<case 'crossroads'>>
+      <<language>>
+        <<option 'EN'>>
+          You are still standing on the step. Sydney has turned the corner. You cannot see the coat any more, but you keep looking at the place where it disappeared.
+          <br><br>
+          Behind you, a parent calls you in. There is washing-up to do. A chair has been left out from the table, and you know whose chair it is before you see it.
+          <br><br>
+          The garden door catches against the mat. Through it you hear Sydney calling your name, close enough to be inside the house. At the same moment, the voices in the kitchen drop. Somebody says something about the next visit. You cannot make out the rest.
+          <br><br>
+          <<if maplebirch.get('LostLamb').mainReady>>
+            You have followed the voice into that afternoon before. You have followed the grown-ups' words until somebody supplied the rest. This time, neither sound quite covers the one coming from your own room. A small voice is trying not to cry. You know it is yours.
+            <br><br>
+          <</if>>
+          <i class='teal'>You can follow the voice in the garden, or move closer to the kitchen. Each way continues a different dream. Once both have ended, you can stay to hear what happens in your room.</i>
+        <<option 'CN'>>
+          你还站在台阶上。悉尼转过街角，你已经看不见那件外套，却一直望着它消失的位置。
+          <br><br>
+          身后，父母喊你进屋。还有餐具要洗。桌边一把椅子没推回去，没看见，你就知道那是谁的椅子。
+          <br><br>
+          花园门擦着地垫。你从那边听见悉尼喊你的名字，近得像是还在屋里。同一刻，厨房的谈话声低了下来。有人说起下一次来访，你听不清后面的话。
+          <br><br>
+          <<if maplebirch.get('LostLamb').mainReady>>
+            你追着那个声音回过下午，也追着大人的话，直到有人替他们把话说完。这次，两种声音都没能完全盖住自己房间传来的动静。一个孩子努力忍着不哭。你知道那是你自己。
+            <br><br>
+          <</if>>
+          <i class='teal'>可以跟着花园里的声音走，也可以靠近厨房。两条路会继续不同的梦。两种梦都结束后，你便能留下来，听自己房间里发生的事。</i>
+      <</language>>
+  <</switch>>
+<</widget>>

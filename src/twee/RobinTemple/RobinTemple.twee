@@ -4,10 +4,11 @@
   <<if _robinResidence>>
     <<getouticon>><<lanLink ['Go back to your shared home with Robin', '陪罗宾回你们的住处'] 'Deadwood Reblooms Property Home'>>
       <<run maplebirch.get('VanillaPlus').realEstate.visit(_robinResidence.id)>>
+      <<run maplebirch.get('RobinTemple').visit(0)>>
       <<pass _args[0]>>
     <</lanLink>><br>
   <<else>>
-    <<getouticon>><<lanLink ['Take Robin back to the orphanage', '送罗宾回孤儿院'] 'Orphanage'>><<pass _args[0]>><</lanLink>><br>
+    <<getouticon>><<lanLink ['Take Robin back to the orphanage', '送罗宾回孤儿院'] 'Orphanage'>><<run maplebirch.get('RobinTemple').visit(0)>><<pass _args[0]>><</lanLink>><br>
   <</if>>
 <</widget>>
 
@@ -22,29 +23,15 @@
   <<main_hall_icon>><<lanLink ['Return to the main hall (0:01)', '返回孤儿院大厅 (0:01)'] 'Orphanage'>><<pass 1>><</lanLink>><br>
 <</widget>>
 
-<<widget "robin-temple-room-link">>
-  <<if ["initiate", "monk", "priest"].includes($temple_rank)
-    and C.npc.Robin.init is 1
-    and !$robinmissing
-    and $exposed lte 0>>
-    <<if $RobinTemple.stage is "none" and C.npc.Robin.love gte 100
-      and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0>>
-      <<if playerChastity()>>
-        <<socialiseicon "ask">><<lanLink ['Ask Robin about the temple', '和罗宾谈谈神殿'] 'RobinTemple Invitation'>><</lanLink>><br>
-      <<else>>
-        <<language>>
-          <<option 'EN'>>
-            <span class="teal">You could talk to Robin about the temple after taking its vow.</span>
-          <<option 'CN'>>
-            <span class="teal">立下神殿誓言后，可以和罗宾谈谈神殿的事。</span>
-        <</language>><br>
-      <</if>>
-    <<elseif $RobinTemple.stage is "invited">>
-      <<socialiseicon "ask">><<lanLink ['Ask Robin about the purity trial', '问罗宾纯洁试炼的事'] 'RobinTemple Schedule'>><</lanLink>><br>
+<<widget 'robin-temple-room-link'>>
+  <<if maplebirch.get('RobinTemple').canTalk>>
+    <<if $RobinTemple.stage is 'none' and C.npc.Robin.love gte 100>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the temple', '和罗宾谈谈神殿'] 'RobinTemple Invitation'>><</lanLink>><br>
+    <<elseif $RobinTemple.stage is 'invited'>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the purity trial', '问罗宾纯洁试炼的事'] 'RobinTemple Schedule'>><</lanLink>><br>
     <<elseif $RobinTemple.stage is 'scheduled'
       and Time.days lt $RobinTemple.exam_day
       and $RobinTemple.prepared_day isnot Time.days
-      and getRobinLocation() is 'orphanage'
       and Time.hour gte 17
       and (Time.hour lt 19 or Time.hour is 19 and Time.minute lte 15)
       and !(maplebirch.get('Robin') and $RobinExpansion?.tutor
@@ -52,14 +39,12 @@
       and !(maplebirch.get('Robin') and $RobinExpansion?.shop
       and $RobinExpansion.shopStaff lt 1 and (Time.hour gt 17 or Time.minute gt 15))>>
       <<templeicon 'altar'>><<lanLink ['Go to the temple and prepare for the trial with Robin (0:45)', '陪罗宾去神殿准备试炼 (0:45)'] 'RobinTemple Prepare'>>
-        <<run setRobinLocationOverride('temple', maplebirch.get('Robin') && $RobinExpansion?.shop && $RobinExpansion.shopStaff < 1 ? [17] : [17, 18, 19])>>
+        <<run maplebirch.get('RobinTemple').visit(45)>>
         <<pass 45>>
       <</lanLink>><br>
-    <<elseif $RobinTemple.stage is "failed" and Time.days gte $RobinTemple.exam_day + 7>>
-      <<socialiseicon "ask">><<lanLink ['Ask Robin to try the purity trial again', '问罗宾愿不愿意再试一次纯洁试炼'] 'RobinTemple Retry'>><</lanLink>><br>
+    <<elseif $RobinTemple.stage is 'failed' and Time.days gte $RobinTemple.exam_day + 7>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Robin to try the purity trial again', '问罗宾愿不愿意再试一次纯洁试炼'] 'RobinTemple Retry'>><</lanLink>><br>
     <<elseif maplebirch.get('RobinTemple').member
-      and C.npc.Robin.trauma lt 80 and $robin.timer.hurt is 0
-      and getRobinLocation() is 'orphanage'
       and !(maplebirch.get('Robin') and $RobinExpansion?.tutor and Time.schoolDay
       and (Time.hour lt 18 or Time.hour is 18 and Time.minute lt 30))
       and !(maplebirch.get('Robin') and $RobinExpansion?.shop
@@ -72,12 +57,12 @@
   <</if>>
 <</widget>>
 
-<<widget "robin-temple-links">>
+<<widget 'robin-temple-links'>>
   <<if $exposed lte 0 and $stress lt $stressmax and C.npc.Robin.init is 1
     and !$robinmissing and getRobinLocation() isnot 'asylum'>>
-    <<if $RobinTemple.stage is "scheduled">>
-      <<if Time.days gte $RobinTemple.exam_day and Time.hour gte 6 and (Time.hour lt 8 or !Time.schoolDay and Time.hour lt 18)>>
-        <<templeicon "altar">><<lanLink ['Attend Robin\'s purity trial', '陪罗宾参加纯洁试炼'] 'RobinTemple Assessment'>><</lanLink>><br>
+    <<if $RobinTemple.stage is 'scheduled'>>
+      <<if maplebirch.get('RobinTemple').assessmentReady>>
+        <<templeicon 'altar'>><<lanLink ['Attend Robin\'s purity trial', '陪罗宾参加纯洁试炼'] 'RobinTemple Assessment'>><</lanLink>><br>
       <</if>>
     <<elseif maplebirch.get('RobinTemple').member>>
       <<icon 'temple/robin-quarters.png'>><<lanLink ['Visit Robin\'s place in the quarters', '去罗宾在宿舍的座位'] 'RobinTemple Corner'>><</lanLink>><br>
@@ -91,7 +76,7 @@
         and getRobinLocation() is 'temple'
         and !($RobinTemple.vigil_result isnot 'passed'
         and (Time.weekDay is 1 and Time.hour gte 20 or Time.weekDay is 2 and Time.hour lt 7))>>
-        <<socialiseicon "ask">><<lanLink ['Talk to Robin about the vigil', '和罗宾谈谈守夜试炼'] 'RobinTemple Vigil After'>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink ['Talk to Robin about the vigil', '和罗宾谈谈守夜试炼'] 'RobinTemple Vigil After'>><</lanLink>><br>
       <</if>>
     <</if>>
     <br>
@@ -99,8 +84,7 @@
 <</widget>>
 
 <<widget 'robin-temple-examination'>>
-  <<if C.npc.Robin.init isnot 1 or $robinmissing or $robin.timer.hurt isnot 0
-    or C.npc.Robin.trauma gte 80 or getRobinLocation() is 'asylum'>>
+  <<if !maplebirch.get('RobinTemple').available>>
     <<language>>
       <<option 'EN'>>
         Robin cannot attend. The examination will wait until <<nnpc_he 'Robin'>> can join you.
@@ -137,7 +121,7 @@
   <<socialiseicon 'ask'>><<lanLink ['Explain first', '先向约旦说明情况'] 'RobinTemple Joint Admit'>><<npcincr Robin love -10>><<npcincr Sydney love -10>><</lanLink>><<llllove 'Robin'>><<llllove 'Sydney'>><br>
 <</widget>>
 
-<<widget "robin-temple-monthly-examination">>
+<<widget 'robin-temple-monthly-examination'>>
   <<npc Jordan>><<person1>>
   <<language>>
     <<option 'EN'>>
@@ -146,7 +130,7 @@
       约旦在祭坛旁叫住你。“该检查你和罗宾共同立下的誓言了。我已经派人去请<<nnpc_him 'Robin'>>。”
   <</language>>
   <br><br>
-  <<templeicon "altar">><<lanLink ['Attend the examination with Robin', '和罗宾一起接受检查'] 'RobinTemple Monthly Examination'>><</lanLink>><br>
+  <<templeicon 'altar'>><<lanLink ['Attend the examination with Robin', '和罗宾一起接受检查'] 'RobinTemple Monthly Examination'>><</lanLink>><br>
   <<getouticon>><<lanLink ['Refuse the examination', '拒绝检查'] 'RobinTemple Monthly Refuse'>><<npcincr Robin love -5>><</lanLink>><<lllove 'Robin'>><br>
   <<socialiseicon 'ask'>><<lanLink ['Tell Jordan first', '先向约旦坦白'] 'RobinTemple Monthly Admit'>><<npcincr Robin love -10>><</lanLink>><<llllove 'Robin'>><br>
 <</widget>>

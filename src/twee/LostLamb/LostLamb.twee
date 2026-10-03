@@ -1,0 +1,309 @@
+:: Lost Lamb Widgets [widget]
+<<widget 'lost-lamb-entry'>>
+  <<if $LostLamb.talk and Time.hour gte 18 and maplebirch.get('LostLamb')?.kylarHere>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $LostLamb.talk is 'company'>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar turns the computer chair a little, keeping both you and the doorway in view.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar glances at the place where you sat and moves a pillow aside.<<else>>Kylar leaves the sound from the computer low. There is room beside the pillows if you want to sit again.<</if>>
+        <<elseif $LostLamb.talk is 'night'>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar looks up as you pass the bed, then back at the door. <<nnpc_He 'Kylar'>> does not ask you to describe the dream again.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar's eyes follow you past the bed. "You slept alright?" <<nnpc_He 'Kylar'>> waits for your answer before returning to the screen.<<else>>Kylar looks towards the bed, then leaves the subject alone. The computer fan fills the silence.<</if>>
+        <<else>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar watches you enter. <<nnpc_He 'Kylar'>> starts to turn the chair, stops, and leaves the space by the bed clear.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar looks up. "Want company this time?" <<nnpc_He 'Kylar'>> stays by the computer while you decide.<<else>>Kylar gives you a brief nod and remains at the computer, leaving you to choose where to sit.<</if>>
+        <</if>>
+      <<option 'CN'>>
+        <<if $LostLamb.talk is 'company'>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔稍稍转动电脑椅，让你和门口都留在视线里。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔看了一眼你先前坐过的地方，把一只枕头挪到旁边。<<else>>凯拉尔没有调高电脑的音量。如果你还想坐一会儿，枕头旁边有空位。<</if>>
+        <<elseif $LostLamb.talk is 'night'>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>你经过床边时，凯拉尔抬头看你，又看向房门。<<nnpc_He 'Kylar'>>没有让你再讲一次那个梦。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>你经过床边时，凯拉尔的目光跟着你。“你睡得还好吗？”听到你的回答后，<<nnpc_he 'Kylar'>>才重新看向屏幕。<<else>>凯拉尔看了看床，没有再提那件事。电脑风扇的声音填满了沉默。<</if>>
+        <<else>>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔看着你进来。<<nnpc_He 'Kylar'>>刚要转动椅子，又停住了，床边的空位没有被占去。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔抬起头。“这次想让我陪着吗？”你还在考虑，<<nnpc_he 'Kylar'>>便留在电脑旁等着。<<else>>凯拉尔对你轻轻点头，仍坐在电脑前，让你自己挑个地方坐下。<</if>>
+        <</if>>
+    <</language>><br><br>
+  <</if>>
+  <<if maplebirch.get('LostLamb')?.talkReady>>
+    <<loveicon 'hug'>><<lanLink ['Talk to Kylar about the dream', '和凯拉尔谈谈那个梦'] 'Lost Lamb Talk'>><</lanLink>><br>
+  <</if>>
+  <<if maplebirch.get('LostLamb')?.available>>
+    <<bedicon 'kylar'>><<lanLink ['Lie down for a while', '躺下休息一会儿'] 'Lost Lamb Recall'>><</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget 'lost-lamb-journal'>>
+  <<language>>
+    <<option 'EN'>>It is <<= getFormattedDate(Time.date)>>, <<ampm Time.hour Time.minute>>. <i>You cannot place the year. These dates belong to the dream.</i>
+    <<option 'CN'>>梦中是 <<= getFormattedDate(Time.date)>>，<<ampm Time.hour Time.minute>>。<i>你无法确定年份，这些日期属于梦境。</i>
+  <</language>>
+  <h1 class='header gold bold'><<language>><<option 'EN'>>The manor<<option 'CN'>>庄园<</language>></h1>
+  <ul class='journal'>
+    <li><<language>><<option 'EN'>>You are Kylar here. Day <span class='gold'><<= maplebirch.get('LostLamb').day>></span> in the dream.<<option 'CN'>>在这里，你是凯拉尔。梦中的第 <span class='gold'><<= maplebirch.get('LostLamb').day>></span> 天。<</language>></li>
+    <<if maplebirch.get('LostLamb').note>>
+      <li><<print lanSwitch(...maplebirch.get('LostLamb').note)>></li>
+    <</if>>
+    <<if !$settings.blindStatsEnabled>>
+      <li><<language>><<option 'EN'>>Doubt: <<option 'CN'>>疑心：<</language>><span class='lblue'><<= $LostLamb.doubt>>/100</span></li>
+      <li><<language>><<option 'EN'>>Unease: <<option 'CN'>>不安：<</language>><span class='red'><<= $LostLamb.fear>>/100</span></li>
+      <li><<language>><<option 'EN'>>Attention drawn: <<option 'CN'>>引起的注意：<</language>><span class='gold'><<= $LostLamb.notice>>/100</span></li>
+    <</if>>
+    <li><i><<language>><<option 'EN'>>Doubt helps you notice discrepancies. Unease can make listening or keeping still harder. The attention you draw changes who comes looking. These feelings do not tell you which account is true.<<option 'CN'>>疑心让你留意矛盾。不安可能让倾听或保持不动更难。引起的注意会改变谁来找你。这些感受不能替你判断哪种讲述是真相。<</language>></i></li>
+    <li class='teal'><<language>><<option 'EN'>>You may wake at any time. Rest at the manor to return to where you stopped.<<option 'CN'>>随时可以醒来，再到庄园休息便能从中断处继续。<</language>></li>
+  </ul>
+  <hr>
+<</widget>>
+
+<<widget 'lost-lamb-record'>>
+  <<if maplebirch.get('LostLamb') and !$statFreeze and ($LostLamb.scene or $LostLamb.endings.length)>>
+    <h1 class='header gold bold'><<language>><<option 'EN'>>Kylar's manor<<option 'CN'>>凯拉尔的庄园<</language>></h1>
+    <ul class='journal'>
+      <<if maplebirch.get('LostLamb')?.paused>>
+        <li class='teal'><<language>><<option 'EN'>>The dream was interrupted. Rest in Kylar's room to continue.<<option 'CN'>>梦境中断了。到凯拉尔房间休息，可以继续。<</language>></li>
+      <</if>>
+      <<if $LostLamb.endings.includes('main')>>
+        <li><<language>><<option 'EN'>>You dreamed of the visits, the night of breaking glass, and the mornings after. Not everything you saw was something Kylar could have witnessed.<<option 'CN'>>你梦见旧日的来访、玻璃碎裂的夜晚，以及随后的早晨。你看见的，并不全是凯拉尔可能亲眼见证的事。<</language>></li>
+      <<elseif $LostLamb.endings.length>>
+        <li><<language>><<option 'EN'>>You woke before you could leave the past behind. You can return to the dream.<<option 'CN'>>你还没能离开过去，就醒了。仍可以再次进入梦境。<</language>></li>
+      <</if>>
+      <<if $LostLamb.endings.includes('stay')>>
+        <li><<language>><<option 'EN'>>Keeping the afternoon from ending did not keep Sydney there.<<option 'CN'>>让下午不断重来，也没能让悉尼留下。<</language>></li>
+      <</if>>
+      <<if $LostLamb.endings.includes('verdict')>>
+        <li><<language>><<option 'EN'>>The dream could supply an explanation, but not a witness.<<option 'CN'>>梦能拼出一套解释，却不能替你找来目击者。<</language>></li>
+      <</if>>
+      <<if maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
+        <li class='teal'><<language>><<option 'EN'>>You remember another voice beneath both dreams. Return to the manor to listen for it.<<option 'CN'>>你记得两种梦境下都藏着另一个声音。回到庄园，可以再听一听。<</language>></li>
+      <</if>>
+    </ul>
+    <hr>
+  <</if>>
+<</widget>>
+
+:: Lost Lamb Recall
+<<if maplebirch.get('LostLamb')?.available>>
+  <<language>>
+    <<option 'EN'>>
+      You rest a hand on one of Kylar's pillows. You remember the dust in the attic, the light coming on, the spikes of silver and bronze surrounding an empty centre. The upper edge looked as though part of it had been hacked away. Kylar had not known it was there. "I didn't think my parents were religious."
+      <br><br>
+      When you asked about the change, <<nnpc_he 'Kylar'>> could only describe the night around it. <<nnpc_His 'Kylar'>> parents were excited. They put <<nnpc_him 'Kylar'>> to bed early. Windows broke below. <<nnpc_He 'Kylar'>> hid under the covers. By morning, they were different.
+      <br><br>
+      <<if $sydneySeen.includes('Kylar manor')>>You remember Sydney speaking of visits to this house, of parents who knew one another, of being told <<nnpc_he 'Sydney'>> could no longer come. The unfinished reason is harder to leave alone than a complete one would have been.<br><br><</if>>
+      <<if $LostLamb.known.bishop or $kylar_manor_secret gte 3>>The bishop offered an account of power and punishment. He also said there were things Jordan was not meant to know. You have an account, not an answer from everyone who was here.<br><br><</if>>
+      Nothing about the bed explains the monstrance. Nothing about the monstrance explains every ordinary day that came before it. You lie down. As the room grows quiet, you begin imagining what the house sounded like when someone still called Kylar down to supper.
+    <<option 'CN'>>
+      你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。上缘扭曲着，像是被砍掉过一部分。凯拉尔之前并不知道它在那里。“我没觉得父母信教。”
+      <br><br>
+      问起异变时，<<nnpc_he 'Kylar'>>只能说出围绕它的那个夜晚。父母很兴奋，让<<nnpc_him 'Kylar'>>早点上床。楼下的窗户碎了。<<nnpc_He 'Kylar'>>藏在被子下面。到了早晨，他们已经不一样。
+      <br><br>
+      <<if $sydneySeen.includes('Kylar manor')>>你记起悉尼谈过来这所房子玩，谈过互相认识的父母，谈过后来被告知不能再来。没说完的理由，比完整的解释更让人难以放下。<br><br><</if>>
+      <<if $LostLamb.known.bishop or $kylar_manor_secret gte 3>>主教给过一套关于力量和惩罚的说法，也说过有些事不该让约旦知道。你有了一种讲述，并没有得到当时所有在场者的回答。<br><br><</if>>
+      床没有解释圣体匣，圣体匣也没有解释之前每个普通的日子。你躺下。房间渐渐安静，你开始想象，还有人喊凯拉尔下楼吃晚饭的时候，房子是什么声音。
+  <</language>>
+  <br><br>
+  <i class='teal'><<language>><<option 'EN'>>You will follow the dream as Kylar. Your present time and belongings will return when you wake.<<option 'CN'>>你将在梦里作为凯拉尔行动。醒来后，会恢复现实的时间与随身物品。<</language>></i><br><br>
+  <<bedicon 'kylar'>><<lanLink ['Close your eyes (0:30)', '闭上眼睛 (0:30)'] 'Lost Lamb Memory'>><<if maplebirch.get('LostLamb')?.available>><<pass 30>><<run maplebirch.get('LostLamb').begin()>><</if>><</lanLink>><br>
+<</if>>
+<<getouticon>><<lanLink ['Sit up', '坐起来'] 'Manor Kylar Room'>><</lanLink>><br>
+
+:: Lost Lamb Memory
+<<if maplebirch.get('LostLamb')?.active>>
+  <<switch maplebirch.get('LostLamb').scene.part>>
+    <<case 'before'>><<lost-lamb-before>>
+    <<case 'stay'>><<lost-lamb-stay>>
+    <<case 'verdict'>><<lost-lamb-verdict>>
+    <<case 'main'>><<lost-lamb-main>>
+  <</switch>>
+  <br><br>
+  <<for _choice range maplebirch.get('LostLamb').choices>>
+    <<capture _choice>>
+      <<lanLink _choice.text 'Lost Lamb Memory'>><<run maplebirch.get('LostLamb').choose(_choice.id)>><</lanLink>><<= maplebirch.get('LostLamb').hint(_choice)>><br>
+    <</capture>>
+  <</for>>
+  <<if $LostLamb.ending>>
+    <<getouticon>><<lanLink ['Open your eyes', '睁开眼睛'] 'Lost Lamb Wake'>><</lanLink>><br>
+  <<else>>
+    <br><<getouticon>><<lanLink ['Wake for now', '暂时醒来'] 'Lost Lamb Wake'>><</lanLink>><br>
+  <</if>>
+<<else>>
+  <<getouticon>><<lanLink ['Open your eyes', '睁开眼睛'] 'Manor Kylar Room'>><</lanLink>><br>
+<</if>>
+
+:: Lost Lamb Wake
+<<if maplebirch.get('LostLamb')?.reward and $LostLamb.ending is 'main'>>
+  <<earnFeat 'Lost Lamb'>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    You are in Kylar's room. The monitors are where you left them. The pillow has a warm patch beneath your cheek. There is no glass on the floor beside the bed.
+    <br><br>
+    <<if $LostLamb.ending is 'main'>>You pull your feet onto the mattress before you know why. The space beneath this bed is dark. You make yourself look: a discarded cable, a sock, the edge of a box. Nothing reaches for you. Farther down the hall, wood scrapes against wood once, then stops. That room is still there. Kylar has been walking past it for years.<<elseif $LostLamb.ending is 'stay'>>You wait for the third knock. The computer fan changes pitch, and the name you called from the window in the childhood dream almost comes out again. Sydney. You press your lips together before answering a sound from that afternoon. The window reflects this room, not the garden where the afternoon kept beginning.<<elseif $LostLamb.ending is 'verdict'>>You try to repeat what the visitor said. <<if $LostLamb.known.bishop>>It comes out in the bishop's voice, then in your own.<<else>>You hear your own voice supplying the words.<</if>> You stop. You can still hear the glass, and the child calling from upstairs. The person who answered your questions was never clearer than those sounds.<<else>>You rub at the place where the doorframe pressed against your palm. There is no mark. When the floor creaks outside, you listen until the sound has passed.<</if>>
+    <<if $LostLamb.ending is 'main' and $LostLamb.known.gwylan>>
+      <br><br>
+      You remember telling Gwylan that Kylar still lived here. That was the part that surprised <<nnpc_him 'Gwylan'>>. <<nnpc_He 'Gwylan'>> had seen the parents hunting small animals in the forest. <<nnpc_He 'Gwylan'>> had not described this child's night. You sit up until the doorway comes into view, and keep looking after the scraping has stopped.
+    <</if>>
+    <br><br>
+    <<if Time.hour gte 18 and maplebirch.get('LostLamb')?.kylarHere>>
+      <<if $LostLamb.ending is 'main'>>
+        Kylar turns from the computer when you pull your feet up.
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>"Wh-what are you looking at?" <<nnpc_His 'Kylar'>> eyes follow yours to the gap beneath the bed, then return to your face. "Did you go somewhere?" You say you were asleep. Kylar checks the doorway before coming any closer.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>"You were shouting." <<nnpc_He 'Kylar'>> comes to the bedside, stopping when you look up. "You can sit by me. If you want." <<nnpc_He 'Kylar'>> glances towards the hall, then moves a pillow out of your way.<<else>>"A nightmare?" <<nnpc_He 'Kylar'>> turns down the sound from the computer. You nod without explaining. Kylar watches until you lower your feet, then lets the question drop.<</if>>
+      <<elseif $LostLamb.ending is 'stay'>>
+        Kylar notices you looking towards the window.
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>"Wh-who were you talking to?" You say it was a dream. "Nobody else came in," <<nnpc_he 'Kylar'>> says, looking from the bed to the door. <<nnpc_He 'Kylar'>> keeps watching you after you turn away from the window.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>"Are you waiting for someone?" The question comes out quietly. You shake your head. Kylar turns the chair towards you. "You can stay a little longer." <<nnpc_He 'Kylar'>> does not ask you to name the person in the dream.<<else>>"Y-you're awake." <<nnpc_He 'Kylar'>> stops what <<nnpc_he 'Kylar'>> was doing on the computer. "Did you hear a knock? I didn't." You listen together for a moment. Nothing comes from the door.<</if>>
+      <<elseif $LostLamb.ending is 'verdict'>>
+        Your unfinished words make Kylar look away from the screens.
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>"What are you saying?" You tell <<nnpc_him 'Kylar'>> that you had a dream, and stop trying to explain it. Kylar's hand remains on the back of the chair. "Then it was a dream." <<nnpc_He 'Kylar'>> waits until you nod.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>"You don't have to tell me all of it." <<nnpc_He 'Kylar'>> pulls the chair nearer, but does not interrupt when you start and stop again. The monitors cast a pale edge of light across <<nnpc_his 'Kylar'>> face.<<else>>"I-I didn't catch that." You say it was something from your sleep. Kylar lowers the computer's volume. "Oh." <<nnpc_He 'Kylar'>> leaves the silence for you to fill or leave alone.<</if>>
+      <<else>>
+        Kylar sees you sit up.
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>"Are you going?" <<nnpc_He 'Kylar'>> turns the chair before you have finished straightening the pillow. You say you have only just woken. Kylar watches your hands, then settles back without returning to the screen.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>"Did I wake you?" You shake your head. <<nnpc_He 'Kylar'>> gestures at the other pillows. "You can use those too." <<nnpc_He 'Kylar'>> lowers <<nnpc_his 'Kylar'>> voice as though you might lie down again.<<else>>Kylar pauses over the keyboard. "Sleep alright?" You are not sure what to say. <<nnpc_He 'Kylar'>> gives a small nod and lets you sit up in your own time.<</if>>
+      <</if>>
+    <<elseif Time.hour lte 6 and C.npc.Kylar.state is 'active'>>
+      <<if $LostLamb.ending is 'main'>>Kylar shifts beneath the sheets when the mattress moves. You hold still until <<nnpc_his 'Kylar'>> breathing settles again.<<elseif $LostLamb.ending is 'stay'>>Kylar murmurs in <<nnpc_his 'Kylar'>> sleep. It is no name you can make out. You watch the sheets rise and fall instead of waiting for another knock.<<elseif $LostLamb.ending is 'verdict'>>Kylar sleeps at an awkward angle beneath the sheets. You lower your voice before your explanation becomes a question for <<nnpc_him 'Kylar'>>.<<else>>Kylar is still asleep. You ease the pillow back without pulling at the sheets covering <<nnpc_him 'Kylar'>>.<</if>>
+    <<else>>
+      You sit up and put the pillow back. Somewhere outside the room a floorboard creaks. You wait for a second sound before standing.
+    <</if>>
+  <<option 'CN'>>
+    你在凯拉尔房间。显示器还在原处，枕头贴着脸颊的地方有点暖。床边地板上没有碎玻璃。
+    <br><br>
+    <<if $LostLamb.ending is 'main'>>还没想明白为什么，你已经把脚收回床垫上。床底很暗。你逼自己去看：一根丢下的线，一只袜子，箱子的一角。没有东西伸手抓你。走廊更深处，木头刮过木头，只响了一声便停住。那个房间还在那里。凯拉尔已经从它门前经过了很多年。<<elseif $LostLamb.ending is 'stay'>>你等着第三下敲门。电脑风扇变了调，童年梦里隔着窗户喊过的名字差点又脱口而出。悉尼。你抿紧嘴唇，没有回应那个下午留下的声音。窗户映出的是这间屋子，没有那个不断重来的下午和花园。<<elseif $LostLamb.ending is 'verdict'>>你试着复述来客的话。<<if $LostLamb.known.bishop>>出口时却先成了主教的声音，又成了你自己的。<<else>>你听见自己替那个人补上了话。<</if>>你停下来。碎玻璃的声音还在，孩子还在楼上喊。回答你问题的那个人，从没有比这些声音更清楚。<<else>>你揉着手掌被门框压过的位置，没有留下印子。屋外地板响起时，你一直听到那声音过去。<</if>>
+    <<if $LostLamb.ending is 'main' and $LostLamb.known.gwylan>>
+      <br><br>
+      你记起告诉格威岚，凯拉尔仍住在这里时，<<nnpc_he 'Gwylan'>>才露出惊讶。<<nnpc_He 'Gwylan'>>见过那对父母在森林里捕食小动物，却没有描述过这个孩子的夜晚。你慢慢坐直，直到门口进入视线。刮擦声停了，你仍看着那边。
+    <</if>>
+    <br><br>
+    <<if Time.hour gte 18 and maplebirch.get('LostLamb')?.kylarHere>>
+      <<if $LostLamb.ending is 'main'>>
+        你把脚收上床时，凯拉尔从电脑前转过头。
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>“你、你在看什么？”<<nnpc_His 'Kylar'>>的目光跟着你移到床底的缝隙，又转回你的脸上。“你去了哪里吗？”你说自己刚才在睡觉。凯拉尔先看过门口，才往你这边走近。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>“你刚才在喊。”<<nnpc_He 'Kylar'>>走到床边，你抬头时，便停住了。“你可以坐在我旁边。如果你想的话。”<<nnpc_He 'Kylar'>>瞥了一眼走廊，把一只枕头挪开，给你腾出地方。<<else>>“做噩梦了？”<<nnpc_He 'Kylar'>>调低电脑的音量。你点头，没有解释。凯拉尔一直看着，直到你把脚放下，也没有再追问。<</if>>
+      <<elseif $LostLamb.ending is 'stay'>>
+        凯拉尔注意到你正望着窗户。
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>“你、你刚才在跟谁说话？”你说那是个梦。“没有别人进来。”<<nnpc_he 'Kylar'>>说着，从床看向房门。你不再看窗户了，<<nnpc_he 'Kylar'>>却仍留意着你。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>“你在等人吗？”这句问话很轻。你摇了摇头，凯拉尔便把椅子转向你。“你可以再待一会儿。”<<nnpc_He 'Kylar'>>没有让你说出梦里那个人的名字。<<else>>“你、你醒了。”<<nnpc_He 'Kylar'>>停下电脑上的事。“你听见敲门了吗？我没听见。”你们一起听了片刻，门口没有动静。<</if>>
+      <<elseif $LostLamb.ending is 'verdict'>>
+        你没说完的话，让凯拉尔从屏幕前转过头。
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>“你在说什么？”你告诉<<nnpc_him 'Kylar'>>，自己做了个梦，不再试着解释。凯拉尔的手仍放在椅背上。“那就是个梦。”直到你点头，<<nnpc_he 'Kylar'>>才动了一下。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>“你不必全都告诉我。”<<nnpc_He 'Kylar'>>把椅子拉近了一点。你开口，又停下来，<<nnpc_he 'Kylar'>>也没有打断。显示器在<<nnpc_his 'Kylar'>>脸侧映出一道浅光。<<else>>“我、我没听清。”你说那是睡觉时梦见的事。凯拉尔调低了电脑的音量。“哦。”<<nnpc_He 'Kylar'>>没有继续问，让你自己决定是否接着说。<</if>>
+      <<else>>
+        凯拉尔看见你坐起来。
+        <<if maplebirch.get('LostLamb').reaction is 'guarded'>>“你要走了？”枕头还没整理好，<<nnpc_he 'Kylar'>>已经转过椅子。你说自己才刚醒。凯拉尔看了看你的手，才重新坐稳，却没有看回屏幕。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>“我把你吵醒了吗？”你摇了摇头。<<nnpc_He 'Kylar'>>指了指其他枕头。“那些也可以用。”<<nnpc_He 'Kylar'>>放轻声音，像是你还会再躺下。<<else>>凯拉尔的手在键盘上停了停。“睡得还好吗？”你不知道该怎么回答。<<nnpc_He 'Kylar'>>轻轻点头，等你慢慢坐直。<</if>>
+      <</if>>
+    <<elseif Time.hour lte 6 and C.npc.Kylar.state is 'active'>>
+      <<if $LostLamb.ending is 'main'>>床垫动了一下，凯拉尔也在被子下面翻了翻身。你没有再动，等到<<nnpc_his 'Kylar'>>的呼吸重新平稳。<<elseif $LostLamb.ending is 'stay'>>凯拉尔在睡梦里含糊地说了几个字，你没听出任何名字。你望着起伏的被子，没有再等下一声敲门。<<elseif $LostLamb.ending is 'verdict'>>凯拉尔以别扭的姿势睡在被子下面。你压低了声音，没有把还没说完的解释变成对<<nnpc_him 'Kylar'>>的提问。<<else>>凯拉尔还在睡。你轻轻放回枕头，没有牵动盖在<<nnpc_him 'Kylar'>>身上的被子。<</if>>
+    <<else>>
+      你坐起，将枕头放回去。屋外某处的地板响了一下。你等过第二声，才站起来。
+    <</if>>
+<</language>><br><br>
+<<if maplebirch.get('LostLamb')?.reward and $LostLamb.ending is 'main'>>
+  <<language>><<option 'EN'>>You have gained the trait <span class='lblue'>Dream Scar</span>. <span class='green'>The ongoing stress caused by nightmares during sleep is reduced by 25%.</span><<option 'CN'>>你获得了特质<span class='lblue'>“梦痕”</span>。<span class='green'>睡眠中因噩梦持续增加的压力减少 25%。</span><</language>><br><br>
+<</if>>
+<<getouticon>><<lanLink ['Sit up', '坐起来'] 'Manor Kylar Room'>><</lanLink>><br>
+
+:: Lost Lamb Talk
+<<if maplebirch.get('LostLamb')?.talkReady>>
+  <<language>>
+    <<option 'EN'>>
+      Kylar is sitting at the computer. You stop beside the bed instead of lying down again. "I had a dream here," you say. "About this house."
+      <br><br>
+      <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+        "What about it?" <<nnpc_He 'Kylar'>> turns far enough to watch your face, but leaves a hand on the mouse. You say you woke listening for another pane of glass to break. Kylar looks towards the door. "Y-you stayed in here?" You say yes. <<nnpc_His 'Kylar'>> hand remains on the mouse, though the pointer is no longer moving.
+      <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+        "Was I there?" <<nnpc_He 'Kylar'>> pushes the chair back. You tell <<nnpc_him 'Kylar'>> about a child shouting upstairs, and waking with your feet pulled onto the mattress. Kylar looks at the pillows. "You can sit by me. You don't have to go yet."
+      <<else>>
+        "Oh." <<nnpc_He 'Kylar'>> lowers the sound from the computer. You say that every small sound makes you look towards the bed. Kylar gives the dark gap a quick glance, then looks away. "You can... stay here. Wh-what happened?"
+      <</if>>
+    <<option 'CN'>>
+      凯拉尔坐在电脑前。你停在床边，没有再次躺下。“我在这里做了个梦。”你说，“跟这所房子有关。”
+      <br><br>
+      <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+        “梦见什么了？”<<nnpc_He 'Kylar'>>转过来，能看清你的脸，一只手却仍放在鼠标上。你说自己醒来后，还在等着听另一块玻璃碎掉。凯拉尔看向房门。“你、你一直待在这里？”你说是。<<nnpc_His 'Kylar'>>手仍放在鼠标上，屏幕里的箭头却没再移动。
+      <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+        “我在里面吗？”<<nnpc_He 'Kylar'>>向后推开椅子。你告诉<<nnpc_him 'Kylar'>>，梦里有个孩子在楼上喊，自己醒来时还把脚收在床垫上。凯拉尔看了看那些枕头。“你可以坐在我旁边。不用现在就走。”
+      <<else>>
+        “哦。”<<nnpc_He 'Kylar'>>调低了电脑的声音。你说每一点响动都会让自己看向床边。凯拉尔朝那道暗处匆匆瞥了一眼，又移开目光。“你可以……待在这里。怎、怎么了？”
+      <</if>>
+  <</language>><br><br>
+  <<couchicon>><<lanLink ['Sit with Kylar for a while (0:10)', '陪凯拉尔坐一会儿 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('company')>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
+  <<bedicon 'kylar'>><<lanLink ['Ask about the night Kylar remembers (0:10)', '问起凯拉尔记得的那个夜晚 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
+  <<relaxicon>><<lanLink ['Ask for a little space (0:05)', '想独自待一会儿 (0:05)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('space')>><</lanLink>><br>
+<<elseif $LostLamb.talk and maplebirch.get('LostLamb')?.kylarHere>>
+  <<switch $LostLamb.talk>>
+    <<case 'company'>>
+      <<language>>
+        <<option 'EN'>>
+          You sit on the edge of the bed and ask Kylar to stay nearby. You do not need to talk about the dream. The computer fan is a small, steady noise, and the light on the screens belongs to this evening.
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            "For how long?" <<nnpc_He 'Kylar'>> asks at once. You say a little while. Kylar pulls the chair round to face you. "You could stay longer." You say that you will decide when you are ready to get up. <<nnpc_His 'Kylar'>> fingers tighten around the chair's arm, but <<nnpc_he 'Kylar'>> stays sitting. After a moment <<nnpc_he 'Kylar'>> points out something on the screen, keeping an eye on you as you look.
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            Kylar comes over and sits close enough for your shoulders to touch. "I like having you here." <<nnpc_He 'Kylar'>> starts to ask whether you will stay the night, then glances at your face. You tell <<nnpc_him 'Kylar'>> that you are here now. <<nnpc_He 'Kylar'>> leans against you for a moment, then begins describing what <<nnpc_he 'Kylar'>> was doing on the computer. It is not an explanation of the dream. You listen anyway.
+          <<else>>
+            Kylar brings the chair closer, catching one wheel on the edge of a sheet. <<nnpc_He 'Kylar'>> pulls it free with an embarrassed laugh. "S-sorry." You shift a pillow so <<nnpc_he 'Kylar'>> has somewhere to put <<nnpc_his 'Kylar'>> arm. The two of you sit without finding much to say. When Kylar eventually mentions something on the screen, you look over rather than checking the dark beneath the bed.
+          <</if>>
+          <br><br>
+          <span class='green'>You feel a little less tense.</span> The room is still the same room when you get up.
+        <<option 'CN'>>
+          你坐在床沿，请凯拉尔在旁边待一会儿。你们不必谈那个梦。电脑风扇的声音很轻，也很稳定，屏幕上的光属于眼前这个晚上。
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            “待多久？”<<nnpc_he 'Kylar'>>立即问。你说只是一会儿，凯拉尔便把椅子拉过来，正对着你。“也可以待久一点。”你说自己想起来时，会自己决定。<<nnpc_His 'Kylar'>>的手指握紧了椅子扶手，却仍坐着。过了一会儿，<<nnpc_he 'Kylar'>>指给你看屏幕上的东西，你转头看时，<<nnpc_he 'Kylar'>>仍留意着你。
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            凯拉尔过来坐下，近得肩膀能碰到你。“我喜欢你在这里。”<<nnpc_He 'Kylar'>>刚要问你会不会留下过夜，又看了看你的脸。你告诉<<nnpc_him 'Kylar'>>，自己现在就在这里。<<nnpc_He 'Kylar'>>靠着你待了片刻，随后说起刚才在电脑上做的事。那些话没有解释你的梦，你还是认真听着。
+          <<else>>
+            凯拉尔把椅子挪近，一个轮子却压住了垂下的床单。<<nnpc_He 'Kylar'>>拉开床单，有点难为情地笑了笑。“对、对不起。”你挪开一只枕头，让<<nnpc_he 'Kylar'>>有地方放手臂。你们坐着，没有找到多少话说。后来凯拉尔终于提起屏幕上的东西，你便转头去看，没有再检查昏暗的床底。
+          <</if>>
+          <br><br>
+          <span class='green'>你没那么紧绷了。</span>站起来时，房间仍然是原来的房间。
+      <</language>><br><br>
+    <<case 'night'>>
+      <<language>>
+        <<option 'EN'>>
+          You tell Kylar about the sound of glass in the dream. You ask whether <<nnpc_he 'Kylar'>> wants to talk about the night <<nnpc_he 'Kylar'>> mentioned before, and add that <<nnpc_he 'Kylar'>> does not have to.
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            "I already told you." <<nnpc_He 'Kylar'>> watches your face. "They were excited. They put me to bed. The windows broke." <<nnpc_His 'Kylar'>> hand leaves the mouse and closes against <<nnpc_his 'Kylar'>> leg. "I was under the covers. I don't know what you saw." You tell <<nnpc_him 'Kylar'>> that you are not asking <<nnpc_him 'Kylar'>> to agree with the dream. Kylar looks down at the bed, then back at you. "Good."
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            Kylar sits beside you. "I hid," <<nnpc_he 'Kylar'>> says. "Under the covers. I told you." You nod. "I heard the windows. In the morning they were..." <<nnpc_He 'Kylar'>> stops and looks towards the hall. You do not finish the sentence for <<nnpc_him 'Kylar'>>. After a while <<nnpc_he 'Kylar'>> reaches towards your hand. <<if isLoveInterest('Kylar')>>You turn your palm up. <<nnpc_He 'Kylar'>> closes <<nnpc_his 'Kylar'>> fingers around it at once and watches your face.<<else>>The hand stops on the blanket beside yours. <<nnpc_He 'Kylar'>> waits, fingers curling into the fabric when you do not move.<</if>>
+          <<else>>
+            "I-I don't know what else to tell you." <<nnpc_He 'Kylar'>> looks at the pillows. "They put me to bed early. I heard windows smashing. I hid." You say that you heard <<nnpc_him 'Kylar'>> the first time too. There is no need to find more for your sake. Kylar nods once, then turns the computer chair towards you instead of towards the screen.
+          <</if>>
+          <br><br>
+          Kylar rubs the edge of a pillow between two fingers. <<nnpc_He 'Kylar'>> looks towards the doorway, then asks whether you want the computer's sound back on. You say yes. The fan and the familiar voices on the screen fill the room again. <span class='green'>You no longer jump at every little click.</span>
+        <<option 'CN'>>
+          你告诉凯拉尔，自己在梦里听见了玻璃碎裂的声音。你问<<nnpc_he 'Kylar'>>愿不愿意谈谈以前提过的那个夜晚，也告诉<<nnpc_him 'Kylar'>>，不想说就不必说。
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            “我已经告诉过你了。”<<nnpc_He 'Kylar'>>看着你的脸。“他们很兴奋，让我上床。窗户碎了。”<<nnpc_His 'Kylar'>>的手离开鼠标，握紧，靠在腿上。“我躲在被子里。我不知道你看见了什么。”你告诉<<nnpc_him 'Kylar'>>，自己没有要让<<nnpc_him 'Kylar'>>赞同那个梦。凯拉尔低头看了看床，又看回你。“那就好。”
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            凯拉尔坐在你旁边。“我躲起来了。”<<nnpc_he 'Kylar'>>说，“躲在被子里面。我跟你说过。”你点头。“我听见窗户碎了。早上，他们就……”<<nnpc_He 'Kylar'>>停下来，看向走廊。你没有替<<nnpc_him 'Kylar'>>说完。过了一会儿，<<nnpc_he 'Kylar'>>向你的手伸过来。<<if isLoveInterest('Kylar')>>你翻过掌心，<<nnpc_he 'Kylar'>>立即握住它，望着你的脸。<<else>>那只手停在你手旁的被子上。你没有挪动，<<nnpc_he 'Kylar'>>便等着，手指慢慢抓住布料。<</if>>
+          <<else>>
+            “我、我不知道还能说什么。”<<nnpc_He 'Kylar'>>看着枕头。“他们让我早点睡。我听见窗户碎了。我躲起来了。”你说第一次听<<nnpc_him 'Kylar'>>讲时，也听清了。不必为了你再找出更多。凯拉尔点了一下头，将电脑椅转向你，没有转回屏幕。
+          <</if>>
+          <br><br>
+          凯拉尔用两根手指揉着枕头边缘。<<nnpc_He 'Kylar'>>看向门口，随后问你要不要重新打开电脑的声音，你说好。风扇和屏幕里熟悉的说话声又填满房间。<span class='green'>你不再每听见一声轻响就紧绷起来。</span>
+      <</language>><br><br>
+    <<case 'space'>>
+      <<language>>
+        <<option 'EN'>>
+          You say you need a few quiet minutes before talking about anything else. It is not a question about Kylar's parents. You are still trying to get out of the dream.
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            "You don't want me here? Are you going to see someone?" Kylar starts to get up. You say that you are staying by the bed for a few minutes. <<nnpc_He 'Kylar'>> looks from you to the door. "Here? Just a few?" You nod. Kylar pulls the chair back, but turns it to keep you and the doorway in view. "You'll tell me before you go?" <<nnpc_He 'Kylar'>> asks again before you have answered the first time.
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            "Oh. Alright." <<nnpc_He 'Kylar'>> looks disappointed and pulls back the hand <<nnpc_he 'Kylar'>> had started to offer. "I'll be over here." You thank <<nnpc_him 'Kylar'>>. Kylar sits at the computer and leaves the bed to you, occasionally looking round without asking you to speak.
+          <<else>>
+            "A-alright." Kylar shifts the chair away from the bedside. For a moment <<nnpc_he 'Kylar'>> seems about to say something, then puts on the headphones instead. You sit without having to answer another question.
+          <</if>>
+          <br><br>
+          You watch the light on the wall until your breathing slows. The computer mouse clicks behind you. When you get up, you can place both feet on the floor without first checking beneath the bed.
+        <<option 'CN'>>
+          你说自己想先安静待几分钟，暂时不谈别的。这不是关于凯拉尔父母的提问，你只是还在试着从梦里缓过来。
+          <br><br>
+          <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
+            “你不想让我在这里？你要去见谁吗？”凯拉尔刚要站起，你便说自己只是要在床边安静待几分钟。<<nnpc_He 'Kylar'>>从你看向房门。“就在这里？就几分钟？”你点头。凯拉尔把椅子拉回去，却仍让你和门口都留在视线里。“走之前会告诉我吧？”你还没回答，<<nnpc_he 'Kylar'>>已经又问了一遍。
+          <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
+            “哦。好吧。”<<nnpc_He 'Kylar'>>有点失望，收回了刚要向你伸来的手。“我就在那边。”你向<<nnpc_him 'Kylar'>>道谢。凯拉尔坐回电脑前，把床边留给你。<<nnpc_He 'Kylar'>>偶尔回头，却没有催你开口。
+          <<else>>
+            “好、好的。”凯拉尔将椅子从床边挪开。有那么一会儿，<<nnpc_he 'Kylar'>>像是还想说什么，最后却戴上了耳机。你坐着，不必再回答别的问题。
+          <</if>>
+          <br><br>
+          你望着墙上的光，直到呼吸慢下来。身后，电脑鼠标轻轻响着。站起来时，你没有先检查床底，就将双脚放到了地板上。
+      <</language>><br><br>
+  <</switch>>
+<<else>>
+  <<language>><<option 'EN'>>The room is quiet. You leave the conversation for a time when Kylar is here and awake.<<option 'CN'>>房间很安静。你把这段话留到凯拉尔在这里，也醒着的时候再说。<</language>><br><br>
+<</if>>
+<<getouticon>><<lanLink ['Return to the room', '回到房间'] 'Manor Kylar Room'>><</lanLink>><br>

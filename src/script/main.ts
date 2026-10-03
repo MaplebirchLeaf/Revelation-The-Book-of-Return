@@ -1,13 +1,14 @@
 // ./src/script/main.ts
 
-import Revelation from './Revelation';
+import Tips from './Revelation/Tips';
 import RobinTemple from './RobinTemple';
 import TempleChoir from './TempleChoir';
+import LostLamb from './LostLamb';
 
 (function (maplebirch): void {
   'use strict';
 
-  if (maplebirch.get('RBR')) Revelation(maplebirch);
+  if (maplebirch.get('RBR')) Tips(maplebirch);
 
   // 入口只接入原版正常操作分支，月检、强制事件和昏倒页不开放额外链接。
   // 两个模块共享标记，LinkZone 负责排列，无需各自占用原版图标锚点。
@@ -24,4 +25,6 @@ import TempleChoir from './TempleChoir';
 
   if (maplebirch.get('RobinTemple')) RobinTemple(maplebirch);
   if (maplebirch.get('TempleChoir')) TempleChoir(maplebirch);
+  // 即使模块关闭，保存于梦中的存档仍需要 Header 恢复。
+  LostLamb(maplebirch);
 })(maplebirch);

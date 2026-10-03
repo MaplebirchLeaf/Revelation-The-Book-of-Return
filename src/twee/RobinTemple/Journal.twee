@@ -12,9 +12,9 @@
       <<case 'invited'>>
         <li><<language>>
           <<option 'EN'>>
-            Robin has questions about joining the temple. Talk in Robin’s room after making your own vow.
+            Robin has questions about joining the temple. Find <<nnpc_him 'Robin'>> in <<nnpc_his 'Robin'>> room when <<nnpc_he 'Robin'>> is free, and visit Jordan together during the day, outside the Sunday service.
           <<option 'CN'>>
-            罗宾对加入神殿还有疑问。立下自己的誓言后，去罗宾的房间谈谈。
+            罗宾对加入神殿还有疑问。等<<nnpc_he 'Robin'>>有空时去房间谈谈，再一起于白天、周日弥撒以外的时段拜访约旦。
         <</language>></li>
       <<case 'scheduled'>>
         <li><<language>>
@@ -22,6 +22,12 @@
             Jordan will assess Robin on day <span class='gold'><<= $RobinTemple.exam_day>></span>. Before then, find Robin at the orphanage from 17:00 to 19:15 and go to the temple together.
           <<option 'CN'>>
             约旦将在第 <span class='gold'><<= $RobinTemple.exam_day>></span> 天为罗宾主持纯洁试炼。在此之前，17:00 至 19:15 可以去孤儿院找罗宾，一起到神殿准备。
+        <</language>></li>
+        <li><<language>>
+          <<option 'EN'>>
+            If Robin cannot attend or Jordan is unavailable, the appointment will wait. Attend from 06:00 to before 08:00 on school days, or before 18:00 on days without school, outside the Sunday service.
+          <<option 'CN'>>
+            罗宾无法参加或约旦暂时不能接待时，预约会继续保留。上学日于 06:00 至 08:00 前参加，不上学的日子则可延至 18:00 前，周日弥撒期间需等候。
         <</language>></li>
       <<case 'failed'>>
         <li><<language>>
@@ -110,7 +116,7 @@
     <<if maplebirch.get('RobinTemple').member>>
       <li><<language>>
         <<option 'EN'>>
-          <<= maplebirch.get('RobinTemple').faith lt 0 ? "Robin’s doubt" : "Robin’s faith" >>: <span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
+          <<= maplebirch.get('RobinTemple').faith lt 0 ? 'Robin’s doubt' : 'Robin’s faith' >>: <span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
         <<option 'CN'>>
           罗宾的<<= maplebirch.get('RobinTemple').faith lt 0 ? '动摇' : '信仰' >>：<span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
       <</language>></li>

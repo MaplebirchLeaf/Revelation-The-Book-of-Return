@@ -52,7 +52,7 @@
   <</if>>
 <</widget>>
 
-<<widget 'robin-temple-vigil-group'>><<lanSwitch ($RobinTemple.vigil_attending ? 'The five of you' : 'The four of you') ($RobinTemple.vigil_attending ? '你们五人' : '你们四人')>><</widget>>
+<<widget 'robin-temple-vigil-group'>><<print lanSwitch($RobinTemple.vigil_attending ? 'The five of you' : 'The four of you', $RobinTemple.vigil_attending ? '你们五人' : '你们四人')>><</widget>>
 
 <<widget 'robin-temple-vigil-carry'>>
   <<language>>
@@ -63,7 +63,7 @@
   <</language>>
 <</widget>>
 
-<<widget 'robin-temple-vigil-companions'>><<lanSwitch ($RobinTemple.vigil_attending ? ', Sydney, and Robin,' : ', and Sydney,') ($RobinTemple.vigil_attending ? '还有悉尼、罗宾' : '还有悉尼')>><</widget>>
+<<widget 'robin-temple-vigil-companions'>><<print lanSwitch($RobinTemple.vigil_attending ? ', Sydney, and Robin,' : ', and Sydney,', $RobinTemple.vigil_attending ? '还有悉尼、罗宾' : '还有悉尼')>><</widget>>
 
 <<widget 'robin-temple-vigil-whisper'>>
   <<if $RobinTemple.vigil_attending>>

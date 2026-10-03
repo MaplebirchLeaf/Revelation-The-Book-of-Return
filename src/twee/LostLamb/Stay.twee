@@ -1,0 +1,1337 @@
+:: Lost Lamb Stay Widgets [widget]
+<<widget 'lost-lamb-stay'>>
+  <<switch $LostLamb.scene>>
+    <<case 'stay-start'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney's hand disappears beyond the gate. You keep yours raised until the parent walking beside <<nnpc_him 'Sydney'>> looks back. Then you pretend you were reaching for a branch. You come inside with a small leaf between your fingers and no reason for having picked it.
+          <br><br>
+          The house has become much larger. A moment ago Sydney had to squeeze past your chair. Now there is room to walk around it without touching anything. You do that once, making the route as long as you can. Someone takes the cups away before you have finished.
+          <br><br>
+          "Next time," your parent says, when you ask why they are clearing Sydney's place. There is no day attached to it yet. You want one, but your parent is already carrying the tray towards the kitchen. The saucers rattle together. Their noise follows you farther up the stairs than the sound of Sydney laughing did.
+          <br><br>
+          In your room the things Sydney touched look different from the things <<nnpc_he 'Sydney'>> did not. A book is crooked. One corner of the paper has been pressed flat by an elbow. You leave both alone. You almost straighten the pillow, then remember <<nnpc_he 'Sydney'>> leaning against it while deciding something important about the next game. It was not very important. You want to remember exactly what it was anyway.
+          <br><br>
+          You could clear the shelf now, before another visit brings something to fill it. Or you could watch the road until nobody on it could possibly be Sydney coming back for something forgotten. Downstairs, an adult asks whether you have put your things away. You answer yes without checking. The leaf is still in your hand.
+        <<option 'CN'>>
+          悉尼的手已经消失在大门外，你却还举着自己的手。直到陪在旁边的家长回头看过来，你才装作要去够头顶的树枝。回到屋里时，你的指间夹着一片小叶子。你已经想不出刚才为什么要摘它。
+          <br><br>
+          房子忽然变得大了许多。刚才悉尼还得挤过你的椅子，现在绕着椅子走一圈，竟然碰不到任何东西。你试了一次，故意从更远的地方绕过去。还没绕完，就有人把杯子端走了。
+          <br><br>
+          你问为什么要收掉悉尼的位置。“下次还来。”家长这样回答，却没说具体哪一天。你想要一个日期，对方已经端着托盘往厨房去了。碟子互相撞着，那阵响声跟着你上了楼，传得比刚才悉尼的笑声还远。
+          <br><br>
+          房间里，被悉尼碰过的东西似乎与其他东西不同。一册书歪着，画纸的一角被手肘压平了。你没有动它们。你差点摆正枕头，又想起悉尼靠在那里，认真决定下次游戏的一件大事。其实并不是多大的事，你还是想把当时说过的话记清。
+          <br><br>
+          你可以先腾出书架上的位置，等下一次来访时带来的东西。也可以守着窗，直到路上的人都不可能是忘了什么、又折回来的悉尼。楼下有人问你收拾好没有。你没检查便说好了，那片叶子仍夹在手里。
+      <</language>>
+    <<case 'stay-shelf'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-window')>>You stay at the window until the road gives you a person with the right coat. They turn towards the wrong house. You wait for another. When your parent comes up, you say you were looking at the weather. They look at the clear sky and say nothing.<<else>>You take three books off the shelf and find a fourth lying flat behind them. Dust has gathered along its spine. You blow it away, then sneeze so hard that your parent calls up to ask what you are doing. You say you are tidying. That earns you a warning not to make more mess.<</if>>
+          <br><br>
+          The gap between the books is the width of your hand. You try it with your fingers together, then spread them to make it bigger. You know what Sydney would say about measuring like that. You answer the objection before it can be made, and look behind you to be certain nobody heard.
+          <br><br>
+          Below the shelf is a box of ordinary things. A missing button, the paper wrapper of something you liked, a pencil too short to hold properly. None is Sydney's. You put the pencil in the gap to see how a gift would look. It falls flat. You prop it against a book and it falls again.
+          <br><br>
+          Your parent sits on the bed while you try a third time. "Leave space for the thing itself." You say you have. They hold two fingers apart. The gap you measured is larger, and you feel you have won something. They touch your hair, wait for you to stop moving away, then say goodnight.
+          <br><br>
+          After the door shuts, you remove the pencil. The space is empty again, but now it has been made deliberately. You lie down looking at it. From below comes the scrape of a chair, then two adults talking over each other. They sound pleased about work. You are pleased about the shelf. Neither seems a reason to stay awake, but you do.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-window')>>你守在窗边，终于等到路上出现一个穿着相似外套的人。对方却转向了另一户，你只好继续等下一个。家长上楼时，你说自己在看天气。那人望了望晴朗的天空，什么也没说。<<else>>你从架上拿下三本书，发现后面还平放着一本，书脊上积了一道灰。你吹走灰尘，随即打了个响亮的喷嚏。家长在楼下问你干什么。你说在收拾，对方却提醒你别弄得更乱。<</if>>
+          <br><br>
+          书之间的空隙刚好容下你的手。你并拢手指量过，又张开手，想让留出的位置更大一些。你知道悉尼会说这样不算数，便抢先反驳了一句。说完才回头，确认没人听见你和一个还没到的人争论。
+          <br><br>
+          架子下面的盒子装着寻常东西，掉落的纽扣、你喜欢过的包装纸，还有一支短得很难握好的铅笔。它们都不是悉尼的。你把铅笔摆进空处，试试看放着礼物是什么样子。笔倒了。你将它靠着书摆，它又倒了下去。
+          <br><br>
+          第三次尝试时，家长坐到床边。“要给东西本身留位置。”你说已经留了。那人用两根手指比出间距，没有你量的大，仿佛因此让你赢了什么。那只手碰了碰你的头发，等你不再往旁边躲，才向你道晚安。
+          <br><br>
+          门关上后，你取走铅笔。那里又空了，这回是特意留空的。你躺着看那处空隙，楼下传来椅子拖动的响声，随后是两个人抢着谈工作的声音。他们很高兴，你也为书架高兴。这些都不像需要熬夜的理由，可你还是没睡。
+      <</language>>
+    <<case 'stay-visit'>>
+      <<language>>
+        <<option 'EN'>>
+          Three days later Sydney arrives with a parcel tucked beneath one arm. You forget your planned complaint as soon as you see it. <<nnpc_He 'Sydney'>> makes you wait through the untying of the string, although you could easily slide the loop off the end.
+          <br><br>
+          Inside is a paper tower. Its base is folded from card, and one side has a window cut into it. You can put your eye close and see the opposite wall. Sydney says it is taller than the one you made. You point out that yours had another floor. <<nnpc_He 'Sydney'>> points out that yours collapsed.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-teased')>>You tell <<nnpc_him 'Sydney'>> the tower would have arrived earlier if <<nnpc_he 'Sydney'>> had walked faster. Sydney reaches to take it back. "I like the tower!" you say, keeping both hands on its base. "Then stop complaining." Sydney lets go. From the doorway a parent tells you not to tear it between you.<<else>>You ask what is still inside the bag. "Not everything is for you." Sydney shows you folded cards, then hides them again until you have found a place for the tower. You carry it with both hands as though it were much heavier than paper.<</if>>
+          <br><br>
+          It fits between the books. Sydney bends to check the view through the window, then asks you to look. The card is dark inside. When you move your head, the narrow patch of daylight moves too. You cannot see it without getting close enough to knock the tower with your nose.
+          <br><br>
+          Downstairs the adults are discussing the weather. A parent calls for you to bring the bag down before the coat gets wet. Sydney looks out at the garden and says it will not rain. A drop hits the glass while <<nnpc_he 'Sydney'>> is still saying it. You laugh first. This time you get to be right.
+        <<option 'CN'>>
+          三天后，悉尼腋下夹着纸包来到门口。你一看见它，就忘了原本打算说的抱怨。绳圈明明可以从一头直接褪下，悉尼却慢慢地解开，要你从头等到尾。
+          <br><br>
+          里面是一座纸塔，底座用硬纸折成，一侧剪着小窗。贴近眼睛，就能看见对面的塔壁。悉尼说它比你做的高。你指出自己的多了一层，对方随即指出你的塌了。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-teased')>>你说要是走快些，这座塔早就到了。悉尼伸手想拿回去。“我喜欢这座塔！”你说，双手仍抓着塔底。“那就别抱怨。”悉尼松了手。门口的家长叫你们别把它撕坏了。<<else>>你问袋子里还剩什么。“又不是全给你的。”悉尼露出折好的纸牌，又藏回袋子，要求你先替塔找个位置。你双手捧着它，仿佛这些纸比实际重得多。<</if>>
+          <br><br>
+          塔刚好放进两本书之间。悉尼弯腰检查小窗，再叫你也来看看。塔里很暗，你一移动脑袋，狭窄的亮斑便跟着移动。得靠得鼻尖快碰到塔，才能看清那一点光。
+          <br><br>
+          楼下的大人正在谈天气。家长喊你们把袋子拿下去，免得外套淋湿。悉尼望着花园，断言不会下雨。一滴水在话还没说完时撞上玻璃。你先笑了起来，这回轮到你说对了。
+      <</language>>
+    <<case 'stay-rain'>>
+      <<language>>
+        <<option 'EN'>>
+          Rain arrives in large separate drops, with long enough gaps for Sydney to insist it might stop. You wait together at the window. One drop finds the place where <<nnpc_his 'Sydney'>> finger is pointing. Then enough follow that the path changes colour all at once.
+          <br><br>
+          Your parent comes to pull the garden door shut. The shoe that held it open is wet at the toe. You carry it away by the heel, refusing to admit the damp patch touched your hand. Sydney runs a finger down the glass, trying to follow one drop through the others. It divides, and <<nnpc_he 'Sydney'>> declares that unfair.
+          <br><br>
+          Outside, the leaves move independently of the rain. You had not noticed how many different things can happen in a garden while nobody is playing in it. Sydney says the tower would turn to pulp out there. You immediately go upstairs to check that the room window is shut. <<nnpc_He 'Sydney'>> follows, laughing, and nearly treads on your heel.
+          <br><br>
+          The third stair complains beneath <<nnpc_his 'Sydney'>> shoe. You tell <<nnpc_him 'Sydney'>> to tread in the middle next time. It is your stair, you say, because you discovered how to keep it quiet. Sydney asks whether the whole house belongs to you on that principle. You agree before noticing the trap in the question.
+          <br><br>
+          A grown-up calls up to ask what the noise was. Sydney presses two fingers over your mouth, then takes them away when you try to bite. You both say nothing happened. The adult does not believe either of you, but leaves you to find something less noisy. Sydney puts the folded cards on the floor. You can also hide upstairs, if both of you remember which rooms are allowed.
+        <<option 'CN'>>
+          雨点起初很疏，两滴之间的空隙长得足够让悉尼坚持说雨会停。你们一起守着窗，一滴水恰好落在悉尼指着的位置。随后一串雨点跟上，整条小径顿时变了颜色。
+          <br><br>
+          家长过来关花园门。抵门的鞋湿了脚尖，你捏着鞋跟拿走，不肯承认湿的地方碰到了手。悉尼沿玻璃追着一滴水，想让手指始终跟住它。那滴水分成两股，对方立即抱怨不公平。
+          <br><br>
+          外面的叶子与雨点各自移动。你先前没注意到，没人玩的时候，花园也能同时发生这么多事。悉尼说纸塔放出去会变成烂纸浆，你马上跑上楼，检查房间的窗有没有关。对方笑着跟来，差点踩到你的脚跟。
+          <br><br>
+          第三级台阶在悉尼脚下吱响。你教对方下次踩中间，说这是自己的台阶，因为让它安静的方法是你发现的。悉尼问，照这样算，整所房子是不是都属于你。你先答了是，才发现这个问题里的陷阱。
+          <br><br>
+          楼下有人问是什么声音。悉尼用两根手指压住你的嘴，你试着咬过去，那只手才撤开。你们一起说没事。大人谁也没信，却仍让你们自己找安静的玩法。悉尼把折好的牌摆到地上。你们也可以在楼上藏起来，只要记住哪些房间不许去。
+      <</language>>
+    <<case 'stay-rain-hub'>>
+      <<language>>
+        <<option 'EN'>>
+          The landing is wide enough for a game if you move the stool against the wall. Sydney moves it, then puts it back because <<nnpc_he 'Sydney'>> wants the place where its legs stood. You ask why. "That can be the start." You approve once <<nnpc_he 'Sydney'>> lets you choose the finish.
+          <br><br>
+          A parent appears below and points towards the closed laboratory. You are to keep away from it, even if a card slides beneath the door. Neither of you had thought of doing that until it was mentioned. You look at Sydney. <<nnpc_He 'Sydney'>> looks at you, then puts the cards safely on the landing instead.
+          <br><br>
+          You agree on a signal for the games. <span class='blue'>Two taps, a pause, and one more mean no grown-up is coming.</span> Sydney tries it against the banister. You make <<nnpc_him 'Sydney'>> wait longer between the second and third, because otherwise you cannot tell it apart from a person knocking impatiently. <<nnpc_He 'Sydney'>> rolls <<nnpc_his 'Sydney'>> eyes and does it properly.
+          <br><br>
+          The third stair is another rule. Whoever is seeking has to walk down it before counting, so the person hiding can hear where the game begins. You demonstrate by putting your whole foot on the edge. The creak carries into the hall. Someone below calls your name. You put your foot back in the middle.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-cards') and $LostLamb.marks.includes('stay-hidden')>>The cards lie flat now and the hiding places have been found. Sydney is beginning to look downstairs between your suggestions. You can hear a visitor's voice, too low to understand.<<else>>Sydney offers you the cards or the first turn at hiding. You have time for both before anyone comes to fetch the coats.<</if>> You sit beside the stool, keeping the agreed starting place clear.
+        <<option 'CN'>>
+          只要把矮凳挪到墙边，楼梯口就够玩一个游戏了。悉尼把它挪开，又放回去，想占原来凳脚所在的位置。你问为什么。“这里当起点。”等对方答应让你选终点，你才同意。
+          <br><br>
+          家长在楼下出现，指向关着的实验室。就算纸牌滑到门底下，你们也不许靠近。原本谁都没想过这样做，听完反而互相看了一眼。悉尼还是把牌安全地留在楼梯口。
+          <br><br>
+          你们定好游戏里的暗号。<span class='blue'>敲两下，停一会儿，再敲一下，表示没有大人过来。</span>悉尼敲扶手示范。你要求第二下与第三下之间再久一点，否则分不清这与不耐烦的人敲门有什么不同。对方翻了个白眼，重新照做。
+          <br><br>
+          第三级台阶也是一条规则。找人的必须先踩它，再开始数，让藏起来的人听清游戏从哪里开始。你把整只脚放到边缘示范。吱声传进大厅，楼下有人叫你的名字，你赶紧挪回中间。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-cards') and $LostLamb.marks.includes('stay-hidden')>>纸牌已经摆平，藏身处也被找到。悉尼开始在每次提议之间看楼下。你还听到来客的声音，低得听不清。<<else>>悉尼让你选纸牌，或先轮到你藏起来。有人来取外套之前，两种都还来得及玩。<</if>>你坐到矮凳旁，把说好的起点留空。
+      <</language>>
+    <<case 'stay-cards'>>
+      <<language>>
+        <<option 'EN'>>
+          There are nine cards, made from the backs of things an adult would otherwise have thrown away. Sydney has drawn windows on three, gates on three, and round bells on the rest. The circles are not properly round. You tell <<nnpc_him 'Sydney'>> so, and <<nnpc_he 'Sydney'>> tells you it does not matter unless you are planning to ring one.
+          <br><br>
+          The rule is to remember what was there before the other person turns a card over. Nobody is allowed to put a new card in. Sydney lays down a gate, a bell, and a window. You close your eyes. One piece of card scrapes the floor, then another. You say there were meant to be three. <<nnpc_He 'Sydney'>> tells you to open your eyes before making accusations.
+          <br><br>
+          All three are still there. The window has moved to the middle. You remember it at the end, but you were watching Sydney's hands instead of the cards. You say that should count. Sydney says watching the right thing is part of the game. It is annoying when <<nnpc_he 'Sydney'>> has a good answer ready.
+          <br><br>
+          On your turn you put the bell beside the gate and keep the window in your palm. Sydney spots the missing one before closing <<nnpc_his 'Sydney'>> eyes. You could insist that keeping a card hidden was never forbidden. You could put it back and win by remembering more next time.
+          <br><br>
+          The rain gets louder while you decide. A heavy drop makes the window rattle in its frame. You glance towards it, then down at the paper windows again. One has a black line through its middle where the fold creased Sydney's pencil mark. It looks shut even when you turn the card the right way up. You decide that is the one you will remember.
+        <<option 'CN'>>
+          九张牌都是用大人原本会扔掉的硬纸背面做的。悉尼在三张上画窗，三张上画门，剩下的画圆铃铛。那些圆不够圆，你指出来，对方说除非准备敲响它，否则没关系。
+          <br><br>
+          游戏要记住对方翻牌之前摆着什么，不准中途添新牌。悉尼放下门、铃铛和窗。你闭上眼，听见一张牌刮过地面，随后又一张。你问不是该有三张吗，对方叫你先睁眼，再开始指责。
+          <br><br>
+          三张都在，窗移到了中间。你记得它原本在末尾，可刚才一直看的是悉尼的手。你说这样也该算数，对方说，看对地方也是游戏的一部分。悉尼随时有个讲得通的答案，真讨厌。
+          <br><br>
+          轮到你，你把铃铛放在门边，将窗留在掌心。悉尼还没闭眼，就发现少了那张。你可以坚持规则没说不许藏牌，也可以把它放回去，靠下次记得更多来赢。
+          <br><br>
+          你考虑的时候，雨声变大了。一滴重雨让窗户在框里颤动。你望过去，再低头看纸上的窗。其中一张的铅笔线被折痕压弯，中间横着黑色。把牌摆正也像是关着的，你决定就记住这一张。
+      <</language>>
+    <<case 'stay-cards-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-fair')>>You put the window back. Sydney watches your empty hand before shutting <<nnpc_his 'Sydney'>> eyes again. This time you move just one card, slowly enough to hear which edge rubs the floor. Sydney gets it wrong. You tell <<nnpc_him 'Sydney'>> that watching the right thing is part of the game, and have to duck before the cushion reaches you.<<else>>You say a hidden window is still a window. Sydney refuses to close <<nnpc_his 'Sydney'>> eyes. You hold out until <<nnpc_he 'Sydney'>> begins putting the other cards away. Then you lay the missing one down. You have not agreed about the rule, but you would rather keep playing than be right alone.<</if>>
+          <br><br>
+          The next turn goes wrong for both of you. Sydney says the gate was beside the bell. You remember a window. You look beneath your knee and find the window there, bent along the black crease. It had stuck to your sleeve while you were trying to keep your palm flat. Sydney laughs so hard <<nnpc_he 'Sydney'>> cannot explain the mistake.
+          <br><br>
+          You try to smooth the card. The line across it will not go away, because it was drawn there, not made by the crease. For a moment you are sure it used to be an open window. Sydney says <<nnpc_he 'Sydney'>> drew it last night. The folded end is still sharp enough to scratch a finger. There has not been enough time for the picture to change.
+          <br><br>
+          Below you, someone moves a chair. The sound is almost exactly the sound of one card moving, only much longer. Sydney pauses with a gate between <<nnpc_his 'Sydney'>> fingers. You both look towards the stair. Nothing comes up.
+          <br><br>
+          You count the cards back into their pile. Nine. Sydney counts again, not because <<nnpc_he 'Sydney'>> doubts you, <<nnpc_he 'Sydney'>> says, but because you are holding one. You let <<nnpc_him 'Sydney'>> see your hands. They are empty this time.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-fair')>>你放回画着窗的牌，悉尼看过你的空掌心，才重新闭眼。这次你只挪一张，慢得能听清哪条边在磨地面。对方猜错，你立刻把“看对地方也是游戏的一部分”还回去，随后不得不低头躲开飞来的靠垫。<<else>>你坚持藏起来的窗也是窗，悉尼不肯闭眼。你一直不退让，直到对方开始收起其他牌。你这才放下少掉的那张。规则还没谈拢，但你宁可继续玩，也不想独自正确。<</if>>
+          <br><br>
+          下一轮，你们两个人都记错了。悉尼说门旁是铃铛，你记得是窗。你查看膝盖底下，才找到那张牌，被黑线所在的位置折弯了。原来你想保持掌心平放时，牌粘着袖子被带走。悉尼笑得没法解释清楚。
+          <br><br>
+          你想抹平纸，那条黑线却擦不掉，因为它是画上去的，不是折痕造成的。刹那间，你确信先前那扇窗开着。悉尼说是昨夜画的，折角还利得能刮到指头。根本没有足够的时间让图改变。
+          <br><br>
+          楼下有人挪椅子，声音几乎与挪牌一样，只是长得多。悉尼夹着画门的牌停住，你们一起看向楼梯，没有人上来。
+          <br><br>
+          你收拢纸牌，数出九张。悉尼再数一次，说不是不信你，而是你还拿着一张。你伸手给对方看，这次掌心确实空着。
+      <</language>>
+    <<case 'stay-hide'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney wants you to seek first. You remind <<nnpc_him 'Sydney'>> that the person who brought the game was allowed to choose, and that the cards were <<nnpc_his 'Sydney'>>. It takes a while to work out whether this means both games belong to <<nnpc_him 'Sydney'>>. In the end Sydney counts because you have already begun looking for somewhere to hide.
+          <br><br>
+          You cannot use the laboratory, the adults' bedroom, or the narrow stair above the landing. Those rules come from grown-ups. Sydney adds one of <<nnpc_his 'Sydney'>> own: do not get into a box and put the lid on. You ask whether <<nnpc_he 'Sydney'>> thinks you are stupid. <<nnpc_He 'Sydney'>> says <<nnpc_he 'Sydney'>> thinks you want to win.
+          <br><br>
+          The wardrobe door makes a sheltered angle against the wall. It smells of wool there, and you can keep one hand on the hinge so the door cannot shut by mistake. Nobody looking in from the landing would see your shoes unless they bent down. You try the gap with one shoulder and discover how small you can make yourself.
+          <br><br>
+          The curtain is easier to leave. Rain fills the glass beside it, and the hem will brush your ankles whenever you shift. You would be visible from the garden, but Sydney is not allowed out there now. You could pretend that makes the hiding place clever rather than obvious.
+          <br><br>
+          <<nnpc_He 'Sydney'>> starts counting from the third stair. The creak tells you exactly where <<nnpc_he 'Sydney'>> is. The numbers come slowly, as agreed. You choose the door or the curtain while there is still time, then settle your feet so the next movement will not give you away. Far below, an adult's voice rises, stops, and is replaced by a sharper scrape.
+        <<option 'CN'>>
+          悉尼要你先找。你提醒对方，带游戏的人可以选择，而纸牌是悉尼的。争了好一会儿，你们仍没弄清这是不是代表另一种游戏也属于对方。最后悉尼开始数，因为你已经在看藏身处了。
+          <br><br>
+          实验室、大人的卧室、楼梯口上方的窄梯都不许去。这些是家长的规则。悉尼另加一条，不许钻进盒子再把盖子关上。你问是不是觉得自己笨。对方说，是觉得你太想赢。
+          <br><br>
+          衣柜门在墙边夹出一个遮蔽的角落，那里闻起来是毛料。你扶住铰链，就能防止门意外关上。从楼梯口看过来的人，除非弯下腰，否则看不见你的鞋。你把一侧肩膀探进缝里，发现自己能缩得很小。
+          <br><br>
+          窗帘后面更容易出来。旁边的玻璃满是雨，你一挪，下摆就会扫过脚腕。从花园能看见你，可悉尼现在不许去花园。你可以假装这算藏得聪明，而不是藏得太明显。
+          <br><br>
+          悉尼从第三级台阶开始数。吱响告诉你准确的位置，数字也按约定来得很慢。你趁还来得及，选衣柜门或窗帘，再放稳双脚，免得下一动就暴露。远远的楼下，大人的声音提高，又停住，换成尖锐的刮擦声。
+      <</language>>
+    <<case 'stay-hide-listen'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-cupboard')>>The wardrobe panel rests close to your cheek. You can hear the little movement your breath makes against the wool. The handle is on the other side. You keep your hand at the hinge, where you can feel whether the wood begins to move.<<else>>The curtain brushes both shoulders. You stand where its fold is deepest, facing the cool glass. Through the rain you can see the empty garden. You try not to think about somebody looking up and seeing a shape the curtain ought not to have.<</if>>
+          <br><br>
+          Sydney finishes counting. The third stair creaks again. The first footsteps go the wrong way, and you allow yourself a smile. You hear a cupboard open, then a laugh. <<nnpc_He 'Sydney'>> has found something that is not you. You would like to know what, but asking would make the discovery count.
+          <br><br>
+          Two taps sound against wood. You grip the place beneath your hand. The third ought to come after a pause. In the gap, rain taps the window so loudly that every sound seems to be in the same room. A parent below begins saying your name. The ending is lost beneath a scrape.
+          <br><br>
+          You remember that the game has only one seeker. If Sydney is on the landing, <<nnpc_he 'Sydney'>> cannot also be behind the wardrobe. If <<nnpc_he 'Sydney'>> is downstairs, the third stair ought to have told you. You know all this, but your heart has begun knocking hard enough to interrupt the rule.
+          <br><br>
+          There is one more tap. You cannot make it arrive sooner by holding your breath. You cannot move it back into the right place once it has sounded. <span class='blue'>Listen for the pause, then for where the footsteps go.</span> Sydney is allowed to be impatient. You have to decide whether you heard <<nnpc_him 'Sydney'>> moving or only wanted to hear it.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-cupboard')>>衣柜的木板就在脸旁，呼吸牵动毛料的细小声音很清楚。把手在另一边，你将手留在铰链上，感受木头有没有开始移动。<<else>>窗帘扫着两肩，你面对凉凉的玻璃，藏进最深的褶子。透过雨，看得见空着的花园。你尽量不去想有人仰头，发现窗帘里本不该有的形状。<</if>>
+          <br><br>
+          悉尼数完，第三级台阶又响了一次。最初的脚步去了错误的方向，你偷偷笑了。随后，你听见柜子打开，还有一声笑。悉尼找到的不是你。你想知道找到什么，可一问就等于让这次发现算数。
+          <br><br>
+          木头响了两下。你握紧手下的位置，第三下本应隔一会儿。空隙中，雨敲得太响，让所有声音像是挤进了这间屋。楼下的家长开始喊你的名字，结尾被一道刮擦声淹没。
+          <br><br>
+          游戏只该有一个找人的。如果悉尼在楼梯口，就不可能也在衣柜后。若对方去了楼下，第三级台阶应该提醒你。这些你都明白，可心脏敲得太急，打断了那条规则。
+          <br><br>
+          最后一下到了。屏住呼吸不能让它早点来，响完也不能把它移回正确的位置。<span class='blue'>先听停顿，再听脚步往哪里走。</span>悉尼可以不耐烦，你得判断究竟听见了对方移动，还是自己想听见才认错了。
+      <</language>>
+    <<case 'stay-hide-pass'>>
+      <<language>>
+        <<option 'EN'>>
+          You wait through the gap. The third tap comes from the banister, not the wood beside your face. A shoe shifts afterwards. You know the little scuff Sydney makes when <<nnpc_he 'Sydney'>> turns too quickly. <span class='green'><<nnpc_He 'Sydney'>> is on the landing, where the signal was agreed.</span>
+          <br><br>
+          You keep hidden. Sydney tries the bed, the window, and the corner beneath the desk. Each place earns a complaint about you making the game too difficult. You are delighted. The complaints are different, and one includes a word an adult would not want repeated. You remember it for later.
+          <br><br>
+          When <<nnpc_he 'Sydney'>> finds you, the hand pulling the curtain or door is warm. Sydney says <<nnpc_he 'Sydney'>> knew all along. You ask why it took so long. <<nnpc_He 'Sydney'>> says <<nnpc_he 'Sydney'>> was letting you think you were clever. You argue about that until both of you have stopped remembering which person is meant to be winning.
+          <br><br>
+          Downstairs, someone knocks once and waits. Your parent's steps cross the hall. Neither of you mistakes the sound for your secret signal. Sydney glances at you, raises two fingers, then leaves them raised instead of tapping the wood. The ordinary difference makes you laugh.
+          <br><br>
+          On the next turn you hide your face in your arms while counting. Sydney deliberately uses the third stair. Its creak tells you where to begin looking, even after <<nnpc_he 'Sydney'>> has gone quiet. You finish the count rather than pretending you forgot the final number. When you lift your head the landing is empty, but it is an empty place you understand. You can keep the whole pause in your memory without filling it with something else.
+        <<option 'CN'>>
+          你等过那段空隙，第三下来自扶手，不是脸旁的木头。随后一只鞋移动，发出悉尼转身太快时惯有的擦地声。<span class='green'>对方就在约好敲暗号的楼梯口。</span>
+          <br><br>
+          你仍藏着。悉尼找了床、窗与桌下的角落，每处都抱怨你让游戏太难。你高兴极了。那些抱怨都不同，其中一句带着大人不许重复的词，你把它记着以后用。
+          <br><br>
+          找到时，拉开门或窗帘的手很暖。悉尼声称早就知道，你问为什么找了那么久。答复是让你以为自己聪明。你们争到两个人都忘了谁本该赢。
+          <br><br>
+          楼下有人敲一下，便停下等着。家长的脚步穿过大厅，你们都没误认那是暗号。悉尼朝你举起两根指头，留在半空，没有敲木头。这点普通的不同让你笑了。
+          <br><br>
+          下一轮，你把脸埋在手臂里数数，悉尼特意踩过第三级台阶。即使对方后来安静了，你也知道该从哪边开始找。你数到末尾，没假装忘记最后的数字。抬头后，楼梯口空着，却是你明白为何空着的地方。你能记住整个停顿，不用往里面填别的东西。
+      <</language>>
+    <<case 'stay-hide-fail'>>
+      <<language>>
+        <<option 'EN'>>
+          You answer before the pause is finished. Your own voice sounds enormous inside the hiding place. Sydney shouts that <<nnpc_he 'Sydney'>> has found you, although <<nnpc_he 'Sydney'>> is still near the third stair. You have given the game away to somebody too far from the door to knock on it.
+          <br><br>
+          When you come out, <<nnpc_he 'Sydney'>> is smiling. You are not. You ask where the two taps came from. Sydney points to the banister, then demonstrates. This version has a long, impatient pause because <<nnpc_he 'Sydney'>> wants you to admit you lost. You listen all the way through it. The wood sounds drier than the panel beside your head.
+          <br><br>
+          You try to explain that you heard something closer. Sydney leans behind the wardrobe and finds a coat hanger touching the back. <<nnpc_He 'Sydney'>> moves it. It makes one click. That is not the sound, but it gives both of you something ordinary to look at. You let <<nnpc_him 'Sydney'>> explain the click twice before saying perhaps.
+          <br><br>
+          A parent comes up to see why you called. The question makes Sydney laugh again. You say it was part of the game. The adult tells you not to shout unless you need something. Their hand rests on the doorway while they say it. You look at the nails without knowing why, and turn away before they notice.
+          <br><br>
+          You insist on another turn. This time you seek, with your eyes covered and your back to the wardrobe. You count more loudly than you need to. When Sydney moves, the third stair speaks exactly once. You remember the wrong taps and the right creak together. A mistake is not the same as forgetting the rule, even if you have not yet learned how to keep the two apart.
+        <<option 'CN'>>
+          你在停顿结束前应声，自己的嗓音在藏身处大得惊人。悉尼喊找到啦，人却仍在第三级台阶附近。你把游戏输给了一个远得还敲不到门的人。
+          <br><br>
+          出来后，悉尼笑着，你却没有。你问两下敲击从哪来，对方指向扶手，再示范一次。这回中间停得很久，带着要你认输的不耐烦。你完整听完，发现那木头的声音比头旁的板更干。
+          <br><br>
+          你解释刚才的声音更近。悉尼探向衣柜后面，找到抵着背板的衣架，移动一下。它只响了一声。那不是同一个声音，却给了你们一个普通的东西可看。你让对方解释两遍，才说也许。
+          <br><br>
+          家长上楼问为什么喊，悉尼又笑了。你说是游戏的一部分。大人要你没有需要就别大喊，手停在门框上。你不知为何看了一眼那些指甲，赶在对方发现以前转开脸。
+          <br><br>
+          你坚持另一轮，换自己蒙眼找人，背对衣柜数得比需要的大声。悉尼一动，第三级台阶就准确响了一次。你把错误的敲击与正确的吱响记在一起。错一次不等于忘了规则，虽然你还没学会怎样将两者分开。
+      <</language>>
+    <<case 'stay-reading'>>
+      <<language>>
+        <<option 'EN'>>
+          The book was left beneath a pile of paper. Sydney wants the pictures, you want to see whether the page remembered from the last visit is still there. Both of you tug until the pile slides towards the floor. You catch it together, then blame each other for starting.
+          <br><br>
+          There is a traveller in a wood, and a friend waiting at a gate. The traveller has a lamp. The picture is ordinary enough to make you impatient: if the lamp works, the traveller should simply go home. Sydney says there is a road missing between the two pages. You turn back to see.
+          <br><br>
+          On the earlier page the road bends out of sight. On the later one the same bend leads to the gate. A cloud lies over both pictures in almost the same shape. You point it out as proof that nothing much has changed. Sydney points to a bird. It is on a branch first, then in the air. <<nnpc_He 'Sydney'>> looks pleased with the discovery.
+          <br><br>
+          You make the friend wait longer by covering the next line. Sydney moves your finger. You say the person would be lost without the friend. <<nnpc_He 'Sydney'>> says the friend cannot know what the traveller is doing all the time. You dislike the answer because it sounds as though <<nnpc_he 'Sydney'>> means more than the picture.
+          <br><br>
+          There is room to draw in the margin, but Sydney holds the pencil away. "Read it first." You could invent a better ending afterwards. For now you look at the bird, which has moved even though it mattered to neither of you a moment ago. The rain strikes the window behind the page, with no regard for where you left the story.
+        <<option 'CN'>>
+          书留在一摞纸底下。悉尼想看图，你想确认上次记得的那页还在。两人同时拉扯，整摞纸朝地面滑去。你们一起接住，随后互相怪对方先动手。
+          <br><br>
+          图里，一个旅人在树林中，朋友在门边等他。旅人拿着灯。这张画普通得让你不耐烦，如果灯能用，直接回家不就好了。悉尼说两页之间少了一段路，你翻回去检查。
+          <br><br>
+          前页的道路拐出画面，后页同一个弯通到门。两张图的云形状几乎相同。你指出来，说这证明没怎么变。悉尼指着一只鸟，它先在树枝上，后来飞到空中。对方为这个发现露出得意的样子。
+          <br><br>
+          你盖住下一行，让朋友等更久。悉尼挪开你的指头。你说没朋友，旅人会迷路。对方说，朋友又不可能随时知道旅人在做什么。你讨厌这回答，因为它听来不只是关于那张图。
+          <br><br>
+          页边够添画，悉尼却把铅笔拿远。“先读完。”以后再编更好的结局也行。现在你看着那只鸟，即使刚才谁都不在意，它还是移动了。纸页后面的雨敲着窗，不管你把故事停在哪里。
+      <</language>>
+    <<case 'stay-reading-end'>>
+      <<language>>
+        <<option 'EN'>>
+          You turn the page. The friend has left the gate. A little note in the picture points towards the road, and Sydney reads the line beneath it before you can cover anything. The friend went to look. The traveller has gone another way. There is no place in this picture where they can see each other.
+          <br><br>
+          You dislike it so much that you turn back. The friend is still at the gate on the earlier page. You touch the paper to be sure the person is not gone from both. Sydney waits while you compare them, then says the next picture might be better. <<nnpc_He 'Sydney'>> does not promise that it is.
+          <br><br>
+          You leave the book open on the floor. The image of the bird remains in your head more clearly than the people. You ask whether <<nnpc_he 'Sydney'>> would wait or go looking. Sydney says it would depend where you were lost. That is cheating, because you wanted one answer. <<nnpc_He 'Sydney'>> asks where. You cannot pick a place that would not change the answer.
+          <br><br>
+          The rain is beginning to ease. Sydney looks at the window before you do. You want to ask what happens if the traveller never comes home, but that sounds like a question grown-ups would answer badly. Instead you move the book away from the damp curtain.
+          <br><br>
+          Sydney keeps the pencil. <<nnpc_He 'Sydney'>> has not let you alter the picture, and you resent that a little. You also know exactly where the unchanged gate is now. When you put your hand on the page it remains a flat page, cool beneath your palm. Nothing comes through the blank place you were going to use for another door.
+        <<option 'CN'>>
+          你翻过页，朋友已经离开大门。图里一张小字条指向道路，你还没盖住什么，悉尼就先读完下面那行。朋友出去找了，旅人却走向另一条路。这幅图里没有他们能看见彼此的地方。
+          <br><br>
+          你讨厌得翻回去。前页的朋友仍在门边，你碰了碰纸，确认那个人并不是两边都不见了。悉尼等你比较完，才说下一幅图也许会更好，没有保证真的如此。
+          <br><br>
+          你把书摊在地上，脑海里那只鸟的样子竟然比人更清楚。你问悉尼会等着，还是出去找。对方说，要看你在哪里迷路。这算作弊，你想要一个答案。悉尼反问在哪里，你找不出一个不会改变回答的地方。
+          <br><br>
+          雨正在变小，悉尼比你先看向窗户。你想问，旅人永远不回家会怎样，可那像是一个大人会答得很糟的问题。你转而把书挪离湿掉的窗帘。
+          <br><br>
+          铅笔仍在悉尼手里。对方没让你改图，你有些怨，也因此清楚知道没改过的门在哪里。你把掌心按在纸页上，它仍是平的，凉凉地贴着皮肤。你原本准备添另一道门的那处空白，没有什么东西穿出来。
+      <</language>>
+    <<case 'stay-rain-door'>>
+      <<language>>
+        <<option 'EN'>>
+          The voices downstairs have become quiet enough to hear the plates being moved. Sydney gathers the cards one at a time, looking towards the stair each time the pile grows. You ask whether <<nnpc_he 'Sydney'>> needs to go. "Not yet," <<nnpc_he 'Sydney'>> says, with an uncertainty that makes you want to hear it again.
+          <br><br>
+          A stranger's coat is visible between the banister rails. Not Sydney's parent, who has been in the kitchen, but somebody near the laboratory door. You can see an elbow and a hand resting against the wood. The hand moves when your own parent speaks. It is an ordinary movement. You cannot hear the reply.
+          <br><br>
+          One of the cards slides beneath Sydney's shoe. <<nnpc_He 'Sydney'>> lifts the foot without looking, and you retrieve the gate from the floor. The printed words on its back belong to something an adult ordered. They have nothing to do with the drawing on the front. You turn it over before giving it back.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>Sydney raises two fingers towards you. You know what <<nnpc_he 'Sydney'>> means without needing the taps this time: keep the landing clear while <<nnpc_he 'Sydney'>> finds the last things. You could watch the stair rather than peep at the visitor.<<else>>Sydney says you should bring the cups down. They have been left on the stool, forgotten during the game. You could carry them, or first try to see past the rail.<</if>>
+          <br><br>
+          From the kitchen comes the sound of your parent's laugh. You are relieved, then annoyed that it matters. The visitor's coat shifts. The door beyond it closes before you can see who was standing there. A clean strip of lamplight remains under the laboratory door even though it is not yet dark outside.
+        <<option 'CN'>>
+          楼下说话的声音轻了，轻得你能听清盘子被挪动。悉尼一张张收起纸牌，每当那一叠厚一点，便望向楼梯。你问是不是需要走了。“还不用。”答复里带着一点不确定，让你想再听一次。
+          <br><br>
+          扶手栏杆之间露出一件陌生外套。那不是留在厨房的悉尼家长，而是站在实验室门边的人。你只看见手肘，还有一只贴着木头的手。你的家长说话时，那只手跟着动了动。这是再普通不过的动作，你却听不见来客的回话。
+          <br><br>
+          一张牌滑到悉尼鞋下。悉尼没低头，就把脚抬起来。你从地板上捡起画着门的那张牌。背面印着大人订过什么东西的文字，与正面的图画无关。你先把牌翻回来，才还给悉尼。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>悉尼向你举起两根指头。这次不用听敲击，你也知道对方的意思，替悉尼找齐最后几样东西时留意楼梯口。你可以守着楼梯，不必偷看那位来客。<<else>>悉尼提醒你把杯子拿下楼。它们还留在矮凳上，玩起来就忘了。你可以把它们端下去，也可以先往栏杆外看一眼。<</if>>
+          <br><br>
+          厨房里传来家长的笑声。你松了口气，又烦自己竟然这样在意。那件外套挪了挪，后面的门就关上了，你没来得及看清来客是谁。实验室门底仍留着一条干净的灯光，外面明明还没天黑。
+      <</language>>
+    <<case 'stay-coats'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney's parent has put both coats by the door. Yours is not needed, but you take it off the hook anyway so you can stand beside <<nnpc_him 'Sydney'>> while the buttons are done. Your parent asks where you are going. You say nowhere. The answer earns a look at the coat in your hands.
+          <br><br>
+          The bag is more awkward to pack than it was to unpack. Sydney tries to fit all nine cards into the same narrow corner. You tell <<nnpc_him 'Sydney'>> to flatten them. <<nnpc_He 'Sydney'>> tells you the folded corners are how you know which is which. You had thought you remembered the pictures. Both of you want to explain first.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-held-pause')>>You kept the stair quiet while Sydney found the bag. <<nnpc_He 'Sydney'>> thanks you with two taps against its side, then a third after a pause. It is almost too soft for an adult to notice. You answer on your own coat.<<elseif $LostLamb.marks.includes('stay-peep')>>The stranger has gone. You could ask which door they left through, but your parent is already holding the entrance open. You look past the sleeve and find an ordinary street waiting.<<else>>You have brought both cups down without breaking one. Your parent takes them, asks why they are sticky, and accepts Sydney's explanation about a wet card before you have invented your own.<</if>>
+          <br><br>
+          At the threshold Sydney remembers the tower. "Don't put anything on top of it." You say you know. <<nnpc_He 'Sydney'>> asks whether you will bring it to the window next time so it can look at the garden. You argue about a tower being able to look at anything, but agree before the adult says it is time.
+          <br><br>
+          The rain has stopped. Sydney steps over the wet patch your parent meant to wipe. <<nnpc_He 'Sydney'>> waves before reaching the gate, because <<nnpc_he 'Sydney'>> knows you will still be there to see it.
+        <<option 'CN'>>
+          悉尼的家长在门边放好了两件外套。你并不需要出门，也从钩上取下自己的外套，这样就能在悉尼扣纽扣时站在旁边。你的家长问要去哪，你说哪儿也不去。对方看了看你手里的外套。
+          <br><br>
+          袋子比拆开时更难装。悉尼想把九张牌挤进同一个窄角。你让对方把折角压平，悉尼却说那些折角正是用来认牌的。你以为大家靠图案来认。两个人都想先把自己的道理解释清楚。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-held-pause')>>你替悉尼留意了楼梯口。对方在袋子一侧敲两下，停一会儿，再敲一下，算是向你道谢。声音轻得大人几乎没注意。你在自己的外套上敲了同样的回应。<<elseif $LostLamb.marks.includes('stay-peep')>>陌生人已经离开。你可以问那人是从哪道门走的，可家长已经撑开了正门。越过对方的袖子，你看见一条普通的街道正等在外面。<<else>>你把两只杯子都拿下了楼，没有摔坏。家长接过杯子，问为什么摸起来发黏。悉尼说是湿掉的纸牌造成的。你还没编出自己的理由，大人就接受了这个解释。<</if>>
+          <br><br>
+          到了门槛边，悉尼想起纸塔。“别在上面压东西。”你说自己知道。对方问，下次能不能把塔摆到窗边，让它看看花园。你争论了一下塔究竟能不能看东西，还是赶在大人催促前答应了。
+          <br><br>
+          雨已经停了。悉尼跨过家长还没来得及擦掉的水迹，还没走到大门就向你挥手。对方知道，你还会站在那里看着。
+      <</language>>
+    <<case 'stay-waiting'>>
+      <<language>>
+        <<option 'EN'>>
+          You put out two cups without being told. The handles face the same way. You lift the book off the drawing and lay out the pencils, including the short one Sydney always chooses after saying it is useless.
+          <br><br>
+          The clock strikes. You carry a chair to the window, then stand on the floor again because Sydney will laugh if <<nnpc_he 'Sydney'>> catches you watching. Nobody knocks.
+          <br><br>
+          Your parent comes through with a basket of washing. "What are you doing there?"
+          <br><br>
+          You point to the cups. The basket is set down before they answer. "Sydney isn't coming today."
+          <br><br>
+          You ask about tomorrow. Your parent looks towards the laboratory, then picks the basket up again. "We'll have to see."
+          <br><br>
+          Outside, a shop delivery goes past the gate. You watch it until it has gone. Inside, the square of sunlight still reaches almost to the stairs. You glance at the clock. Its hands have moved much farther than the light.
+          <br><br>
+          You shift Sydney's cup closer to your own so nobody will mistake it for one that needs putting away.
+          <br><br>
+          At first you blame the rain. There is none today, but there might be some near Sydney's house. You look along the path for wet leaves. The leaves are dry. You put your hands under the two cups and feel the difference: one has grown warm from your fingers, the other is cold. You exchange them before your parent can notice which was meant for whom. It does not change how many people are in the room.
+          <br><br>
+          You know the afternoon will end if you go upstairs. It might end if you sit down, too. You remain standing until your legs hurt, guarding two cups from the ordinary person who will want to wash them.
+        <<option 'CN'>>
+          你没等大人吩咐，就摆好了两只杯子，将杯柄朝着同一边。你抬起压在画纸上的书，把铅笔全拿出来，包括悉尼每次嫌没用，最后却总会选的那支短铅笔。
+          <br><br>
+          钟响了。你搬来一把椅子放在窗边，随后又站回地板上，免得被悉尼撞见你守着窗等人，笑你太着急。没有人敲门。
+          <br><br>
+          家长抱着一篮洗好的衣服经过，问你在那里做什么。你指向杯子。对方先放下篮子，才回答：“悉尼今天不来了。”
+          <br><br>
+          你问那明天呢。家长看向实验室，重新抱起篮子。“再看看吧。”
+          <br><br>
+          街上的送货车经过大门，你盯着它，直到它走远。屋里那片日光仍然差一点才到楼梯。你看了一眼钟，指针已经比光移得远得多。你把悉尼的杯子推近自己的，免得有人以为它该被收掉了。
+          <br><br>
+          起初，你想怪罪下雨。今天这里没有雨，说不定悉尼家附近有。你沿着小径看湿叶子，叶子却都是干的。手放在杯底，一只被你的手指握暖，另一只仍然冷着。你赶在家长看出哪只留给谁之前调换了杯子，房间里却没有因此多一个人。
+          <br><br>
+          你知道，上楼就意味着下午要结束了。也许坐下来也会。你站到腿疼，守着两只杯子，防着那个只是想来洗掉它们的寻常人。
+      <</language>>
+    <<case 'stay-gate'>>
+      <<language>>
+        <<option 'EN'>>
+          At the gate you can see as far as the corner shop. People pass with bags, a boy drags a stick along the railings, and somebody you know tells him to stop. Every person approaching looks enough like Sydney to make you stand straighter.
+          <br><br>
+          You practise what to say. You will ask where <<nnpc_he 'Sydney'>> has been. You will say you did not mind waiting. You will keep your hands out of your pockets so <<nnpc_he 'Sydney'>> cannot see how many times you have folded and unfolded them inside.
+          <br><br>
+          A woman carrying bread asks whether you are locked out. You shake your head and pull the gate open a little to prove it. "Then go in before it gets cold," she says, and walks on. You wait until she has turned the corner before letting it close again.
+          <br><br>
+          Behind you, someone parts a curtain upstairs. You lift a hand, but the curtain drops before you can see who it was. A voice from the house tells you not to wander. You say you are right here.
+          <br><br>
+          The street lamp above the pavement is not lit yet. You look at its glass, then at the garden on the other side of the gate. There is still enough daylight to see the petals beneath the shrubs. You can wait a little longer. If Sydney is coming, this is where <<nnpc_he 'Sydney'>> will have to pass.
+          <br><br>
+          The woman with the bread stops at the next house. You hear her say almost the same words to someone inside. They answer with a laugh. For a moment you are angry that she can carry the afternoon with her and use it in another place. You press the cold iron with your palm, then let go when it leaves a line on your skin.
+          <br><br>
+          Behind the gate, your house waits. Beyond it, the shopkeeper takes down an empty crate. The street does not stop for you. You can stay until the first lamp comes on, or go in while you can still pretend you only came to look at something. Either way, you will have to release the bar.
+        <<option 'CN'>>
+          从大门能一直看到拐角的小店。人们提着袋子经过，一个男孩用枝条刮栏杆，被你认识的人叫住，让他停手。每个靠近的人都像有可能是悉尼，令你站得更直一点。
+          <br><br>
+          你练习见面时该说什么。先问悉尼去了哪里，再说自己并不在意等过多久。你的手得留在口袋外面，免得对方看出你在里面攥紧、又松开了多少次。
+          <br><br>
+          拿着面包的女人问你是不是被锁在外面了。你摇头，把门推开一点证明给她看。“那就赶在天冷之前进去。”她继续往前走。你等她拐过角落，才让门重新关上。
+          <br><br>
+          身后的楼上有人扒开窗帘。你举起手，却没看清是谁，窗帘就落回去了。屋里传来喊声，叫你别乱跑。你说自己就在这里。
+          <br><br>
+          人行道上方的路灯还没亮。你先看它的玻璃，再看门另一边的花园。光还够亮，能看清灌木下的花瓣。你还能再等一会儿，悉尼如果来，一定会经过这里。
+          <br><br>
+          拿面包的女人在下一户门口停下，对里面的人说几乎同样的话，换来一声笑。你忽然生气，她竟然能把这个下午带到另一处，继续用。你用掌心压着冰冷的铁条，直到皮肤上留下一道印子才松开。
+          <br><br>
+          家在门后等你，门外的店主正撤下空货箱，街道没有为你停住。你可以等到第一盏灯亮，也可以趁还能假装只是出来看东西时回屋。哪一种都得先放开那根铁条。
+      <</language>>
+    <<case 'stay-note'>>
+      <<language>>
+        <<option 'EN'>>
+          You begin with "Why didn't you come?" The letters look angry. You draw a line through them, but that only makes the question easier to notice. You turn the paper over and start again.
+          <br><br>
+          "Are you coming next time?" There is no date for next time. You add "We haven't finished" beneath it and copy a little of the house into the corner. You leave its door blank so Sydney can draw it.
+          <br><br>
+          The address is on an old envelope your parents kept with the household papers. You copy every word. The longest one slopes downwards because you began too close to the edge. You fold the note so nobody can see the crossed-out question without opening it.
+          <br><br>
+          In the hall, the outgoing letters sit beneath a small weight. Your parent's hand closes over them as you approach. You say you need the address checked. They take longer to read it than there are words on the outside.
+          <br><br>
+          "It's right," they say, handing it back. "Leave it there if you want it sent."
+          <br><br>
+          You look at the weight, then at your pocket. Once the note goes out, somebody else will be holding the words you could not bring yourself to say. You press the fold flat with a thumbnail.
+          <br><br>
+          You have only one piece left without writing on its back. You had kept it for the game Sydney wanted to invent. The smaller scraps would do for a question, but you use the good piece. You are certain <<nnpc_he 'Sydney'>> will understand why.
+          <br><br>
+          When you fold it, the little house meets its own blank door. You unfold it to move the crease. That makes two creases instead of one. Your parent is still waiting beside the post. You have to put the note down or keep it. You cannot make a third choice by folding it once more.
+        <<option 'CN'>>
+          你先写下“你为什么没来”。那些字看起来很生气。你划掉它们，却只是让问题更显眼，只好把纸翻过来，从头写。
+          <br><br>
+          “下次还来吗？”可下次还没有日期。你在下面添上“我们还没做完”，在角落照着画了一小块房子。门留着空，悉尼可以自己来画。
+          <br><br>
+          地址写在家长收进家庭文件的旧信封上，你把每一个词都抄下来。最长的词斜向下面，因为开头离纸边太近了。你折好字条，让人不打开就看不见背面划掉的问题。
+          <br><br>
+          大厅里，待寄的信被一块小重物压着。你一靠近，家长的手便盖上那些信。你说想请对方检查地址。那人读了很久，比外面这几个字需要的时间更长。
+          <br><br>
+          “没错。你想寄，就放在那里。”家长把字条还给你。你看了看压信的东西，又看口袋。一旦寄出去，另一个人就会握着那些你没法当面说的话。你用指甲把折痕压平。
+          <br><br>
+          这张纸是剩下的唯一一张背面没写字的，原本留给悉尼想发明的游戏。更小的碎纸也够写个问题，你却用了好纸，确信对方会明白为什么。
+          <br><br>
+          折起来时，小房子与自己的空门碰在一起。你展开纸，想换个地方折，结果只是多出一道折痕。家长还在待寄的信旁等着。你得把字条放下，或者留在身上。再折一次也不会变出第三种选择。
+      <</language>>
+    <<case 'stay-questions'>>
+      <<language>>
+        <<option 'EN'>>
+          Your parent answers the first question while putting things away. At the second, the cupboard stays open. At the third, a cup lands hard enough to click against the one beside it.
+          <br><br>
+          "Sydney can't visit. Sydney's family has said so."
+          <br><br>
+          "For how long?"
+          <br><br>
+          "Kylar."
+          <br><br>
+          You wait. Your parent closes the cupboard and turns to you. Their face looks tired. They reach to smooth your hair, but you duck beneath the hand and ask whether you did something wrong.
+          <br><br>
+          "No." This answer comes at once. The hand stops in the air, then rests on your shoulder instead. "You haven't done anything."
+          <br><br>
+          You ask if they can go and talk to Sydney's parent. Your parent squeezes your shoulder, harder than before. "You mustn't go over there yourself. Do you understand?"
+          <br><br>
+          From the laboratory, your other parent calls. The hand leaves you. A key is taken from the table and slipped into a pocket. You hear it turn in the lock after your parent has gone inside. You stand by the cupboard with your next question ready.
+          <br><br>
+          The word "family" gives you too many people to be angry with. You would rather have one name, but your parent does not give it. You ask whether Sydney knows. The answer is that <<nnpc_he 'Sydney'>> will have been told. You want to know what being told is supposed to fix.
+          <br><br>
+          At the sink your parent turns on the tap. The noise fills the pause after your question. They reach past you for a plate, using the hand that was on your shoulder. You move aside without thinking. The familiar action makes it harder to say that the answer was not enough. You stare at the key before it disappears into a pocket.
+        <<option 'CN'>>
+          你问第一个问题时，家长还在收东西。第二个问题出口，柜门停在那里，没有关上。第三个问题问完，一只杯子被重重放下，撞响了旁边的另一只。
+          <br><br>
+          “悉尼不能来。悉尼家里不让。”
+          <br><br>
+          “要多久？”
+          <br><br>
+          “凯拉尔。”
+          <br><br>
+          你等着。家长终于关上柜门，转向你。那张脸看起来很累。对方伸手想抚平你的头发，你躲到手下，问是不是自己做错了什么。
+          <br><br>
+          “没有。”这次答复立刻就来了。手停在半空，随后改落在你的肩上。“你什么也没做。”
+          <br><br>
+          你问家长能不能过去，与悉尼的家长谈谈。肩上的手握得比刚才更紧。“你不许自己过去，明白吗？”
+          <br><br>
+          实验室里，另一位家长喊了一声。那只手离开你，一把钥匙从桌上被拿走，放进口袋。对方进屋以后，你听见钥匙在锁里转动。你站在柜子旁，已经想好了下一个问题。
+          <br><br>
+          “家里”指的人太多，能让你生气的也太多。你宁愿听到一个确切的名字，可家长没有给你。你问悉尼知不知道。答复是，对方一定已经被告诉了。你想知道，被告诉究竟能解决什么。
+          <br><br>
+          水龙头在水槽旁打开，噪音填满了问题后的空隙。刚才按在你肩上的那只手越过你，去拿盘子。你下意识让开。这个熟悉的动作让你更难开口说，刚才的回答还不够。你盯着那把钥匙，直到它消失在口袋里。
+      <</language>>
+    <<case 'stay-post'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-long-wait')>>You came in after the first street lamp was on. Your parent was waiting just inside, though nobody had waited at the gate. "Where were you?" You said you were only looking. They rubbed your cold fingers between both hands, then shut the door and drew the bolt. You had not known that bolt was used before bedtime.<<else>>You came back before dark. The second cup had been put away. You took it out again and placed it beside yours, carefully, so it would not make a noise. A wet ring was left where it stood before. You put the cup directly on the ring.<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-sent')>>Your parent took the note out with the other letters. You watched until they passed through the gate. When they returned, their hands were empty. For several days you checked the post tray before taking your coat off. There were bills and folded envelopes addressed to the adults. None had Sydney's writing on it.<<else>>You kept the note in your pocket. During supper your fingers kept finding the fold. The corner had softened enough to turn up. You flattened it beneath the table, hiding it before your parent could ask what you were doing. Sydney's name was still legible on the outside.<</if>>
+          <br><br>
+          At supper, the place beside you is empty. Your parent takes that chair to reach a cupboard and does not put it back. You watch it stand against the wall while you eat.
+          <br><br>
+          The laboratory door opens. A draught touches your ankles, bringing the peppery smell into the room. Your parent gets up to shut it before the other adult has finished coming through. The door bumps a heel. Neither apologises.
+          <br><br>
+          You decide to find Sydney somewhere no visit has to be arranged. Before bed, you practise a question in the mirror. It sounds worse each time. You stop when footsteps reach the landing, and put your hands flat on the desk.
+          <br><br>
+          Three more afternoons have gone by. You learnt which envelopes belong to bills without reading what is inside. You can tell from the way your parents put them down. The post tray begins to feel like another gate. It has no lock, but everything you want is somewhere beyond it.
+          <br><br>
+          The school yard is different. Sydney has to pass through it whether a visit was arranged or not. You decide you will not ask a question until <<nnpc_he 'Sydney'>> has seen you properly. That is the important part. You practise keeping your voice level while the chair beside the table is carried to the cupboard again. It is needed there now.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-long-wait')>>那天第一盏路灯亮了，你才进屋。家长等在门里，大门外却没有人等过你。“你去哪了？”你说只是出去看看。对方用两只手搓暖你冰冷的指头，随后关紧门，插上门闩。你原本不知道，睡觉以前也会用那道闩。<<else>>那天你赶在天黑前回来。第二只杯子已经被收了，你又把它取出来，小心放在自己的旁边，没让它发出声音。原先放杯子的地方留着一圈水迹，你把杯子正好摆在那一圈上。<</if>>
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-sent')>>家长把你的字条与其他信一起带出门。你看着对方穿过大门，回来时，两只手都是空的。几天里，你进屋还没脱外套，就先检查信盘。只有账单与写给大人的信，没有一封带着悉尼的字。<<else>>字条一直留在口袋里。吃晚饭时，你的手指反复摸到折痕。纸角已经软得翘起来，你在桌下将它压平，赶在家长问你做什么之前藏好。悉尼的名字还清楚地留在外面。<</if>>
+          <br><br>
+          晚饭时，旁边的位置空着。家长把椅子搬去够柜子，没有再放回来。你一边吃，一边看那把椅子靠着墙。
+          <br><br>
+          实验室的门打开，一股风碰到你的脚腕，把胡椒般的气味带进屋里。另一位大人还没完全出来，家长便起身去关门。门撞了一下脚跟，谁也没向谁道歉。
+          <br><br>
+          你决定到一个不用安排来访的地方去找悉尼。睡觉以前，你对着镜子练习一个问题，每说一次都更难听。脚步到了楼梯口，你立即停下，把双手平放在桌面上。
+          <br><br>
+          又三个下午已经过去。你学会了不看内容也能认出哪些信是账单，光凭父母放下信封的动作就知道。信盘像另一道门，没有锁，想要的东西却都在它后面。
+          <br><br>
+          操场不一样。不管有没有安排来访，悉尼都得经过那里。你决定先等对方好好看见你，再开口问，这才是最要紧的。你努力练习平稳的声音，桌旁的椅子又被搬向柜子。如今它在那里有用了。
+      <</language>>
+    <<case 'stay-school'>>
+      <<language>>
+        <<option 'EN'>>
+          You find Sydney near the yard gate as everyone begins to leave. A bag knocks against somebody's knees. Children hurry past you, shouting things you cannot follow. One has a sleeve turned inside out and is being called back to fix it.
+          <br><br>
+          Sydney sees you and slows. You almost lift both hands, the way you did from the bedroom window. <<nnpc_He 'Sydney'>> looks behind <<nnpc_himself 'Sydney'>> instead. An adult is waiting beyond the gate.
+          <br><br>
+          You say <<nnpc_his 'Sydney'>> name louder than you meant to. Sydney comes close before you can call again. There is still a little pencil lead on <<nnpc_his 'Sydney'>> thumb. You want to point it out. You want to tell <<nnpc_him 'Sydney'>> how many afternoons you waited.
+          <br><br>
+          "I can't come over," <<nnpc_he 'Sydney'>> says.
+          <br><br>
+          "You already didn't."
+          <br><br>
+          Sydney's face changes. You meant the words to make <<nnpc_him 'Sydney'>> understand, but <<nnpc_he 'Sydney'>> lowers <<nnpc_his 'Sydney'>> eyes as though you have said something in front of everyone. You step away from the gate so the others can pass. The bell is still sounding behind you, far longer than it usually does.
+          <br><br>
+          You used to spot <<nnpc_him 'Sydney'>> without searching. The familiar head would be there between two others, or turning because a parent had called. Today you have to look at every person wearing the right colour. Your eyes begin to hurt before you find the real one.
+          <br><br>
+          Sydney has seen you, but the yard is still full of people who can interrupt. You can call loudly enough to stop <<nnpc_him 'Sydney'>> before the gate, or walk alongside and begin as though this were any other afternoon. Neither makes the waiting adult go away. You can see a hand on the outside rail. It opens, closes, and waits for the bag.
+        <<option 'CN'>>
+          放学的人开始离开时，你在操场门附近找到悉尼。一个袋子碰着别人的膝盖。孩子们从你身旁赶过去，喊的话乱得听不清。其中一个人的袖子翻到了外面，被叫回去整理。
+          <br><br>
+          悉尼看见你，脚步慢下来。你差点像在卧室窗边那样举起两只手，对方却先往身后看。门外已经有个大人在等了。
+          <br><br>
+          你喊了悉尼的名字，比自己打算的大声。对方赶在你再喊以前靠近。那只拇指上还留着一点铅笔灰。你想指出来，也想告诉对方，自己等过多少个下午。
+          <br><br>
+          “我不能去你家。”悉尼说。
+          <br><br>
+          “你已经没来了。”
+          <br><br>
+          悉尼的表情变了。你本想让对方明白，可那双眼睛低下去，像你当着所有人的面说了什么难听话。你从门边退开，让别人过去。铃还在身后响着，比平时长得多。
+          <br><br>
+          以前你不用找，就能看见悉尼。熟悉的脑袋会在另外两人之间，或者正因家长喊了一声而转过来。今天，你得看每个穿着相似颜色的人，眼睛开始发酸，才找到真正的那个。
+          <br><br>
+          悉尼看见你了，可操场仍满是能打断谈话的人。你可以赶在对方出门前大声喊住，也可以走到旁边，像普通下午一样开口。两种做法都不会让门外的大人离开。栏杆外的那只手张开、收拢，等着接过袋子。
+      <</language>>
+    <<case 'stay-parting'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('draw')>>You unfold the drawing. Sydney touches the pencilled window with one finger. "I remember." You ask why <<nnpc_he 'Sydney'>> cannot finish it. <<nnpc_He 'Sydney'>> takes the finger away, leaving the window just as it was. You hold the paper closer so <<nnpc_he 'Sydney'>> can see the door too.<<else>>You ask why the visits stopped. Sydney opens <<nnpc_his 'Sydney'>> mouth, stops, then tries again. You wait. If you speak now, <<nnpc_he 'Sydney'>> might answer the easier question instead.<</if>>
+          <br><br>
+          "I'm not allowed. My <<sydneyOtherParent>> said..."
+          <br><br>
+          The bell covers the next few words. You lean closer. It stops at last. Sydney has stopped too. <<nnpc_He 'Sydney'>> looks at the adult beyond the gate, whose face you cannot see past the other people.
+          <br><br>
+          "Ask again," you say.
+          <br><br>
+          "I did."
+          <br><br>
+          You begin to tell Sydney that <<nnpc_he 'Sydney'>> could come without asking. Then you remember your own parent's hand on your shoulder. Sydney steps backwards before you can finish.
+          <br><br>
+          Someone calls <<nnpc_his 'Sydney'>> name. <<nnpc_He 'Sydney'>> says goodbye, quietly, and walks through the gate. The adult takes the bag. You watch until a cart crosses in front of them. When it has passed, you cannot find the two figures among the others. Your hand is still raised with nothing in it.
+          <br><br>
+          You do not have to believe goodbye means forever. It only means you cannot finish the conversation now. That is bad enough. Sydney turns at the edge of the crowd, then turns back because the adult says something. You cannot hear whether it is about you.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-school-loud')>>Someone beside you repeats the name you shouted. You look round sharply. They were calling a different child, and you have to stop yourself answering.<<else>>You have kept your voice quiet enough that no one else has noticed. That feels like winning until you remember there is nobody to show it to.<</if>> You hold your fingers flat against the bag. They want to curl around something that could keep this minute in place.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('draw')>>你展开画纸。悉尼用一根手指碰了碰铅笔画出的窗。“我记得。”你问为什么不能把它做完。手指退开，窗还是原来的样子。你把纸拿得更近，让对方也能看见门。<<else>>你问为什么不再来访。悉尼张开嘴，停了一下，又试着开口。你等着，免得自己现在插话，对方就能挑一个更容易的问题回答。<</if>>
+          <br><br>
+          “不让我去。我<<sydneyOtherParent>>说……”
+          <br><br>
+          铃盖住后面的几个字，你靠近一点。铃终于停了，悉尼也已经停了。对方转头看门外的大人，那张脸被其他人挡着，你看不见。
+          <br><br>
+          “再问一次。”你说。
+          <br><br>
+          “我问过了。”
+          <br><br>
+          你想告诉悉尼，不问也能来。随即又记起家长按在自己肩上的那只手。话还没说完，悉尼已经往后退了一步。
+          <br><br>
+          有人叫了对方的名字。悉尼轻声道别，穿过大门。大人接过袋子。你一直看着，直到一辆车横穿过去。等车走过，那两个身影已经混在人群里，找不到了。你的手还举着，里面什么也没有。
+          <br><br>
+          你不必相信再见就是永远，只表示现在没法把话说完，可这已经够糟了。悉尼在人群边上回头，又因大人说了什么而转回去。你听不清是不是在说你。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-school-loud')>>身旁有人重复了你刚喊过的名字。你猛地转头，那人却是在叫另一个孩子。你得忍住自己回应的冲动。<<else>>你的声音一直够轻，没让别人注意，像是赢了什么。随即你想起，这里已经没有谁能让你展示这次胜利。<</if>>你把手指平贴在袋子上。它们想蜷起来，抓住什么能让这一分钟留在原处的东西。
+      <</language>>
+    <<case 'stay-walk'>>
+      <<language>>
+        <<option 'EN'>>
+          You leave without saying the sentence you practised. On the pavement you try it under your breath. The question sounds like a complaint now, so you stop before the end.
+          <br><br>
+          The woman outside the shop is putting bread in a bag. You know the brown paper your parents bring home. A child waits beside her, eating a piece before the rest has been wrapped. You slow down to watch, then hurry when the woman looks at you.
+          <br><br>
+          You could go straight home. You could take the lane past the other shops and make your parents wait for a change. You imagine somebody coming to the gate to look for you. Then you imagine having to say where you have been.
+          <br><br>
+          <<if $LostLamb.marks.includes('draw')>>The drawing rubs against your sleeve. A corner has bent. You smooth it on your leg as you walk, but it turns up again at once.<<else>>You look at your empty hand. You could have brought the drawing. Sydney might have stayed to look at it. You curl your fingers into your palm and walk on.<</if>>
+          <br><br>
+          At the junction, you can see the manor roof between two houses. You turn your head towards the other road. The roof is there too, farther off, though that road should lead away from home. A cart goes by. You wait for it to pass and look again. Whichever road you take, you can still see one bright upstairs window.
+          <br><br>
+          In one shop window a clock stands beside three jars. You know the clock because you once asked whether it was for sale. Your parent said clocks in shops still belonged to somebody. You wait for its long hand to move. It does, a small reluctant step.
+          <br><br>
+          Farther on, the same cart blocks your view of another window. You hear its loose wheel scrape, stop, then scrape again. The sounds have gaps you did not choose. You can watch the street closely enough to remember them, or hurry away from the people who might notice you standing still. The manor remains visible down both roads, but the clock behind you has not gone back.
+        <<option 'CN'>>
+          你没说出练习过的那句话，就离开了。在人行道上，你又压低声音试了一遍。问题如今听着像抱怨，还没说到末尾你就停了。
+          <br><br>
+          店外的女人正在把面包装进袋子，那种棕色纸袋是家长常带回的。一个孩子等在旁边，剩下的面包还没包好，就已经吃起了一块。你放慢脚步看，女人望向你时，你又赶快往前走。
+          <br><br>
+          你可以直接回家，也可以绕过其他商店，让父母等你一次。你想象有人走到大门旁找你，随后又想象自己得解释去了哪里。
+          <br><br>
+          <<if $LostLamb.marks.includes('draw')>>画纸擦着你的袖子，一角已经弯了。你一边走，一边在腿上把它压平，那一角却立刻又翘起来。<<else>>你看了看空着的手。你本来可以把画带来，悉尼说不定会留下来看。你把手指蜷进掌心，继续往前走。<</if>>
+          <br><br>
+          在岔路口，两所房子之间露出庄园的屋顶。你转头看另一条路，那里也有同一个屋顶，只是更远，那条路本应通向远离家的地方。一辆车经过，你等它走远，再看。无论走哪一边，你仍能看见楼上那一扇亮窗。
+          <br><br>
+          一家店的橱窗里，钟摆在三个罐子旁边。你认识它，曾问过那只钟卖不卖。家长说，店里的钟仍然属于某个人。你等着长针移动，它确实动了，勉强往前跳了一小格。
+          <br><br>
+          再往前，同一辆车挡住另一扇橱窗。你听见松动的轮子刮一下，停，再刮一下。那些空隙不是由你选的。你可以看得仔细些，记住街道的声音，也可以赶快避开会注意你站着不动的人。庄园仍在两条路尽头，身后的钟却没有倒回去。
+      <</language>>
+    <<case 'stay-supper'>>
+      <<language>>
+        <<option 'EN'>>
+          Your parents are behind the laboratory door. Supper is on the stove, but the stove is cold. You lift the lid and find food prepared hours ago. Nothing is burned. You had wanted something to have gone wrong in an ordinary way, so an adult would have to come and deal with it.
+          <br><br>
+          From the next room comes a quick exchange, too low to follow. You hear "enough", then a cup breaks. The silence after it is longer than Sydney's signal. You count it without meaning to. Nobody opens the door to fetch a brush.
+          <br><br>
+          You put two cups beside your plate. One parent arrives and looks at the second. You wait for it to be taken away. Instead they move it a little farther from the edge and go to light the stove. A match snaps. Another does the same. They ask you to hand over the box, then apologise for making you stand in the doorway.
+          <br><br>
+          For a moment supper becomes supper again. The flame catches. Your other parent comes out without papers and asks what happened at school. You could say everything. You could say nothing. You say Sydney is not coming, and both adults find things on the table to look at.
+          <br><br>
+          "I know," one says. You are furious that someone could know without having stood at the gate. You do not say so. You put your hand through the cup's handle and keep it there until the hot food arrives. The second cup remains on the table, empty.
+          <br><br>
+          When you go upstairs, the tower is still between the books. The cut window makes a little black square. You move it towards the room window, as promised, then stop halfway. The view outside is dark now. You leave it facing the place where Sydney had stood.
+        <<option 'CN'>>
+          父母都在实验室的门后。晚饭放在炉上，炉子却是冷的。你掀开盖子，看到几小时前备好的食物。没有什么被烧坏。你反倒希望出点普通的差错，好让大人不得不过来处理。
+          <br><br>
+          隔壁传来一阵很快的交谈，声音太低，听不清完整的话。你听见“够了”，随后一只杯子碎了。接下来的沉默比悉尼的暗号还长，你不由得数了起来。没有人开门出来拿扫帚。
+          <br><br>
+          你把两只杯子摆在自己的盘子旁边。一位家长出来，看了看第二只。你等着它被拿走，对方却只把它推得离桌沿远些，便去点炉火。一根火柴断了，另一根也一样。家长让你把盒子递过去，又为刚才让你站在门口等着道歉。
+          <br><br>
+          有那么一会儿，晚饭又像平时的晚饭了。火终于点着。另一位家长空着手出来，没带那些文件，问你在学校怎样。你可以什么都说，也可以什么都不说。最后，你只说悉尼不来了，两位大人便都在桌上找到了别的东西看。
+          <br><br>
+          “我知道。”其中一位回答。你很生气，对方没有站在大门旁等过，竟然也能知道。你没有说出来，只把手指穿进杯柄里，一直留到热饭端来。第二只杯子仍在桌上，空着。
+          <br><br>
+          上楼后，纸塔还立在两本书之间。剪出的小窗是一个黑方块。你想按约定把塔移到房间的窗边，却在半途停下。外面现在已经黑了。你让它朝着悉尼先前站过的地方。
+      <</language>>
+    <<case 'stay-lamp'>>
+      <<language>>
+        <<option 'EN'>>
+          The room is dark except for the tower's little window. You had put nothing inside it. You move closer to see whether a street lamp is shining through the card, but the real window reflects your face, the bed, the pale rectangle of the door behind you.
+          <br><br>
+          The tower shows afternoon. A thin patch of light lies across its paper floor. You turn it towards the wall. The patch stays. You put your palm over the opening and feel only card against skin. When you take it away, there is a small upright shape inside. It might be the corner you folded badly. It has not moved.
+          <br><br>
+          Downstairs, your parent says your name. You answer that you are coming, then realise the voice called as it used to when Sydney was here. It has the laugh in it, the small impatience about leaving cups upstairs. You go to fetch the cup you know you did not bring to this room. Your hand finds it on the desk.
+          <br><br>
+          The cup is cold and dry. At its bottom is a dark ring where your finger would reach if you tried to scrub it. You put it down because you cannot remember making the ring. The lamp downstairs dims, then grows brighter. Your door casts two edges on the floor instead of one.
+          <br><br>
+          A crash below interrupts everything. Not a cup. There are too many small sounds after it, striking the floor separately. You reach for the covers, then find yourself still standing beside the tower. The crash has ended, but the voice calling you to the table has not begun again.
+          <br><br>
+          The small window remains full of afternoon light. You turn away from it and look at the door, where you can at least hear whether somebody is coming. Two taps begin on the other side. You have never needed a game to help you recognise your own landing before.
+        <<option 'CN'>>
+          房间已经暗了，只有纸塔的小窗亮着。你没往里面放过东西。你靠近，想看是不是路灯穿过硬纸，照进了塔里。真正的窗户却映着你的脸、床，还有身后那扇淡白的门。
+          <br><br>
+          塔里是下午。一道细光铺在纸做的地板上。你把塔转向墙，亮斑还在。掌心盖住开口，皮肤只碰到硬纸。拿开以后，里面多了一个小小的直立形状，也许是你没折好的纸角。它没有动。
+          <br><br>
+          楼下，家长叫你的名字。你答应就来，随后才发现那个声音与悉尼来访时一样。里面有笑意，还有催人别把杯子留在楼上的一点不耐烦。你去拿那只自己明明没带进屋的杯子，手却在桌上找到了它。
+          <br><br>
+          杯子冷着，摸起来也干。底下留了一圈黑印，如果伸手指进去擦，就会碰到。你想不起什么时候弄出了这圈印子，只好放下杯子。楼下的灯暗了，又亮起来。房门在地上投下两条边，而不是一条。
+          <br><br>
+          楼下一声巨响打断了所有声音，不是杯子。它后面跟着太多细响，分别撞上地板。你伸手想抓被子，却发现自己仍站在纸塔旁边。撞击已经结束，喊你去吃饭的声音却没有再开始。
+          <br><br>
+          小窗还满是下午的光。你转开脸，看向房门，至少在那里能听见有没有人走过来。另一侧开始敲了两下。你以前从来不需要一个游戏，来帮自己认出楼梯口。
+      <</language>>
+    <<case 'stay-knock'>>
+      <<language>>
+        <<option 'EN'>>
+          Two sounds, then a third without the space you asked Sydney to leave. You keep your hand on the desk. The voice says your name again. It seems to be below the room and immediately outside it at the same time.
+          <br><br>
+          The rain has gone. There is no noise at the glass to blame for a mistake. You can hear the boards separately. One creaks close to the stairs. Another answers from the wrong side of the wall. The third stair has not sounded, although anyone coming from below would have to cross it unless they knew exactly where to tread.
+          <br><br>
+          You want it to be Sydney. That would make the voice downstairs something you misheard, and the afternoon in the tower something you failed to understand. You look at the bag by your chair, where <<nnpc_he 'Sydney'>> could have left the cards. Nothing is in it but your own things.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>You remember waiting all the way through the game's pause. Sydney's shoe moved after the final tap. Here something moves before the last sound, with a long drag that does not lift from the floor.<<else>>You remember answering from the hiding place before Sydney could have reached it. The coat hanger gave you a click, but not an explanation for all three sounds. Tonight there is no one here to laugh and make the mistake smaller.<</if>>
+          <br><br>
+          A darker line appears beneath the door. You try to see whether it belongs to two shoes. It is too low and too wide, then it is gone. The handle has not turned. You could make yourself a picture of Sydney's hand on it and reach for your own side. You could keep listening until the sounds have a place you did not give them. <span class='red'>The knocking has not left room for the agreed pause.</span>
+        <<option 'CN'>>
+          两声之后，第三声立刻来了。中间没有你让悉尼留出的那段空隙。你把手留在桌面上。外面的声音又叫了一次你的名字，听起来既在房间下面，又紧贴着这扇门。
+          <br><br>
+          雨已经停了。玻璃上没有可以用来解释听错的噪音，你能分别听清每块木板的响声。一块在楼梯附近吱响，另一块从墙的错误一侧回应。第三级台阶却没有响。从下面上来的人理应经过它，除非准确知道脚该落在哪里。
+          <br><br>
+          你希望外面是悉尼。那样楼下的声音就只是自己听错，纸塔里的下午也只是自己没弄懂。你看向椅子旁的袋子，悉尼也许把牌留在那里了。里面却只有你自己的东西。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>你记得，玩游戏时等过完整的停顿，才听到悉尼的鞋移动。现在末声还没到，有什么就已经动了，拖过地面，长得不像曾经把脚抬起来。<<else>>你记得，躲起来时应声太早，悉尼还没走到藏身处。衣架响了一下，却没解释那三声敲击。今晚没人能笑着走过来，让那次失误变得小一点。<</if>>
+          <br><br>
+          门底出现一条更深的黑线。你想看清它是不是两只鞋的影子，可它太低、太宽，随即又不见了。门柄没有转动。你可以想象悉尼的手正握在另一侧，然后伸手握住自己这边。也可以继续听，直到声音落在一个不是由你替它安排的地方。<span class='red'>敲击没有留出说好的停顿。</span>
+      <</language>>
+    <<case 'stay-knock-pass'>>
+      <<language>>
+        <<option 'EN'>>
+          You do not reach for the handle. The second tap is followed too quickly by movement, and the last comes from lower down. You put your hand against the wall beside the door. It feels the vibration at knee height, not where Sydney would knock.
+          <br><br>
+          The voice waits for you to say yes. It repeats your name, less exactly this time. You count the boards between the sound and the stair. The creak has moved, but the third stair remains quiet. You cannot see who is making the sound. You no longer need to call it Sydney in order to have something to do.
+          <br><br>
+          You move towards the part of the room your parent would use when carrying the bed linen. A chair stands there now. It was not against the wall when you came up. You push it with your foot, slowly, keeping a hand on the desk. Its back meets the door before the voice speaks again.
+          <br><br>
+          A pale shape slips through the gap underneath. At first it looks like folded cloth. Then one edge catches the lamplight, silver and narrow. The shape stops at the chair leg. You draw your foot away. <span class='red'>Do not let the remembered name bring you close enough to touch it.</span>
+          <br><br>
+          There is another way from the room, a narrow door you associate with the passage to the washbasin. You cannot be certain it belonged here before tonight. You can see its handle and you can keep the chair between yourself and the gap. That is enough to cross the few steps.
+          <br><br>
+          Before you open it, the three sounds come once more. The pause is still missing. You keep the whole wrong pattern in mind while turning the visible handle. The wood behind you scrapes, but the new door opens without having to be told whose voice should be waiting beyond it.
+        <<option 'CN'>>
+          你没有去碰门柄。第二声敲击后太快就传来动静，最后一声又来自更低的地方。你把手按在门旁的墙上，感觉到振动在膝盖的高度，不是悉尼通常敲门的位置。
+          <br><br>
+          那声音等着你答应，又叫了一次名字，这回更不像了。你数着声音与楼梯之间的木板。吱响的位置移了，第三级台阶却仍然安静。你看不见是谁在发声，也不必先叫它悉尼，才知道自己能做什么。
+          <br><br>
+          你移向家长拿着床单时会站的地方。那里现在有一把椅子，你上楼时它并没靠着墙。你扶着桌子，用脚慢慢推椅子。那声音再次开口之前，椅背已经抵住了门。
+          <br><br>
+          一个淡白的形状从底缝伸进来，起初像一块折好的布。随后，其中一条边接住灯光，又银又细。它在椅脚旁停下，你把自己的脚收回来。<span class='red'>别让记得的名字把你带到能碰着它的地方。</span>
+          <br><br>
+          房间还有另一条路，一扇窄门。你记得它像是通往洗手盆的过道，却不能确定今晚以前它就在这里。你看得见把手，也能让椅子留在自己与底缝之间。这已经足够你横过那几步。
+          <br><br>
+          开门之前，三声敲击又来了一遍，停顿仍然缺着。你记住整套错误的顺序，再转动眼前的把手。身后木头刮擦，新的门却打开了。你不必先告诉它，另一边应该是谁的声音。
+      <</language>>
+    <<case 'stay-knock-fail'>>
+      <<language>>
+        <<option 'EN'>>
+          You say Sydney's name. The sound stops so quickly that you think you were right. You put your hand on the handle, remembering how <<nnpc_he 'Sydney'>> pulled the curtain aside to find you. A game can end this simply. You begin turning the metal.
+          <br><br>
+          The door comes towards you harder than your hand moved it. Your shoulder meets the edge. Beyond it is a strip of darkness and a hand where the floor should have been clear. <span class='red'>Something silver catches the sleeve you meant to pull back.</span>
+          <br><br>
+          You let go of the handle. That makes the opening wider for an instant. The hand slides through, pale fingers feeling along the wood. You jump behind the chair. Its legs scrape so loudly that the fingers stop searching and point towards you.
+          <br><br>
+          No face is high enough to see. The voice tries the name again, but it has lost the breath before the first syllable. You knew Sydney could complain, laugh, and change an answer halfway through it. This sound keeps beginning from the same place. You do not answer it twice.
+          <br><br>
+          The chair is heavy enough to push against the door if you use both feet. You do, keeping your toes far from the gap. The edge catches something that pulls back rather than crying out. You cannot tell what it was. You only know there is enough room to move away now.
+          <br><br>
+          A narrow door beside the desk opens towards the washbasin passage, or a passage you remember from somewhere else. You can see the handle. You take the route that does not require going past the pale hand. <span class='red'>The wrong answer brought it close.</span> It has not made you unable to leave. You keep moving while the chair leg shakes behind you.
+        <<option 'CN'>>
+          你叫了悉尼的名字。声音立即停住，快得让你以为自己猜对了。你把手放上门柄，想起悉尼拉开窗帘、找到你的那次。一个游戏也可以就这样简单地结束。你开始转动金属。
+          <br><br>
+          门迎着你撞来，比你的手使出的力更重。你的肩膀碰上门边。后面是一道黑暗，还有一只手，地面那里本该空着。<span class='red'>有什么银色的东西勾住了你想收回的袖子。</span>
+          <br><br>
+          你松开门柄，开口反而暂时变得更大。那只手伸进来，淡白的指头沿木头摸索。你跳到椅子后面。椅脚刮出的响声太大，指头不再摸门，转而指向你。
+          <br><br>
+          没有哪张脸高得让你看见。那声音又试着叫名字，却丢掉了第一个音节前的呼吸。你知道悉尼会抱怨、笑，也会在一句回答的中间改口。这个声音却总从同一点开始，你没有再答应一次。
+          <br><br>
+          只要用上双脚，你就能把沉重的椅子推向门。你这样做了，脚尖始终离底缝很远。门边夹住什么，那东西缩了回去，没有哭叫。你辨不出它是什么，只知道如今还有地方能让自己挪开。
+          <br><br>
+          桌旁有扇窄门，通向洗手盆的过道，或者一条从别处记起来的走廊。你看得见把手，便选了这条不必经过淡白手掌的路。<span class='red'>错误的回答把它带近</span>，并没让你无法离开。身后椅脚还在摇，你继续往前走。
+      <</language>>
+    <<case 'stay-back-door'>>
+      <<language>>
+        <<option 'EN'>>
+          The passage ends beside a small window. Outside it, a lamp shines on wet paving. There is no afternoon here. You put your hand against the pane and feel the cold that belongs to this hour. It is easier to hold than the light inside the paper tower.
+          <br><br>
+          Behind you is the door you crossed. You cannot see whether the chair still holds the other one. The voice has stopped, but you do not assume that makes the room empty. You look at the latch on this side, where a person could test it without opening anything.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-knock-test-pass')>>You kept the wrong knocking distinct from Sydney's signal. <span class='blue'>If your hand is steady enough, you can touch this latch and remember how it feels while the door is still closed.</span> It has a loose edge that catches the skin of one finger.<<else>>You called too soon. You remember the wardrobe and the explanation that did not fit all three sounds. Here the wall is in front of you, empty and visible. You could tap the signal yourself, watching your own hand wait between the second and third. Nothing would have to be imagined behind it.<</if>>
+          <br><br>
+          Beyond the window a delivery cart passes the lamp. One wheel clicks once per turn. You count three, then lose it as the cart goes farther away. The sound does not return to its beginning. That small failure to repeat feels like something worth keeping.
+          <br><br>
+          You can go back to the room with the picture without testing anything else. The floor beneath your feet is solid, and there is no pale hand between you and that door. You keep one palm against the cold wall until you decide. Far behind, wood shifts once, then stops. You do not spend your last clear moment trying to give the sound a name.
+        <<option 'CN'>>
+          过道在一扇小窗旁结束。窗外，一盏灯照着湿润的石地。这里没有下午。你把掌心贴在玻璃上，感觉到属于这个时辰的冷。比起纸塔里的光，这份冷更容易握住。
+          <br><br>
+          背后是你刚穿过的门。另一扇门是不是仍被椅子挡着，你看不见。声音停了，你却没有因此相信房里已经空了。你看向这边的门扣，待在这里可以试它，而不用开门。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-knock-test-pass')>>你分清了错误的敲击与悉尼的暗号。<span class='blue'>如果手还稳得住，你可以在门闭着的时候摸一摸门扣，记住它的触感。</span>有一道松动的边，会挂住手指上的皮肤。<<else>>你回应得太早，想起了衣柜，还有那个没解释完三声敲击的理由。这里的墙在你面前，空着，也看得清楚。你可以自己敲暗号，看着手在第二下与第三下之间等够时间，不必想象墙后面的人。<</if>>
+          <br><br>
+          窗外，一辆送货车经过路灯，每当轮子转一圈就响一次。你数到第三声，车渐渐远了，便再也听不见。声音没有回到开头。这一点点没有重复的事情，像是值得记住。
+          <br><br>
+          你也可以不再试，直接回到放画纸的房间。脚下的地面坚实，你与那扇门之间没有淡白的手。你把一只掌心留在冷墙上，直到决定去哪。远远的身后，木头动了一下便停了。你不想把最后这点清楚的时间，花在给那个声音猜名字上。
+      <</language>>
+    <<case 'stay-morning-return'>>
+      <<language>>
+        <<option 'EN'>>
+          Two taps, a pause, and one. You lift your head from your arms and find afternoon at the window. Sydney is in the garden, shading <<nnpc_his 'Sydney'>> eyes. You are so relieved that you do not notice your knees still hurt from the chair.
+          <br><br>
+          <<nnpc_He 'Sydney'>> asks whether you are coming down. For an instant, the call stops before the mouth finishes moving. Then Sydney waves and it looks ordinary again. The question is exactly the one you wanted. You answer before checking the hall. The paper tower stands on the desk now, facing the real window. Nothing dark is inside it. You could pick it up and pretend you had always put it there.
+          <br><br>
+          The garden path is dry. A parent laughs downstairs. The day has returned with the sound of cups being moved, not with an explanation for last night. You want to go before somebody changes their mind about allowing the visit. You put both feet on the floor at once.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-latch-checked')>>At the passage door your finger looks for the loose edge of the latch. It is smooth. You try the same place twice. The part that caught your skin last night has no edge to catch now.<<elseif $LostLamb.marks.includes('stay-corrected-signal')>>You tap the signal on the visible wood. Two, wait, one. Sydney below raises a hand at the second tap. You make yourself finish the pause before the last, and keep watching the hand that answered too early.<<else>>At the door you wait for the third stair. Sydney is still outside, but the board creaks as though <<nnpc_he 'Sydney'>> has already begun coming up. You open the room door and see an empty landing.<</if>>
+          <br><br>
+          You hurry down, then slow at the bottom. The two cups are in their old places. You know you left one empty last night. Today both seem ready to be used. Your parent's voice asks what you want to play. Sydney is waiting outside with the right smile, and nobody here is mentioning the forbidden visits.
+        <<option 'CN'>>
+          两下，停一会儿，再一下。你从手臂上抬起头，发现窗外已经成了下午。悉尼站在花园里，抬手遮着眼睛。你松了一口气，快得没有留意膝盖仍被椅子压得疼。
+          <br><br>
+          悉尼问你要不要下来。有一瞬间，喊声已经停了，嘴唇却还在动。随后悉尼向你挥手，看起来又和平时一样。这正是你一直想听的问题。你没检查走廊就答应了。纸塔如今立在桌上，朝着真正的窗户，里面不再有黑暗。你可以拿起它，假装自己原本就把它摆在这里。
+          <br><br>
+          花园的小径是干的，一位家长在楼下笑。这个日子带回了杯子被挪动的响声，却没有解释昨夜发生了什么。你想快些过去，免得谁改变主意，又不允许悉尼来访。你的双脚同时落到地板上。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-latch-checked')>>走到过道门旁，你用手指找门扣松动的边缘，却只摸到平滑的表面。你在同一个地方试了两次。昨夜挂住皮肤的那一处，如今竟没有可以挂住什么的边。<<elseif $LostLamb.marks.includes('stay-corrected-signal')>>你在看得见的木头上重新敲暗号。两下，等一会儿，再一下。下面的悉尼在第二下就举起手。你坚持等完停顿，再敲最后一下，始终盯着那只回应得太早的手。<<else>>你站在门旁，等第三级台阶响。悉尼还在外面，木板却吱了一声，像对方已经开始上楼。你打开房门，楼梯口空着。<</if>>
+          <br><br>
+          你匆匆下楼，到了楼梯底部又慢下来。两只杯子摆在旧位置，你知道昨夜其中一只空着，今天却都像是随时可以拿来用的。家长问你想玩什么。悉尼带着恰到好处的笑容在外面等着，没有人在这里提起禁止来访。
+      <</language>>
+    <<case 'stay-rehearsal'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney says you took too long. You almost laugh. The complaint has a familiar shape, but <<nnpc_he 'Sydney'>> does not change it when you point out that you came as fast as you could. The smile waits until you finish speaking, then arrives whole.
+          <br><br>
+          You suggest a race. Sydney agrees. You say the starting place is wrong. <<nnpc_He 'Sydney'>> moves to the place you point at. There is no argument about who picked it last time. You try saying it should be somewhere else. The same agreement follows, with the same little turn of the head.
+          <br><br>
+          You would have liked this yesterday. Winning every decision would have saved so much time. Now you keep waiting for an objection because it would mean Sydney has thought of something you did not give <<nnpc_him 'Sydney'>>. You make a rule that favours <<nnpc_him 'Sydney'>>. <<nnpc_He 'Sydney'>> thanks you instead of taking advantage of it.
+          <br><br>
+          The path is exactly as dry at the bend as it was beside the house. A broken leaf lies where your own shoe would land. You step around it. Sydney steps around empty ground at the same point. You look back to see whether another leaf has fallen. There is only the first one.
+          <br><br>
+          You return to the window where the cups can be seen. One shadow lies across both handles. A cloud moves overhead, and the light on the wall changes, but the little shadow on the table does not follow it. Sydney asks what you want to do next.
+          <br><br>
+          You say you want something different. <<nnpc_He 'Sydney'>> nods. The word different has not given <<nnpc_him 'Sydney'>> anything to do. You will have to choose an action small enough to watch from beginning to end: a cup moved, a rule left to somebody else, a door whose picture can be compared with the wall.
+        <<option 'CN'>>
+          悉尼说你来得太慢，你几乎笑出来。这句抱怨的样子很熟悉，可你指出自己已经尽快下来，对方也没有换一句回应。那张脸等你讲完，笑容才完整地出现。
+          <br><br>
+          你提议赛跑，悉尼同意了。你说起点不对，对方就移到你指的地方，没有争论上次是谁选的位置。你又说应该换到别处，同样的答应随即跟来，连转头的幅度都一样。
+          <br><br>
+          昨天你会喜欢这样。每个决定都能由你赢，能省下好多时间。现在你却一直等着一句反对，那会表示悉尼自己想到了什么，不是由你先塞给对方。你订下一条偏袒悉尼的规则，得到的却是感谢，对方没有利用它来赢你。
+          <br><br>
+          弯道与屋旁的小径同样干燥。一片破叶落在你将要踩下去的位置，你绕开了它。悉尼却在相同的地方绕过一块空地。你回头检查是不是又落了一片叶子，地上仍只有第一片。
+          <br><br>
+          你回到那扇能看见杯子的窗边。一道影子横跨两个杯柄。头顶有云移动，墙上的光随之变了，桌上那一小片影子却没有跟着动。悉尼问你接下来想做什么。
+          <br><br>
+          你说想要一点不同的。悉尼点点头，“不同”这个词却没有让对方多出任何动作。你得选一件小得能从头看到尾的事，移动一只杯子，把规则交给另一个人，或者把画里的门与真实的墙放在一起比较。
+      <</language>>
+    <<case 'stay-repeat-hub'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney sits where the two of you played, with <<nnpc_his 'Sydney'>> knees drawn up. The nine cards are already on the floor. You do not remember opening the bag. Their corners have been folded, but none is bent from the turn you spoiled during the rain.
+          <br><br>
+          "Your choice," <<nnpc_he 'Sydney'>> says. You wait for a suggested game. The figure waits too. A spoon shines beside a cup on the table. You could move that cup and see whether the hand reaching for it remembers where it was. You could leave the rules entirely to Sydney and see whether <<nnpc_he 'Sydney'>> wants anything you have not named.
+          <br><br>
+          The house makes ordinary sounds around you. A pan moves, a cupboard shuts, a grown-up laughs once. The laugh begins from the same place each time you stop listening for it. You put a finger on the floor and wait to feel somebody walking above. There is no answering weight.
+          <br><br>
+          <span class='teal'>The shadow on the table has not moved while the light at the window changed.</span> You remember the clock in the shop and the loose wheel on the cart. Neither of those waited for you to decide which way it should move. You keep that difference in mind rather than trying to explain the whole house at once.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-cups') and $LostLamb.marks.includes('stay-rules')>>You have changed the places of the cups and left a rule for Sydney to choose. The results have not made <<nnpc_him 'Sydney'>> angry. That used to be a good thing. Now the same smile is turned towards you while the stair waits behind it.<<else>>There are still small things you can check without opening a door you cannot see beyond. Sydney keeps the cards ready while you choose which one to try first.<</if>> The bag lies against the third stair, just far enough from the edge to keep it quiet.
+        <<option 'CN'>>
+          悉尼又坐到先前玩游戏的位置，把膝盖收起来。九张纸牌已经摆在地板上，你却想不起是谁打开的袋子。牌角都折着，没有一张带着雨天那轮游戏里被你弄弯的痕迹。
+          <br><br>
+          “你选吧。”悉尼说。你没有马上回答，想等一个提议。对方也等着。桌上的勺子在杯边发亮。你可以挪动杯子，看看伸来的手是否还记得它原来在哪里，也可以把规则完全留给悉尼，看看有没有一个不是你先说出口的愿望。
+          <br><br>
+          房子在周围发出寻常动静，锅被挪开，柜门关上，有个大人笑了一声。每当你不再仔细听，那声笑就从完全相同的地方开始。你把手指按在地板上，等着感受楼上有人走动的重量，木头却没有回应。
+          <br><br>
+          <span class='teal'>窗前的光变过了，桌上那道影子却一直没有移动。</span>你记起商店里的钟，还有送货车的松轮子。它们都不需要等你决定朝哪里走。先留住这一点不同就够了，不必急着替整所房子找一个解释。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-cups') and $LostLamb.marks.includes('stay-rules')>>你已经换过杯子的位置，也留下一个规则让悉尼决定。结果都没有惹怒对方，以前你会为此高兴。现在，同一张笑脸仍对着你，楼梯就在那张脸后面等着。<<else>>这里还有能完整看清的小事，不用先打开一扇不知道通往哪里的门。悉尼把纸牌留好，等你决定先试哪一件。<</if>>袋子靠在第三级台阶上，离边缘刚好够远，没有让木板发出声音。
+      <</language>>
+    <<case 'stay-cups'>>
+      <<language>>
+        <<option 'EN'>>
+          The cups are not quite identical. Your own has a small rough place beneath the handle. Sydney's has a pale line around the rim. You know both without needing to lift them, but you do lift your own so you can be certain the rough place is still there.
+          <br><br>
+          You move it to the empty space beside the plate. Sydney looks at the place where it was. <<nnpc_His 'Sydney'>> hand reaches towards nothing, stops, then continues to the new cup. The movement is quick enough that you could pretend it was a mistake. You once reached for a chair somebody had moved. It happens to ordinary people.
+          <br><br>
+          You move it again, this time where your hand covers the handle. Sydney's fingers press against yours before turning back. <<nnpc_He 'Sydney'>> looks at your face, waiting. You say the cup is over here. The hand follows your voice. You do not give another instruction at once.
+          <br><br>
+          The spoon lies between you. If you let it fall, the noise would make anybody look down. You could check whether the smile remains while Sydney notices something you did not explain. You could also move just your own cup quietly, leaving the rest of the afternoon less disturbed.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-fair')>>During the real card game Sydney watched your hand before closing <<nnpc_his 'Sydney'>> eyes. You remember the indignation when you tried to win by changing the rule. You want that expression now more than you wanted the point then.<<else>>During the real game Sydney began putting the cards away when you insisted a hidden window still counted. You had to give in because <<nnpc_he 'Sydney'>> was able to stop playing. You look at the cards on the floor. Not one has been gathered up here.<</if>> You hold the cup so the rough patch stays against your finger while deciding what to move next.
+        <<option 'CN'>>
+          两只杯子其实不完全相同。你的杯柄下有一小块粗糙，悉尼那只的杯沿绕着淡线。不用拿起也认得，你仍端起自己的，确认指头下面还能摸到那个缺点。
+          <br><br>
+          你把它挪到盘子旁的空位置。悉尼看着它原先的地方，手伸向空气，停了一下，才继续转向新的杯子。动作很快，你完全可以装作只是普通失误。你也曾坐向一把被别人搬走的椅子，寻常人会犯这种错。
+          <br><br>
+          你再挪一次，这回用自己的手挡住杯柄。悉尼的手指碰上你的才收回，眼睛望着你的脸等。你说杯子在这里，那只手便随你的声音伸来。你没有立刻再告诉它下一步。
+          <br><br>
+          勺子就在两人之间。如果任它落下，响声应当让任何人低头。你可以看看，当悉尼注意到一件没经你解释的事时，笑会不会改变。也可以安静地只动自己的杯子，不把整个下午都惊动。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-fair')>>真正玩牌的时候，悉尼会在闭眼前检查你的手。你记起自己企图改规则取胜时，对方那种恼火的表情。你现在比当时想赢分数更想看到它。<<else>>真正玩牌时，你坚持藏起来的窗也算，悉尼便开始收牌。你不得不让步，因为对方真的能够停止游戏。这里的牌却仍一张不漏地摆在地上。<</if>>你把杯柄下的粗糙抵住手指，决定下一步动什么。这个摸得着的小缺口，比盯着那张脸更能帮你记住自己在哪里。
+      <</language>>
+    <<case 'stay-cups-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-own-cup')>>You slide your cup quietly beside the other. The shadow remains on the empty place between them. You put a finger through that shadow, and it darkens your skin without belonging to any cup. Sydney's hand reaches towards it again. You pull your finger back before it arrives.<<else>>You release the spoon. It rings against the plate and falls to the floor. Sydney's eyes move down, but the head keeps facing you. For a moment the two directions cannot belong to one face. You kneel to pick up the spoon without looking at that face again.<</if>>
+          <br><br>
+          You set the cup down carefully. The rough patch is still beneath the handle. You cannot make the whole object false merely because its shadow is wrong. It is colder on one side, where nobody has held it. That small fact belongs to the cup rather than to the visitor across the table.
+          <br><br>
+          From the kitchen your parent asks whether you are behaving. Sydney answers yes in exactly the voice used during the rain. You look towards the doorway. A sleeve is there, then a hand. It turns the cup you left empty at supper so its handle faces the others. No one drinks from it.
+          <br><br>
+          You ask Sydney whether <<nnpc_he 'Sydney'>> wants water. <<nnpc_He 'Sydney'>> says yes. You wait to see whether <<nnpc_he 'Sydney'>> reaches for the right cup without being told. The hand stays on the knee. You ask whether <<nnpc_he 'Sydney'>> is thirsty. The yes is identical. You stop asking, because another yes will not make it a different answer.
+          <br><br>
+          You can leave the table without proving what the visitor is. The cups can remain where you put them. Behind you, the cards are still laid out for a game that only begins when you choose it. Sydney stands as soon as you stand, even though you have not invited <<nnpc_him 'Sydney'>> to come. You walk far enough that the unchanged shadow is no longer between your hands.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-own-cup')>>你安静地把自己的杯子推到另一只旁边。影子仍留在两杯之间的空处。你把指头伸进那道影，它染暗了皮肤，却没有任何杯子该在那里投下它。悉尼的手又向影子伸来，你在碰到之前收回指头。<<else>>你松开勺子。它撞响盘子，又掉到地上。悉尼的眼睛向下转，脑袋却仍面对你。一瞬间，两个方向不像能属于同一张脸。你跪下捡勺，没有再抬头看它。<</if>>
+          <br><br>
+          你小心地放好杯子，柄下的粗糙还在。不能仅仅因为影子不对，就认定整个杯子都不是真的。一面比另一面冷，因为没有人握过。这个小事实属于杯子，不属于桌子另一边的来客。
+          <br><br>
+          厨房里的家长问你们有没有乖。悉尼回答有，嗓音与雨天那次完全一样。你望向门口，先出现一只袖子，再是一只手。它把晚饭时留空的杯柄转向其他杯子，仍没有人喝。
+          <br><br>
+          你问悉尼要不要水，对方说要。你等着看那只手会不会未经指示便去拿对的杯子，它却留在膝盖上。你再问渴不渴，得到一模一样的回答。你不再问，下一声“要”也不会因此变成另一个答案。
+          <br><br>
+          你不必先证明来客是什么，才能离开这张桌子。杯子可以留在你摆好的地方，背后的牌也继续等着只有你选择才会开始的游戏。你站起，对方立刻跟着站起，没有等邀请。你走得足够远，让那道不动的影子不再夹在两人的手之间。悉尼始终保持着一步的距离。
+      <</language>>
+    <<case 'stay-rules'>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney sits opposite you again. You have not fetched the cards, but they are between you. You count nine and do not gain anything by counting a tenth time. Their pictures are windows, gates, and bells. Every window has the same black line now.
+          <br><br>
+          "You choose the rules," you say. Sydney nods. You keep your hands on your knees so neither person can mistake a movement for a suggestion. The nod ends. The figure remains smiling. The room waits longer than an ordinary child would wait without making a complaint.
+          <br><br>
+          You remember Sydney insisting that the finish could not be somewhere only you knew. You remember having to share a pencil. <<nnpc_He 'Sydney'>> could say no, and could say it for a reason that annoyed you. You ask for a rule you will dislike. Sydney says you do not have to dislike anything. The answer has arrived, but no rule has.
+          <br><br>
+          You could tell <<nnpc_him 'Sydney'>> you do not want to win. That should change what a friend suggests, even if it earns an argument about you being difficult. You could simply keep waiting, leaving a whole minute in which Sydney can think of something without your help.
+          <br><br>
+          A parent moves behind the doorway. The same sleeve passes, then passes again without a footstep between. You look at the cards to avoid seeing whether there is a face above it. Sydney reaches towards the bell and stops. The fingers are close enough that they could move it, but they do not.
+          <br><br>
+          Your own hand begins to lift, ready to finish the movement for <<nnpc_him 'Sydney'>>. You put it back on your knee. There is nothing preventing Sydney from touching the card except something you cannot see. You are not going to supply the missing action this time merely because the silence has become uncomfortable.
+        <<option 'CN'>>
+          悉尼重新坐到对面。你没有去拿牌，它们却已经摆在中间。你数出九张，再数十遍也不会多知道什么。牌上还是窗、门与铃，不过现在每扇窗都有同样一道黑线。
+          <br><br>
+          “你来定规则。”你说。悉尼点头。你把双手放在膝盖上，免得任何动作被当成提议。点头结束，笑却留下了。房间安静地等着，比一个普通孩子能忍住抱怨的时间更久。
+          <br><br>
+          你记得悉尼坚持不能把终点定在只有你认识的地方，也记得必须分出去的铅笔。对方能够拒绝，而且能给一个让你恼火的理由。你要求想一条你不喜欢的规则。悉尼说，你不必不喜欢任何事。回答出现了，规则却没有。
+          <br><br>
+          你可以说自己不想赢。一个朋友听见后，理应改掉原来的提议，即使先与你争一轮太难伺候。你也可以保持沉默，留出完整的一分钟，让悉尼不借你的帮助想一件事。
+          <br><br>
+          门口有家长移动。同一只袖子经过，又经过，两次之间却没有脚步。你低头看牌，不想检查袖子上面有没有脸。悉尼伸手向铃，停住了。手指已经够近，仍不肯碰。
+          <br><br>
+          你的手开始抬起，准备替对方把动作完成，随后被你自己压回膝盖。看不见有任何东西挡着悉尼。你不准备仅仅因为沉默令人不舒服，就补上缺少的那一步。你放慢呼吸，等对面说一句不是先从你嘴里开始的话。
+      <</language>>
+    <<case 'stay-rules-end'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-no-win')>>"Then you don't have to," Sydney says. The figure pushes the cards aside, with no game left to put in their place. You ask what <<nnpc_he 'Sydney'>> would like. The smile changes into your own hopeful expression for an instant before returning. You have not given that expression permission to appear on another face.<<else>>You wait through the minute. A clock somewhere strikes once, although it ought not to be an hour yet. Sydney raises a hand to the bell, puts it down, then raises it to the same height. The second movement begins before the first has quite finished. You stand before a third can start.<</if>>
+          <br><br>
+          The cards stay on the floor. You leave them there so you can see whether somebody gathers them up without being asked. Sydney steps over them. The foot clears the bell, then stops in the place where you stopped. Nothing has been disturbed.
+          <br><br>
+          At the window you try to put your back to the visitor. Your shoulders tighten before you finish turning. There is no sound from <<nnpc_him 'Sydney'>>, but the reflection shows the figure closer than it was beside the cards. You move again. It moves the instant you are about to look.
+          <br><br>
+          You could once make Sydney angry by changing a rule. You did not have to name the anger or show <<nnpc_him 'Sydney'>> how to feel it. You miss that anger now. The thought makes you ashamed for a second, then a scrape comes from beneath the table and there is no space left for shame.
+          <br><br>
+          You take the bag off the third stair and put it against the wall. The board's edge is visible again. You can check a picture before going down, if the differences you have noticed have become clear enough. Or you can use the actual stairs. Sydney looks towards the garden, offering you a moment when the face is not turned straight at your hands. You do not assume it will be a long moment.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-no-win')>>“那就不用赢。”悉尼说，将牌推开，却没有另一个游戏替代。你问对方想做什么。那张笑脸一瞬间变成你自己等待答案时的表情，又恢复了。你从没同意自己的表情可以出现在另一张脸上。<<else>>你等完一分钟，远处的钟响了一声，明明还不该到整点。悉尼向铃举手，放下，又举到相同高度。第一次动作还没完全结束，第二次就开始了。你赶在第三次之前站起来。<</if>>
+          <br><br>
+          你把牌留在地上，想看会不会有人未经要求收好。悉尼一步跨过铃，脚停在你停过的位置。没有一张被碰歪。
+          <br><br>
+          窗边，你试着将后背朝向来客。还没转完，肩膀已经绷紧。你没听到它的脚步，玻璃里的倒影却显示对方比刚才更近。你再动一次，它就在你即将看过去的时候动。
+          <br><br>
+          以前只要改一条规则，你就能让悉尼生气。你不用替对方说出那种感觉的名字，也不用教该怎样感受。你现在想念这种气，羞愧刚出现，桌底便刮响一下，没再给羞愧留位置。
+          <br><br>
+          你把袋子从第三级台阶拿到墙边，让木板边缘重新露出。如果已经明白那些矛盾，还可以先检查图里的门，否则也能直接用眼前的楼梯。悉尼正朝花园望，脸暂时没有对着你的手。你不打算浪费这个空当。
+          <br><br>
+          没有家长来问为什么移动袋子。你仍能听到自己鞋底擦地的声音，至少这一点动静明确属于你。
+      <</language>>
+    <<case 'stay-drawing-check'>>
+      <<language>>
+        <<option 'EN'>>
+          The drawing is beneath the book, where it should be. You take it out with one hand while the other stays against the wall. The paper has a rough corner and a pale place where somebody tried to rub a mistake away. Its small defects are easier to trust than the clean smiles outside.
+          <br><br>
+          <<if $LostLamb.marks.includes('shared')>>Sydney once drew a low door through a wall you wanted left whole. You remember the argument, the pencil pressed near your fingers, the relief of being allowed to finish something together. The door on the paper still has that uneven shape.<<elseif $LostLamb.marks.includes('kept')>>You drew the route yourself. Sydney said the stairs went through a bedroom, and you claimed the person sleeping there would not mind. You remember how certain you were about deciding what another person would accept.<<else>>You did not spend that first afternoon drawing with Sydney. There is an unfinished picture in the house anyway, with a door that has never had to prove it can open. You cannot turn a blank space into something you remember doing.<</if>>
+          <br><br>
+          The actual wall is cool beneath your palm. You hold the drawing up beside it. A line on paper points towards a place on the plaster. For a moment you want to press there, make the picture lead somewhere, use the rule that would suit you best.
+          <br><br>
+          Then the wall gives a small vibration. It comes from below your hand, slowly moving towards the height of the drawn door. Your fingers can feel it while your eyes see only flat plaster. The picture does not explain it. It gives the movement a place to meet you if you insist hard enough.
+          <br><br>
+          You keep your hand where the surface remains still. Sydney calls from the landing, asking whether you have finished. The voice offers no suggestion about what should be finished. You begin folding the paper so the little door cannot sit directly over your hand.
+        <<option 'CN'>>
+          画纸还在书下，你一手取出来，另一手仍按在墙上。纸角粗糙，有一块曾经想擦掉错误而磨淡的地方。这些小缺点比外面干净的笑脸更容易相信。
+          <br><br>
+          <<if $LostLamb.marks.includes('shared')>>悉尼曾经在你想保持完整的墙上画过一道低门。你记得争论、挨着手指的铅笔，也记得终于能一起完成一点东西时的轻松。那道门至今仍歪着。<<elseif $LostLamb.marks.includes('kept')>>路线是你自己画的。悉尼说台阶穿过卧室，你声称睡在那儿的人不会介意。当时你多肯定，自己能决定另一个人接受什么。<<else>>第一个下午，你并没和悉尼坐下画画。屋里仍有未完成的图，一道不曾证明能够打开的门。你不能把空白变成记得自己做过的事情。<</if>>
+          <br><br>
+          真正的墙在掌心下很凉。你把纸举到旁边，一条画线指向灰泥上的位置。你忽然想按下去，让图通往别处，利用那条最合心意的规则。
+          <br><br>
+          墙轻轻震了一下。动作从手下较低的位置，缓缓升向画上那道门。眼睛只能看见平坦的灰泥，指头却清楚感觉到移动。图没有解释什么，倒像是在给里面的东西指一个能接近你的地方。
+          <br><br>
+          你把手留在仍然安静的表面。悉尼从楼梯口问完成没有，声音却没建议究竟要完成什么。你开始折纸，不让小门正盖在掌上。只要还摸着真正的墙，就不必因纸上有一条线，便将自己的手送进它指的位置。
+      <</language>>
+    <<case 'stay-drawing-end'>>
+      <<language>>
+        <<option 'EN'>>
+          The drawing folds along a crease that was already there. Its door meets the window on the other side. You have done this before with the note, and it did not make Sydney answer. You make yourself remember that ordinary failure while the wall gives another little shiver.
+          <br><br>
+          You put the paper down. The real window is in front of you now, and Sydney's reflection stands behind your shoulder. You look through the glass instead of at the reflection. The path outside bends behind the shrub in the right place. There is enough room to take it without passing the point where the wall moved.
+          <br><br>
+          Sydney says the door would be better somewhere else. For a moment you are delighted: an opinion you did not ask for. Then <<nnpc_he 'Sydney'>> repeats the very words used when you first showed the paper, with the pause in exactly the same place. The reflection does not change its mouth shape when the second sentence begins.
+          <br><br>
+          You leave the folded paper where it can stay dry. You do not tear out the door, and you do not press it against the wall again. A drawing can remain something two children disagreed over. It does not have to become a way out of every room simply because you are frightened of the one behind you.
+          <br><br>
+          Before you turn, you check that the window shadow is still lying across the empty place on the table. It is. Your own hand has a shadow too, and that one changes when you lift your fingers. You hold onto the difference while going back to the landing.
+          <br><br>
+          The bag no longer hides the third stair. You can choose the real route now. Whatever waited beneath the plaster has not been shown a shape to reach through. Behind your hand, the wall settles. Sydney is already facing the garden.
+        <<option 'CN'>>
+          纸沿着旧痕折起来，小门正碰到另一面的窗。你曾把字条这样折过，并没有让悉尼答复。墙再次轻震，你逼自己记住那个普通的失败。
+          <br><br>
+          你放下画纸，真正的窗出现在面前，悉尼的倒影在你肩后。你越过它看玻璃外，小径仍在正确的灌木后拐弯。那条路足够让你绕开墙里动过的位置。
+          <br><br>
+          悉尼说门换个地方更好。你一瞬间高兴，终于有了没要求过的意见。随后对方完整重复最初看图时的那句话，连停顿位置都相同。第二句开始，倒影的嘴却没有变形。
+          <br><br>
+          你把折好的纸留在干处。你没有撕掉门，也不准备再按到墙上。一张图可以只是两个孩子争过的东西，不必因为怕身后的房间，就成为每一间屋子的出口。
+          <br><br>
+          转身之前，你检查桌上那道停在空处的窗影。它还在。自己的手也有影，可抬起手指，那道影会跟着改变。你记住这点不同，走回楼梯口。
+          <br><br>
+          袋子不再遮着第三级台阶，现在可以走真实的路线。灰泥底下等着的东西，没有得到一个你指定的形状来穿过。你离开后，墙安稳下来。悉尼已经朝着花园。
+          <br><br>
+          你不想叫对方跟着，也没再试着阻止。能走的地方不是得到认同才存在。你只需要赶在那张脸转回来以前，把脚放到上面。
+      <</language>>
+    <<case 'stay-stairs'>>
+      <<language>>
+        <<option 'EN'>>
+          The landing looks ordinary from here. Sydney has turned towards the garden window, giving you the side of a face you could recognise in a crowd. You almost say you are sorry for making the games difficult. Then the reflected face turns in the glass without the real one turning at all.
+          <br><br>
+          You look down at your feet. The bag is against the wall, so the third stair can be crossed without stepping around anything. During the real visit it creaked only when a foot touched the edge. Sydney learned that after you explained. You know the middle is solid. You can place one shoe there while keeping a hand on the rail.
+          <br><br>
+          The house has noticed some of what you did. <<if $LostLamb.marks.includes('stay-dropped-spoon')>>The spoon's noise still seems to be waiting between the rooms. A head in the kitchen doorway is lower than it should be, as though its owner bent to see what fell and forgot to stand again.<<else>>The table has kept the cups in their changed places. Nobody has come to ask who moved them. That silence gives you a little space between the window and the stair.<</if>>
+          <br><br>
+          Sydney says you have not finished. You ask what, but <<nnpc_he 'Sydney'>> repeats only that you have not finished. The words could mean the cards, the paper tower, the game arranged for next time, or something else that has been waiting much longer. You are not going to choose a meaning for them before moving.
+          <br><br>
+          <span class='blue'>Keep to the middle of the third stair. Listen for the response before taking the next step.</span> You lower your foot, watching the visitor at the window instead of the reflected face. If something is already watching you, silence alone may not be enough. You still have to use the route that is there.
+        <<option 'CN'>>
+          从这里看，楼梯口和往常没有分别。悉尼转向花园窗，露出即使在人群中也认得的侧脸。你差点开口，为自己让游戏变得难玩道歉。随后，玻璃里的脸先转过来，真正的那张却一点没动。
+          <br><br>
+          你低头看脚。袋子已经靠墙，第三级台阶不需要再绕东西。真正来访时，只有踩到边缘才会响，悉尼听你解释才学会。你知道中间坚实，可以一手扶栏杆，一脚放到那里。
+          <br><br>
+          房子已经留意你做过的某些事。<<if $LostLamb.marks.includes('stay-dropped-spoon')>>勺子的响声似乎还等在两个房间之间。厨房门口的脑袋低得不对，仿佛那人弯腰看掉下什么，却忘记重新站直。<<else>>杯子仍在换过的位置，没有人来问谁动的。那份沉默给你留出窗与楼梯之间的一点距离。<</if>>
+          <br><br>
+          悉尼说你还没完成。你问什么，对方只重复没完成。可能是纸牌、塔、下次约好的游戏，也可能是等了更久的某种事。你不准备先替这句话安排含义，才决定是否能走。
+          <br><br>
+          <span class='blue'>踩第三级的中间。先听有没有回应，再迈下一步。</span>你看着窗边的来客而非倒影，慢慢落脚。如果早已有东西盯着你，安静不一定足够，可眼前这条路仍要用。你将另一只手也扶住栏杆，不把手腕留在身后让人容易握住。
+          <br><br>
+          窗边的脸没有说可以，也没有说不许。你不再等待这种许可，先把自己的重量稳稳交给脚下的木板。
+      <</language>>
+    <<case 'stay-quiet-pass'>>
+      <<language>>
+        <<option 'EN'>>
+          The middle of the board holds your weight. <span class='green'>No creak answers from below.</span> You take another step, then stop instead of rushing through the good fortune. Sydney remains facing the garden, where the light has kept the same patch on the path.
+          <br><br>
+          You can see more of the hall with every stair. The kitchen door is open. A parent stands beyond it, one hand raised as though about to carry a cup. The hand has not completed that ordinary action. You keep your eyes on the gap between the sleeve and the door, where you could pass without touching either.
+          <br><br>
+          At the bottom you turn towards the garden entrance. The handle is clear. You place a hand on it and wait for Sydney to object. No voice comes. The wood moves easily enough that you are almost disappointed; you had prepared yourself for something heavier.
+          <br><br>
+          Outside, the air is warm. You do not let that convince you it belongs to the afternoon you wanted. You go along the wall until the window separates you from the landing. Only then do you look back. Sydney is behind the glass, with one hand still near the cards. The face has not followed you through the opening.
+          <br><br>
+          You lift a finger, not a whole hand, to see whether the figure copies it. Nothing moves. You lower the finger before you can become grateful for being ignored. It does not prove the window will hold, only that there is no hand around your sleeve at this moment.
+          <br><br>
+          Farther away a cart wheel clicks. Its sound begins late in the turn, not in time with your breathing. You remember standing at the real gate while somebody else went home with bread. The street may still be doing things you have not chosen. You move towards that sound, keeping the window on the other side of the wall rather than at your back.
+        <<option 'CN'>>
+          木板中间承住你的重量，<span class='green'>没有吱声从下面回应。</span>你又下一步，停下来，没有急着把这份好运用光。悉尼仍看着花园，那片光留在小径的同一处。
+          <br><br>
+          每下一级，大厅便多露出一点。厨房门开着，家长站在里面，抬手像要拿杯子，却没有完成动作。你看袖子与门之间的缝，那里够你经过，而且不必碰其中任何一边。
+          <br><br>
+          到底后，你转向花园门。柄看得清，手放上去，然后等悉尼阻止。没有声音。木头轻易打开，你几乎失望，因为已准备好对付更沉的阻力。
+          <br><br>
+          外面空气暖，你没让暖意说服自己，这就是想要的下午。你沿墙走，直到窗隔开你和楼梯口，才看回去。悉尼站在玻璃后，一手仍靠着牌，没有跟你穿过开口。
+          <br><br>
+          你只举一根手指，不挥整只手，试试看身影会不会模仿。它没动。你在为被忽略而高兴之前放下指头。这不能证明窗会一直挡住，只表示此刻袖子上还没有另一只手。
+          <br><br>
+          远处车轮响起来，转到较后的位置才响，与呼吸的节奏不同。你记起真正的大门边，别人拿着面包回家，不管你还在等谁。街道也许仍在做没经你选择的事。你朝那个声音走，让窗留在墙另一侧，而不是背后。
+          <br><br>
+          拐角终于出现。你扶墙慢慢转过去，直到连那张不动的脸也不在视线里。你没有因此停步，继续留意自己的鞋声是否会被别人的脚步接上。
+      <</language>>
+    <<case 'stay-quiet-fail'>>
+      <<language>>
+        <<option 'EN'>>
+          You reach the third stair without making it creak. The board stays quiet beneath the middle of your shoe. Then the cards behind you move all at once, a dry sliding sound too large for one hand. Sydney has already turned before you look back.
+          <br><br>
+          "Where are you going?" The question is ordinary. The voice comes from below the stair as well as from the face above it. You keep your hand on the banister. If you try to answer both places, you will have to turn away from one of them.
+          <br><br>
+          The figure takes a step. Its shoe lands on the very edge you avoided, but the board does not creak. The sound comes a moment later from the stair beneath your own foot. You are certain you did not move. The house can place the warning somewhere other than the thing that caused it.
+          <br><br>
+          You go down, using the rail instead of jumping. The kitchen doorway fills with a sleeve. A hand reaches across the hall, too high to be the pale one beneath the door last night. You do not stop to discover whether that makes it safer. You turn sideways through the garden entrance while there is still space beside the hand.
+          <br><br>
+          The door brushes your shoulder. Outside you follow the wall until the window lies between you and the landing. Sydney is already behind the glass. <<nnpc_His 'Sydney'>> face begins turning towards you, slowly enough to let you see that the eyes have arrived first.
+          <br><br>
+          You leave before the turn is finished. A cart wheel sounds beyond the gate, continuing through the pause in the voice. You follow the separate rhythm. The third stair gave you away even though you used it properly. You can still use the wall, the light, and the distance between yourself and the last opening. One rule failing has not removed every other thing you can touch.
+        <<option 'CN'>>
+          你踩的是第三级的中间，木板安静。背后九张牌却同时滑动，干干的声响大得不像一只手能造成。你回头以前，悉尼已经转过来了。
+          <br><br>
+          “去哪儿？”这是个寻常的问题，可嗓音既从上方的脸来，又从台阶下方来。你抓着栏杆，如果要向两处都解释，就得先背对其中一处。
+          <br><br>
+          身影迈步，鞋落到你避开的边上，没有吱声。声音迟一刻才从你自己脚下响起，你很确定没移动。房子能把提醒放到不曾造成它的地方，游戏时可靠的那块板并没有保护你。
+          <br><br>
+          你扶着栏杆继续下，没有跳。厨房的开口被一只袖子填住，一只手横过大厅伸来，比昨夜门底的那只高。你不想停下来研究高度是否代表安全。趁手旁仍有空间，你侧身穿过花园门。
+          <br><br>
+          门边擦肩，你沿墙走到窗隔开楼梯口。悉尼已经在玻璃后。脸缓缓朝你转，让你有时间看见眼睛先抵达了新的方向。
+          <br><br>
+          你赶在转完以前离开。大门外的车轮声持续穿过人声的空隙，你跟着这份独立节奏。虽然正确地用了第三级，还是被发现，可墙、光与离开开口的距离都能继续用。一个规则失效，没有让每样摸得着的东西全消失。
+          <br><br>
+          拐弯时你不再回看。身影要接近，就得先绕过这面实际的墙。你至少能利用这几步，而不是站着等那张脸想好下一句。
+      <</language>>
+    <<case 'stay-street'>>
+      <<language>>
+        <<option 'EN'>>
+          The cart is beyond the gate. You can hear the wheel before seeing it, just as you could during the afternoon you spent waiting. You pull the latch up. It moves in an ordinary way, with a rough part that catches the side of your thumb.
+          <br><br>
+          The street outside is the right width. There is room for the cart, a person carrying bread, and another person waiting to pass. You are so glad of the separate movements that you forget the figure in the window for three steps. Then a shadow falls beside yours.
+          <br><br>
+          Sydney has come without using the gate. At least you did not see it open again. <<nnpc_He 'Sydney'>> asks whether you want to race. You say not yet. The face accepts the answer with a smile, and the shoes stop moving while the cart continues towards the corner.
+          <br><br>
+          You follow the cart. The wheel clicks every turn until the corner hides it. You should hear the sound growing fainter. Instead it stays the same distance away. A moment later the cart appears at the end of the street ahead, beginning the part you already watched.
+          <br><br>
+          A woman with bread asks whether you are locked out. You know what she will say next, because you stood here before. You shake your head. She tells you to go in before it gets cold. The bread is still warm enough to steam through the paper, although this afternoon has been waiting much longer than bread should.
+          <br><br>
+          You do not follow her. You keep your hand near the wall and look for a mark that can remain still while the street begins again. There is an old scrape in the brick beside the gate, left by something passing too close. Sydney stops beside you. The smile has not asked how you knew the woman's next words. The cart wheel begins another unchanged turn.
+        <<option 'CN'>>
+          送货车在大门外。你像先前等待的下午一样，先听见轮声才看见车。抬起门扣，它仍按寻常方式移动，粗糙的一块挂着拇指侧面。
+          <br><br>
+          街道的宽度和平时一样，够车经过，够拿面包的人走，另一人还能站旁边让路。你因为这些独立动作而高兴，走了三步才想起窗里的身影。另一道影已经落在自己影旁。
+          <br><br>
+          悉尼没有经过门就到了，至少你没看见门再次打开。对方问要不要赛跑。你说现在不想。那张脸笑着接受，脚步停住，送货车却继续驶向拐角。
+          <br><br>
+          你跟车走，轮子一圈圈响，直到被角落挡住。本该越听越远的声音，却始终留在相同距离。片刻后，车又在前方街尽头出现，开始你已经看过的一段路。
+          <br><br>
+          拿面包的女人问是不是锁在外面。你知道下一句，因为以前站过这里。你摇头，她果然叫你赶在冷前进去。面包的暖气还从纸里出来，这个下午却已经停得比面包能保温的时间久得多。
+          <br><br>
+          你没有跟她，将手留在墙旁，找一处能在街道重来时保持不动的痕迹。门边砖有旧刮伤，像什么经过得太近造成的。悉尼在旁停下，没有问你怎么知道女人下一句话，那笑也没变。
+          <br><br>
+          车轮开始又一次相同转动。你检查自己的鞋，鞋底仍留着刚才的湿印。至少那些走过的步子真的改变过一点东西，不全是从头开始。
+      <</language>>
+    <<case 'stay-wall'>>
+      <<language>>
+        <<option 'EN'>>
+          The scrape is below your shoulder. You can follow it with a finger without standing on tiptoe. Its edge is pale against the brick, with a tiny dark piece left in the deepest part. Nothing about it looks new enough to have been made for you.
+          <br><br>
+          You walk with it in sight. Five steps should take you past the drainpipe. You know because you once counted while waiting for a parent to unlock the gate. At the fifth step, the scrape is beside your shoulder again. The drainpipe is still farther on.
+          <br><br>
+          Sydney walks backwards in front of you. <<nnpc_He 'Sydney'>> does not have to look where <<nnpc_he 'Sydney'>> is going. A heel misses the raised stone you remember, and the stone seems to settle flat before the shoe arrives. You look down at your own feet. The uneven places remain uneven for you.
+          <br><br>
+          You try keeping your hand on the bricks instead of watching the mark. Each joint passes your palm, rough then smooth then rough. After several steps the wall turns beneath your fingers. You stop. The road has not shown a corner, but your hand has found one. You can stand at it without making Sydney understand what is wrong.
+          <br><br>
+          The scrape lies just beyond the turn. You could keep it in view, using the part that has not moved to compare each new stretch. You could keep a palm against the brick and let it tell you when a turn actually happens. Neither requires believing the whole street.
+          <br><br>
+          Sydney says there is a place to get water farther on. You know the pump near the garden shed. It should be inside the wall, not along the street. You want a drink, but you want to see what Sydney does without waiting for your next step even more. You continue towards the place where the brick gives way to an old wooden door.
+        <<option 'CN'>>
+          刮痕比肩低。你不用踮脚就能沿着摸，它的边在砖上发白，最深的位置还留一点暗碎屑。看起来足够旧，不像是为了迎合你而刚被做出来。
+          <br><br>
+          你让它留在视线里走。五步应当经过排水管，你记得，因为有次等家长开门时数过。第五步落下，刮痕竟又在肩旁，排水管还留在更远处。
+          <br><br>
+          悉尼倒着走在你面前，没必要看路。鞋跟避开你记得的一块凸石，石头像在鞋抵达前便自己平了。你检查自己脚下，那些不平的地方仍然不平。
+          <br><br>
+          你改为用掌心扶砖，不看刮痕。一条条接缝从皮肤下过去，先粗再平，再粗。几步之后，墙在手下真的拐弯。街道的样子没给出角落，手却找到一个。你可以站在那里，不必让悉尼先理解哪里出了问题。
+          <br><br>
+          刮痕就在弯后。你可以继续盯着它，用这点没移动的东西比较每段新路，也可以保持手贴墙，感受什么时候真正拐过角。两者都不需要相信整条街正确。
+          <br><br>
+          悉尼说前面可以喝水。你认识棚旁那口泵，它该在墙里，不是在街道上。你想喝，但更想看看对方不等你的下一步时会做什么。你沿着砖墙走向尽头的旧木门。
+          <br><br>
+          边上露出生锈钉头，没有因你注意就变得安全光滑。你避开它摸门边，手至少没立刻被送回原来的刮痕。
+      <</language>>
+    <<case 'stay-errand'>>
+      <<language>>
+        <<option 'EN'>>
+          The wooden door leads to the space beside the garden shed. You know the pump, the shallow channel beneath it, the dark patch where water has worn the stone. The street ought to be on the other side of the wall. Here it sounds as though a cart is passing inside the shed.
+          <br><br>
+          Sydney points to the pump. You ask <<nnpc_him 'Sydney'>> to go first. The figure moves until you stop watching, then stands with one hand above the handle. You wait. A drop falls from the spout without anyone working the pump. Another follows too quickly, in the same place.
+          <br><br>
+          The real Sydney would have complained about making <<nnpc_him 'Sydney'>> do your errand. You would have offered to swap, or claimed you fetched something last time. You could both have been thirsty enough to stop arguing. None of those things happen here. The hand waits for another direction.
+          <br><br>
+          You could let <<nnpc_him 'Sydney'>> go ahead alone, far enough that the corner blocks your view. That would leave a moment in which the other person has to decide something without seeing what you want. You could walk beside <<nnpc_him 'Sydney'>> without touching the sleeve, leaving enough room between you for an unasked movement.
+          <br><br>
+          You are not trying to get the water as a prize. You can reach the handle yourself. What matters is whether the figure can be somewhere you have not kept it. You look at the pump's shadow. It points towards the wooden door, although the sunlit opening is behind it.
+          <br><br>
+          Behind you the cart wheel clicks. The ordinary rhythm has become a sound inside a place too small to contain a cart. You put a hand on the wall, keeping contact with the rough corner, and say the direction once. Sydney begins to move. You do not follow by reflex.
+        <<option 'CN'>>
+          木门通向花园棚旁。泵、下方浅沟与水磨暗的石面，你全认得。街该在墙的另一面，车的声音却像从棚里面经过。
+          <br><br>
+          悉尼指向泵，你让对方先去。身影动了一段，一旦你不再看，就停着把手悬在柄上。你等，没有人压泵，出口也掉一滴水，再一滴紧跟，落在同一处。
+          <br><br>
+          真正的悉尼会抱怨让对方替你跑腿，你会提交换，或坚持上一次取东西的是自己。也可能你们都渴得懒争。这里什么都没发生，那手只等你再下指示。
+          <br><br>
+          你可以让悉尼独自先走，远到墙角挡住视线。这样至少有一刻，对方必须不看着你的愿望便决定自己的动作。也可以不抓袖子地并肩走，留出能容纳一个未经请求的动作的距离。
+          <br><br>
+          你不是想把水当成奖品，泵柄自己也够得着。真正想看的是，身影能否出现在一处不是被你留住的位置。泵影指向木门，可日光的开口明明在它背后。
+          <br><br>
+          车轮又在身后响，寻常节奏被放进一个根本容不下车的地方。你将手留在墙角粗糙处，把方向只说一次。悉尼开始动，你不让自己本能地跟上。
+          <br><br>
+          水滴再落，你看见涟漪真在扩开，没有立刻退回起点。这点变化也许能帮你忍住，不在每次身影停下时都赶忙替它补一句话。
+      <</language>>
+    <<case 'stay-shadow'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-friend-alone')>>Sydney goes round the corner alone. You watch the hand leave the wall, then the shoulder disappear. There ought to be footsteps continuing beyond your view. You hear only the pump's drop. When you move closer, the figure is standing at the corner, flattened by the angle until you can see the face again. It had not gone far enough to decide anything.<<else>>You walk alongside without holding the sleeve. Sydney keeps the small gap you left, step for step. When you stop with one shoe above a crack, <<nnpc_he 'Sydney'>> keeps one shoe raised too. You put yours down. The other shoe lands in a part of the path where there is no crack.<</if>>
+          <br><br>
+          You ask <<nnpc_him 'Sydney'>> to go home. The face shows hurt for the first time. You are relieved before you realise you expected that expression. It is exactly the hurt you pictured while practising your questions after the visits stopped.
+          <br><br>
+          "You wanted me to stay." The voice says it quietly. You say you meant when <<nnpc_he 'Sydney'>> could. You meant the next visit, the ordinary games, the chance to finish something. The figure waits while you offer each meaning, and none makes the feet turn towards the street.
+          <br><br>
+          The shed casts a dark shape across the ground. Your own shadow enters it without disappearing completely. Sydney's does not cross the edge. It remains where the sun would have put it before you moved. You look at the feet, then at the window above the wall. A face is watching from that window now, but it is too far away to distinguish.
+          <br><br>
+          There is room beside the shed where the window cannot see your hands. You can use it without requiring the visitor to agree. You take one step towards the dark shape. Sydney says your name, with the pause almost right this time. Almost is not the game you agreed to play. You keep moving until wood, rather than the watching face, fills the space behind your shoulder.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-friend-alone')>>悉尼独自绕过角落。你看见手离开墙、肩膀消失，之后理应听到继续向前的脚步，却只有水滴。你靠近，对方还停在拐角，被视角压得扁平，直到脸重新出现。身影根本没走到必须独自决定的地方。<<else>>你没有抓袖子，只并肩走。悉尼一步不差地保持空隙。你把鞋悬在裂缝上停住，对方也悬着一只鞋。你的脚落下，另一只却落在没有裂缝的位置。<</if>>
+          <br><br>
+          你叫悉尼回家。脸第一次露出受伤的样子，你先松口气，才明白这是自己正在期待的表情，与禁止来访后练问题时所想的一模一样。
+          <br><br>
+          “你想让我留下。”声音很轻。你解释是能来时留下，是下次来访、普通游戏、把事情做完的机会。每个理由都被完整听完，却没让那双脚朝街道转。
+          <br><br>
+          棚的暗影落在地面，你自己的影走进去还能辨出，对方的影却没穿过边界，仍留在移动以前太阳该投下的位置。你看脚，再看墙上窗，现在里面有张脸注视你，太远，认不清。
+          <br><br>
+          棚旁有窗看不到手的地方，你不用等来客同意就能去。朝那里迈一步，悉尼叫了你的名字，停顿这回几乎正确。“几乎”不是你们说好的规则。你继续走，让木头替代那张脸，填住肩后的空间。
+          <br><br>
+          边上有旧钉，你绕开，不碰它。那些没有变得完美的小东西，至少不等你说好，就突然成了完全顺手的位置。你能凭它们继续辨认实际走了多远。
+      <</language>>
+    <<case 'stay-shed'>>
+      <<language>>
+        <<option 'EN'>>
+          You stand between the shed and the wall. It is not a hiding place you would have chosen during the real game; the gap is too obvious from the path. Here the high window cannot look straight into it. You can keep both hands against surfaces you see.
+          <br><br>
+          There is a door at either end. One is the wooden opening through which you came. The other ought to be the side of the shed, but a handle has appeared there. Light runs beneath it in a thin clean strip. You remember the strip beneath the room door, and do not assume daylight makes this one safe.
+          <br><br>
+          Two taps come from the wooden entrance. A pause, then one. Before the last is finished, the brighter door gives the same sounds, with a longer pause. You count between them. Somebody on the other side could be waiting for your count to become the rule.
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>During the real game you heard Sydney's shoe after the last tap. You can listen for that extra movement now, without letting the correct rhythm decide everything by itself.<<elseif $LostLamb.marks.includes('stay-corrected-signal')>>You practised on a wall you could see after answering the wrong sound. Your own hand made the pause. You remember that a convincing pattern still needs a place and a movement after it.<<else>>You know the pattern, but last night your wish to hear Sydney reached the handle before you had heard it fully. Both doors offer you something you wanted. You can choose the lit side without claiming you have identified who is there.<</if>>
+          <br><br>
+          The floor is narrow enough that turning towards one handle means letting the other go behind you. You slide sideways with your shoulder on the shed, keeping the brighter opening in view. A knock lands close to your ear. You can either hear what follows the signal or use the strip of light to keep your next step visible. Neither asks you to call a friend who has not been shown beyond the wood.
+        <<option 'CN'>>
+          你站进棚与墙之间。真正玩游戏时不会选这里，从小径看太明显。现在，高窗无法直接望进这条缝，双手却都能按着自己看得见的表面。
+          <br><br>
+          两端各有一道门。木头那道是你刚经过的，另一侧本该只是棚墙，如今多了把手。干净的亮条从门底泄出。你记起卧室门底的那条，不认为有白昼就一定安全。
+          <br><br>
+          入口敲两下，停，再一下。末声还没完，较亮的门就敲同一顺序，停得更长。你数两声间的时间。另边的人也许在等着，让你的计数成为它采用的规则。
+          <br><br>
+          <<if $LostLamb.marks.includes('stay-hide-count-pass')>>真正游戏里，悉尼的鞋在末声后才移。你现在仍可听额外动作，不让正确的敲法独自决定谁在外面。<<elseif $LostLamb.marks.includes('stay-corrected-signal')>>回答错之后，你在可见的墙上亲手练过，停顿是自己的手做的。令人相信的顺序也该有位置，与敲完以后的移动。<<else>>你知道顺序，却记得昨夜想见悉尼的愿望先于听清抵达把手。两道门都给想要的东西，你能选透光侧，却不能因此声称已认出谁。<</if>>
+          <br><br>
+          缝太窄，转向一个把手就得让另一个到身后。你肩贴棚侧移，让亮的开口仍在视线里。一声敲击贴近耳边。你可以听完后续，也可借亮条看清下一步。不必先叫一个从没见到在木头外的朋友。
+          <br><br>
+          你没有退回原来的窗下。板仍坚实，掌心知道自己在这个窄角，没有突然被送回游戏的起点。
+      <</language>>
+    <<case 'stay-heard'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if $LostLamb.marks.includes('stay-trusted-pause')>>You wait beyond the last tap. At the brighter door, nothing moves until you shift your foot. Then a shoe scrapes in the same direction. At the wooden entrance, something drags before you move at all. Neither is the scuff Sydney made after laughing at your hiding place. You use the brighter opening for light, without giving either sound the friend's name.<<else>>You open the side with daylight. The handle is cool. The first thing you see is the garden path, not a person. You keep one hand on the frame until your shoe reaches the part you can see. When a shadow moves towards you, you have already left enough space to take the hand back.<</if>>
+          <br><br>
+          The path bends towards the window again. You have come out near the house, although the shed was beside the far wall. There is no cart in sight. Its wheel clicks from somewhere above the roof, making the ordinary rhythm too high to follow with your feet.
+          <br><br>
+          Sydney stands at the bend. The visitor is facing you properly now. Both eyes look where the head looks. The mouth makes an impatient line, almost the expression you missed during the games. For a moment you want to apologise for all the tests, for pretending friendship was something you could check with cups.
+          <br><br>
+          Then you remember the real disagreement. Sydney wanted to take the paper shape home, or change the finish, or read the line you covered. A friend did not need to be given every feeling before having one. You cannot make this figure real by deciding its new expression is finally good enough.
+          <br><br>
+          You say Sydney's name once. It is a name that belonged to a person who could go home. You leave room after it for an answer you have not supplied. The visitor's hand opens. Behind you the door you crossed shuts with no visible hand on it. The waiting space has become very small, and the name has not opened another way.
+        <<option 'CN'>>
+          <<if $LostLamb.marks.includes('stay-trusted-pause')>>你在最后一敲之后继续等。亮门后直到你挪脚，才往同一方向擦鞋，入口外的拖动却在你未动时就开始。都不是悉尼找到你、笑过以后的那声。你只借较亮开口照路，不给任一种响朋友的名字。<<else>>你开透光的侧门，柄很凉。先看见花园小径，没有人。手留着扶框，脚只到看得清的地面。影朝你来时，已有足够距离收回手。<</if>>
+          <br><br>
+          路径再次弯向窗。棚本在远墙旁，你却来到房子附近。车不见，轮声从屋顶上方响，普通节奏被移到太高、双脚无法追的位置。
+          <br><br>
+          悉尼在弯边，这次脸正确地朝你。两眼与脑袋看同一方向，嘴像不耐烦，几乎就是刚才想念的表情。你一瞬间想为测试道歉，为自己把友情当成能拿杯子检查的事道歉。
+          <br><br>
+          随后想起真的争执。悉尼会带纸形回家，会改终点，也会读你盖住的一行。朋友不用先收到每一种感受才能拥有它。你不能仅凭判定这次表情够好，就使身影变成真的。
+          <br><br>
+          你只叫了一遍悉尼。那名字属于一个能回家的人。你在它后面留出空隙，等一个没经自己供应的回答。来客的手打开，刚经过的门却在背后自行闭合。
+          <br><br>
+          能等待的地方变窄，名字没有创造出口。你想按住身旁墙面，那里只剩悬着的暖光。你收手，扶住另一边仍摸得到的框角，不再主动向身影靠近。
+      <</language>>
+    <<case 'stay-grip'>>
+      <<language>>
+        <<option 'EN'>>
+          The hand closes around your sleeve without being told. You feel its fingers above the elbow, small enough to be Sydney's, cold enough that you look down instead of trying to meet the face. The grip tightens when you turn your arm.
+          <br><br>
+          "You wanted me to stay." This time the voice does not wait for a question. It has found one sentence it can bring close without your help. You say that staying was not meant to mean holding on to you. The fingers move towards the fold of the sleeve, where the cloth gives them something harder to lose.
+          <br><br>
+          You remember taking Sydney's bag to delay the coats, then giving it back when <<nnpc_he 'Sydney'>> held out a hand. That afternoon the thing you kept could be released. Now the visitor keeps you in the same small space while the path repeats its turn behind the shoulder.
+          <br><br>
+          You pull once. The hand follows without seeming to strain. You put the other palm against the frame and use it to keep your feet where they are. The wood has a sharp corner that hurts in an ordinary, exact place. You concentrate on that instead of the face leaning near enough to hide the afternoon light.
+          <br><br>
+          The smile does not look happy from this close. It looks like the shape made when you asked for happiness and never let the request end. You try to say goodbye. The first breath catches because you expect another answer you do not want. You try anyway.
+          <br><br>
+          A knock comes from beneath the path. Two taps, a pause, one more. The sleeve has become the only place where two people might separate, and the hand is making it smaller. You do not turn towards the knocking. You pull towards the arm you can feel, keeping your own palm on the corner until the word has enough breath to begin.
+        <<option 'CN'>>
+          手未经指示便握住袖子，指头压在肘上。它小得可以是悉尼，却冷得使你先低头，不敢看脸。你转手臂，握力便加重。
+          <br><br>
+          “你想让我留下。”这一次它没等提问，找到一句能自己带近的话。你说，留下并不是这样抓着你。手指移向袖子折厚的位置，那样更不容易失去抓住的布。
+          <br><br>
+          你记起拿悉尼的袋子拖延穿衣离开，随后仍在对方伸手时归还。那下午，你留住的东西能够放开。如今身影将你圈在同一小块地上，肩后的路重复拐弯。
+          <br><br>
+          你拉一次，对方轻易跟来，不像在使力。另一掌按紧框角，让双脚仍站在原处。尖木头疼在一个准确、普通的位置。你集中感觉那处疼，不看已经靠近到遮住下午光的脸。
+          <br><br>
+          近看，那笑并不是高兴，更像你要求高兴、又从未允许请求结束时留下的形状。你试说再见，第一口气卡着，因为预料到另一个不想要的回答。你仍继续尝试。
+          <br><br>
+          小径下响起两敲、停顿、又一敲。袖子成为两人还有可能分开的地方，手正在将它越握越小。你不转向响声，朝摸得到的自己的手臂拉，掌心一直扶木角，直到那句话够气开始。
+          <br><br>
+          指头没有长成大人的，还是孩子大小，反而让承认必须挣脱更难。你没再为那张脸编一个可以相信的理由。
+      <</language>>
+    <<case 'stay-gate-closes'>>
+      <<language>>
+        <<option 'EN'>>
+          You get as far as the first sound of goodbye. The visitor's head tilts. You know that movement too well to enjoy recognising it. The fingers tighten once, then the figure steps towards the gate, pulling your sleeve as if inviting you to finish the ordinary walk home.
+          <br><br>
+          The gate is open. Beyond it should be the street with the corner shop, the cart wheel, the woman whose bread grew cold while she went somewhere else. You can see the garden window instead. Two cups wait on a table behind it. One stands in the place where your shadow tried to remain.
+          <br><br>
+          You keep the frame beneath your free hand. The gate swings wider without making more street appear. The path beyond leads to the same third stair. You can see the bag against its wall, although you left it there before going out. There is no route between the two pictures long enough for a person to have carried it ahead of you.
+          <br><br>
+          Sydney says you can begin again. The figure does not promise a different beginning. Behind the smile, a dark line opens where afternoon light ought to reach. You try to see the face clearly, and the light grows too bright at the edge of it, making your eyes water.
+          <br><br>
+          The knocking rises through the soles of your shoes. It is correct now, down to the pause. Correctness has not told you who is under the path. You do not call the name a second time.
+          <br><br>
+          You pull your sleeve towards your own body. Not towards the open gate, not towards the face offering another game. The cloth stretches between the two grips. You feel one of your fingers through it, then the hard place where your other hand has closed. The corner under your palm begins to soften. You keep pulling while the afternoon starts from the first cup once more.
+        <<option 'CN'>>
+          你只说出再见的起音，来客便歪头。太认识那动作，让认出都无法高兴。手指又紧一下，身影向大门迈步，拉着袖子，像邀请你走完一次普通的回家路。
+          <br><br>
+          门已开。后面本应有角店、车轮，还有携着慢慢变冷的面包往别处去的女人。现在只有花园窗，窗后台上仍摆两杯。一只占着你的影先前企图留下的位置。
+          <br><br>
+          你留空手抓框。大门越开越宽，没有多出任何街道。外面路径通向同一第三级台阶，袋子仍在墙边，你出去前就是那样。两幅景象之间没有长得足够让人提前搬过去的路线。
+          <br><br>
+          悉尼说能重来，却没有保证新开始会不同。笑脸后，一条暗线在下午本该照亮的地方展开。你想看清，脸旁的光却亮到令眼流泪。
+          <br><br>
+          敲击穿过鞋底向上。这回连停顿都完全正确，仍没有告诉你谁藏在路下。你不叫第二次名字。
+          <br><br>
+          你将袖子向自己的身体拉，不向打开的门，也不向邀你再玩的脸。布在两处握力间拉紧，你隔布摸到自己的指头，以及另一手握成的硬块。木角在掌下开始变软。
+          <br><br>
+          你继续拉，下午又从第一杯开头。窗里有人端第二杯，始终没举到嘴边。你不准备回去替它完成，只在仍感觉得到自己手的位置用力。
+      <</language>>
+    <<case 'stay'>>
+      <<language>>
+        <<option 'EN'>>
+          The cup touches the table. The sound is close enough to be beside your ear. You cannot see the garden through the visitor's shoulder any longer. The cloth pulls hard once, then loses the weight that was holding it from the other side.
+          <br><br>
+          You open your hand. Another finger remains curled through your sleeve, but it is your own. You try to move it and it moves. The pressure on your arm has become the pressure of a hand you can release without asking anybody to go home first.
+          <br><br>
+          For a moment you do not let go. Somewhere beyond your closed eyes, a small voice is still saying the visit can begin. It uses the complaint you liked, the laugh you waited for, the pause you taught. You have heard every piece of it in an ordinary afternoon. You cannot make those pieces into the person who used to disagree with you.
+          <br><br>
+          You let the cloth fall away from your fingers. The knocking does not follow it. You listen long enough to hear another sound, a low changing hum with no tidy place to begin again. It does not call you Kylar. It continues while you keep still.
+          <br><br>
+          The last picture remains for a moment: a paper tower between two books, a window too small to see without pressing close, a place kept ready for another child. In that picture nothing terrible has happened yet. You do not tear it up to escape the hand. You leave it where it was, and stop making the next afternoon arrive.
+          <br><br>
+          When the darkness behind your eyes loosens, you can breathe without waiting for somebody else's mouth to move first. The real Sydney has not stayed because you asked, and has not gone because you let the cloth go. Somewhere there is still a person who can choose either without knowing what happened in this garden. You bring your hand back to yourself before opening your eyes.
+        <<option 'CN'>>
+          杯子落桌，响得像就在耳旁。来客的肩完全挡住花园，你已看不见后面的路。布猛拉一次，来自另一边的重量随即消失。
+          <br><br>
+          你打开手，还有指头勾在袖子里，却是你自己的。你试着动，它跟着动。手臂的压力原来是一只自己可以松开的手，不必先让任何人回家。
+          <br><br>
+          你暂时没放。闭眼以外，声音还说来访能开始，用你喜欢的抱怨、等过的笑，以及教过的停顿。每一部分都曾在寻常下午听过，却不能拼成那个会与你意见不同的人。
+          <br><br>
+          你让布从手指间落下，敲击没有跟着。你听得够久，终于辨出另一种低低的嗡声，它一直变化，没有整齐的重来位置，也没叫你凯拉尔。你保持不动，它仍继续。
+          <br><br>
+          最后一幅图留了一会儿。两本书之间的纸塔，要靠得很近才能看见里面的窗，还有替另一个孩子空出来的位置。那图里还没发生可怕的事。你没为了逃开手而撕掉它，只让它留在那里，不再使下一个下午抵达。
+          <br><br>
+          眼皮后的黑慢慢松开，你可以自己呼吸，不必等另一张嘴先动。真正的悉尼没有因请求便留下，也没有因你放布便离开。在某处，仍有一个不知道这花园发生什么，也能够自行选择的人。
+          <br><br>
+          睁眼前你先将手收回。手指一根根伸直，袖子里已经没有另一份握力。你仍怕床边空着，可这次害怕并没有替你叫出谁的名字。
+      <</language>>
+  <</switch>>
+<</widget>>

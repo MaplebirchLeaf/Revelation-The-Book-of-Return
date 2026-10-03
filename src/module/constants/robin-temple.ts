@@ -62,6 +62,8 @@ export interface RobinTempleState {
   monthly_checked: boolean;
   exam_day: number;
   prepared_day: number;
+  /** 同行结束后恢复原版安排，包括提前回家或提前起床的地点覆盖。 */
+  visit_override: { location: string; during: number[] } | null;
   service: number;
   grace: number;
   pendant: boolean;
@@ -124,6 +126,7 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   monthly_checked: true,
   exam_day: -1,
   prepared_day: -1,
+  visit_override: null,
   service: 0,
   grace: 0,
   pendant: false,
