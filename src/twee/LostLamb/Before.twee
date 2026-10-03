@@ -224,7 +224,7 @@
           <br><br>
           You say you might, if <<nnpc_he 'Sydney'>> takes too long. Sydney starts to object, then sees your face. <<nnpc_He 'Sydney'>> laughs and tells you to leave the pencils out.
           <br><br>
-          You watch until the figures beyond the gate are too small to recognise. Going inside feels like something you have to do because there is no one left to stay outside with.
+          You watch until the figures beyond the gate are too small to recognise. Your parent calls again. You shut the gate slowly, looking back down the path before going inside.
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('work')>>你问起那些纸，父母交换了一个眼神。“还没弄好的东西。”你问弄好了能不能看。“到时候再说。”悉尼的家长把手放在<<nnpc_his 'Sydney'>>肩上，已经想着回去的路。你得到了一句似乎什么也没有答应的话。<<else>>你问悉尼下次什么时候来。大人开始商量日子，好像在约定一场会面。你和悉尼不耐烦地互相看了一眼。他们终于提出一个时间时，话还没问完，你们就都答应了。<</if>>
           <br><br>
@@ -232,7 +232,7 @@
           <br><br>
           你说，<<nnpc_he 'Sydney'>>要是来得太慢，你也许会画。悉尼刚要抗议，又看到了你的表情。<<nnpc_He 'Sydney'>>笑起来，让你记得把笔拿出来。
           <br><br>
-          你一直看着，直到门外的人影小得认不出来。回屋成了一件不得不做的事，因为外面已经没人可以陪你待着了。
+          你一直看着，直到门外的人影小得认不出来。父母又喊了一声。你慢慢关上大门，进屋前又望了一眼小路。
       <</language>>
     <<case 'crossroads'>>
       <<language>>

@@ -275,12 +275,21 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
   },
   'verdict-table-again': {
     part: 'verdict',
-    choices: [choice('verdict-table-rule', 'Make them agree on one answer', '让他们统一一个答案', 'verdict-final-question', { change: { doubt: -12, fear: 8 } })]
+    choices: [
+      choice('verdict-seal-answer', 'Promise to keep their words inside the house', '答应把他们的话藏在家里', 'verdict', {
+        mark: 'verdict-vow-sealed',
+        change: { doubt: -18, fear: -12 }
+      }),
+      choice('verdict-find-child', 'Refuse and look for the child upstairs', '不答应，去找楼上的孩子', 'verdict-final-question', {
+        mark: 'verdict-vow-broken',
+        change: { doubt: 10, fear: 12, notice: 10 }
+      })
+    ]
   },
   'verdict-final-question': {
     part: 'verdict',
     choices: [choice('verdict-final-follow', 'Look for the child who is calling', '去找那个正在喊人的孩子', 'verdict-child-call', { change: { fear: -5 } })]
   },
   'verdict-child-call': { part: 'verdict', choices: [choice('verdict-child-open', 'Open the door yourself', '自己推开门', 'verdict')] },
-  verdict: { part: 'verdict', ending: 'verdict', note: ['You obtained a complete answer. You did not obtain a witness.', '你得到了完整的答案，却没有找到目击者。'], choices: [] }
+  verdict: { part: 'verdict', ending: 'verdict', note: ['The visitor asked for silence. You remember what you answered.', '来客要求你保密。你记得自己怎样回答。'], choices: [] }
 };

@@ -273,12 +273,22 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     ]
   },
   'stay-heard': { part: 'stay', outside: true, choices: [choice('stay-heard-call', 'Say Sydney’s name once', '只喊一声悉尼的名字', 'stay-grip')] },
-  'stay-grip': { part: 'stay', outside: true, choices: [choice('stay-grip-leave', 'Try to say goodbye', '试着说再见', 'stay-gate-closes', { change: { fear: 10 } })] },
+  'stay-grip': {
+    part: 'stay',
+    outside: true,
+    choices: [
+      choice('stay-bind-vow', 'Promise never to let Sydney leave again', '答应以后不让悉尼走', 'stay-gate-closes', { mark: 'stay-vow-bound', change: { fear: -12, doubt: -10 } }),
+      choice('stay-break-vow', 'Make it let go, even if the afternoon ends', '让它松手，哪怕下午结束', 'stay-gate-closes', { mark: 'stay-vow-broken', change: { fear: 15, doubt: 8 } })
+    ]
+  },
   'stay-gate-closes': {
     part: 'stay',
     outside: true,
-    note: ['The gate opens onto the same window. The hand around your sleeve will not let you turn away.', '门外还是那扇窗。抓着袖子的手不让你转身。'],
-    choices: [choice('stay-final-pull', 'Pull your sleeve towards yourself', '把袖子往自己这边拉', 'stay')]
+    note: ['The last knock comes from the window. You remember what you promised at the lock.', '最后的敲击来自窗边。你记得自己在锁前作出的约定。'],
+    choices: [
+      choice('stay-final-lock', 'Try to take your hand off the latch', '试着把手从门闩上拿开', 'stay', { when: ['stay-vow-bound'] }),
+      choice('stay-final-leave', 'Run with the torn paper in your hand', '握着撕破的纸，跑出去', 'stay', { when: ['stay-vow-broken'] })
+    ]
   },
   stay: { part: 'stay', ending: 'stay', choices: [] }
 };

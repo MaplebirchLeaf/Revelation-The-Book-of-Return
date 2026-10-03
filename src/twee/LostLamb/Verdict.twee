@@ -251,45 +251,45 @@
     <<case 'verdict-visitor'>>
       <<language>>
         <<option 'EN'>>
-          The visitor has a clean cuff. You know this because you have looked at it long enough to see the little threads around a button. Above the cuff is a hand, and above the hand there ought to be an arm and a face. You can look at either, but you cannot hold the details after looking away. It is like trying to remember a person's face from a dream while still standing beside them.
+          The visitor's cuff has not picked up a crumb. Below it, a narrow band of silver catches the candlelight. You lean sideways to see the face. Your parent lifts the jug, and by the time it comes down you have forgotten what you were looking for. The visitor's cup is still empty.
           <br><br>
-          Your parent offers more food. The visitor answers a different question. "Somebody had to decide." The words make your parent lower the serving spoon. You wait for somebody to say what was decided. Instead you are asked whether you have finished. Your plate is not empty. You push a piece towards the middle so that it looks less scattered.
+          "You don't want anyone else getting hurt, do you?" You shake your head. "Good. Then you must be careful who you tell." Your parent sets the jug down hard enough to spill a little water. The visitor lays two fingers in the spill. The water draws back from the silver.
           <br><br>
-          The visitor asks whether you like having company. You say yes too quickly. A smile passes across the face you cannot keep. "Then you understand." You do not understand. You liked Sydney arriving at the gate. You did not like being asked a question whose answer meant something else after you gave it. The adults continue eating, and you realise nobody is going to rescue the answer you meant.
+          You ask whether that means Sydney can come again. The visitor turns the empty cup a quarter of the way round. "Children are safest at home." That still does not tell you whose home. You look at your parent. They have begun cutting the same piece of bread into smaller and smaller pieces.
           <br><br>
-          You could still ask why Sydney has stopped coming. The visitor seems to know that you will. One finger taps the edge of a cup, once for each word you have not said. You cannot prove the tapping is ahead of you. You could ask something smaller: which house the visitor has been to, whose chair they usually sit in. Something with a place attached to it. A place ought to be harder to change than a sentence. Your parent sets the spoon down. The little sound makes you jump, and the visitor watches your hands as though they have answered already.
+          At last the visitor lifts the cup and drinks. There was nothing in it. You watch the throat move, then look away before anyone notices. A quiet voice asks what else you would like to know. It sounds so kind that you nearly tell it everything.
         <<option 'CN'>>
-          来客的袖口很干净。你知道，因为已经盯得够久，看清纽扣边的小线头。袖口上面是手，手上面该有胳膊和脸。都能去看，却在移开目光后留不住细节。像还站在梦里的人旁边，就已努力想起对方的脸。
+          来客的袖口没有沾上一点面包屑。下面露出窄窄一线银色，映着烛光。你侧过身，想看清脸。父母举起水壶，再放下时，你已经忘了刚才想看什么。来客的杯子仍是空的。
           <br><br>
-          父母问要不要再添一点。来客回答了另一个问题。“总得有人决定。”父母把盛食物的勺子放低。你等谁说出决定了什么，却被问吃完没有。盘子还没空，你把一小块食物推到中间，显得不那么零散。
+          “你不想再有人受伤，对吧？”你摇头。“很好。那就得小心，别随便向人说。”父母把水壶放得太重，洒出一点水。来客把两根手指放在水里，水从那线银色旁退开。
           <br><br>
-          来客问你喜不喜欢有人来玩。你答喜欢，太快了。留不住的脸上掠过笑。“那你就明白了。”你不明白。喜欢的是悉尼出现在大门外，不是一个回答以后才突然变了意思的问题。大人继续吃，没人打算救回你原本想说的那个答案。
+          你问，那悉尼还能来吗？来客把空杯转了四分之一圈。“孩子待在家里才安全。”仍然没说，是谁的家。你去看父母。他们把同一小片面包切得越来越碎。
           <br><br>
-          仍可以问，为什么悉尼不再来。来客好像知道你会这样问。一根手指敲杯沿，你还没说出来的词，每一个都对应一下，偏又无法证明敲声真的比你早。可以先问更小的事，去过哪所房子，平时坐谁的椅子。带着位置的东西，应该比句子更难改。父母放下勺子，小小一声让你跳了一下。来客看着你的手，像它们已经替你回答。
+          来客终于举杯喝了一口。杯子里本来什么都没有。你看见喉咙动了，赶在别人发现前移开眼睛。轻柔的声音问，还想知道什么？听起来那么亲切，你差点把什么都说出去。
       <</language>>
     <<case 'verdict-question'>>
       <<language>>
         <<option 'EN'>>
-          <<if $LostLamb.marks.includes('verdict-house-question')>>You ask which house the visitor has been to. "This one," comes the answer. You ask when. Your parent tells you not to interrogate a guest. The visitor says you may ask. Permission makes the room much quieter than refusal would have done.<<else>>You ask why Sydney cannot come. Your parent looks at the visitor before looking at you. "That is for the adults." The visitor tilts the cup and says, "It is for the child too." You do not like being called the child while you are sitting in your own chair.<</if>>
+          <<if $LostLamb.marks.includes('verdict-house-question')>>"Which house?" you ask. The visitor points at the floor. "Here." You ask whether they have been upstairs. Your parent catches the visitor's sleeve, then lets go before the fingers have closed.<<else>>"Why can't Sydney come?" You have asked it before. This time the visitor lets you finish. Your parent looks towards the stairs.<</if>>
           <br><br>
-          The explanation begins with because. You have been waiting for that word. Everything after it is muffled by water running in the kitchen, although nobody has left the table to turn the tap. You hear something about keeping people safe. You think that means Sydney. Then a pronoun makes it sound like your parents. Then you. Your parent says enough, and the water stops at once.
+          "There are things outside that listen at doors." The visitor does not raise the voice. "They only need one careless word." A fingernail touches the table. Somewhere behind you, a latch answers it. You look round. The kitchen door was open a moment ago.
           <br><br>
-          You look for the door to the kitchen. It is open. The sink is out of sight behind the wall, but you can see the edge of the towel hanging beside it. The towel is perfectly still. You cannot remember whether running water should move a towel. You have begun testing ordinary things against rules too small to tell you anything.
+          Your parent says that nobody told them. The visitor's fingers stop moving. "You have been told now." You wait for the rest, but your parent presses the wet cloth flat against the spill and will not look up. You know how to wipe a table. You do not know how to help with this.
           <br><br>
-          "Bed," your parent says. You protest that it is early. "Then you can read." The visitor does not say goodbye. You pass behind the chair and see the clean cuff from the other side. The chair has not been pulled back far enough for someone to stand. You hurry past before needing to know how they will get out. Upstairs, you put your ear against your own door. Nobody speaks about Sydney now. They are talking about the weather, very loudly, like people who know which door a child has reached.
+          "Bed," the other parent says. You protest that it is early. The visitor turns the empty cup again, towards your place this time. "We can speak when you've thought about it." You leave without asking what you are meant to think about. As you climb, the kitchen latch lifts and drops behind you. Nobody has followed you out.
         <<option 'CN'>>
-          <<if $LostLamb.marks.includes('verdict-house-question')>>你问来客去过哪所房子。“这一所。”你问什么时候。父母说，不许盘问客人。来客说可以问。获得允许，比被拒绝还让屋子安静。<<else>>你问，为什么悉尼不能来。父母先看来客，再看你。“那是大人的事。”来客倾斜杯子，说：“也是孩子的事。”你坐在自己的椅子上，不喜欢被称作孩子。<</if>>
+          <<if $LostLamb.marks.includes('verdict-house-question')>>“哪所房子？”你问。来客指了指地板。“这里。”你问有没有去过楼上。父母抓了一下来客的袖子，手指还没合拢就松开了。<<else>>“悉尼为什么不能来？”问过很多次。这次来客让你把话说完。父母看向楼梯。<</if>>
           <br><br>
-          解释从因为开始。你一直在等这个词，可后面全被厨房流水盖住，桌上又没有任何人离开去开龙头。听见一点，是要保护谁。先以为指悉尼，一个代词却又变成父母，接着变成你。父母说够了，水声立刻停止。
+          “外面有东西，会趴在门上听。”来客没有提高声音。“只要一个说漏嘴的词。”指甲碰到桌面，身后某处，门闩跟着响了一下。你回头，厨房门刚才还开着。
           <br><br>
-          你寻找厨房门，门开着。水槽藏在墙后，只能看见旁边挂着的毛巾一角，纹丝不动。你想不起流水是不是应该让毛巾也动。开始用细小得根本无用的规则，检查那些普通的事。
+          父母说，没有人告诉过他们。来客的手指停住了。“现在告诉你们了。”你等后面的话，可父母只把湿布平平地压在水迹上，不肯抬头。你知道怎么擦桌子，不知道怎么帮这种忙。
           <br><br>
-          “上床。”父母说。你抗议太早。“那就看书。”来客不道别。经过椅子后，从另一边看见干净袖口。椅子没拉开到够人起身的距离。你赶紧走过，不想知道对方怎么出来。上楼后，把耳朵贴在自己的房门上。没人再谈悉尼，现在很大声地谈天气，像知道孩子已经走到哪一扇门的人。
+          另一位父母说，该睡了。你抗议还很早。来客又转了转空杯，这次朝向你的座位。“等你想好了，我们再谈。”你没有问究竟该想什么，便离开了。上楼时，厨房门闩在身后抬起，又落下。没人跟着出来。
       <</language>>
     <<case 'verdict-night-call'>>
       <<language>>
         <<option 'EN'>>
-          There are several evenings between the table and this bed, but you cannot set them in a row. In one, you wash a cup. In another, your parents are excited about something and send you upstairs early. The cup might belong to the same evening. You would give a great deal to know a small thing like that with certainty.
+          There are several evenings between the table and this bed, but you cannot set them in a row. In one, you wash a cup. In another, your parents are excited about something and send you upstairs early. You turn onto your side and try to remember whether you washed the cup before or after they called.
           <br><br>
           Glass breaks below. Not a dropped cup. The sound is much larger, followed by many little falls, as though the broken thing has not finished breaking. You pull the covers over your face. Your shirt sticks against your back. Somebody is moving downstairs, quickly enough to knock furniture against the walls. You hear a voice, but not words. Another voice joins it or the first changes while taking a breath.
           <br><br>
@@ -297,7 +297,7 @@
           <br><br>
           A noise rises through the floor, too rough to be speech. You want your parents. You also want to be sure your parents are not what is making the noise. There is no way to ask one without risking the other. The handle of your door remains still. That should mean nobody is coming in. It might also mean nobody is coming to you. <span class='red'>The glass below keeps breaking. The voices do not answer you in words.</span> You put your hands over your ears, then take them away again. Not hearing would leave you alone with what you have already imagined.
         <<option 'CN'>>
-          餐桌与这张床之间，应该还隔着几个晚上，却排不出先后。一次，你洗了一只杯子。另一次，父母为某件事兴奋，早早把你送上楼。杯子也可能属于同一个晚上。你愿意付出很多，只为了确定这么一件小事。
+          餐桌与这张床之间，应该还隔着几个晚上，却排不出先后。一次，你洗了一只杯子。另一次，父母为某件事兴奋，早早把你送上楼。你翻过身，努力回想，洗杯子是在他们喊你以前，还是以后。
           <br><br>
           楼下有玻璃碎了，不是掉了一只杯子。声音大得多，随后是许多小小的坠落，好像碎掉的东西还没碎完。你把被子拉到脸上，衣服粘着背。有人在楼下走得很急，把家具撞到墙上。听见一个声音，却没有词。另一个声音加入，也可能只是前一个在换气时变了。
           <br><br>
@@ -308,7 +308,7 @@
     <<case 'verdict-cup'>>
       <<language>>
         <<option 'EN'>>
-          Morning arrives without anyone calling you. You have fallen asleep in your clothes, one trainer pressed against the other. When you straighten your legs, the laces have caught together. You nearly cry before you work out what is holding you. It takes very little to make a trap if you have spent the night expecting one.
+          Morning arrives without anyone calling you. You have fallen asleep in your clothes, one trainer pressed against the other. When you straighten your legs, the laces have caught together. You nearly cry before finding the knot. You pull it apart with both hands.
           <br><br>
           Downstairs, light comes through a window with part of the glass missing. The curtain lifts through the empty place. You had not imagined it breaking. You touch the wall below the window, where damp air has cooled the plaster, and take your hand away when something sharp catches your sleeve. A little triangle is lodged in the fabric. You leave it there until you can see which way to pull it out.
           <br><br>
@@ -316,7 +316,7 @@
           <br><br>
           You fill it with water because water is something you know how to carry. If your parents are ill, they might need it. If they are angry, bringing it might make the first thing you say easier. The cup feels too hot in your fingers even though you used the cold tap. You set it down, wait, and lift it again. It is cold now. You cannot decide which feeling was mistaken. You take a cloth beneath it, not because you expect it to spill, but because the cloth gives your shaking fingers somewhere to hide.
         <<option 'CN'>>
-          早晨到了，却没有人来喊你。你穿着衣服睡着，两只运动鞋紧贴在一起。伸腿时，鞋带缠住了。还没弄明白是什么拴着自己，你就差点哭出来。在一整夜里等待过陷阱以后，什么都很容易变成陷阱。
+          早晨到了，却没有人来喊你。你穿着衣服睡着，两只运动鞋紧贴在一起。伸腿时，鞋带缠住了。你差点哭出来，才看见打结的地方，赶快用两只手解开。
           <br><br>
           楼下，一扇缺了部分玻璃的窗透进光。窗帘飘过那块空处。碎裂声并不是你想出来的。你碰到窗下的墙，湿气让灰泥很凉。袖子突然被锋利的东西勾住，你缩回手，看见一小片三角玻璃嵌在布里。先把它留在那里，等看清该往哪边拔。
           <br><br>
@@ -333,7 +333,7 @@
           <br><br>
           A pale face shows for a moment beneath the frame. It is thinner than it should be. The eyes do not look towards the cup. They look at the fingers holding it. You step back, and the hand moves with you, dragging cloth until a torn corner catches on a nail. You cannot see whether there is another body behind the first. You cannot make yourself bend low enough to find out.
           <br><br>
-          You hear yourself asking, "Who did this?" It is the wrong question to put to the thing reaching towards you. You could have asked whether it hurt, whether it wanted water, whether it was your parent. You have asked for a person to blame. The hand stops. A noise comes from beneath the bed, not an answer you can use. <span class='red'>The fingers are still reaching. The empty space beside them is not a safe place to kneel.</span> You set the cup outside their reach and move backwards, keeping your face towards the bed until the doorframe is between you and it.
+          You hear yourself asking, "Who did this?" The hand stops. You wait for your parent to say your name, to tell you that you should not be here. A noise comes from beneath the bed, low and wet. <span class='red'>The fingers are still reaching. The empty space beside them is not a safe place to kneel.</span> You set the cup outside their reach and move backwards, keeping your face towards the bed until the doorframe is between you and it.
         <<option 'CN'>>
           每上一级台阶，水就朝杯沿涌。你越走越慢，只顾看杯子，还没看过道，就已经到了父母门前。门开着。屋里的家具都被撕碎了，只有床完好。你抬着一只脚停住，直到水淌过手指，才记起应该把脚落下。
           <br><br>
@@ -341,14 +341,14 @@
           <br><br>
           床架下短暂露出一张苍白的脸，瘦得不对。眼睛不看杯子，只看端杯子的手指。你后退，那只手也跟着动，拖起一角布，直到破角挂在指甲上。你看不见后面还有没有另一具身体，也无法让自己弯得够低去确认。
           <br><br>
-          你听见自己问：“是谁干的？”这个问题不该问那正伸向你的东西。本可以问疼不疼、要不要水、是不是父母，你却问了一个能责怪谁的问题。手停住了，床下发出声音，不是能用的答案。<span class='red'>手指仍在够过来，它们旁边的空处不适合跪下。</span>你把杯子放在够不到的位置，慢慢倒退，始终面对着床，直到门框隔在你与它之间。
+          你听见自己问：“是谁干的？”手停住了。你等父母喊你的名字，说你不该待在这里。床下却只发出低低的、湿乎乎的声音。<span class='red'>手指仍在够过来，它们旁边的空处不适合跪下。</span>你把杯子放在够不到的位置，慢慢倒退，始终面对着床，直到门框隔在你与它之间。
       <</language>>
     <<case 'verdict-linen'>>
       <<language>>
         <<option 'EN'>>
           In the cupboard, towels have fallen into a pile. You pull one out and find a thin line of glass resting in its fold. It looks like water until you tilt it. You put the towel down again. There are so many ways to cut yourself in a room that used to contain nothing sharper than the edge of a drawer.
           <br><br>
-          Your hand has begun to sting. A small scrape runs beside the thumb. You do not remember making it. You look back towards your parents' door and then at the cloth beneath the cup. Perhaps the cup had a chipped edge. Perhaps you caught it on the window downstairs. You need to clean the scrape before deciding which explanation you prefer. Wanting an explanation has not made the hand stop hurting.
+          Your hand has begun to sting. A small scrape runs beside the thumb. You look back towards your parents' door, then at the cloth beneath the cup. Perhaps the cup had a chipped edge. Perhaps you caught it on the window downstairs. You pour a little water over the scrape and bite your lip while it stings.
           <br><br>
           You find a folded strip without glass in it. The smell is the same as the linen used on your bed. For a moment you are in an ordinary morning, complaining because a shirt has been laid out that you do not like. Your parent is telling you to put it on anyway. You want that argument back so badly that you begin to answer it. The cupboard does not answer. A piece of torn wood settles somewhere nearby.
           <br><br>
@@ -356,7 +356,7 @@
         <<option 'CN'>>
           柜子里，毛巾掉成了一堆。你抽出一条，发现折缝里躺着细细一线玻璃。原先像水，歪一下才看清。你又把毛巾放下。以前，这间屋里最锋利的不过是抽屉边，现在却有太多能割伤自己的东西。
           <br><br>
-          你的手开始刺痛，拇指旁有一道小擦伤。你想不起怎么弄的，先看父母的门，再看杯子下面的布。也许杯沿有缺口，也许是楼下窗边刮到的。在决定更喜欢哪一种解释前，得先清理伤口。想要一个解释，并没有让手停止疼。
+          你的手开始刺痛，拇指旁有一道小擦伤。你先看父母的门，再看杯子下面的布。也许杯沿有缺口，也许是楼下窗边刮到的。你倒出一点水冲伤口，疼得咬住了嘴唇。
           <br><br>
           你找到了没有玻璃的叠布。味道与床上的被单一样。一瞬间，又回到普通早晨，你抱怨不喜欢摆出来的衣服，父母叫你照穿。你太想要那场争吵回来，已经开始回答。柜子没有回应，附近某处，一块撕碎的木头落稳了。
           <br><br>
@@ -384,21 +384,21 @@
     <<case 'verdict-gap'>>
       <<language>>
         <<option 'EN'>>
-          You leave a space where because wanted to go. It is not a victory. The page looks less useful than the sentence you could have written. You draw a short line on either side of the gap, so that you will know you left it deliberately. The marks make it look like a little doorway.
+          You leave a space where because wanted to go. You read the broken sentence aloud, then stop. It sounds wrong. You draw a short line on either side of the gap so that you will know you left it deliberately. The marks look like a little doorway.
           <br><br>
           From the hall, something scrapes against the wall. You keep your pencil still until it stops. The gap is still there when you look back. For once, a thing has remained what you decided it was. You put a finger over it. The paper is cooler in the empty place than beneath the writing, although that cannot be true. You lift the finger and check the desk underneath. There is no hole.
           <br><br>
           You can remember the expression on your parent's face when the conversation stopped. That is worth writing too. You try, and discover you do not have a word for the expression. Angry would be easier. Frightened would be easier. It was the face of somebody hearing a sound they had expected, at a time they had not expected it. You do not know whether that memory belongs to the landing or the supper table.
           <br><br>
-          You write both places and do not join them. Your hand aches from holding the pencil too tightly. This is slower than deciding. It leaves more things unfinished. It also leaves you able to see that the hand under the bed was really reaching, while the voice explaining why might never have been in that room. You fold the edge of the page, then unfold it before the crease can cross the gap. Later you will be able to show the empty place instead of repeating a sentence somebody wants to hear. You do not know who will be willing to look.
+          You write both places on separate lines. Your hand aches from holding the pencil too tightly. The hand under the bed was reaching for you. You can write that. You cannot write what the voice meant. You fold the edge of the page, then unfold it before the crease crosses the gap. When you find somebody to tell, you will show them the paper.
         <<option 'CN'>>
-          你把因为想挤进去的地方空着。这不算胜利。纸看起来还不如那句可以写出的完整话有用。你在空处两边各画一道短线，好提醒自己，这是故意留下的。两道线像一扇小门。
+          你把因为想挤进去的地方空着。你试着把断开的句子念出来，又停住，听起来不对。你在空处两边各画一道短线，好提醒自己，这是故意留下的。两道线像一扇小门。
           <br><br>
           过道里有东西刮着墙。你握笔不动，等声音停下，再看纸。空缺还在。终于有一件事，保持着你决定的样子。你用手指盖住，发现空处比字下面凉，明明不该如此。抬手检查桌子，没有洞。
           <br><br>
           你想得起谈话停止时父母的表情，觉得也值得记。试着写，才发现没有能用的词。生气容易，害怕也容易。那却是听见预料中的声音，偏又发生在没预料到的时间上的脸。你分不清这段记忆来自楼梯口，还是晚饭桌。
           <br><br>
-          你把两个地方都写下，没有连起来。握笔太紧，手在痛。这样比决定答案慢，也留下更多没做完的事。可你仍能看清，床下的手确实在够你，解释原因的声音却未必进过那个房间。你折起纸边，折痕快要穿过空缺时又展开。以后可以让人看这个空处，不是反复说别人想听的句子。你不知道谁会愿意看。
+          你把两个地方分成两行写下。握笔太紧，手在痛。床下的手确实在够你，这一句写得出。可那个声音是什么意思，你写不出。你折起纸边，折痕快要穿过空缺时又展开。等找到能说的人，就把纸拿给对方看。
       <</language>>
     <<case 'verdict-complete'>>
       <<language>>
@@ -409,7 +409,7 @@
           <br><br>
           You put a line through the middle words. The graphite smears beneath your little finger. The sentence remains readable under the line, which makes you want to cross it out harder. You nearly tear the paper before stopping. Something in the passage sounds like a pleased breath. You lift your head. It could be air through the damaged window. It could be somebody waiting to see whether you will throw the page away.
           <br><br>
-          You keep it. Not because it is correct, but because the mistake is yours and you know where it is. You draw a second, lighter line beneath the part you did hear. The difference looks untidy. An adult might call it careless. You could explain that the untidiness is the most honest part, although you cannot picture saying so without sounding ridiculous. <span class='teal'>The completed sentence was not something you witnessed. Crossing it out gives you another way to continue.</span> You turn the page over. A dark patch has come through from the pressure of the pencil. It looks almost like a person bent over a bed, until you stop trying to give it a shape.
+          You keep the paper. When you try to rub out the wrong words, the page begins to tear, so you leave them crossed out. You draw a lighter line beneath the words you did hear. <span class='teal'>The completed sentence was not something you witnessed. Crossing it out gives you another way to continue.</span> You turn the page over. The pencil has left a dark patch on the back. You cover it with your thumb before it can look any more like a person bending over a bed.
         <<option 'CN'>>
           句子已经写完。你补出缺少的词，还在下面划了线。一瞬间好受得多。有了理由，而理由可以记住。你读两遍，第二遍更顺，随后才发现，中间那一段根本想不起是谁的声音。
           <br><br>
@@ -417,7 +417,7 @@
           <br><br>
           你划掉中间的词，石墨在小指下晕开。线下面仍读得出，让你想更用力地划。差点弄破纸，才停住。过道像传来满意的呼气。你抬头，那可能只是坏窗吹进的风，也可能有人在等，看你会不会把纸扔掉。
           <br><br>
-          你留着纸，不是因为它对，而是因为错误属于自己，你知道错在哪里。在真正听见的部分下面，你再划一条轻些的线。看起来很乱，大人可能说不用心。你能解释，这份乱反而最诚实，却想不出怎样说才不显得可笑。<span class='teal'>补全的句子不是亲眼见证的事。把它划掉，仍可以换一种方式往下走。</span>你翻过纸，笔压透出来的黑影差一点像人弯在床边，直到你不再努力给它添出形状。
+          你留着纸。想擦掉错的字时，纸快要破了，只好留着那些划线。你在真正听见的词下面，再划一条轻些的线。<span class='teal'>补全的句子不是亲眼见证的事。把它划掉，仍可以换一种方式往下走。</span>你翻过纸，笔压在背面留下黑影。它越来越像一个弯在床边的人，你用拇指把那块盖住。
       <</language>>
     <<case 'verdict-script'>>
       <<language>>
@@ -428,7 +428,7 @@
           <br><br>
           Beyond your door, a parent calls you downstairs. The voice is normal. You almost run to it. Then you hear the same call again, with the same breath before your name. Not another call made by a person getting impatient. The same call, copied. You wait for it a third time. It does not come. You cannot decide whether waiting made it stop or whether the silence is waiting for you instead.
           <br><br>
-          You open the window a little. Cold air moves the page, and the list turns towards the glass. On the opposite side, your own unfinished account faces you. Both kinds of writing are ordinary things to find in a house. Together they feel as though somebody has begun arranging your evidence while you are still making it. You put a book on the corner, leaving the hole uncovered. Outside, a neighbour is pushing a bin back through a gate. The wheels rattle. The sound goes on long enough to remind you that a person can make a noise without intending you to hear it.
+          You open the window a little. Cold air moves the page, and the list turns towards the glass. Your unfinished account faces you. You check the shopping list again. The last word is still unreadable. You pin a corner beneath the book, leaving the little hole uncovered. Outside, a neighbour pushes a bin back through a gate. You listen to the wheels rattle until the gate shuts.
         <<option 'CN'>>
           纸背面有张购物单，不是你写的。笔迹像父母，直到你拿来与桌上的字条对比。同样的字母，倾斜方向却相反。面包，肥皂，还有读不出的东西。最后一项划了太多次线，纸已经磨薄。
           <br><br>
@@ -436,7 +436,7 @@
           <br><br>
           门外，父母喊你下楼。声音正常，你差点跑过去。随后又听见一次，名字前的换气都相同。不是一个人不耐烦才又喊，更像同一声被复制。你等第三次，却没有了。你分不清是等候让它停下，还是安静也在等你。
           <br><br>
-          你把窗推开一点，冷风掀动纸，购物单翻向玻璃，自己的未完记录对着你。两种字在家里都很普通，放在一起，却像有人趁你还在写，就开始替你整理证据。你把一角压在书下，不盖住小洞。外面，邻居正把垃圾桶推回院门。轮子咔啦响，响得够久，让你记起，人可以发出声音，却不是故意让你听见。
+          你把窗推开一点，冷风掀动纸，购物单翻向玻璃，自己的未完记录对着你。你再看一遍购物单，最后那个词仍读不出。你把一角压在书下，不盖住小洞。外面，邻居把垃圾桶推回院门。你一直听着轮子咔啦响，直到门关上。
       <</language>>
     <<case 'verdict-morning'>>
       <<language>>
@@ -460,21 +460,21 @@
     <<case 'verdict-ticket'>>
       <<language>>
         <<option 'EN'>>
-          In the street, you find a little paper receipt beside your shoe. It is wet at one end. You almost pick it up, then remember that not every piece of paper belongs to your question. You step over it. The next house has a clean doorstep and somebody laughing inside. That sound makes you angry before you know why.
+          In the street, you find a little paper receipt beside your shoe. It is wet at one end. You almost pick it up, then keep your hands in your pockets and step over it. The next house has a clean doorstep and somebody laughing inside. That sound makes you angry before you know why.
           <br><br>
           You count houses to keep track of where you are. The numbers on the gates seem to change when you look between them. One could be a three or an eight. Another has a screw where the middle should be. Counting the actual houses is easier. You can see their walls. You cannot make an extra wall appear merely because you would like the count to end sooner.
           <br><br>
           At the corner, a shopkeeper is putting out a board. You wait until it is safely on the pavement before passing. The person thanks you without looking closely, and you nearly begin telling them about the hand under the bed. The words are ready. Then you picture the conversation becoming a different one: whose house, which parents, have you been watching frightening things, go home and ask an adult. You walk on with the words still in your mouth.
           <br><br>
-          Across the road, you see someone who might be Sydney. You recognise the way the person carries a bag before you can see the face. Recognition feels safer than a reason. It gives you a thing to do with your feet. You do not run. You have run towards people before and been wrong, and the thought of being wrong today is worse than waiting a few more seconds. Traffic passes between you. When it has gone, the person is still there, adjusting the strap. You can approach from the pavement without having to decide everything you will say first.
+          Across the road, you see someone who might be Sydney. You recognise the way the person carries a bag before you can see the face. You start forward, then stop at the kerb. You have run towards people before and been wrong. Traffic passes between you. When it has gone, the person is still there, adjusting the strap. You walk along the pavement for a better look.
         <<option 'CN'>>
-          街上，鞋旁有张小收据，一头湿了。你差点捡起，才记起并不是每张纸都属于自己的问题，于是跨过去。下一所房子的门阶很干净，里面有人笑。你还不知道为什么，就先感到生气。
+          街上，鞋旁有张小收据，一头湿了。你差点伸手，又把手留在口袋里，从上面跨过去。下一所房子的门阶很干净，里面有人笑。你还不知道为什么，就先感到生气。
           <br><br>
           你数房子，好知道走到了哪里。来回看时，大门号码像会变。有一个可能是三，也可能是八，另一个中间装着螺丝。直接数房子更容易，你看得见它们的墙。不能只是希望早点数完，就让另一堵墙出现。
           <br><br>
           转角，店主正在搬告示板。你等板子在地上放稳才经过，对方没仔细看便道谢。你差点开始说床下那只手，话已经准备好。接着又想象谈话变成另一些问题。哪所房子，谁的父母，是不是看了吓人的东西，回家问大人。你继续走，话仍留在嘴里。
           <br><br>
-          马路对面，有人可能是悉尼。还没看清脸，你就认出拿包的方式。认出一个人比得到理由安全，至少让双脚有事情做。你没有跑。以前跑向人，也认错过。今天认错比多等几秒更难受。车从中间经过，驶走后，那人仍在，正在调整背带。你可以沿人行道走近，不用先决定所有要说的话。
+          马路对面，有人可能是悉尼。还没看清脸，你就认出拿包的方式。你急着向前，却在路沿停住。以前跑向人，也认错过。车从中间经过，驶走后，那人仍在调整背带。你沿人行道走，想再看清一点。
       <</language>>
     <<case 'verdict-outside'>>
       <<language>>
@@ -730,17 +730,17 @@
           <br><br>
           For a moment the passage is full of the sound you have been trying not to make. Your breath, your shoes, a small noise that might be a sob. You put a hand against the wall. The plaster is cool. You press until you can feel which fingers are touching it. Five. You count them twice. Nothing is holding the other hand, though you keep trying to pull it free.
           <br><br>
-          From the room comes the visitor's calm voice. "That is why." You almost go back. The words seem to promise that your flight has proved an answer. Then you realise the answer could have been chosen after you ran. Fear has made your actions easy to describe. That does not mean anyone in the room saw what you saw before you acted.
+          From the room comes the visitor's calm voice. "That is why." You almost go back. Why what? Your shoulder is throbbing where it struck the frame. You press your lips together, keeping the question in. Behind the door, the same voice starts explaining again.
           <br><br>
-          You keep your palm on the wall until your breathing slows. There is no shameful task waiting behind the door that you must finish to be allowed out. You have already come through it. Your shoulder hurts, and the pain gives the passage a size you can understand. You can follow the wall. You can count the boards beneath your feet if the voices try to make you turn. <span class='blue'>Fleeing did not end the dream. You have room to recover and a way forward that does not require entering the room again.</span> Behind you, a chair knocks once against the door. You do not wait for a second knock before moving.
+          You keep your palm on the wall until your breathing slows. Your shoulder hurts whenever you lift that arm. You lower it, turn towards the corner, and count the boards beneath your feet. <span class='blue'>Fleeing did not end the dream. You can catch your breath here and continue along the passage.</span> Behind you, a chair knocks once against the door. You do not wait for a second knock before moving.
         <<option 'CN'>>
           你挤过椅子与墙，衣服被猛地扯了一下。你不低头确认挂了木头还是手指，看就得停。到门口转出去，肩膀撞在门框上，撞得眼里生水。
           <br><br>
           一瞬间，过道塞满了你刚才拼命不想发出的声音。喘气，鞋响，一小声也许是抽泣。你扶住墙，灰泥很凉。一直按到分清哪几根手指在碰，五根，数了两次。另一只手根本没有被握住，你却还总想挣开。
           <br><br>
-          屋里，来客平静地说：“所以。”你差点回头，像是逃跑证明了一个答案。随后才发现，答案也可以是在你跑以后才选的。不安让动作容易被描述，不意味着房里谁在你行动以前，就看见了你看见的东西。
+          屋里，来客平静地说：“所以。”你差点回去。所以什么？撞过门框的肩膀一跳跳地痛。你抿紧嘴，把问题咽回去。门后，同一个声音又开始解释。
           <br><br>
-          你把手按在墙上，等呼吸慢下来。门后没有一个必须做完才许出来的羞耻任务，你已经穿过它。肩膀很痛，痛给了过道可以理解的大小。你能顺墙走，也能数脚下木板，免得声音让你回头。<span class='blue'>逃走没有结束梦。你仍有空间恢复，有一条不必再进屋的路。</span>背后，一只椅子撞在门上，只一下。你没等第二下，就继续往前。
+          你把手按在墙上，等呼吸慢下来。一抬胳膊，肩膀就痛。你放下手，转向拐角，数着脚下的木板。<span class='blue'>逃走没有结束梦。你可以在这里缓口气，继续沿过道走。</span>背后，一只椅子撞在门上，只一下。你没等第二下，就继续往前。
       <</language>>
     <<case 'verdict-corridor'>>
       <<language>>
@@ -768,17 +768,17 @@
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>The space between your two lines remains visible. You could fold around it and keep the uncertainty in sight, even when the rest of the page has become too crowded. It would be easier to fold straight through and put everything away neatly.<<else>>The words you supplied are still beneath the crossing-out. You can put a fold through them, or leave them showing as a warning. Keeping a mistake is unpleasant. You also remember how much you wanted to keep the relief it gave you.<</if>>
           <br><br>
-          You realise the folds are not a map of the house. They are a record of where you have tried to get away. That is smaller and more useful. The room at the end of the passage changes while you watch it, but the first crease remains beside your thumb. The passage cannot change the fact that you have already left one room.
+          You run a thumb across the first crease, then the second. Two doors. You have passed two doors. The room at the end of the passage changes while you watch it, but the creases remain beneath your thumb.
           <br><br>
-          A door opens behind you. You do not turn until you have put the page against your chest. It is the door to the laboratory, with light inside and a chair you can see from here. The voices have stopped. Something metallic gives a little ring, then lies still. You would once have taken the sound as proof that the thing you were looking for was in that room. Now you know a sound can bring you to a room without telling you why it was made. You can put the paper away or keep one part deliberately unfinished. Neither will make the room safe. It may make it harder for the dream to pretend you have already agreed to what you will find there.
+          A door opens behind you. You do not turn until you have put the page against your chest. It is the laboratory door. The voices have stopped. You can see a chair inside, and something metallic rings once. You step back against the opposite wall and check the page. The gap is still there, beside the folds.
         <<option 'CN'>>
           到了拐角，你拿出纸，想标记经过哪些门，口袋却没有笔。只好用指甲折，一折是第一道，再一折是第二道。购物单被折线分成小条，面包成了两截。忘了在哪儿断，哪个意思都能套进去。
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>两道线之间的空处还在。你可以绕着折，其他字挤满时，也保留看得见的不确定。直接穿过去，整齐收好却更容易。<<else>>自己补的字仍在划线下面。你可以折过，也可以露着，作为提醒。留着错很难受，你也记得，多想保留它给过的安心。<</if>>
           <br><br>
-          你才发现，折线不是房子的地图，是你已经试着逃开的地方，更小，也更有用。过道末端的房间在眼前改变，第一折却仍挨着拇指。过道不能改变你已经离开一间屋的事实。
+          你用拇指摸过第一道折痕，又摸第二道。两扇门，自己已经走过两扇门。过道末端的房间在眼前改变，折痕却还在拇指下面。
           <br><br>
-          背后有门打开。你先把纸压在胸口，才转头。是实验室，里面亮着，有一把从这里看得见的椅子。声音都停了，金属轻响，随后静止。以前会把声响当证据，认定要找的东西就在那屋。现在知道，声音能把你带去房间，不会同时告诉为何发出。你可以收纸，也可以故意留一部分不完整。都不能让屋子安全，也许却让梦更难假装，你已经同意接下来将看见的东西。
+          背后有门打开。你先把纸压在胸口，才转头。是实验室，声音停了，里面有把椅子，金属轻响了一下。你退到对面的墙边，检查手里的纸。空缺仍在，就在折痕旁。
       <</language>>
     <<case 'verdict-laboratory'>>
       <<language>>
@@ -821,135 +821,147 @@
     <<case 'verdict-answer'>>
       <<language>>
         <<option 'EN'>>
-          The next room has the smaller table you remember. Three chairs are set around it. You cannot see your parents, and the visitor is hidden by the door. For the first time, you can look at the whole room without being told where to sit. You choose a chair near enough to the exit that you will not need to pass behind anyone.
+          Three chairs stand round the smaller table. A candle burns beside each place, although only the visitor is sitting down. You take the chair nearest the door. The visitor does not object. The third chair has been tucked in so tightly that its arms grip the tablecloth.
           <br><br>
-          The calm voice begins explaining. <<if $LostLamb.known.bishop>>It speaks of asking for power and receiving a punishment, using phrases you have heard from the bishop. You have not heard these phrases in a child's house before. That is the first thing you can be certain of. The explanation has arrived wearing somebody else's words.<<else>>It speaks of wanting something that should not have been wanted. You wait for the something to be named. The voice says a price had to be paid. It has given you another large word instead of telling you what anyone saw.<</if>>
+          <<if $LostLamb.known.bishop>>"They made friends with the servants of Auriga." You have heard the bishop say those words. Here they come from the visitor's hidden face. You look down at your hands, small enough to fit inside one another. They were not this small when you heard him. The candle spits, and the visitor carries on before you can ask how the words got here.<<else>>"They didn't know who they had invited in." The visitor rubs a thumb across the silver at the wrist. "By the time they found out, somebody had to shut the door." You look towards the passage. The door there is still open.<</if>>
           <br><br>
-          Under the table, a dark wet mark spreads towards one chair. You pull your shoe away from it. The voice continues as though the mark is not there. You ask who saw the payment, or the punishment, or whatever the word is meant to describe. There is a pause. The wet mark stops at the place where your shoe had been. When you move your foot again, it does not follow.
+          You ask if your parents will get better. The visitor turns a cup upside down. A black wet circle spreads beneath it. "We can keep what's inside from reaching anyone else." You did not ask about anyone else. You ask again, louder. Under the table, something knocks against a chair leg.
           <br><br>
-          You draw the third chair out. You want a place for the person who can say they were present. Not a place for a name you have supplied, not a place for someone repeating another person's account. The chair scrapes loudly. You would once have apologised. You do not apologise now. <span class='teal'>An empty place does not identify who belongs in it.</span> The visitor comes into view far enough to put a hand on the chair's back. You look up for a face. The room grows brighter before you can see it, and your own shadow stretches over the place you have just made.
+          You pull out the third chair. It makes a shriek across the floor. The visitor's hand clamps over yours before you have finished. "Who are you making room for?" You cannot answer quickly enough. The candle beside the empty place flares, showing a little handprint pressed into the seat.
         <<option 'CN'>>
-          下一间屋里，是你记得的那张小桌，周围摆着三把椅子。你看不见父母，来客也被门挡住。第一次，你可以看完整间屋子，不必先被指挥坐在哪里。你选了靠近出口的椅子，这样离开时不用经过任何人的身后。
+          小桌周围摆着三把椅子。每个座位旁都燃着蜡烛，却只坐了来客一个人。你选靠门的那把，对方没有阻止。第三把椅子塞得很紧，扶手夹住了桌布。
           <br><br>
-          平静的声音开始解释。<<if $LostLamb.known.bishop>>它谈到索取力量与受到惩罚，用的是你从主教那里听过的说法。小时候的房子里，你没有听过这些措辞。这反而是首先能够确定的事。解释穿着另一个人的话，来到这里。<<else>>它说，有人想要不该想要的东西。你等它说出是什么，却只听见必须付出代价。它又给出一个大词，没有说任何人究竟看见什么。<</if>>
+          <<if $LostLamb.known.bishop>>“他们结交了奥里加的仆从。”你听过主教说这句话。现在，它从来客被遮住的脸那边传出。你低头看手，小得两只能抱在一起。听见主教那次，它们没这么小。蜡烛爆了一点火星，来客已经继续往下说，不给你问这句话怎么进来的机会。<<else>>“他们不知道，请进来的究竟是谁。”来客的拇指摩挲腕边的银色。“等发现的时候，就得有人把门关上。”你望向过道。那里的门还开着。<</if>>
           <br><br>
-          桌下一道深色湿痕朝椅子扩散，你把鞋挪开。声音继续，像根本没有那道痕。你问，谁看见了支付、惩罚，或那个词本来要描述的事。声音停顿。湿痕停在鞋原本的位置。你再挪脚，它没有跟。
+          你问，父母会好吗？来客把杯子倒扣，下面扩出一道黑色的湿圈。“能让里面的东西不再伤到其他人。”你没问其他人。你又问一次，更响。桌下，有东西撞上椅腿。
           <br><br>
-          你拉出第三把椅子，想为一个能说自己在场的人留位置。不是替自己补出的名字留，也不是替复述别人说法的人留。椅子擦地很响，以前会道歉，现在没有。<span class='teal'>留出空位置，不等于已经知道谁该坐在那里。</span>来客出现得够多，把手放在椅背上。你抬头找脸，屋子却先变亮，自己的影子越过刚留出的座位。
+          你拉出第三把椅子。椅脚刮得刺耳，还没拉完，来客的手已经压住你的。“你在给谁留位置？”你没能立刻答上来。空座位旁的烛火猛地蹿高，照出椅面上一个小小的手印。
       <</language>>
     <<case 'verdict-threshold'>>
       <<language>>
         <<option 'EN'>>
-          The third chair remains empty. Its seat is bright enough to hurt your eyes. You cannot remember where the light comes from. There is no lamp above it and no window on that side of the room. You keep looking for a cause until the visitor asks why you refuse to listen to what you have been told.
+          The visitor lets go. The fingers leave five pale places on your hand. You rub them with your other thumb. There is no pain yet. The empty chair has a cup in front of it now. You did not see anyone bring it.
           <br><br>
-          You say you are listening. You heard an agreement, a visit being stopped, glass breaking, something beneath a bed. The visitor says that is enough. You look at the empty chair. Enough for what? The voice says you can decide now. You realise the room has been offering you permission to decide in place of a person who was there.
+          <<if $LostLamb.marks.includes('verdict-preserved-gap')>>You put your folded page beside the cup. The visitor runs a finger between the two little lines around your gap. "Still room for something to get through." You move the paper away.<<elseif $LostLamb.marks.includes('verdict-kept-contradiction')>>You lay the crossed-out sentence beside the cup. The visitor smooths it with one hand. The crossed-out words show through darker than the rest. You pull it back before that hand reaches the next line.<<else>>The paper is stiff against your leg. You keep a hand over the pocket while the visitor reaches for the empty cup.<</if>>
           <br><br>
-          <<if $LostLamb.marks.includes('verdict-preserved-gap')>>You lay the folded page on the table with the gap showing. The visitor puts a fingertip beside it, not on it. You know the empty part was left by you. Nobody can make it into a quotation merely by pointing.<<elseif $LostLamb.marks.includes('verdict-kept-contradiction')>>You put down the part where the sentence has been crossed out. The visitor turns the page to make the shopping list face upwards. You turn it back. The mistake is still visible, and you are not asking anyone to read it as a fact.<<else>>You keep the folded page in your pocket. It presses against your leg and reminds you that a finished-looking thing can have a different account on its other side.<</if>>
+          <<if $LostLamb.known.auriga>>"Children of Auriga gnaw at the locks." You have heard that name elsewhere, in a voice that does not belong to this afternoon.<<else>>"They gnaw at the locks."<</if>> The words make you picture teeth round the little brass key downstairs. "We close the holes." You ask which side of the door your parents are on. The visitor lifts a candle. Its flame bends towards you even though you cannot feel a draught.
           <br><br>
-          Behind the wall, glass breaks. The adults do not turn. You do, before remembering where you are. The sound is exactly the one from the night, followed by the little falls that made it seem endless. You ask why nobody came upstairs. This question has a place in it, and a child in that place. It cannot be answered only by saying that someone deserved a punishment. For a moment the calm voice falters. The third chair is pulled farther out, although nobody is touching it. A small handprint appears on the seat where the light is brightest. You look at your own hand. It is still in your lap.
+          Glass breaks behind the wall. You jump. The visitor steadies the candle without looking round. A child cries from upstairs. You start to get up, and a hand beneath the table catches your shoe. The visitor says, "Stay where it's safe." The flame still points at your chest.
         <<option 'CN'>>
-          第三把椅子仍然空着，椅面亮得刺眼。你想不起光从哪里来。上面没有灯，那侧墙也没有窗。你一直找原因，直到来客问，为什么不肯听已经告诉你的事。
+          来客松了手。五根手指在你的手背上留下浅浅的印，你用另一只拇指去揉，还不痛。空椅子前面多了只杯子，你没看见谁端过来。
           <br><br>
-          你说，你在听。听见过约定、停止来访、玻璃碎裂、床下的东西。来客说，够了。你看着空椅子，够做什么？声音说，现在可以决定了。你才发现，房间在用允许你作决定，代替一个当时真正在那里的人。
+          <<if $LostLamb.marks.includes('verdict-preserved-gap')>>你把折纸放到杯子旁。来客的指尖划过空缺两旁的小线。“还有能钻过去的地方。”你把纸移开。<<elseif $LostLamb.marks.includes('verdict-kept-contradiction')>>你把划掉的句子放在杯子旁。来客伸手抚平，那些被划掉的词比其余字迹更黑了。手伸向下一行前，你把纸抽回来。<<else>>纸硬硬地抵着腿。来客去拿空杯，你用一只手盖住口袋。<</if>>
           <br><br>
-          <<if $LostLamb.marks.includes('verdict-preserved-gap')>>你把折纸放上桌，露出空缺。来客的指尖停在旁边，没有盖上去。你知道空处是自己留的，不会只因别人一指，就变成引用。<<elseif $LostLamb.marks.includes('verdict-kept-contradiction')>>你放下划掉句子的那面，来客把它翻成购物单，你又翻回来。错误还看得见，你没有要求任何人把它读成事实。<<else>>你把纸留在口袋里，压着腿，提醒自己：看起来完成的东西，背面可能有另一份记录。<</if>>
+          <<if $LostLamb.known.auriga>>“奥里加之子在啃咬锁。”你在别处听过这个名字，说话的人不属于这个下午。<<else>>“他们在啃咬锁。”<</if>>你想到楼下那把小铜钥匙，周围围着一圈牙。“我们把洞补上。”你问，父母在门的哪一边？来客举起蜡烛。你感觉不到风，火焰却朝你弯过来。
           <br><br>
-          墙后有玻璃碎了。大人不转头，你却先转了，才记起在哪里。正是那一晚的声音，接着许多小小的落响，让它像没有结束。你问，为什么没人上楼。问题里有位置，有在那个位置的孩子，不能只用谁配受惩罚来回答。平静的声音短暂失稳，第三把椅子自行又拉开一点。光最亮的椅面上，出现一个小手印。你看看自己的手，还放在膝上。
+          墙后有玻璃碎了，你吓得一缩。来客扶稳蜡烛，没有回头。楼上，一个孩子哭起来。你刚要站，桌下的手就抓住了鞋。来客说：“待在安全的地方。”火焰仍指着你的胸口。
       <</language>>
     <<case 'verdict-hear-again'>>
       <<language>>
         <<option 'EN'>>
-          The sound of glass does not stop at the wall. A little piece falls onto the table between you and the empty chair. You cannot see where it came from. Another lands beside it, wet, with dust on one edge. You get up before the third piece reaches the place where your hands were resting.
+          The chair tips as you pull away. You catch its back and kick the table leg. The fingers let go. A wet line crosses your shoe from toe to heel. You move beyond the hanging cloth, where you can see both your feet.
           <br><br>
-          Beneath the tablecloth, something closes on your shoe. Not hard enough to hurt yet. Hard enough to make your foot remain when the rest of you wants to leave. You pull once and the chair tips. You catch its back rather than the table. The shoe comes free. It has a line across the toe that was not there before. You do not crouch to examine the hand that made it.
+          Upstairs, the child calls again. It is your voice. You press your lips together and hear it a third time. The visitor puts down the candle. "That will stop if you let us finish." You ask whether someone will go up. The visitor looks at your empty chair instead.
           <br><br>
-          A child is calling from upstairs. Your name is in the call and the voice is yours, but you are standing here with your mouth open and saying nothing. The visitor says that everyone suffered. The statement is so large that it could cover the reaching hand, the broken glass and the call without touching any of them. You want the adult to stop covering them. You want an answer narrow enough to fit the sound from upstairs.
+          You can make them repeat the words until they all say the same thing. You can keep listening to the child, too. The calls come between the little falls of glass. Each time, the pause before the next call is longer. You count with your fingers and lose your place when something knocks under the table.
           <br><br>
-          You can insist on a complete account. The room will try to produce one, because it has learnt what you want. You can listen for the position of the child's voice instead. Either way, you move beyond the end of the table, where there is less cloth for fingers to hide under. <span class='red'>The hand reached your shoe while the explanation continued. Hearing an answer does not remove the danger beside you.</span> Glass falls once more, onto the visitor's unused plate. Nobody flinches. You realise that the adults have begun waiting for you to decide what the noise means rather than reacting to the noise itself.
+          The visitor slides the empty cup towards you. <span class='red'>The hand beneath the table can still reach your chair.</span> You stay on your feet. From upstairs comes a short, sharp sound, as though somebody has covered the child's mouth. Your parent begins speaking very quickly. The visitor waits.
         <<option 'CN'>>
-          碎玻璃声没有停在墙后。一小块落在你与空椅子之间，你看不出来源。另一块落在旁边，湿着，一沿粘着灰。第三块落到原本放手的位置以前，你先起身了。
+          你往后挣，椅子斜了。你抓住椅背，用脚踢向桌腿，那些手指松开了。一道湿痕从鞋头横到鞋跟。你绕开垂着的桌布，退到能看见两只脚的地方。
           <br><br>
-          桌布底下，有东西握住你的鞋。还没重到会痛，已经重到身体想走，脚却留在那里。你拉一下，椅子倒斜，抓住椅背，没有扶桌。鞋脱开了，鞋头多出一道以前没有的线。你没有蹲下检查造成它的手。
+          楼上的孩子又喊，是你的声音。你抿紧嘴，第三声仍传下来。来客放下蜡烛。“让我们说完，就会停。”你问，有人上去吗？来客却看向你的空椅子。
           <br><br>
-          楼上，一个孩子在喊。呼喊里有你的名字，声音也属于你，自己却站在这里，张嘴而没有出声。来客说，每个人都受了苦。陈述大得能盖住手、玻璃与呼叫，却没碰到任何一样。你想让大人别再盖住它们，想要一个窄得能容下楼上声音的答案。
+          可以叫他们再说，直到每个人都说一样的话。也能继续听孩子。呼叫夹在碎玻璃的落响之间。每一声过后，到下一声的间隔都更长。你掰着指头数，桌下一撞，就忘了数到哪里。
           <br><br>
-          你可以坚持要完整说法，房间会努力造一个，因为它学会了你想要什么。也可以听孩子声音的位置。不管哪种，你先挪出桌子尽头，那里没有那么多能藏手指的布。<span class='red'>解释继续时，手已经够到鞋。听见答案，不会让身旁的危险消失。</span>玻璃再次落进来客没用的盘子，没人一缩。你发现，大人已经不对声音作反应，而在等你决定它意味着什么。
+          来客把空杯推过来。<span class='red'>桌下的手仍然够得到你的椅子。</span>你没有坐。楼上传来短促的一声，像有人捂住了孩子的嘴。父母飞快地开口，来客等着。
       <</language>>
     <<case 'verdict-table-again'>>
       <<language>>
         <<option 'EN'>>
-          The long table is back. You did not walk into a larger room. The smaller table has lengthened while you stood beside it, carrying the empty chair farther away. You can still see the little handprint, but reaching it would require passing every person now seated along the sides.
+          The table grows longer. Your parents sit on either side, with the visitor at the far end. There is a cup before every chair. Not one has water in it. The child's handprint slides away from you as the table lengthens, until it is almost hidden behind the visitor.
           <br><br>
-          <<if $LostLamb.marks.includes('verdict-listened-child')>>The child's call comes from the wall where the stairs ought to be. You keep your eyes on that wall while the adults begin speaking. None looks towards it. You have found a direction, although the room has taken away the door that would let you follow it.<<else>>You ask the adults to finish. The request makes the voices smoother. Each speaker leaves the same pause before the same word. You are receiving the complete account you asked for, and the completeness is beginning to sound rehearsed.<</if>>
+          <<if $LostLamb.marks.includes('verdict-listened-child')>>You keep looking at the wall where the stairs should be. A little door has appeared there. When the child calls, its handle trembles.<<else>>You ask them to finish. All three begin at once. You cover one ear, then the other. From either side, you hear the visitor's voice.<</if>>
           <br><br>
-          One parent says a decision was made. Another says there was no choice. The visitor says the consequences were deserved. Nobody explains how those three statements belong together. You could spend the rest of the dream making them fit. You can see that now. There will always be another little word available to join a gap, another person ready to repeat it after you.
+          "This stays in the house." The visitor sets a silver key beside your plate. "No names through the window. No questions at the temple. Promise, and tonight the doors will stay shut." Your parent opens their mouth, then closes it. You wish they would tell you whether to say yes.
           <br><br>
-          The hand beneath the table has stopped reaching. You do not take that as kindness. It has no need to move while everyone is telling you to remain. Your chair is drawn out, politely, as though somebody expects you to sit and finish supper. There is food on the plate. It looks exactly like the mouthful you pushed to the middle earlier. You are hungry, which makes the offer harder to refuse. You remain standing. If the adults are going to give one answer, you want to hear it before putting your feet under the table again. The visitor inclines the clean cuff towards your chair. You do not look up for the face this time.
+          You reach towards the key. The small door bangs once, and you draw your hand back. A voice on its other side calls for you. The visitor says your name too, very softly. You want the glass to stop breaking. You want your parents to look at you. <span class='red'>The visitor is asking you to promise that you will not tell anyone outside.</span> The key is close enough to take. The little door is still close enough to reach.
         <<option 'CN'>>
-          长桌又回来了。你没有走进大房间，是小桌在你站着时变长，把空椅子带得更远。还能看见小手印，可要过去，得经过现在坐在两边的每一个人。
+          桌子变长了。父母坐在两侧，来客坐到尽头。每个座位前都有杯子，一只也没装水。孩子的手印跟着桌子向远处滑，直到快被来客挡住。
           <br><br>
-          <<if $LostLamb.marks.includes('verdict-listened-child')>>孩子的声音来自本该有楼梯的墙。大人开口，你仍看着那里，却没人跟着看。你找到方向，房间又拿走了能过去的门。<<else>>你要大人讲完。这个要求使声音更顺，每个说话者在相同的词前留下相同停顿。你得到了要求的完整说法，而完整开始像排练。<</if>>
+          <<if $LostLamb.marks.includes('verdict-listened-child')>>你始终盯着本该有楼梯的墙。那里出现一扇小门。孩子一喊，把手就颤一下。<<else>>你要他们说完，三个声音一齐开口。你先捂一只耳朵，又捂另一只。从哪边听，都是来客的声音。<</if>>
           <br><br>
-          一位父母说，作出了决定。另一位说，没有选择。来客说，后果是应得的。没人解释三句怎样连在一起。你可以把梦剩余的时间都花在让它们对上。现在看清了，总会有另一个小词来连接空处，总有另一个人在你后面复述。
+          “留在这所房子里。”来客把一把银钥匙放在盘子旁。“不往窗外喊名字，不到神殿问。答应了，今晚这些门就会关着。”父母张了张嘴，又闭上。你希望他们说，要不要答应。
           <br><br>
-          桌下的手不再伸来，你没把这当成善意。所有人都叫你留下，它就没必要动。有人礼貌地拉开你的椅子，像期待你坐下吃完。盘中有食物，正像先前推到中央的那一口。你饿了，这让邀请更难拒绝，你仍站着。既然要统一答案，就得先听见，再把脚放回桌下。来客把干净袖口朝椅子轻轻倾来，这次你不再抬头找脸。
+          你朝钥匙伸手。小门突然撞了一下，你又缩回来。门那边有声音喊你，来客也轻轻喊你的名字。你想让玻璃别再碎，想让父母看看你。<span class='red'>来客要你答应，不向屋外的人说。</span>钥匙仍然拿得到。那扇小门也仍来得及跑过去。
       <</language>>
     <<case 'verdict-final-question'>>
       <<language>>
         <<option 'EN'>>
-          You make them say it together. You do not need more pieces. You want one account that will not change when a cup is moved or a door is closed. The adults turn towards you. Their voices begin on the same breath. For several moments the sound is clear enough that you could write it all down.
+          "No." It comes out too quietly. You try again, and this time the visitor stops turning the cup. Your parent grips the tablecloth. The silver key slips over the edge of the plate and lands on the floor with no sound.
           <br><br>
-          <<if $LostLamb.known.bishop>>It resembles the bishop's explanation. The dream has put household voices around it and added the visitor's certainty. It has not shown you which of these people witnessed the night. The voices begin together again, with the same scrape of a plate between the same two words.<<else>>It explains wanting, agreement and a price. The words are arranged so that the last follows from the first. The order is satisfying. It is also an order you have heard the room change whenever your question required something else.<</if>>
+          You ask who will go upstairs. The visitor says that you have already been spared. <<if $LostLamb.known.bishop>>For a moment there is a bloodstained altar beyond the chair, and your parents are begging someone you cannot see. You blink hard. The dining room comes back. You have heard about an altar. You have never seen this one.<<else>>Your parent puts both hands over their face. "Leave the child," they say. The visitor does not look at them.<</if>>
           <br><br>
-          You wait for your name. It does not come. The child upstairs does not fit the account, so the account has left the child out. You say there was someone waiting under the covers. The voices pause, then repeat the beginning. You say that you called. They repeat the middle. You say nobody answered. The visitor opens a hand, showing you an empty palm as though emptiness proves there is nothing more to ask.
+          "If you open that door, we cannot keep you safe." The visitor speaks more loudly now. The flame bows low across the table, nearly touching your folded paper. You pull it out of your pocket, clutch it to your chest, and back towards the little door.
           <br><br>
-          Behind the visitor, a door appears. It is low enough that a child could reach the handle. The room has become quieter, but the call has not. You can hear exactly which side of the door it comes from. Getting there means leaving the adults before they finish repeating the answer. You have demanded the account and heard it. Hearing it has not put a person upstairs. The empty chair remains at the far end of the table. You step away from your own chair and move towards the little door. None of the adults stands. The sound of them agreeing follows you, smooth and patient, making no room for the question you have actually asked.
+          The child's voice comes through the wood. You can hear the breaths between the words. Behind you, the cups fall one after another. None breaks. They keep falling as you put your hand on the handle. You wish an adult would get up. Nobody does.
         <<option 'CN'>>
-          你让他们一起说。不想要更多碎片，想要一份不会因为杯子挪动或门关上就改变的讲述。大人都转向你，声音从同一次吸气开始。有几瞬间，清楚得可以全部写下来。
+          “不。”太轻了。你又说一次，这次来客不再转杯子。父母攥紧桌布。银钥匙滑过盘沿，落到地上，没有声音。
           <br><br>
-          <<if $LostLamb.known.bishop>>它像主教的解释。梦在外面套上家人的声音，又加进来客的肯定，却没有让你看见这些人中究竟谁亲眼见过那一夜。声音再次一同响起，盘子仍在相同的两个词之间刮了一下。<<else>>它解释渴望、约定与代价，让最后一句顺着第一句到来。顺序使人满意，也正是每当问题需要别的东西时，房间就会更改的顺序。<</if>>
+          你问，谁会上楼？来客说，你已经被放过一次了。<<if $LostLamb.known.bishop>>椅子后面忽然有座沾血的祭坛，父母正在求你看不见的人。你用力眨眼，餐厅回来了。你听人说过祭坛，却从没见过这座。<<else>>父母用两只手盖住脸。“放过孩子。”他们说。来客没有看他们。<</if>>
           <br><br>
-          你等自己的名字，没有。楼上的孩子不适合这份讲述，于是被删掉。你说，有人躲在被子里等。声音停下，又重复开头。你说喊过，它们重复中间。你说没人回答，来客摊开手，展示空掌，像空就证明没有东西可问。
+          “开了那扇门，我们就保护不了你。”来客的声音更响了。火焰伏低在桌面上，快碰到你的折纸。你把纸从口袋里抽出来，抱在胸前，倒退着靠近小门。
           <br><br>
-          来客身后出现一扇小门，低得孩子够得到把手。屋子更静，呼叫却没变。你听得清楚来自门的哪边。要到那里，就得在大人重复完以前离开。你要求过讲述，也听到了。听到，并没有把任何人放回楼上。空椅子仍在长桌末端。你离开自己的椅子，朝小门走，没有一个大人起身。达成一致的声音平滑、耐心地跟着，不给真正问过的问题留位置。
+          孩子的声音穿过门板，你听得到每个词之间的喘息。身后，杯子一只接一只落下，没有一只碎。你握住门把时，它们仍在落。你希望有个大人站起来，谁也没有。
       <</language>>
     <<case 'verdict-child-call'>>
       <<language>>
         <<option 'EN'>>
-          The little door opens onto a stair. You recognise the worn edge where you have caught your shoe before. Beyond it is your bedroom door. The passage has given you a familiar distance again. You take the steps one at a time, with a hand on the wall, because you do not want the relief to make you hurry into something you have not seen.
+          The little door opens onto the stairs. You recognise the broken edge that catches your shoe. At the top is your bedroom door. The child cries behind it, close enough that you knock before thinking what to say.
           <br><br>
-          The child is still calling. You know the voice. It sounds younger from this side of the door than it did when it was coming from your own mouth. You put a hand on the handle. It is warm, though nobody has touched it while you watched. Behind you, the adults continue their account in the room below. Their agreement has become a sound like a machine running in another part of the house.
+          "I'm here." The answer comes from inside, at exactly the same time as you say it. You knock again. So does someone on the other side. You put your palm flat against the wood, trying to feel a hand against yours. There is only heat.
           <br><br>
-          You try to say that you are here. The words come from inside the room instead. Your hand remains against the handle. You are outside and inside at the same time, a child trying to answer a child without anybody else making the distance between them smaller. You cannot decide which one is the dream's mistake. You no longer think deciding that would make the call stop.
+          Downstairs, the visitor calls you back. The voice sounds like your parent now. It says the door will not open again if you shut it. You look over your shoulder. The little door below has a silver key already in its lock.
           <br><br>
-          The paper in your pocket has unfolded. You can feel one edge against your leg. You have kept the gaps, or crossed out your own added words, or carried an account you cannot make trustworthy. None has changed what happened behind this door. They have changed what you can honestly say about it. You turn the handle. The room below falls silent halfway through a perfectly clear sentence. Not because somebody has finally heard the child. Because you are about to see the part of the night their sentence could not hold. You push with your palm flat against the wood and do not wait for an adult to give permission.
+          You push your bedroom door. The handle does not move at first. You use both hands, then your shoulder, with the folded paper crushed between you and the wood. Something tears in the pocket. The handle turns. Below, every cup stops falling at once. You stumble into the room before the voice can tell you to wait.
         <<option 'CN'>>
-          小门通向一道楼梯。你认得曾绊过鞋的磨损边，后面是自己的卧室门。过道终于给回熟悉的距离。你扶着墙，一级级走，不想因安心，就急着撞进没看过的东西。
+          小门通向楼梯。你认得会绊住鞋的破边。上面是自己的卧室门。孩子在门后哭，离得那么近，还没想好说什么，你就敲了。
           <br><br>
-          孩子仍在喊。你认得声音，可从门的这边听，比原先从自己嘴里出来时更幼小。你把手放在把手上，很暖，明明一直看着，没有谁碰过。背后楼下，大人继续讲述。达成一致的声音，已经像屋子别处有一台机器运行。
+          “我在。”屋里同时传出同一句话。你又敲一次，另一边也有人敲。你把掌心平平地按上门板，想感觉到另一只手，只有热。
           <br><br>
-          你想说在这里，词却从屋内传出。手仍按在把手上，自己同时在外与内，一个孩子试着回答另一个，没有别人替他们缩小距离。你分不出哪一个是梦的错，也不再相信，决定了就能让喊声停止。
+          楼下来客喊你回去，现在听着像父母。它说，门一关，就不会再开。你回头，下面的小门已经插着一把银钥匙。
           <br><br>
-          口袋里的纸展开了，边沿抵着腿。你留了空缺，或划掉添出的词，或带着始终无法信赖的说法。都没改变门后的事，改变的是你能怎样诚实讲它。你转动把手。楼下在一条完全清楚的句子中间安静了，不是终于有人听见孩子，而是你将看见句子装不下的那部分夜晚。你把掌心压平在木上推，没有等待大人允许。
+          你推卧室门，把手一开始不动。先用两只手，再拿肩膀顶，折纸夹在身体与门之间。口袋里有东西撕裂。把手转了，楼下每一只杯子同时停止落下。声音还来不及让你等，你已经撞进屋里。
       <</language>>
     <<case 'verdict'>>
       <<language>>
         <<option 'EN'>>
-          There is nobody in the bed. The covers are raised in the shape of someone hiding, but the space beneath them is empty. You pull them back with your whole arm rather than a fingertip. The mattress is warm. A little hollow remains where a body should have been. You look towards the window and hear the glass breaking below again.
+          <<if $LostLamb.marks.includes('verdict-vow-sealed')>>You say that you promise. The visitor takes the key away before you can touch it. Your parent wipes the table with the wet cloth. The plates are put away. They do not ask you to help.
           <br><br>
-          Your mouth is open. The call has been coming from you, here beside the bed, while you were trying to find somebody behind the door. You close it. The house does not answer the silence any more than it answered the call. Downstairs, a chair scrapes. You wait for footsteps coming towards the stairs. There are none.
+          The little door closes. You hear the bolt pushed across from the other side. The crying stops halfway through your name. So does the glass. The sudden quiet makes your ears hurt. You wait for somebody to say that the child has been brought downstairs. The visitor stands up instead.
           <br><br>
-          You have obtained a complete explanation. You can still recite the neat beginning and the part that follows it. Whenever you try to put a face beside the words, you get a cuff, a hand, your parent looking at the empty plate. You did not find somebody who could tell you what they saw. The explanation has made itself large enough to exclude the room where you were waiting.
+          "Say it once more." You repeat the words. The visitor's sleeve brushes your cheek on the way past, cold and damp. Your parents remain seated while the hall door opens and shuts. No footsteps pass through it. When you turn back, an empty cup stands at your place.
           <br><br>
-          The bedframe knocks against the wall. You flinch, then realise it moved because your knee touched it. One cause you know, small enough to hold. You sit on the edge without putting your feet beneath it. The folded page lies open on your lap. The crossed-out words are still readable. The empty parts are still empty. No line on the paper can undo the sound from below, and no neat account has turned your parents back into the people who used to call you down to supper. You remain a child in their house. For the first time the adults' voices have stopped telling you what to think, and the absence of them is frightening too. You keep one hand on the mattress, feeling its warmth, until the room begins to lose its edges.
+          You have the quiet you asked for. You put both hands round the cup and try to remember what you must never say. Your name comes first. Sydney's comes next. You squeeze harder, frightened that thinking them counts as saying them. Upstairs, something taps against the locked door, once, and then waits.<<else>>The bed is empty. You snatch back the covers and find a warm hollow in the mattress, just big enough for you. The child cries again. You put a hand over your mouth. It stops. When you move the hand away, you have to hold your breath to keep it from starting.
+          <br><br>
+          The door below slams shut. You run to the window instead. The catch cuts into your finger, and the first push does nothing. You try with both hands. Cold air reaches your face. There is a light in the house across the road.
+          <br><br>
+          You try to call to it. Your voice comes out hoarse and small. You cannot tell whether somebody has heard. The visitor calls from the stairs, using your parent's voice, and you shout again before it reaches your door. There is no answer yet.
+          <br><br>
+          You keep the window open with your sore hand. Your paper has torn across the folds. Half the words are on one piece, half on the other, and you cannot find the bit with your name. You hold the pieces so they will not blow away. Behind you, the door handle begins to turn. You press your chest against the sill and try once more.<</if>>
         <<option 'CN'>>
-          床里没有人。被子隆起，像藏了谁，下面却空着。你不是用指尖，而是伸出整条胳膊掀开。床垫很暖，本该有身体的位置还留着小凹。你望向窗户，楼下再次响起碎玻璃声。
+          <<if $LostLamb.marks.includes('verdict-vow-sealed')>>你说，答应了。还没碰到，来客就拿走了钥匙。父母用湿布擦桌子，收起盘子，没有叫你帮忙。
           <br><br>
-          自己的嘴张着。试图找门后的人时，呼叫一直来自站在床边的你。你闭上嘴。房子回答安静的方式，与回答呼叫一样。楼下有椅子擦响，你等待走向楼梯的脚步，却没有。
+          小门关上了。另一边有门闩推过去的声音。哭声喊到你的名字一半，便停住了，玻璃也不再碎。突然安静，震得耳朵难受。你等谁说，已经把孩子抱到楼下。来客却站起来了。
           <br><br>
-          你得到了完整解释，还能背出整齐的开头与顺下来的部分。想为词配上一张脸，却只能得到袖口、手、父母望着空盘的样子。你没有找到一个能说亲眼见了什么的人。解释把自己弄得够大，反倒排除了你曾经等候的那间房。
+          “再说一次。”你又说一遍。来客经过时，袖子擦过你的脸，冰冷而潮湿。父母仍坐着。大厅的门开了，又关，没有脚步走过。你回头，自己的座位前摆着空杯。
           <br><br>
-          床架撞墙，你一缩，才发现是膝盖碰到的。一个知道的原因，小得能够抓牢。你坐到床沿，不把脚放在下面。折纸摊在膝上，划掉的词仍读得出，空处仍是空的。哪行字都撤不掉楼下的声响，整齐讲述也没把父母变回那些喊你下楼吃饭的人。你仍是他们屋里的孩子。第一次，大人的声音不再指挥该怎么想，而声音不在，也让人害怕。你按着床垫感受温暖，直到房间开始失去边缘。
+          你得到了要的安静。两只手抱住杯子，努力记哪些词绝不能说。先是你的名字，再是悉尼的。你越抱越紧，怕想起来也算说出来。楼上，有东西在锁着的门上敲了一下，随后等着。<<else>>床里空着。你猛地掀开被子，床垫还留着温热的小凹，刚好能放下你。孩子又哭起来。你捂住嘴，声音就停。手移开，得屏住气，才不会继续。
+          <br><br>
+          下面的门砰地关了。你跑向窗户。窗扣硌伤手指，第一下没推开。你换两只手，冷风终于扑到脸上。对面的房子里亮着灯。
+          <br><br>
+          你试着朝那里喊。声音又哑又小，分不清有没有人听见。来客从楼梯那边喊你，用父母的声音。你赶在它到门前又喊一次，仍没有回答。
+          <br><br>
+          你用疼着的手撑住窗户。纸沿着折痕撕成了两半，一半字在这张，另一半在那张，找不到写名字的那一块。你攥着纸片，不让风吹走。身后，门把开始转动。你把胸口压在窗沿上，再试一次。<</if>>
       <</language>>
   <</switch>>
 <</widget>>

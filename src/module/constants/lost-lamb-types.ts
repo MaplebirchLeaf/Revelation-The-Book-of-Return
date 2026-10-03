@@ -9,7 +9,7 @@ export interface LostLambChoice {
   id: string;
   text: readonly [string, string];
   to: string;
-  mark?: string;
+  mark?: string | readonly string[];
   once?: boolean;
   minutes?: number;
   change?: Partial<Record<LostLambStat, number>>;

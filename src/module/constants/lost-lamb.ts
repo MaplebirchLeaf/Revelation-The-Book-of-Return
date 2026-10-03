@@ -20,8 +20,16 @@ export interface LostLambState {
   endings: LostLambEnding[];
   date: number;
   talk: LostLambTalk | '';
-  known: { bishop: boolean; gwylan: boolean };
+  talkVow: 'offered' | 'sealed' | '';
+  known: { bishop: boolean; gwylan: boolean; auriga: boolean };
 }
+
+// 跨梦保留的约定。重走同一条路线时，只留下这次选择的结果。
+export const LOST_LAMB_VOWS: readonly (readonly string[])[] = [
+  ['stay-vow-bound', 'stay-vow-broken'],
+  ['verdict-vow-sealed', 'verdict-vow-broken'],
+  ['main-vow-offered', 'main-vow-refused']
+];
 
 export const DEFAULT_LOST_LAMB_STATE: LostLambState = {
   unlocked: false,
@@ -38,7 +46,8 @@ export const DEFAULT_LOST_LAMB_STATE: LostLambState = {
   endings: [],
   date: 0,
   talk: '',
-  known: { bishop: false, gwylan: false }
+  talkVow: '',
+  known: { bishop: false, gwylan: false, auriga: false }
 };
 
 // 首次共有的下午很短。结束一条路线后，直接回到门口选择另一种梦。

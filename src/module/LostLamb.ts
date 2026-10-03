@@ -1,6 +1,6 @@
 // ./src/module/LostLamb.ts
 
-import { DEFAULT_LOST_LAMB_STATE, LOST_LAMB_SCENES, type LostLambState } from './constants/lost-lamb';
+import { DEFAULT_LOST_LAMB_STATE, LOST_LAMB_SCENES, LOST_LAMB_VOWS, type LostLambState } from './constants/lost-lamb';
 import type { LostLambChoice, LostLambStat, LostLambTalk } from './constants/lost-lamb-types';
 import Module from './Module';
 
@@ -89,7 +89,17 @@ export default class LostLamb extends Module {
   public talk(kind: LostLambTalk): boolean {
     if (!this.talkReady || !['company', 'night', 'space'].includes(kind)) return false;
     this.state.talk = kind;
-    const effects = kind === 'space' ? '<<pass 5>>' : '<<pass 10>><<npcincr Kylar love 1>><<stress -2>>';
+    // 重走梦境可以改变约定，已经说出口的现实交谈仍保留当时的分歧。
+    this.state.talkVow = kind === 'company' && this.state.marks.includes('main-vow-offered') ? 'offered' : kind === 'night' && this.state.marks.includes('verdict-vow-sealed') ? 'sealed' : '';
+    let effects: string;
+    if (kind === 'company') {
+      effects =
+        this.state.talkVow === 'offered' ? '<<pass 10>><<npcincr Kylar love 2>><<npcincr Kylar rage -3>><<stress -2>>' : '<<pass 10>><<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -2>>';
+    } else if (kind === 'night') {
+      effects = this.state.talkVow === 'sealed' ? '<<pass 10>><<npcincr Kylar love -1>><<npcincr Kylar rage 3>><<stress 2>>' : '<<pass 10>><<npcincr Kylar love 1>><<stress -2>>';
+    } else {
+      effects = `<<pass 5>><<stress -2>>${this.reaction === 'guarded' ? '<<npcincr Kylar rage 2>>' : ''}`;
+    }
     new maplebirch.SugarCube.Wikifier(null, effects);
     return true;
   }
@@ -152,14 +162,19 @@ export default class LostLamb extends Module {
   public begin(): boolean {
     if (!this.available || this.active) return false;
     const resume = this.paused;
-    const known = { bishop: V.kylar_manor_secret >= 3, gwylan: Boolean(V.gwylanSeen?.includes('kylar_parents')) };
+    const known = {
+      bishop: V.kylar_manor_secret >= 3,
+      gwylan: Boolean(V.gwylanSeen?.includes('kylar_parents')),
+      auriga: Boolean(V.confessorQuestions?.includes('auriga'))
+    };
     // 与绝望轮回共用原版快照。定点设置演绎时间，不触发现实日结和框架时间事件。
     new maplebirch.SugarCube.Wikifier(null, '<<freezePlayerStats>><<visionPrepMorph>>');
     for (const name of Object.keys(V.maplebirch.transformation)) this.core.char.transformation.setTransform(name, 0);
     if (!resume) {
       const returning = this.state.endings.length > 0;
       this.state.scene = returning ? 'crossroads' : 'arrival';
-      this.state.marks = returning ? [...this.state.childhood] : [];
+      const vows = this.state.marks.filter(mark => LOST_LAMB_VOWS.some(group => group.includes(mark)));
+      this.state.marks = returning ? [...this.state.childhood, ...vows] : [];
       this.state.note = returning ? 'crossroads' : '';
       this.state.doubt = 0;
       this.state.fear = 10;
@@ -227,7 +242,11 @@ export default class LostLamb extends Module {
     }
     if (this.state.scene === 'crossroads' && !this.state.endings.length) this.state.childhood = [...this.state.marks];
     if (choice.once) this.state.marks.pushUnique(id);
-    if (choice.mark) this.state.marks.pushUnique(choice.mark);
+    for (const mark of typeof choice.mark === 'string' ? [choice.mark] : (choice.mark ?? [])) {
+      const vow = LOST_LAMB_VOWS.find(group => group.includes(mark));
+      if (vow) this.state.marks = this.state.marks.filter(saved => !vow.includes(saved));
+      this.state.marks.pushUnique(mark);
+    }
     for (const stat of ['doubt', 'fear', 'notice'] as const) this.state[stat] = this.value(stat, choice.change?.[stat]);
     this.state.scene = targetId;
     const scene = LOST_LAMB_SCENES[targetId];

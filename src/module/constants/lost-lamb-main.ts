@@ -138,9 +138,15 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
     outside: true,
     choices: [
       choice('main-call-help', 'Say that something happened to your parents', '说父母出事了', 'main-helper', {
+        unless: ['verdict-vow-sealed'],
         minutes: 20,
         test: { stat: 'doubt', threshold: 10, low: true, pass: 'main-helper', fail: 'main-silent' },
         change: { doubt: -10 }
+      }),
+      choice('main-help-without-words', 'Keep the names to yourself and point to the broken window', '不说名字，只指给对方看碎窗', 'main-silent', {
+        when: ['verdict-vow-sealed'],
+        minutes: 20,
+        change: { doubt: 5, fear: 8 }
       })
     ]
   },
@@ -207,9 +213,17 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
     outside: true,
     choices: [
       choice('main-errand-help', 'Admit that something is wrong and ask for company', '承认家里出事，请对方陪一段', 'main-help-home', {
+        unless: ['verdict-vow-sealed'],
         mark: 'brought-help',
         minutes: 30,
         change: { doubt: -12, fear: -8 }
+      }),
+      choice('main-shop-break-silence', 'Break your promise and ask for help', '违背保密的约定，开口求助', 'main-help-home', {
+        once: true,
+        when: ['verdict-vow-sealed'],
+        mark: 'verdict-vow-broken',
+        minutes: 30,
+        change: { doubt: 12, fear: 15, notice: 20 }
       }),
       choice('main-errand-hide', 'Say that somebody is waiting at home', '说家里有人在等', 'main-alone-home', { minutes: 30, change: { doubt: 10, fear: 5 } })
     ]
@@ -220,8 +234,29 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
     part: 'main',
     choices: [
       choice('main-watch-window', 'Look out without standing in the opening', '避开开口，往外看', 'main-window', { once: true, mark: 'window-checked', minutes: 15, change: { fear: -8, notice: -5 } }),
-      choice('main-leave-message', 'Say exactly where someone should meet you', '说清该到哪里接你', 'main-message', { once: true, mark: 'contact-left', minutes: 25, change: { doubt: -12 } }),
+      choice('main-leave-message', 'Say exactly where someone should meet you', '说清该到哪里接你', 'main-message', {
+        once: true,
+        unless: ['verdict-vow-sealed', 'contact-left'],
+        mark: 'contact-left',
+        minutes: 25,
+        change: { doubt: -12 }
+      }),
+      choice('main-message-break-silence', 'Write where to find you, even though you promised silence', '写下接你的地方，哪怕答应过保密', 'main-message', {
+        once: true,
+        when: ['verdict-vow-sealed'],
+        unless: ['contact-left'],
+        mark: 'verdict-vow-broken',
+        minutes: 25,
+        change: { fear: 12, notice: 15 }
+      }),
       choice('main-make-rest', 'Arrange somewhere to sit with the way out clear', '留出退路，整理一个能坐的位置', 'main-rest', { once: true, mark: 'rest-space', minutes: 20, change: { fear: -15 } }),
+      choice('main-keep-silence', 'Put the note away and follow the voice inside', '收起字条，循着屋里的声音走', 'main-attempt', {
+        when: ['verdict-vow-sealed'],
+        unless: ['contact-left'],
+        mark: 'kept-silence',
+        minutes: 10,
+        change: { doubt: -8, notice: 15 }
+      }),
       choice('main-last-crossing', 'Cross the hall while the light lasts', '趁天还亮，经过大厅', 'main-attempt', { when: ['contact-left'], minutes: 10, change: { notice: 10 } })
     ]
   },
@@ -229,7 +264,7 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
   'main-message': {
     part: 'main',
     note: ['The message gives a place to meet. It does not need to explain the silver nails.', '消息写清了见面地点，不必先解释银色指甲。'],
-    choices: [choice('main-message-return', 'Leave the message where it can be seen', '把消息留在能被看见的位置', 'main-late', { minutes: 5 })]
+    choices: [choice('main-message-return', 'Leave the message where it can be seen', '把消息留在能被看见的位置', 'main-late', { mark: 'contact-left', minutes: 5 })]
   },
   'main-rest': { part: 'main', choices: [choice('main-rest-return', 'Stand when your legs are steady enough', '等腿稳住再站起来', 'main-late', { minutes: 5 })] },
   'main-attempt': {
@@ -273,8 +308,11 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
   },
   'main-last-call': {
     part: 'main',
-    note: ['The door held. The child still has a room, and another night to live through.', '门挡住了。孩子还有一个房间，还有下一夜得过。'],
-    choices: [choice('main-answer-own', 'Answer the name that belongs beside another bed', '回应属于另一张床旁的名字', 'main', { minutes: 5 })]
+    note: ['One voice offers to keep everyone inside. Another calls from beyond the window.', '一个声音许诺把所有人留下。另一个声音从窗外喊你。'],
+    choices: [
+      choice('main-offer-vow', 'Promise to keep everyone inside the door', '答应把门里的人都留下', 'main', { mark: 'main-vow-offered', minutes: 5 }),
+      choice('main-refuse-vow', 'Refuse and call to the person outside', '不答应，喊门外的人', 'main', { mark: ['main-vow-refused', 'verdict-vow-broken'], minutes: 5, change: { fear: 10 } })
+    ]
   },
   main: { part: 'main', gate: 'branches', ending: 'main', choices: [] }
 };
