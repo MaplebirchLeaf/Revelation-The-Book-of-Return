@@ -39,12 +39,6 @@
       <<case 'member'>>
         <li><<language>>
           <<option 'EN'>>
-            Robin has a place in the temple quarters. You can work together during the evening shift.
-          <<option 'CN'>>
-            罗宾在神殿宿舍有自己的位置。晚间值班时可以一起做事。
-        <</language>></li>
-        <li><<language>>
-          <<option 'EN'>>
             On school-free weekdays, you can invite Robin from <<nnpc_his 'Robin'>> room to help at the temple from 09:00 until just before 15:45. You can also go together from 17:00 until just before 19:45. Robin helps with the Sunday service.
           <<option 'CN'>>
             不上学的工作日，09:00 起至 15:45 前，可以到罗宾房间约<<nnpc_him 'Robin'>>去神殿帮忙。17:00 起至 19:45 前也可以同行。罗宾会协助周日弥撒。
@@ -114,20 +108,6 @@
       <li><<lanSwitch 'Your hospital visit with Robin is unfinished. You can continue it at the hospital entrance.' '罗宾陪同的这次就诊尚未结束。可以在医院门口继续。'>></li>
     <</if>>
     <<if maplebirch.get('RobinTemple').member>>
-      <li><<language>>
-        <<option 'EN'>>
-          <<= maplebirch.get('RobinTemple').faith lt 0 ? 'Robin’s doubt' : 'Robin’s faith' >>: <span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
-        <<option 'CN'>>
-          罗宾的<<= maplebirch.get('RobinTemple').faith lt 0 ? '动摇' : '信仰' >>：<span class='teal'><<= Math.abs(maplebirch.get('RobinTemple').faith)>></span>/100
-      <</language>></li>
-    <</if>>
-    <<if maplebirch.get('RobinTemple').member>>
-      <li><<language>>
-        <<option 'EN'>>
-          Robin's temple contribution: <span class='teal'><<= $RobinTemple.grace>></span>/100.
-        <<option 'CN'>>
-          罗宾的神殿贡献：<span class='teal'><<= $RobinTemple.grace>></span>/100。
-      <</language>></li>
       <<if maplebirch.get('Robin')>>
         <li><<language>>
           <<option 'EN'>>

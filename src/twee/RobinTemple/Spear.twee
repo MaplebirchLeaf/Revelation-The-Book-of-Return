@@ -26,7 +26,7 @@
       罗宾已经把自己知道的长矛线索告诉你了。
   <</language>>
   <br><br>
-  <<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+  <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Spear Reassure
@@ -38,7 +38,7 @@
     “我会的。”你说。罗宾沿着旧折痕把收据折好，交给你。<<He>>一直陪着你，直到约旦召集晚祷。
 <</language>>
 <<npcincr Robin love 2>><<stress -2>><<glove>><<lstress>><br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Prepare
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -65,7 +65,7 @@
   <</language>>
 <</if>>
 <<willpower 1>><<npcincr Robin dom 1>><br><br><<gwillpower>><<gdom>>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Return
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -110,4 +110,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

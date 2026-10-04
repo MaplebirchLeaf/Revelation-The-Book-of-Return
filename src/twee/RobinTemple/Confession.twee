@@ -57,9 +57,9 @@
       <<option 'EN'>>How do you respond?<<option 'CN'>>你要如何回应？
     <</language>>
     <br>
-    <<templeicon 'altar'>><<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Forgive'>><</lanLink>><br>
-    <<templeicon 'altar'>><<lanLink ['Repent', '规劝'] 'RobinTemple Confession Repent'>><</lanLink>><br>
-    <<templeicon 'altar'>><<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Contrition'>><</lanLink>><br>
+    <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Forgive'>><</lanLink>><br>
+    <<lanLink ['Repent', '规劝'] 'RobinTemple Confession Repent'>><</lanLink>><br>
+    <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Contrition'>><</lanLink>><br>
     <<if $robinSeen.includes('confessionRevealed') and $robinromance is 1>>
       <<loveicon 'kiss'>><<lanLink ['Invite Robin to your side of the booth', '请罗宾到你这侧来'] 'RobinTemple Confession Tempt'>><<set $phase to 1>><</lanLink>><br>
     <</if>>
@@ -197,7 +197,7 @@
               <br><br>
               "I... I can't believe I've been thinking about this." <<He>> takes a deep breath. "I've been promised to someone. The one I love. We can be in-intimate with each other because of that. If either of us breaks our vow with someone else, though, we are punished. At least we're punished together, right? But..."
               <br><br>
-              There's a catch in <<his>> voice. It's subtle, but in this small space, you hear it. "But what if the one I l-love is assaulted?" <<he>> asks. "Please forgive me for saying this, <<sister>>, but it seems so unfair to punish <<phim>> for that." The words pour out in a flood. You feel <<his>> doubt pushing against your lips to force its way in. <<stress 3>><<gstress>>
+              There's a catch in <<his>> voice. It's subtle, but in this small space, you hear it. "But what if the one I l-love is assaulted?" <<he>> asks. "Please forgive me for saying this, <<sister>>, but it doesn't seem right to punish <<phim>> for that." The words pour out in a flood. You feel <<his>> doubt pushing against your lips to force its way in. <<stress 3>><<gstress>>
               <br><br>
               "It isn't as if <<pshe>> asked for it. Yes, maybe <<pshe>> shouldn't put <<pherself>> in a situation where <<pshe>> could get attacked, but what if <<pshe>> does everything right and it still happens? How is it fair or right to punish <<phim>> for that? And why should I be punished alongside <<phim>>?" <<He>> pauses. "Oh, that sounds so selfish. I guess I'll need to ask forgiveness for that too."
             <</if>>
@@ -216,7 +216,7 @@
               <br><br>
               “我一直在想这种事。”<<he>>深吸一口气，“我和我的爱人缔结了契约，亲密无间。但如果我们中的任何一方违背誓言与别人结合，我们就会受到惩罚。至少我们会一起受到惩罚，不是吗？但是……”
               <br><br>
-              <<his>>的声音带着一丝哭腔。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我最爱的人被侵犯了怎么办？”<<he>>问道。“对不起，<<sister>>，但为此惩罚<<pher>>似乎太不公平了。”话语像雨水般洒出。你感觉到<<his>>的眼泪流到地面，等待着你做出回应。<<stress 3>><<gstress>>
+              <<his>>的声音带着一丝哭腔。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我最爱的人被侵犯了怎么办？”<<he>>问道。“对不起，<<sister>>，但为此惩罚<<pher>>，怎么想都不对。”话语像雨水般洒出。你感觉到<<his>>的眼泪流到地面，等待着你做出回应。<<stress 3>><<gstress>>
               <br><br>
               “我不是<<pshe>>求着发生这种事。但为此惩罚<<pher>>是公正合理的吗？为什么我也要跟<<pher>>一起受罚？”<<He>>停顿了一下，“我不该这么自私，我想我也得请求宽恕。”
             <</if>>

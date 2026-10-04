@@ -83,4 +83,4 @@
 <</if>>
 <!-- 消耗这次从长椅选择的互动，重访结果页不会重复结算。 -->
 <<set $RobinTemple.transformation_kind to ''>>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

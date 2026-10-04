@@ -224,7 +224,7 @@
         <br><br>
         约旦拿来一套新的器具，领罗宾进去。你在走廊等候，约旦为<<he>>戴好后又检查了一遍。罗宾出来时小心地走了几步，才放松下来。
         <br><br>
-        “没有不舒服，”<<he>>说，牵住你的手。“约旦提醒我，戴不戴都得遵守<<if $RobinTemple.templePromised is 'Robin'>>我们的誓言<<else>>入教时的誓言<</if>>。”你们一起回到工作表前。
+        “没有不舒服，”<<he>>说，牵住你的手。“约旦提醒我，戴不戴它，<<if $RobinTemple.templePromised is 'Robin'>>我们的誓言都还算数<<else>>我的誓言都还算数<</if>>。”你们一起回到工作表前。
     <</language>>
     <br><br>
     <<language>>

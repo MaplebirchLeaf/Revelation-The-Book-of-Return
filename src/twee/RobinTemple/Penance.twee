@@ -112,7 +112,7 @@
           <<if $RobinTemple.punish.repeats gte 10>>
             <<person3>>The <<priest>> bows to you. <<He>> slowly approaches you, and raises <<his>> hand, causing you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> to flinch in fear.
             <br><br>
-            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured much suffering, and although you failed time and time again, you've shown your bond to be strong enough to last. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar">><<He>> also removes Robin's collar<<if $RobinTemple.punish.joint>> and Sydney's<</if>>.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> remain clinging to each other, supporting each other to a standing position. Your knees tremble.
+            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured much suffering, and although you failed time and time again, you've shown your bond to be strong enough to last. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>><<He>> also removes Robin's collar<<if $RobinTemple.punish.joint>> and Sydney's<</if>>.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> remain clinging to each other, supporting each other to a standing position. Your knees tremble.
             <br><br>
             "A warning," the <<priest>> continues. "Breathe not a word of this to anyone. Not your friends. Not Jordan. Not your parents, should you be so blessed. I'd hate to consider you impure again."
             <br><br>
@@ -130,7 +130,7 @@
           <<else>>
             <<person3>>The <<priest>> holds up <<his>> hand. "Enough." The <<monks>> stop, and snuff the incense burners. <<He>> slowly approaches you, and raises <<his>> hand, causing you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> to flinch in fear.
             <br><br>
-            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured lust and wrath, showing your bond to be stronger than both. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar">><<He>> also removes Robin's collar<<if $RobinTemple.punish.joint>> and Sydney's<</if>>.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> remain clinging to each other, supporting each other to a standing position. Your knees tremble.
+            The strike never comes. Instead, you hear metal clattering to the ground. "Congratulations, my children," <<he>> says. "You have endured lust and wrath, showing your bond to be stronger than both. <span class="green">You are pure once more.</span>" Your bindings are all released. A <<monk>> steps behind you and unties your gags. <<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>><<He>> also removes Robin's collar<<if $RobinTemple.punish.joint>> and Sydney's<</if>>.<<else>><<He>> also removes your collars.<</if>> <<tearful>> you<<if $RobinTemple.punish.joint>>, Robin and Sydney<</if>><<if !$RobinTemple.punish.joint>> and Robin<</if>> remain clinging to each other, supporting each other to a standing position. Your knees tremble.
             <br><br>
             "A warning," the <<priest>> continues. "Breathe not a word of this to anyone. Not your friends. Not Jordan. Not your parents, should you be so blessed. I'd hate to consider you impure again."
             <br><br>
@@ -150,7 +150,7 @@
           <<if $RobinTemple.punish.repeats gte 10>>
             <<person3>><<priest>>向你们鞠了一躬。<<He>>慢慢抬起手，这让你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>都害怕地一缩。
             <br><br>
-            鞭子没有再落下。相反，你听见金属落地的声音。"恭喜，我的孩子们，"<<he>>一字一句地说着，"你们共同经历了痛苦。尽管多次失败，但你们向我们证明了你们的羁绊足够牢固。<span class="green">你们再次纯洁了。</span>"你们的束缚全部解开。一位<<monk>>走了过来，解开你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还摘下了罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈。<<else>><<He>>还摘下了你们的项圈。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖仍然在打颤。
+            鞭子没有再落下。相反，你听见金属落地的声音。"恭喜，我的孩子们，"<<he>>一字一句地说着，"你们共同经历了痛苦。尽管多次失败，但你们向我们证明了你们的羁绊足够牢固。<span class="green">你们再次纯洁了。</span>"你们的束缚全部解开。一位<<monk>>走了过来，解开你们的口球，<<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>><<He>>还摘下了罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈。<<else>><<He>>还摘下了你们的项圈。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖仍然在打颤。
             <br><br>
             "一个警告，"<<priest>>说，"不要向任何人透露此事。无论朋友，还是约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
             <br><br>
@@ -168,7 +168,7 @@
           <<else>>
             <<person3>><<priest>>举起了一只手，"够了。"<<monks>>停了下来，掐灭了燃香盏。<<He>>慢慢靠近你们，把手伸了出来，你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>惊恐地后退。
             <br><br>
-            鞭子没有再落下。相反，你听见金属落地的声音。“恭喜，我的孩子们，”<<he>>说，“你们共同经历了痛苦，也一同抵御了欲望。你们证明了你们的羁绊比欲望和痛苦更强大。<span class="green">你们再次纯洁了。</span>”你们的束缚全部解开。一个<<monk>>走了过来，拔掉你们的口球，<<if $worn.neck.name is "familiar collar">><<He>>还把罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈解开了。<<else>><<He>>还把你们的项圈解开了。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖打着颤。
+            鞭子没有再落下。相反，你听见金属落地的声音。“恭喜，我的孩子们，”<<he>>说，“你们共同经历了痛苦，也一同抵御了欲望。你们证明了你们的羁绊比欲望和痛苦更强大。<span class="green">你们再次纯洁了。</span>”你们的束缚全部解开。一个<<monk>>走了过来，拔掉你们的口球，<<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>><<He>>还把罗宾<<if $RobinTemple.punish.joint>>和悉尼<</if>>的项圈解开了。<<else>><<He>>还把你们的项圈解开了。<</if>><<tearful>>你和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>仍保持相拥的姿势，彼此支撑着站起。你的膝盖打着颤。
             <br><br>
             "一个警告，"<<priest>>继续说道，"不要向任何人透露此事。不要告诉你的朋友。不要告诉约旦。即使你有幸还有双亲，也不要告诉他们。我不希望再发现你们不洁了。"
             <br><br>
@@ -273,10 +273,10 @@
       <<for _punishName, _punishPartner range $RobinTemple.punish.partners>>
         <<capture _punishName _punishPartner>>
           <<if _punishPartner.hold lt 5>>
-            <<lanLink (_punishName is 'Robin' ? ['Hold Robin tighter', '抱紧罗宾'] : ['Hold Sydney tighter', '抱紧悉尼']) 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'hold' _punishName>><</lanLink>><<lpain>><br>
+            <<lanLink `_punishName is 'Robin' ? ['Hold Robin tighter', '抱紧罗宾'] : ['Hold Sydney tighter', '抱紧悉尼']` 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'hold' _punishName>><</lanLink>><<lpain>><br>
           <</if>>
           <<if _punishPartner.touch lt 5 and (_punishPartner.touch is 0 or hasSexStat('promiscuity', _punishPartner.touch + 1))>>
-            <<lanLink (_punishName is 'Robin' ? ['Touch Robin', '抚摸罗宾'] : ['Touch Sydney', '抚摸悉尼']) 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'touch' _punishName>><</lanLink>><<garousal>><br>
+            <<lanLink `_punishName is 'Robin' ? ['Touch Robin', '抚摸罗宾'] : ['Touch Sydney', '抚摸悉尼']` 'RobinTemple Penance Action'>><<robin-temple-punishment-action 'touch' _punishName>><</lanLink>><<garousal>><br>
           <</if>>
         <</capture>>
       <</for>>
@@ -329,9 +329,9 @@
 
         <<person3>>一名<<priest>>从一扇标有红色十字架的门里走出，两侧还跟随着一众<<monks>>。一人示意悉尼和罗宾去你那儿，<<lanSwitch 'They' '他们'>>便立刻跑到了你的身边。
         <br><br>
-        一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须证明你们之间的羁绊依旧牢固。请不要动。"
+        一个<<priest>>从长袍里拿出了口球，约旦则低头离开了房间。"为了赎罪，你们必须<<if $RobinTemple.templePromised is "Robin">>证明你们之间的羁绊依旧牢固。<<else>>得彼此依靠，因为你们三个人都有罪。<</if>>请不要动。"
         <br><br>
-        <<if maplebirch.get('RobinTemple').faith lte -20 && _sydneyStatus.includes("corrupt")>>
+        <<if maplebirch.get('RobinTemple').faith lte -20 and _sydneyStatus.includes("corrupt")>>
           悉尼和罗宾走到你和<<monks>>的中间，努力想把你挡在身后。
         <<elseif _sydneyStatus.includes("corrupt")>>
           悉尼走到你和<<monks>>的中间，努力想把你挡在身后，而罗宾紧紧地搂着你。
@@ -357,7 +357,7 @@
 
         <<person3>> A <<priest>> emerges from a door marked with a red cross. <<Hes>> flanked by many <<monks>>. One of them assures Jordan that you'll both be treated gently.
         <br><br>
-        Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with each other remains strong.<<else>>rely on each other, as you've both sinned.<</if>> Stay still."
+        Head bowed, Jordan leaves the room as the <<priest>> pulls a gag from <<his>> habit. "To make amends, you must <<if $RobinTemple.templePromised is "Robin">>prove your bond with one another remains strong.<<else>>rely on one another, as you've both sinned.<</if>> Stay still."
         <br><br>
         <<if maplebirch.get('RobinTemple').faith lte -20>>
           Robin tries to step between you and the <<monks>>.
@@ -435,7 +435,7 @@
           A <<person3>><<monk>> to <<his>> side wraps a collar around their neck, but pauses upon seeing your collar. Wordlessly, <<he>> ties your hands instead.
         <<else>>
 
-          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with their. <<He>> holds the attached leashes, and tugs.
+          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with theirs. <<He>> holds the attached leashes, and tugs.
         <</if>>
         <br><br>
         You're all led through the marked door and down a cramped passage. There are no lights bar the occasional torch on the wall.
@@ -453,12 +453,12 @@
           你抓紧罗宾，将悉尼推开。为什么要连带你和罗宾一起惩罚？<<nnpc_He "Sydney">>含泪看向你，一脸被背叛的表情。
           <br><br>
           <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
-        <<elseif $RobinTemple.punish.phase is 4>>
+        <<else>>
           你猛地一挣，将悉尼和罗宾推开。为什么要连带你一起惩罚？<<lanSwitch 'They' '他们'>>含泪看向你，一脸被背叛的表情。
           <br><br>
           <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
         <</if>>
-        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了悉尼和罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。旁边一名<<person3>><<monk>>在自己的位置上站定，将你和悉尼还有罗宾的脖子一起用项圈套在了一起。<<He>>抓住中间连接的链子，用力拉了拉。
+        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了悉尼和罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。<<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>>旁边一名<<person3>><<monk>>想把你们三个的脖子一起套上项圈，看见你的项圈后却停了下来。<<He>>没有作声，转而把你们的手绑在一起。<<else>>旁边一名<<person3>><<monk>>把项圈分别套上你和悉尼还有罗宾的脖子。<<He>>抓住中间连接的链子，用力拉了拉。<</if>>
         <br><br>
         你们被带出标记门，走进一个狭窄的通道。墙上除了零星的火把，没有其他光照了。
         几分钟后，你们来到一个没有窗户的圆形小房间里。各种燃香盏从天花板悬下，屋内除了正中央的一些软垫外，空空荡荡。<span class="red">皮鞭，绑带，和其它惩罚用具都挂在墙面上。</span>
@@ -480,7 +480,7 @@
           A <<person3>><<monk>> to <<his>> side wraps a collar around Robin's neck, but pauses upon seeing your collar. Wordlessly, <<he>> ties your hands instead.
         <<else>>
 
-          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with Robin's. <<He>> holds the attached leashes, and tugs.
+          A <<person3>><<monk>> to <<his>> side wraps a collar around your neck along with Robin's. <<He>> holds the attached leash, and tugs.
         <</if>>
         <br><br>
         You're both led through the marked door and down a cramped passage. There are no lights bar the occasional torch on the wall.
@@ -495,7 +495,7 @@
           <br><br>
           <<priest>>摇了摇头。"可悲，拒绝担负责任。你们的惩罚不会再拖了。"
         <</if>>
-        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。旁边一名<<person3>><<monk>>在自己的位置上站定，将你和罗宾的脖子一起用项圈套在了一起。<<He>>抓住中间连接的链子，用力拉了拉。
+        <<He>>将口球塞进你嘴里，在你脑后把它系紧，接着走到了罗宾身边，做了同样的动作。你们支支吾吾，发不出任何声音。<<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>>旁边一名<<person3>><<monk>>想给罗宾套上项圈，看见你的项圈后却停了下来。<<He>>没有作声，转而把你的手绑了起来。<<else>>旁边一名<<person3>><<monk>>把项圈分别套上你和罗宾的脖子。<<He>>抓住连着的链子，用力拉了拉。<</if>>
         <br><br>
         你们被带出标记门，走进一个狭窄的通道。墙上除了零星的火把，没有其他光照了。
         几分钟后，你们来到一个没有窗户的圆形小房间里。各种燃香盏从天花板悬下，屋内除了正中央的一些软垫外，空空荡荡。<span class="red">皮鞭，绑带，和其它惩罚用具都挂在墙面上。</span>
@@ -524,7 +524,7 @@
         The <<monks>> strip you and Robin and Sydney bare, leaving only your gags and collars.
         You're led to the padding and forced down onto your knees. The <<priest>> pulls out some belts and grabs ahold of your arms. Your arms are wrapped around their waist, and your wrists are bound behind <<person1>>them. their arms are restrained similarly. The <<person3>><<priest>> acquires more belts and wraps them around you and their waists, pressing the three of you together. One more belt wraps around all three of your backs, leaving little wriggle room. Finally, a pair of shackles bind your legs together.
         <br><br>
-        "<<if $RobinTemple.templePromised is "Robin">>You have broken your promise to one another,<<else>>The all three of you have succumbed to pleasure and desire with one another,<</if>>" the <<priest>> speaks, brandishing a whip with nine chords hanging from the cudgel. "Given your special bond, you'll experience pain with one another as the first step to make amends." You can feel their heart race. You're overcome with fear yourself at what's coming<<if $masochism_level gte 1>>, along with a hint of excitement<</if>>.
+        "<<if $RobinTemple.templePromised is "Robin">>You have broken your promise to one another,<<else>>All three of you have succumbed to pleasure and desire with one another,<</if>>" the <<priest>> speaks, brandishing a whip with nine chords hanging from the cudgel. "Given your special bond, you'll experience pain with one another as the first step to make amends." You can feel their heart race. You're overcome with fear yourself at what's coming<<if $masochism_level gte 1>>, along with a hint of excitement<</if>>.
         <br><br>
         The whip strikes down onto your back first without warning, stinging tremendously. Another strike causes you to thrash in pain. You let out a scream into your gag while tears fill your eyes. You can feel their panicked breathing at your pain. <<person1>>They let out a garbled protest at the torment you're receiving. Another strike comes down onto your back, stinging your flesh from the heavy chords. <<gggpain>>
         <br><br>
@@ -533,7 +533,7 @@
         <<monks>>把你们扒光，只留下口球和项圈。
         你们被领到软垫旁，被迫跪下。<<priest>>拿下一些绑带，一头捆住你的胳膊，然后把你的双手摆弄成环住悉尼和罗宾腰肢的姿势，手腕系在了<<lanSwitch 'They' '他们'>>的身后。悉尼和罗宾也和你一样。<<person3>><<priest>>拿来更多绑带，缠绕上你和悉尼还有罗宾的腰，把你们紧贴在一起。当最后一根绑带捆上你的后背时，你们的身体间几乎没留下空隙。最后，一对脚镣把你们的腿铐上了。
         <br><br>
-        "你违背了对彼此许下的承诺，"<<priest>>说着，挥舞起手中的九尾鞭。"鉴于你们特殊的羁绊，你们的第一个弥补就是和对方一起体验痛苦。"你可以感受到悉尼和罗宾加速的心跳。想到即将到来的事，你也被恐惧<<if $masochism_level gte 1>>和一丝兴奋<</if>>所淹没。
+        "<<if $RobinTemple.templePromised is "Robin">>你违背了对彼此许下的承诺，<<else>>你们三个人都向快感和对彼此的渴求屈服了，<</if>>"<<priest>>说着，挥舞起手中的九尾鞭。"鉴于你们特殊的羁绊，你们的第一个弥补就是和对方一起体验痛苦。"你可以感受到悉尼和罗宾加速的心跳。想到即将到来的事，你也被恐惧<<if $masochism_level gte 1>>和一丝兴奋<</if>>所淹没。
         <br><br>
         第一鞭没有任何预兆地落下，强烈的刺痛顿时席卷了全身，紧接的一鞭更是疼得你猛然一抖。你隔着口球尖叫着，泪水涌上眼眶。你可以感受到悉尼和罗宾惊惧的呼吸。看着你所承受的痛苦，<<person2>><<He>>含混地喊着不要。又是重重的一鞭刮在你的皮肉上，随着响亮的鞭响，刺痛袭击了你的肉体。<<gggpain>>
         <br><br>
@@ -601,7 +601,7 @@
           你的眼神死死锁在悉尼身上，无声地让悉尼专注于你，不要想别的事。眼泪不住地流下，但你想<<nnpc_he "Sydney">>正努力挤出一个笑容，却忽视了罗宾的哭泣。
         <<elseif $RobinTemple.punish.phase is 3>>
           你的眼神死死锁在罗宾身上，无声地让罗宾专注于你，不要想别的事。眼泪不住地流下，但你想<<nnpc_he "Robin">>正努力挤出一个笑容，却忽视了悉尼的哭泣。
-        <<elseif $RobinTemple.punish.phase is 4>>
+        <<else>>
           你紧紧闭上双眼，试图忽视悉尼和罗宾的哭泣。过了几分钟，你还是没忍住睁开了眼睛。
         <</if>>
         <br><br>

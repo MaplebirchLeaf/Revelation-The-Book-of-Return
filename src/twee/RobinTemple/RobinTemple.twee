@@ -67,7 +67,7 @@
     <<elseif maplebirch.get('RobinTemple').member>>
       <<icon 'temple/robin-quarters.png'>><<lanLink ['Visit Robin\'s place in the quarters', '去罗宾在宿舍的座位'] 'RobinTemple Corner'>><</lanLink>><br>
       <<if $RobinTemple.punish>>
-        <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] ($RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance')>><</lanLink>><br>
+        <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
       <</if>>
       <<if $RobinTemple.vigil_attempt_day gte 0
         and !$RobinTemple.vigil_followup
@@ -94,7 +94,7 @@
     <br><br>
     <<getouticon>><<lanLink ['Leave the temple (0:01)', '离开神殿 (0:01)'] 'Town'>><<pass 1>><</lanLink>><br>
   <<elseif $RobinTemple.punish>>
-    <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] ($RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance')>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
   <<else>>
     <<set $RobinTemple.monthly_checked to false>>
     <<set $RobinTemple.chastity_timer to 30>>

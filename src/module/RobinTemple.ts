@@ -51,7 +51,6 @@ class RobinTemple extends Module {
         value: () => T.npcData.doubt,
         activeIcon: 'img/ui/robin-temple-doubt.png',
         color: 'lblue',
-        iconOrientation: 'horizontal-inverted',
         requirements: () => T.npcData.nam === 'Robin' && this.member
       }
     });
@@ -122,6 +121,7 @@ class RobinTemple extends Module {
   }
 
   public set faith(value: number) {
+    if (!Number.isFinite(value)) return;
     const amount = Math.clamp(value, -100, 100);
     C.npc.Robin.conviction = Math.max(0, amount);
     C.npc.Robin.doubt = Math.max(0, -amount);

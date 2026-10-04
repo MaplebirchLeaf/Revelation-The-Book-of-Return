@@ -21,7 +21,7 @@
     and $stress lt $stressmax and $exposed lte 0
     and Time.hour gte 11 and Time.hour lt 20
     and getRobinLocation() is 'temple' and !$robinmissing>>
-    <<templeicon 'altar'>><<lanLink ['Pray with Robin', '和罗宾一起祈祷'] 'RobinTemple Prayer'>><</lanLink>><br>
+    <<templeicon 'pray'>><<lanLink ['Pray with Robin', '和罗宾一起祈祷'] 'RobinTemple Prayer'>><</lanLink>><br>
     <br>
   <</if>>
 <</widget>>
@@ -114,7 +114,7 @@
   <<socialiseicon 'ask'>><<lanLink ['Tell Robin how the spear journey went', '把取矛的经过告诉罗宾'] 'RobinTemple Spear Return'>><</lanLink>><br>
 <</if>>
 <<if $RobinTemple.donation_day isnot Time.days>>
-  <<templeicon 'altar'>><<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
+  <<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
 <</if>>
 <<if $RobinTemple.transformation_day isnot Time.days>>
   <<set $RobinTemple.transformation_count to 0>>
@@ -193,7 +193,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Doubt
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -231,7 +231,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Rest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -281,7 +281,7 @@
     你决定暂时不说。罗宾有些担心，却没有追问。<<He>>留在你身旁。
 <</language>>
 <br><br>
-<<getouticon>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Observe
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -351,7 +351,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Faith Transition
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -421,7 +421,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Hospital Arrival
 <<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
@@ -685,7 +685,7 @@
       今天你已经谈过或为这件事祈祷过了。
   <</language>><br><br>
 <</if>>
-<<templeicon 'altar'>><<lanLink ['Leave it unsaid and return to the bench', '先不说，回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Leave it unsaid and return to the bench', '先不说，回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Acceptance
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -748,4 +748,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<templeicon 'altar'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

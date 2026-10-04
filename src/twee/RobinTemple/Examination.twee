@@ -240,8 +240,8 @@
         悉尼站在罗宾身旁，等着接受同一场检查。
     <</language>>
   <</if>>
-  <<socialiseicon 'ask'>><<lanLink ['Look away', '移开视线'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 1>><<set maplebirch.get('RobinTemple').faith += 2>><</lanLink>><<gconviction 'Robin'>><br>
-  <<socialiseicon 'ask'>><<lanLink ['Watch', '看着'] (_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result')>><<set $phase to 2>><<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 2>><</lanLink>><<glust 'Robin'>><<lconviction 'Robin'>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Look away', '移开视线'] `_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result'`>><<set $phase to 1>><<set maplebirch.get('RobinTemple').faith += 2>><</lanLink>><<gconviction 'Robin'>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Watch', '看着'] `_args[0] ? 'RobinTemple Joint Examination Result' : 'RobinTemple Monthly Examination Result'`>><<set $phase to 2>><<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 2>><</lanLink>><<glust 'Robin'>><<lconviction 'Robin'>><br>
 <</widget>>
 
 <<widget 'robin-temple-examination-partners'>>
