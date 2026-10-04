@@ -40,7 +40,7 @@
       罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
   <</language>>
   <br><br>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Look at Robin\'s bunk', '看看罗宾的床铺'] 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink ["Look at Robin's bunk", '看看罗宾的床铺'] 'RobinTemple Bunk'>><</lanLink>><br>
   <br>
 <<else>>
   <<language>>
@@ -210,7 +210,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Supplies
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -240,7 +240,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -291,7 +291,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Whereabouts
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -411,4 +411,4 @@
   <</switch>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

@@ -1,7 +1,5 @@
 // ./src/module/Revelation.ts
 
-import { DEFAULT_REVELATION_STATE } from './constants/revelation';
-import Module from './Module';
 import RobinEN from '@/assets/hint/EN/RobinTemple.md';
 import RobinCN from '@/assets/hint/CN/RobinTemple.md';
 import ChoirEN from '@/assets/hint/EN/TempleChoir.md';
@@ -16,13 +14,10 @@ interface GuideModule {
 }
 
 /** 指南借用枯木逢春的提示弹窗，剧情模块保持独立。 */
-export default class Revelation extends Module {
-  public constructor(core: typeof maplebirch) {
-    super(core, 'RBR', DEFAULT_REVELATION_STATE);
-  }
+export default class Revelation {
+  public constructor(private readonly core: typeof maplebirch) {}
 
   public preInit(): void {
-    super.preInit();
     this.core.tool.onInit(() => {
       const deadwood = this.core.get('DeadwoodReblooms') as GuideModule | undefined;
       deadwood?.guide.add('revelation-guide', () => [

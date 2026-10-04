@@ -158,7 +158,7 @@
     <</language>>
   <</if>>
   <br><br>
-  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Jordan Introduction
@@ -219,7 +219,7 @@
   <</language>><br><br>
   <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Prepare
@@ -286,7 +286,7 @@
         罗宾微笑着穿过大厅。“嘿，你来接我啦？”<<He>>伸手抱住你，“我通过了。谢谢你告诉我这个地方。”
     <</language>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink ['Hear Jordan\'s decision', '听约旦宣布结果'] 'RobinTemple Pass'>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ["Hear Jordan's decision", '听约旦宣布结果'] 'RobinTemple Pass'>><</lanLink>><br>
   <<else>>
     <<language>>
       <<option 'EN'>>
@@ -295,7 +295,7 @@
         看见你，罗宾低下头，一滴眼泪落在地上。“对不起，”<<he>>说，“我辜负了你的期待。”你走近<<him>>，<<his>>的声音已经哽咽。
     <</language>>
     <br><br>
-    <<templeicon 'altar'>><<lanLink ['Hear Jordan\'s decision', '听约旦宣布结果'] 'RobinTemple Fail'>><</lanLink>><br>
+    <<templeicon 'altar'>><<lanLink ["Hear Jordan's decision", '听约旦宣布结果'] 'RobinTemple Fail'>><</lanLink>><br>
   <</if>>
 <<else>>
   <<if $RobinTemple.stage is 'scheduled'>>
@@ -483,5 +483,5 @@
 <<if $location is 'temple'>>
   <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink ['Return to Robin\'s room', '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
 <</if>>

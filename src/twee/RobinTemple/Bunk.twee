@@ -90,7 +90,7 @@
 <</if>>
 <<wardrobeicon>><<lanLink ['Wardrobe', '衣柜'] 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink ['Mirror', '镜子'] 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Bunk Talk
@@ -345,7 +345,7 @@
     <</language>>
 <</switch>>
 <br><br>
-<<loveicon 'hug'>><<lanLink ['Hold Robin\'s hand', '握住罗宾的手'] 'RobinTemple Night Wake Hand'>><</lanLink>><br>
+<<loveicon 'hug'>><<lanLink ["Hold Robin's hand", '握住罗宾的手'] 'RobinTemple Night Wake Hand'>><</lanLink>><br>
 <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Go back to sleep', '继续睡觉'] 'RobinTemple Sleep'>><</lanLink>><br>
 <<getouticon>><<lanLink ['Get up', '起床'] 'RobinTemple Bunk'>><<set $sleephour to 0>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
 

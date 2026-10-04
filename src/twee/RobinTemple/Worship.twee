@@ -21,7 +21,7 @@
     and $stress lt $stressmax and $exposed lte 0
     and Time.hour gte 11 and Time.hour lt 20
     and getRobinLocation() is 'temple' and !$robinmissing>>
-    <<templeicon 'pray'>><<lanLink ['Pray with Robin', '和罗宾一起祈祷'] 'RobinTemple Prayer'>><</lanLink>><br>
+    <<templeicon 'pew'>><<lanLink ['Approach Robin', '走近罗宾'] 'RobinTemple Prayer'>><</lanLink>><br>
     <br>
   <</if>>
 <</widget>>
@@ -268,7 +268,7 @@
 <<if maplebirch.get('RobinTemple').bunk>>
   <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Sit beside Robin’s bunk a while longer', '在罗宾床边再坐一会儿'] 'RobinTemple Bunk'>><</lanLink>><br>
 <<else>>
-  <<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+  <<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 <</if>>
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 

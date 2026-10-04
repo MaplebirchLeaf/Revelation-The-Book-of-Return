@@ -166,7 +166,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -251,7 +251,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Jordan
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -280,7 +280,7 @@
 <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
 <<npcincr Robin dom 1>><<gdom>><br><br>
 <<templeicon 'altar'>><<lanLink ['Talk about a shared vow', '谈谈共同立誓'] 'RobinTemple Evaluation'>><</lanLink>><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Clasp Listen
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -307,4 +307,4 @@
   <</language>>
 <</if>>
 <<npcincr Robin love 2>><<npcincr Robin trauma -2>><<glove 'Robin'>><<lltrauma 'Robin'>><br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

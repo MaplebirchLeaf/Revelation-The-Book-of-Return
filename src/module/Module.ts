@@ -4,17 +4,15 @@ import { version } from './constants';
 
 /** 先注册模块的当前存档状态，再注册其他运行时钩子。 */
 abstract class Module {
-  public log!: (message: string, level?: string, ...objects: unknown[]) => void;
   public readonly version: string;
   protected readonly migration: ReturnType<typeof maplebirch.tool.migration.create>;
 
   protected constructor(
     readonly core: typeof maplebirch,
     private readonly name: string,
-    private readonly defaults: object,
-    targetVersion = version
+    private readonly defaults: object
   ) {
-    this.version = targetVersion;
+    this.version = version;
     this.migration = core.tool.migration.create();
     this.migration.add('*', this.version, (data, utils) => utils.fill(data, clone(this.defaults) as Record<string, unknown>));
   }

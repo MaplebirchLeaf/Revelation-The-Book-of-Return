@@ -405,4 +405,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return to Robin\'s place', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>

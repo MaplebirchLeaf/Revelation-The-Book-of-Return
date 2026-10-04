@@ -84,13 +84,13 @@ class RobinTemple extends Module {
   }
 
   /** 当前路线的身份来自入殿与晋升结果，不另存一份等级。 */
-  public get rank(): string {
+  public get rank(): 'prospective' | 'monk' | 'initiate' {
     return !this.member ? 'prospective' : V.RobinTemple.vigil_result === 'passed' ? 'monk' : 'initiate';
   }
 
-  /** 床铺属于修士及以上身份，承诺仪式不替代晋升。 */
+  /** 守夜晋升为修士后解锁床铺，承诺仪式不替代晋升。 */
   public get bunk(): boolean {
-    return ['monk', 'priest'].includes(this.rank);
+    return this.rank === 'monk';
   }
 
   /** 任一月检日历到期时共同检查，罗宾暂时缺席也不拆成两轮。 */
@@ -125,10 +125,6 @@ class RobinTemple extends Module {
     const amount = Math.clamp(value, -100, 100);
     C.npc.Robin.conviction = Math.max(0, amount);
     C.npc.Robin.doubt = Math.max(0, -amount);
-  }
-
-  public get band(): 'belief' | 'doubt' | 'steady' {
-    return this.faith >= 20 ? 'belief' : this.faith <= -20 ? 'doubt' : 'steady';
   }
 
   /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
@@ -251,7 +247,7 @@ class RobinTemple extends Module {
     // 以净信念判定并维持两侧互斥，避免直接修改 NPC 数值后分支各自成立。
     const faith = this.faith;
     this.faith = faith;
-    const band = this.band;
+    const band = faith >= 20 ? 'belief' : faith <= -20 ? 'doubt' : 'steady';
     if (band === 'steady') {
       state.faith_band = 'steady';
       state.faith_transition = '';

@@ -62,10 +62,10 @@
     and !$robinmissing and getRobinLocation() isnot 'asylum'>>
     <<if $RobinTemple.stage is 'scheduled'>>
       <<if maplebirch.get('RobinTemple').assessmentReady>>
-        <<templeicon 'altar'>><<lanLink ['Attend Robin\'s purity trial', '陪罗宾参加纯洁试炼'] 'RobinTemple Assessment'>><</lanLink>><br>
+        <<templeicon 'altar'>><<lanLink ["Attend Robin's purity trial", '陪罗宾参加纯洁试炼'] 'RobinTemple Assessment'>><</lanLink>><br>
       <</if>>
     <<elseif maplebirch.get('RobinTemple').member>>
-      <<icon 'temple/robin-quarters.png'>><<lanLink ['Visit Robin\'s place in the quarters', '去罗宾在宿舍的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+      <<icon 'temple/robin-quarters.png'>><<lanLink ["Visit Robin's place in the quarters", '去罗宾在宿舍的座位'] 'RobinTemple Corner'>><</lanLink>><br>
       <<if $RobinTemple.punish>>
         <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
       <</if>>

@@ -43,7 +43,7 @@
   <<socialiseicon 'ask'>><<lanLink ['Ask how Robin feels at the temple (0:30)', '问罗宾在神殿过得怎样 (0:30)'] 'RobinTemple Walk Faith'>><<pass 30>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
   <<loveicon 'hug'>><<lanLink ['Ask about the children at the orphanage (0:30)', '问起孤儿院的孩子 (0:30)'] 'RobinTemple Walk Home'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
   <<if $robinromance is 1>>
-    <<loveicon 'kiss'>><<lanLink ['Take Robin\'s hand (0:30)', '牵住罗宾的手 (0:30)'] 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
+    <<loveicon 'kiss'>><<lanLink ["Take Robin's hand (0:30)", '牵住罗宾的手 (0:30)'] 'RobinTemple Walk Hand'>><<pass 30>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
   <</if>>
   <<if $RobinTemple.work_day is Time.days>>
     <<foresticon>><<lanLink ['Go to the forest with Robin (0:30)', '和罗宾去森林 (0:30)'] 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><<glove>><br>
