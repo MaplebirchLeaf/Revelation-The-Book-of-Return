@@ -79,7 +79,7 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
   'main-parent': {
     part: 'main',
     note: ['A gaunt face and silver nails beneath the bed. You recognise a little movement.', '床下有憔悴的脸和银色指甲。你认得一个小动作。'],
-    choices: [choice('main-back-parent', 'Back into the hall', '退回大厅', 'main-pantry', { mark: 'saw-parent', minutes: 5, change: { fear: 15, doubt: -10 } })]
+    choices: [choice('main-back-parent', 'Leave the bedroom and go down to the kitchen', '离开卧室，下楼去厨房', 'main-pantry', { mark: 'saw-parent', minutes: 5, change: { fear: 15, doubt: -10 } })]
   },
   'main-pantry': {
     part: 'main',
@@ -225,7 +225,12 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
         minutes: 30,
         change: { doubt: 12, fear: 15, notice: 20 }
       }),
-      choice('main-errand-hide', 'Say that somebody is waiting at home', '说家里有人在等', 'main-alone-home', { minutes: 30, change: { doubt: 10, fear: 5 } })
+      choice('main-errand-hide', 'Say that somebody is waiting at home', '说家里有人在等', 'main-alone-home', { minutes: 30, change: { doubt: 10, fear: 5 } }),
+      choice('main-errand-already', 'Tell the shopkeeper what you already told the last person', '把刚告诉那人的话，再说给店里的人听', 'main-help-home', {
+        when: ['first-help'],
+        minutes: 20,
+        change: { doubt: -6, fear: -4 }
+      })
     ]
   },
   'main-help-home': { part: 'main', choices: [choice('main-help-plan', 'Show them the place you can wait safely', '给对方看能安全等着的位置', 'main-late', { minutes: 15, change: { notice: 5 } })] },
@@ -318,6 +323,14 @@ export const LOST_LAMB_MAIN_SCENES: Record<string, LostLambScene> = {
       choice('main-offer-vow', 'Promise to keep everyone inside the door', '答应把门里的人都留下', 'main', { icon: 'lost-lamb/empty-pillow.png', mark: 'main-vow-offered', minutes: 5 }),
       choice('main-refuse-vow', 'Refuse and call to the person outside', '不答应，喊门外的人', 'main', {
         icon: 'lost-lamb/knocking-window.png',
+        unless: ['verdict-vow-sealed'],
+        mark: 'main-vow-refused',
+        minutes: 5,
+        change: { fear: 10 }
+      }),
+      choice('main-break-final-silence', 'Break your promise and call to the person outside', '违背保密的约定，喊门外的人', 'main', {
+        icon: 'lost-lamb/knocking-window.png',
+        when: ['verdict-vow-sealed'],
         mark: ['main-vow-refused', 'verdict-vow-broken'],
         minutes: 5,
         change: { fear: 10 }

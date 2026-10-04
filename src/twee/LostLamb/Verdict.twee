@@ -61,7 +61,7 @@
     <<case 'verdict-words'>>
       <<language>>
         <<option 'EN'>>
-          <<if $LostLamb.marks.includes('verdict-asked-visit')>>"Not today," one of your parents says. You ask which day instead. The knife is moved farther away. "You heard me." You did hear. You have begun to hate answers that pretend you asked a different question.<<else>>You keep your eyes on the bread. When the adults begin speaking again, you let your chewing become slower. Somebody notices and tells you to swallow. You swallow before you are ready and spend the next moment trying not to cough.<</if>>
+          <<if $LostLamb.marks.includes('verdict-asked-visit')>>"Not today," one of your parents says. You ask which day instead. The knife is moved farther away. "You heard me." You did hear. You have heard that kind of answer before. It makes your face hot.<<else>>You keep your eyes on the bread. When the adults begin speaking again, you let your chewing become slower. Somebody notices and tells you to swallow. You swallow before you are ready and spend the next moment trying not to cough.<</if>>
           <br><br>
           "It would be easier if—" The sentence ends with a chair moving across the floor. Your parent stands to take a cup to the sink, and running water covers what comes next. You have the beginning. It would be easier if. You imagine three different endings, and all three make you wish you had not started listening.
           <br><br>
@@ -69,7 +69,7 @@
           <br><br>
           They tell you to go upstairs. The command is gentle. That is worse than impatience, because you cannot tell what would happen if you refused. You take your coat with you, although it is warm indoors. On the stairs, the unfinished sentence begins again in your head. It would be easier if. Behind you, the kitchen door closes before anybody says the rest. You stand still long enough to hear the latch settle. There is another door above the kitchen, the one between the landing and the passage beside the laboratory. From there you might hear a whole sentence, and you might not need to ask anything.
         <<option 'CN'>>
-          <<if $LostLamb.marks.includes('verdict-asked-visit')>>“今天不来。”父母说。你问那是哪一天，刀又被挪远了一点。“你已经听见了。”你当然听见了。你开始讨厌那种假装自己问了别的问题的回答。<<else>>你盯着面包。大人又开始说话，你让咀嚼慢下来。有人发现，叫你咽下去。你没准备好就咽了，接下来只能拼命忍住咳嗽。<</if>>
+          <<if $LostLamb.marks.includes('verdict-asked-visit')>>“今天不来。”父母说。你问那是哪一天，刀又被挪远了一点。“你已经听见了。”你当然听见了。这种回答你听过，它让你脸发热。<<else>>你盯着面包。大人又开始说话，你让咀嚼慢下来。有人发现，叫你咽下去。你没准备好就咽了，接下来只能拼命忍住咳嗽。<</if>>
           <br><br>
           “要是……就好办了。”一句话停在椅子擦过地板的声音里。父母起身把杯子拿到水槽边，流水盖住了后半句。你只有开头。要是。你替它想了三种结尾，三种都让你后悔刚才去听。
           <br><br>
@@ -149,7 +149,7 @@
           <br><br>
           父母在谈一次不能再发生的来访。又一次，听得很清楚。其余都是断开的声音，每遇到杯子或椅子挪动，就被弄糊。你想到站在大门口的悉尼，凑得更近。门那边，有人长长吸了口气，像穿过锁孔直达耳边，比你站着的房间还暖。
           <br><br>
-          “说好了的。”你认得这句话。大人想让谈话停止时会用，你也会，在别人输了游戏才改变规则时。门后的声音说起来一点不生气，让你怀疑，达成一致是不是有时比争吵更坏。接着有人短短地笑，你分不出是谁。父母的笑你听过那么多次，这明明该很容易。
+          “说好了的。”你认得这句话。大人想让谈话停止时会用，别人输了游戏就改规则的时候，你也会这样说。门后的声音说起来一点不生气，让你怀疑，达成一致是不是有时比争吵更坏。接着有人短短地笑，你分不出是谁。父母的笑你听过那么多次，这明明该很容易。
           <br><br>
           把手动了。你往后退，袖子却挂在下面的小凸起上，有一瞬间被布料拴在门边。足够想象门打开时，自己还挂在那里，像一条钓上的鱼，被拖进明亮的屋子。门没有开。你把袖子抽出来，手腕留下被勒出的深色细线。谈话继续了。你已不能确定，他们是不是知道你在这里，只决定暂时不揭穿。
       <</language>>
@@ -168,7 +168,7 @@
           <br><br>
           走到一半，经过窗户，鞋被映在你的头旁，像身后站着两个人，脚却到了肩膀那么高。你把鞋底合在一起，倒影变成一团黑皮革。两种摆法都不喜欢，也气自己居然非得去改。
           <br><br>
-          到柜子前，父母看见你，问在做什么。你抬起鞋，还没回答，问题就结束了。一件普通的小事，让你几乎隐了形。收鞋时故意多花了一会儿。背后，轻声的来客说到应该让孩子置身事外，父母说，这已经做到了。你不知道，没人告诉孩子一件事的边界在哪里，怎么能确定孩子在外面。
+          到柜子前，父母看见你，问在做什么。你抬起鞋，还没回答，问题就结束了。一件普通的小事，让你几乎隐了形。收鞋时故意多花了一会儿。背后，轻声的来客说到应该让孩子置身事外，父母说，这已经做到了。没人告诉孩子一件事的边界在哪里，又怎么能确定孩子是在外面呢。
           <br><br>
           柜子深处有一双靴子，你从没穿过，鞋尖朝着墙。你转动一只，好腾出位置，靴筒口落出一小堆砂土。没人叫你别动，于是这件事更安全了。关柜子时，一根手指压着闩，直到最后才松开，尽量不让它响。只要看起来还没收完，就能多站一会儿。最终，空空的两只手还是会出卖你。
       <</language>>
@@ -242,7 +242,7 @@
         <<option 'CN'>>
           来客进屋前，晚饭已经开始。给对方留了位置，刀的方向却反了。你摆正，父母立刻又转回去。谁都不提对方刚做的事。你看看自己的刀，确认是不是所有人的规则都变了。
           <br><br>
-          <<if $LostLamb.marks.includes('verdict-carrying-cups')>>你一只只端杯子，借这件小事从空椅子后面经过两次。那里没人藏着，椅背也没搭外套。你为一件不肯承认自己检查过的事松口气。<<elseif $LostLamb.marks.includes('verdict-matched-voices')>>父母说话时，你听着。轻一些的声音从过道回答，就看空椅子。一瞬间，声音与位置对上了。随后父母回答了一个你没听见有人问的问题。<<else>>你坐在能看见门口的地方。父母叫你把椅子往里挪，你只挪一点，希望这样就够。门口仍露在胳膊肘与空椅子背之间。<</if>>
+          <<if $LostLamb.marks.includes('verdict-carrying-cups')>>你一只只端杯子，借这件小事从空椅子后面经过两次。那里没人藏着，椅背也没搭外套。你松了口气，又不肯承认自己刚才确实检查过。<<elseif $LostLamb.marks.includes('verdict-matched-voices')>>父母说话时，你听着。轻一些的声音从过道回答，就看空椅子。一瞬间，声音与位置对上了。随后父母回答了一个你没听见有人问的问题。<<else>>你坐在能看见门口的地方。父母叫你把椅子往里挪，你只挪一点，希望这样就够。门口仍露在胳膊肘与空椅子背之间。<</if>>
           <br><br>
           食物端上桌。你最喜欢的部分做得和平时略有不同，差点抱怨。发现大人在看你吃不吃，那句话就没了。你尝了一口，很好吃，反而不公平。希望桌上有什么能告诉自己，这是一个好晚上还是坏晚上。食物却不知道。
           <br><br>
@@ -261,7 +261,7 @@
         <<option 'CN'>>
           来客的袖口没有沾上一点面包屑。下面露出窄窄一线银色，映着烛光。你侧过身，想看清脸。父母举起水壶，再放下时，你已经忘了刚才想看什么。来客的杯子仍是空的。
           <br><br>
-          “你不想再有人受伤，对吧？”你摇头。“很好。那就得小心，别随便向人说。”父母把水壶放得太重，洒出一点水。来客把两根手指放在水里，水从那线银色旁退开。
+          “你不想再有人受伤，对吧？”你摇头。“很好。那就得小心，别随便向人说。”父母把水壶放得太重，洒出一点水。来客把两根手指放在水里，水从那一线银色那里退开。
           <br><br>
           你问，那悉尼还能来吗？来客把空杯转了四分之一圈。“孩子待在家里才安全。”仍然没说，是谁的家。你去看父母。他们把同一小片面包切得越来越碎。
           <br><br>
@@ -308,7 +308,7 @@
     <<case 'verdict-cup'>>
       <<language>>
         <<option 'EN'>>
-          Morning arrives without anyone calling you. You have fallen asleep in your clothes, one trainer pressed against the other. When you straighten your legs, the laces have caught together. You nearly cry before finding the knot. You pull it apart with both hands.
+          <<if $LostLamb.marks.includes('verdict-called-parents')>>You called for your parents in the night, and nobody came. The house has not changed its mind by morning.<<else>>Morning arrives without anyone calling you.<</if>> You have fallen asleep in your clothes, one trainer pressed against the other. When you straighten your legs, the laces have caught together. You nearly cry before finding the knot. You pull it apart with both hands.
           <br><br>
           Downstairs, light comes through a window with part of the glass missing. The curtain lifts through the empty place. You had not imagined it breaking. You touch the wall below the window, where damp air has cooled the plaster, and take your hand away when something sharp catches your sleeve. A little triangle is lodged in the fabric. You leave it there until you can see which way to pull it out.
           <br><br>
@@ -316,7 +316,7 @@
           <br><br>
           You fill it with water because water is something you know how to carry. If your parents are ill, they might need it. If they are angry, bringing it might make the first thing you say easier. The cup feels too hot in your fingers even though you used the cold tap. You set it down, wait, and lift it again. It is cold now. You cannot decide which feeling was mistaken. You take a cloth beneath it, not because you expect it to spill, but because the cloth gives your shaking fingers somewhere to hide.
         <<option 'CN'>>
-          早晨到了，却没有人来喊你。你穿着衣服睡着，两只运动鞋紧贴在一起。伸腿时，鞋带缠住了。你差点哭出来，才看见打结的地方，赶快用两只手解开。
+          <<if $LostLamb.marks.includes('verdict-called-parents')>>夜里你喊过父母，没有人来。到了早晨，房子也没有改主意。<<else>>早晨到了，却没有人来喊你。<</if>>你穿着衣服睡着，两只运动鞋紧贴在一起。伸腿时，鞋带缠住了。你差点哭出来，才看见打结的地方，赶快用两只手解开。
           <br><br>
           楼下，一扇缺了部分玻璃的窗透进光。窗帘飘过那块空处。碎裂声并不是你想出来的。你碰到窗下的墙，湿气让灰泥很凉。袖子突然被锋利的东西勾住，你缩回手，看见一小片三角玻璃嵌在布里。先把它留在那里，等看清该往哪边拔。
           <br><br>
@@ -365,7 +365,7 @@
     <<case 'verdict-copy'>>
       <<language>>
         <<option 'EN'>>
-          In your room, you put a sheet on the desk. You are going to write down what the adults said. Not a letter to anybody. Just something that will stay the same when you look away. You have paper, a pencil, and room for several lines. That ought to be enough for the little amount you really heard.
+          <<if $LostLamb.marks.includes('verdict-wrapped')>>You wrapped your hand before carrying anything else. The cloth is still there, and it makes the pencil awkward to hold.<<else>>In your room, you put a sheet on the desk.<</if>> You are going to write down what the adults said. <<if $LostLamb.marks.includes('draw')>>You have drawn this house before, on paper with room for every window. These lines will not hold a window.<</if>> Not a letter to anybody. Just something that will stay the same when you look away. You have paper, a pencil, and room for several lines. That ought to be enough for the little amount you really heard.
           <br><br>
           The first line is easy. We agreed. You remember the pause afterwards more clearly than the voice. You put a space beneath it. Before anyone changes their mind comes next, though you cannot swear it came next in the room. Not in front of. Your name. You keep the pieces apart. When you look up from the desk, the spaces seem too large. The words are trying to become one sentence even without your help.
           <br><br>
@@ -373,7 +373,7 @@
           <br><br>
           You want to leave the uncertain parts empty. Empty paper looks stupid, like work you have not finished. You imagine an adult taking it, tapping the spaces, telling you to make an effort. You can nearly hear that voice now, though you do not know whose it is. <span class='teal'>Keeping several possibilities apart takes enough doubt. If you cannot, the dream may fill a gap before you notice.</span> You pick up the pencil again. The point is blunter than when you put it down. There is a mark beneath your hand that you do not remember making.
         <<option 'CN'>>
-          回到房间，你把纸铺在桌上，准备记下大人说过的话。不是写信给谁，只想留下一个在移开目光后不会改变的东西。你有纸，有铅笔，也有足够写几行的位置。应该能放下真正听见的那一点。
+          <<if $LostLamb.marks.includes('verdict-wrapped')>>搬别的东西以前，你先包住了手。布还在，握笔变得别扭。<<else>>回到房间，你把纸铺在桌上，<</if>>准备记下大人说过的话。<<if $LostLamb.marks.includes('draw')>>你以前画过这所房子，纸上有位置放下每一扇窗。这几行字放不下一扇。<</if>>不是写信给谁，只想留下一个在移开目光后不会改变的东西。你有纸，有铅笔，也有足够写几行的位置。应该能放下真正听见的那一点。
           <br><br>
           第一行很容易。说好了的。声音记不清，后面的停顿却记得。你留一段空白。趁还没人改主意，放在下一行，却不能保证屋里也是这个顺序。别当着。你的名字。你尽量把碎片分开。抬头再看，空隙却显得太大。那些词想变成一句话，甚至不需要你帮忙。
           <br><br>
@@ -396,7 +396,7 @@
           <br><br>
           过道里有东西刮着墙。你握笔不动，等声音停下，再看纸。空缺还在。终于有一件事，保持着你决定的样子。你用手指盖住，发现空处比字下面凉，明明不该如此。抬手检查桌子，没有洞。
           <br><br>
-          你想得起谈话停止时父母的表情，觉得也值得记。试着写，才发现没有能用的词。生气容易，害怕也容易。那却是听见预料中的声音，偏又发生在没预料到的时间上的脸。你分不清这段记忆来自楼梯口，还是晚饭桌。
+          你想得起谈话停止时父母的表情，觉得也值得记。试着写，才发现没有能用的词。生气容易，害怕也容易。那是一个人听见自己早就料到、却没想到会在这时候响起的声音时，会有的脸。你分不清这段记忆来自楼梯口，还是晚饭桌。
           <br><br>
           你把两个地方分成两行写下。握笔太紧，手在痛。床下的手确实在够你，这一句写得出。可那个声音是什么意思，你写不出。你折起纸边，折痕快要穿过空缺时又展开。等找到能说的人，就把纸拿给对方看。
       <</language>>
@@ -479,21 +479,23 @@
     <<case 'verdict-outside'>>
       <<language>>
         <<option 'EN'>>
+          <<if $LostLamb.marks.includes('garden') or $LostLamb.marks.includes('flower')>>You know this street from the other end, where it turns towards the garden and the narrow path. Sydney is standing on the part you never had to walk alone.<</if>>
           It is Sydney. <<nnpc_He 'Sydney'>> notices you before you reach the same side of the street. There is a little lift of the hand, then the hand goes back to the bag. You remember <<nnpc_him 'Sydney'>> waving through the window. This is not that afternoon. You tell yourself not to make it into that afternoon just because you would like to.
           <br><br>
           Sydney asks whether you are shopping. You show the folded paper without opening it. <<nnpc_He 'Sydney'>> says something about being sent out too. You can talk about bread for several moments without anybody telling you to go upstairs. Ordinary conversation makes your shoulders loosen. You had not noticed how high you were holding them.
           <br><br>
           You want to ask whether Sydney has been told about your parents. Before you can, <<nnpc_he 'Sydney'>> looks towards someone farther along the pavement. You cannot see who is there because a parked vehicle blocks the view. <<nnpc_He 'Sydney'>> looks back at you and says your name very quietly. The quietness puts you beside the connecting door again. You step away from the kerb, as though distance from the traffic might also put distance between the two scenes.
           <br><br>
-          A person is carrying a paper bag past you. Its bottom has begun to tear. You notice the tear and want to warn them, but Sydney is speaking now and you do not want to miss another sentence. An apple falls. The person catches the bag before the rest follow. Nobody is hurt. You watch the apple roll to a gutter and wonder how many little things you have failed to notice while trying to hear something larger. Sydney asks whether you are all right. You say you wanted to ask a question. <<nnpc_He 'Sydney'>> says, "I know."
+          A person is carrying a paper bag past you. Its bottom has begun to tear. You notice the tear and want to warn them, but Sydney is speaking now and you do not want to miss another sentence. An apple falls. The person catches the bag before the rest follow. Nobody is hurt. You watch the apple roll to a gutter and wonder how many little things you have failed to notice while trying to hear something larger. Sydney asks whether you are all right. You say you wanted to ask a question. <<nnpc_He 'Sydney'>> says, "I know. You always do." Then <<nnpc_he 'Sydney'>> looks away, as if that was more than <<nnpc_he 'Sydney'>> meant to say.
         <<option 'CN'>>
+          <<if $LostLamb.marks.includes('garden') or $LostLamb.marks.includes('flower')>>这条街你从另一头认得，那里拐向花园和那条窄路。悉尼站的这一段，你以前从不必一个人走。<</if>>
           是悉尼。还没走到街道同一侧，<<nnpc_he 'Sydney'>>就看见你。手稍稍抬起，又放回包上。你记得窗外挥手的样子，可这不是那个下午。你告诉自己，不能因为想要，就把它改成那个下午。
           <br><br>
           悉尼问你是不是买东西。你给<<nnpc_him 'Sydney'>>看折起来的纸，没有打开。<<nnpc_He 'Sydney'>>说自己也被派出来。你们能谈几句面包，没有人叫你上楼。普通的交谈让肩膀松了。先前都没发现，自己一直把肩耸得那么高。
           <br><br>
           你想问，有没有人告诉悉尼关于父母的事。还没来得及，<<nnpc_he 'Sydney'>>就看向更远的一个人。停着的车挡住了视线，你看不见是谁。再看回你时，<<nnpc_he 'Sydney'>>很轻地叫名字。那份轻又把你放回连通门边。你退离路沿，像离车远些，也能让两个场景分开。
           <br><br>
-          有人提着纸袋经过，底部开始裂开。你想提醒，悉尼却正在说话，不愿再漏一句。一个苹果掉出来，对方及时托住袋底，其余没掉，没人受伤。你看着苹果滚到沟边，想着自己试图听清一件大事时，漏掉了多少小事。悉尼问你还好吗。你说想问个问题。<<nnpc_He 'Sydney'>>说：“我知道。”
+          有人提着纸袋经过，底部开始裂开。你想提醒，悉尼却正在说话，不愿再漏一句。一个苹果掉出来，对方及时托住袋底，其余没掉，没人受伤。你看着苹果滚到沟边，想着自己试图听清一件大事时，漏掉了多少小事。悉尼问你还好吗。你说想问个问题。<<nnpc_He 'Sydney'>>说：“我知道。你每次都这样。”随后别开脸，像说多了。
       <</language>>
     <<case 'verdict-sydney'>>
       <<language>>
@@ -531,12 +533,12 @@
           <br><br>
           你提着面包和肥皂回来。纸袋比刚才那只结实，你仍把手垫在底下。到了自家大门，钥匙卡住，直到你不再用力推门。压力松开，就能转动。你希望有人说清，屋里的压力又该朝哪边松。
           <br><br>
-          进门时厨房亮着，后面有说话声，其中一个属于父母。你抱着购物袋停下。楼上，那道故意没关严的门后，有东西拖过地面。同一个人不该同时属于这两种声音。你可以认定一个是记忆，也可以认定一个在骗你。你却先站着，直到厨房有人问买了什么。才举起袋子，像只是买东西回家，没有更奇怪的事需要解释。
+          进门时厨房亮着，后面有说话声，其中一个属于父母。你抱着购物袋停下。楼上，那道故意没关严的门后，有东西拖过地面。这两种声音不该在同一刻属于同一个人。你可以认定一个是记忆，也可以认定一个在骗你。你却先站着，直到厨房有人问买了什么。才举起袋子，像只是买东西回家，没有更奇怪的事需要解释。
       <</language>>
     <<case 'verdict-kitchen-entry'>>
       <<language>>
         <<option 'EN'>>
-          You set the shopping on the table. The soap has made the bread smell faintly of something you would wash from your hands. You separate them. Your parent says you should have done that at the shop. The complaint is so familiar that you almost laugh. Instead you move the soap to the sink, very carefully, as though the familiar voice might disappear if you make the wrong noise.
+          <<if $LostLamb.marks.includes('kitchen') or $LostLamb.marks.includes('helped')>>You know this kitchen. You were shown where the cups go, and you put the shopping down in the right place without being told.<<elseif $LostLamb.marks.includes('tasted')>>You have taken food from a counter before, when nobody was looking. Tonight you wait to be told.<<else>>You set the shopping on the table.<</if>> The soap has made the bread smell faintly of something you would wash from your hands. You separate them. Your parent says you should have done that at the shop. The complaint is so familiar that you almost laugh. Instead you move the soap to the sink, very carefully, as though the familiar voice might disappear if you make the wrong noise.
           <br><br>
           There is company in the next room. You can hear the quieter voice from the landing again. The kitchen door has been wedged open, but the connecting door farther along is closed. The sound seems to come through the closed one. You do not point this out. You are told there is food to warm and cups to wash. There will be time to talk after supper.
           <br><br>
@@ -544,7 +546,7 @@
           <br><br>
           The stove is not ready. You can work slowly there and let your breathing settle. Cups have been left beside the sink, near enough to the passage that water would not quite cover the voices. A bowl is on the top pantry shelf, and the stool needs moving to reach it. None of these is a secret object. They are things a child has been told to help with. <span class='blue'>Preparing one part of supper is enough to carry it through. Extra tasks can change your fear and the attention on you, but the evening keeps moving.</span> You push your sleeves back and choose where to begin.
         <<option 'CN'>>
-          你把购物放上桌。肥皂让面包带着一点本该从手上洗掉的味道，于是把它们分开。父母说，商店里就该这样做。抱怨熟悉得让你差点笑出来，最后却很小心地把肥皂挪到水槽，仿佛声音弄错，熟悉的嗓音就会消失。
+          <<if $LostLamb.marks.includes('kitchen') or $LostLamb.marks.includes('helped')>>这间厨房你熟。有人教过你杯子该放哪里，你把买来的东西也放在对的位置，不必人提醒。<<elseif $LostLamb.marks.includes('tasted')>>你曾在没人看的时候从柜台上拿过吃的。今晚你等着被交代。<<else>>你把购物放上桌。<</if>>肥皂让面包带着一点本该从手上洗掉的味道，于是把它们分开。父母说，商店里就该这样做。抱怨熟悉得让你差点笑出来，最后却很小心地把肥皂挪到水槽，仿佛声音弄错，熟悉的嗓音就会消失。
           <br><br>
           隔壁有客人，你又听见楼梯口那个轻声的来客。厨房门撑开，更深处的连通门却关着，声音像从关着的门来。你没有指出这一点。有人交代，食物要热，杯子要洗，晚饭后有时间谈。
           <br><br>
@@ -559,7 +561,7 @@
           <br><br>
           Your parent tells you to mind the heat. You say you will. The warning leaves you with something you can do correctly. You remember standing here on a different evening while someone corrected how you held a spoon. That memory contains no visitor. You try to keep it nearby while taking the spoon from the drawer.
           <br><br>
-          From the next room comes the word willing. It is followed by a pause that makes you stop moving. Willing to what? Willing when? You know adults can ask questions in a way that makes yes the only answer they recognise. You have said yes to things because you wanted the asking to end. You do not know whether that thought belongs to you here or has come from somewhere much later.
+          From the next room comes the word willing. It is followed by a pause that makes you stop moving. Willing to what? Willing when? You know adults can ask questions in a way that makes yes the only answer they recognise. You have said yes to things because you wanted the asking to end. It is not a thought a child should have. You do not know where it came from.
           <br><br>
           You put the spoon down before the heat reaches your fingers. There are tasks, and there is the desire to listen. You can make one serve the other, but doing so might make somebody look up. <span class='blue'>The sink is a listening place only before five. Choose the cups first to use it. Slow work by the stove can settle you. The pantry gives a different view.</span><</if>>
         <<option 'CN'>>
@@ -567,7 +569,7 @@
           <br><br>
           父母叫你当心热，你说会的。这个提醒给了一件能够正确做到的事。你记起另一个晚上，有人在这里纠正拿勺子的姿势，记忆里没有来客。取出勺子时，你试着把这份记忆留得近一些。
           <br><br>
-          隔壁说出自愿。后面的停顿让你停止动作。自愿做什么，什么时候自愿。你知道，大人有一种问法，只认得是这个答案。你以前为了让提问结束，也答过是。你分不清这个念头属于此刻的自己，还是从更晚的地方来。
+          隔壁说出自愿。后面的停顿让你停止动作。自愿做什么，什么时候自愿。你知道，大人有一种问法，只认“是”这一个答案。你以前为了让提问结束，也答过是。这不是孩子会有的念头。你不知道它从哪来。
           <br><br>
           热还没传到手指，你先放下勺子。一边是要做的活，一边是想听。可以让前者帮助后者，却也可能引得谁抬头。<span class='blue'>只有五点前能在水槽边听见谈话。想利用它，得先选洗杯子。炉边慢慢做能平稳不安，储藏架则给了另一个角度。</span><</if>>
       <</language>>
@@ -603,11 +605,11 @@
         <<option 'CN'>>
           你洗一只杯子，再洗一只。水声够遮住小动作，不够遮住大人的声音。你把杯子倾在龙头下，让它慢慢灌满。灌着的时候，就有理由站着不动。办法简单得让你怀疑，他们是不是早就知道。
           <br><br>
-          来客说：“他们知道自己在要求什么。”父母回答，你听不见，便把水调小。背后有木板响。你立刻直起身，把水倒掉，被问为什么浪费。你不能回答，自己在收集水花之间安静的部分。
+          来客说：“他们知道自己在要求什么。”父母答了句什么，你听不见。你把水调小。背后有木板响。你立刻直起身，把水倒掉，被问为什么浪费。你不能回答，自己在收集水花之间安静的部分。
           <br><br>
           他们叫你快做完。杯子已经干净，你却又洗同一只，犹豫要不要问他们是谁。问会暴露刚听见的话，不问，代词就能套进任何人。可能是父母，可能是从没见过脸的人。你试着套给来客，干净的袖口就在手下的水里浮出。
           <br><br>
-          你回头，没有人近得能把袖口映进水槽。挪动杯子，黑影散了，变成位置不对的自己袖子。你把两只袖子都推高。拇指边的小伤碰到肥皂，刺痛让水槽暂时又普通。你冲净杯子，把最后一只倒扣，关好水。你又听见了一截话，但<span class='red'>在这里偷听，已经引起注意。</span>父母告诉来客，你大得能帮忙。夸奖更像指令，要留在他们看得见双手的位置。
+          你回头，没有人近得能把袖口映进水槽。挪动杯子，黑影散了，变成一只位置不对的自己的袖子。你把两只袖子都推高。拇指边的小伤碰到肥皂，刺痛让水槽暂时又普通。你冲净杯子，把最后一只倒扣，关好水。你又听见了一截话，但<span class='red'>在这里偷听，已经引起注意。</span>父母告诉来客，你大得能帮忙。夸奖更像指令，要留在他们看得见双手的位置。
       <</language>>
     <<case 'verdict-pantry'>>
       <<language>>
@@ -622,7 +624,7 @@
         <<option 'CN'>>
           你一点点挪凳子，不让它的腿擦地。比预料沉，你想要人帮，可帮忙就又有人站在身旁。你试图拥有一个没人决定该站哪里的片刻。
           <br><br>
-          站上凳子，就能越过台面看。隔壁门框后露出一部分椅子，来客的手搁在扶手上，旁边桌上有杯子。你来回看，终于拼出一个人该在什么位置。声音却从更远处说话，不是回声，是一整句，开头带着呼吸。
+          站上凳子，就能越过台面看。隔壁门框后露出椅子的一角，那是来客的椅子，手搁在扶手上，旁边桌上有杯子。你来回看，终于拼出一个人该在什么位置。声音却从更远处说话，不是回声，是一整句，开头带着呼吸。
           <br><br>
           你先拿碗，不先决定这意味着什么。它套在另一个碗里，提开时清清地响。大人停下说话，你盯着架子。有人问需不需要帮助。你说不用，因为已经拿到碗，也因为下凳时不想有人站在脚下。
           <br><br>
@@ -637,7 +639,7 @@
           <br><br>
           "Now," the visitor says. You think the conversation you were promised has finally begun. You ask for the words from the landing to be said again. Somebody repeats one, not the others. Agreement. You ask who agreed. Somebody else says willing. You want to know who was willing. A chair moves at the far end, and the movement stops your question halfway through.
           <br><br>
-          The table is being set with answers instead of plates. Each person gives you one small piece and looks pleased when you take it. None says where they were when the glass broke. You realise you have not asked that yet. You have been asking what it meant, which lets anybody speak. What they saw would make them choose a place to stand. <span class='teal'>A remembered phrase and a witnessed event are different things.</span> You step aside so you can see the doorway behind the visitor. The tablecloth stirs against a shoe that has not moved. You do not go closer to check what stirred it.
+          The table is being set with answers instead of plates. Each person gives you one small piece and looks pleased when you take it. None says where they were when the glass broke. You realise you have not asked that yet. You have been asking what it meant, which lets anybody speak. What they saw would make them choose a place to stand. <span class='teal'>What you remember hearing is not the same as what somebody saw.</span> You step aside so you can see the doorway behind the visitor. The tablecloth stirs against a shoe that has not moved. You do not go closer to check what stirred it.
         <<option 'CN'>>
           你把晚饭端到门口，里面已经不是刚才准备饭菜时看见的那间屋子。现在有一张长桌，两侧摆着椅子，尽头也有一把。桌布几乎拖到地上，下面的鞋朝着不同方向。你得数鞋才能数出人，却又不敢相信鞋能告诉你谁在哪里。
           <br><br>
@@ -645,14 +647,14 @@
           <br><br>
           “现在。”来客说。你以为承诺的谈话终于开始，便请他们把楼梯口的话再说一遍。有人重复一个词，没有其余。约定。你问谁定的，另一个人说自愿。你想问谁自愿，桌子尽头却有椅子挪动，把问题打断。
           <br><br>
-          桌上像在摆答案，而不是摆盘子。每人给你一小片，见你接住就高兴，却没人说玻璃碎时自己在哪里。你才发现，还没问过这件事。你一直问意味着什么，这允许任何人发言。若问亲眼看见什么，就得选一个站过的位置。<span class='teal'>记得一句话，与亲眼见证一件事，不一样。</span>你侧身，看清来客身后的门。桌布擦过没移动的鞋，你却不敢凑近确认是谁让它动。
+          桌上像在摆答案，而不是摆盘子。每人给你一小片，见你接住就高兴，却没人说玻璃碎时自己在哪里。你才发现，还没问过这件事。你一直问意味着什么，这允许任何人发言。若问亲眼看见什么，就得选一个站过的位置。<span class='teal'>你记得听过的话，不等于有人亲眼见过。</span>你侧身，看清来客身后的门。桌布擦过没移动的鞋，你却不敢凑近确认是谁让它动。
       <</language>>
     <<case 'verdict-guest-room'>>
       <<language>>
         <<option 'EN'>>
           Your parents call this the room for guests. You remember it containing a smaller table and a window that looked towards the garden. There is no window now. The wall where it should be has a patch lighter than the rest, as though a picture was taken down. You stare at the patch while a voice explains that somebody should have known better.
           <br><br>
-          Should have known is a large thing to put into a small room. You ask what anybody actually knew. The visitor repeats what you have heard already, only more slowly. You wonder whether adults think slowness turns a statement into proof. Your parent adjusts a plate that contains no food and tells you to listen politely.
+          Should have known is a large thing to put into a small room. You ask what anybody actually knew. The visitor repeats what you have heard already, only more slowly. Maybe they think saying it slowly makes it true. Your parent adjusts a plate that contains no food and tells you to listen politely.
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>You touch the folded page in your pocket. There is still a gap on it. The gap is more reliable than the new sentence, because you know exactly why you left it.<<elseif $LostLamb.marks.includes('verdict-crossed-out')>>You touch the page where you crossed your own words out. You remember how quickly a complete answer made you feel safe. You look at the adults and wonder whether the same thing can happen to them.<<else>>You touch the folded paper without taking it out. It has two sides, and you can remember what is written on only one at a time.<</if>>
           <br><br>
@@ -660,7 +662,7 @@
         <<option 'CN'>>
           父母说，这是待客的屋子。你记得里面原本有较小的桌，窗户朝花园。现在没有窗了。该有窗的墙上，一块比其余浅，像刚取下一幅画。你看着浅处，听声音解释某个人本该更明白。
           <br><br>
-          本该明白，是放进小屋里很大的话。你问，谁实际知道什么。来客把听过的话重复一遍，只说得更慢。你怀疑大人是不是认为，慢下来就能把陈述变成证据。父母摆正没有食物的盘子，叫你有礼貌地听。
+          本该明白，是放进小屋里很大的话。你问，谁实际知道什么。来客把听过的话重复一遍，只说得更慢。也许他们以为，说慢一点，事情就变成真的了。父母摆正没有食物的盘子，叫你有礼貌地听。
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>你碰着口袋里的纸，空缺还在。它比新句子可靠，因为你知道自己为何留它。<<elseif $LostLamb.marks.includes('verdict-crossed-out')>>你碰到划掉字的位置，记得完整答案多快就让人安心。你看大人，怀疑他们会不会也如此。<<else>>你碰着折纸，没有拿出来。它有两面，你一次只能记住一面写了什么。<</if>>
           <br><br>
@@ -683,7 +685,7 @@
           <br><br>
           面墙的椅子转了，不是一下。它抬起一条前腿，换个位置落下，另一条跟着，没人扶椅背。你看见下面一只光脚，立刻不再想名字。坐着的人不可能用那只脚把前腿朝那个方向挪。桌布开始滑向椅子，明明上面还压着盘子。
           <br><br>
-          父母叫你坐好，是平常纠正餐桌规矩的声音。转过的椅子下伸出银指甲，勾住布，又一根跟上。手往后拉，谁也没拦，一只盘子落在鞋旁碎了。你缩回脚。<span class='red'>椅子正在靠近。继续坐着，不会让桌下的空处安全。</span>自从来客开始解释，大人第一次不再高兴。他们却只看你的椅子，不看后面正爬出来的东西。
+          父母叫你坐好，是平常纠正餐桌规矩的声音。转过的椅子下伸出银指甲，勾住布，又一根跟上。手往后拉，谁也没拦，一只盘子落在鞋旁碎了。你缩回脚。<span class='red'>椅子正在靠近。继续坐着，桌下那片空处也不会干净。</span>自从来客开始解释，大人第一次不再高兴。他们却只看你的椅子，不看后面正爬出来的东西。
       <</language>>
     <<case 'verdict-door'>>
       <<language>>
@@ -707,7 +709,7 @@
     <<case 'verdict-stayed'>>
       <<language>>
         <<option 'EN'>>
-          You keep one hand against the back of your chair and use it to feel how far you can move. Looking is not the same as moving closer. You repeat that to yourself while the hand beneath the other chair opens. There is another shape behind it, too far under the cloth to see clearly. You cannot tell whether it is a second person or the first folded into a place no person should fit.
+          <<if $LostLamb.marks.includes('verdict-unfinished')>>You left the landing before the sentence was finished. The missing words are still following you.<<else>>You keep one hand against the back of your chair and use it to feel how far you can move.<</if>> Looking is not the same as moving closer. You repeat that to yourself while the hand beneath the other chair opens. There is another shape behind it, too far under the cloth to see clearly. You cannot tell whether it is a second person or the first folded into a place no person should fit.
           <br><br>
           A face turns towards the light. Pale eyes, a hollow cheek, a mouth opening without making the word you are waiting for. You know whose face you want it to be. You also know that wanting will not put the familiar parts back. The fingers close on the cloth and drag it farther. Your parent at the table says nothing. You look between that face and the one near the floor until neither seems able to prove the other false.
           <br><br>
@@ -715,9 +717,9 @@
           <br><br>
           You move along the room's edge. The hand follows until a chair leg blocks the arm. There is a little jerk, then a scraping breath. That is your moment. <span class='green'>You reach the doorway without stepping over the body.</span> You could pull the door almost shut from this side, leaving the reaching fingers behind it, or keep watching the opening until you know it is not beside your ankles. <span class='blue'>You saw the hands' reach. You can use the door to limit it without going back towards them.</span> Behind you, the visitor resumes the explanation. It begins in exactly the place where the first plate fell, as though nothing important has interrupted it.
         <<option 'CN'>>
-          你一手按着椅背，靠它感觉还能挪多远。看，不是靠近。你反复告诉自己，直到另一把椅子下面的手展开。后面还有一个形状，藏在布下太深，看不清。你分不出是第二个人，还是第一个人折进了人不该装得下的空处。
+          <<if $LostLamb.marks.includes('verdict-unfinished')>>那句话还没说完，你就离开了楼梯口。漏掉的词还在跟着你。<<else>>你一手按着椅背，靠它感觉还能挪多远。<</if>>看，不是靠近。你反复告诉自己，直到另一把椅子下面的手展开。后面还有一个形状，藏在布下太深，看不清。你分不出是第二个人，还是第一个人折进了人不该装得下的空处。
           <br><br>
-          一张脸转向光。苍白的眼睛，陷下的脸颊，张开的嘴没有说出你等的那个词。你知道希望是谁，也知道愿望不能把熟悉的部分放回去。手指攥住布，又拖了一下。桌边的父母不说话。你在那张脸与地面这张之间来回看，谁都无法证明另一张是假的。
+          一张脸转向光。苍白的眼睛，陷下的脸颊，张开的嘴没有说出你等的那个词。你知道希望是谁，也知道愿望不能把熟悉的部分放回去。手指攥住布，又拖了一下。桌边的父母不说话。你在地面上那张脸与这张脸之间来回看，谁都无法证明另一张是假的。
           <br><br>
           手不拿食物，朝你的口袋来。还没想，你已经把折纸压在腿上，动作引来目光。你害怕保护它，反而让它显得比实际贵重。只有购物单，几句没听好的话，却变成能被抢的东西。
           <br><br>
@@ -738,7 +740,7 @@
           <br><br>
           一瞬间，过道塞满了你刚才拼命不想发出的声音。喘气，鞋响，一小声也许是抽泣。你扶住墙，灰泥很凉。一直按到分清哪几根手指在碰，五根，数了两次。另一只手根本没有被握住，你却还总想挣开。
           <br><br>
-          屋里，来客平静地说：“所以。”你差点回去。所以什么？撞过门框的肩膀一跳跳地痛。你抿紧嘴，把问题咽回去。门后，同一个声音又开始解释。
+          屋里，来客平静地说：“就是这个原因。”你差点回去。所以什么？撞过门框的肩膀一跳跳地痛。你抿紧嘴，把问题咽回去。门后，同一个声音又开始解释。
           <br><br>
           你把手按在墙上，等呼吸慢下来。一抬胳膊，肩膀就痛。你放下手，转向拐角，数着脚下的木板。<span class='blue'>逃走没有结束梦。你可以在这里缓口气，继续沿过道走。</span>背后，一只椅子撞在门上，只一下。你没等第二下，就继续往前。
       <</language>>
@@ -747,7 +749,7 @@
         <<option 'EN'>>
           <<if $LostLamb.marks.includes('verdict-shut-reaching-door')>>You pull the door almost closed. It meets something soft before the latch, and you let go at once. You have not gone back to look. A little gap remains, too narrow for the hand to come through at its earlier angle. You move while the gap is still narrow.<<elseif $LostLamb.marks.includes('verdict-counted-floor')>>You count the boards beside the wall. The counting does not make you brave, but it tells you when you have actually taken a step instead of imagining one. Four, five, six. You stop listening for the visitor long enough to reach the corner.<<else>>You keep to the wall and watch the opening behind you without walking backwards. The room cannot follow if you keep seeing where its door is. You do not know whether that rule is true. It gives you a way to begin moving.<</if>>
           <br><br>
-          At the corner, the passage has changed. You should be able to see the stairs. There is a second door instead, with the same brass plate. Light shows beneath it. You look behind you. The first door is still there. You have not walked in a circle. Somebody in the second room laughs the short laugh from the landing, and you feel the unfinished sentence beginning in your head again.
+          <<if $LostLamb.marks.includes('verdict-fled-chair')>>Your shoulder still hurts where you hit the frame. It is a useful kind of hurt: it tells you which way you came from.<<else>>At the corner, the passage has changed.<</if>> You should be able to see the stairs. There is a second door instead, with the same brass plate. Light shows beneath it. You look behind you. The first door is still there. You have not walked in a circle. Somebody in the second room laughs the short laugh from the landing, and you feel the unfinished sentence beginning in your head again.
           <br><br>
           The floor slopes towards the second door. You put your heel across a seam in the boards to stop sliding. Your shoe holds. That little success matters more than deciding whose voice is behind the wood. You move one hand along the wall and find an old nail where a picture has been taken down. The nail catches your sleeve. You lift the cloth free with the other hand rather than pulling.
           <br><br>
@@ -755,7 +757,7 @@
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('verdict-shut-reaching-door')>>你把门推得几乎关上，在门闩前抵到软东西，立刻松手，不回去看。只剩一条窄缝，手不能按刚才的角度伸出来。你趁缝仍窄，赶紧移动。<<elseif $LostLamb.marks.includes('verdict-counted-floor')>>你数着墙边木板。数数没有让人勇敢，却能确认真的迈了一步，不是只想了一步。四，五，六。你暂时不听来客，终于走到转角。<<else>>你沿墙走，盯着身后空处，却不倒着走。一直看见门在哪里，房间就不能跟上。你不知道规则真假，至少给了开始移动的办法。<</if>>
           <br><br>
-          转角后，过道变了。本该看见楼梯，却有第二道门，一样的黄铜护板，下面透光。你回头，第一道门还在，没有走成圈。第二间里有人发出楼梯口那声短笑，你脑子里又开始那句没说完的话。
+          <<if $LostLamb.marks.includes('verdict-fled-chair')>>撞过门框的肩膀还在痛。这种痛有用：它告诉你自己是从哪边来的。<<else>>转角后，过道变了。<</if>>本该看见楼梯，却有第二道门，一样的黄铜护板，下面透光。你回头，第一道门还在，没有走成圈。第二间里有人发出楼梯口那声短笑，你脑子里又开始那句没说完的话。
           <br><br>
           地板斜向第二道门。你把后跟横在木板接缝上，阻止滑动，鞋撑住了。这一点成功，比判断声音是谁更重要。你一手沿墙，摸到取下画后留下的旧钉，勾住袖子。用另一手挑开布，没有硬扯。
           <br><br>
@@ -764,7 +766,7 @@
     <<case 'verdict-map'>>
       <<language>>
         <<option 'EN'>>
-          At the corner you take out the page. You want to mark which doors you have passed. There is no pencil in your pocket. You use a thumbnail to crease the paper instead. One fold for the first door, another for the second. The shopping list breaks into little strips between the folds. Bread becomes two pieces of a word that could mean anything if you forgot where you tore it.
+          <<if $LostLamb.marks.includes('verdict-seen-hands')>>You watched the reach of one hand before you left the room. That is the only direction you know is dangerous.<<else>>At the corner you take out the page.<</if>> You want to mark which doors you have passed. There is no pencil in your pocket. You use a thumbnail to crease the paper instead. One fold for the first door, another for the second. The shopping list breaks into little strips between the folds. Bread becomes two pieces of a word that could mean anything if you forgot where you tore it.
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>The space between your two lines remains visible. You could fold around it and keep the uncertainty in sight, even when the rest of the page has become too crowded. It would be easier to fold straight through and put everything away neatly.<<else>>The words you supplied are still beneath the crossing-out. You can put a fold through them, or leave them showing as a warning. Keeping a mistake is unpleasant. You also remember how much you wanted to keep the relief it gave you.<</if>>
           <br><br>
@@ -772,7 +774,7 @@
           <br><br>
           A door opens behind you. You do not turn until you have put the page against your chest. It is the laboratory door. The voices have stopped. You can see a chair inside, and something metallic rings once. You step back against the opposite wall and check the page. The gap is still there, beside the folds.
         <<option 'CN'>>
-          到了拐角，你拿出纸，想标记经过哪些门，口袋却没有笔。只好用指甲折，一折是第一道，再一折是第二道。购物单被折线分成小条，面包成了两截。忘了在哪儿断，哪个意思都能套进去。
+          <<if $LostLamb.marks.includes('verdict-seen-hands')>>离开那间屋子以前，你看清了一只手能够到多远。那是你唯一确知危险的方向。<<else>>到了拐角，你拿出纸，<</if>>想标记经过哪些门，口袋却没有笔。只好用指甲折，一折是第一道，再一折是第二道。购物单被折线分成小条，“面包”成了两截。忘了从哪儿撕开，拼起来就像另外一个词。
           <br><br>
           <<if $LostLamb.marks.includes('verdict-left-gap')>>两道线之间的空处还在。你可以绕着折，其他字挤满时，也保留看得见的不确定。直接穿过去，整齐收好却更容易。<<else>>自己补的字仍在划线下面。你可以折过，也可以露着，作为提醒。留着错很难受，你也记得，多想保留它给过的安心。<</if>>
           <br><br>
@@ -783,7 +785,7 @@
     <<case 'verdict-laboratory'>>
       <<language>>
         <<option 'EN'>>
-          The laboratory smells sharp enough to make you cough before entering. Shelves hold jars, tools and ordinary containers without their ordinary labels. You can see a wet patch beneath one jar. It is not moving. You watch long enough to make sure, then become angry that you needed to. A room for working should contain things that stay where people put them.
+          The laboratory smells sharp enough to make you cough before entering. <<if $LostLamb.marks.includes('work')>>You asked once what your parents did in here, and were told it could wait until after supper. Nobody ever finished the answer.<</if>> Shelves hold jars, tools and ordinary containers without their ordinary labels. You can see a wet patch beneath one jar. It is not moving. You watch long enough to make sure, then become angry that you needed to. A room for working should contain things that stay where people put them.
           <br><br>
           There is a coat on the chair. You recognise its shoulder, then the cuff. That means the visitor must have taken it off. You look for the person who could have done so. Beyond the chair, a strip of cloth hangs from the edge of the workbench. The cloth is torn in the same way as the rags around the body under the bed. You cannot see what it is attached to. The smell has made your eyes water, and you would like to blame that for not seeing clearly.
           <br><br>
@@ -791,7 +793,7 @@
           <br><br>
           From somewhere above you, a calm voice says that the work had consequences. You refuse to look away from the hand to find the speaker. The sentence could fit almost any broken thing in the house. It does not explain why the body is reaching towards your shoe now. <span class='red'>Do not step inside the hand's reach to hear the rest.</span> You can watch from the threshold or make the opening narrower with the door. Either lets you remain on the passage side. A fingertip follows the shadow your shoe leaves on the floor, stopping just before the light. You cannot tell whether it avoids the light or is only deciding how to move next.
         <<option 'CN'>>
-          实验室的味道很冲，还没进去，你就咳嗽。架上有罐子、工具、普通的容器，没有普通的标签。一只罐下湿了一块，没有动。你看够久才确认，又生气自己竟需要确认。工作的房间，东西该留在人放下的位置。
+          实验室的味道很冲，还没进去，你就咳嗽。<<if $LostLamb.marks.includes('work')>>你问过父母在这里做什么，答案被留到晚饭以后，却一直没人说完。<</if>>架上有罐子、工具、普通的容器，没有普通的标签。一只罐下湿了一块，没有动。你看够久才确认，又生气自己竟需要确认。工作的房间，东西该留在人放下的位置。
           <br><br>
           椅子上搭着外套，你先认出肩，再认出袖口。意味着来客脱过它。你寻找能做到的人。椅子后，工作台边垂着一条布，撕得与床下身体周围的破布相似，看不见连着什么。味道使眼睛流泪，你希望看不清只是因为这个。
           <br><br>
@@ -812,7 +814,7 @@
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('verdict-lab-slit')>>你推门，只留工作台一条，手指没有伸出来。上方的声音更大，像音量能补回被你拒绝的视野。你留在自己的这一边。<<else>>你站在门槛，挪到门框挡住一部分腿。手还在找鞋的影子，脚挪开，它先追旧位置，再转。你知道了一点动作，不是把它变成这样的那个夜晚。<</if>>
           <br><br>
-          灯闪起来，你看不见原因。一次闪光里，台下像有两个身影，下一次却只有布堆。你不弯下去数。已经看得够多，知道靠近危险。数量不能让距离安全。
+          灯闪起来，你看不见原因。一次闪光里，台下有两个身影，下一次却只有布堆。你不弯下去数。已经看得够多，知道靠近危险。数量不能让距离安全。
           <br><br>
           平静的声音问，明白没有。你说没有，在满是大人的地方，像一个坏答案。声音又问还想要什么。你尽量不把半记得的名字塞进去，不先决定是不是陌生人造成，也不说父母配受什么。只想知道实际发生的事。愿望太大，出了嘴，却成一个没说完的小声。
           <br><br>
@@ -831,7 +833,7 @@
         <<option 'CN'>>
           小桌周围摆着三把椅子。每个座位旁都燃着蜡烛，却只坐了来客一个人。你选靠门的那把，对方没有阻止。第三把椅子塞得很紧，扶手夹住了桌布。
           <br><br>
-          <<if $LostLamb.known.bishop>>“他们结交了奥里加的仆从。”你听过主教说这句话。现在，它从来客被遮住的脸那边传出。你低头看手，小得两只能抱在一起。听见主教那次，它们没这么小。蜡烛爆了一点火星，来客已经继续往下说，不给你问这句话怎么进来的机会。<<else>>“他们不知道，请进来的究竟是谁。”来客的拇指摩挲腕边的银色。“等发现的时候，就得有人把门关上。”你望向过道。那里的门还开着。<</if>>
+          <<if $LostLamb.known.bishop>>“他们结交了奥里加的仆从。”你听过主教说这句话。现在，它从来客被遮住的脸那边传出。你低头看手，小得一只手能包住另一只。听见主教那次，它们没这么小。蜡烛爆了一点火星，来客已经继续往下说，不给你问这句话怎么进来的机会。<<else>>“他们不知道，请进来的究竟是谁。”来客的拇指摩挲腕边的银色。“等发现的时候，就得有人把门关上。”你望向过道。那里的门还开着。<</if>>
           <br><br>
           你问，父母会好吗？来客把杯子倒扣，下面扩出一道黑色的湿圈。“能让里面的东西不再伤到其他人。”你没问其他人。你又问一次，更响。桌下，有东西撞上椅腿。
           <br><br>
@@ -846,15 +848,15 @@
           <br><br>
           <<if $LostLamb.known.auriga>>"Children of Auriga gnaw at the locks." You have heard that name elsewhere, in a voice that does not belong to this afternoon.<<else>>"They gnaw at the locks."<</if>> The words make you picture teeth round the little brass key downstairs. "We close the holes." You ask which side of the door your parents are on. The visitor lifts a candle. Its flame bends towards you even though you cannot feel a draught.
           <br><br>
-          Glass breaks behind the wall. You jump. The visitor steadies the candle without looking round. A child cries from upstairs. You start to get up, and a hand beneath the table catches your shoe. The visitor says, "Stay where it's safe." The flame still points at your chest.
+          <<if $LostLamb.marks.includes('verdict-witness-place')>>You made room for somebody who was actually there. That is why the empty chair is being watched as closely as you are.<<else>>Glass breaks behind the wall. You jump.<</if>> The visitor steadies the candle without looking round. A child cries from upstairs. You start to get up, and a hand beneath the table catches your shoe. The visitor says, "Stay where it's safe." The flame still points at your chest.
         <<option 'CN'>>
           来客松了手。五根手指在你的手背上留下浅浅的印，你用另一只拇指去揉，还不痛。空椅子前面多了只杯子，你没看见谁端过来。
           <br><br>
           <<if $LostLamb.marks.includes('verdict-preserved-gap')>>你把折纸放到杯子旁。来客的指尖划过空缺两旁的小线。“还有能钻过去的地方。”你把纸移开。<<elseif $LostLamb.marks.includes('verdict-kept-contradiction')>>你把划掉的句子放在杯子旁。来客伸手抚平，那些被划掉的词比其余字迹更黑了。手伸向下一行前，你把纸抽回来。<<else>>纸硬硬地抵着腿。来客去拿空杯，你用一只手盖住口袋。<</if>>
           <br><br>
-          <<if $LostLamb.known.auriga>>“奥里加之子在啃咬锁。”你在别处听过这个名字，说话的人不属于这个下午。<<else>>“他们在啃咬锁。”<</if>>你想到楼下那把小铜钥匙，周围围着一圈牙。“我们把洞补上。”你问，父母在门的哪一边？来客举起蜡烛。你感觉不到风，火焰却朝你弯过来。
+          <<if $LostLamb.known.auriga>>“奥里加之子在啃咬锁。”你在别处听过这个名字，说话的人不属于这个下午。<<else>>“他们在啃咬锁。”<</if>>你想到楼下那把小黄铜钥匙，周围围着一圈牙。“我们把洞补上。”你问，父母在门的哪一边？来客举起蜡烛。你感觉不到风，火焰却朝你弯过来。
           <br><br>
-          墙后有玻璃碎了，你吓得一缩。来客扶稳蜡烛，没有回头。楼上，一个孩子哭起来。你刚要站，桌下的手就抓住了鞋。来客说：“待在安全的地方。”火焰仍指着你的胸口。
+          <<if $LostLamb.marks.includes('verdict-witness-place')>>你给真正在场的人留了位置。所以那把空椅子现在和你一样受人注视。<<else>>墙后有玻璃碎了，你吓得一缩。<</if>>来客扶稳蜡烛，没有回头。楼上，一个孩子哭起来。你刚要站，桌下的手就抓住了鞋。来客说：“待在安全的地方。”火焰仍指着你的胸口。
       <</language>>
     <<case 'verdict-hear-again'>>
       <<language>>
@@ -882,7 +884,7 @@
           <br><br>
           <<if $LostLamb.marks.includes('verdict-listened-child')>>You keep looking at the wall where the stairs should be. A little door has appeared there. When the child calls, its handle trembles.<<else>>You ask them to finish. All three begin at once. You cover one ear, then the other. From either side, you hear the visitor's voice.<</if>>
           <br><br>
-          "This stays in the house." The visitor sets a silver key beside your plate. "No names through the window. No questions at the temple. Promise, and tonight the doors will stay shut." Your parent opens their mouth, then closes it. You wish they would tell you whether to say yes.
+          "What is said here stays here." The visitor sets a silver key beside your plate. "No names through the window. No questions at the temple. Promise, and tonight the doors will stay shut." Your parent opens their mouth, then closes it. You wish they would tell you whether to say yes.
           <br><br>
           You reach towards the key. The small door bangs once, and you draw your hand back. A voice on its other side calls for you. The visitor says your name too, very softly. You want the glass to stop breaking. You want your parents to look at you. <span class='red'>The visitor is asking you to promise that you will not tell anyone outside.</span> The key is close enough to take. The little door is still close enough to reach.
         <<option 'CN'>>
@@ -890,7 +892,7 @@
           <br><br>
           <<if $LostLamb.marks.includes('verdict-listened-child')>>你始终盯着本该有楼梯的墙。那里出现一扇小门。孩子一喊，把手就颤一下。<<else>>你要他们说完，三个声音一齐开口。你先捂一只耳朵，又捂另一只。从哪边听，都是来客的声音。<</if>>
           <br><br>
-          “留在这所房子里。”来客把一把银钥匙放在盘子旁。“不往窗外喊名字，不到神殿问。答应了，今晚这些门就会关着。”父母张了张嘴，又闭上。你希望他们说，要不要答应。
+          “在这里说的话，就留在这里。”来客把一把银钥匙放在盘子旁。“不往窗外喊名字，不到神殿问。答应了，今晚这些门就会关着。”父母张了张嘴，又闭上。你希望他们说，要不要答应。
           <br><br>
           你朝钥匙伸手。小门突然撞了一下，你又缩回来。门那边有声音喊你，来客也轻轻喊你的名字。你想让玻璃别再碎，想让父母看看你。<span class='red'>来客要你答应，不向屋外的人说。</span>钥匙仍然拿得到。那扇小门也仍来得及跑过去。
       <</language>>
@@ -926,11 +928,11 @@
         <<option 'CN'>>
           小门通向楼梯。你认得会绊住鞋的破边。上面是自己的卧室门。孩子在门后哭，离得那么近，还没想好说什么，你就敲了。
           <br><br>
-          “我在。”屋里同时传出同一句话。你又敲一次，另一边也有人敲。你把掌心平平地按上门板，想感觉到另一只手，只有热。
+          “我在。”你开口的同时，屋里也说出同一句话。你又敲一次，另一边也有人敲。你把掌心平平地按上门板，想感觉到另一只手，只有热。
           <br><br>
           楼下来客喊你回去，现在听着像父母。它说，门一关，就不会再开。你回头，下面的小门已经插着一把银钥匙。
           <br><br>
-          你推卧室门，把手一开始不动。先用两只手，再拿肩膀顶，折纸夹在身体与门之间。口袋里有东西撕裂。把手转了，楼下每一只杯子同时停止落下。声音还来不及让你等，你已经撞进屋里。
+          你推卧室门，把手一开始不动。先用两只手，再拿肩膀顶，折纸夹在身体与门之间。口袋里有东西撕裂。把手转了，楼下每一只杯子同时停止落下。那声音还没来得及叫你再等等，你已经撞进屋里。
       <</language>>
     <<case 'verdict'>>
       <<language>>
@@ -951,7 +953,7 @@
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('verdict-vow-sealed')>>你说，答应了。还没碰到，来客就拿走了钥匙。父母用湿布擦桌子，收起盘子，没有叫你帮忙。
           <br><br>
-          小门关上了。另一边有门闩推过去的声音。哭声喊到你的名字一半，便停住了，玻璃也不再碎。突然安静，震得耳朵难受。你等谁说，已经把孩子抱到楼下。来客却站起来了。
+          小门关上了。另一边有门闩推过去的声音。哭声刚喊到你名字的一半，便停住了，玻璃也不再碎。突然安静，震得耳朵难受。你等谁说，已经把孩子抱到楼下。来客却站起来了。
           <br><br>
           “再说一次。”你又说一遍。来客经过时，袖子擦过你的脸，冰冷而潮湿。父母仍坐着。大厅的门开了，又关，没有脚步走过。你回头，自己的座位前摆着空杯。
           <br><br>
@@ -961,7 +963,7 @@
           <br><br>
           你试着朝那里喊。声音又哑又小，分不清有没有人听见。来客从楼梯那边喊你，用父母的声音。你赶在它到门前又喊一次，仍没有回答。
           <br><br>
-          你用疼着的手撑住窗户。纸沿着折痕撕成了两半，一半字在这张，另一半在那张，找不到写名字的那一块。你攥着纸片，不让风吹走。身后，门把开始转动。你把胸口压在窗沿上，再试一次。<</if>>
+          你用疼痛的那只手撑住窗户。纸沿着折痕撕成了两半，一半字在这张，另一半在那张，找不到写名字的那一块。你攥着纸片，不让风吹走。身后，门把开始转动。你把胸口压在窗沿上，再试一次。<</if>>
       <</language>>
   <</switch>>
 <</widget>>

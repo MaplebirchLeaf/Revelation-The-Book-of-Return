@@ -49,7 +49,7 @@ Each dream retains its ending record. **Every route ends with a choice between a
 - In the kitchen, promise silence, or find the child calling upstairs. Silence quiets the house but makes later calls for help harder.
 - In the main route, give the voice your name in exchange for a house nobody leaves, or refuse and call outside. Temple help cannot restore the parents, and refusal does not end the danger.
 
-Promises carry into the next dream. **The kitchen promise changes speaking in the street, asking for help at the shop and leaving a message.** Break it to seek help, or put the note away and follow the voice indoors. Breaking silence disturbs what is in the house. Keeping it leaves nobody arranged to meet you outside the window. Calling outside at the main route's final choice also breaks the kitchen promise.
+Promises carry into the next dream. **The kitchen promise changes speaking in the street, asking for help at the shop and leaving a message.** Break it to seek help, or put the note away and follow the voice indoors. Breaking silence disturbs what is in the house. Keeping it leaves nobody arranged to meet you outside the window. Calling outside at the main route's final choice also breaks the kitchen promise if you made it. Refusing secrecy in the first place is recorded separately from breaking a promise.
 
 ### Garden branch: games, signals and the repeating afternoon
 

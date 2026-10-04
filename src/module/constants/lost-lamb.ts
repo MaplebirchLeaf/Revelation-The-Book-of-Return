@@ -20,14 +20,14 @@ export interface LostLambState {
   endings: LostLambEnding[];
   date: number;
   talk: LostLambTalk | '';
-  talkVow: 'offered' | 'sealed' | '';
+  talkVow: 'offered' | 'refused' | 'sealed' | 'broken' | '';
   known: { bishop: boolean; gwylan: boolean; auriga: boolean };
 }
 
 // 跨梦保留的约定。重走同一条路线时，只留下这次选择的结果。
 export const LOST_LAMB_VOWS: readonly (readonly string[])[] = [
   ['stay-vow-bound', 'stay-vow-broken'],
-  ['verdict-vow-sealed', 'verdict-vow-broken'],
+  ['verdict-vow-sealed', 'verdict-vow-refused', 'verdict-vow-broken'],
   ['main-vow-offered', 'main-vow-refused']
 ];
 

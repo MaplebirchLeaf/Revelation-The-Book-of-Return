@@ -90,7 +90,13 @@ export default class LostLamb extends Module {
     if (!this.talkReady || !['company', 'night', 'space'].includes(kind)) return false;
     this.state.talk = kind;
     // 重走梦境可以改变约定，已经说出口的现实交谈仍保留当时的分歧。
-    this.state.talkVow = kind === 'company' && this.state.marks.includes('main-vow-offered') ? 'offered' : kind === 'night' && this.state.marks.includes('verdict-vow-sealed') ? 'sealed' : '';
+    const { marks } = this.state;
+    this.state.talkVow = '';
+    if (kind === 'company') {
+      this.state.talkVow = marks.includes('main-vow-offered') ? 'offered' : marks.includes('main-vow-refused') ? 'refused' : '';
+    } else if (kind === 'night') {
+      this.state.talkVow = marks.includes('verdict-vow-sealed') ? 'sealed' : marks.includes('verdict-vow-broken') ? 'broken' : '';
+    }
     let effects: string;
     if (kind === 'company') {
       effects =

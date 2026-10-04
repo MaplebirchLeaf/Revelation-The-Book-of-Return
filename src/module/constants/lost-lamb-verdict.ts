@@ -49,7 +49,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
       }),
       choice('verdict-listen-closer', 'Listen for the unfinished sentence', '听那句没有说完的话', 'verdict-overheard', {
         when: ['verdict-heard'],
-        test: { stat: 'notice', threshold: 42, low: true, pass: 'verdict-overheard', fail: 'verdict-noticed' },
+        test: { stat: 'notice', threshold: 30, low: true, pass: 'verdict-overheard', fail: 'verdict-noticed' },
         change: { fear: 7 }
       })
     ]
@@ -283,7 +283,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
         change: { doubt: -18, fear: -12 }
       }),
       choice('verdict-find-child', 'Refuse and look for the child upstairs', '不答应，去找楼上的孩子', 'verdict-final-question', {
-        mark: 'verdict-vow-broken',
+        mark: 'verdict-vow-refused',
         change: { doubt: 10, fear: 12, notice: 10 }
       })
     ]

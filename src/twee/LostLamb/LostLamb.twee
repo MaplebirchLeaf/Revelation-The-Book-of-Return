@@ -4,20 +4,20 @@
     <<language>>
       <<option 'EN'>>
         <<if $LostLamb.talk is 'company'>>
-          <<if $LostLamb.talkVow is 'offered'>>Kylar looks towards the door as you enter. "Nobody's taking you away," <<nnpc_he 'Kylar'>> says, gripping the back of the chair.<br><</if>>
+          <<if $LostLamb.talkVow is 'offered'>>Kylar looks towards the door as you enter. "Nobody's taking you away," <<nnpc_he 'Kylar'>> says, gripping the back of the chair.<br><<elseif $LostLamb.talkVow is 'refused'>>Kylar pauses the game when you come in. "You came back." <<nnpc_He 'Kylar'>> glances past you before putting the controller down.<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar turns the computer chair a little, keeping both you and the doorway in view.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar glances at the place where you sat and moves a pillow aside.<<else>>Kylar leaves the sound from the computer low. There is room beside the pillows if you want to sit again.<</if>>
         <<elseif $LostLamb.talk is 'night'>>
-          <<if $LostLamb.talkVow is 'sealed'>>Kylar watches your mouth before looking at your face. "Don't say what that person said." <<nnpc_He 'Kylar'>> turns the computer's sound up.<br><</if>>
+          <<if $LostLamb.talkVow is 'sealed'>>Kylar watches your mouth before looking at your face. "Don't say what that person said." <<nnpc_He 'Kylar'>> turns the computer's sound up.<br><<elseif $LostLamb.talkVow is 'broken'>>Kylar lowers the sound when you enter. "You can tell me if it happens again." <<nnpc_He 'Kylar'>> keeps <<nnpc_his 'Kylar'>> eyes on the screen.<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar looks up as you pass the bed, then back at the door. <<nnpc_He 'Kylar'>> does not ask you to describe the dream again.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar's eyes follow you past the bed. "You slept alright?" <<nnpc_He 'Kylar'>> waits for your answer before returning to the screen.<<else>>Kylar glances towards the bed. <<nnpc_He 'Kylar'>> opens <<nnpc_his 'Kylar'>> mouth, then turns back to the game without asking.<</if>>
         <<else>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar watches you enter. <<nnpc_He 'Kylar'>> starts to turn the chair, stops, and leaves the space by the bed clear.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar looks up. "Want company this time?" <<nnpc_He 'Kylar'>> stays by the computer while you decide.<<else>>Kylar gives you a brief nod and remains at the computer, leaving you to choose where to sit.<</if>>
         <</if>>
       <<option 'CN'>>
         <<if $LostLamb.talk is 'company'>>
-          <<if $LostLamb.talkVow is 'offered'>>你进来时，凯拉尔望了望门。“谁也别想把你带走。”<<nnpc_he 'Kylar'>>说着，抓紧了椅背。<br><</if>>
+          <<if $LostLamb.talkVow is 'offered'>>你进来时，凯拉尔望了望门。“谁也别想把你带走。”<<nnpc_he 'Kylar'>>说着，抓紧了椅背。<br><<elseif $LostLamb.talkVow is 'refused'>>你进来时，凯拉尔暂停了游戏。“你回来了。”<<nnpc_He 'Kylar'>>朝你身后看了一眼，才放下手柄。<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔稍稍转动电脑椅，让你和门口都留在视线里。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔看了一眼你先前坐过的地方，把一只枕头挪到旁边。<<else>>凯拉尔没有调高电脑的音量。如果你还想坐一会儿，枕头旁边有空位。<</if>>
         <<elseif $LostLamb.talk is 'night'>>
-          <<if $LostLamb.talkVow is 'sealed'>>凯拉尔先看你的嘴唇，才看向你的脸。“别再说那个人的话。”<<nnpc_He 'Kylar'>>调高了电脑音量。<br><</if>>
+          <<if $LostLamb.talkVow is 'sealed'>>凯拉尔先看你的嘴唇，才看向你的脸。“别再说那个人的话。”<<nnpc_He 'Kylar'>>调高了电脑音量。<br><<elseif $LostLamb.talkVow is 'broken'>>你进来时，凯拉尔调低了音量。“再梦到的话，可以告诉我。”<<nnpc_He 'Kylar'>>的眼睛仍盯着屏幕。<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>你经过床边时，凯拉尔抬头看你，又看向房门。<<nnpc_He 'Kylar'>>没有让你再讲一次那个梦。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>你经过床边时，凯拉尔的目光跟着你。“你睡得还好吗？”听到你的回答后，<<nnpc_he 'Kylar'>>才重新看向屏幕。<<else>>凯拉尔瞥向床边，张了张嘴，最后什么也没问，转回去继续游戏。<</if>>
         <<else>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔看着你进来。<<nnpc_He 'Kylar'>>刚要转动椅子，又停住了，床边的空位没有被占去。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔抬起头。“这次想让我陪着吗？”你还在考虑，<<nnpc_he 'Kylar'>>便留在电脑旁等着。<<else>>凯拉尔对你轻轻点头，仍坐在电脑前，让你自己挑个地方坐下。<</if>>
@@ -70,10 +70,10 @@
         <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('stay-vow-bound')>>You gave Sydney's name to the lock. The figure stayed, and neither of you could leave.<<else>>You left the afternoon with torn paper. The knocks followed you.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('stay-vow-bound')>>你把悉尼的名字交给锁。那身影留下了，你们谁也不能出门。<<else>>你握着撕破的纸离开下午。敲击声跟了过来。<</if>><</language>></li>
       <</if>>
       <<if $LostLamb.endings.includes('verdict')>>
-        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>You promised to keep the visitor's words inside. Asking for help would break that promise.<<else>>You refused to keep the visitor's secret. The child was still calling upstairs.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>你答应把来客的话藏在屋里。开口求助，就会违背约定。<<else>>你没有替来客保密。孩子仍在楼上喊人。<</if>><</language>></li>
+        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>You promised to keep the visitor's words inside. Asking for help would break that promise.<<elseif $LostLamb.marks.includes('verdict-vow-broken')>>You broke your promise to the visitor and called for help outside.<<else>>You refused to keep the visitor's secret. The child was still calling upstairs.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>你答应把来客的话藏在屋里。开口求助，就会违背约定。<<elseif $LostLamb.marks.includes('verdict-vow-broken')>>你违背了与来客的约定，向屋外的人求助。<<else>>你没有替来客保密。孩子仍在楼上喊人。<</if>><</language>></li>
       <</if>>
       <<if $LostLamb.endings.includes('main')>>
-        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('main-vow-offered')>>You gave the voice your name. Nobody left the house. Nobody answered you.<<else>>You refused to give your name. Someone outside answered, but the scratching did not stop.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('main-vow-offered')>>你把自己的名字交给声音。屋里谁也没离开，谁也不再答应你。<<else>>你没有交出名字。屋外有人回应，刮擦声却没有停下。<</if>><</language>></li>
+        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('main-vow-offered')>>You gave the voice your name. Nobody left the house. Nobody answered you.<<elseif $LostLamb.marks.includes('main-vow-refused')>>You refused to give your name and called to the window. The knocking did not stop.<<else>>You woke before the voice at the door finished asking.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('main-vow-offered')>>你把自己的名字交给声音。屋里谁也没离开，谁也不再答应你。<<elseif $LostLamb.marks.includes('main-vow-refused')>>你没有交出名字，朝窗户喊了人。敲击声没有停下。<<else>>门边的声音还没问完，你就醒了。<</if>><</language>></li>
       <</if>>
       <<if maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
         <li class='teal'><<language>><<option 'EN'>>You remember another voice beneath both dreams. Return to the manor to listen for it.<<option 'CN'>>你记得两种梦境下都藏着另一个声音。回到庄园，可以再听一听。<</language>></li>
@@ -87,7 +87,7 @@
 <<if maplebirch.get('LostLamb')?.available>>
   <<language>>
     <<option 'EN'>>
-      You rest a hand on one of Kylar's pillows. You remember the dust in the attic, the light coming on, the spikes of silver and bronze surrounding an empty centre. The upper edge looked as though part of it had been hacked away. Kylar had not known it was there. "I didn't think my parents were religious."
+      <<if $LostLamb.marks.includes('promised')>>You kept the unfinished drawing safe, the way you said you would. You rest a hand on one of Kylar's pillows. You remember the dust in the attic, the light coming on, the spikes of silver and bronze surrounding an empty centre.<<else>>You rest a hand on one of Kylar's pillows. You remember the dust in the attic, the light coming on, the spikes of silver and bronze surrounding an empty centre.<</if>> The upper edge looked as though part of it had been hacked away. Kylar had not known it was there. "I didn't think my parents were religious."
       <br><br>
       When you asked about the change, <<nnpc_he 'Kylar'>> could only describe the night around it. <<nnpc_His 'Kylar'>> parents were excited. They put <<nnpc_him 'Kylar'>> to bed early. Windows broke below. <<nnpc_He 'Kylar'>> hid under the covers. By morning, they were different.
       <br><br>
@@ -95,7 +95,7 @@
       <<if $kylar_manor_secret gte 3>>The bishop said Kylar's parents had unknowingly befriended servants of Auriga. He spoke of an altar and a blood moon. They begged for their child to be spared. You remember how easily he admitted what he had done.<br><br><</if>>
       You lie down. A door closes somewhere in the house. Before the footsteps fade, you almost hear someone calling a child downstairs for supper.
     <<option 'CN'>>
-      你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。上缘扭曲着，像是被砍掉过一部分。凯拉尔之前并不知道它在那里。“我没觉得父母信教。”
+      <<if $LostLamb.marks.includes('promised')>>你说过会留着那幅没画完的画，你确实留住了。你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<<else>>你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<</if>>上缘扭曲着，像是被砍掉过一部分。凯拉尔之前并不知道它在那里。“我没觉得父母信教。”
       <br><br>
       问起异变时，<<nnpc_he 'Kylar'>>只能说出围绕它的那个夜晚。父母很兴奋，让<<nnpc_him 'Kylar'>>早点上床。楼下的窗户碎了。<<nnpc_He 'Kylar'>>藏在被子下面。到了早晨，他们已经不一样。
       <br><br>
