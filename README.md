@@ -6,7 +6,7 @@
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**默示录：归途之书**是基于[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)的 _Degrees of Lewdity_ 剧情模组。**1.1.0 包含罗宾神殿路线、混乱誓约、神殿唱诗班与凯拉尔的「迷途羔羊」梦境**，后续将继续扩充人物故事与新的剧情模块。
+**默示录：归途之书**是基于[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)的 _Degrees of Lewdity_ 剧情模组。**1.1.1 包含罗宾神殿路线、混乱誓约、神殿唱诗班与凯拉尔的「迷途羔羊」梦境**，后续将继续扩充人物故事与新的剧情模块。
 
 ---
 
@@ -14,7 +14,7 @@
 
 - [安装与前置](#安装与前置)
 - [模块与游戏指南](#模块与游戏指南)
-- [1.1.0 当前内容](#110-当前内容)
+- [1.1.1 当前内容](#111-当前内容)
 - [与枯木逢春联动](#与枯木逢春联动)
 - [后续更新](#后续更新)
 - [致谢与相关项目](#致谢与相关项目)
@@ -42,7 +42,7 @@
 
 同时安装并启用**枯木逢春 1.3.0**时，在侧边栏打开**模组提示**，可查看归途之书的详细章节。目录支持章节跳转、搜索和右侧模块复选框。指南按前置条件、解锁、地点、步骤、效果和常见问题展开，当前进度及下一步可查**游戏日志 → 罗宾与神殿／神殿唱诗班／凯拉尔的庄园**。
 
-## 1.1.0 当前内容
+## 1.1.1 当前内容
 
 ### 罗宾神殿路线
 
@@ -94,7 +94,7 @@ PC 成为适用的神殿成员后，在**神殿大厅**向约旦询问唱诗班�
 
 ## 后续更新
 
-1.1.0 的当前内容以本页所列路线和梦境为准，不代表模组的全部规划。后续将继续完善已推出的路线，并增加更多人物故事与独立剧情模块。新内容及其前置条件会随版本写入发布说明和游戏指南。
+1.1.1 的当前内容以本页所列路线和梦境为准，不代表模组的全部规划。后续将继续完善已推出的路线，并增加更多人物故事与独立剧情模块。新内容及其前置条件会随版本写入发布说明和游戏指南。
 
 ## 致谢与相关项目
 
@@ -103,7 +103,7 @@ PC 成为适用的神殿成员后，在**神殿大厅**向约旦询问唱诗班�
 - [Degrees of Lewdity](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 - [秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 - [枯木逢春](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
-- [1.1.0 更新说明](.github/release-notes/v1.1.0.md)
+- [1.1.1 更新说明](.github/release-notes/v1.1.1.md)
 
 ## 问题反馈
 
