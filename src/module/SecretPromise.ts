@@ -128,7 +128,9 @@ export default class SecretPromise {
   public get active(): boolean {
     return (
       ['travelling', 'decision', 'ritual'].includes(this.state.stage) &&
-      ((this.state.night === Time.days && Time.hour >= 21 && Time.isBloodMoon()) || (this.state.night === Time.days - 1 && Time.hour < 5)) &&
+      // 原版 Time.days 在 07:00 递增，午夜后的同行仍属于出发时的同一游戏日。
+      this.state.night === Time.days &&
+      ((Time.hour >= 21 && Time.isBloodMoon()) || Time.hour < 5) &&
       this.eligible &&
       (this.state.stage !== 'ritual' || (this.wants.Robin && this.wants.Sydney)) &&
       (this.state.stage === 'decision' || (this.state.prepared && this.state.robin_day >= 0 && this.state.sydney_day >= 0)) &&
@@ -240,15 +242,5 @@ export default class SecretPromise {
     this.state.stage = 'complete';
     this.state.rite_done = true;
     return true;
-  }
-
-  public abort(): void {
-    if (!['travelling', 'decision', 'ritual'].includes(this.state.stage)) return;
-    this.state.stage = 'research';
-    this.state.trial = '';
-    this.state.rite_active = false;
-    // 再次出行需重新私下确认，不能沿用一次冒险前的同意。
-    this.state.robin_day = this.state.sydney_day = -1;
-    this.state.prepared = false;
   }
 }

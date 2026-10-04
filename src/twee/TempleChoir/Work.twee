@@ -8,27 +8,21 @@
 
 <<widget 'temple-choir-journal'>>
   <<if $TempleChoir.joined>>
-    <<language>>
-      <<option 'EN'>>
-        <h2 class='gold'>Temple choir</h2>
-        Practice is available from 09:00 to 18:00, once a day, outside Sunday mass. Choir service begins on Sunday between 11:00 and 13:00 and takes one hour. Each completed service adds <span class='gold'>£70</span> plus <span class='gold'>£20</span> per performance point to your monthly allowance, up to <span class='gold'>£250</span> per service. The extra money is paid with your temple allowance after a successful monthly examination.<br>
-        Uncollected choir earnings: <span class='gold'><<printmoney $TempleChoir.bonus>></span>.<br>
-        Practices completed: <<= $TempleChoir.practices>>. Services completed: <<= $TempleChoir.services>>.<br>
-        <<if $TempleChoir.lead>><span class='green'>Jordan trusts you to lead the responses.</span><<else>>Jordan considers a lead singer after three practices, three services, base singing at grade B and at least five points in one service.<</if>>
-      <<option 'CN'>>
-        <h2 class='gold'>神殿唱诗班</h2>
-        每天 09:00 至 18:00 可练习一次，周日弥撒期间暂停。唱诗在周日 11:00 至 13:00 之间开始，耗时一小时。每次完成唱诗为月度津贴增加 <span class='gold'>£70</span>，每分表现再增加 <span class='gold'>£20</span>，单次最高增加 <span class='gold'>£250</span>。加款在月度检查通过后随神殿津贴一并领取。<br>
-        尚未领取的唱诗加款：<span class='gold'><<printmoney $TempleChoir.bonus>></span>。<br>
-        已完成练习：<<= $TempleChoir.practices>> 次。已完成唱诗：<<= $TempleChoir.services>> 次。<br>
-        <<if $TempleChoir.lead>><span class='green'>约旦已允许你领唱答唱。</span><<else>>完成三次练习和三次唱诗，基础歌唱达到 B 级，并在一次唱诗中取得至少五分后，约旦会考虑让你领唱。<</if>>
-    <</language>>
+    <h2 class='gold'><<lanSwitch 'Temple choir' '神殿唱诗班'>></h2>
+    <ul class='journal'>
+      <li><<lanSwitch 'Practice: 09:00–18:00, once a day, except during Sunday mass (0:30). Service: Sunday, 11:00–13:00 (1:00).' '练习：每天 09:00–18:00 一次，周日弥撒期间暂停（0:30）。唱诗：周日 11:00–13:00（1:00）。'>></li>
+      <<if $TempleChoir.bonus gt 0>>
+        <li><<lanSwitch 'Uncollected choir earnings: ' '尚未领取的唱诗加款：'>><span class='gold'><<printmoney $TempleChoir.bonus>></span><<lanSwitch '. Collect them with your temple allowance after a successful monthly examination.' '。月度检查通过后，随神殿津贴领取。'>></li>
+      <</if>>
+      <li><<if $TempleChoir.lead>><<lanSwitch 'Jordan has allowed you to lead the responses.' '约旦已允许你领唱答唱。'>><<else>><<lanSwitch 'Regular practice, completed services and good singing help you qualify to lead the responses.' '坚持练习、完整参加唱诗并提高歌唱表现，可以争取领唱答唱的资格。'>><</if>></li>
+    </ul>
     <hr>
   <</if>>
 <</widget>>
 
 :: TempleChoir Practice
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
-<<if maplebirch.get('TempleChoir').practice>>
+<<if maplebirch.get('TempleChoir')?.practice>>
   <<language>>
     <<option 'EN'>>
       The choir gathers around a row of pews. Someone opens the prayer book at Sunday's hymn, while another sounds the starting note. A senior singer asks what you need to work on.<br><br>
@@ -46,6 +40,10 @@
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 
 :: TempleChoir Practice Result
+<<if !maplebirch.get('TempleChoir')>>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
+  <<exit>>
+<</if>>
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<switch $TempleChoir.exercise>>
   <<case 'breath'>>
@@ -68,7 +66,7 @@
 
 :: TempleChoir Mass
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Jordan>><<person1>>
-<<if maplebirch.get('TempleChoir').active and $TempleChoir.shift.round lt 3>>
+<<if maplebirch.get('TempleChoir')?.active and $TempleChoir.shift.round lt 3>>
   <<if $TempleChoir.shift.round gt 0>>
     <<switch $TempleChoir.shift.result>>
       <<case 'clear'>>
@@ -102,7 +100,7 @@
   <</language>><br><br>
   <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗'] 'Temple'>><<set $TempleChoir.shift to null>><<endevent>><</lanLink>><br>
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
-<<elseif maplebirch.get('TempleChoir').active and $TempleChoir.shift.round is 3>>
+<<elseif maplebirch.get('TempleChoir')?.active and $TempleChoir.shift.round is 3>>
   <<set _choirWasLead to $TempleChoir.lead>>
   <<if maplebirch.get('TempleChoir').finish()>>
     <<purity 10>><<grace 2>>

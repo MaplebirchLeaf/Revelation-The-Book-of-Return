@@ -43,7 +43,7 @@
 
 :: TempleChoir Audition
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>>
-<<if !maplebirch.get('TempleChoir').member>>
+<<if !maplebirch.get('TempleChoir')?.member>>
   <<language>>
     <<option 'EN'>>
       The choir is for members of the temple. Jordan will not discuss it with you yet.
