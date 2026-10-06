@@ -1,0 +1,58 @@
+:: TempleChoir Singing Widgets [widget]
+<<widget 'temple-choir-field-practice'>>
+  <<if _args[0] is 'pub'>>
+    <<if $TempleChoir.singing lt 300>>
+      <<language>>
+        <<option 'EN'>>
+          Your voice comes easily. Finding room for it beside the instrument takes more care. You draw out a note, and the musician repeats a few bars rather than leave you behind. Someone at a nearby table starts tapping a glass with a spoon. You catch the beat on the next verse. <span class='green'>This time, the accompaniment meets you exactly where you wanted it.</span>
+        <<option 'CN'>>
+          歌声自然地从喉间流出，要让它与伴奏合拍，却还得多费些心思。你拖长了一个音，艺人便多弹了几小节，没有把你落下。邻桌有人拿汤匙轻敲杯子。下一句，你循着拍子开口，<span class='green'>伴奏恰好接住了你的声音。</span>
+      <</language>>
+    <<elseif $TempleChoir.singing lt 600>>
+      <<language>>
+        <<option 'EN'>>
+          You leave a little space at the end of a phrase. The musician fills it, then glances up with a grin. You answer on the next beat. A drink stops halfway to someone's mouth. Another patron nudges their neighbour, pointing you out. <span class='blue'>For a few bars, the conversations nearest you fall quiet.</span>
+        <<option 'CN'>>
+          一句唱完，你留出短短的空隙。艺人用伴奏填上，抬头朝你一笑。下一拍，你接着唱了下去。有人端起酒杯，忘了送到嘴边；还有人碰了碰同伴的胳膊，指给对方看。<span class='blue'>几小节间，附近的谈话声低了下去。</span>
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          The musician tries a quicker flourish. You catch it, hold back your next note, then let it rise through the accompaniment. <<He>> laughs without missing a beat. Someone whistles from the bar. <<if $speech_attitude is 'meek'>>You keep your eyes on the instrument, though your smile is difficult to hide.<<elseif $speech_attitude is 'bratty'>>You give the musician a look that dares <<him>> to try that again.<<else>>You nod to <<him>> and carry the song onward.<</if>> <span class='green'>Neither of you needs to stop and find the other.</span>
+        <<option 'CN'>>
+          艺人忽然弹出一串更快的音符。你听准了，稍稍收住下一句，再让歌声从伴奏中扬起。<<He>>笑出了声，手上的拍子却没乱。吧台那边有人吹了声口哨。<<if $speech_attitude is 'meek'>>你仍盯着乐器，嘴角的笑却藏不住。<<elseif $speech_attitude is 'bratty'>>你瞥了艺人一眼，像是在问<<he>>还敢不敢再来一次。<<else>>你朝<<him>>点点头，接着唱了下去。<</if>><span class='green'>谁也不必停下来等对方。</span>
+      <</language>>
+    <</if>>
+  <<elseif $bird.state is 'home' and ['sing', 'groom'].includes($bird.activity)>>
+    <<if $TempleChoir.singing lt 300>>
+      <<language>>
+        <<option 'EN'>>
+          You try to follow the whole phrase in one breath. Your voice gives out before <<bhis>> does. The <<beasttype>> tilts <<bhis>> head and repeats a shorter call. You copy it. Then another. <<if $monster is 1>>"Again," <<bhe>> says, spreading <<bhis>> wings. "Louder."<<else>><<bHe>> spreads <<bhis>> wings as you answer, then calls again.<</if>> <span class='blue'>It is easier when you know where to breathe.</span>
+        <<option 'CN'>>
+          你试着一口气跟完整句，声音却比<<bhis>>先断了。<<beasttype>>偏了偏头，重新唱出短一些的句子。你跟着学了一遍，再一遍。<<if $monster is 1>>“再来，”<<bhe>>展开翅膀说，“大声些。”<<else>>听见你的回应，<<bhe>>展开翅膀，又唱了一声。<</if>><span class='blue'>找准换气的地方，便容易跟上多了。</span>
+      <</language>>
+    <<elseif $TempleChoir.singing lt 600>>
+      <<language>>
+        <<option 'EN'>>
+          You wait for a break in <<bhis>> song, then answer. The <<beasttype>> turns towards you. <<if $birdBask is 1>>You feel <<bhis>> chest stir against you as <<bhe>> takes another breath.<<else>><<bHe>> draws closer along the perch.<</if>> This time, you begin together. <span class='green'>Your voices hold the same note before parting again.</span>
+        <<option 'CN'>>
+          你等<<bhis>>的歌声稍停，再开口应和。<<beasttype>>转向你。<<if $birdBask is 1>>你贴着<<bhis>>的胸膛，感觉到<<bhe>>再次吸气。<<else>><<bHe>>沿着栖木靠近了些。<</if>>这一回，你们同时开口，<span class='green'>两个声音在同一个音上相合，又各自散开。</span>
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          You pick up the song before <<bhe>> has quite finished, carrying the note while <<bhe>> draws breath. <<bHe>> returns the favour a moment later. The wind tugs at you, but the song continues. <<if $monster is 1>>"Let them hear us," <<bhe>> says between phrases.<<else>><<bHe>> lifts <<bhis>> beak and sends the next call far over the moor.<</if>> <span class='green'>You finish together, your last notes hanging in the air.</span>
+        <<option 'CN'>>
+          <<bHe>>还未唱完，你便接过了旋律，替换气的<<bhim>>托住那个音。片刻后，<<bhe>>也接住了你的尾音。风拉扯着你的身体，歌声却没有断。<<if $monster is 1>>“让它们听见我们，”<<bhe>>在两句之间说。<<else>><<bHe>>仰起喙，下一声鸣唱远远传过荒原。<</if>><span class='green'>最后，你们一同收住声音，尾音仍在空中回荡。</span>
+      <</language>>
+    <</if>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $TempleChoir.singing lt 300>>You start again, choosing a shorter phrase. There is no other voice to cover the pause when you run out of breath. You listen to the silence, then try once more.<<else>>You repeat the phrase, listening for the point where your voice begins to waver. The next time, you breathe before it comes.<</if>> <<if $bird.state is 'hunting'>>You turn towards the open moor. Nothing close by answers.<<else>>You glance towards the nest, then turn back to the wind.<</if>> <span class='blue'>The last note holds a little longer.</span>
+      <<option 'CN'>>
+        <<if $TempleChoir.singing lt 300>>你重新开口，换了一句短些的。气息用尽时，没有另一个声音替你填上空隙。你听了听四周的寂静，再试一次。<<else>>你重唱了一句，仔细听声音从哪里开始不稳。下一遍，你在那之前换了气。<</if>><<if $bird.state is 'hunting'>>你望向开阔的荒原。近处没有声音应答。<<else>>你朝巢里看了一眼，又转向迎面吹来的风。<</if>><span class='blue'>这次的尾音，比刚才多留了一会儿。</span>
+    <</language>>
+  <</if>>
+  <<if _args[0] isnot 'pub'>><br><br><</if>>
+<</widget>>

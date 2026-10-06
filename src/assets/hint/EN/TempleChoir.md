@@ -22,6 +22,16 @@ Return to the **temple hall** for **Attend choir practice**. Practice is availab
 
 All three share the daily practice allowance. Merely opening the practice page does not count. Choosing an exercise records it. **Practice within the last two days** helps your Sunday performance. Older practice no longer provides this benefit.
 
+### Practice outside the temple
+
+With the choir module enabled, these activities train singing even before you join the temple or choir.
+
+- **Pub musician:** The native full-harpy **Sing along** option adds 10 base singing points. Tipping and listening do not train singing; the musician retains the native weekly availability rules.
+- **Tower perch:** The native **Sing (0:30)** action adds 8 base singing points. The Great Hawk’s response still follows the native schedule, transformation and relationship conditions. Singing alone also provides practice.
+- **Harpy bonus:** At transformation level 3, current singing performance receives a 20% bonus. This does not add base skill or replace the requirements for leading the choir.
+
+Practice respects the skill cap and stat freeze. These activities do not count as choir rehearsals or earn temple pay.
+
 ### Singing grades and performance
 
 Find **Singing** under **Character → Characteristics → Skills**. It uses the original skill-card grades: **None, F, F+, D, D+, C, C+, B, B+, A, A+, S**, with S as the highest grade.
