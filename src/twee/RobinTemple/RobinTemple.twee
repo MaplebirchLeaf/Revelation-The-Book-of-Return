@@ -92,7 +92,7 @@
         罗宾暂时无法到场。等<<nnpc_he 'Robin'>>能够参加时，再一同接受检查。
     <</language>>
     <br><br>
-    <<getouticon>><<lanLink ['Leave the temple (0:01)', '离开神殿 (0:01)'] 'Town'>><<pass 1>><</lanLink>><br>
+    <<getouticon>><<lanLink ['Leave the temple (0:01)', '离开神殿 (0:01)'] 'Wolf Street'>><<pass 1>><</lanLink>><br>
   <<elseif $RobinTemple.punish>>
     <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
   <<else>>

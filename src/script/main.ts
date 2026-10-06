@@ -17,7 +17,11 @@ import LostLamb from './LostLamb';
       locationPassage: {
         Temple: [
           { src: '<<templeicon "pray">>', applybefore: "<<set _revelationTempleLinks to 'pray'>>", expected: 1 },
-          { src: '<<if $angel gte 6>>', applybefore: "<<set _revelationTempleLinks to 'mass'>>", expected: 1 }
+          {
+            src: '<<if Time.weekDay is 1 and Time.hour gte 11 and Time.hour lte 12 and $daily.massAttended isnot 1 and $exposed lte 0 and C.npc.Jordan.init is 1>>',
+            applyafter: "<<set _revelationTempleLinks to 'mass'>>",
+            expected: 1
+          }
         ]
       }
     });

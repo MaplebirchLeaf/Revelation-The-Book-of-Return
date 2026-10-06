@@ -16,7 +16,7 @@
     <<option 'EN'>>
       "I meant what I said at the altar," <<he>> says. "Even when I've got work, or the orphanage needs me."
     <<option 'CN'>>
-      “我在祭坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
+      “我在圣坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
   <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink ['Ask Robin how the new vow feels', '问罗宾是否习惯了新的誓言'] 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
@@ -38,7 +38,7 @@
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
       <<option 'EN'>>
-        "I meant it," <<he>> says quietly. "I just… some days I still worry I'll do something wrong." You let <<him>> finish. After a while, <<he>> looks up. "Could we talk here again tomorrow?"
+        "I meant it," <<he>> says quietly. "I just... some days I still worry I'll do something wrong." You let <<him>> finish. After a while, <<he>> looks up. "Could we talk here again tomorrow?"
       <<option 'CN'>>
         “我是真心的，”<<he>>轻声说，“只是……有时候还是怕自己做错什么。”你等<<him>>把话说完。过了一会儿，<<he>>抬起头。“明天还能在这里说说话吗？”
     <</language>>
@@ -91,7 +91,7 @@
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
       <<option 'EN'>>
-        "I still get nervous," <<he>> admits quietly. "But I want to try. I want… your hands, and yours on mine. Just go slow, and stop if I ask."
+        "I still get nervous," <<he>> admits quietly. "But I want to try. I want... your hands, and yours on mine. Just go slow, and stop if I ask."
       <<option 'CN'>>
         “我还是会紧张，”<<he>>低声说，“可是我想试试。想要……你的手，也想碰碰你。慢一点就好，我说停的时候就停。”
     <</language>>
@@ -105,7 +105,7 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I keep imagining it," <<he>> confesses, face warm. "Being close to you. Your hands, and mine. I'd like that… only if you want it too."
+        "I keep imagining it," <<he>> confesses, face warm. "Being close to you. Your hands, and mine. I'd like that... only if you want it too."
       <<option 'CN'>>
         “我一直在想象，”<<he>>红着脸轻声说，“和你靠得很近。你的手，还有我的手。我想那样……只有你也愿意才行。”
     <</language>>
@@ -237,14 +237,14 @@
     <<if $enemyarousal gte $enemyarousalmax>>
       <<language>>
         <<option 'EN'>>
-          Robin shudders against you, holding on until it passes. "That was… a lot," <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
+          Robin shudders against you, holding on until it passes. "That was... a lot," <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
         <<option 'CN'>>
           罗宾贴着你发抖，一直抱到你停下才松开手。“这也……太过了，”<<he>>喘着气说，随后不好意思地笑了一声，“我大概是需要这个。”
       <</language>>
     <<elseif $enemyhealth lte 0>>
       <<language>>
         <<option 'EN'>>
-          Robin collapses against you, completely spent. "You… you really went all out," <<he>> says with a weak laugh.
+          Robin collapses against you, completely spent. "You... you really went all out," <<he>> says with a weak laugh.
         <<option 'CN'>>
           罗宾彻底脱力地靠在你身上。“你……你真的很用力啊，”<<he>>虚弱地笑了笑。
       <</language>>
@@ -258,7 +258,7 @@
     <<else>>
       <<language>>
         <<option 'EN'>>
-          Robin is still breathing hard. "We should stop… the others will be back soon." <<He>> looks reluctant to let go.
+          Robin is still breathing hard. "We should stop... the others will be back soon." <<He>> looks reluctant to let go.
         <<option 'CN'>>
           罗宾还在大口喘气。“该停了……他们快回来了。”<<He>>看起来不太情愿松手。
       <</language>>

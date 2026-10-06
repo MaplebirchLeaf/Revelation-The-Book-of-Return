@@ -376,7 +376,7 @@
   <<elseif $RobinTemple.faith_transition is 'belief'>>
     <<language>>
       <<option 'EN'>>
-        Robin rests <<his>> hands on the closed prayer book. "I kept thinking about why I came here," <<he>> says. "At first it was because you asked. But the people I've helped… I don't want to stop helping them." <<He>> looks toward the hall. "I think I'd come back even if you couldn't come with me."
+        Robin rests <<his>> hands on the closed prayer book. "I kept thinking about why I came here," <<he>> says. "At first it was because you asked. But the people I've helped... I don't want to stop helping them." <<He>> looks toward the hall. "I think I'd come back even if you couldn't come with me."
       <<option 'CN'>>
         罗宾把双手放在合起的祈祷书上。“我一直在想，自己为什么来这里，”<<he>>说，“起初是因为你邀请我。可是那些我帮过的人……我不想就这样不管了。”<<He>>望向大厅。“我想，就算你有事不能陪我，我也会回来。”
     <</language>>

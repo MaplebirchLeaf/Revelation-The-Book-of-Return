@@ -265,7 +265,7 @@
 <<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
   <<language>>
     <<option 'EN'>>
-      Robin glances at you before speaking. "Could we… make a promise together?" <<he>> asks. <<His>> fingers close around yours while Jordan asks to see your work records.
+      Robin glances at you before speaking. "Could we... make a promise together?" <<he>> asks. <<His>> fingers close around yours while Jordan asks to see your work records.
     <<option 'CN'>>
       罗宾先看了你一眼。“我们能不能……一起立誓？”<<he>>问。约旦提出查看你们的工作记录时，<<his>>手指握住了你的手。
   <</language>>
