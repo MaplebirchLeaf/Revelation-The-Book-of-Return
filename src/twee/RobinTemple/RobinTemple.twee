@@ -29,6 +29,13 @@
       <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the temple', '和罗宾谈谈神殿'] 'RobinTemple Invitation'>><</lanLink>><br>
     <<elseif $RobinTemple.stage is 'invited'>>
       <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the purity trial', '问罗宾纯洁试炼的事'] 'RobinTemple Schedule'>><</lanLink>><br>
+    <<elseif maplebirch.get('RobinTemple').assessmentReady
+      and maplebirch.get('RobinTemple').canMeetJordan
+      and (Time.hour lt 17 or Time.minute lt 40)>>
+      <<templeicon 'altar'>><<lanLink ["Accompany Robin to the purity trial (0:20)", '陪罗宾去参加纯洁试炼 (0:20)'] 'Temple Quarters'>>
+        <<run maplebirch.get('RobinTemple').visit(20)>>
+        <<pass 20>>
+      <</lanLink>><br>
     <<elseif $RobinTemple.stage is 'scheduled'
       and Time.days lt $RobinTemple.exam_day
       and $RobinTemple.prepared_day isnot Time.days

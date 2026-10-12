@@ -6,20 +6,6 @@
   <</if>>
 <</widget>>
 
-<<widget 'temple-choir-journal'>>
-  <<if $TempleChoir.joined>>
-    <h2 class='gold'><<lanSwitch 'Temple choir' '神殿唱诗班'>></h2>
-    <ul class='journal'>
-      <li><<lanSwitch 'Practice: 09:00–18:00, once a day, except during Sunday mass (0:30). Service: Sunday, 11:00–13:00 (1:00).' '练习：每天 09:00–18:00 一次，周日弥撒期间暂停（0:30）。唱诗：周日 11:00–13:00（1:00）。'>></li>
-      <<if $TempleChoir.bonus gt 0>>
-        <li><<lanSwitch 'Uncollected choir earnings: ' '尚未领取的唱诗加款：'>><span class='gold'><<printmoney $TempleChoir.bonus>></span><<lanSwitch '. Collect them with your temple allowance after a successful monthly examination.' '。月度检查通过后，随神殿津贴领取。'>></li>
-      <</if>>
-      <li><<if $TempleChoir.lead>><<lanSwitch 'Jordan has allowed you to lead the responses.' '约旦已允许你领唱答唱。'>><<else>><<lanSwitch 'Regular practice, completed services and good singing help you qualify to lead the responses.' '坚持练习、完整参加唱诗并提高歌唱表现，可以争取领唱答唱的资格。'>><</if>></li>
-    </ul>
-    <hr>
-  <</if>>
-<</widget>>
-
 :: TempleChoir Practice
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<if maplebirch.get('TempleChoir')?.practice>>

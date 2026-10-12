@@ -22,6 +22,8 @@ Return to the **temple hall** for **Attend choir practice**. Practice is availab
 
 All three share the daily practice allowance. Merely opening the practice page does not count. Choosing an exercise records it. **Practice within the last two days** helps your Sunday performance. Older practice no longer provides this benefit.
 
+- **Pirate deck**: Joining a shanty raises base singing by 6; attempting to lead raises it by 10. Success, pirate respect and the original bird transformation check retain their native rules. An unsuccessful lead still counts as practice.
+
 ### Practice outside the temple
 
 With the choir module enabled, these activities train singing even before you join the temple or choir.

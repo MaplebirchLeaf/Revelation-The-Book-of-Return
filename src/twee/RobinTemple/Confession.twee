@@ -40,7 +40,7 @@
         <</language>>
       <</if>>
       <<language>>
-        <<option 'EN'>>"I... I should have told you earlier. I'm sorry."<<option 'CN'>>“我……应该提前告诉你的，抱歉。”
+        <<option 'EN'>>“I... I should have told you earlier. I'm sorry.”<<option 'CN'>>“我……应该提前告诉你的，抱歉。”
       <</language>>
     <</if>>
   <<else>>
@@ -216,7 +216,7 @@
               <br><br>
               “我一直在想这种事。”<<he>>深吸一口气，“我和我的爱人缔结了契约，亲密无间。但如果我们中的任何一方违背誓言与别人结合，我们就会受到惩罚。至少我们会一起受到惩罚，不是吗？但是……”
               <br><br>
-              <<his>>的声音带着一丝哭腔。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我最爱的人被侵犯了怎么办？”<<he>>问道。“对不起，<<sister>>，但为此惩罚<<pher>>，怎么想都不对。”话语像雨水般洒出。你感觉到<<his>>的眼泪流到地面，等待着你做出回应。<<stress 3>><<gstress>>
+              <<his>>的声音里有个顿挫。很轻微，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我最爱的人被侵犯了怎么办？”<<he>>问道。“对不起，<<sister>>，但为此惩罚<<pher>>，怎么想都不对。”话像决堤一样涌出来。<span class="lewd">你感觉到<<his>>的疑虑顶在你的嘴唇上，想硬挤进来。</span><<stress 3>><<gstress>>
               <br><br>
               “我不是<<pshe>>求着发生这种事。但为此惩罚<<pher>>是公正合理的吗？为什么我也要跟<<pher>>一起受罚？”<<He>>停顿了一下，“我不该这么自私，我想我也得请求宽恕。”
             <</if>>
@@ -260,20 +260,20 @@
   <<if $angel gte 6 or ($confessionsTaken gte 10 and $grace gte 25)>>
     <<language>>
       <<option 'EN'>>You stand and draw the shape of a cross against the seal of confession.
-        "I name you forgiven by word. You must still forgive yourself by act," you say with confidence.<<option 'CN'>>你站起身，对着木条墙画了一个十字。
+        “I name you forgiven by word. You must still forgive yourself by act,” you say with confidence.<<option 'CN'>>你站起身，对着木条墙画了一个十字。
         “我以言辞宽恕你，但你也必须用实际行动宽恕自己。”你自信地说。
     <</language>>
   <<elseif $speech_attitude is 'meek'>>
     <<language>>
-      <<option 'EN'>>"Y-you're forgiven by word, but you must forgive yourself by act," you say.<<option 'CN'>>“我、我以言辞宽恕你，但你也必须用实际行动宽恕自己。”你说。
+      <<option 'EN'>>“Y-you're forgiven by word, but you must forgive yourself by act,” you say.<<option 'CN'>>“我、我以言辞宽恕你，但你也必须用实际行动宽恕自己。”你说。
     <</language>>
   <<elseif $speech_attitude is 'bratty'>>
     <<language>>
-      <<option 'EN'>>"You're forgiven, but you still need to forgive yourself," you say.<<option 'CN'>>“你被宽恕了，但你也需要宽恕自己。”你说。
+      <<option 'EN'>>“You're forgiven, but you still need to forgive yourself,” you say.<<option 'CN'>>“你被宽恕了，但你也需要宽恕自己。”你说。
     <</language>>
   <<else>>
     <<language>>
-      <<option 'EN'>>"You're forgiven, but you need to act to forgive yourself," you say.<<option 'CN'>>“你被宽恕了，但你也必须用实际行动去宽恕自己。”你说。
+      <<option 'EN'>>“You're forgiven, but you need to act to forgive yourself,” you say.<<option 'CN'>>“你被宽恕了，但你也必须用实际行动去宽恕自己。”你说。
     <</language>>
   <</if>>
 <</if>>
@@ -362,20 +362,20 @@
 <<if $angel gte 6 or ($confessionsTaken gte 10 and $grace gte 25)>>
   <<language>>
     <<option 'EN'>>You stand and draw the shape of a cross against the seal of confession.
-      "Repent. Change your ways, and you'll be forgiven," you say with confidence.<<option 'CN'>>你站起身，对着木条墙画了一个十字。
+      “Repent. Change your ways, and you'll be forgiven,” you say with confidence.<<option 'CN'>>你站起身，对着木条墙画了一个十字。
       “忏悔，然后重新做人，你就会被宽恕。”你用自信的语气说。
   <</language>>
 <<elseif $speech_attitude is 'meek'>>
   <<language>>
-    <<option 'EN'>>"Y-you're forgiven by word, but you still need to repent," you say.<<option 'CN'>>“你……你被宽恕了，”你说，“但你仍然需要忏悔。”
+    <<option 'EN'>>“Y-you're forgiven by word, but you still need to repent,” you say.<<option 'CN'>>“你……你被宽恕了，”你说，“但你仍然需要忏悔。”
   <</language>>
 <<elseif $speech_attitude is 'bratty'>>
   <<language>>
-    <<option 'EN'>>"You're forgiven, but you need to get your shit together and repent," you say.<<option 'CN'>>“你被原谅了。但你必须自己振作起来然后忏悔。”你说。
+    <<option 'EN'>>“You're forgiven, but you need to get your shit together and repent,” you say.<<option 'CN'>>“你被原谅了。但你必须自己振作起来然后忏悔。”你说。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>"You're forgiven, but you need to repent," you say.<<option 'CN'>>“你被宽恕了。但你必须忏悔。”你说。
+    <<option 'EN'>>“You're forgiven, but you need to repent,” you say.<<option 'CN'>>“你被宽恕了。但你必须忏悔。”你说。
   <</language>>
 <</if>>
 <br><br>
@@ -480,11 +480,11 @@
     <<robin-temple-confession-band>>
     <<if _robinBand is 'doubt'>>
       <<language>>
-        <<option 'EN'>>"Why? I don't... I haven't broken my vow. Neither of us has. I don't think there's anything to make amends for."<<option 'CN'>>“为什么？我……我没有违背誓约，我们都没有。我觉得没什么需要弥补的。”
+        <<option 'EN'>>“Why? I don't... I haven't broken my vow. Neither of us has. I don't think there's anything to make amends for.”<<option 'CN'>>“为什么？我……我没有违背誓约，我们都没有。我觉得没什么需要弥补的。”
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>"I don't think..." <<He>> trails off. "I mean, no. I haven't broken my vow, and neither has the one I love. We don't need to be purified."<<option 'CN'>>“为什么这么做……”<<He>>话音渐弱。“对不起，但是。我们都没有违背誓约，我的爱人也没有。我们不需要被净化。”
+        <<option 'EN'>>“I don't think...” <<He>> trails off. “I mean, no. I haven't broken my vow, and neither has the one I love. We don't need to be purified.”<<option 'CN'>>“为什么这么做……”<<He>>话音渐弱。“对不起，但是。我们都没有违背誓约，我的爱人也没有。我们不需要被净化。”
       <</language>>
     <</if>>
     <<language>>
@@ -516,11 +516,11 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<if $temple_confessor_intro>>
   <<language>>
-    <<option 'EN'>>"I name you <span class="red">corrupted</span>." You kneel, positioning yourself against the seal and opening the small metal shutter. "Remove your clothes and stand against the seal of confession. I will take your corruption into myself, and you will be forgiven."<<option 'CN'>>“我宣告你已被<span class="red">腐化</span>。”你跪下，靠着木条墙，打开小小的金属活门。“脱下衣服，站在告解封印前。我会把你的腐化引入自身，你将被宽恕。”
+    <<option 'EN'>>“I name you <span class="red">corrupted</span>.” You kneel, positioning yourself against the seal and opening the small metal shutter. “Remove your clothes and stand against the seal of confession. I will take your corruption into myself, and you will be forgiven.”<<option 'CN'>>“我宣告你已被<span class="red">腐化</span>。”你跪下，靠着木条墙，打开小小的金属活门。“脱下衣服，站在告解封印前。我会把你的腐化引入自身，你将被宽恕。”
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>"You need to be purged. Remove your clothes and stand against the seal of confession." You're not entirely sure what you're doing, but you kneel and open the small metal shutter.<<option 'CN'>>“你需要被净化。脱下衣服，站在告解封印前。”你并不太确定自己在做什么，但还是跪下打开了小小的金属活门。
+    <<option 'EN'>>“You need to be purged. Remove your clothes and stand against the seal of confession.” You're not entirely sure what you're doing, but you kneel and open the small metal shutter.<<option 'CN'>>“你需要被净化。脱下衣服，站在告解封印前。”你并不太确定自己在做什么，但还是跪下打开了小小的金属活门。
   <</language>>
   <<promiscuity1>>
 <</if>>
@@ -815,15 +815,27 @@
   <<set $RobinTemple.confession to { sound: 0, attendant: '', state: '', pronoun: 'f', choice: '' }>>
   <<consensual>><<set $consensual to 1>><<neutral 1>>
   <<maninit>><<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
+  <!-- 信念值是模组自定义字段，值域只有几十，修正幅度按同量级取 ±50。 -->
   <<if maplebirch.get('RobinTemple').faith lte -20>>
-    <<set $enemyarousalmax += 100>>
+    <<set $enemyarousalmax += 50>>
   <<elseif maplebirch.get('RobinTemple').faith gte 20>>
-    <<set $enemyarousalmax -= 100>>
+    <<set $enemyarousalmax -= 50>>
   <</if>>
   <<if (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')) and C.npc.Robin.chastity.anus.includes('shield')>>
-    <<set $enemyarousalmax -= 100>>
+    <<set $enemyarousalmax -= 50>>
   <</if>>
   <<set $timer to random(6, 12)>>
+  <<language>>
+    <<option 'EN'>>
+      Robin gets <<his>> hands under your robes before <<he>> has finished locking the door. <<He>> is not gentle about it — the shutter is a hand's width away from both your faces and <<he>> knows exactly how loud <<he>> is allowed to be.
+      <br><br>
+      <span class="lewd">You end up half-seated on the bench with <<him>> straddling your thigh, <<his>> robes shoved open and <<his>> underwear pulled to one side. <<He>> takes you in hand first — clumsy, too fast, stopping to breathe through <<his>> nose whenever the wood creaks — and when you push <<his>> hips down onto yours <<he>> bites the heel of <<his>> own hand and grinds against your thigh in short, guilty little rolls, looking at the shutter the entire time. "Don't stop," <<he>> whispers, right into your ear, which is the loudest thing <<he>> has said all night.</span>
+    <<option 'CN'>>
+      门还没锁好，罗宾的手就已经伸进你的袍子里了。<<He>>一点也不温柔——隔板离你们两张脸只有一掌宽，而<<he>>非常清楚自己能有多大声。
+      <br><br>
+      <span class="lewd">最后你半坐在长凳上，<<he>>跨着你的大腿；<<his>>袍子被推到一边，内裤拉到一旁。<<he>>先用手握住了你——动作生疏，快得过分，木头每吱一声<<he>>就停下来用鼻子喘气。等你把<<his>>胯按下去贴上自己的时候，<<he>>咬住自己手背，隔着你的大腿一下一下、又短又心虚地磨，眼睛全程盯着那扇活门。“别停，”<<he>>贴着你耳朵说——这是<<he>>今晚说得最响的一句话。</span>
+  <</language>>
+  <br><br>
 <</if>>
 <<if $timer lte 0 and !['exposed', 'gone', 'leaving'].includes($RobinTemple.confession.state)>>
   <<temple_effects>>
@@ -839,13 +851,13 @@
       <<else>>
         Robin draws back, giving you room to speak. The booth stills.
         <br><br>
-        How do you respond?
+        <span class="blue">How do you respond?</span>
         <br>
-        <<link [[Forgive|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'forgive'>><</link>>
+        <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
         <br>
-        <<link [[Repent|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'repent'>><</link>>
+        <<lanLink ['Repent', '规劝'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
         <br>
-        <<link [[Contrition|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'contrition'>><</link>>
+        <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
         <br>
       <</if>>
     <<option 'CN'>>
@@ -858,14 +870,6 @@
       <<else>>
         罗宾退开了一些，让你能开口回答。隔间重新安静下来。
         <br><br>
-        你打算如何回应？
-        <br>
-        <<link [[宽恕|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'forgive'>><</link>>
-        <br>
-        <<link [[规劝|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'repent'>><</link>>
-        <br>
-        <<link [[赎罪|RobinTemple Confession Sex]]>><<set $RobinTemple.confession.choice to 'contrition'>><</link>>
-        <br>
       <</if>>
   <</language>>
 <<elseif $timer lte 0 and $RobinTemple.confession.state is 'leaving'>>
@@ -873,21 +877,21 @@
   <<if $RobinTemple.confession.choice is 'forgive'>>
     <<if $angel gte 6 or ($confessionsTaken gte 10 and $grace gte 25)>>
       <<language>>
-        <<option 'EN'>>"I name you forgiven by word. You must still forgive yourself by act," you say.<<option 'CN'>>“我以言辞宽恕你，但你仍需用实际行动宽恕自己。”你说。
+        <<option 'EN'>>“I name you forgiven by word. You must still forgive yourself by act,” you say.<<option 'CN'>>“我以言辞宽恕你，但你仍需用实际行动宽恕自己。”你说。
       <</language>>
     <<elseif $speech_attitude is 'meek'>>
       <<language>>
-        <<option 'EN'>>"Y-you're forgiven by word, but you must forgive yourself by act," you say.<<option 'CN'>>“我、我以言辞宽恕你，但你仍需用实际行动宽恕自己。”你说。
+        <<option 'EN'>>“Y-you're forgiven by word, but you must forgive yourself by act,” you say.<<option 'CN'>>“我、我以言辞宽恕你，但你仍需用实际行动宽恕自己。”你说。
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>"You're forgiven, but you need to act to forgive yourself," you say.<<option 'CN'>>“你被宽恕了，但你必须用行动去宽恕自己。”你说。
+        <<option 'EN'>>“You're forgiven, but you need to act to forgive yourself,” you say.<<option 'CN'>>“你被宽恕了，但你必须用行动去宽恕自己。”你说。
       <</language>>
     <</if>>
     <<set $RobinTemple.confession.choice to 'correct'>>
   <<elseif $RobinTemple.confession.choice is 'repent'>>
     <<language>>
-      <<option 'EN'>>"Repent. Change your ways, and you'll be forgiven," you say.<<option 'CN'>>“忏悔，然后重新做人，你就会被宽恕。”你说。
+      <<option 'EN'>>“Repent. Change your ways, and you'll be forgiven,” you say.<<option 'CN'>>“忏悔，然后重新做人，你就会被宽恕。”你说。
     <</language>>
     <<set $RobinTemple.confession.choice to 'correct'>>
   <<elseif $RobinTemple.confession.choice is 'contrition'>>
@@ -1291,15 +1295,15 @@
 <</if>>
 <<if _robinBand is 'doubt'>>
   <<language>>
-    <<option 'EN'>>Robin kisses you before <<he>> leaves, quickly, like <<he>>'s afraid of being seen. "See you soon." <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前飞快地吻了你一下，像是怕被人看见。“我们很快会再见的。”<<He>>溜出了隔间。
+    <<option 'EN'>>Robin kisses you before <<he>> leaves, quickly, like <<he>>'s afraid of being seen. “See you soon.” <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前飞快地吻了你一下，像是怕被人看见。“我们很快会再见的。”<<He>>溜出了隔间。
   <</language>>
 <<elseif _robinBand is 'belief'>>
   <<language>>
-    <<option 'EN'>>You kiss Robin on the forehead before <<he>> leaves. "S-see you soon," <<he>> says, and <<he>>'s still smiling when the door closes.<<option 'CN'>>你亲吻了罗宾的额头，<<he>>准备离开。“再、再见。”<<he>>说着，门关上时脸上还带着笑。
+    <<option 'EN'>>You kiss Robin on the forehead before <<he>> leaves. “S-see you soon,” <<he>> says, and <<he>>'s still smiling when the door closes.<<option 'CN'>>你亲吻了罗宾的额头，<<he>>准备离开。“再、再见。”<<he>>说着，门关上时脸上还带着笑。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin squeezes your hand before <<he>> leaves. "See you soon." <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前握了握你的手。“下次见。”<<He>>溜出了隔间。
+    <<option 'EN'>>Robin squeezes your hand before <<he>> leaves. “See you soon.” <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前握了握你的手。“下次见。”<<He>>溜出了隔间。
   <</language>>
 <</if>>
 <br><br>

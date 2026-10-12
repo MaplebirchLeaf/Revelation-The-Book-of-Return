@@ -20,10 +20,37 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
   maplebirch.tool.inject({
     // 收益在玩家点击原版链接时结算，重绘结果页不会重复练唱。
     widgetPassage: {
+      'Widgets Pirates': [
+        {
+          srcmatchgroup: /\|Pirate Scum Deck Shanty Join\]\]>>/g,
+          applyafter: '<<singingskill 6>>',
+          expected: 1
+        },
+        {
+          srcmatchgroup: /\|Pirate Scum Deck Shanty Join\]\]>>[\s\S]*?<<\/link>>/g,
+          applyafter: '<<gsingingskill>>',
+          expected: 1
+        },
+        {
+          srcmatchgroup: /\|Pirate Scum Deck Shanty Lead\]\]>>/g,
+          applyafter: '<<singingskill 10>>',
+          expected: 1
+        },
+        {
+          srcmatchgroup: /\|Pirate Scum Deck Shanty Lead\]\]>>[\s\S]*?<<\/link>>/g,
+          applyafter: '<<gsingingskill>>',
+          expected: 1
+        }
+      ],
       'Widgets Bird': [
         {
-          srcmatchgroup: /(<<link \[\[[^\]\n]*\|Bird Tower Sing\]\]>>)([\s\S]*?<<\/link>>)/g,
-          to: '$1<<singingskill 8>>$2<<gsingingskill>>',
+          srcmatchgroup: /\|Bird Tower Sing\]\]>>/g,
+          applyafter: '<<singingskill 8>>',
+          expected: 3
+        },
+        {
+          srcmatchgroup: /\|Bird Tower Sing\]\]>>[\s\S]*?<<\/link>>/g,
+          applyafter: '<<gsingingskill>>',
           expected: 3
         }
       ]
@@ -31,8 +58,13 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
     locationPassage: {
       'Pub Music': [
         {
-          srcmatchgroup: /(<<link \[\[[^\]\n]*\|Pub Music Sing\]\]>>)([\s\S]*?<<\/link>>)/g,
-          to: '$1<<singingskill 10>>$2<<gsingingskill>>',
+          srcmatchgroup: /\|Pub Music Sing\]\]>>/g,
+          applyafter: '<<singingskill 10>>',
+          expected: 1
+        },
+        {
+          srcmatchgroup: /\|Pub Music Sing\]\]>>[\s\S]*?<<\/link>>/g,
+          applyafter: '<<gsingingskill>>',
           expected: 1
         }
       ],

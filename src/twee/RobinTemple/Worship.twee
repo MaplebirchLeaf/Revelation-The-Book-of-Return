@@ -497,7 +497,7 @@
     <</if>>
     <br><br>
 
-    <<link [[Next|RobinTemple Hospital Examination]]>><</link>>
+    <<lanLink ['Next', '继续'] 'RobinTemple Hospital Examination'>><</lanLink>>
     <br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "hospital">><<effects>>
@@ -533,8 +533,6 @@
     <</if>>
     <br><br>
 
-    <<link [[继续|RobinTemple Hospital Examination]]>><</link>>
-    <br>
 <</language>>
 
 :: RobinTemple Hospital Examination

@@ -45,7 +45,7 @@
           你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
 
         <<else>>
-          <span class="red">"尽管你很纯洁，但作为信徒，你的行为并不合乎我们的信仰，"</span><<he>>说道，"我们知道你可以做得更好。因此，我们决定暂停发放你这个月的津贴。希望下次我能发放给你。"
+          <span class="red">“尽管你很纯洁，但作为信徒，你的行为并不合乎我们的信仰，”</span><<he>>说道，“我们知道你可以做得更好。因此，我们决定暂停发放你这个月的津贴。希望下次我能发放给你。”
         <</if>>
     <</language>>
     <<if $grace gte 90>>
@@ -211,7 +211,7 @@
               阴唇。淫液如细流淌下你的双腿，约旦吃惊地抽出双手。
               <br>
             <</if>>
-            "那可不是一个好兆头。"<<he>>喃喃道。
+            “那可不是一个好兆头。”<<he>>喃喃道。
             <br><br>
 
             <<if _args[0] and $daily.sydney.cum>>
@@ -359,7 +359,7 @@
             <<if $daily.sydney.sydneyCum>>
               淫液如细流淌下<<person3>><<his>>的双腿，约旦吃惊地抽出双手。<<person1>>
               <br>
-              "那可不是个好的迹象。"<<person1>><<he>>喃喃道。悉尼迅速捂住<<person3>><<his>>绯红的脸颊。深知这是你的功劳，你感到十分得意。
+              “那可不是个好的迹象。”<<person1>><<he>>喃喃道。悉尼迅速捂住<<person3>><<his>>绯红的脸颊。深知这是你的功劳，你感到十分得意。
               <br><br>
             <</if>>
             <<person1>><<He>>在入口处涂抹上了灰色的粉末。
@@ -412,7 +412,7 @@
         Robin hugs you. "I love you." <<stress -6>><<lstress>>
         <br><br>
         <<clotheson>>
-        <<link [[Next|Temple]]>><<endevent>><</link>>
+        <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>
       <<option 'CN'>>
         <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
         “你们对彼此忠诚，希望继续保持。”
@@ -425,7 +425,6 @@
         罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
         <br><br>
         <<clotheson>>
-        <<link [[继续|Temple]]>><<endevent>><</link>>
     <</language>>
   <<else>>
     <<language>>

@@ -43,7 +43,7 @@
     <<option 'CN'>>
       <<effects>>
       <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
-      约旦将你带到罗宾等候的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。"怎么样？我们……? "
+      约旦将你带到罗宾等候的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。“怎么样？我们……? ”
       <br><br>
       “是的，我的孩子们，我在此向你们二位表示祝贺，你们通过了。在神殿所有兄弟姐妹的见证下，你们的结合将会得到主的认可。主教将会立马知晓，你们的戒指也已经在准备了。” <<npcincr "Jordan" love 5>><<gglove "Jordan">>
       <br><br>
@@ -182,7 +182,7 @@
     <<option 'CN'>>
       约旦从斗篷里拿出一枚铃铛摇响了四次，罗宾见了迅速用手遮住<<person1>><<his>>赤裸的身体。过了一会儿，四名<<person2>><<monks>>走进房间。其中二人手持一瓶装满灰色粉末的干净玻璃罐，另外两人则拿着各色的软垫，毯子和烛台。众人把东西都放在桌子上，随后点燃了烛台。房间里的其它灯瞬间显得昏暗起来。
       <br><br>
-      "请躺在圣坛上。"约旦说着，把手搭在你的肩上。你照做躺下，身下柔软的毯子隔开了冰冷的台面。<<monks>>开始温柔低吟，但你听不清说些了什么。"罗宾<<nnpc_Brother "Robin">>，请和你的挚爱一起躺到圣坛上，握住你们的双手，面向对方。"罗宾迟疑了一瞬，但还是照做了。
+      “请躺在圣坛上。”约旦说着，把手搭在你的肩上。你照做躺下，身下柔软的毯子隔开了冰冷的台面。<<monks>>开始温柔低吟，但你听不清说些了什么。“罗宾<<nnpc_Brother "Robin">>，请和你的挚爱一起躺到圣坛上，握住你们的双手，面向对方。”罗宾迟疑了一瞬，但还是照做了。
       <br><br>
       <<person1>><<He>>压在你身上，握住你的手。当你们注视着对方时，<<his>>的脸又烧了起来，试着忽视你们彼此赤裸的身体。<<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
       <br><br>
@@ -191,15 +191,15 @@
       <br>
       <<person2>><<monks>>重复着约旦的话：“我们就会如此将他们绑在一起。”
       <br>
-      "躺在此处的，如两者，如一体。"
+      “躺在此处的，如两者，如一体。”
       <br>
-      "如两者，如一体。"
+      “如两者，如一体。”
       <br>
-      "愿此种宽恕、此种承诺、此种誓约，恪守不渝。永远，如一。"
+      “愿此种宽恕、此种承诺、此种誓约，恪守不渝。永远，如一。”
       <br>
-      "永远，如一。"
+      “永远，如一。”
       <br><br>
-      一名<<person2>><<monks>>端起烛台，举到罗宾的上方，"如果你们的爱是纯净的，那将不会有痛楚。"听罢，你们的呼吸变得沉重了起来。当罗宾赤身裸体地压在你身上时，你的体内卷起了热浪。<<arousal 100>><<garousal>>
+      一名<<person2>><<monks>>端起烛台，举到罗宾的上方，“如果你们的爱是纯净的，那将不会有痛楚。”听罢，你们的呼吸变得沉重了起来。当罗宾赤身裸体地压在你身上时，你的体内卷起了热浪。<<arousal 100>><<garousal>>
       <br><br>
       罗宾上方的蜡烛飞速地融化着。一滴蜡落下，烫在<<person1>><<his>>光滑的脊背上。<<He>>微微一缩，但很快便放松下来。更多的蜡随之滴落，顺着罗宾的腰肢流到了你的身上。蜡滴很烫，<span class="gold">但你一点也不疼。</span>
       <br><br>
@@ -247,25 +247,25 @@
       You've gained the <span class="blue">Rite of Promise: Robin</span> trait.
       <br><br>
     <<option 'CN'>>
-      蜡烛融化流淌，顺着你的身子滴在了圣坛上。一名<<person2>><<monks>>拿出一个空罐子，收集起蜡液。"松开吧。"束手收起，将你们的手解放。<<monks>>帮你们俩直起身，让你们坐在了圣坛的边上。
+      蜡烛融化流淌，顺着你的身子滴在了圣坛上。一名<<person2>><<monks>>拿出一个空罐子，收集起蜡液。“松开吧。”束手收起，将你们的手解放。<<monks>>帮你们俩直起身，让你们坐在了圣坛的边上。
       <br><br>
-      "仪式结束了，"约旦朝你们点了点头，"但还有最后一个步骤。我们必须为你们准备全新的贞洁测试。" 一个手拿盛有灰色粉末玻璃罐的<<monk>>向你们走来。<<He>>将罐子打开，把粉末涂抹到你的<<genitals>>上。你扭头，只见罗宾也正被做同样的事。不久，<<monk>>们把粉末刮进滚烫的蜡滴罐里， 一瞬间粉液相触，火花闪现。
+      “仪式结束了，”约旦朝你们点了点头，“但还有最后一个步骤。我们必须为你们准备全新的贞洁测试。” 一个手拿盛有灰色粉末玻璃罐的<<monk>>向你们走来。<<He>>将罐子打开，把粉末涂抹到你的<<genitals>>上。你扭头，只见罗宾也正被做同样的事。不久，<<monk>>们把粉末刮进滚烫的蜡滴罐里， 一瞬间粉液相触，火花闪现。
       <br><br>
-      "从现在起，这些粉末将会用在你们的贞操测试中。"约旦一边解释，一边接过另一个<<monk>>递过来的小盒子。<<He>>打开盒盖，两枚银戒正躺在中央。<<He>>温柔地将戒指分别戴在你和罗宾的手指上。
+      “从现在起，这些粉末将会用在你们的贞操测试中。”约旦一边解释，一边接过另一个<<monk>>递过来的小盒子。<<He>>打开盒盖，两枚银戒正躺在中央。<<He>>温柔地将戒指分别戴在你和罗宾的手指上。
       <br><br>
-      "你们正式结为伴侣了，再次向你们二位表示祝贺。"你注意到一对<<monk>>整理好你们的衣服，放在一旁的圣坛上。"我们会给你们二人一些……私密空间，在你们完事后再来清扫干净。这些软垫和毯子都将会被烧毁，以去除任何留在此处的不洁之物。你们在这里做的任何事情都不会被其他同修知道。"约旦朝你们温和一笑，和其他<<monks>>一起离开了。"希望你们通过这个决定找到彼此的幸福。"
+      “你们正式结为伴侣了，再次向你们二位表示祝贺。”你注意到一对<<monk>>整理好你们的衣服，放在一旁的圣坛上。“我们会给你们二人一些……私密空间，在你们完事后再来清扫干净。这些软垫和毯子都将会被烧毁，以去除任何留在此处的不洁之物。你们在这里做的任何事情都不会被其他同修知道。”约旦朝你们温和一笑，和其他<<monks>>一起离开了。“希望你们通过这个决定找到彼此的幸福。”
       <br><br>
       门咔哒上锁，你和罗宾被留在了屋内。<<person1>>“所……所以，就是现在了吗？”罗宾看着你，依旧有意避免瞟到你赤裸的身体。<<person1>>
       <br><br>
       <<if $speech_attitude is "meek">>
-        "我……我想是的。你准备好了吗？"你悄声问道。
+        “我……我想是的。你准备好了吗？”你悄声问道。
       <<elseif $speech_attitude is "bratty">>
-        "是时候了，你准备好了吗？"你问道。
+        “是时候了，你准备好了吗？”你问道。
       <<else>>
-        "我可以，你准备好了吗？"你问道。
+        “我可以，你准备好了吗？”你问道。
       <</if>>
       <br>
-      罗宾绽开笑容。"我准备好了。"<<He>>将你拥进怀里，亲吻着你的身体。你们双双躺倒在软垫铺好的圣坛上。<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+      罗宾绽开笑容。“我准备好了。”<<He>>将你拥进怀里，亲吻着你的身体。你们双双躺倒在软垫铺好的圣坛上。<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
       <br><br>
       你获得了<span class="blue">承诺仪式：罗宾</span>特质。
       <br><br>
@@ -296,6 +296,16 @@
   <<consensual>><<set $consensual to 1>><<neutral 1>>
   <<maninit>><<npcexpose>>
   <<set $enemytrust += 500>><<set $enemyarousalmax to 600>>
+  <<language>>
+    <<option 'EN'>>
+      You get <<him>> down onto the cushions and <<his>> robe comes open under your hands before you have decided anything. <<He>> is already hard against your hip, already wet where your thigh presses between <<his>>, and <<he>> makes a small, mortified sound when <<he>> notices you can tell.
+      <br><br>
+      <span class="lewd">The wax on the altar is still warm. <<He>> keeps one hand knotted in the blanket and the other on your shoulder, gripping harder each time you move, and when you finally slide into <<him>> <<his>> whole body arches off the cushion and <<he>> bites down on <<his>> own lip to keep quiet — because the monks are right outside the door, and both of you know it.</span>
+    <<option 'CN'>>
+      你把<<him>>放倒在软垫上，还没决定要做什么，<<his>>袍子就在你手底下散开了。<<He>>早就硬着，抵在你胯上；你的大腿挤进<<his>>两腿之间时那里已经湿了，<<he>>发现你察觉到了，喉咙里漏出一声难堪的轻响。
+      <br><br>
+      <span class="lewd">圣坛上的蜡还烫着。<<He>>一只手死死攥着毯子，另一只手扣在你肩上，你每动一下<<he>>就攥紧一分；你真正进入<<him>>的那一刻，<<his>>整个身子从软垫上弓了起来，<<he>>咬住自己的嘴唇不让自己出声——修道士们就在门外，这一点你们都很清楚。</span>
+  <</language>>
 <</if>>
 <<if $RobinTemple.intimacy_active>>
   <<set $enemyanger to -10>>
@@ -314,17 +324,21 @@
 :: RobinTemple Promise Sex Finish
 <<effects>>
 <<if $RobinTemple.intimacy_active>>
-<!-- 原版 passage：Sydney Temple Pure Sex Finish。分支、着装恢复与返回顺序照原版。罗宾的台词按其人设重写。 -->
+<!-- 原版 passage：Sydney Temple Pure Sex Finish。分支、着装恢复与返回顺序照原版，台词全部按罗宾的人设重写。 -->
   <<if $enemyarousal gte $enemyarousalmax>>
     <<ejaculation>>
     <<language>>
       <<option 'EN'>>
-        Robin collapses on you, breathing heavily. "That... that was..." <<He>> doesn't manage to finish the sentence. You hold <<him>> close, and continue to lie on the altar for some time. "I love you," <<he>> says at last, into your shoulder. "I'm so happy." <<He>> kisses you on the cheek again.
+        Robin collapses onto you, still twitching every time <<he>> breathes out, and you can feel <<him>> clenching around you in slow aftershocks. "That... that was..." <<He>> never finishes the sentence. You lie on the altar with <<him>> for a while, sticky and not caring, until <<his>> breathing comes back down.
+        <br><br>
+        "I love you," <<he>> says at last, into your shoulder, and then goes quiet like <<he>> is checking whether <<he>> meant it. <<He>> kisses your cheek. "Next time, can we... not have an audience outside the door?"
         <br>
         Robin reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
         <br><br>
       <<option 'CN'>>
-        罗宾瘫倒在你身上，不停地喘着粗气。“这……这是……”<<he>>没能把话说完。你搂紧<<him>>，又在圣坛上躺了一会儿。“我爱你，”<<he>>终于靠在你肩上说，“我好高兴。”<<He>>再次在你脸上印下一吻。
+        罗宾整个人瘫在你身上，每呼出一口气都还在轻轻打颤；<span class="lewd">余韵退得很慢，你能感觉到<<him>>一下一下地绞着你。</span>“这……这是……”<<he>>始终没把这句话说完。你陪<<him>>在圣坛上又躺了一阵，身上黏着，谁也没去管，直到<<his>>呼吸慢慢平下来。
+        <br><br>
+        “我爱你。”<<he>>终于埋在你肩上说，说完又安静了一会儿，像是在确认自己是不是真的说出口了。<<He>>吻了吻你的脸颊。“下次……能不能别让门外站着一群人？”
         <br>
         罗宾不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
         <br><br>
@@ -348,9 +362,13 @@
     <br><br>
     <<language>>
       <<option 'EN'>>
-        "I love you," <<he>> says. "I'm so happy." <<He>> kisses you on the cheek again, and <<he>> reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
+        Robin stays folded against you for a while, <<his>> thighs still trembling, and pushes <<his>> hair out of <<his>> eyes with a hand that is not quite steady. "It's not that I didn't..." <<he>> starts, then stops, going red. "I liked it. That's the problem. Ask me again tomorrow and I'll say yes."
+        <br><br>
+        <<He>> takes your hand and puts it on <<his>> chest so you can feel how fast <<his>> heart is still going, then lets go and reaches for <<his>> robes. <<tearful>> you help <<him>> stand from the altar.
       <<option 'CN'>>
-        “我爱你，”<<he>>说，“我好高兴。”<<He>>再次在你脸上印下一吻，然后不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
+        罗宾在你怀里蜷了一阵，两条腿还在抖；<<he>>抬手把额前的头发拨开，那只手都不太稳。“不是说我不……”<<he>>开了个头就停住，脸红得更厉害。“我喜欢。问题就出在这儿。明天再问我，我会答应的。”
+        <br><br>
+        <<He>>把你的手按在<<his>>胸口上，让你感觉那里的心跳还没缓下来，然后才放开你去够袍子。<<tearful>>你帮<<him>>从圣坛上站了起来。
     <</language>>
   <<else>>
     <<language>>
@@ -371,9 +389,13 @@
     <br><br>
     <<language>>
       <<option 'EN'>>
-        "I love you," <<he>> says. "I'm so happy." <<He>> kisses you on the cheek again, and <<he>> reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
+        Robin lets you settle <<him>> back down and waits, hands still open on the blanket, until <<he>> is sure you are not going to start again. "It's fine," <<he>> says, too quickly. "I meant it — whenever you want, and stop whenever you want. That's the whole point."
+        <br><br>
+        <<He>> says it like a vow, which is roughly what it is. <<He>> tucks <<himself>> back into <<his>> robes and kisses you once, carefully, before <<he>> stands. <<tearful>> you help <<him>> stand from the altar.
       <<option 'CN'>>
-        “我爱你，”<<he>>说，“我好高兴。”<<He>>再次在你脸上印下一吻，然后不情愿地从你身上离开。<<tearful>>你帮<<him>>从圣坛上站了起来。
+        罗宾让你把<<him>>放回去，双手还摊在毯子上，一直等到确认你不会再继续。“没关系的。”<<he>>说得太快了。“我是当真的——你想要的时候就要，想停的时候就停，这才是我发誓的意思。”
+        <br><br>
+        <<He>>说这话的口气像在立誓，事实上差不多就是。<<He>>把自己收进袍子里，站起来之前先小心地吻了你一下。<<tearful>>你帮<<him>>从圣坛上站了起来。
     <</language>>
   <</if>>
   <br><br>

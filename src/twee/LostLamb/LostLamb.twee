@@ -32,57 +32,6 @@
   <</if>>
 <</widget>>
 
-<<widget 'lost-lamb-journal'>>
-  <<language>>
-    <<option 'EN'>>It is <<= getFormattedDate(Time.date)>>, <<ampm Time.hour Time.minute>>. <i>You cannot place the year. These dates belong to the dream.</i>
-    <<option 'CN'>>梦中是 <<= getFormattedDate(Time.date)>>，<<ampm Time.hour Time.minute>>。<i>你无法确定年份，这些日期属于梦境。</i>
-  <</language>>
-  <h1 class='header gold bold'><<language>><<option 'EN'>>The manor<<option 'CN'>>庄园<</language>></h1>
-  <ul class='journal'>
-    <li><<language>><<option 'EN'>>You are Kylar here. Day <span class='gold'><<= maplebirch.get('LostLamb').day>></span> in the dream.<<option 'CN'>>在这里，你是凯拉尔。梦中的第 <span class='gold'><<= maplebirch.get('LostLamb').day>></span> 天。<</language>></li>
-    <<if maplebirch.get('LostLamb').note>>
-      <li><<print lanSwitch(...maplebirch.get('LostLamb').note)>></li>
-    <</if>>
-    <<if !$settings.blindStatsEnabled>>
-      <li><<language>><<option 'EN'>>Doubt: <<option 'CN'>>疑心：<</language>><span class='lblue'><<= $LostLamb.doubt>>/100</span></li>
-      <li><<language>><<option 'EN'>>Unease: <<option 'CN'>>不安：<</language>><span class='red'><<= $LostLamb.fear>>/100</span></li>
-      <li><<language>><<option 'EN'>>Attention drawn: <<option 'CN'>>引起的注意：<</language>><span class='gold'><<= $LostLamb.notice>>/100</span></li>
-    <</if>>
-    <li><i><<language>><<option 'EN'>>Doubt helps you notice discrepancies. Unease can make listening or keeping still harder. The attention you draw changes who comes looking. These feelings do not tell you which account is true.<<option 'CN'>>疑心让你留意矛盾。不安可能让倾听或保持不动更难。引起的注意会改变谁来找你。这些感受不能替你判断哪种讲述是真相。<</language>></i></li>
-    <li class='teal'><<language>><<option 'EN'>>You may wake at any time. Rest at the manor to return to where you stopped.<<option 'CN'>>随时可以醒来，再到庄园休息便能从中断处继续。<</language>></li>
-  </ul>
-  <hr>
-<</widget>>
-
-<<widget 'lost-lamb-record'>>
-  <<if maplebirch.get('LostLamb') and !$statFreeze and ($LostLamb.scene or $LostLamb.endings.length)>>
-    <h1 class='header gold bold'><<language>><<option 'EN'>>Kylar's manor<<option 'CN'>>凯拉尔的庄园<</language>></h1>
-    <ul class='journal'>
-      <<if maplebirch.get('LostLamb')?.paused>>
-        <li class='teal'><<language>><<option 'EN'>>The dream was interrupted. Rest in Kylar's room to continue.<<option 'CN'>>梦境中断了。到凯拉尔房间休息，可以继续。<</language>></li>
-      <</if>>
-      <<if $LostLamb.endings.includes('main')>>
-        <li><<language>><<option 'EN'>>You dreamed of the visits, the night of breaking glass, and the mornings after. Not everything you saw was something Kylar could have witnessed.<<option 'CN'>>你梦见旧日的来访、玻璃碎裂的夜晚，以及随后的早晨。你看见的，并不全是凯拉尔可能亲眼见证的事。<</language>></li>
-      <<elseif $LostLamb.endings.length>>
-        <li><<language>><<option 'EN'>>You woke before you could leave the past behind. You can return to the dream.<<option 'CN'>>你还没能离开过去，就醒了。仍可以再次进入梦境。<</language>></li>
-      <</if>>
-      <<if $LostLamb.endings.includes('stay')>>
-        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('stay-vow-bound')>>You gave Sydney's name to the lock. The figure stayed, and neither of you could leave.<<else>>You left the afternoon with torn paper. The knocks followed you.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('stay-vow-bound')>>你把悉尼的名字交给锁。那身影留下了，你们谁也不能出门。<<else>>你握着撕破的纸离开下午。敲击声跟了过来。<</if>><</language>></li>
-      <</if>>
-      <<if $LostLamb.endings.includes('verdict')>>
-        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>You promised to keep the visitor's words inside. Asking for help would break that promise.<<elseif $LostLamb.marks.includes('verdict-vow-broken')>>You broke your promise to the visitor and called for help outside.<<else>>You refused to keep the visitor's secret. The child was still calling upstairs.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('verdict-vow-sealed')>>你答应把来客的话藏在屋里。开口求助，就会违背约定。<<elseif $LostLamb.marks.includes('verdict-vow-broken')>>你违背了与来客的约定，向屋外的人求助。<<else>>你没有替来客保密。孩子仍在楼上喊人。<</if>><</language>></li>
-      <</if>>
-      <<if $LostLamb.endings.includes('main')>>
-        <li><<language>><<option 'EN'>><<if $LostLamb.marks.includes('main-vow-offered')>>You gave the voice your name. Nobody left the house. Nobody answered you.<<elseif $LostLamb.marks.includes('main-vow-refused')>>You refused to give your name and called to the window. The knocking did not stop.<<else>>You woke before the voice at the door finished asking.<</if>><<option 'CN'>><<if $LostLamb.marks.includes('main-vow-offered')>>你把自己的名字交给声音。屋里谁也没离开，谁也不再答应你。<<elseif $LostLamb.marks.includes('main-vow-refused')>>你没有交出名字，朝窗户喊了人。敲击声没有停下。<<else>>门边的声音还没问完，你就醒了。<</if>><</language>></li>
-      <</if>>
-      <<if maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
-        <li class='teal'><<language>><<option 'EN'>>You remember another voice beneath both dreams. Return to the manor to listen for it.<<option 'CN'>>你记得两种梦境下都藏着另一个声音。回到庄园，可以再听一听。<</language>></li>
-      <</if>>
-    </ul>
-    <hr>
-  <</if>>
-<</widget>>
-
 :: Lost Lamb Recall
 <<if maplebirch.get('LostLamb')?.available>>
   <<language>>
