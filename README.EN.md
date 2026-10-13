@@ -6,7 +6,7 @@
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.2.0 includes Robin's temple route, the Confounded Vow, the temple choir, Kylar's Lost Lamb dream, and temple duties, investigations and priest appointments.**
+**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.2.1 includes Robin's temple route, the Confounded Vow, the temple choir, Kylar's Lost Lamb dream, and temple duties, investigations and priest appointments.**
 
 ---
 
@@ -14,7 +14,7 @@
 
 - [Installation and dependencies](#installation-and-dependencies)
 - [Modules and game guide](#modules-and-game-guide)
-- [Current content in 1.2.0](#current-content-in-120)
+- [Current content in 1.2.1](#current-content-in-121)
 - [Deadwood Reblooms integration](#deadwood-reblooms-integration)
 - [Future updates](#future-updates)
 - [Acknowledgements and related projects](#acknowledgements-and-related-projects)
@@ -43,7 +43,7 @@ Disabling `RBR` stops all Revelation submodules. The choir can be enabled indepe
 
 With a version of **Deadwood Reblooms** that provides Mod Hints installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. The four chapters cover entry, steps, schedules, rewards and interruptions. You can also read the [English guides](src/assets/hint/EN) in this repository. The **Journal** tracks Robin, choir work, temple duties and Lost Lamb progress. Finished one-off tasks no longer leave pending reminders.
 
-## Current content in 1.2.0
+## Current content in 1.2.1
 
 ### Robin's temple route
 
@@ -106,7 +106,7 @@ The full-harpy singing interaction can also practise Singing. Integrations check
 
 ## Future updates
 
-Version 1.2.0 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
+Version 1.2.1 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
 
 ## Acknowledgements and related projects
 
@@ -115,7 +115,7 @@ Robin's temple route rebuilds material from the author's earlier Maplebirch mod,
 - [Degrees of Lewdity](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 - [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 - [Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
-- [1.2.0 release notes](.github/release-notes/v1.2.0.md)
+- [1.2.1 release notes](.github/release-notes/v1.2.1.md)
 
 ## Reporting issues
 

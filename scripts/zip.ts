@@ -197,9 +197,11 @@ function filterExistingFiles(fileSet: Set<string>, fileList: readonly string[]):
 
 function buildFrameworkPlugin(distFileSet: Set<string>, translationFiles: Record<'CN' | 'EN', string[]>, version: string, current?: ScmlPlugin): ScmlPlugin {
   const params = {
-    ...((current?.params && typeof current.params === 'object' && !Array.isArray(current.params) ? current.params : {}) as Record<string, unknown>),
-    language: translationFiles
+    ...((current?.params && typeof current.params === 'object' && !Array.isArray(current.params) ? current.params : {}) as Record<string, unknown>)
   } as Record<string, unknown>;
+  const language = Object.fromEntries(Object.entries(translationFiles).filter(([, files]) => files.length));
+  delete params.language;
+  if (Object.keys(language).length) params.language = language;
   delete params.module;
   delete params.script;
   if (distFileSet.has('dist/module.js')) params.module = ['dist/module.js'];
