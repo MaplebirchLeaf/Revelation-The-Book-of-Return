@@ -60,7 +60,7 @@
         <<option 'CN'>>
           罗宾从书架上取来一把梳子。“扯疼了就告诉我，”<<he>>说。<<He>>从尾巴末端一点点往上梳，把衣服缠乱的毛发慢慢理开。有人从门前经过时，<<he>>放低了声音。“好了。舒服些了吗？”
       <</language>>
-    <<case 'fish'>>
+    <<case 'whale'>>
       <<language>>
         <<option 'EN'>>
           Robin leans closer to look at your fins, careful not to touch them. "Do they move when you hear something?" <<he>> whispers. A bell rings from the hall, and the movement answers for you. <<He>> smiles, then makes room for you on the bench.
@@ -78,7 +78,7 @@
   <<npcincr Robin love 2>>
   <<switch _robinForm>>
     <<case 'fox' 'cow'>><<trauma -2>><<glove>><<ltrauma>><br><br>
-    <<case 'wolf' 'horse' 'fish' 'raven'>><<stress -2>><<glove>><<lstress>><br><br>
+    <<case 'wolf' 'horse' 'whale' 'raven'>><<stress -2>><<glove>><<lstress>><br><br>
     <<case 'cat'>><<tiredness -2>><<glove>><<ltiredness>><br><br>
     <<case 'bird'>><<tiredness -1>><<glove>><<ltiredness>><<if maplebirch.get('TempleChoir')>><<singingskill 3>><<gsingingskill>><</if>><br><br>
   <</switch>>

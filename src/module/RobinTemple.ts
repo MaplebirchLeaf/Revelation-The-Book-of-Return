@@ -250,7 +250,7 @@ class RobinTemple extends Module {
     const transformations = this.core.get('MoreTransformations');
     if (transformations) {
       if (V.maplebirch?.transformation?.horse?.level >= 6 && visible('horse', 'tail')) forms.push('horse');
-      if (V.maplebirch?.transformation?.fish?.level >= 6 && visible('fish', 'fins')) forms.push('fish');
+      if (V.maplebirch?.transformation?.whale?.level >= 6 && visible('whale', 'fins')) forms.push('whale');
       if (V.maplebirch?.transformation?.raven?.level >= 6 && visible('raven', 'wings')) forms.push('raven');
     }
     return forms;

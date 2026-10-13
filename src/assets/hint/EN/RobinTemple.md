@@ -60,7 +60,7 @@ Shared offerings use **carried cash**, once daily, **11:00–20:00 outside mass*
 
 Ask for a walk **before 19:00**, once daily. Conversations improve Faith, confidence or love. Forest and cinema outings need **today's shared work completed**; cinema also requires **£15**, suitable affection, remaining time and the daily visit limit. The spear mission has preparation and return conversations, but you must still complete the mission itself.
 
-Full fox, wolf, cat, harpy and cow transformations offer bench interactions through visible, enabled tails, ears, wings or horns. They share **three ten-minute interactions daily**, each completed before Robin leaves, improving love and easing stress, tiredness or trauma depending on the form. Horse, fish and raven require **More transformations**. Harpy singing trains Singing when the choir is enabled.
+Full fox, wolf, cat, harpy and cow transformations offer bench interactions through visible, enabled tails, ears, wings or horns. They share **three ten-minute interactions daily**, each completed before Robin leaves, improving love and easing stress, tiredness or trauma depending on the form. Horse, whale and raven require **More transformations**. Harpy singing trains Singing when the choir is enabled.
 
 ### Trial of Anguish and Robin's bunk
 

@@ -100,7 +100,7 @@ Complete the main ending and wake to gain the **Lost Lamb** feat and **Dream Sca
 | More love interests and social portraits | Awareness grades can retain both Robin and Sydney as lovers, while dual promises still require the ceremony                                         |
 | Finance: housing and donations           | Shared homes affect return and overnight plans; archive repairs use existing payment channels with receipts separate from the food and blanket fund |
 | NPC sidebar portraits                    | Initiate robes, monk or nun robes and sleepwear change with scenes                                                                                  |
-| More transformations                     | Visible parts from full horse, fish or raven transformation unlock temple-pew interactions                                                          |
+| More transformations                     | Visible parts from full horse, whale or raven transformation unlock temple-pew interactions                                                         |
 
 The full-harpy singing interaction can also practise Singing. Integrations check enabled modules and current character state. The base temple route and choir work remain available without Deadwood Reblooms.
 
