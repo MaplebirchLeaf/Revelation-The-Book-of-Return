@@ -1,5 +1,5 @@
 :: RobinTemple Invitation
-<<set $outside to 0>><<set $location to 'home'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<robin-temple-talk-place>><<effects>><<npc Robin>><<person1>>
 <<if playerChastity()>>
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
@@ -56,16 +56,16 @@
 <<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
   <<language>>
     <<option 'EN'>>
-      "I've got the shop to run," Robin says. "And the children here. Would I have to leave them?"
+      "I've got the shop to run," Robin says. "And the children at the orphanage. Would I have to leave them?"
     <<option 'CN'>>
-      “我还要照看店铺，”罗宾说，“院里的孩子们也需要人照顾。我得离开他们吗？”
+      “我还要照看店铺，”罗宾说，“孤儿院的孩子们也需要人照顾。我得离开他们吗？”
   <</language>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      "I've still got my stall," Robin says. "And the children here. Would I have to leave them?"
+      "I've still got my stall," Robin says. "And the children at the orphanage. Would I have to leave them?"
     <<option 'CN'>>
-      “我还有摊位，”罗宾说，“院里的孩子们也需要人照看。我得离开他们吗？”
+      “我还有摊位，”罗宾说，“孤儿院的孩子们也需要人照看。我得离开他们吗？”
   <</language>>
 <</if>>
 <br><br>
@@ -90,7 +90,7 @@
     <<option 'CN'>>
       “那里愿意照顾你，是件好事，”罗宾说，“我们一起去好吗？我也想看看。”
   <</language>>
-<<elseif !(maplebirch.get('Robin') and $RobinExpansion?.baileyDefeated)>>
+<<elseif !(maplebirch.get('Robin')?.rent.free or maplebirch.get('Finance')?.orphanage.robinFree)>>
   <<language>>
     <<option 'EN'>>
       "Would Bailey let me?" Robin asks. <<He>> rubs the edge of <<his>> sleeve. "I don't want to cause trouble for the children."
@@ -106,12 +106,12 @@
   <</language>>
 <</if>>
 <br><br>
-<<loveicon 'hug'>><<lanLink ['Give Robin time to decide', '让罗宾慢慢考虑'] 'Robin Options'>><<set $RobinTemple.stage to 'invited'>><<npcincr Robin love 1>><</lanLink>><<glove>><br>
+<<robin-temple-talk-exit `['Give Robin time to decide', '让罗宾慢慢考虑']` 'hug'>><<set $RobinTemple.stage to 'invited'>><<npcincr Robin love 1>><</robin-temple-talk-exit>><<glove>><br>
 <<socialiseicon 'ask'>><<lanLink ['Offer to ask Jordan together', '提议一起去问约旦'] 'RobinTemple Schedule'>><<set $RobinTemple.stage to 'invited'>><</lanLink>><br>
-<<getouticon>><<lanLink ['Leave the subject alone', '暂时不提这件事'] 'Robin Options'>><</lanLink>><br>
+<<robin-temple-talk-exit `['Leave the subject alone', '暂时不提这件事']`>><</robin-temple-talk-exit>><br>
 
 :: RobinTemple Schedule
-<<set $outside to 0>><<set $location to 'home'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<robin-temple-talk-place>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'invited' and maplebirch.get('RobinTemple').canTalk>>
   <<language>>
     <<option 'EN'>>
@@ -140,7 +140,7 @@
         <span class='grey'>等罗宾有空、约旦也能接待时再一起去。罗宾暂时把收据夹进课本。</span>
     <</language>><br><br>
   <</if>>
-  <<getouticon>><<lanLink ['Let Robin think longer', '再给罗宾一些时间'] 'Robin Options'>><</lanLink>><br>
+  <<robin-temple-talk-exit `['Let Robin think longer', '再给罗宾一些时间']`>><</robin-temple-talk-exit>><br>
 <<else>>
   <<if $RobinTemple.stage is 'invited'>>
     <<language>>
@@ -158,7 +158,7 @@
     <</language>>
   <</if>>
   <br><br>
-  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<robin-temple-talk-exit `["Return to Robin's room", '返回罗宾的房间']`>><</robin-temple-talk-exit>><br>
 <</if>>
 
 :: RobinTemple Jordan Introduction
@@ -180,6 +180,8 @@
       “你可以继续上学和工作，”约旦说，“神殿也会分给你一些事务。首先，你得通过纯洁试炼。”罗宾说想先花两天准备。约旦答应了。
   <</language>>
   <br><br>
+  <<robin-temple-relief-status 'Jordan'>>
+  <<robin-temple-relief-links>>
   <<templeicon 'altar'>><<lanLink ['Arrange a trial date with Robin', '与罗宾约定试炼日期'] 'RobinTemple Scheduled'>><<set $RobinTemple.stage to 'scheduled'>><<set $RobinTemple.exam_day to Time.days + 2>><<pass 10>><</lanLink>><br>
 <<else>>
   <<language>>
@@ -213,13 +215,13 @@
 <<if $location is 'temple'>>
   <<language>>
     <<option 'EN'>>
-      Robin says goodbye before heading back to the orphanage.
+      Robin puts the receipt away and says goodbye before leaving.
     <<option 'CN'>>
-      罗宾向你道别，准备回孤儿院。
+      罗宾收好收据，向你道别，准备离开。
   <</language>><br><br>
   <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<robin-temple-talk-exit `["Return to Robin's room", '返回罗宾的房间']`>><</robin-temple-talk-exit>><br>
 <</if>>
 
 :: RobinTemple Prepare
@@ -422,7 +424,7 @@
 <<robin-temple-return-home 25>>
 
 :: RobinTemple Retry
-<<set $outside to 0>><<set $location to 'home'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<robin-temple-talk-place>><<effects>><<npc Robin>><<person1>>
 <<if $RobinTemple.stage is 'failed' and Time.days gte $RobinTemple.exam_day + 7 and maplebirch.get('RobinTemple').canTalk>>
   <<if !$RobinTemple.abandoned or C.npc.Robin.dom gt 70 and C.npc.Robin.trauma lt 10 and C.npc.Robin.love gte 95>>
     <<language>>
@@ -448,7 +450,7 @@
       再给罗宾一些时间。等<<he>>回来、能够与你谈话时再问。
   <</language>><br><br>
 <</if>>
-<<getouticon>><<lanLink ['Wait for another day', '改天再说'] 'Robin Options'>><</lanLink>><br>
+<<robin-temple-talk-exit `['Wait for another day', '改天再说']`>><</robin-temple-talk-exit>><br>
 
 :: RobinTemple Abandon
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -483,5 +485,5 @@
 <<if $location is 'temple'>>
   <<templeicon 'quarters'>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink ["Return to Robin's room", '返回罗宾的房间'] 'Robin Options'>><</lanLink>><br>
+  <<robin-temple-talk-exit `["Return to Robin's room", '返回罗宾的房间']`>><</robin-temple-talk-exit>><br>
 <</if>>

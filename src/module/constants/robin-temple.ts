@@ -64,6 +64,8 @@ export interface RobinTempleState {
   prepared_day: number;
   /** 同行结束后恢复原版安排，包括提前回家或提前起床的地点覆盖。 */
   visit_override: { location: string; during: number[] } | null;
+  /** 自宅谈话的实际出发住处，返回时重新核对同住资格。 */
+  talk_home: string | null;
   service: number;
   grace: number;
   pendant: boolean;
@@ -127,6 +129,7 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   exam_day: -1,
   prepared_day: -1,
   visit_override: null,
+  talk_home: null,
   service: 0,
   grace: 0,
   pendant: false,

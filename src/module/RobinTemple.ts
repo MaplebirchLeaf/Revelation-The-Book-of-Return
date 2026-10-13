@@ -5,10 +5,6 @@ import SecretPromise from './SecretPromise';
 import { DEFAULT_ROBIN_TEMPLE_STATE } from './constants';
 import type { RobinTempleForm, RobinTemplePunishment } from './constants/robin-temple';
 
-interface ResidentialModule {
-  realEstate: { residenceOf(name: string): unknown };
-}
-
 interface NPCAvatarModule {
   overlay(name: string, resolve: (npc: { pronoun?: string }) => { src: string } | undefined): void;
 }
@@ -64,15 +60,6 @@ class RobinTemple extends Module {
       });
     });
     this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple', before: 'robin-location' });
-    this.core.once(':storyready', () => {
-      const location = window.getRobinLocation;
-      window.getRobinLocation = () => {
-        const current = location();
-        if (!this.templeTime) return current;
-        T.robin_location = 'temple';
-        return 'temple';
-      };
-    });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
       action: () => this.dailyUpdate()
@@ -133,12 +120,59 @@ class RobinTemple extends Module {
   }
 
   private get playerReady(): boolean {
-    return ['initiate', 'monk', 'priest'].includes(V.temple_rank) && V.exposed <= 0 && V.stress < V.stressmax;
+    return (
+      ['initiate', 'monk', 'priest'].includes(V.temple_rank) &&
+      V.exposed <= 0 &&
+      V.stress < V.stressmax &&
+      !V.combat &&
+      !V.possessed &&
+      !V.nextPassageCheck &&
+      !V.replayScene &&
+      !V.statFreeze &&
+      !window.isPregnancyEnding()
+    );
+  }
+
+  public get residence() {
+    return this.core.get('Finance')?.realEstate.residenceOf('Robin');
+  }
+
+  public get home(): boolean {
+    const property = this.residence;
+    return (
+      this.available &&
+      !!property &&
+      this.core
+        .get('Finance')!
+        .realEstate.residentsHome(property.id)
+        .some(resident => resident.id === 'Robin')
+    );
   }
 
   /** 房间里的对话沿用原版实际地点，不把上学、工作或住院中的罗宾拉回来。 */
   public get canTalk(): boolean {
-    return this.playerReady && this.available && window.getRobinLocation() === 'orphanage';
+    if (!this.playerReady || !this.available) return false;
+    const location = window.getRobinLocation();
+    return (
+      (V.location === 'home' && location === 'orphanage') ||
+      (V.location === 'deadwood_home' && this.residence?.id === this.core.get('Finance')?.realEstate.current?.id && this.home && (location === 'deadwood_home' || (Time.hour >= 7 && Time.hour < 21)))
+    );
+  }
+
+  public get canPray(): boolean {
+    return this.member && this.playerReady && this.available && window.getRobinLocation() === 'temple' && Time.hour >= 11 && Time.hour < 20 && !(Time.weekDay === 1 && Time.hour < 13);
+  }
+
+  /** 只预测行程是否撞上既有事务；员工不自动替罗宾取消看店日程。 */
+  public free(minutes: number): boolean {
+    if (!this.canTalk || !Number.isFinite(minutes) || minutes <= 0) return false;
+    const start = Time.hour * 60 + Time.minute;
+    const end = start + minutes;
+    if (end > 21 * 60 || (Time.schoolDay && start < 16 * 60 && end >= 8 * 60)) return false;
+    const robin = this.core.get('Robin');
+    if (robin && V.RobinExpansion?.tutor && Time.schoolDay && robin.tutoring.lessonDays.includes(Time.weekDay) && start < 18 * 60 + 30 && end >= 17 * 60 + 30) return false;
+    if (robin && V.RobinExpansion?.shop && start < 21 * 60 && end >= 18 * 60 + 30) return false;
+    return true;
   }
 
   /** 约旦的办理时段沿用原版 Time 日夜状态，周日弥撒期间不接待。 */
@@ -148,7 +182,7 @@ class RobinTemple extends Module {
 
   /** 同行和问询共需二十分钟，预留原版日程边界，预测只修改日期副本。 */
   public get canMeetJordan(): boolean {
-    if (!this.canTalk || !this.jordanAvailable) return false;
+    if (!this.free(20) || !this.jordanAvailable) return false;
     const end = new DateTime(Time.date).addMinutes(20);
     const expansion = this.core.get('Robin');
     if (['night', 'dusk'].includes(end.dayState)) return false;
@@ -168,8 +202,6 @@ class RobinTemple extends Module {
     }
     if (V.englishPlay === 'ongoing' && V.englishPlayDays === 0 && Time.hour < 17 && end.hour >= 17) return false;
     if (V.halloween === 1 && Time.monthDay === 31 && Time.hour < 16 && end.hour >= 16) return false;
-    const start = Time.hour * 60 + Time.minute;
-    if (expansion && V.RobinExpansion?.tutor && Time.schoolDay && start < 18 * 60 + 30 && start + 20 >= 17 * 60 + 30) return false;
     return true;
   }
 
@@ -441,13 +473,21 @@ class RobinTemple extends Module {
     return true;
   }
 
-  private get templeTime(): boolean {
-    if (!this.member || !this.available) return false;
+  public get templeTime(): boolean {
+    if (!this.member || !this.available || V.replayScene || V.statFreeze) return false;
     // 预约与剧情覆盖优先，原版地点函数会处理它们。
     if (V.robinlocationoverride?.during?.includes(Time.hour)) return false;
 
-    const housing = this.core.get('VanillaPlus') as ResidentialModule | undefined;
-    const livesWithPlayer = Boolean(housing?.realEstate.residenceOf('Robin'));
+    const outings = this.core.get('Finance')?.realEstate.outings;
+    const ride = this.core.get('Transport')?.state.commute;
+    if ((outings?.travelling && outings.plan?.name === 'Robin') || (ride?.boarded && !ride.arrived && ride.npc === 'Robin')) return false;
+    if (V.englishPlay === 'ongoing' && V.englishPlayDays === 0 && Time.hour >= 17 && Time.hour < 21) return false;
+    if (V.halloween === 1 && Time.monthDay === 31 && Time.hour >= 16 && Time.hour < 19) return false;
+    const residence = this.residence;
+    const visit = outings?.state.visits.Robin;
+    // 约好回家的当晚保留已有来访记录，白天仍依原版职责出门。
+    if ((Time.hour >= 20 || Time.hour < 7) && visit?.property === residence?.id && visit?.at === 'deadwood_home' && visit.until > Time.date.timeStamp) return false;
+    const livesWithPlayer = Boolean(residence);
     const overnight = this.bunk && !livesWithPlayer && ((Time.weekDay === 7 && Time.hour >= 21) || (Time.weekDay === 1 && Time.hour < 7));
     const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
     const freeWeekday = !Time.schoolDay && !Time.isWeekEnd() && Time.hour >= 9 && Time.hour < 16;

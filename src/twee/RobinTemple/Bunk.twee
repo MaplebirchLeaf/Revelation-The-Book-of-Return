@@ -14,12 +14,12 @@
   <<option 'CN'>>
     罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
 <</language>>
-<<if maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
+<<if maplebirch.get('RobinTemple').residence>>
   <<language>>
     <<option 'EN'>>
-      Robin uses it during temple shifts. At night <<he>> returns to your home.
+      Robin also has a place at your shared home. This bunk remains available when temple duties keep <<him>> here.
     <<option 'CN'>>
-      罗宾值班时会用这张床，夜里则回到与你同住的家。
+      罗宾也在与你同住的家里留有位置。神殿事务需要<<him>>留在这里时，这张床铺仍可使用。
   <</language>>
 <</if>>
 <br><br>
@@ -63,6 +63,13 @@
       Robin is helping elsewhere in the quarters. <<His>> bunk is empty for now.
     <<option 'CN'>>
       罗宾在宿舍别处帮忙，床铺暂时空着。
+  <</language>>
+<<elseif maplebirch.get('RobinTemple').home>>
+  <<language>>
+    <<option 'EN'>>
+      Robin is at your shared home. The bunk here has been made, ready for another temple shift.
+    <<option 'CN'>>
+      罗宾现在在与你同住的家里。这里的床铺已经整理好，留待下次值班时使用。
   <</language>>
 <<else>>
   <<language>>

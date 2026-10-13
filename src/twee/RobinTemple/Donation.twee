@@ -1,55 +1,148 @@
+:: RobinTemple Donation Widgets [widget]
+
+<<widget 'robin-temple-relief-status'>><<silently>>
+  <<set _reliefDonations to maplebirch.get('Finance')?.donations>>
+  <<set _reliefAid to _reliefDonations?.aid>>
+  <<set _reliefSpeaker to _args[0]>>
+  <<set _reliefShow to _reliefAid and !$replayScene and !$statFreeze and !$combat and !$possessed and !$nextPassageCheck
+    and (_reliefSpeaker is 'Jordan' ? _reliefAid.available('temple') : getRobinLocation() is 'temple')>>
+<</silently>><<if _reliefShow and (_reliefDonations.state.total.temple gt 0 or _reliefAid.funded('temple'))>>
+  <<set _reliefState to _reliefAid.state('temple')>>
+  <<if !_reliefAid.funded('temple')>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefSpeaker is 'Jordan'>>Jordan checks the relief ledger. "The fund will buy food for River's kitchen and blankets to distribute. We are still gathering the amount we need."<<else>>Robin reads the relief list beside the door. "Food for the kitchen, and blankets," <<nnpc_he 'Robin'>> says. "They're still collecting for the order."<</if>>
+      <<option 'CN'>>
+        <<if _reliefSpeaker is 'Jordan'>>约旦翻看救济账簿。“基金会购置送往瑞沃厨房的食物，以及待分发的毯子。所需的款项还在募集。”<<else>>罗宾读着门旁的救济清单。“给厨房的食物，还有毯子，”<<nnpc_he 'Robin'>>说，“这笔订单还在筹款。”<</if>>
+    <</language>>
+  <<elseif !_reliefAid.ready('temple')>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefState.replacement_at isnot null>><<if _reliefSpeaker is 'Jordan'>>Jordan points to the shortage recorded on the delivery note. "The remaining blankets are on their way. We will finish the receipt when they arrive."<<else>>Robin leaves space beside the bundles. "Some blankets were missing. Jordan is waiting for the rest before signing it all in."<</if>><<else>><<if _reliefSpeaker is 'Jordan'>>Jordan finds the order in the relief ledger. "The fund has covered the food and blankets. We are waiting for delivery."<<else>>Robin shows you the order beside the shelves. "They've raised enough now. We should leave room for the delivery."<</if>><</if>>
+      <<option 'CN'>>
+        <<if _reliefState.replacement_at isnot null>><<if _reliefSpeaker is 'Jordan'>>约旦指着交货单上记下的缺货。“余下的毯子正在补送。到齐之后，我们再办完签收。”<<else>>罗宾在捆包旁留出空位。“之前少了几条毯子。约旦在等补齐，再把整批物资签收入库。”<</if>><<else>><<if _reliefSpeaker is 'Jordan'>>约旦从救济账簿里找到订单。“基金已筹足购买食物和毯子的钱。现在还在等交货。”<<else>>罗宾给你看货架旁的订单。“现在筹够了。得给到货留出地方。”<</if>><</if>>
+    <</language>>
+  <<elseif _reliefState.signed_at is null>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefSpeaker is 'Jordan'>>Jordan sets the delivery note beside the relief list. "The food and blankets have arrived. <<if _reliefState.equipment is null>>We will check the supplies against the order before signing.<<else>>The supplies have been checked. The delivery still needs its signature.<</if>>"<<else>>Robin looks over the delivered rice, tins and blankets. "<<if _reliefState.equipment is null>>We need to count these against the list first.<<else>>These have been checked. Jordan still needs the delivery signed in.<</if>>"<</if>>
+      <<option 'CN'>>
+        <<if _reliefSpeaker is 'Jordan'>>约旦把交货单放在救济清单旁。“食物和毯子到了。<<if _reliefState.equipment is null>>签收前，我们会对照订单点验物资。<<else>>物资已经点验，交付记录还需要签字。<</if>>”<<else>>罗宾看了看送来的米袋、罐头和毯子。“<<if _reliefState.equipment is null>>要先对照清单数一遍。<<else>>这些已经点验过，约旦还等着办完签收。<</if>>”<</if>>
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefSpeaker is 'Jordan'>>Jordan shows you the signed delivery record. "The food is for River's kitchen. Our members are distributing the blankets." <<if _reliefState.accounts is 'corrected'>>"The corrected charges are recorded here as well."<</if>><<else>>Robin checks the signed list before lifting a bundle. "Food for River, blankets for the next distribution. I can keep these together." <<if _reliefState.accounts is 'corrected'>>The corrected figures remain beside the delivery record.<</if>><</if>>
+      <<option 'CN'>>
+        <<if _reliefSpeaker is 'Jordan'>>约旦给你看签过字的交付记录。“食物送往瑞沃的厨房。毯子由我们的成员分发。”<<if _reliefState.accounts is 'corrected'>>“更正后的费用也记在这里。”<</if>><<else>>罗宾先核对签收清单，才搬起一捆毯子。“食物给瑞沃，毯子留作下一次分发。我可以把它们分好。”<<if _reliefState.accounts is 'corrected'>>更正过的数字仍附在交付记录旁。<</if>><</if>>
+    <</language>>
+  <</if>>
+  <<if _reliefDonations.state.named.temple gt 0>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefSpeaker is 'Jordan'>>"Your contribution is recorded in this fund, my child," Jordan adds.<<else>>Robin finds your name among the relief fund's contributors.<</if>>
+      <<option 'CN'>>
+        <<if _reliefSpeaker is 'Jordan'>>“你的资助记在这个基金里，我的孩子。”约旦补充道。<<else>>罗宾在救济基金的资助名单上找到你的名字。<</if>>
+    <</language>>
+  <</if>>
+  <<if _reliefDonations.customers.includes('temple') and maplebirch.get('Finance').industry.owned.some(factory => factory.ready_day lte Time.days and factory.lines.includes('crates'))>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _reliefSpeaker is 'Jordan'>>"You have met the members who handle our purchases. They can ask your factory for a quote when we need storage crates. Keep the order and invoice together."<<else>>"Jordan said the purchasing members can ask your factory about crates," Robin says. "I'll keep the delivery labels with the list."<</if>>
+      <<option 'CN'>>
+        <<if _reliefSpeaker is 'Jordan'>>“你已经认识经手采购的成员。需要储物货箱时，他们可以向你的工厂询价。订单和发票要放在一起。”<<else>>“约旦说，经手采购的人可以找你的工厂问货箱的报价，”罗宾说，“我会把交货标签和清单放在一起。”<</if>>
+    <</language>>
+  <</if>>
+  <br><br>
+<</if>><</widget>>
+
+<<widget 'robin-temple-relief-links'>>
+  <<set _reliefAid to maplebirch.get('Finance')?.donations.aid>>
+  <<if _reliefAid?.available('temple')>>
+    <<if _reliefAid.canMeet('temple')>>
+      <<socialiseicon 'ask'>><<lanLink ['Discuss the relief fund with Jordan', '和约旦商谈救济基金'] 'Deadwood Reblooms Temple Donation Meeting'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canAudit('temple')>>
+      <<socialiseicon 'ask'>><<lanLink ['Review the relief purchases', '核对救济物资的采购账目'] 'Deadwood Reblooms Temple Donation Accounts'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canInspect('temple')>>
+      <<templeicon 'quarters'>><<lanLink ['Check the delivery with Jordan', '和约旦一起点验交货'] 'Deadwood Reblooms Temple Donation Inspection'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canSign('temple')>>
+      <<socialiseicon 'ask'>><<lanLink ['Sign the relief delivery record', '签署救济物资的交付记录'] 'Deadwood Reblooms Temple Donation Receipt'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canFollow('temple')>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Jordan where the supplies went', '问约旦物资送到了哪里'] 'Deadwood Reblooms Temple Donation Followup'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canGrant('temple') or _reliefAid.has('temple')>>
+      <<socialiseicon 'ask'>><<lanLink ['Discuss your benefactor arrangements', '商谈资助者的事务安排'] 'Deadwood Reblooms Temple Donation Privileges'>><</lanLink>><br>
+    <</if>>
+    <<if _reliefAid.canUse('temple', 'rest')>>
+      <<templeicon 'quarters'>><<lanLink ['Use the quiet room', '借用安静的房间'] 'Deadwood Reblooms Temple Donation Rest'>><</lanLink>><br>
+    <</if>>
+  <</if>>
+<</widget>>
+
 :: RobinTemple Donation
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>
-    An initiate carries the collection plate along the benches. Robin checks <<his>> pocket and looks at you. The temple also needs linen and food for the people it shelters.
+    An initiate carries the collection plate along the benches. Robin checks <<his>> pocket and looks at you. The plate takes personal cash offerings.
+    <<if maplebirch.get('Finance')>>A notice by the side door lists the public relief fund's larger purchases: food for the soup kitchen and blankets to distribute. Contributions to that fund are recorded at the town hall's donations desk.<</if>>
   <<option 'CN'>>
-    一名见习教徒捧着奉献盘走过长椅。罗宾摸了摸口袋，望向你。神殿还需要为收容的人准备布巾和食物。
+    一名见习教徒捧着奉献盘走过长椅。罗宾摸了摸口袋，望向你。奉献盘收取个人的现金奉献。
+    <<if maplebirch.get('Finance')>>侧门旁的告示列着公共救济基金的大宗采购：送往施粥所的食物，以及待分发的毯子。基金的资助由市政厅募捐处登记。<</if>>
 <</language>>
 <br><br>
-<<if $RobinTemple.donation_day isnot Time.days>>
-  <<if $money gte 100>>
-    <<lanLink ['Donate £1', '捐出 £1'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 100>><<money -100>><</lanLink>><br>
-  <</if>>
-  <<if $money gte 500>>
-    <<lanLink ['Donate £5', '捐出 £5'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 500>><<money -500>><</lanLink>><br>
-  <</if>>
-  <<if $money gte 2500>>
-    <<lanLink ['Donate £25', '捐出 £25'] 'RobinTemple Donation Result'>><<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to 2500>><<money -2500>><</lanLink>><br>
-  <</if>>
+<<robin-temple-relief-status 'Robin'>>
+<<if $RobinTemple.donation_day isnot Time.days and maplebirch.get('RobinTemple').canPray>>
+  <<for _plateAmount range [100, 500, 2500]>>
+    <<if $money gte _plateAmount>>
+      <<capture _plateAmount>>
+        <<lanLink ['Donate £' + _plateAmount / 100, '捐出 £' + _plateAmount / 100] 'RobinTemple Donation Result'>>
+          <<set $RobinTemple.donation_amount to 0>>
+          <<if $RobinTemple.donation_day isnot Time.days and $money gte _plateAmount and maplebirch.get('RobinTemple').canPray>>
+            <<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to _plateAmount>><<money `_plateAmount * -1`>>
+            <<if _plateAmount gte 2500>><<set $soup_kitchen_known to 1>><<grace 3>><<elseif _plateAmount gte 500>><<grace 1>><</if>>
+            <<npcincr Robin love 1>>
+          <</if>>
+        <</lanLink>><br>
+      <</capture>>
+    <</if>>
+  <</for>>
 <</if>>
+<<robin-temple-relief-links>>
 <<getouticon>><<lanLink ['Withdraw your hand', '收回手'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Donation Result
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set _donationAmount to $RobinTemple.donation_amount>>
 <<set $RobinTemple.donation_amount to 0>>
-<<language>>
-  <<option 'EN'>>
-    You place your contribution on the plate. The initiate thanks you. Robin looks at the shelves by the door, already working out where the next delivery should go.
-  <<option 'CN'>>
-    你把钱放进奉献盘。见习教徒向你道谢。罗宾望向门边的架子，已经在想下一批物资该放在哪里。
-<</language>>
-<br><br>
-<<if _donationAmount gte 2500 and !$soup_kitchen_known>>
-  <<set $soup_kitchen_known to 1>>
+<<if _donationAmount gt 0>>
   <<language>>
     <<option 'EN'>>
-      The initiate mentions the soup kitchen on Wolf Street. Its kitchen opens in the evening, and extra hands are welcome.
+      You place your contribution on the plate. The initiate thanks you. Robin helps pass it to the next bench, then sits beside you again.
     <<option 'CN'>>
-      见习教徒提起狼街的施粥所。厨房在晚间开放，很欢迎有人帮忙。
+      你把钱放进奉献盘。见习教徒向你道谢。罗宾帮忙把盘子递向下一排长椅，随后又坐到你身边。
   <</language>>
-  <br><br><<language>>
+  <br><br>
+  <<if _donationAmount gte 2500>>
+    <<language>>
+      <<option 'EN'>>
+        The initiate mentions the soup kitchen on Wolf Street. Its kitchen opens in the evening, and extra hands are welcome.
+      <<option 'CN'>>
+        见习教徒提起狼街的施粥所。厨房在晚间开放，很欢迎有人帮忙。
+    <</language>><br><br>
+  <</if>>
+  <<if _donationAmount gte 500>><<ggrace>><</if>>
+  <<glove>>
+<<else>>
+  <<language>>
     <<option 'EN'>>
-      <span class='gold'>You learned where to help at the soup kitchen.</span>
+      The plate has moved on. Robin waits beside you while the initiate crosses to the next row.
     <<option 'CN'>>
-      <span class='gold'>你得知了施粥所的位置。</span>
+      奉献盘已经传了过去。见习教徒走向下一排时，罗宾在你身边等着。
   <</language>>
-<</if>>
-<<if _donationAmount gte 2500>>
-  <<grace 3>><<ggrace>>
-<<elseif _donationAmount gte 500>>
-  <<grace 1>><<ggrace>>
-<</if>>
-<<if _donationAmount gt 0>><<npcincr Robin love 1>><<glove>><</if>><br><br>
+<</if>><br><br>
+<<robin-temple-relief-links>>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

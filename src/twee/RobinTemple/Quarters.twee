@@ -23,12 +23,12 @@
 <</if>>
 <br><br>
 <<if maplebirch.get('RobinTemple').bunk
-  and maplebirch.get('VanillaPlus') and maplebirch.get('VanillaPlus').realEstate.residenceOf('Robin')>>
+  and maplebirch.get('RobinTemple').residence>>
   <<language>>
     <<option 'EN'>>
-      Robin keeps a bunk for temple duties, but goes home to you when the work is done.
+      Robin keeps this bunk for temple duties as well as a place at your shared home. The work list records <<his>> shifts here.
     <<option 'CN'>>
-      罗宾在神殿留着床位，值班结束后会回到与你同住的家。
+      罗宾除了与你同住的家，也在神殿留着床位。工作表上记着<<his>>在这里的值班安排。
   <</language>>
   <br><br>
 <</if>>
@@ -224,6 +224,7 @@
       楼梯旁堆着一批刚送到的物资。罗宾核对清单，你把较轻的箱子搬进屋里。一部分要送去厨房，其余装着干净床单。
   <</language>>
   <br><br>
+  <<robin-temple-relief-status 'Robin'>>
   <<language>>
     <<option 'EN'>>
       Robin catches a mistaken count before it reaches the storeroom. <<He>> adds a note for the next shift, then hands you the pencil.
@@ -385,22 +386,36 @@
         <<option 'CN'>>
           “罗宾说要参加宅邸街孤儿院的万圣节活动。”
       <</language>>
-    <<case 'orphanage'>>
-      <<if maplebirch.get('VanillaPlus')?.realEstate.residenceOf('Robin')>>
+    <<case 'deadwood_home' 'sleep'>>
+      <<if maplebirch.get('RobinTemple').home>>
         <<language>>
           <<option 'EN'>>
-            Robin has gone home. You remember that <<he>> now shares your property, so the orphanage may not be the place to look.
+            A note beside the work list gives your shared home as Robin's destination. <<He>> is at home now.
           <<option 'CN'>>
-            罗宾已经回家了。你记得<<he>>现在与你同住房产，不必再去孤儿院寻找。
+            工作表旁的便条写着，罗宾去了与你同住的家。<<He>>现在在那里。
         <</language>>
       <<else>>
         <<language>>
           <<option 'EN'>>
-            "Robin went back to the orphanage on Domus Street."
+            "Robin has turned in for the night," the attendant says. "Try again when <<he>> is awake."
           <<option 'CN'>>
-            “罗宾回宅邸街的孤儿院了。”
+            “罗宾已经睡了，”侍从说，“等<<he>>醒来后再找吧。”
         <</language>>
       <</if>>
+    <<case 'deadwood_outing'>>
+      <<language>>
+        <<option 'EN'>>
+          The list records that Robin is away on an arranged journey. <<He>> has not returned to the temple yet.
+        <<option 'CN'>>
+          工作表上记着，罗宾正在按约定外出。<<He>>还没有回到神殿。
+      <</language>>
+    <<case 'orphanage'>>
+      <<language>>
+        <<option 'EN'>>
+          "Robin went back to the orphanage on Domus Street."
+        <<option 'CN'>>
+          “罗宾回宅邸街的孤儿院了。”
+      <</language>>
     <<default>>
       <<language>>
         <<option 'EN'>>

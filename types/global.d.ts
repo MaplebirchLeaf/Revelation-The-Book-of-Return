@@ -1,21 +1,16 @@
 // ./types/global.d.ts
 
 import type LostLambModule from '../src/module/LostLamb';
-import type { Security } from '../src/module/VanillaPlus/Finance';
-
-declare module 'twine-sugarcube' {
-  interface SugarCubeSetupObject {
-    DeadwoodReblooms?: {
-      finance?: {
-        securities?: readonly Security[];
-      };
-    };
-  }
-}
+import type Revelation from '../src/module/Revelation';
+import type RobinTemple from '../src/module/RobinTemple';
+import type TempleChoir from '../src/module/TempleChoir';
 
 declare global {
   interface MaplebirchExtensions {
     LostLamb: LostLambModule;
+    RBR: Revelation;
+    RobinTemple: RobinTemple;
+    TempleChoir: TempleChoir;
   }
 
   interface Array<T> {
@@ -43,6 +38,7 @@ declare global {
     saveAs(blob: Blob, filename: string): void;
     breakableSoftBinding(): boolean;
     pcAreArmsBound(arm?: 'any' | 'both'): boolean;
+    isPregnancyEnding(): boolean | null;
     playerChastity(slots?: string | readonly string[], inAllSlots?: boolean): boolean;
     playerPenisSize(): number;
     npcHasStrapon(index?: number): boolean;

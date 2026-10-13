@@ -49,6 +49,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
 
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-links', passage: 'Temple Quarters' }, { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' }, { widget: 'robin-temple-hall-link', passage: 'Temple' });
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
 
   // 守夜对白放在原版选择前，保留涉及原句替换与判定的精确补丁。
   maplebirch.tool.addTo(

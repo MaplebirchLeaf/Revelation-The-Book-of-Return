@@ -1,17 +1,17 @@
 ### Prerequisites and recommended order
 
-Enable **Robin's temple route**. The PC must have passed the original entrance assessment, hold the rank of **initiate, monk/nun or priest**, remain covered and stay below maximum stress. With deep love, no disappearance and the ability to take part in normal activities, Robin offers **Talk to Robin about the temple** in **Orphanage → Robin's room**.
+Enable **Robin's temple route**. The PC must have passed the original entrance assessment, hold the rank of **initiate, monk/nun or priest**, remain covered and stay below maximum stress. With deep love, no disappearance and the ability to take part in normal activities, Robin offers **Talk to Robin about the temple** in **Orphanage → Robin's room**, or at your shared property while Robin is actually home.
 
 Recommended order: **discuss the temple → meet Jordan and book the assessment → prepare and attend → work and pray together → undergo evaluation → make the promise**. The trial of anguish, food gifts, walks and confessions can fit around these steps. You do not need to finish every side scene before applying for a promise.
 
-<span class="teal">The option appears in the ordinary conversation menu in Robin's room. Early hours, school hours, nighttime and special story menus do not offer it. If the first option is missing, check your temple rank and clothing, then Robin's relationship, injuries and whereabouts. Chastity fittings only change the opening conversation and are not required for the first invitation. Deadwood Reblooms' Robin expansion is not required.</span>
+<span class="teal">At the orphanage, the option appears in the ordinary conversation menu in Robin's room. Early hours, school hours, nighttime and special story menus do not offer it. With Finance enabled and Robin living at your property, **Talk to Robin** at home also continues the route while Robin is present and free. If the first option is missing, check your temple rank and clothing, then Robin's relationship, injuries and whereabouts. Chastity fittings only change the opening conversation and are not required for the first invitation. Deadwood Reblooms' Robin expansion is not required.</span>
 
 ### Chastity assessment: booking, preparation and retrying
 
-1. Discuss the temple in Robin's room. Give Robin time or suggest asking Jordan together. Continue the assessment conversation in the room later if needed.
-2. Accompany Robin to Jordan and book the assessment **two days ahead**. Jordan must be available during morning or daylight under the original schedule and not conducting mass. Robin must be at the orphanage, neither missing nor occupied. Travelling and speaking to Jordan takes **twenty minutes**, so leave enough time before daylight ends. School, stalls, tutoring, a shop without staff and special plans for the day take priority. The date is recorded only after confirming the appointment.
-3. Before that date, choose **Go with Robin to prepare for the assessment (0:45)** in Robin's room. It is available once daily, **17:00–19:15**, with Robin at the orphanage and no tutoring or shop duty taking priority.
-4. On or after the appointment day, choose **Accompany Robin to the purity trial (0:20)** in Robin's room, then attend the assessment in **Temple → Quarters**. You can also go directly to the quarters. On school days, the assessment is available between **06:00 and 08:00**. On days without school, the window extends to **18:00**. Leave twenty minutes for the journey from Robin's room. Remain covered, below maximum stress, with Robin able to take part in normal activities, neither missing nor admitted to the asylum, and Jordan present outside mass.
+1. Discuss the temple in Robin's room or at your shared home. Give Robin time or suggest asking Jordan together. Continue the assessment conversation at home later if needed.
+2. Accompany Robin to Jordan and book the assessment **two days ahead**. Jordan must be available during morning or daylight under the original schedule and not conducting mass. Robin must be at the orphanage or your shared home, neither missing nor occupied. Travelling and speaking to Jordan takes **twenty minutes**, so leave enough time before daylight ends. School, stalls, tutoring, shop duty and special plans for the day take priority. Finish any outing or ride already underway. The date is recorded only after confirming the appointment.
+3. Before that date, choose **Go with Robin to prepare for the assessment (0:45)** in Robin's room or through conversation at your shared home. It is available once daily, **17:00–19:15**, with Robin actually present and forty-five minutes free before the next commitment. Tutoring and shop duty shorten the available window.
+4. On or after the appointment day, choose **Accompany Robin to the purity trial (0:20)** in Robin's room or through conversation at your shared home, then attend the assessment in **Temple → Quarters**. You can also go directly to the quarters. On school days, the assessment is available between **06:00 and 08:00**. On days without school, the window extends to **18:00**. Leave twenty minutes for the journey from home. Remain covered, below maximum stress, with Robin able to take part in normal activities, neither missing nor admitted to the asylum, and Jordan present outside mass.
 5. Read the result, hear Jordan's announcement and finish the response. Success opens Robin's seat and changing area, and Robin takes a temple vow. The bunk opens after Robin passes the trial of anguish and becomes a monk or nun.
 
 <span class="teal">After booking, illness, injury, severe trauma or asylum admission pauses Robin's attendance. Jordan's absence or mass also requires waiting. Once the appointment day is reached, you can attend in the next permitted window. The appointment remains booked. Being temporarily unable to attend does not count as assessment failure.</span>
@@ -20,24 +20,26 @@ With first virginity intact, Robin passes the ordinary examination. Otherwise, a
 
 After booking, you can give Robin a **holy or stone pendant** you are wearing. This consumes the worn pendant, helps preparation and improves later contribution growth. It is a one-time gift.
 
-After failure, offer comfort. **Seven days later**, ask Robin about trying again in the room and book another assessment two days ahead. If you previously abandoned Robin in the hall, agreement also requires deeper love, strong confidence and very low trauma. Waiting seven days alone is insufficient.
+After failure, offer comfort. **Seven days later**, ask Robin about trying again at home and book another assessment two days ahead. If you previously abandoned Robin in the hall, agreement also requires deeper love, strong confidence and very low trauma. Waiting seven days alone is insufficient.
 
 ### Where Robin is and when activities are available
 
 The main location is **Temple → Quarters → Robin's seat**. Shared prayer starts in the **temple hall**. Being at the temple does not mean Robin is always free.
 
-| Time or situation                                        | Where to go and what is available                                                                   |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Weekdays without school, 09:00–16:00                     | Robin helps at the temple, often in the garden or hall before noon and at the seat from 13:00–16:00 |
-| Evening, 17:00 until just before 19:45                   | Invite Robin from the room for a fifteen-minute journey, then work an evening shift                 |
-| Sunday, 11:00–13:00                                      | Robin helps with mass and may be occupied away from the seat                                        |
-| Saturday 21:00 to Sunday 07:00                           | At monk rank or above, Robin stays overnight unless living at your property                         |
-| Sunday night to Monday morning                           | Robin may attend the trial of anguish until passing, rather than chatting at the bunk               |
-| Injury, disappearance, severe trauma or asylum admission | Daily activities pause until the condition is resolved                                              |
+| Time or situation                                        | Where to go and what is available                                                                                     |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Weekdays without school, 09:00–16:00                     | Unless another journey takes priority, Robin helps in the garden or hall before noon and at the seat from 13:00–16:00 |
+| Evening, 17:00 until just before 19:45                   | Invite Robin from home for a fifteen-minute journey, then work an evening shift                                       |
+| Sunday, 11:00–13:00                                      | Robin helps with mass and may be occupied away from the seat                                                          |
+| Saturday 21:00 to Sunday 07:00                           | With a bunk after the shared vigil, Robin stays overnight unless cohabiting or another journey takes priority         |
+| Sunday night to Monday morning                           | Robin may attend the trial of anguish until passing, rather than chatting at the bunk                                 |
+| Injury, disappearance, severe trauma or asylum admission | Daily activities pause until the condition is resolved                                                                |
 
-On weekdays without school, you can also invite Robin from the room between **09:00 and just before 15:45**. Tutoring and a shop without staff can occupy invitation windows. Moving into your property replaces the ordinary Saturday overnight stay with going home, while temple duties remain.
+On weekdays without school, you can also invite Robin from home between **09:00 and just before 15:45**, leaving fifteen minutes for the journey. Tutoring follows the Robin expansion's current lesson days: **Tuesday and Thursday, 17:30–18:30**, on school days, with **Friday** added after six lessons. With a shop open, Robin still works there daily from **18:30 to 21:00**. Hiring staff does not free this time.
 
-When Robin is absent, choose **Ask the attendant where Robin went** at the seat. Door notes, the attendant and journal distinguish school, stalls, tutoring, the shop, vigils, home and inability to attend. Belongings beside the bunk do not mean Robin is present.
+Finance manages shared properties, outings and rides. When Robin is actually home, use the property's conversation menu to invite Robin. An outing or ride already underway takes priority. Moving into your property replaces the ordinary Saturday overnight stay with going home, while temple duties remain. Cohabitation does not make Robin appear at home while elsewhere.
+
+When Robin is absent, choose **Ask the attendant where Robin went** at the seat. Door notes and the attendant distinguish school, stalls, tutoring, the shop, vigils, home, outings or rides and inability to attend. The journal also shows current tutoring, shop duty, home, travel or inability to attend. Belongings beside the bunk do not mean Robin is present.
 
 ### Shifts, grace and Robin's contribution
 
@@ -52,11 +54,11 @@ Cleaning, supplies and mass preparation share **one daily work opportunity**. No
 
 **PC grace, Robin's contribution, shared shifts and Robin's faith are separate.** Robin's contribution changes with the calendar. Free days and Sundays help, while school demands time. The pendant improves contribution growth. Increasing PC grace does not fill Robin's contribution directly.
 
-Check **Journal → Robin and the temple** for appointments, shifts, contribution, faith and next steps. With Deadwood Reblooms' Robin expansion enabled, the weekly temple allowance joins Robin's existing business income and rent accounts.
+Check **Journal → Robin and the temple** for appointments, shifts, contribution, faith and next steps. Completed one-time tasks lose their reminders; Confounded Vow leaves the journal when finished. With Deadwood Reblooms' Robin expansion enabled, the weekly temple allowance joins Robin's existing business income and rent accounts.
 
 ### Shared prayer, faith and doubt
 
-With Robin at the temple, choose **Pray with Robin** in the hall between **11:00 and 20:00**, covered and below maximum stress. Choose one daily prayer. Encounters, donations, gifts and walks have their own conditions.
+With Robin at the temple, choose **Pray with Robin** in the hall between **11:00 and 20:00**, covered and below maximum stress, outside Sunday mass from 11:00 to 13:00. Choose one daily prayer. Encounters, donations, gifts and walks have their own conditions.
 
 | Choice                       | Duration   | Effects and conditions                                                                                                                           |
 | ---------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -73,7 +75,7 @@ After joining, Robin's social card and journal show **Faith and Doubt**. These a
 
 At the bench, open the food-gift list, select suitable carried food and confirm the gift, taking five minutes. Ordinary food, spicy food and drinks have different responses. **Sticky toffee pudding** is a favourite, recording the favourite food and using the original related feat. Afterwards, ask for a taste or watch Robin finish. You do not need to give the same item twice.
 
-Shared donations are available once daily, using **carried cash**.
+Shared donations are available once daily, using **carried cash**. Robin must be at the temple and able to take part in normal activities, while the PC remains covered and below maximum stress. The window is **11:00–20:00**, outside Sunday mass.
 
 | Donation | Result                                                                |
 | -------- | --------------------------------------------------------------------- |
@@ -81,7 +83,11 @@ Shared donations are available once daily, using **carried cash**.
 | £5       | Robin's love and PC grace                                             |
 | £25      | Robin's love, more grace and a soup-kitchen clue if not already known |
 
-Donations do not replace Robin's long-term contribution or skip the promise evaluation. Amounts you cannot afford in cash are absent. A bank balance does not replace the cash check here.
+The first shared offering each day retains Robin's love gain and the corresponding grace effects. Offerings do not replace Robin's ongoing contribution or bypass evaluation. Without enough cash, that amount does not appear. Your bank balance does not replace the cash check here.
+
+With Finance enabled, the **temple relief fund at the town hall's donations desk** records larger contributions and named support. It uses cash first, with the remainder payable through a debit card on an opened account. The plate's £1/£5/£25 offerings do not enter this public fund's accounts. At **£10,000** in total funding, food and blankets are ordered and arrive two days later. **£5,000** in named contributions qualifies for discussing purchases while Jordan is available.
+
+At the temple, Robin responds to the actual fundraising, delivery, inspection, receipt and corrected accounts. During an ordinary meeting with Jordan or on the shared offering page, Finance's conditions may allow discussions, account checks, signing, follow-up and approved privileges or rest. Project rewards retain Finance's own conditions and one-time settlement. Named support itself adds no extra Robin love.
 
 ### Walks, the spear and transformation interactions
 
@@ -156,7 +162,7 @@ At the bench, very high stress below collapse allows a daily half-hour rest with
 | Module or trait                        | Integration                                                                                                                                                                                                                                   |
 | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Robin expansion                        | Tutoring, the shop and asylum admission affect schedules, with temple income in the existing weekly accounts                                                                                                                                  |
-| Vanilla Plus                           | Homeward options use Robin's shared property, adjusting ordinary overnight stays                                                                                                                                                              |
+| Finance                                | Homeward options use Robin's shared property; outings and rides retain priority; buying Robin out of rent changes freedom dialogue and ordinary overnight stays adjust                                                                        |
 | Unyielding Will                        | Resists ear-slime bodily control during Confounded Vow, while retaining stimulation, pursuit and costs, and records the shared vigil experience                                                                                               |
 | More love interests and social avatars | Keeping Robin and Sydney in Attitudes requires awareness rank four or above, followed by a normal day change. With the matching avatar module, Robin's temple icon wears novice or monk/nun clothing while retaining relationship expressions |
 | NPC sidebar portraits                  | Novice clothing, post-vigil monk/nun clothing and bunk pyjamas follow the scene                                                                                                                                                               |
@@ -181,7 +187,7 @@ This route uses clues about pagan rites to attempt a second promise. The eventua
 
 #### First journey: investigation
 
-1. **Orphanage → Robin's room**: discuss the pagan rite, start the investigation and complete the private conversation. Robin agrees only to examine the place.
+1. **Orphanage → Robin's room**, or **Shared property → Talk to Robin** while Robin is home: discuss the pagan rite, start the investigation and complete the private conversation. Robin agrees only to examine the place.
 2. **Where Sydney is available for ordinary conversation**: find Sydney at the school library counter, temple or shop and share the same findings. This is no longer limited to lunch. Sydney must be present and free to talk, outside sleep, mass and the trial of anguish. Sydney agrees only to investigate together. Each private conversation disappears once that companion agrees, returning when the shared investigation or an aborted journey requires a new decision.
 3. **Lake shore, by daylight**: with the lake unfrozen and no pursuit, choose **Survey a route through the lake ruin**. The survey is recorded and need not be repeated.
 4. **Lake shore → Review the route and your findings**: finish preparations after both conversations. Allow three days after the latest conversation or survey.
@@ -204,7 +210,7 @@ Answering the private conversations honestly increases love, and reassuring Robi
 
 The existing romances, Sydney's current corrupt outlook and both promise-order requirements still apply. Love, trauma, desire and equipment conditions still apply. **Robin's high trauma is checked against the current state throughout the route, rather than only when it unlocks.** Reassurance during conversations or ordinary recovery can lower trauma below the requirement. Investigation records remain, but agreement, preparation, departure and further progress through the rite are blocked. Recovery after completion does not revoke Confounded Vow. **Unyielding Will** resists ear-slime control without improving Skulduggery odds or answering for an NPC.
 
-If you return first, allow at least three days after the shared investigation. Return to **Robin's room** and find Sydney at **an ordinary conversation spot in the library, temple or shop** to hear their separate decisions. The existing promise partner considers whether that promise is still cherished, while the other considers a place beside it. Sydney also addresses jealousy and the risks of blasphemy. Changes to your relationships, outlook or vows can prevent agreement.
+If you return first, allow at least three days after the shared investigation. Return to **Robin's room or your shared home** and find Sydney at **an ordinary conversation spot in the library, temple or shop** to hear their separate decisions. The existing promise partner considers whether that promise is still cherished, while the other considers a place beside it. Sydney also addresses jealousy and the risks of blasphemy. Changes to your relationships, outlook or vows can prevent agreement.
 
 Once both explicitly agree, prepare again at the lake and meet on a later blood moon that meets the conditions. Both branches use the same formal rite: let each companion answer, speak each name separately, then complete the vow and return to shore. Answering for them or attempting to make the three of you inseparable aborts the attempt.
 
@@ -218,17 +224,17 @@ Aborting retains the survey and any completed shared investigation, but clears b
 
 ### Common problems
 
-| Problem                                          | What to check                                                                                                                                                                                                |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| No first temple invitation                       | Ordinary conversation hours, PC temple rank and clothing, then Robin's love, injury, disappearance and trauma                                                                                                |
-| Cannot meet Jordan after agreeing                | Jordan available in the morning or daytime outside mass, twenty minutes remaining, Robin at the orphanage and able to take part in normal activities, no school or business schedule conflict                |
-| No preparation after booking                     | Before the assessment date, not prepared today, Robin at the orphanage at 17:00–19:15, no tutoring or shop conflict                                                                                          |
-| No assessment option                             | Date reached, quarters during the applicable time window, clothing, stress and Robin's availability, Jordan present outside mass. A delay retains the appointment                                            |
-| Robin is present but no evening work             | Arrange the journey from the room, visit during an afternoon or evening work window, no work completed today                                                                                                 |
-| Evaluation will not begin or fails               | Daylight, no other promise, no shared purification or strong doubt, then waiting period, contributions and answers                                                                                           |
-| Removal requested but no investigation           | Accompany Robin to Jordan during daylight, while Jordan is present outside Sunday mass, then check all three actual fittings. A request alone does not complete removal                                      |
-| Pagan Rite feat but no new topic                 | Revelation must be experienced in this save, alongside the Underground Compound ending and lake vision, relationships, Sydney's current corrupt outlook, promise order, Promiscuity 6 and fitting conditions |
-| Sydney's private conversation is absent          | Start the investigation with Robin first, then talk where Sydney is present and available in the library, temple or shop. A completed agreement hides the option until a new decision is needed              |
-| No blood-moon meeting                            | Both conversations, daylight survey, preparations and waiting period complete, 21:00–23:00, unfrozen lake, no rain, crowd or pursuit, fit enough to dive                                                     |
-| Witnessed the response but cannot begin the rite | Return route requires three days, new private agreements and preparations, same-night route requires successful persuasion, both need sufficient lust and no chastity fittings                               |
-| Interrupted journey                              | Cancel it at the lake, retain discoveries but repeat agreements and preparations, no departure again that night                                                                                              |
+| Problem                                          | What to check                                                                                                                                                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| No first temple invitation                       | Ordinary conversation hours, PC temple rank and clothing, then Robin's love, injury, disappearance and trauma                                                                                                     |
+| Cannot meet Jordan after agreeing                | Jordan available in the morning or daytime outside mass, twenty minutes remaining, Robin at the orphanage or shared home and able to take part in normal activities, no school, business, outing or ride conflict |
+| No preparation after booking                     | Before the assessment date, not prepared today, Robin at the orphanage or shared home at 17:00–19:15, forty-five minutes free before tutoring, shop duty or another commitment                                    |
+| No assessment option                             | Date reached, quarters during the applicable time window, clothing, stress and Robin's availability, Jordan present outside mass. A delay retains the appointment                                                 |
+| Robin is present but no evening work             | Arrange the journey from home, visit during an afternoon or evening work window, no work completed today                                                                                                          |
+| Evaluation will not begin or fails               | Daylight, no other promise, no shared purification or strong doubt, then waiting period, contributions and answers                                                                                                |
+| Removal requested but no investigation           | Accompany Robin to Jordan during daylight, while Jordan is present outside Sunday mass, then check all three actual fittings. A request alone does not complete removal                                           |
+| Pagan Rite feat but no new topic                 | Revelation must be experienced in this save, alongside the Underground Compound ending and lake vision, relationships, Sydney's current corrupt outlook, promise order, Promiscuity 6 and fitting conditions      |
+| Sydney's private conversation is absent          | Start the investigation with Robin first, then talk where Sydney is present and available in the library, temple or shop. A completed agreement hides the option until a new decision is needed                   |
+| No blood-moon meeting                            | Both conversations, daylight survey, preparations and waiting period complete, 21:00–23:00, unfrozen lake, no rain, crowd or pursuit, fit enough to dive                                                          |
+| Witnessed the response but cannot begin the rite | Return route requires three days, new private agreements and preparations, same-night route requires successful persuasion, both need sufficient lust and no chastity fittings                                    |
+| Interrupted journey                              | Cancel it at the lake, retain discoveries but repeat agreements and preparations, no departure again that night                                                                                                   |

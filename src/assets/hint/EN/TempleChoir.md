@@ -98,6 +98,8 @@ Attend the monthly temple examination when due. **Passing and receiving the allo
 
 Check **Journal → Temple choir** for uncollected earnings, practice and service counts, permission to lead and the schedule.
 
+Choir earnings are collected with the monthly temple allowance. Robin's weekly temple income and Finance's relief fund retain their respective accounts and settlement.
+
 ### Common problems
 
 | Problem                             | What to check                                                                                             |
