@@ -82,6 +82,7 @@ export interface RobinTempleState {
   vigil_attending: boolean;
   vigil_with_robin: boolean;
   vigil_result: '' | 'passed' | 'failed';
+  ordination_day: number;
   vigil_followup: boolean;
   evaluation_day: number;
   evaluation_marks: number;
@@ -146,6 +147,7 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   vigil_attending: false,
   vigil_with_robin: false,
   vigil_result: '',
+  ordination_day: -1,
   vigil_followup: false,
   evaluation_day: -1,
   evaluation_marks: 0,

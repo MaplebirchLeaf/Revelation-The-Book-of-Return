@@ -47,7 +47,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
     text: () => lanSwitch('Inside becomes outside. Betrayal, or belonging? Promise partners +1.', '表里相易，内外相别，此是背叛，还是同在？承诺对象 +1。')
   });
 
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-links', passage: 'Temple Quarters' }, { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' }, { widget: 'robin-temple-hall-link', passage: 'Temple' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
 
@@ -78,6 +78,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 1
         }
       ],
+      'Temple Quarters': [{ src: '<<getouticon>>', applybefore: '<<robin-temple-links>>', expected: 1 }],
       'Sydney Temple Pure': [
         // 神殿不主持第二份誓约，亵渎仪式独立结算。
         {
@@ -177,6 +178,19 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       ]
     },
     widgetPassage: {
+      'Widgets Temple': [
+        {
+          // 只添加 Robin 分支，PC、Sydney 与 dark 分支保留原版。
+          src: '<<widget "temple_title">><<silently>>\n\t<<if _args[0] is "Sydney">>',
+          to: '<<widget "temple_title">><<silently>>\n\t<<if _args[0] is "Robin">>\n\t\t<<robin-temple-title>>\n\t<<elseif _args[0] is "Sydney">>',
+          expected: 1
+        },
+        {
+          src: '<<widget "temple_Title">><<silently>>\n\t<<if _args[0] is "Sydney">>',
+          to: '<<widget "temple_Title">><<silently>>\n\t<<if _args[0] is "Robin">>\n\t\t<<temple_title "Robin">><<capitalise>>\n\t<<elseif _args[0] is "Sydney">>',
+          expected: 1
+        }
+      ],
       // 原版没有 Robin 的贞操器具战斗反应，按 Sydney 的写法把区块补进原版 widget。
       'Widgets speech-Robin': [
         {

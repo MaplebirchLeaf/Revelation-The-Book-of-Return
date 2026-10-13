@@ -35,19 +35,27 @@
 <<if maplebirch.get('RobinTemple').bunk>>
   <<language>>
     <<option 'EN'>>
-      Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before <<he>> carries a task into the hall.
+      <<if maplebirch.get('RobinTemple').rank is 'priest'>>
+        A small key lies on Robin's folded cloak. <<He>> reads the next name on the duties list twice before carrying the clean linen to the hall.
+      <<else>>
+        Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before <<he>> carries a task into the hall.
+      <</if>>
     <<option 'CN'>>
-      罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
+      <<if maplebirch.get('RobinTemple').rank is 'priest'>>
+        一把小钥匙放在罗宾叠好的斗篷上。<<He>>把值班单上的下一个名字看了两遍，才抱起要带去大厅的干净布巾。
+      <<else>>
+        罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
+      <</if>>
   <</language>>
   <br><br>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink ["Look at Robin's bunk", '看看罗宾的床铺'] 'RobinTemple Bunk'>><</lanLink>><br>
+  <<icon 'temple/robin-quarters.png'>><<lanLink ["Robin's bunk", '罗宾的床铺'] 'RobinTemple Bunk'>><</lanLink>><br>
   <br>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      <span class='teal'>The temple assigns bunks to monks and nuns. Robin is still an initiate.</span>
+      <span class='lblue'>Robin has not yet been given a bunk.</span>
     <<option 'CN'>>
-      <span class='teal'>神殿为修士与修女分配床铺。罗宾目前仍是见习教徒。</span>
+      <span class='lblue'>罗宾还没有分到床铺。</span>
   <</language>>
   <br><br>
 <</if>>
@@ -78,7 +86,7 @@
     <<option 'CN'>>
       罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。
   <</language>>
-<<elseif Time.weekDay is 1 and Time.hour is 10>>
+<<elseif Time.weekDay is 1 and Time.hour is 11>>
   <<language>>
     <<option 'EN'>>
       Robin is helping prepare the Sunday service. <<He>> will come back to the quarters when it ends.
@@ -121,9 +129,15 @@
       罗宾把下午的工作表摊在桌上，挪开一叠干净布巾，让你坐下。
   <</language>>
   <br><br>
-  <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon 'garden'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
+  <<if $RobinTemple.work_day isnot Time.days and Time.hour lt 15 and maplebirch.get('RobinTemple').free(60)>>
+    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>>
+      <<run maplebirch.get('RobinTemple').visit(60)>>
+      <<pass 60>>
+    <</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon 'garden'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
+      <<run maplebirch.get('RobinTemple').visit(60)>>
+      <<pass 60>>
+    <</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 <<elseif Time.hour lt 17 or Time.hour gte 20>>
   <<language>>
@@ -140,9 +154,15 @@
       你找到罗宾时，<<he>>正在核对晚间工作表。看见你，<<he>>把纸转过来，让你也能看清。
   <</language>>
   <br><br>
-  <<if $RobinTemple.work_day isnot Time.days>>
-    <<choreicon "sweep">><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>><<pass 60>><</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon "garden">><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>><<pass 60>><</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
+  <<if $RobinTemple.work_day isnot Time.days and Time.hour lt 19 and maplebirch.get('RobinTemple').free(60)>>
+    <<choreicon "sweep">><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>>
+      <<run maplebirch.get('RobinTemple').visit(60)>>
+      <<pass 60>>
+    <</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
+    <<templeicon "garden">><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
+      <<run maplebirch.get('RobinTemple').visit(60)>>
+      <<pass 60>>
+    <</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
   <</if>>
 <</if>>
 <!-- 承诺入口在罗宾到场时显示，避免被晚间工作分支限制而无法访问。 -->
@@ -184,7 +204,8 @@
 
 :: RobinTemple Cleaning
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.work_day isnot Time.days>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
   <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<language>>
@@ -201,6 +222,8 @@
       离开前约旦来巡视。“谢谢你们两个。”
   <</language>>
   <<grace 1>><<npcincr Robin love 1>><<ggrace>><<glove>>
+<<elseif !_robinWork>>
+  <<lanSwitch 'Robin is no longer available for the shift. The shared work remains unfinished.' '罗宾已经无法继续这班职务，共同工作还未完成。'>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -210,11 +233,12 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Supplies
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.work_day isnot Time.days>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
   <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<language>>
@@ -232,6 +256,8 @@
       罗宾发现有一项数量记错了。<<He>>给下一班留了张便条，随后把铅笔递给你。
   <</language>>
   <<grace 1>><<npcincr Robin dom 1>><<ggrace>><<gdom>>
+<<elseif !_robinWork>>
+  <<lanSwitch 'Robin is no longer available for the shift. The shared work remains unfinished.' '罗宾已经无法继续这班职务，共同工作还未完成。'>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -241,11 +267,12 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if Time.weekDay is 1 and Time.hour is 10
+<<robin-temple-work-check>>
+<<if _robinWork and Time.weekDay is 1 and Time.hour is 11
   and $RobinTemple.work_day isnot Time.days>>
   <<set $RobinTemple.work_day to Time.days>>
   <<set $RobinTemple.service += 1>>
@@ -292,7 +319,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Whereabouts
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -426,4 +453,19 @@
   <</switch>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
+
+:: RobinTemple Title Widgets [widget]
+<<widget 'robin-temple-title'>>
+  <<switch maplebirch.get('RobinTemple')?.rank>>
+    <<case 'priest'>>
+      <<set _text_output to lanSwitch('priest', '司祭')>>
+    <<case 'monk'>>
+      <<set _text_output to C.npc.Robin.pronoun is 'm'
+        ? lanSwitch('monk', '修士') : lanSwitch('nun', '修女')>>
+    <<case 'initiate'>>
+      <<set _text_output to lanSwitch('initiate', '见习教徒')>>
+    <<default>>
+      <<set _text_output to lanSwitch('layperson', '未入教')>>
+  <</switch>>
+<</widget>>

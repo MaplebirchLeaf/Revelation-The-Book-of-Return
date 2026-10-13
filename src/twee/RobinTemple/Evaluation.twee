@@ -2,7 +2,7 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin 1>><<npc Jordan 2>><<person1>>
 <<if $templePromised isnot ''>>
   <<robin-temple-promise-blocked>>
-  <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <<elseif $RobinTemple.stage isnot 'member' or $robinromance isnot 1 or $RobinTemple.punish
   or $temple_rank is undefined or $temple_rank is 'prospective'
   or maplebirch.get('RobinTemple').faith lt -20 or Time.dayState is 'night' or Time.dayState is 'dusk'
@@ -14,7 +14,7 @@
       评估需要等约旦到场、你们都成为正式成员，并且等待期结束后才能开始。
   <</language>>
   <br><br>
-  <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -54,7 +54,7 @@
       <br><br>
       约旦对你们露出庄严的微笑。“请和我来，你们二人都通过了定期的贞洁测试，所以我们可以跳过这个步骤。至于现在……”<<nnpc_He "Jordan">>带你们走出主厅，来到一个小房间。
       <br><br>
-
+      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Records'>><<pass 5>><<set $RobinTemple.evaluation_day to Time.days>><</lanLink>>
       <br>
 
   <</language>>
@@ -183,6 +183,8 @@
     <br><br>
     在评估完罗宾之后，那个<<monk>>转身走向了你。
     <br><br>
+    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
+    <br>
 <</language>>
 
 :: RobinTemple Evaluation Belief
@@ -245,6 +247,8 @@
     约旦对<<monk>>点点头，那人鞠了一躬，随即离开了房间。“接下来的部分需要你们分开进行测试，请随我来。”约旦带你走向一个紧邻的单间，里面同样放着一张华丽的桌子。“请在这儿等一会儿，我需要先对罗宾进行测试。”
     <br><br>
     <<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
+    <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
+    <br>
     <<set $skulduggerydifficulty to 700>>
     <<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
 <</language>>
@@ -329,6 +333,10 @@
     <br><br>
     约旦的表情更加严肃起来。“告诉我，我的孩子。你确定你不是因为欲望，而是因为对对方的爱，才许下这个承诺的？”
     <br><br>
+    <<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
+    <br>
+    <<lanLink ['No', '不是'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
+    <br>
 <</language>>
 
 :: RobinTemple Evaluation Result
@@ -376,13 +384,23 @@
     <<if $RobinTemple.evaluation_marks gte 60>>
       “你们的虔诚已得到证明。恭喜，<span class="green">你们都通过了</span>。在参加仪式之前，你们仍可以要求更多考虑的时间。”
       <br><br>
+      <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>>
+      <br>
       <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
     <<elseif $RobinTemple.evaluation_marks gte 40>>
       “你确实做出了非常大的贡献，这一点有目共睹。然而，我仍然对你的真正动机表示怀疑，因此我将进行一次非计划的贞洁测试，如果你依然纯洁无瑕，你将通过这次评估。否则……<span class="blue">你将被净化，并可在一个月后再次参与这次评估。</span>”
       <br><br>
+      <<lanLink ['Allow examination', '允许检验'] 'RobinTemple Evaluation Examination'>><</lanLink>>
+      <br>
+      <<lanLink ['Refuse examination', '拒绝检验'] 'RobinTemple Evaluation Refuse'>><</lanLink>>
+      <br>
+      <<lanLink ['Say you are impure', '坦白你不纯洁了'] 'RobinTemple Evaluation Admit'>><</lanLink>>
+      <br>
     <<else>>
       “很遗憾，<span class="red">你没有通过此次评估。</span>根据你的近期状况，我无法真心地让你们结合。<span class="blue">但是，你被允许在下个月再次进行评估。</span>”
       <br><br>
+      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
+      <br>
     <</if>>
     <<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
 <</language>>
@@ -399,7 +417,7 @@
     <<tearful>> you exit back into the temple with <<him>>.
     <br><br>
     <<endevent>><<npc "Robin">><<person1>>
-    <<templeicon 'quarters'>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+    <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "temple">><<npc Robin 1>><<npc Jordan 2>><<person2>><<temple_effects>><<effects>><<set $RobinTemple.stage to "member">>
     约旦将你带到罗宾在等待的那个房间。<<person1>><<He>>看起来很兴奋，但当注意到你的脸色时，表情迅速僵住了。
@@ -410,7 +428,7 @@
     <<tearful>>你和<<him>>一起离开，返回了神殿。
     <br><br>
     <<endevent>><<npc "Robin">><<person1>>
-    <<templeicon 'quarters'>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+    <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <</language>>
 
 :: RobinTemple Evaluation Refuse
@@ -427,6 +445,8 @@
     “那我只能假设最糟的情况了，”约旦说着，一直盯着自己的脚尖，“很遗憾，你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“考虑到你的感受，罗宾不会被净化，也不会知晓此事。”
     <br><br>
     <<endevent>>
+    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
+    <br>
 <</language>>
 
 :: RobinTemple Evaluation Admit
@@ -459,6 +479,8 @@
     “谢谢你的坦诚，”约旦说着，一直盯着自己的脚尖，“你必须被净化。我会召集专人来，请一定要配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“考虑到你的感受，罗宾不会被净化，也不会知晓此事。”
     <br><br>
     <<endevent>>
+    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
+    <br>
 <</language>>
 
 :: RobinTemple Evaluation Contact
@@ -490,7 +512,10 @@
     <br><br>
     “最后一个问题。在仪式完成之前，你愿意继续遵守现有誓约吗？”
     <br><br>
-
+    <<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
+    <br>
+    <<lanLink ["I'm not sure", '还没想好'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
+    <br>
 <</language>>
 
 :: RobinTemple Evaluation Eavesdrop
@@ -507,7 +532,7 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      You were not quiet enough. Jordan opens the door and looks at you. "Please be patient. I will return shortly."
+      You were not quiet enough. Jordan opens the door and looks at you. "Please be patient. I'll return shortly."
     <<option 'CN'>>
       你没有足够小心。约旦打开门，看向你。“请耐心等待，我很快就回来。”
   <</language>>
@@ -735,4 +760,6 @@
     <br>
     “谢谢你的坦诚，我信任你。你这部分的评估已经完成了。”
     <br><br>
+    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 3>><</lanLink>>
+    <br>
 <</language>>

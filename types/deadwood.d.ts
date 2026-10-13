@@ -8,6 +8,9 @@ interface DeadwoodResidence {
 declare global {
   interface MaplebirchExtensions {
     Finance: {
+      donations: {
+        sponsor(fund: 'orphanage' | 'hospital' | 'school' | 'temple', pounds: number, purpose: { EN: string; CN: string }): boolean;
+      };
       realEstate: {
         current: DeadwoodResidence | undefined;
         residenceOf(name: string): DeadwoodResidence | undefined;

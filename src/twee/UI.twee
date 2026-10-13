@@ -1,0 +1,12 @@
+:: Revelation UI Widgets [widget]
+
+<<widget 'revelation-card' 'container'>>
+  <section class='revelation-card'>
+    <div class='revelation-card-title bold'>
+      <<lanSwitch _args[0] _args[1]>>
+    </div>
+    <div class='revelation-card-body'>
+      <<print _contents>>
+    </div>
+  </section>
+<</widget>>

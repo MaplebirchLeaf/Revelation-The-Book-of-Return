@@ -67,7 +67,7 @@
   <<npc Jordan>><<person1>>
   <<language>>
     <<option 'EN'>>
-      "You must be purified, as one. I will summon the specialists. Please cooperate with them." Jordan produces a small bell from <<his>> robes and rings it.
+      "You must be purified, as one. I'll summon the specialists. Please cooperate with them." Jordan produces a small bell from <<his>> robes and rings it.
     <<option 'CN'>>
       “作为一体，你们必须被净化。我会召集专人来，请一定要配合。”约旦从斗篷里拿出一个小铃铛，摇了摇。
   <</language>>
@@ -425,6 +425,7 @@
         罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
         <br><br>
         <<clotheson>>
+        <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>
     <</language>>
   <<else>>
     <<language>>

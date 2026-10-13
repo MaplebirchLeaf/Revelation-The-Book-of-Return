@@ -13,7 +13,7 @@
         <<option 'EN'>>
           You leave a little space at the end of a phrase. The musician fills it, then glances up with a grin. You answer on the next beat. A drink stops halfway to someone's mouth. Another patron nudges their neighbour, pointing you out. <span class='blue'>For a few bars, the conversations nearest you fall quiet.</span>
         <<option 'CN'>>
-          一句唱完，你留出短短的空隙。艺人用伴奏填上，抬头朝你一笑。下一拍，你接着唱了下去。有人端起酒杯，忘了送到嘴边；还有人碰了碰同伴的胳膊，指给对方看。<span class='blue'>几小节间，附近的谈话声低了下去。</span>
+          一句唱完，你留出短短的空隙。艺人用伴奏填上，抬头朝你一笑。下一拍，你接着唱了下去。有人端起酒杯，忘了送到嘴边。还有人碰了碰同伴的胳膊，指给对方看。<span class='blue'>几小节间，附近的谈话声低了下去。</span>
       <</language>>
     <<else>>
       <<language>>

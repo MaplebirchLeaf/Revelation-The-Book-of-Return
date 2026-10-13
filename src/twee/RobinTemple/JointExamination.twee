@@ -18,7 +18,7 @@
     or ($player.virginity.temple is true and C.npc.Robin.virginity.temple is true and C.npc.Sydney.virginity.temple is true)>>
     <<language>>
       <<option 'EN'>>
-        <span class='gold'>The powder gives off intense sparks.</span> Jordan smiles. "You have remained faithful to one another. Let this continue." Robin and Sydney embrace you.
+        <span class='gold'>The powder gives off intense sparks.</span> Jordan smiles. "You've remained faithful to one another. Let this continue." Robin and Sydney embrace you.
       <<option 'CN'>>
         <span class='gold'>粉末闪起了激烈的火花。</span>约旦微笑起来。“你们对彼此忠诚，希望继续保持。”罗宾和悉尼拥住了你。
     <</language>>

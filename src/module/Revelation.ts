@@ -6,6 +6,8 @@ import ChoirEN from '@/assets/hint/EN/TempleChoir.md';
 import ChoirCN from '@/assets/hint/CN/TempleChoir.md';
 import LambEN from '@/assets/hint/EN/LostLamb.md';
 import LambCN from '@/assets/hint/CN/LostLamb.md';
+import DutiesEN from '@/assets/hint/EN/TempleDuties.md';
+import DutiesCN from '@/assets/hint/CN/TempleDuties.md';
 
 interface GuideModule {
   guide: {
@@ -23,7 +25,8 @@ export default class Revelation {
       deadwood?.guide.add('revelation-guide', () => [
         { id: 'RobinTemple', title: lanSwitch('Robin · Temple route', '罗宾 · 神殿路线'), content: lanSwitch(RobinEN, RobinCN), module: 'RobinTemple' },
         { id: 'TempleChoir', title: lanSwitch('Temple choir · Singing', '神殿唱诗班 · 歌唱'), content: lanSwitch(ChoirEN, ChoirCN), module: 'TempleChoir' },
-        { id: 'LostLamb', title: lanSwitch('Kylar · Manor', '凯拉尔 · 庄园'), content: lanSwitch(LambEN, LambCN), module: 'LostLamb' }
+        { id: 'LostLamb', title: lanSwitch('Kylar · Manor', '凯拉尔 · 庄园'), content: lanSwitch(LambEN, LambCN), module: 'LostLamb' },
+        { id: 'TempleDuties', title: lanSwitch('Temple duties · Priest appointment', '神殿职务 · 司祭任命'), content: lanSwitch(DutiesEN, DutiesCN), module: 'TempleDuties' }
       ]);
     });
   }

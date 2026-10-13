@@ -163,6 +163,8 @@
               <</if>>
             <</if>>
             <br><br>
+            <<lanLink ['Next', '继续'] 'RobinTemple Penance End'>><</lanLink>>
+            <br>
           <<else>>
             <<person3>><<priest>>举起了一只手，“够了。”<<monks>>停了下来，掐灭了燃香盏。<<He>>慢慢靠近你们，把手伸了出来，你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>惊恐地后退。
             <br><br>
@@ -179,6 +181,8 @@
               <</if>>
             <</if>>
             <br><br>
+            <<lanLink ['Next', '继续'] 'RobinTemple Penance End'>><</lanLink>>
+            <br>
           <</if>>
       <</language>>
     <<case 'rest'>>

@@ -12,7 +12,7 @@ Recommended order: **discuss the temple → meet Jordan and book the assessment 
 2. Accompany Robin to Jordan and book the assessment **two days ahead**. Jordan must be available during morning or daylight under the original schedule and not conducting mass. Robin must be at the orphanage or your shared home, neither missing nor occupied. Travelling and speaking to Jordan takes **twenty minutes**, so leave enough time before daylight ends. School, stalls, tutoring, shop duty and special plans for the day take priority. Finish any outing or ride already underway. The date is recorded only after confirming the appointment.
 3. Before that date, choose **Go with Robin to prepare for the assessment (0:45)** in Robin's room or through conversation at your shared home. It is available once daily, **17:00–19:15**, with Robin actually present and forty-five minutes free before the next commitment. Tutoring and shop duty shorten the available window.
 4. On or after the appointment day, choose **Accompany Robin to the purity trial (0:20)** in Robin's room or through conversation at your shared home, then attend the assessment in **Temple → Quarters**. You can also go directly to the quarters. On school days, the assessment is available between **06:00 and 08:00**. On days without school, the window extends to **18:00**. Leave twenty minutes for the journey from home. Remain covered, below maximum stress, with Robin able to take part in normal activities, neither missing nor admitted to the asylum, and Jordan present outside mass.
-5. Read the result, hear Jordan's announcement and finish the response. Success opens Robin's seat and changing area, and Robin takes a temple vow. The bunk opens after Robin passes the trial of anguish and becomes a monk or nun.
+5. Read the result, hear Jordan's announcement and finish the response. Success opens the quarters and changing area, and Robin takes a temple vow. The bunk opens after Robin passes the trial of anguish and becomes a monk or nun.
 
 <span class="teal">After booking, illness, injury, severe trauma or asylum admission pauses Robin's attendance. Jordan's absence or mass also requires waiting. Once the appointment day is reached, you can attend in the next permitted window. The appointment remains booked. Being temporarily unable to attend does not count as assessment failure.</span>
 
@@ -24,30 +24,30 @@ After failure, offer comfort. **Seven days later**, ask Robin about trying again
 
 ### Where Robin is and when activities are available
 
-The main location is **Temple → Quarters → Robin's seat**. Shared prayer starts in the **temple hall**. Being at the temple does not mean Robin is always free.
+Enter through **Temple → Quarters → Robin**. After Robin receives a bunk, use **Robin's bunk → Talk to Robin** for shared duties. Shared prayer starts in the **temple hall**. Being at the temple does not mean Robin is always free.
 
-| Time or situation                                        | Where to go and what is available                                                                                     |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Weekdays without school, 09:00–16:00                     | Unless another journey takes priority, Robin helps in the garden or hall before noon and at the seat from 13:00–16:00 |
-| Evening, 17:00 until just before 19:45                   | Invite Robin from home for a fifteen-minute journey, then work an evening shift                                       |
-| Sunday, 11:00–13:00                                      | Robin helps with mass and may be occupied away from the seat                                                          |
-| Saturday 21:00 to Sunday 07:00                           | With a bunk after the shared vigil, Robin stays overnight unless cohabiting or another journey takes priority         |
-| Sunday night to Monday morning                           | Robin may attend the trial of anguish until passing, rather than chatting at the bunk                                 |
-| Injury, disappearance, severe trauma or asylum admission | Daily activities pause until the condition is resolved                                                                |
+| Time or situation                                        | Where to go and what is available                                                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Weekdays without school, 09:00–16:00                     | Unless another journey takes priority, Robin helps in the garden or hall before noon and in the quarters from 13:00–16:00 |
+| Evening, 17:00 until just before 19:45                   | Invite Robin from home for a fifteen-minute journey, then work an evening shift                                           |
+| Sunday, 11:00–13:00                                      | Robin helps with mass and may be occupied away from the quarters                                                          |
+| Saturday 21:00 to Sunday 07:00                           | With a bunk after the shared vigil, Robin stays overnight unless cohabiting or another journey takes priority             |
+| Sunday night to Monday morning                           | Robin may attend the trial of anguish until passing, rather than chatting at the bunk                                     |
+| Injury, disappearance, severe trauma or asylum admission | Daily activities pause until the condition is resolved                                                                    |
 
 On weekdays without school, you can also invite Robin from home between **09:00 and just before 15:45**, leaving fifteen minutes for the journey. Tutoring follows the Robin expansion's current lesson days: **Tuesday and Thursday, 17:30–18:30**, on school days, with **Friday** added after six lessons. With a shop open, Robin still works there daily from **18:30 to 21:00**. Hiring staff does not free this time.
 
 Finance manages shared properties, outings and rides. When Robin is actually home, use the property's conversation menu to invite Robin. An outing or ride already underway takes priority. Moving into your property replaces the ordinary Saturday overnight stay with going home, while temple duties remain. Cohabitation does not make Robin appear at home while elsewhere.
 
-When Robin is absent, choose **Ask the attendant where Robin went** at the seat. Door notes and the attendant distinguish school, stalls, tutoring, the shop, vigils, home, outings or rides and inability to attend. The journal also shows current tutoring, shop duty, home, travel or inability to attend. Belongings beside the bunk do not mean Robin is present.
+When Robin is absent, choose **Ask the attendant where Robin went** in the quarters. Door notes and the attendant distinguish school, stalls, tutoring, the shop, vigils, home, outings or rides and inability to attend. The journal also shows current tutoring, shop duty, home, travel or inability to attend. Belongings beside the bunk do not mean Robin is present.
 
 ### Shifts, grace and Robin's contribution
 
 | Action                                                                  | Place and time                                                            | Main effects                                                       |
 | ----------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Clean the quarters together (1:00)                                      | Robin's seat during a free weekday afternoon or arranged evening shift    | Shared shift count, Robin's faith, PC grace and Robin's love       |
+| Clean the quarters together (1:00)                                      | the quarters during a free weekday afternoon or arranged evening shift    | Shared shift count, Robin's faith, PC grace and Robin's love       |
 | Sort temple supplies (1:00)                                             | Same as above                                                             | Shared shift count, Robin's faith, PC grace and Robin's confidence |
-| Help prepare Sunday mass (0:30)                                         | Robin's seat on Sunday, 10:00 until just before 10:30, with Robin present | Shared shift count, faith, grace and love                          |
+| Help prepare Sunday mass (0:30)                                         | the quarters on Sunday, 11:00 until just before 11:30, with Robin present | Shared shift count, faith, grace and love                          |
 | Carry bowls, check lists or ask about shelter during a prayer encounter | The day's encounter at the hall bench                                     | Some choices add shared work or grace, with different results      |
 
 Cleaning, supplies and mass preparation share **one daily work opportunity**. Not every prayer counts as a shift, and ordinary conversation does not replace completing work.
@@ -122,17 +122,17 @@ Joint success promotes Robin to monk or nun. PC promotion, clothing unlocks and 
 
 Robin must be a temple member and your romantic partner. The PC must be a full temple member, without an active shared purification, and **not already promised to another person**. Robin must not be in a strongly doubtful outlook.
 
-1. With Robin present, discuss the rite at the seat. Evaluation takes place by daylight, so wait if it is dusk or night.
+1. With Robin present, discuss the rite in the quarters. Evaluation takes place by daylight, so wait if it is dusk or night.
 2. Build **both contributions**, Robin's faith and shared work. Evaluation also considers PC purity and transformations, attire, your shared past and answers. Love alone does not guarantee approval.
 3. Jordan checks records and questions you separately. Eavesdropping uses Skulduggery and harms the evaluation if detected. Answer according to your shared history and facts given in the conversation.
 4. A strong evaluation gains direct approval. Remaining doubts prompt an extra chastity examination. An insufficient evaluation fails, requiring **thirty days** before another attempt.
-5. After approval, continue at the altar, or return to Robin's seat in the evening to hold the rite. Confirm **Forever, as one** to complete the promise.
+5. After approval, continue at the altar, or return to the quarters in the evening to hold the rite. Confirm **Forever, as one** to complete the promise.
 
 The promise makes intimacy with Robin compatible with your shared vows and shows the corresponding trait. Suitable temple fittings are removed during the rite. **Monthly examinations remain, and intimacy with other people can still break the vow.** An existing Sydney promise prevents a second temple rite. Use the Confounded Vow route below instead.
 
 ### Chastity fittings: removal and refitting
 
-Discuss the belt at **Temple → Quarters → Robin's seat**, **11:00–20:00**, outside Sunday mass. Before promising Robin, this needs a romance, sufficient confidence and at least **two shared shifts**. An existing promise to Robin allows the conversation directly.
+Discuss the belt at **Temple → Quarters → the quarters**, **11:00–20:00**, outside Sunday mass. Before promising Robin, this needs a romance, sufficient confidence and at least **two shared shifts**. An existing promise to Robin allows the conversation directly.
 
 - Only Robin's **temple chastity belt and anal shield fitted by this route** can be handled. Another owner's equipment is not replaced.
 - Ask Robin about removal. **Making the request takes fifteen minutes.** **Without a promise and with first virginity intact**, the original temple rule requires an **£80 cash donation**. The fee does not apply once promised or outside that situation.
@@ -151,7 +151,7 @@ After Confounded Vow, all three vows are examined and all three take part in sha
 
 ### Bunks, nighttime companionship and hospital
 
-**Robin receives a bunk after passing the trial of anguish and reaching monk rank or above.** Joining provides a seat and changing area. Completing a promise does not unlock the bunk early. At monk rank, visit Robin's bunk from the seat to access the temple wardrobe and mirror on the bunk page. Your own bunk still requires the original PC promotion. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
+**Robin receives a bunk after passing the trial of anguish and reaching monk rank or above.** Joining provides a seat and changing area. Completing a promise does not unlock the bunk early. At monk rank, the quarters lead directly to Robin's bunk, where the temple wardrobe and mirror are available. Your own bunk still requires the original PC promotion. During Robin's Saturday overnight stay, a romantic PC can sit nearby, kiss or sleep together. A longer sleep can produce nighttime scenes involving weather, vigil memories or the ledger. **They are not guaranteed every night**, and original dreams and sleep outcomes remain.
 
 Once Robin has reached monk rank and you have promised, invite Robin to the bedside on weekdays without school, **13:00 until just before 15:45**, with Robin present, available and without an active shared purification. Discuss the new vow, choose intimacy or simply hug. Intimacy is not mandatory for completing the route.
 

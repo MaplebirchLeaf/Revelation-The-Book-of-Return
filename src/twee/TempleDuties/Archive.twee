@@ -1,0 +1,222 @@
+:: Temple Duties Archive Widgets [widget]
+<<widget 'temple-duty-library'>>
+  <<temple-duty-check>>
+  <<if !_dutySafe or !$TempleDuties.enrolled>>
+    <<getouticon>>
+    <<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
+    <</lanLink>>
+    <br>
+    <<exit>>
+  <</if>>
+  <span class='gold bold'><<lanSwitch 'The old records room' '旧资料室'>></span><br><br>
+  <<language>>
+    <<option 'EN'>>
+      Old paper smells sour beneath the stone vault.
+      <<if _roofReady>>
+        The patched gutter carries the rain away from the wall.
+      <<elseif $TempleDuties.archive.roof gte 0>>
+        The roofers have covered the leak; their ladders are stacked by the door.
+      <<else>>
+        A basin stands under a dark stain. Someone has shifted the books away from the wall.
+      <</if>>
+      <<if _shelvesReady>>
+        Numbered sleeves stand on new, dry shelves.
+      <<elseif $TempleDuties.archive.shelves gte 0>>
+        The new shelves are waiting to be fitted.
+      <<else>>
+        You lift the volumes one at a time from their crowded boxes.
+      <</if>>
+    <<option 'CN'>>
+      石拱下的旧纸散发着酸味。
+      <<if _roofReady>>
+        修好的排水槽把雨水引离了墙。
+      <<elseif $TempleDuties.archive.roof gte 0>>
+        屋顶工人盖住漏水处，梯子堆在门边。
+      <<else>>
+        深色水渍下放着一只盆。有人把书搬离了墙。
+      <</if>>
+      <<if _shelvesReady>>
+        编号封套已经放上干燥的新书架。
+      <<elseif $TempleDuties.archive.shelves gte 0>>
+        新书架还在等待安装。
+      <<else>>
+        你得从拥挤的箱子里一本本取出书。
+      <</if>>
+  <</language>>
+  <br><br>
+  <<set _archiveTopics to ['buildings', 'deliveries', 'fieldwork']>>
+  <<if ['accepted', 'copied', 'complete'].includes($TempleDuties.manor)>>
+    <<run _archiveTopics.push('monstrance')>>
+  <</if>>
+  <<for _archive_topic range _archiveTopics>>
+    <<capture _archive_topic>>
+      <<switch _archive_topic>>
+        <<case 'buildings'>>
+          <<set _archive_name to ['Read the building plans', '读建筑图纸']>>
+        <<case 'deliveries'>>
+          <<set _archive_name to ['Compare old delivery records', '比对旧交货记录']>>
+        <<case 'fieldwork'>>
+          <<set _archive_name to ['Read the fieldwork precautions', '读外勤注意事项']>>
+        <<case 'monstrance'>>
+          <<set _archive_name to ['Read the indexed description of the monstrance', '读索引中的圣体匣描述']>>
+      <</switch>>
+      <<icon `({buildings:'temple/building-plans.png', deliveries:'temple/delivery-records.png', fieldwork:'temple/field-kit.png', monstrance:'temple/duties-book.png'})[_archive_topic]`>>
+      <<temple-duty-action `_archive_name` `_studyMinutes` 'Revelation Temple Archive Note'>>
+        <<set $TempleDuties.topic to _archive_topic>>
+        <<if !$TempleDuties.archive.topics.includes(_archive_topic)>>
+          <<run $TempleDuties.archive.topics.push(_archive_topic)>>
+          <<historyskill 2>>
+        <</if>>
+      <</temple-duty-action>>
+      (<<print '0:' + _studyMinutes>>)<br>
+    <</capture>>
+  <</for>>
+  <<if $TempleDuties.archive.sorted lt 3 and $TempleDuties.archive.sort_day isnot Math.floor(Time.days)>>
+    <<icon 'temple/folio-care.png'>>
+    <<temple-duty-action `['Dry and sort the loose folios (0:30)', '晾干并整理散页 (0:30)']` 30 'Revelation Temple Task Done'>>
+      <<if $TempleDuties.archive.sort_day isnot Math.floor(Time.days) and $TempleDuties.archive.sorted lt 3>>
+        <<set $TempleDuties.archive.sort_day to Math.floor(Time.days)>>
+        <<set $TempleDuties.archive.sorted += 1>>
+        <<set $TempleDuties.note to 'sorted'>>
+        <<historyskill 2>>
+        <<housekeeping 1>>
+        <<grace 1>>
+      <</if>>
+    <</temple-duty-action>>
+    <<ghistory>>
+    <<ggrace>><br>
+  <</if>>
+  <<if _dutyOffice>>
+    <<icon 'temple/roof-repair.png'>>
+    <<lanLink ['Discuss repairs and the estimates', '商谈修缮和报价'] 'Revelation Temple Restoration'>>
+    <</lanLink>>
+    <br>
+  <</if>>
+  <<if $TempleDuties.bishop is 'accepted' and !$TempleDuties.bishop_checked
+      and $TempleDuties.archive.topics.includes('deliveries')
+      and $TempleDuties.reports.crate?.honest
+      and $TempleDuties.reports.crate?.result is 'resolved'>>
+    <<icon 'temple/delivery-records.png'>>
+    <<temple-duty-action `['Compare the seal and old crate receipts (0:20)', '比对封印与旧货箱收据 (0:20)']` 20 'Revelation Temple Sealed Answer'>>
+      <<if !$TempleDuties.bishop_checked>>
+        <<set $TempleDuties.bishop_checked to true>>
+        <<set $TempleDuties.note to 'bishop-checked'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+  <</if>>
+  <<if $TempleDuties.case?.stage is 'field' and ['echo', 'roots'].includes($TempleDuties.case.id)>>
+    <<icon 'temple/records-room.png'>>
+    <<lanLink ['Go to the assigned storeroom (0:02)', '前往委托中的储藏室 (0:02)'] 'Revelation Temple Field'>>
+      <<pass 2>>
+    <</lanLink>>
+    <br>
+  <</if>>
+  <br>
+  <<temple-duty-back>>
+<</widget>>
+
+:: Revelation Temple Archive Note
+<<temple-duty-place>>
+<<if !_dutySafe>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.topic>>
+      <<case 'buildings'>>
+        The plans show a drain behind the wall and a shutter above it. Knocking carried through the pipe once frightened the novices. The margin asks the next clerk to check the gutter before ordering another blessing.
+      <<case 'deliveries'>>
+        A copied seal is not proof of a matching shipment. The old clerk wrote down the sender, the weight and the person who collected each crate. Several damaged boxes were returned without anyone checking what was inside.
+      <<case 'fieldwork'>>
+        The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon.
+      <<case 'monstrance'>>
+        The old drawing places the sacramental bread in a sun of metal. Its upper ornament is whole. Silver and bronze appear in the inventory, but the page says nothing about Kylar's parents. You copy the intact outline beside the broken shape you remember.
+    <</switch>>
+    <<if $TempleDuties.archive.sorted gte 3>>
+      The dried folios have made the page numbers legible again. You can cross-check the references without guessing which leaf has gone missing.
+    <</if>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.topic>>
+      <<case 'buildings'>>
+        图纸标着墙后的排水管，以及上方的一扇百叶窗。管中传来的敲击曾吓坏见习教徒。页边提醒下一班：再安排祝祷之前，先检查排水槽。
+      <<case 'deliveries'>>
+        复制的封印不能证明货物与运单一致。旧侍从记下寄件人、重量和每个取货者。有些破损货箱被退回，却没人检查里面还剩什么。
+      <<case 'fieldwork'>>
+        每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。
+      <<case 'monstrance'>>
+        旧图将圣餐面包置于金属构成的太阳中，上方装饰仍完整。清单写着银与青铜，却没有凯拉尔父母的记载。你把完整轮廓抄在记忆中残损的形状旁。
+    <</switch>>
+    <<if $TempleDuties.archive.sorted gte 3>>
+      晾干的散页重新显出页码。你可以核对引用，不必再猜缺了哪一张。
+    <</if>>
+<</language>>
+<br><br>
+<<icon 'temple/records-room.png'>>
+<<lanLink ['Return to the records room', '返回资料室'] 'Temple Library'>>
+<</lanLink>>
+<br>
+
+:: Revelation Temple Restoration
+<<temple-duty-place>>
+<<npc Jordan>>
+<<person1>>
+<<if !_dutyOffice or !$TempleDuties.enrolled>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    Jordan spreads the estimates beside the damaged books. "The kitchen fund is already promised for food and blankets. These repairs need their own receipt." <<He>> shows you where the contractor has marked the leaking gutter, and where the carpenter will fit the shelves.
+  <<option 'CN'>>
+    约旦把报价单铺在受损的书旁。“厨房基金已经答应买食物和毯子。这里的修缮，要另开收据。”<<He>>指给你看承包商标出的漏水排水槽，以及木工将安装书架的位置。
+<</language>>
+<br><br>
+<<for _repair range ['roof', 'shelves']>>
+  <<set _repairCost to _repair is 'roof' ? 400000 : 150000>>
+  <<set _repairName to _repair is 'roof' ? ['Roof and drainage', '屋顶与排水'] : ['Shelves and dry storage', '书架与防潮储存']>>
+  <<capture _repair _repairCost _repairName>>
+    <<revelation-card _repairName[0] _repairName[1]>>
+      <span class='gold'><<printmoney _repairCost>></span><br>
+      <<if $TempleDuties.archive[_repair] lt 0>>
+        <<icon `_repair is 'roof' ? 'temple/roof-repair.png' : 'temple/dry-shelves.png'`>>
+        <<temple-duty-action `['Sign the estimate (0:05)', '签署报价单 (0:05)']` 5 'Revelation Temple Task Done'>>
+          <<if $TempleDuties.archive[_repair] lt 0>>
+            <<set _repairPaid to false>>
+            <<if typeof maplebirch.get('Finance')?.donations?.sponsor is 'function'>>
+              <<set _repairPaid to maplebirch.get('Finance').donations.sponsor('temple', _repairCost / 100, { EN: _repairName[0], CN: _repairName[1] })>>
+            <<elseif $money gte _repairCost>>
+              <<money `-_repairCost` 'templeRestoration'>>
+              <<set _repairPaid to true>>
+            <</if>>
+            <<if _repairPaid>>
+              <<set $TempleDuties.archive[_repair] to Math.floor(Time.days) + (_repair is 'roof' ? 2 : 1)>>
+              <<set $TempleDuties.note to 'funded'>>
+              <<famegood 10 null true>>
+            <<else>>
+              <<set $TempleDuties.note to 'unpaid'>>
+            <</if>>
+          <</if>>
+        <</temple-duty-action>>
+        <br>
+      <<elseif $TempleDuties.archive[_repair] gte 0 and Time.days gte $TempleDuties.archive[_repair]>>
+        <span class='green'><<lanSwitch 'Completed.' '已竣工。'>></span><br>
+      <<else>>
+        <span class='teal'><<lanSwitch 'Work underway. Completion: ' '施工中，竣工日期：'>>
+        <<print getFormattedDate(new DateTime(Time.date).addDays($TempleDuties.archive[_repair] - Math.floor(Time.days)))>></span><br>
+      <</if>>
+    <</revelation-card>>
+  <</capture>>
+<</for>>
+<<language>>
+  <<option 'EN'>>
+    Dry shelves and a repaired roof reduce the time needed to find a volume from twenty-five minutes to fifteen. Restoring the folios through three sorting sessions saves another five minutes.
+  <<option 'CN'>>
+    干燥的书架与修好的屋顶能将查找书卷的时间从二十五分钟缩短至十五分钟。通过三次整理修复散页，还能再省五分钟。
+<</language>>
+<br><br>
+<<icon 'temple/records-room.png'>>
+<<lanLink ['Return to the records room', '返回资料室'] 'Temple Library'>>
+<</lanLink>>
+<br>

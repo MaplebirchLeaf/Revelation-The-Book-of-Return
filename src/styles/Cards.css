@@ -1,0 +1,21 @@
+/* 与同系列共用原版色板；归途之书独立加载也能显示。 */
+.revelation-card {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  margin-block: 0.65em;
+  border: 1px solid var(--600);
+  background: var(--850);
+}
+
+.revelation-card-title {
+  padding: 0.35em 0.5em;
+  color: var(--gold);
+  background: var(--800);
+  border-bottom: 1px solid var(--700);
+}
+
+.revelation-card-body {
+  padding: 0.5em;
+  overflow-wrap: anywhere;
+}

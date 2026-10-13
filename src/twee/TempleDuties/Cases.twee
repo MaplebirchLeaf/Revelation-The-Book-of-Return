@@ -1,0 +1,526 @@
+:: Temple Duties Case Widgets [widget]
+<<widget 'temple-case-take'>>
+  <<temple-duty-check>>
+  <<if _dutyOffice and $TempleDuties.enrolled and !$TempleDuties.case
+      and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))
+      and ['echo', 'roots', 'crate'].includes(_args[0])
+      and (_args[0] is 'echo' or ['monk', 'priest'].includes($temple_rank))>>
+    <<set _oldReport to $TempleDuties.reports[_args[0]]>>
+    <<if (!_args[1] and _dutyNext is _args[0])
+        or (_args[1] and _oldReport
+        and (!(_oldReport.honest and _oldReport.result is 'resolved')
+        or ($temple_rank is 'priest' and Time.days gte _oldReport.day + 7)))>>
+      <<run delete $TempleDuties.reports[_args[0]]>>
+      <<set $TempleDuties.case to {
+        id: _args[0], stage: 'field', clues: [],
+        prepared: false, advised: false, result: ''
+        }>>
+    <</if>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-case-return'>>
+  <<getouticon>>
+  <<if $TempleDuties.case?.id is 'crate'>>
+    <<lanLink ['Return to the docks (0:02)', '返回码头 (0:02)'] 'Docks'>>
+      <<pass 2>>
+    <</lanLink>>
+    <br>
+    <span class='lblue'><<lanSwitch 'Take your report to Jordan when you next reach the temple.' '下次到神殿时，将报告交给约旦。'>></span>
+  <<else>>
+    <<lanLink ['Return to the duties desk (0:02)', '返回职务桌 (0:02)'] 'Revelation Temple Office'>>
+      <<pass 2>>
+    <</lanLink>>
+    <br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-case-docks-link'>>
+  <<temple-duty-check>>
+  <<if _dutySafe and $TempleDuties.case?.id is 'crate' and $TempleDuties.case.stage is 'field'>>
+    <<templeicon 'altar'>>
+    <<lanLink ['Inspect the temple’s returned crate (0:02)', '检查退回的神殿货箱 (0:02)'] 'Revelation Temple Field'>>
+      <<pass 2>>
+    <</lanLink>>
+    <br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-case-gwylan-link'>>
+  <<temple-duty-check>>
+  <<if _dutySafe and $location is 'forest_shop' and _gwylanLocation is 'shop' and $TempleDuties.case?.stage is 'field' and !$TempleDuties.case.advised and C.npc.Gwylan.init is 1>>
+    <<socialiseicon 'ask'>>
+    <<lanLink ['Ask Gwylan about the marks on your field notes (0:10)', '请格威岚看看外勤记录上的标记 (0:10)'] 'Revelation Temple Gwylan'>>
+      <<pass 10>>
+    <</lanLink>>
+    <br>
+  <</if>>
+<</widget>>
+
+:: Revelation Temple Case Brief
+<<temple-duty-place>>
+<<npc Jordan>>
+<<person1>>
+<<if !_dutyOffice or !$TempleDuties.enrolled
+    or $TempleDuties.watch and !['passed', 'failed'].includes($TempleDuties.watch.phase)>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<set _briefId to $TempleDuties.case?.id ?? _dutyNext>>
+<<if !_briefId>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<span class='gold bold'><<temple-case-title _briefId>></span><br><br>
+<<language>>
+  <<option 'EN'>>
+    <<switch _briefId>>
+      <<case 'echo'>>
+        The night clerk heard knocking behind the wall after putting out the lamps. Jordan hands you the building plan. "Find where it comes from. Frightened people need an answer; they don't need another fright."
+      <<case 'roots'>>
+        Roots have pushed beneath a stack of delivery books in the lower storeroom. "The last clerk felt them move," Jordan says. "Keep a way out. If you can't bring the books back safely, bring yourself back."
+      <<case 'crate'>>
+        A relief crate came back from the docks heavier than it left. The seal is unbroken. "The porter heard a second person calling from inside," Jordan says. "Find everyone before you close anything."
+    <</switch>>
+    The report asks for what you saw, what you checked, and what remains uncertain.
+  <<option 'CN'>>
+    <<switch _briefId>>
+      <<case 'echo'>>
+        夜班侍从熄灯后听见墙后敲击。约旦把建筑图交给你。“找到声音的来源。受惊的人需要答案，不需要再受一次惊吓。”
+      <<case 'roots'>>
+        下层储藏室里，根须挤进一堆交货簿下面。“上一班的人感觉它们动了，”约旦说，“留好出口。不能安全带回书，就先把自己带回来。”
+      <<case 'crate'>>
+        救济货箱从码头退回来，重量比发货时还大，封条却没破。“搬运工听见里面有另一个人呼救，”约旦说，“关上任何东西之前，先找到所有人。”
+    <</switch>>
+    报告上要写清你看见了什么、核对了什么，以及哪些事还不能确定。
+<</language>>
+<br><br>
+<<capture _briefId>>
+  <<if !$TempleDuties.case>>
+    <<if _briefId is 'echo' or ['monk', 'priest'].includes($temple_rank)>>
+      <<icon 'temple/duties-book.png'>>
+      <<temple-duty-action `['Accept the assignment (0:05)', '接下委托 (0:05)']` 5 'Revelation Temple Case Accepted'>>
+        <<temple-case-take _briefId>>
+      <</temple-duty-action>>
+      <br>
+    <<else>>
+      <span class='lblue'><<lanSwitch 'Jordan reserves outside assignments for members who have completed the vigil.' '约旦将外勤留给已完成守夜试炼的成员。'>></span><br>
+    <</if>>
+  <<else>>
+    <<if !$TempleDuties.case.prepared>>
+      <<icon 'temple/field-kit.png'>>
+      <<temple-duty-action `['Borrow a lamp, rope and gloves (0:10)', '借用灯、绳索与手套 (0:10)']` 10 'Revelation Temple Case Note'>>
+        <<set $TempleDuties.case.prepared to true>>
+        <<set $TempleDuties.note to 'kit'>>
+      <</temple-duty-action>>
+      <br>
+    <</if>>
+    <<if _briefId is 'crate'>>
+      <<getouticon>>
+      <<lanLink ['Go back to the hall and head for the docks', '返回大厅，准备前往码头'] 'Temple'>>
+      <</lanLink>>
+      <br>
+    <<else>>
+      <<templeicon 'quarters'>>
+      <<lanLink ['Go to the storeroom (0:02)', '前往储藏室 (0:02)'] 'Revelation Temple Field'>>
+        <<pass 2>>
+      <</lanLink>>
+      <br>
+    <</if>>
+    <<socialiseicon 'ask'>>
+    <<temple-duty-action `['Return the assignment to Jordan (0:05)', '把委托交还约旦 (0:05)']` 5 'Revelation Temple Report'>>
+      <<set $TempleDuties.case.stage to 'report'>>
+      <<set $TempleDuties.case.result to 'withdrawn'>>
+    <</temple-duty-action>>
+    <br>
+  <</if>>
+<</capture>>
+<br>
+<<temple-duty-back>>
+
+:: Revelation Temple Field
+<<if $TempleDuties.case?.id is 'crate'>>
+  <<set $outside to 1>>
+  <<set $location to 'docks'>>
+  <<effects>>
+  <<temple-duty-check>>
+<<else>>
+  <<temple-duty-place>>
+<</if>>
+<<if !_dutySafe or $TempleDuties.case?.stage isnot 'field'>>
+  <<temple-case-return>>
+  <<exit>>
+<</if>>
+<span class='gold bold'><<temple-case-title $TempleDuties.case.id>></span><br><br>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.case.id>>
+      <<case 'echo'>>
+        The knocking stops when you hold your breath, then starts again with a gust. The wall feels cold. There are fresh scratches on the shutter, and the drain leads down through the floor.
+      <<case 'roots'>>
+        A delivery book lies half-open beneath the roots. They tighten when the lamp passes over them. The steps behind you are slick; a narrow route runs along the dry wall.
+      <<case 'crate'>>
+        The returned crate stands beneath the warehouse awning. An adult porter holds the door open for you. A voice calls from further inside, where the floorboards dip into an impossible patch of dark water.
+    <</switch>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.case.id>>
+      <<case 'echo'>>
+        你屏住呼吸时，敲击停了。一阵风过，又开始了。墙面冰冷。百叶窗上有新刮痕，排水管从地板下穿过。
+      <<case 'roots'>>
+        一本交货簿被根须压住，摊开了一半。灯照过去时，根须收紧。身后的台阶湿滑，干燥的墙边却留着一条窄路。
+      <<case 'crate'>>
+        退回的货箱放在仓库雨棚下。一位成年搬运工替你撑着门。更深处有人呼救，地板向一片不该出现在这里的黑水弯下去。
+    <</switch>>
+<</language>>
+<br><br>
+<<if $TempleDuties.case.id is 'echo'>>
+  <<if !$TempleDuties.case.clues.includes('pipe')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Listen along the drain (0:15)', '沿排水管听声音 (0:15)']` 15 'Revelation Temple Case Note'>>
+      <<run $TempleDuties.case.clues.pushUnique('pipe')>>
+      <<scienceskill 1>>
+      <<set $TempleDuties.note to 'pipe'>>
+    <</temple-duty-action>>
+    <br>
+  <</if>>
+  <<if !$TempleDuties.case.clues.includes('shutter')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Check the shutter fastening', '检查百叶窗扣件']` `currentSkillValue('science') gte 300 ? 10 : 20` 'Revelation Temple Case Note'>>
+      <<run $TempleDuties.case.clues.pushUnique('shutter')>>
+      <<scienceskill 1>>
+      <<set $TempleDuties.note to 'shutter'>>
+    <</temple-duty-action>>
+    (<<print currentSkillValue('science') gte 300 ? '0:10' : '0:20'>>)<br>
+  <</if>>
+  <<if $TempleDuties.case.clues.includesAll('pipe', 'shutter')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Fasten the shutter and test the drain (0:15)', '固定百叶窗，测试排水管 (0:15)']` 15 'Revelation Temple Report'>>
+      <<set $TempleDuties.case.result to 'resolved'>>
+      <<set $TempleDuties.case.stage to 'report'>>
+    <</temple-duty-action>>
+    <br>
+  <</if>>
+  <<templeicon 'altar'>>
+  <<temple-duty-action `['Draw a seal on the wall (0:20)', '在墙上画下封印 (0:20)']` 20 'Revelation Temple Report'>>
+    <<set $TempleDuties.case.result to 'mistaken'>>
+    <<set $TempleDuties.case.stage to 'report'>>
+    <<stress 4>>
+  <</temple-duty-action>>
+  <br>
+<<else>>
+  <<if !$TempleDuties.case.clues.includes('route')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Map a way out', '标出撤离路线']` `$TempleDuties.archive.topics.includes('buildings') or currentSkillValue('skulduggery') gte 400 ? 10 : 20` 'Revelation Temple Case Note'>>
+      <<run $TempleDuties.case.clues.pushUnique('route')>>
+      <<set $TempleDuties.note to 'route'>>
+    <</temple-duty-action>>
+    (<<print $TempleDuties.archive.topics.includes('buildings') or currentSkillValue('skulduggery') gte 400 ? '0:10' : '0:20'>>)<br>
+  <</if>>
+  <<if !$TempleDuties.case.clues.includes('marks')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Compare the marks with your records', '把标记与记录比对']` `currentSkillValue('history') gte 300 or $TempleDuties.case.advised ? 10 : 20` 'Revelation Temple Case Note'>>
+      <<run $TempleDuties.case.clues.pushUnique('marks')>>
+      <<historyskill 1>>
+      <<set $TempleDuties.note to 'marks'>>
+    <</temple-duty-action>>
+    (<<print currentSkillValue('history') gte 300 or $TempleDuties.case.advised ? '0:10' : '0:20'>>)<br>
+  <</if>>
+  <<if $TempleDuties.case.id is 'crate' and !$TempleDuties.case.clues.includes('rescued')>>
+    <<socialiseicon>>
+    <<temple-duty-action `['Bring the trapped worker back to the door', '把受困工人带回门边']` `currentSkillValue('physique') gte 5000 or $TempleDuties.case.prepared ? 10 : 25` 'Revelation Temple Case Note'>>
+      <<run $TempleDuties.case.clues.pushUnique('rescued')>>
+      <<tiredness 3>>
+      <<set $TempleDuties.note to 'rescued'>>
+    <</temple-duty-action>>
+    (<<print currentSkillValue('physique') gte 5000 or $TempleDuties.case.prepared ? '0:10' : '0:25'>>)<br>
+  <</if>>
+  <<templeicon 'altar'>>
+  <<temple-duty-action `['Defend the exit (0:01)', '守住出口 (0:01)']` 1 'Revelation Temple Combat'>>
+    <<set $TempleDuties.case.stage to 'combat'>>
+    <<set $combat to 1>>
+    <<set $enemytype to 'tentacles'>>
+    <<molested>>
+    <<controlloss>>
+    <<if $TempleDuties.case.id is 'roots'>>
+      <<tentaclestart `$TempleDuties.case.prepared and $TempleDuties.case.clues.includes('route') ? 4 : 8` 12 'root' 'vine' true>>
+    <<else>>
+      <<tentaclestart `$TempleDuties.case.prepared and $TempleDuties.case.clues.includes('route') ? 4 : 8` 15 'tentacle' 'pale'>>
+    <</if>>
+  <</temple-duty-action>>
+  <br>
+<</if>>
+<<socialiseicon>>
+<<temple-duty-action `['Withdraw with your notes (0:05)', '带上笔记撤离 (0:05)']` 5 'Revelation Temple Withdrawal'>>
+  <<set $TempleDuties.case.stage to 'report'>>
+  <<set $TempleDuties.case.result to 'withdrawn'>>
+<</temple-duty-action>>
+<br>
+<br>
+<<getouticon>>
+<<lanLink `['Return to prepare', '返回准备']` `$TempleDuties.case.id is 'crate' ? 'Docks' : 'Revelation Temple Case Brief'`>>
+<</lanLink>>
+<br>
+
+:: Revelation Temple Case Note
+<<if $TempleDuties.case?.id is 'crate' and $TempleDuties.note isnot 'kit'>>
+  <<set $outside to 1>>
+  <<set $location to 'docks'>>
+  <<effects>>
+  <<temple-duty-check>>
+<<else>>
+  <<temple-duty-place>>
+<</if>>
+<<if !$TempleDuties.case or !_dutySafe>>
+  <<temple-case-return>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'kit'>>
+        Jordan counts the rope and gloves with you. The lamp is filled. All three are to be returned with your report.
+      <<case 'pipe'>>
+        The sound travels down the empty pipe. When the wind drops, it fades. You write both observations down.
+      <<case 'shutter'>>
+        The fastening is loose. Its marks match the stone beside it. You can reproduce the knock by pushing the shutter a little.
+      <<case 'route'>>
+        You mark the dry side and leave the door wedged open. A line of chalk leads back to it.
+      <<case 'marks'>>
+        The lines differ from the copied seal. Your notes record the difference; it is not enough to name whoever made them.
+      <<case 'rescued'>>
+        You work the rope beneath the worker's arms, or make a bridge from the porters' boards. Together you bring the adult back onto sound flooring. The porter leads them outside.
+    <</switch>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'kit'>>
+        约旦和你一起数清绳索与手套，灯已经加满。交报告时，三样都要归还。
+      <<case 'pipe'>>
+        声音沿空管传下去。风停时，声音也弱下来。你把两种观察都记下。
+      <<case 'shutter'>>
+        扣件松了，刮痕与旁边的石头吻合。轻推百叶窗，就能重现那阵敲击。
+      <<case 'route'>>
+        你标出干燥的一侧，楔开门，用一条粉笔线指向出口。
+      <<case 'marks'>>
+        线条与抄录的封印不同。你记下区别，却还不能仅凭这一点断言是谁留下的。
+      <<case 'rescued'>>
+        你把绳索穿到工人腋下，或用搬运工的木板搭出通路。大家合力把这位成年人带上坚实的地板，由搬运工领到外面。
+    <</switch>>
+<</language>>
+<br><br>
+<<if $TempleDuties.case?.id is 'crate' and $TempleDuties.note is 'kit'>>
+  <<getouticon>>
+  <<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
+  <</lanLink>>
+  <br>
+<<else>>
+  <<getouticon>>
+  <<lanLink ['Continue the investigation', '继续调查'] 'Revelation Temple Field'>>
+  <</lanLink>>
+  <br>
+<</if>>
+
+:: Revelation Temple Combat
+<<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles'>>
+  <<temple-tentacle-turn 'Revelation Temple Combat' 'Revelation Temple Combat End'>>
+<<else>>
+  <<getouticon>>
+  <<lanLink ['Return to report', '返回汇报'] 'Revelation Temple Report'>>
+  <</lanLink>>
+  <br>
+<</if>>
+
+:: Temple Tentacle Turn Widgets [widget]
+<<widget 'temple-tentacle-turn'>>
+  <<statetentacles>>
+  <<effects>>
+  <<effectstentacles>>
+  <<tentacles>>
+  <<actionstentacles>>
+  <<if $tentacles.active lte $tentacles.max / 2 or _combatend>>
+    <span id='next'>
+    <<lanLink ['Next', '继续'] `_args[1]`>>
+    <</lanLink>>
+    </span><<nexttext>>
+  <<else>>
+    <span id='next'>
+    <<lanLink ['Next', '继续'] `_args[0]`>>
+    <</lanLink>>
+    </span><<nexttext>>
+  <</if>>
+<</widget>>
+
+:: Revelation Temple Combat End
+<<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles' and ($tentacles.active lte $tentacles.max / 2 or _combatend)>>
+  <<set $TempleDuties.case.result to $TempleDuties.case.clues.includesAll('route', 'marks') and ($TempleDuties.case.id isnot 'crate' or $TempleDuties.case.clues.includes('rescued')) ? 'resolved' : 'withdrawn'>>
+  <<set $TempleDuties.case.stage to 'report'>>
+  <<clotheson>>
+  <<endcombat>>
+<</if>>
+<<if $combat>>
+  <<lanLink ['Continue fighting', '继续战斗'] 'Revelation Temple Combat'>>
+  <</lanLink>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    The growth recoils from the cleared passage. You get back through the door and count everyone before it is shut.
+    <<if $TempleDuties.case?.result is 'resolved'>>
+      The records and your notes are outside with you.
+    <<else>>
+      You have not secured everything you came for. You mark the place for a better prepared return.
+    <</if>>
+  <<option 'CN'>>
+    侵入物从清出的通路退开。你穿过门，数清所有人，才让门合上。
+    <<if $TempleDuties.case?.result is 'resolved'>>
+      记录与笔记也带出来了。
+    <<else>>
+      这次没能带出所有需要的东西。你标好位置，准备下次再来。
+    <</if>>
+<</language>>
+<br><br>
+<<temple-case-return>>
+
+:: Revelation Temple Report
+<<temple-duty-place>>
+<<npc Jordan>>
+<<person1>>
+<<if !_dutyReport>>
+  <<lanSwitch 'Jordan will hear the report when the desk opens again.' '职务桌再次开放时，约旦会听你的报告。'>><br><br>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    Jordan puts your report beside the original assignment. "Tell me what you found. If something went wrong, I need to know that too."
+    <<if $TempleDuties.case.result is 'mistaken'>>
+      A clerk has already recorded that the knocking continued after the seal was painted.
+    <</if>>
+  <<option 'CN'>>
+    约旦把报告放在委托单旁。“告诉我你发现了什么。如果出了差错，我也得知道。”
+    <<if $TempleDuties.case.result is 'mistaken'>>
+      侍从已经记下：封印画好后，敲击仍在继续。
+    <</if>>
+<</language>>
+<br><br>
+<<socialiseicon>>
+<<temple-duty-action `['Give a factual report, including the gaps (0:10)', '如实汇报，也说清尚未查明的事 (0:10)']` 10 'Revelation Temple Report Done'>>
+  <<if $TempleDuties.case?.stage is 'combat' and !$combat>>
+    <<set $TempleDuties.case.stage to 'report'>>
+    <<set $TempleDuties.case.result to 'withdrawn'>>
+  <</if>>
+  <<temple-case-file true>>
+<</temple-duty-action>>
+<br>
+<<socialiseicon>>
+<<temple-duty-action `['Present everything as a successful exorcism (0:10)', '把一切都说成成功驱魔 (0:10)']` 10 'Revelation Temple Report Done'>>
+  <<if $TempleDuties.case?.stage is 'combat' and !$combat>>
+    <<set $TempleDuties.case.stage to 'report'>>
+    <<set $TempleDuties.case.result to 'withdrawn'>>
+  <</if>>
+  <<temple-case-file false>>
+<</temple-duty-action>>
+<br>
+<br>
+<<temple-duty-back>>
+
+:: Temple Duties Report Widgets [widget]
+<<widget 'temple-case-file'>>
+  <<temple-duty-check>>
+  <<if _dutySafe and $TempleDuties.enrolled and $TempleDuties.case?.stage is 'report'>>
+    <<set _file to $TempleDuties.case>>
+    <<set $TempleDuties.note to _args[0] ? _file.result : 'inflated'>>
+    <<set $TempleDuties.reports[_file.id] to { result: _file.result || 'withdrawn', honest: _args[0], day: Math.floor(Time.days) }>>
+    <<if _args[0] and _file.result is 'resolved' and !$TempleDuties.rewards.includes(_file.id)>>
+      <<run $TempleDuties.rewards.push(_file.id)>>
+      <<grace 3>>
+      <<famegood 10 null true>>
+      <<money `_file.id is 'echo' ? 6000 : _file.id is 'roots' ? 15000 : 20000` 'templeDuty'>>
+    <<elseif !_args[0]>>
+      <<npcincr Jordan love -2>>
+    <</if>>
+    <<set $TempleDuties.case to null>>
+  <</if>>
+<</widget>>
+
+:: Revelation Temple Report Done
+<<temple-duty-place>>
+<<npc Jordan>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'resolved'>>
+        Jordan reads the evidence before signing. "You checked, and you brought back what mattered." <<He>> enters the work in the duties book.
+      <<case 'withdrawn'>>
+        "Coming back for help is a decision too," Jordan says. <<He>> marks the place as unsafe and keeps the assignment for another visit.
+      <<case 'mistaken'>>
+        "Then it was the fastening, or the pipe. We should check both," Jordan says. "Undo the seal, and write down the correction."
+      <<case 'inflated'>>
+        Jordan compares your account with the clerk's notes. "These don't say the same thing. I can't sign a report I can't trust."
+    <</switch>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'resolved'>>
+        约旦先看证据，才签字。“你核对过，也把重要的东西带回来了。”<<He>>将这次工作记进职务簿。
+      <<case 'withdrawn'>>
+        “回来求援，也是一种判断。”约旦说。<<He>>标明危险位置，把委托留待再次调查。
+      <<case 'mistaken'>>
+        “那么，是扣件，或者排水管。两样都该核对。”约旦说，“先撤下封印，再记下更正。”
+      <<case 'inflated'>>
+        约旦把你的说法与侍从便条比对。“这两份讲的不是同一回事。我不能签一份无法信任的报告。”
+    <</switch>>
+<</language>>
+<br><br>
+<<temple-duty-back>>
+
+:: Revelation Temple Gwylan
+<<set $outside to 0>>
+<<set $location to 'forest_shop'>>
+<<effects>>
+<<temple-duty-check>>
+<<set _gwylanLocation to gwylanSchedule()>>
+<<if _dutySafe and _gwylanLocation is 'shop' and C.npc.Gwylan.init is 1
+    and C.npc.Gwylan.state is 'active'
+    and $TempleDuties.case?.stage is 'field' and !$TempleDuties.case.advised>>
+  <<npc Gwylan>>
+  <<person1>>
+  <<set $TempleDuties.case.advised to true>>
+  <<language>>
+    <<option 'EN'>>
+      Gwylan turns the page towards the light. "A copied mark won't tell you who made the original," <<he>> says. "Keep the difference in your notes." <<He>> taps the exit you have marked. "And keep that. You need somewhere to return to."
+      <<if $temple_confessor_intro>>
+        "The people you met may ask for more than a report. Decide what you'll promise before they ask."
+      <</if>>
+    <<option 'CN'>>
+      格威岚把纸转向光。“抄下的标记，不会告诉你原件是谁留下的，”<<he>>说，“把区别记好。”<<He>>轻点你画的出口。“这个也要留好。你需要能回去的地方。”
+      <<if $temple_confessor_intro>>
+        “你见过的那些人，可能不只要报告。他们开口之前，想好自己会答应什么。”
+      <</if>>
+  <</language>>
+<<elseif _gwylanLocation isnot 'shop'>>
+  <<lanSwitch 'Gwylan has stepped away from the counter. You put your notes away for another visit.' '格威岚不在柜台边。你收好笔记，留待下次交谈。'>>
+<</if>>
+<br><br>
+<<getouticon>>
+<<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>>
+<</lanLink>>
+<br>
+
+:: Revelation Temple Case Accepted
+<<temple-duty-place>>
+<<if $TempleDuties.case>>
+  <span class='gold bold'><<temple-case-title $TempleDuties.case.id>></span><br><br>
+  <<lanSwitch 'The assignment is entered under your name. Collect what you need before leaving; the book keeps your place if you return later.' '委托已经记在你名下。出发前先领齐需要的东西，晚些回来时，职务簿仍会保留你的进度。'>><br><br>
+  <<icon 'temple/field-kit.png'>>
+  <<lanLink ['Review the instructions and prepare', '核对说明，做好准备'] 'Revelation Temple Case Brief'>>
+  <</lanLink>>
+  <br>
+<<else>>
+  <<lanSwitch 'The assignment could not be entered. Return when Jordan is available.' '这次没有登记成功。约旦能接待时，可以再来。'>><br>
+<</if>>
+<br>
+<<temple-duty-back>>
+
+:: Revelation Temple Withdrawal
+<<lanSwitch 'You leave the unsafe area with your notes. The investigation remains incomplete; Jordan will need a factual account before another visit.' '你带着笔记离开危险区域。调查尚未完成，回访前需要先向约旦如实交代。'>><br><br>
+<<temple-case-return>>

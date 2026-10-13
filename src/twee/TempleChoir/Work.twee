@@ -121,7 +121,7 @@
     <<else>>
       <<language>>
         <<option 'EN'>>
-          "Next time, stay with the quieter line until you are sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
+          "Next time, stay with the quieter line until you're sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
         <<option 'CN'>>
           “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了弥撒，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
       <</language>>

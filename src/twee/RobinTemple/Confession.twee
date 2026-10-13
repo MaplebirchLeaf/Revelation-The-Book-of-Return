@@ -58,7 +58,7 @@
     <</language>>
     <br>
     <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Forgive'>><</lanLink>><br>
-    <<lanLink ['Repent', '规劝'] 'RobinTemple Confession Repent'>><</lanLink>><br>
+    <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Repent'>><</lanLink>><br>
     <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Contrition'>><</lanLink>><br>
     <<if $robinSeen.includes('confessionRevealed') and $robinromance is 1>>
       <<loveicon 'kiss'>><<lanLink ['Invite Robin to your side of the booth', '请罗宾到你这侧来'] 'RobinTemple Confession Tempt'>><<set $phase to 1>><</lanLink>><br>
@@ -334,7 +334,7 @@
         <<if _robinBand is 'doubt'>>
           “若焦虑把我吞噬呢？”<<he>>质疑道。“那又该如何，<<sister>>？我还能获得宽恕吗？”
           <br><br>
-          “是的，”你自信地说道。“因为你被上帝所爱，<<if isLoveInterest('Robin')>>以及你的爱人所爱<</if>>，那份爱会阻止你迷失。我对此深信不疑。”
+          “是的，”你自信地说道。“因为你被主所爱，<<if isLoveInterest('Robin')>>以及你的爱人所爱<</if>>，那份爱会阻止你迷失。我对此深信不疑。”
           <br><br>
           <<He>>沉默了很长时间，再开口时声音有些不稳。“我……我没想过你会这么说。从来没有人这样相信过我。谢谢你，<<sister>>。”
         <<else>>
@@ -833,7 +833,7 @@
     <<option 'CN'>>
       门还没锁好，罗宾的手就已经伸进你的袍子里了。<<He>>一点也不温柔——隔板离你们两张脸只有一掌宽，而<<he>>非常清楚自己能有多大声。
       <br><br>
-      <span class="lewd">最后你半坐在长凳上，<<he>>跨着你的大腿；<<his>>袍子被推到一边，内裤拉到一旁。<<he>>先用手握住了你——动作生疏，快得过分，木头每吱一声<<he>>就停下来用鼻子喘气。等你把<<his>>胯按下去贴上自己的时候，<<he>>咬住自己手背，隔着你的大腿一下一下、又短又心虚地磨，眼睛全程盯着那扇活门。“别停，”<<he>>贴着你耳朵说——这是<<he>>今晚说得最响的一句话。</span>
+      <span class="lewd">最后你半坐在长凳上，<<he>>跨着你的大腿。<<his>>袍子被推到一边，内裤拉到一旁。<<he>>先用手握住了你——动作生疏，快得过分，木头每吱一声<<he>>就停下来用鼻子喘气。等你把<<his>>胯按下去贴上自己的时候，<<he>>咬住自己手背，隔着你的大腿一下一下、又短又心虚地磨，眼睛全程盯着那扇活门。“别停，”<<he>>贴着你耳朵说——这是<<he>>今晚说得最响的一句话。</span>
   <</language>>
   <br><br>
 <</if>>
@@ -855,7 +855,7 @@
         <br>
         <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
         <br>
-        <<lanLink ['Repent', '规劝'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
+        <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
         <br>
         <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
         <br>
@@ -870,6 +870,14 @@
       <<else>>
         罗宾退开了一些，让你能开口回答。隔间重新安静下来。
         <br><br>
+        <span class="blue">你要如何回应？</span>
+        <br>
+        <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
+        <br>
+        <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
+        <br>
+        <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
+        <br>
       <</if>>
   <</language>>
 <<elseif $timer lte 0 and $RobinTemple.confession.state is 'leaving'>>

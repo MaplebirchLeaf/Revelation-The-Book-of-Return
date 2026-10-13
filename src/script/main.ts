@@ -4,6 +4,8 @@ import Tips from './Revelation/Tips';
 import RobinTemple from './RobinTemple';
 import TempleChoir from './TempleChoir';
 import LostLamb from './LostLamb';
+import DoLX from '../compat/DoLX';
+import TempleDuties from './TempleDuties';
 
 (function (maplebirch): void {
   'use strict';
@@ -11,8 +13,8 @@ import LostLamb from './LostLamb';
   if (maplebirch.get('RBR')) Tips(maplebirch);
 
   // 入口只接入原版正常操作分支，月检、强制事件和昏倒页不开放额外链接。
-  // 两个模块共享标记，LinkZone 负责排列，无需各自占用原版图标锚点。
-  if (maplebirch.get('RobinTemple') || maplebirch.get('TempleChoir')) {
+  // 各模块共享标记，由 LinkZone 排列入口。
+  if (maplebirch.get('RobinTemple') || maplebirch.get('TempleChoir') || maplebirch.get('TempleDuties')) {
     maplebirch.tool.inject({
       locationPassage: {
         Temple: [
@@ -31,4 +33,6 @@ import LostLamb from './LostLamb';
   if (maplebirch.get('TempleChoir')) TempleChoir(maplebirch);
   // 即使模块关闭，保存于梦中的存档仍需要 Header 恢复。
   LostLamb(maplebirch);
+  DoLX(maplebirch);
+  if (maplebirch.get('TempleDuties')) TempleDuties(maplebirch);
 })(maplebirch);

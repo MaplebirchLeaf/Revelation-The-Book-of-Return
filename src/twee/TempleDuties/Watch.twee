@@ -1,0 +1,445 @@
+:: Temple Watch Widgets [widget]
+<<widget 'temple-watch-skills'>>
+  <<silently>>
+    <<set _watchRouteSkill to currentSkillValue('history') gte 400 or currentSkillValue('science') gte 400
+      or currentSkillValue('skulduggery') gte 500>>
+    <<set _watchFit to currentSkillValue('physique') gte 5000 or currentSkillValue('athletics') gte 600>>
+    <<set _watchPrayer to (maplebirch.get('TempleChoir')?.singing ?? 0) gte 600 or currentSkillValue('english') gte 600>>
+    <<set _watchWill to _watchPrayer ? 550 : 650>>
+    <<set _watchControl to $awareness gte 600 ? 350 : 400>>
+  <</silently>>
+<</widget>>
+
+<<widget 'temple-watch-check'>>
+  <<set _watch to $TempleDuties.watch>>
+  <<set _watchActive to Boolean(_watch) and !['passed', 'failed'].includes(_watch.phase)>>
+  <<set _watchSafe to _dutySafe and _dutyCredentials and _watchActive and Time.date.timeStamp lt _watch.until>>
+  <<if _watchActive>>
+    <<for _watchName range _watch.party>>
+      <<temple-candidate-check _watchName 0>>
+      <<if !_candidateFree or !_candidate.agreed>>
+        <<set _watchSafe to false>>
+      <</if>>
+    <</for>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-watch-roster'>>
+  <<if $TempleDuties.party.length>>
+    <<socialiseicon>>
+    <<lanLink ['Choose again', '重新选择同伴']>>
+      <<set $TempleDuties.party to []>>
+      <<replace '#temple-watch-roster'>>
+        <<temple-watch-roster>>
+      <</replace>>
+    <</lanLink>>
+    <br>
+  <</if>>
+  <<for _watchName range ['Robin', 'Sydney']>>
+    <<temple-candidate-check _watchName 0>>
+    <<if _candidateFree and _candidate.agreed and _candidate.lessons.includesAll('care', 'wards')>>
+      <<capture _watchName>>
+        <<socialiseicon>>
+        <<lanLink `[$TempleDuties.party.includes(_watchName) ? 'Leave ' + maplebirch.auto(_watchName) + ' for a later watch' : 'Ask ' + maplebirch.auto(_watchName) + ' to take the watch with you', $TempleDuties.party.includes(_watchName) ? '让' + maplebirch.auto(_watchName) + '另约守望' : '约' + maplebirch.auto(_watchName) + '共同守望']`>>
+          <<if $TempleDuties.party.includes(_watchName)>>
+            <<run $TempleDuties.party.delete(_watchName)>>
+          <<else>>
+            <<run $TempleDuties.party.pushUnique(_watchName)>>
+          <</if>>
+          <<replace '#temple-watch-roster'>>
+            <<temple-watch-roster>>
+          <</replace>>
+        <</lanLink>>
+        <<if $TempleDuties.party.includes(_watchName)>>
+          <span class='teal'><<lanSwitch ' · Attending' ' · 同行'>></span>
+        <</if>>
+        <br>
+      <</capture>>
+    <</if>>
+  <</for>>
+  <<set _watchStart to _dutyCredentials and Time.hour lt 14
+    and !(Time.weekDay is 1 and Time.hour lt 13)
+    and !_watchActive and $TempleDuties.watch?.day isnot Math.floor(Time.days)
+    and !$TempleDuties.case>>
+  <<for _watchName range $TempleDuties.party>>
+    <<temple-candidate-check _watchName 185>>
+    <<if !_candidateFree or !_candidate.agreed or !_candidate.lessons.includesAll('care', 'wards')>>
+      <<set _watchStart to false>>
+    <</if>>
+  <</for>>
+  <<if _watchStart>>
+    <br>
+    <<icon 'temple/watch-door.png'>>
+    <<temple-duty-action `['Enter the lower passage (0:05)', '进入下层通道 (0:05)']` 5 'Revelation Temple Watch' `$TempleDuties.party`>>
+      <<if _dutyCredentials and !$TempleDuties.case and $TempleDuties.watch?.day isnot Math.floor(Time.days)>>
+        <<set $TempleDuties.watch to { day: Math.floor(Time.days), until: Time.date.timeStamp + 10800,
+          party: clone($TempleDuties.party), phase: 'threshold', aids: [], route: false }>>
+        <<set $TempleDuties.party to []>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+  <<else>>
+    <span class='lblue'><<lanSwitch 'Come before 14:00, outside Sunday mass, with three hours free. Finish your current investigation first. One attempt a day.' '14:00 前、周日弥撒以外的时段前来，预留三小时。先处理当前调查，每天可尝试一次。'>></span><br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-watch-support'>>
+  <<for _watchName range _watch.party>>
+    <<set _watchAid to _watchName + ':' + _args[0]>>
+    <<if !_watch.aids.includes(_watchAid)>>
+      <<capture _watchName _watchAid>>
+        <<socialiseicon>>
+        <<temple-duty-action `['Steady ' + maplebirch.auto(_watchName) + ' and answer together (0:05)', '陪' + maplebirch.auto(_watchName) + '稳住心神，一同应答 (0:05)']` 5 'Revelation Temple Watch Support' `_watchName`>>
+          <<temple-watch-check>>
+          <<if _watchSafe and !_watch.aids.includes(_watchAid)>>
+            <<run _watch.aids.push(_watchAid)>>
+            <<set $TempleDuties.speaker to _watchName>>
+          <</if>>
+        <</temple-duty-action>>
+        <br>
+      <</capture>>
+    <</if>>
+  <</for>>
+<</widget>>
+
+:: Revelation Temple Watch Brief
+<<temple-duty-place>>
+<<temple-watch-check>>
+<<if !_dutyOffice or !$TempleDuties.enrolled or !['monk', 'priest'].includes($temple_rank)>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<npc Jordan>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    Jordan lifts three keys from the ring. Two are polished. The third leaves a dark stain on <<his>> palm. "The first door keeps the wind out. The second keeps the flock in. At the last, listen carefully to who is asking."
+    <<He>> covers the third key with <<his>> fingers. "Take the prayers and the ward pattern. Keep a light for each person who comes with you. I shall be waiting on this side."
+  <<option 'CN'>>
+    约旦从钥匙圈上取下三把钥匙。两把已经磨亮。第三把，在<<his>>掌心留下深色的痕迹。“第一扇门挡风，第二扇门留住教徒。最后一扇，听清楚是谁在请求。”
+    <<He>>合拢手指，遮住第三把。“带上祷文和护符图样。同行的每个人，都要留一盏灯。我会在这一侧等候。”
+<</language>>
+<br><br>
+<<temple-duty-requirements>>
+<<if _watchActive>>
+  <<icon 'temple/watch-door.png'>>
+  <<lanLink ['Return to the unfinished watch', '继续尚未结束的守望'] 'Revelation Temple Watch'>>
+  <</lanLink>>
+  <br>
+<<else>>
+  <div id='temple-watch-roster'>
+    <<temple-watch-roster>>
+  </div>
+<</if>>
+<br>
+<<temple-duty-back>>
+
+:: Revelation Temple Watch
+<<temple-duty-place>>
+<<temple-watch-check>>
+<<temple-watch-skills>>
+<<if !_watchActive>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<if $combat>>
+  <<lanLink ['Continue fighting', '继续战斗'] 'Revelation Temple Watch Combat'>>
+  <</lanLink>>
+  <<exit>>
+<</if>>
+<<if !_watchSafe>>
+  <<lanSwitch 'The flame has burned below the mark Jordan showed you. Someone knocks from the brighter side of the door.' '火苗已经低过约旦指给你看的刻痕。有人从门外明亮的一侧叩门。'>>
+  <br><br>
+  <<temple-watch-leave>>
+  <<exit>>
+<</if>>
+<<switch _watch.phase>>
+  <<case 'threshold'>>
+    <<language>>
+      <<option 'EN'>>
+        The passage runs beside the garden wall. You can hear water on the other side, though it has not rained here. A priest points to the roots caught beneath the first door. "The forest has found this way again. Clear the threshold. Keep the lamps facing home."
+      <<option 'CN'>>
+        通道贴着花园围墙延伸。墙后有水声，可这里并没有下雨。一名司祭指向卡在第一扇门下的根须。“森林又找到这里了。清出门槛。让灯朝着回去的方向。”
+    <</language>>
+    <br><br>
+    <<temple-watch-support 'lamp'>>
+    <<icon 'temple/ward-stone.png'>>
+    <<temple-duty-action `['Mark the way back and check the copied wards (0:20)', '标出归路，核对抄录的护符 (0:20)']` 20 'Revelation Temple Watch Note' `_watch.party`>>
+      <<temple-watch-check>>
+      <<if _watchSafe and _watch.phase is 'threshold'>>
+        <<temple-watch-skills>>
+        <<set _watch.route to _watchRouteSkill>>
+        <<set $TempleDuties.note to 'watch-route'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+    <<templeicon 'trialcontinue'>>
+    <<temple-duty-action `['Keep the threshold clear (0:01)', '守住门槛 (0:01)']` 1 'Revelation Temple Watch Combat' `_watch.party`>>
+      <<temple-watch-check>>
+      <<if _watchSafe and _watch.phase is 'threshold'>>
+        <<set _watch.phase to 'roots'>>
+        <<set $combat to 1>>
+        <<set $enemytype to 'tentacles'>>
+        <<molested>>
+        <<controlloss>>
+        <<tentaclestart `_watch.route ? 8 : 12` 18 'root' 'vine' true>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+  <<case 'voices'>>
+    <<language>>
+      <<option 'EN'>>
+        A voice beyond the next door says your name. It asks you to come closer. Behind you, a lamp gutters as someone draws breath to answer. The prayer sheet carries no instruction for this part. Only three words have been underlined: "Keep them within."
+      <<option 'CN'>>
+        下一扇门后，有声音叫出了你的名字，请你再走近些。身后一盏灯晃了晃，有人吸气，像是准备应答。祷文上没有写这一段的指示。只有几个字被划了线：“留他们在里面。”
+    <</language>>
+    <br><br>
+    <<temple-watch-support 'answer'>>
+    <<templeicon 'pray'>>
+    <<if _watchPrayer>>
+      <<lanSwitch 'You find the response in the older text. Its rhythm is one you can keep, even with the other voice beneath it.' '你在旧祷文里找到应答的句子。即使另一个声音压在下面，你也熟悉它的韵律。'>>
+      <br><br>
+    <</if>>
+    <<temple-duty-action `['Keep the response on your side of the door (0:20)', '让应答留在门的这一侧 (0:20)']` 20 'Revelation Temple Watch Note' `_watch.party`>>
+      <<temple-watch-check>>
+      <<if _watchSafe and _watch.phase is 'voices'>>
+        <<temple-watch-skills>>
+        <<set _watch.phase to currentSkillValue('willpower') gte _watchWill and $control gte _watchControl ? 'shadow' : 'failed'>>
+        <<set $TempleDuties.note to _watch.phase is 'failed' ? 'watch-voices' : 'watch-answer'>>
+        <<stress 12>>
+        <<tiredness `_watchPrayer ? 5 : 8`>>
+      <</if>>
+    <</temple-duty-action>>
+    <span class='lblue'><<lanSwitch ' | Willpower and control' ' | 意志与自控'>></span><br>
+    <<socialiseicon>>
+    <<lanLink ['Answer the voice beyond the door', '回应门外的声音'] 'Revelation Temple Watch Failed'>>
+      <<set _watch.phase to 'failed'>>
+    <</lanLink>>
+    <br>
+  <<case 'shadow'>>
+    <<language>>
+      <<option 'EN'>>
+        The voice stops. Something pale crosses the floor without passing through the door. The lamps cast your shadows towards it. You hear the priest draw the bolt behind you. "Hold this side, child."
+      <<option 'CN'>>
+        声音停了。一道苍白的东西沿地面掠来，却没有穿过门。灯把你们的影子投向它。你听见身后的司祭拉动门闩。“守住这一侧，孩子。”
+    <</language>>
+    <br><br>
+    <<templeicon 'trialcontinue'>>
+    <<temple-duty-action `['Protect the lamps (0:01)', '护住灯火 (0:01)']` 1 'Revelation Temple Watch Combat' `_watch.party`>>
+      <<temple-watch-check>>
+      <<if _watchSafe and _watch.phase is 'shadow'>>
+        <<set $combat to 1>>
+        <<set $enemytype to 'tentacles'>>
+        <<molested>>
+        <<controlloss>>
+        <<tentaclestart 10 20 'tentacle' 'pale'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+  <<case 'seal'>>
+    <<language>>
+      <<option 'EN'>>
+        The last door has a small mirror set beside its handle. Your copied pattern has a gap. The reflection has none. As you lift the paper, the gap in the mirror moves to meet your fingers. Behind you, everyone waits for the last response.
+        <<if currentSkillValue('skulduggery') gte 500 or $awareness gte 600>>
+          A scratch runs away from the glass on your side. In the reflection, it runs into it.
+        <</if>>
+      <<option 'CN'>>
+        最后一扇门的把手旁，嵌着一面小镜子。你抄下的图样留着缺口，镜里的却没有。你抬起纸张，镜中的缺口便移向你的手指。身后，所有人都在等待最后一次应答。
+        <<if currentSkillValue('skulduggery') gte 500 or $awareness gte 600>>
+          你这一侧，一道刮痕从镜边向外延伸。镜中的刮痕，却朝里面伸去。
+        <</if>>
+    <</language>>
+    <br><br>
+    <<icon 'temple/ward-stone.png'>>
+    <<temple-duty-action `['Use the copied pattern and count everyone before closing (0:20)', '沿用抄录的图样，数清所有人再封闭 (0:20)']` 20 'Revelation Temple Watch Passed' `_watch.party`>>
+      <<temple-watch-check>>
+      <<if _watchSafe and _watch.phase is 'seal'>>
+        <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
+        <<for _watchName range _watch.party>>
+          <<if _watch.aids.includesAll(_watchName + ':lamp', _watchName + ':answer')>>
+            <<set $TempleDuties.candidates[_watchName].trial_day to Math.floor(Time.days)>>
+            <<if _watchName is 'Robin'>>
+              <<npcincr Robin trauma 2>>
+            <</if>>
+          <</if>>
+        <</for>>
+        <<set _watch.phase to 'passed'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+    <<mirroricon>>
+    <<lanLink ['Complete the reflected pattern', '补全镜中的图样'] 'Revelation Temple Watch Failed'>>
+      <<set _watch.phase to 'failed'>>
+    <</lanLink>>
+    <br>
+<</switch>>
+<br>
+<<temple-watch-leave>>
+
+:: Revelation Temple Watch Support
+<<temple-duty-place>>
+<<temple-watch-check>>
+<<npc `$TempleDuties.speaker`>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    <<if $TempleDuties.speaker is 'Robin'>>
+      <<if $TempleDuties.watch.phase is 'voices'>>
+        A broken edge of the lamp has cut Robin's fingers. You wrap them in the strip of cloth, staying beside <<him>> until <<he>> looks up. "Still here," <<he>> says quietly. You answer the next line together.
+      <<else>>
+        Robin's fingers have tightened around the lamp. You move beside <<him>> and wait for <<him>> to look up. "Still here," <<he>> says quietly. You answer the next line together.
+      <</if>>
+    <<else>>
+      <<if $TempleDuties.watch.phase is 'voices'>>
+        Sydney's sleeve has torn at the wrist. Blood marks the prayer sheet, and <<his>> voice is hoarse. You hold the page steady until <<he>> finds the response again. <<He>> waits for your voice before continuing.
+      <<else>>
+        Sydney has reached the end of a familiar prayer. You touch the edge of the sheet, showing <<him>> where the response begins. <<He>> draws a slower breath and waits for your voice before continuing.
+      <</if>>
+    <</if>>
+  <<option 'CN'>>
+    <<if $TempleDuties.speaker is 'Robin'>>
+      <<if $TempleDuties.watch.phase is 'voices'>>
+        灯罩破裂的边缘划开了罗宾的手指。你用布条包住它们，守在<<him>>身旁，等<<he>>抬头。“我还在这里。”<<He>>轻声说。下一句，你们一起应答。
+      <<else>>
+        罗宾的手指紧紧攥着灯。你站到<<him>>身旁，等<<he>>抬头。“我还在这里。”<<He>>轻声说。下一句，你们一起应答。
+      <</if>>
+    <<else>>
+      <<if $TempleDuties.watch.phase is 'voices'>>
+        悉尼的袖口在腕边撕裂了。祷文纸上沾着血，<<his>>的声音已经嘶哑。你托稳纸张，等<<he>>重新找到应答的位置。你的声音响起后，<<he>>才继续念下去。
+      <<else>>
+        悉尼已经念到熟悉祷文的末尾。你碰了碰纸边，指给<<him>>看应答开始的位置。<<He>>放慢呼吸，等你的声音响起，才继续念下去。
+      <</if>>
+    <</if>>
+<</language>>
+<br><br>
+<<temple-watch-back>>
+
+:: Revelation Temple Watch Note
+<<temple-duty-place>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'watch-route'>>
+        <<if $TempleDuties.watch.route>>
+          The copied marks follow a seam in the wall. You find the dry line back to the outer door.
+        <<else>>
+          Damp has blurred the marks. You keep the outer door in sight, but the roots cross more of the passage than you first thought.
+        <</if>>
+      <<case 'watch-answer'>>
+        Your voice nearly follows the other one. You catch it, and finish the response on this side. No answer comes back.
+      <<case 'watch-voices'>>
+        You hear yourself answering too soon. A hand closes over the lamp behind you. The older priest knocks twice, then opens the way out.
+    <</switch>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'watch-route'>>
+        <<if $TempleDuties.watch.route>>
+          抄录的痕迹沿着墙缝延伸。你找到了一条干燥的归路，直通外门。
+        <<else>>
+          潮气模糊了痕迹。你仍看得见外门，可横过通道的根须，比起初以为的更多。
+        <</if>>
+      <<case 'watch-answer'>>
+        你的声音差点随另一个声音而去。你将它收住，在这一侧念完应答。对面没有回应。
+      <<case 'watch-voices'>>
+        你听见自己过早作答。身后，一只手覆住了灯。资深司祭叩了两下门，才打开退路。
+    <</switch>>
+<</language>>
+<br><br>
+<<if $TempleDuties.watch.phase is 'failed'>>
+  <<lanLink ['Leave with the priest', '随司祭退出'] 'Revelation Temple Watch Failed'>>
+  <</lanLink>>
+  <br>
+<<else>>
+  <<temple-watch-back>>
+<</if>>
+
+:: Revelation Temple Watch Combat
+<<if ['roots', 'shadow'].includes($TempleDuties.watch?.phase) and $combat is 1 and $enemytype is 'tentacles'>>
+  <<temple-tentacle-turn 'Revelation Temple Watch Combat' 'Revelation Temple Watch Combat End'>>
+<<else>>
+  <<temple-watch-back>>
+<</if>>
+
+:: Revelation Temple Watch Combat End
+<<if ['roots', 'shadow'].includes($TempleDuties.watch?.phase) and $combat is 1 and $enemytype is 'tentacles'
+    and ($tentacles.active lte $tentacles.max / 2 or _combatend)>>
+  <<set _watchWon to $tentacles.active lte $tentacles.max / 2 and $stress lt $stressmax and !$possessed>>
+  <<if _watchWon>>
+    <<temple-watch-skills>>
+    <<set _watchStrain to $TempleDuties.watch.phase is 'roots' ? (_watchFit ? 4 : 8) : (_watchFit ? 6 : 12)>>
+    <<pain _watchStrain>>
+    <<tiredness _watchStrain>>
+  <</if>>
+  <<clotheson>>
+  <<endcombat>>
+  <<set $TempleDuties.watch.phase to _watchWon ? ($TempleDuties.watch.phase is 'roots' ? 'voices' : 'seal') : 'failed'>>
+<</if>>
+<<if $combat>>
+  <<lanLink ['Continue fighting', '继续战斗'] 'Revelation Temple Watch Combat'>>
+  <</lanLink>>
+  <<exit>>
+<</if>>
+<<lanSwitch 'Loose stone has scraped your arms as you brace the threshold. The lamp flames straighten. Beyond the wall, something taps once. You count the people on your side before moving on.' '撑住门槛时，碎石刮破了你的手臂。灯火重新立直。墙的另一侧，有什么东西轻叩了一下。继续前进之前，你数过这一侧的人。'>>
+<br><br>
+<<temple-watch-back>>
+
+:: Revelation Temple Watch Passed
+<<temple-duty-place>>
+<<if $TempleDuties.watch?.phase isnot 'passed'>>
+  <<temple-watch-back>>
+  <<exit>>
+<</if>>
+<<npc Jordan>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    They bring you back to the room with the fire. Your hands shake too much to undo the lamp strap. Jordan loosens it, then washes the grit from the cuts. <<He>> counts the lamps once, and the people twice. "You have brought them back to this side." <<He>> draws a blanket over the nearest shoulders. "Rest first, child. We shall speak when you have found your voice."
+  <<option 'CN'>>
+    他们把你带回生着炉火的房间。你的手抖得解不开灯带。约旦替你松开，又洗去伤口里的碎屑。<<He>>数了一遍灯，又数了两遍人。“你把他们带回了这一侧。”<<He>>给离得最近的人披上毯子。“先休息，孩子。等你找回自己的声音，我们再谈。”
+<</language>>
+<<for _watchName range $TempleDuties.watch.party>>
+  <br><br>
+  <<if $TempleDuties.candidates[_watchName].trial_day gte 0>>
+    <span class='teal'><<print maplebirch.auto(_watchName)>><<lanSwitch ' can now attend the appointment interview.' '现在可以参加任职面谈。'>></span>
+  <<else>>
+    <span class='lblue'><<print maplebirch.auto(_watchName)>><<lanSwitch ' lost the response during the watch. Jordan asks you to accompany another attempt.' '没能在守望中稳住应答。约旦请你陪同再试一次。'>></span>
+  <</if>>
+<</for>>
+<br><br>
+<<temple-duty-back>>
+
+:: Revelation Temple Watch Failed
+<<temple-duty-place>>
+<<if $combat>>
+  <<lanLink ['Continue fighting', '继续战斗'] 'Revelation Temple Watch Combat'>>
+  <</lanLink>>
+  <<exit>>
+<</if>>
+<<npc Jordan>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    The older priest brings the lamps through the outer door. One is cold. Jordan puts it beside the other lamps. "There's still a place for it. Come again when you can keep it lit." The key ring lies beneath <<his>> hand. You cannot see which key <<he>> has covered.
+  <<option 'CN'>>
+    资深司祭从外门带回灯。其中一盏已经冷了。约旦把它放在其它灯旁。“它的位置还在。能护住灯火时，再来。”钥匙圈压在<<his>>手下，你看不见<<he>>遮住的是哪一把。
+<</language>>
+<br><br>
+<<temple-duty-back>>
+
+:: Temple Watch Return Widgets [widget]
+<<widget 'temple-watch-back'>>
+  <<templeicon 'trialcontinue'>>
+  <<lanLink ['Continue the watch', '继续守望'] 'Revelation Temple Watch'>>
+  <</lanLink>>
+  <br>
+<</widget>>
+
+<<widget 'temple-watch-leave'>>
+  <<getouticon>>
+  <<lanLink ['Ask the priest to bring everyone out', '请司祭带所有人退出'] 'Revelation Temple Watch Failed'>>
+    <<if !$combat and $TempleDuties.watch and !['passed', 'failed'].includes($TempleDuties.watch.phase)>>
+      <<set $TempleDuties.watch.phase to 'failed'>>
+    <</if>>
+  <</lanLink>>
+  <br>
+<</widget>>

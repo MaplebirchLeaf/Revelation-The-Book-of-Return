@@ -1,0 +1,361 @@
+:: Temple Duties Widgets [widget]
+<<widget 'temple-duty-check'>>
+  <<if !maplebirch.get('TempleDuties') or !$TempleDuties>>
+    <<set _dutySafe to false>>
+    <<set _dutyOffice to false>>
+    <<set _dutyReady to false>>
+    <<exit>>
+  <</if>>
+  <<silently>>
+    <<set _dutySafe to Boolean(maplebirch.get('TempleDuties'))
+      and ['initiate', 'monk', 'priest'].includes($temple_rank)
+      and !$combat and !$possessed and !$nextPassageCheck
+      and !$replayScene and !$statFreeze and $exposed lte 0
+      and $stress lt $stressmax and !isPregnancyEnding()>>
+    <<set _dutyOffice to _dutySafe and C.npc.Jordan.init is 1
+      and $daily.jordanMissing isnot 1 and Time.hour gte 9 and Time.hour lt 18
+      and !['night', 'dusk'].includes(Time.dayState)
+      and !(Time.weekDay is 1 and Time.hour gte 11 and Time.hour lt 13)>>
+    <<set _dutyToday to _dutyOffice and $TempleDuties.enrolled
+      and $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+    <<set _dutyReport to _dutyOffice and $TempleDuties.case
+      and ($TempleDuties.case.stage is 'report'
+      or ($TempleDuties.case.stage is 'combat' and !$combat))>>
+    <<set _dutyNext to ''>>
+    <<for _caseId range ['echo', 'roots', 'crate']>>
+      <<if !_dutyNext and !$TempleDuties.reports[_caseId]>>
+        <<set _dutyNext to _caseId>>
+      <</if>>
+    <</for>>
+    <<set _roofReady to $TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof>>
+    <<set _shelvesReady to $TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves>>
+    <<set _studyMinutes to (_roofReady and _shelvesReady ? 15 : 25) - ($TempleDuties.archive.sorted gte 3 ? 5 : 0)>>
+    <<set _spearReturned to $temple_spear_mission gte 2 and $spear_vessel is 'temple'>>
+    <<set _flockRescued to $jordan_ritual_dance gte 4>>
+    <<set _dutyCredentials to _dutyOffice and ['monk', 'priest'].includes($temple_rank)
+      and _spearReturned and _flockRescued
+      and $templetest isnot 'failed' and $temple_chastity_timer gt 0
+      and $player.virginity.temple is true
+      and $TempleDuties.enrolled>>
+    <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and $TempleDuties.trial_day gte 0>>
+    <<set _bishopKnown to Boolean($per_npc.bishop) and ($temple_confessor_intro or $kylar_manor_secret is 3)>>
+  <</silently>>
+<</widget>>
+
+<<widget 'temple-duty-action' 'container'>>
+  <<set _dutyBody to _contents>>
+  <<set _dutyMinutes to _args[1]>>
+  <<set _dutyTarget to _args[2]>>
+  <<set _dutyPartners to Array.isArray(_args[3]) ? clone(_args[3]) : (_args[3] ? [_args[3]] : [])>>
+  <<set _dutyUsed to false>>
+  <<capture _dutyBody _dutyMinutes _dutyTarget _dutyPartners _dutyUsed>>
+    <<lanLink _args[0]>>
+      <<temple-duty-check>>
+      <<set _dutyGuests to true>>
+      <<for _guest range _dutyPartners>>
+        <<temple-candidate-check _guest _dutyMinutes>>
+        <<if !_candidateFree>>
+          <<set _dutyGuests to false>>
+        <</if>>
+      <</for>>
+      <<if !_dutyUsed and _dutySafe and _dutyGuests>>
+        <<set _dutyUsed to true>>
+        <<set _dutySource to $passage>>
+        <<pass _dutyMinutes>>
+        <<temple-duty-check>>
+        <<for _guest range _dutyPartners>>
+          <<temple-candidate-check _guest 0>>
+          <<if !_candidateFree>>
+            <<set _dutyGuests to false>>
+          <</if>>
+        <</for>>
+        <<if $passage is _dutySource and !$nextPassageCheck and _dutySafe and _dutyGuests>>
+          <<print _dutyBody>>
+          <<goto _dutyTarget>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
+<</widget>>
+
+<<widget 'temple-duty-link'>>
+  <<temple-duty-check>>
+  <<if _revelationTempleLinks is 'pray' and _dutyOffice>>
+    <<icon 'temple/duties-book.png'>>
+    <<lanLink ['Check the temple duties book (0:01)', '查看神殿职务簿 (0:01)'] 'Revelation Temple Office'>>
+      <<pass 1>>
+    <</lanLink>>
+    <br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-duty-place'>>
+  <<set $outside to 0>>
+  <<set $location to 'temple'>>
+  <<sydneySchedule>>
+  <<temple_effects>>
+  <<effects>>
+  <<temple-duty-check>>
+<</widget>>
+
+<<widget 'temple-duty-back'>>
+  <<getouticon>>
+  <<lanLink ['Return to the duties desk', '返回职务桌'] 'Revelation Temple Office'>>
+  <</lanLink>>
+  <br>
+<</widget>>
+
+<<widget 'temple-case-title'>>
+  <<switch _args[0]>>
+    <<case 'echo'>>
+      <<lanSwitch 'Knocking after lights-out' '熄灯后的敲击'>>
+    <<case 'roots'>>
+      <<lanSwitch 'Roots beneath the records' '卷宗下的根须'>>
+    <<case 'crate'>>
+      <<lanSwitch 'The returned donation crate' '退回的捐赠箱'>>
+  <</switch>>
+<</widget>>
+
+:: Revelation Temple Office
+<<temple-duty-place>>
+<<if !_dutyOffice>>
+  <<lanSwitch 'The duties book is closed. The next clerk will take over during the day, outside Sunday mass.' '职务簿合上了。下一班侍从会在白天、周日弥撒以外的时段接待。'>><br><br>
+  <<getouticon>>
+  <<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
+  <</lanLink>>
+  <br>
+  <<exit>>
+<</if>>
+<<npc Jordan>>
+<<person1>>
+<<language>>
+  <<option 'EN'>>
+    Lists of blankets and names lie beside a ring of keys. The high priest reads the last clerk's note before looking up. Behind <<him>>, incense hangs beneath the angel's wings. "Some doors should be opened, child. Some must be kept shut. First, tell me who is still waiting outside."
+  <<option 'CN'>>
+    毯子清单和名册旁放着一圈钥匙。大司祭约旦读完上一班留下的便条，才抬起头。香烟悬在<<him>>身后天使的翼下。“有些门应当打开，孩子。有些必须守住。先告诉我，还有谁在门外等着。”
+<</language>>
+<br><br>
+<<revelation-card 'Duties book' '职务簿'>>
+  <<if !$TempleDuties.enrolled>>
+    <<socialiseicon 'ask'>>
+    <<temple-duty-action `['Ask Jordan for duties (0:10)', '向约旦申请职务 (0:10)']` 10 'Revelation Temple Task Done'>>
+      <<if !$TempleDuties.enrolled>>
+        <<set $TempleDuties.enrolled to true>>
+        <<set $TempleDuties.note to 'joined'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
+  <<else>>
+    <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
+      <<icon 'temple/duties-book.png'>>
+      <<lanLink ['Take a shift and read the handover', '接一班职务，读交接记录'] 'Revelation Temple Shift'>>
+      <</lanLink>>
+      <br>
+    <</if>>
+    <<icon 'temple/records-room.png'>>
+    <<lanLink ['Visit the old records room (0:01)', '去旧资料室 (0:01)'] 'Temple Library'>>
+      <<pass 1>>
+    <</lanLink>>
+    <br>
+    <<if _dutyReport>>
+      <<socialiseicon 'ask'>>
+      <<lanLink ['Report to Jordan', '向约旦汇报'] 'Revelation Temple Report'>>
+      <</lanLink>>
+      <br>
+    <<elseif $TempleDuties.case?.stage is 'field'>>
+      <<icon 'temple/duties-book.png'>>
+      <<lanLink ['Check your current assignment', '查看当前委托'] 'Revelation Temple Case Brief'>>
+      <</lanLink>>
+      <br>
+    <<elseif !$TempleDuties.case and _dutyNext
+        and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
+      <<socialiseicon 'ask'>>
+      <<lanLink ['Ask what needs investigating', '询问需要调查的事情'] 'Revelation Temple Case Brief'>>
+      <</lanLink>>
+      <br>
+    <</if>>
+    <<if $temple_rank is 'monk' and !$TempleDuties.review>>
+      <<templeicon 'altar'>>
+      <<lanLink ['Ask about ordination', '询问司祭任命'] 'Revelation Temple Review'>>
+      <</lanLink>>
+      <br>
+    <<elseif $TempleDuties.review and $temple_rank is 'monk'>>
+      <<templeicon 'altar'>>
+      <<lanLink ['Return for the ordination interview', '继续任命面谈'] 'Revelation Temple Review'>>
+      <</lanLink>>
+      <br>
+    <<elseif $temple_rank is 'priest'>>
+      <span class='teal'><<lanSwitch 'A list of wards needing attention lies beside the next shift’s report.' '需要检查的护符清单压在下一班的报告旁。'>></span><br>
+      <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
+        <<socialiseicon>>
+        <<temple-duty-action `['Supervise the next shift (0:45)', '指导下一班值班 (0:45)']` 45 'Revelation Temple Task Done'>>
+          <<if $TempleDuties.enrolled and $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+            <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
+            <<set $TempleDuties.duties += 1>>
+            <<set $TempleDuties.note to 'supervised'>>
+            <<grace 2>>
+            <<money 4000 'templeDuty'>>
+            <<famegood 2 null true>>
+          <</if>>
+        <</temple-duty-action>>
+        <<ggrace>><br>
+        <<icon 'temple/ward-stone.png'>>
+        <<temple-duty-action `['Inspect the garden and repair the wards (0:45)', '巡查花园，修补护符 (0:45)']` 45 'Revelation Temple Task Done'>>
+          <<if $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+            <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
+            <<set $TempleDuties.duties += 1>>
+            <<set $TempleDuties.note to 'wards'>>
+            <<housekeeping 1>>
+            <<grace 2>>
+            <<money 4000 'templeDuty'>>
+          <</if>>
+        <</temple-duty-action>>
+        <<ghousekeeping>>
+        <<ggrace>><br>
+      <</if>>
+    <</if>>
+    <<for _retryId range ['echo', 'roots', 'crate']>>
+      <<if $TempleDuties.reports[_retryId] and !$TempleDuties.case
+          and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))
+          and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or ($temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7))>>
+        <<capture _retryId>>
+          <<socialiseicon>>
+          <<temple-duty-action `['Arrange a return inspection (0:05)', '安排回访检查 (0:05)']` 5 'Revelation Temple Case Accepted'>>
+            <<temple-case-take _retryId true>>
+          <</temple-duty-action>>
+          — <<temple-case-title _retryId>><br>
+        <</capture>>
+      <</if>>
+    <</for>>
+    <<if _bishopKnown and !['refused', 'reported'].includes($TempleDuties.bishop)>>
+      <<socialiseicon 'ask'>>
+      <<lanLink ['Read the sealed note beside your confession list', '读告解名单旁的密封便条'] 'Revelation Temple Sealed Note'>>
+      <</lanLink>>
+      <br>
+    <</if>>
+    <<temple-manor-offer>>
+    <<if ['monk', 'priest'].includes($temple_rank)>>
+      <<templeicon 'altar'>>
+      <<lanLink ['Discuss preparing for ordination with Robin or Sydney', '与罗宾或悉尼商谈司祭任职准备'] 'Revelation Temple Candidates'>>
+      <</lanLink>>
+      <br>
+      <<icon 'temple/watch-door.png'>>
+      <<lanLink ['Ask about the watch at the lower door', '询问下层门前的守望'] 'Revelation Temple Watch Brief'>>
+      <</lanLink>>
+      <br>
+    <</if>>
+    <<if $TempleDuties.companion_day isnot Math.floor(Time.days)>>
+      <<for _speaker range ['Robin', 'Sydney']>>
+        <<if (_speaker is 'Robin' and getRobinLocation() is 'temple')
+            or (_speaker is 'Sydney' and _sydney_location is 'temple' and $daily.sydney.punish isnot 1)>>
+          <<capture _speaker>>
+            <<socialiseicon>>
+            <<temple-duty-action `['Talk with ' + maplebirch.auto(_speaker) + ' about your duties (0:05)', '与' + maplebirch.auto(_speaker) + '谈谈职务 (0:05)']` 5 'Revelation Temple Companion'>>
+              <<set $TempleDuties.speaker to _speaker>>
+              <<set $TempleDuties.companion_day to Math.floor(Time.days)>>
+            <</temple-duty-action>>
+            <br>
+          <</capture>>
+        <</if>>
+      <</for>>
+    <</if>>
+  <</if>>
+<</revelation-card>>
+<br>
+<<getouticon>>
+<<lanLink ['Return to the hall (0:01)', '返回大厅 (0:01)'] 'Temple'>>
+  <<pass 1>>
+<</lanLink>>
+<br>
+
+:: Revelation Temple Shift
+<<temple-duty-place>>
+<<npc Jordan>>
+<<person1>>
+<<if !_dutyToday>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    A clerk has left two things unfinished: the kitchen received fewer bowls than the list says, and someone folded damp blankets onto the dry shelf. Jordan points to the crossed-out figures. "Check before you copy them."
+  <<option 'CN'>>
+    上一班留了两件没处理完的事：厨房收到的碗比清单上少，另有人把潮湿的毯子叠进了干货架。约旦指着划掉的数字。“抄录之前，先核对。”
+<</language>>
+<br><br>
+<<icon 'temple/delivery-records.png'>>
+<<temple-duty-action `['Count the bowls and trace the receipt (0:45)', '清点碗并核对收据 (0:45)']` 45 'Revelation Temple Task Done'>>
+  <<if $TempleDuties.enrolled and $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+    <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
+    <<set $TempleDuties.duties += 1>>
+    <<set $TempleDuties.note to 'accounts'>>
+    <<mathsskill 2>>
+    <<grace 1>>
+    <<money 2500 'templeDuty'>>
+    <<famegood 2 null true>>
+  <</if>>
+<</temple-duty-action>>
+<<gmaths>>
+<<ggrace>><br>
+<<socialiseicon>>
+<<temple-duty-action `['Air the blankets and leave a handover (1:00)', '晾开毯子，留下交接记录 (1:00)']` 60 'Revelation Temple Task Done'>>
+  <<if $TempleDuties.enrolled and $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+    <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
+    <<set $TempleDuties.duties += 1>>
+    <<set $TempleDuties.note to 'blankets'>>
+    <<housekeeping 2>>
+    <<grace 2>>
+    <<tiredness 3>>
+    <<money 3000 'templeDuty'>>
+    <<famegood 2 null true>>
+  <</if>>
+<</temple-duty-action>>
+<<ghousekeeping>>
+<<gggrace>>
+<<gtiredness>><br><br>
+<<temple-duty-back>>
+
+:: Revelation Temple Task Done
+<<temple-duty-place>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'joined'>>
+        Jordan adds your name to the duties book. "Come when you're free. Leave the school and your other commitments in order." <<He>> gives you the key for the records room.
+      <<case 'accounts'>>
+        The missing bowls are still wrapped beside the kitchen door. You correct the receipt after counting them. Jordan initials your handover; your payment is placed beside it.
+      <<case 'blankets'>>
+        You spread the damp blankets apart and mark the shelf. The next clerk reads your note aloud, checking which bundles can be given out. Jordan leaves your payment with the completed list.
+      <<case 'supervised'>>
+        You let the clerk finish counting before explaining the discrepancy. Jordan reads both reports and adds your payment to the handover.
+      <<case 'wards'>>
+        You work along the garden wall, clearing the damp growth from the inscribed stones. An older priest holds the copied pattern while you mend the damaged lines. You test the doorway together before returning the lamp. Jordan marks the inspection complete.
+      <<case 'sorted'>>
+        The loose pages now lie between dry sheets, their numbers copied onto the sleeves. You leave the remaining damaged leaves for the next session.
+      <<case 'funded'>>
+        The amount and its purpose are written on the receipt. Jordan keeps the contractor's copy separate from the kitchen fund.
+      <<case 'unpaid'>>
+        The payment could not be completed. The clerk leaves the agreement unsigned.
+    <</switch>>
+  <<option 'CN'>>
+    <<switch $TempleDuties.note>>
+      <<case 'joined'>>
+        约旦把你的名字添进职务簿。“有空时来。学校和你其他应尽的事，也要安排妥当。”<<He>>交给你资料室的钥匙。
+      <<case 'accounts'>>
+        少的碗还包在厨房门边。数清后，你更正了收据。约旦在交接记录上签了字，把报酬放在旁边。
+      <<case 'blankets'>>
+        你把潮湿的毯子铺开，标明货架。下一班读出便条，核对哪些捆包可以发放。约旦把报酬留在完成的清单旁。
+      <<case 'supervised'>>
+        你等侍从数完，才解释数量不符的地方。约旦读过两份报告，把报酬记进交接单。
+      <<case 'wards'>>
+        你沿花园墙清理符石上的湿苔。年长的司祭替你举着抄录的图样，你修补受损的线条。两人一起检查门边的护符，再归还灯具。约旦在清单上标记巡查完成。
+      <<case 'sorted'>>
+        散页已经夹进干纸，编号抄在封套上。余下受损的纸页留待下一次修复。
+      <<case 'funded'>>
+        收据写明了金额和用途。约旦把承包商的副本与厨房基金的账簿分开放好。
+      <<case 'unpaid'>>
+        付款未能完成。侍从把协议留着，没有签字。
+    <</switch>>
+<</language>>
+<br><br>
+<<temple-duty-back>>

@@ -71,13 +71,15 @@ class RobinTemple extends Module {
   }
 
   /** 当前路线的身份来自入殿与晋升结果，不另存一份等级。 */
-  public get rank(): 'prospective' | 'monk' | 'initiate' {
-    return !this.member ? 'prospective' : V.RobinTemple.vigil_result === 'passed' ? 'monk' : 'initiate';
+  public get rank(): 'prospective' | 'monk' | 'initiate' | 'priest' {
+    if (!this.member) return 'prospective';
+    if (V.RobinTemple.vigil_result !== 'passed') return 'initiate';
+    return V.RobinTemple.ordination_day >= 0 ? 'priest' : 'monk';
   }
 
   /** 守夜晋升为修士后解锁床铺，承诺仪式不替代晋升。 */
   public get bunk(): boolean {
-    return this.rank === 'monk';
+    return this.rank === 'monk' || this.rank === 'priest';
   }
 
   /** 任一月检日历到期时共同检查，罗宾暂时缺席也不拆成两轮。 */
@@ -165,7 +167,7 @@ class RobinTemple extends Module {
 
   /** 只预测行程是否撞上既有事务；员工不自动替罗宾取消看店日程。 */
   public free(minutes: number): boolean {
-    if (!this.canTalk || !Number.isFinite(minutes) || minutes <= 0) return false;
+    if (!(this.canTalk || this.canPray) || !Number.isFinite(minutes) || minutes <= 0) return false;
     const start = Time.hour * 60 + Time.minute;
     const end = start + minutes;
     if (end > 21 * 60 || (Time.schoolDay && start < 16 * 60 && end >= 8 * 60)) return false;
@@ -210,7 +212,9 @@ class RobinTemple extends Module {
     const state = V.RobinTemple;
     if (minutes > 0) {
       state.visit_override ??= V.robinlocationoverride || { location: 'orphanage', during: [] };
-      V.robinlocationoverride = { location: 'temple', during: [Time.hour, new DateTime(Time.date).addMinutes(minutes).hour] };
+      const endHour = new DateTime(Time.date).addMinutes(minutes).hour;
+      const during = Array.from({ length: endHour - Time.hour + 1 }, (_, hour) => Time.hour + hour);
+      V.robinlocationoverride = { location: 'temple', during };
     } else if (state.visit_override) {
       V.robinlocationoverride = state.visit_override;
       state.visit_override = null;

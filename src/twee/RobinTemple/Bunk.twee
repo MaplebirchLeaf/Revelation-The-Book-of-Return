@@ -1,6 +1,14 @@
 :: RobinTemple Bunk
 <<set $outside to 0>><<set $location to 'temple'>><<set $wardrobe_location to 'temple'>>
-<<bedclotheson 'RobinTemple Bed'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if !maplebirch.get('RobinTemple').bunk>>
+  <<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
+  <<exit>>
+<</if>>
+<<if setup.clothingLayer.all.some(slot => $store[slot]?.some(item => item.location is 'RobinTemple Bed'))>>
+  <<storeon 'RobinTemple Bed'>><<loadTempHairStyle>>
+  <<set $wear_outfit to 'none'>>
+<</if>>
+<<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set _robinHere to $RobinTemple.stage isnot 'none' and !$robinmissing
   and getRobinLocation() is 'temple' and C.npc.Robin.trauma lt 80
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
@@ -89,15 +97,33 @@
   <</language>><br>
 <<else>>
   <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Strip and get under the blanket', '脱衣钻进被窝'] 'RobinTemple Bed'>><<undressSleep 'RobinTemple Bed'>><</lanLink>><br>
-  <<listsleepoutfits 'RobinTemple Bed'>>
+  <<if !$earSlime.alwaysSleepNaked or $hypnosis_traits.silence>>
+    <<set $storeLocation to 'RobinTemple Bed'>>
+    <<wardrobeSelection true>>
+    <<for _index, _outfit range $outfit>>
+      <<if _outfit.type.includes('sleep')>>
+        <<capture _index _outfit>>
+          <<icon 'temple/robin-temple-bed.png'>>
+          <<set _outfitname to _outfit.name + (_outfit.colors is false ? '' : ' [C]')>>
+          <<lanLink `['Wear ' + _outfitname + ' and climb into bed', '穿上' + _outfitname + '并上床']` 'RobinTemple Bed'>>
+            <<set $wear_outfit to _index>><<saveTempHairStyle>>
+          <</lanLink>><br>
+        <</capture>>
+      <</if>>
+    <</for>>
+  <</if>>
 <</if>>
 <br>
-<<if $temple_rank is 'monk'>>
+<<if ['monk', 'priest'].includes($temple_rank)>>
   <<bedicon>><<lanLink ['Your bunk', '你的床铺'] 'Temple Bunk'>><</lanLink>><br>
 <</if>>
 <<wardrobeicon>><<lanLink ['Wardrobe', '衣柜'] 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink ['Mirror', '镜子'] 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<if maplebirch.get('RobinTemple').available and getRobinLocation() is 'temple'>>
+  <<socialiseicon 'ask'>><<lanLink ['Talk to Robin', '和罗宾交谈'] 'RobinTemple Corner'>><</lanLink>><br>
+<<else>>
+  <<socialiseicon 'ask'>><<lanLink ['Ask the attendant where Robin went', '问值班侍从罗宾去了哪里'] 'RobinTemple Whereabouts'>><</lanLink>><br>
+<</if>>
 <<getouticon>><<lanLink ['Return to the quarters', '返回神殿宿舍'] 'Temple Quarters'>><</lanLink>><br>
 
 :: RobinTemple Bunk Talk

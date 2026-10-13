@@ -122,7 +122,7 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "Let's ask Jordan together," you say. "The assessment will still be yours to take. I cannot take it for you." Robin folds the receipt and nods.
+      "Let's ask Jordan together," you say. "The assessment will still be yours to take. I can't take it for you." Robin folds the receipt and nods.
     <<option 'CN'>>
       “我们一起去问约旦，”你说，“试炼仍得由你自己参加，我不能替你。”罗宾折好收据，点了点头。
   <</language>>
@@ -175,7 +175,7 @@
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "You may keep going to school and working," Jordan says. "You will also have duties here. First you must pass the chastity assessment." Robin asks for two days to prepare. Jordan agrees.
+      "You may keep going to school and working," Jordan says. "You'll also have duties here. First you must pass the chastity assessment." Robin asks for two days to prepare. Jordan agrees.
     <<option 'CN'>>
       “你可以继续上学和工作，”约旦说，“神殿也会分给你一些事务。首先，你得通过纯洁试炼。”罗宾说想先花两天准备。约旦答应了。
   <</language>>

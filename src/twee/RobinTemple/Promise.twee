@@ -57,7 +57,7 @@
 
   <<lanLink ['Next', '继续'] 'RobinTemple Promise Altar'>><</lanLink>><br>
 <<else>>
-  <<getouticon>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Promise Altar
@@ -302,9 +302,9 @@
       <br><br>
       <span class="lewd">The wax on the altar is still warm. <<He>> keeps one hand knotted in the blanket and the other on your shoulder, gripping harder each time you move, and when you finally slide into <<him>> <<his>> whole body arches off the cushion and <<he>> bites down on <<his>> own lip to keep quiet — because the monks are right outside the door, and both of you know it.</span>
     <<option 'CN'>>
-      你把<<him>>放倒在软垫上，还没决定要做什么，<<his>>袍子就在你手底下散开了。<<He>>早就硬着，抵在你胯上；你的大腿挤进<<his>>两腿之间时那里已经湿了，<<he>>发现你察觉到了，喉咙里漏出一声难堪的轻响。
+      你把<<him>>放倒在软垫上，还没决定要做什么，<<his>>袍子就在你手底下散开了。<<He>>早就硬着，抵在你胯上。你的大腿挤进<<his>>两腿之间时那里已经湿了，<<he>>发现你察觉到了，喉咙里漏出一声难堪的轻响。
       <br><br>
-      <span class="lewd">圣坛上的蜡还烫着。<<He>>一只手死死攥着毯子，另一只手扣在你肩上，你每动一下<<he>>就攥紧一分；你真正进入<<him>>的那一刻，<<his>>整个身子从软垫上弓了起来，<<he>>咬住自己的嘴唇不让自己出声——修道士们就在门外，这一点你们都很清楚。</span>
+      <span class="lewd">圣坛上的蜡还烫着。<<He>>一只手死死攥着毯子，另一只手扣在你肩上，你每动一下<<he>>就攥紧一分。你真正进入<<him>>的那一刻，<<his>>整个身子从软垫上弓了起来，<<he>>咬住自己的嘴唇不让自己出声——修道士们就在门外，这一点你们都很清楚。</span>
   <</language>>
 <</if>>
 <<if $RobinTemple.intimacy_active>>
@@ -336,7 +336,7 @@
         Robin reluctantly separates from you. <<tearful>> you help <<him>> stand from the altar.
         <br><br>
       <<option 'CN'>>
-        罗宾整个人瘫在你身上，每呼出一口气都还在轻轻打颤；<span class="lewd">余韵退得很慢，你能感觉到<<him>>一下一下地绞着你。</span>“这……这是……”<<he>>始终没把这句话说完。你陪<<him>>在圣坛上又躺了一阵，身上黏着，谁也没去管，直到<<his>>呼吸慢慢平下来。
+        罗宾整个人瘫在你身上，每呼出一口气都还在轻轻打颤。<span class="lewd">余韵退得很慢，你能感觉到<<him>>一下一下地绞着你。</span>“这……这是……”<<he>>始终没把这句话说完。你陪<<him>>在圣坛上又躺了一阵，身上黏着，谁也没去管，直到<<his>>呼吸慢慢平下来。
         <br><br>
         “我爱你。”<<he>>终于埋在你肩上说，说完又安静了一会儿，像是在确认自己是不是真的说出口了。<<He>>吻了吻你的脸颊。“下次……能不能别让门外站着一群人？”
         <br>
@@ -366,7 +366,7 @@
         <br><br>
         <<He>> takes your hand and puts it on <<his>> chest so you can feel how fast <<his>> heart is still going, then lets go and reaches for <<his>> robes. <<tearful>> you help <<him>> stand from the altar.
       <<option 'CN'>>
-        罗宾在你怀里蜷了一阵，两条腿还在抖；<<he>>抬手把额前的头发拨开，那只手都不太稳。“不是说我不……”<<he>>开了个头就停住，脸红得更厉害。“我喜欢。问题就出在这儿。明天再问我，我会答应的。”
+        罗宾在你怀里蜷了一阵，两条腿还在抖。<<he>>抬手把额前的头发拨开，那只手都不太稳。“不是说我不……”<<he>>开了个头就停住，脸红得更厉害。“我喜欢。问题就出在这儿。明天再问我，我会答应的。”
         <br><br>
         <<He>>把你的手按在<<his>>胸口上，让你感觉那里的心跳还没缓下来，然后才放开你去够袍子。<<tearful>>你帮<<him>>从圣坛上站了起来。
     <</language>>
@@ -425,4 +425,4 @@
 <</language>>
 <<pass 15>>
 <br><br>
-<<templeicon 'quarters'>><<lanLink ['Return to Robin', '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>

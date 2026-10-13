@@ -3,6 +3,7 @@
 import type LostLambModule from '../src/module/LostLamb';
 import type Revelation from '../src/module/Revelation';
 import type RobinTemple from '../src/module/RobinTemple';
+import type TempleDuties from '../src/module/TempleDuties';
 import type TempleChoir from '../src/module/TempleChoir';
 
 declare global {
@@ -11,6 +12,7 @@ declare global {
     RBR: Revelation;
     RobinTemple: RobinTemple;
     TempleChoir: TempleChoir;
+    TempleDuties: TempleDuties;
   }
 
   interface Array<T> {

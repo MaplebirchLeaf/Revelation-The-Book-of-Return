@@ -238,7 +238,7 @@
   <<if $phase is 2>>
     <<language>>
       <<option 'EN'>>
-        Sydney is still holding your other hand. Jordan draws the cloth around all three of you. "Normally only one initiate may succeed," <<nnpc_he 'Jordan'>> says. "But you entered the pyre as one. You have not disobeyed the scripture. Congratulations!"
+        Sydney is still holding your other hand. Jordan draws the cloth around all three of you. "Normally only one initiate may succeed," <<nnpc_he 'Jordan'>> says. "But you entered the pyre as one. You haven't disobeyed the scripture. Congratulations!"
       <<option 'CN'>>
         悉尼仍握着你的另一只手。约旦把布拉过来，裹住你们三人。“通常只能有一名见习教徒通过，”<<nnpc_he 'Jordan'>>说，“但你们作为一体走进火堆，并没有违背经文。恭喜！”
     <</language>>
@@ -272,7 +272,7 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I knew you'd do it!" Jordan says. "Normally only one initiate may succeed, but you entered the pyre as one. You have not disobeyed the scripture. Congratulations, both of you." Sydney hurries over and hugs you, stammering words of pride and happiness.
+        "I knew you'd do it!" Jordan says. "Normally only one initiate may succeed, but you entered the pyre as one. You haven't disobeyed the scripture. Congratulations, both of you." Sydney hurries over and hugs you, stammering words of pride and happiness.
       <<option 'CN'>>
         “我就知道你能做到！”约旦说，“通常只能有一名见习教徒通过，但你们作为一体走进火堆，并没有违背经文。恭喜你们。”悉尼赶来抱住你，结结巴巴地说着祝贺的话。
     <</language>>
@@ -405,4 +405,4 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ["Return to Robin's place", '回到罗宾的座位'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
