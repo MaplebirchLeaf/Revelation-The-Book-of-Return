@@ -4,11 +4,20 @@
   <<set $RobinTemple.transformation_day to Time.days>>
   <<set $RobinTemple.transformation_count to 0>>
 <</if>>
-<<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10
+<<set _robinForm to $RobinTemple.transformation_kind>>
+<<set $RobinTemple.transformation_kind to ''>>
+<<robin-temple-prayer-time 10>>
+<<if _robinPrayerTime and $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10
   and maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
-  and maplebirch.get('RobinTemple').forms.includes($RobinTemple.transformation_kind)>>
+  and maplebirch.get('RobinTemple').forms.includes(_robinForm)>>
   <<set $RobinTemple.transformation_count += 1>>
-  <<switch $RobinTemple.transformation_kind>>
+  <<pass 10>>
+  <<robin-temple-work-check>>
+<<else>>
+  <<set _robinWork to false>>
+<</if>>
+<<if _robinWork>>
+  <<switch _robinForm>>
     <<case 'fox'>>
       <<language>>
         <<option 'EN'>>
@@ -67,7 +76,7 @@
       <</language>>
   <</switch>>
   <<npcincr Robin love 2>>
-  <<switch $RobinTemple.transformation_kind>>
+  <<switch _robinForm>>
     <<case 'fox' 'cow'>><<trauma -2>><<glove>><<ltrauma>><br><br>
     <<case 'wolf' 'horse' 'fish' 'raven'>><<stress -2>><<glove>><<lstress>><br><br>
     <<case 'cat'>><<tiredness -2>><<glove>><<ltiredness>><br><br>
@@ -81,6 +90,4 @@
       这次互动已经结束，或是现在无法进行。
   <</language>><br><br>
 <</if>>
-<!-- 消耗这次从长椅选择的互动，重访结果页不会重复结算。 -->
-<<set $RobinTemple.transformation_kind to ''>>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>

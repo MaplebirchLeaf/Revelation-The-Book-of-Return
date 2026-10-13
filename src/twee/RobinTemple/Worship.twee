@@ -17,10 +17,7 @@
 <</widget>>
 
 <<widget 'robin-temple-hall-link'>>
-  <<if _revelationTempleLinks is 'pray' and maplebirch.get('RobinTemple').member
-    and $stress lt $stressmax and $exposed lte 0
-    and Time.hour gte 11 and Time.hour lt 20
-    and getRobinLocation() is 'temple' and !$robinmissing>>
+  <<if _revelationTempleLinks is 'pray' and maplebirch.get('RobinTemple').canPray>>
     <<templeicon 'pew'>><<lanLink ['Approach Robin', '走近罗宾'] 'RobinTemple Prayer'>><</lanLink>><br>
     <br>
   <</if>>
@@ -28,162 +25,191 @@
 
 :: RobinTemple Prayer
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<run maplebirch.get('RobinTemple').reviewFaith()>>
-<<if $RobinTemple.prayer_event_day isnot Time.days>>
-  <!-- 每天只抽取并保存一次偶遇事件，重访长椅不会重新抽取。 -->
-  <<set $RobinTemple.prayer_event_day to Time.days>>
-  <<set $RobinTemple.prayer_event to random(1, 4)>>
-  <<set $RobinTemple.prayer_event_done to false>>
-  <<set $RobinTemple.prayer_event_resolved to false>>
-<</if>>
-<<language>>
-  <<option 'EN'>>
-    Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.
-  <<option 'CN'>>
-    罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
-<</language>>
-<br><br>
-<<if $RobinTemple.faith_transition isnot ''>>
-  <<socialiseicon 'ask'>><<lanLink ['Listen to Robin talk about their recent thoughts', '听罗宾说说最近的想法'] 'RobinTemple Faith Transition'>><</lanLink>><br><br>
-<</if>>
-<<if !$RobinTemple.prayer_event_done and $RobinTemple.prayer_event lte 4>>
-  <<switch $RobinTemple.prayer_event>>
-    <<case 1>><<language>>
-        <<option 'EN'>>
-          A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.
-        <<option 'CN'>>
-          一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。
-      <</language>>
-    <<case 2>><<language>>
-        <<option 'EN'>>
-          A younger initiate lingers in the aisle with a torn work list.
-        <<option 'CN'>>
-          一名年幼的见习教徒拿着撕破的工作表，在过道里迟迟不走。
-      <</language>>
-    <<case 3>><<language>>
-        <<option 'EN'>>
-          A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.
-        <<option 'CN'>>
-          一名疲惫的访客坐在长椅另一头，双手抱住了头。
-      <</language>>
-    <<case 4>><<language>>
-        <<option 'EN'>>
-          The side-room door closes. Robin catches the uneasy look on your face.
-        <<option 'CN'>>
-          侧室的门合上了。罗宾注意到你脸上的不安。
-      <</language>>
-  <</switch>>
-  <br><br>
-  <<socialiseicon 'ask'>><<lanLink ['See what happened with Robin', '和罗宾看看发生了什么'] 'RobinTemple Prayer Event'>><</lanLink>><br><br>
-<</if>>
-<<if $RobinTemple.prayer_day isnot Time.days>>
+<<if maplebirch.get('RobinTemple').canPray>>
+  <<run maplebirch.get('RobinTemple').reviewFaith()>>
+  <<if $RobinTemple.prayer_event_day isnot Time.days>>
+    <!-- 每天只抽取并保存一次偶遇事件，重访长椅不会重新抽取。 -->
+    <<set $RobinTemple.prayer_event_day to Time.days>>
+    <<set $RobinTemple.prayer_event to random(1, 4)>>
+    <<set $RobinTemple.prayer_event_done to false>>
+    <<set $RobinTemple.prayer_event_resolved to false>>
+  <</if>>
   <<language>>
     <<option 'EN'>>
-      The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.
+      Robin sits at the end of a bench with a closed schoolbook on <<his>> lap. <<He>> moves it aside when you sit down.
     <<option 'CN'>>
-      最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
+      罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
   <</language>>
   <br><br>
-  <<templeicon 'pray'>><<lanLink ['Pray for those in need (1:00)', '为需要帮助的人祈祷 (1:00)'] 'RobinTemple Prayer Others'>><<pass 60>><</lanLink>><<ggrace>><<ggconviction 'Robin'>><<lstress>><br>
-  <<loveicon 'hug'>><<lanLink ['Talk to Robin about your doubts (0:30)', '和罗宾谈谈心里的疑虑 (0:30)'] 'RobinTemple Prayer Doubt'>><<pass 30>><</lanLink>><<glove>><<lstress>><br>
-  <<crimeicon 'mark'>><<lanLink ['Observe the people in the temple (1:00)', '留意神殿里的人群 (1:00)'] 'RobinTemple Prayer Observe'>><</lanLink>><<gawareness>><<gstress>><br>
-  <<if $daily.templePray isnot 1 and ['penis_small', 'penis_big', 'breasts_small', 'breasts_big', 'pregnancy'].some(insecurityExists)>>
-    <<socialiseicon 'ask'>><<lanLink ['Talk about people mocking your body', '谈谈别人对你身体的嘲笑'] 'RobinTemple Prayer Insecurity'>><</lanLink>><br>
+  <<if $RobinTemple.faith_transition isnot ''>>
+    <<socialiseicon 'ask'>><<lanLink ['Listen to Robin talk about their recent thoughts', '听罗宾说说最近的想法'] 'RobinTemple Faith Transition'>><</lanLink>><br><br>
   <</if>>
+  <<if !$RobinTemple.prayer_event_done and $RobinTemple.prayer_event lte 4>>
+    <<switch $RobinTemple.prayer_event>>
+      <<case 1>><<language>>
+          <<option 'EN'>>
+            A visitor stands by the donation shelves, trying to read a note without disturbing the prayer.
+          <<option 'CN'>>
+            一名访客站在奉献架旁，正想看清便条上的字，又怕打扰别人祈祷。
+        <</language>>
+      <<case 2>><<language>>
+          <<option 'EN'>>
+            A younger initiate lingers in the aisle with a torn work list.
+          <<option 'CN'>>
+            一名年幼的见习教徒拿着撕破的工作表，在过道里迟迟不走。
+        <</language>>
+      <<case 3>><<language>>
+          <<option 'EN'>>
+            A tired visitor sits down at the far end of the bench and puts <<his>> head in <<his>> hands.
+          <<option 'CN'>>
+            一名疲惫的访客坐在长椅另一头，双手抱住了头。
+        <</language>>
+      <<case 4>><<language>>
+          <<option 'EN'>>
+            The side-room door closes. Robin catches the uneasy look on your face.
+          <<option 'CN'>>
+            侧室的门合上了。罗宾注意到你脸上的不安。
+        <</language>>
+    <</switch>>
+    <br><br>
+    <<socialiseicon 'ask'>><<lanLink ['See what happened with Robin', '和罗宾看看发生了什么'] 'RobinTemple Prayer Event'>><</lanLink>><br><br>
+  <</if>>
+  <<if $RobinTemple.prayer_day isnot Time.days>>
+    <<language>>
+      <<option 'EN'>>
+        The last visitors are leaving. For once, you have enough quiet to hear your own thoughts.
+      <<option 'CN'>>
+        最后几名访客正要离开。难得安静下来，你终于听得见自己的念头。
+    <</language>>
+    <br><br>
+    <<robin-temple-prayer-time 60>>
+    <<if _robinPrayerTime>>
+      <<templeicon 'pray'>><<lanLink ['Pray for those in need (1:00)', '为需要帮助的人祈祷 (1:00)'] 'RobinTemple Prayer Others'>><</lanLink>><<ggrace>><<ggconviction 'Robin'>><<lstress>><br>
+    <</if>>
+    <<robin-temple-prayer-time 30>>
+    <<if _robinPrayerTime>>
+      <<loveicon 'hug'>><<lanLink ['Talk to Robin about your doubts (0:30)', '和罗宾谈谈心里的疑虑 (0:30)'] 'RobinTemple Prayer Doubt'>><</lanLink>><<glove>><<lstress>><br>
+    <</if>>
+    <<robin-temple-prayer-time 60>>
+    <<if _robinPrayerTime>>
+      <<crimeicon 'mark'>><<lanLink ['Observe the people in the temple (1:00)', '留意神殿里的人群 (1:00)'] 'RobinTemple Prayer Observe'>><</lanLink>><<gawareness>><<gstress>><br>
+    <</if>>
+    <<robin-temple-prayer-time 60>>
+    <<if _robinPrayerTime and $daily.templePray isnot 1 and ['penis_small', 'penis_big', 'breasts_small', 'breasts_big', 'pregnancy'].some(insecurityExists)>>
+      <<socialiseicon 'ask'>><<lanLink ['Talk about people mocking your body (1:00)', '谈谈别人对你身体的嘲笑 (1:00)'] 'RobinTemple Prayer Insecurity'>><</lanLink>><br>
+    <</if>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.
+      <<option 'CN'>>
+        今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。
+    <</language>>
+    <br><br>
+  <</if>>
+  <<robin-temple-prayer-time 30>>
+  <<if _robinPrayerTime and $stress gte $stressmax * 0.8 and $stress lt $stressmax
+    and $RobinTemple.rest_day isnot Time.days>>
+    <<loveicon 'hug'>><<lanLink ['Tell Robin you need to rest (0:30)', '告诉罗宾你快撑不住了 (0:30)'] 'RobinTemple Rest'>><</lanLink>><<glove>><<lstress>><br>
+  <</if>>
+  <<skinicon 'give'>><<lanLink ['Give Robin something to eat', '给罗宾带来的食物'] 'RobinTemple Gifts List'>><</lanLink>><br>
+  <<robin-temple-prayer-time 30>>
+  <<if _robinPrayerTime and $RobinTemple.walk_day isnot Time.days>>
+    <<walkicon>><<lanLink ['Ask Robin to take a walk', '问罗宾要不要一起走走'] 'RobinTemple Walk'>><</lanLink>><br>
+  <</if>>
+  <<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
+    <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the spear mission', '问罗宾取矛任务的事'] 'RobinTemple Spear'>><</lanLink>><br>
+  <</if>>
+  <<if $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
+    <<socialiseicon 'ask'>><<lanLink ['Tell Robin how the spear journey went', '把取矛的经过告诉罗宾'] 'RobinTemple Spear Return'>><</lanLink>><br>
+  <</if>>
+  <<if $RobinTemple.donation_day isnot Time.days>>
+    <<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
+  <</if>>
+  <<if $RobinTemple.transformation_day isnot Time.days>>
+    <<set $RobinTemple.transformation_count to 0>>
+  <</if>>
+  <<robin-temple-prayer-time 10>>
+  <<if _robinPrayerTime and $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
+    <<set _robinForms to maplebirch.get('RobinTemple').forms>>
+    <<if _robinForms.includes('fox')>>
+      <<tficon 'fox'>><<lanLink ['Let Robin rest on your tail (0:10)', '让罗宾靠在你的尾巴上 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('wolf')>>
+      <<tficon 'wolf'>><<lanLink ['Nudge Robin (0:10)', '用头轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('cat')>>
+      <<tficon 'cat'>><<lanLink ['Sit close to Robin (0:10)', '挨着罗宾坐下 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('bird')>>
+      <<birdicon 'sing'>><<lanLink ['Sing for Robin (0:10)', '为罗宾唱歌 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('cow')>>
+      <<tficon 'cow'>><<lanLink ['Touch Robin with your horn (0:10)', '用角轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('horse')>>
+      <<= maplebirch.get('MoreTransformations').Horse.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('fish')>>
+      <<= maplebirch.get('MoreTransformations').Fish.icon>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fish'>><</lanLink>><br>
+    <</if>>
+    <<if _robinForms.includes('raven')>>
+      <<= maplebirch.get('MoreTransformations').Raven.icon>><<lanLink ['Let Robin tidy your wing feathers (0:10)', '让罗宾帮你理顺羽毛 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'raven'>><</lanLink>><br>
+    <</if>>
+  <</if>>
+  <br>
 <<else>>
   <<language>>
-    <<option 'EN'>>
-      You have already prayed together today. Robin rests <<his>> hand near yours, leaving the silence undisturbed.
-    <<option 'CN'>>
-      今天你们已经一起祈祷过。罗宾把手放在你手边，没有打破这份安静。
-  <</language>>
-  <br><br>
+    <<option 'EN'>>Robin has other duties now.
+    <<option 'CN'>>罗宾现在有别的事务。
+  <</language>><br><br>
 <</if>>
-<<if $stress gte $stressmax * 0.8 and $stress lt $stressmax
-  and $RobinTemple.rest_day isnot Time.days>>
-  <<loveicon 'hug'>><<lanLink ['Tell Robin you need to rest (0:30)', '告诉罗宾你快撑不住了 (0:30)'] 'RobinTemple Rest'>><</lanLink>><<glove>><<lstress>><br>
-<</if>>
-<<skinicon 'give'>><<lanLink ['Give Robin something to eat', '给罗宾带来的食物'] 'RobinTemple Gifts List'>><</lanLink>><br>
-<<if Time.hour lt 19 and $RobinTemple.walk_day isnot Time.days>>
-  <<walkicon>><<lanLink ['Ask Robin to take a walk', '问罗宾要不要一起走走'] 'RobinTemple Walk'>><</lanLink>><br>
-<</if>>
-<<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
-  <<socialiseicon 'ask'>><<lanLink ['Ask Robin about the spear mission', '问罗宾取矛任务的事'] 'RobinTemple Spear'>><</lanLink>><br>
-<</if>>
-<<if $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
-  <<socialiseicon 'ask'>><<lanLink ['Tell Robin how the spear journey went', '把取矛的经过告诉罗宾'] 'RobinTemple Spear Return'>><</lanLink>><br>
-<</if>>
-<<if $RobinTemple.donation_day isnot Time.days>>
-  <<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
-<</if>>
-<<if $RobinTemple.transformation_day isnot Time.days>>
-  <<set $RobinTemple.transformation_count to 0>>
-<</if>>
-<<if $RobinTemple.transformation_count lt 3 and C.npc.Robin.love gte 10>>
-  <<set _robinForms to maplebirch.get('RobinTemple').forms>>
-  <<if _robinForms.includes('fox')>>
-    <<tficon 'fox'>><<lanLink ['Let Robin rest on your tail (0:10)', '让罗宾靠在你的尾巴上 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fox'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('wolf')>>
-    <<tficon 'wolf'>><<lanLink ['Nudge Robin (0:10)', '用头轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'wolf'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('cat')>>
-    <<tficon 'cat'>><<lanLink ['Sit close to Robin (0:10)', '挨着罗宾坐下 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cat'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('bird')>>
-    <<birdicon 'sing'>><<lanLink ['Sing for Robin (0:10)', '为罗宾唱歌 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'bird'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('cow')>>
-    <<tficon 'cow'>><<lanLink ['Touch Robin with your horn (0:10)', '用角轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('horse')>>
-    <<= maplebirch.get('MoreTransformations').Horse.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('fish')>>
-    <<= maplebirch.get('MoreTransformations').Fish.icon>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'fish'>><<pass 10>><</lanLink>><br>
-  <</if>>
-  <<if _robinForms.includes('raven')>>
-    <<= maplebirch.get('MoreTransformations').Raven.icon>><<lanLink ['Let Robin tidy your wing feathers (0:10)', '让罗宾帮你理顺羽毛 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'raven'>><<pass 10>><</lanLink>><br>
-  <</if>>
-<</if>>
-<br>
 <<getouticon>><<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Others
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days>>
-  <<set $RobinTemple.prayer_day to Time.days>>
-  <<if C.npc.Robin.trauma gte 40>>
+<<robin-temple-prayer-time 60>>
+<<if _robinPrayerTime and $RobinTemple.prayer_day isnot Time.days>>
+  <<set $RobinTemple.prayer_day to Time.days>><<pass 60>>
+  <<robin-temple-work-check>>
+  <<if _robinWork>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>
+          You pray for the people who will need help tomorrow. Robin listens, then quietly adds the names of the children at the orphanage. <<He>> does not say more, and you leave <<him>> time.
+        <<option 'CN'>>
+          你为明天需要帮助的人祈祷。罗宾听着，随后轻声添上孤儿院孩子们的名字。<<He>>没有再说什么，你也没有催促。
+      <</language>>
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      <<language>>
+        <<option 'EN'>>
+          You pray for the people who will need help tomorrow, and for a future where things might be better. Robin keeps <<his>> hands together. "I still want that," <<he>> says. "Even when I don't know what I'm doing here." You stay beside <<him>> rather than answering for <<him>>.
+        <<option 'CN'>>
+          你为明天需要帮助的人祈祷，也盼着日子能变好。罗宾双手相扣。“我还是希望能这样，”<<he>>说，“哪怕有时候，我不知道自己为什么留在这里。”你陪在<<him>>身旁，没有替<<him>>作答。
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.
+        <<option 'CN'>>
+          你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。
+      <</language>>
+    <</if>>
+    <br><br>
     <<language>>
       <<option 'EN'>>
-        You pray for the people who will need help tomorrow. Robin listens, then quietly adds the names of the children at the orphanage. <<He>> does not say more, and you leave <<him>> time.
+        When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.
       <<option 'CN'>>
-        你为明天需要帮助的人祈祷。罗宾听着，随后轻声添上孤儿院孩子们的名字。<<He>>没有再说什么，你也没有催促。
+        一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
     <</language>>
-  <<elseif maplebirch.get('RobinTemple').faith lte -20>>
-    <<language>>
-      <<option 'EN'>>
-        You pray for the people who will need help tomorrow, and for a future where things might be better. Robin keeps <<his>> hands together. "I still want that," <<he>> says. "Even when I don't know what I'm doing here." You stay beside <<him>> rather than answering for <<him>>.
-      <<option 'CN'>>
-        你为明天需要帮助的人祈祷，也盼着日子能变好。罗宾双手相扣。“我还是希望能这样，”<<he>>说，“哪怕有时候，我不知道自己为什么留在这里。”你陪在<<him>>身旁，没有替<<him>>作答。
-    <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        You pray for the people who will come through the temple doors tomorrow. Robin mentions the children at the orphanage under <<his>> breath.
-      <<option 'CN'>>
-        你为明天会走进神殿的人祈祷。罗宾低声念起孤儿院孩子们的名字。
-    <</language>>
+    <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
+    <<grace 2>><<stress -4>><<ggrace>><<lstress>>
   <</if>>
-  <br><br>
+<<elseif !_robinPrayerTime>>
   <<language>>
-    <<option 'EN'>>
-      When the hour has passed, <<he>> says there are supplies to carry before the doors close. You both rise from the bench.
-    <<option 'CN'>>
-      一个小时过去，<<he>>说关门前还有物资要搬。你们一起从长椅上站起来。
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
   <</language>>
-  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
-  <<grace 2>><<stress -4>><<ggrace>><<lstress>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -197,31 +223,40 @@
 
 :: RobinTemple Prayer Doubt
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days>>
-  <<set $RobinTemple.prayer_day to Time.days>>
-  <<if C.npc.Robin.trauma gte 40>>
+<<robin-temple-prayer-time 30>>
+<<if _robinPrayerTime and $RobinTemple.prayer_day isnot Time.days>>
+  <<set $RobinTemple.prayer_day to Time.days>><<pass 30>>
+  <<robin-temple-work-check>>
+  <<if _robinWork>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>
+          You tell Robin what has been troubling you. <<He>> listens with <<his>> hands tucked into <<his>> sleeves. "I don't know what to say," <<he>> admits. "But I can stay."
+        <<option 'CN'>>
+          你把心里的烦恼告诉罗宾。<<He>>把手藏在袖口里，安静地听着。“我不知道该说什么，”<<he>>承认，“不过我可以陪着你。”
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          You tell Robin what has been troubling you. <<He>> listens, then admits that <<he>> has wondered about some of the same things. You try to put your questions into words together.
+        <<option 'CN'>>
+          你把心里的烦恼告诉罗宾。<<He>>听完，承认自己也想过其中一些问题。你们一起试着把疑问说清楚。
+      <</language>>
+    <</if>>
+    <br><br>
     <<language>>
       <<option 'EN'>>
-        You tell Robin what has been troubling you. <<He>> listens with <<his>> hands tucked into <<his>> sleeves. "I don't know what to say," <<he>> admits. "But I can stay."
+        "We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.
       <<option 'CN'>>
-        你把心里的烦恼告诉罗宾。<<He>>把手藏在袖口里，安静地听着。“我不知道该说什么，”<<he>>承认，“不过我可以陪着你。”
+        “如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
     <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        You tell Robin what has been troubling you. <<He>> listens, then admits that <<he>> has wondered about some of the same things. You try to put your questions into words together.
-      <<option 'CN'>>
-        你把心里的烦恼告诉罗宾。<<He>>听完，承认自己也想过其中一些问题。你们一起试着把疑问说清楚。
-    <</language>>
+    <<npcincr Robin love 1>><<stress -5>><<glove>><<lstress>>
   <</if>>
-  <br><br>
+<<elseif !_robinPrayerTime>>
   <<language>>
-    <<option 'EN'>>
-      "We can ask Jordan too," <<he>> says, "if we need to." The two of you stay until the hall begins to empty.
-    <<option 'CN'>>
-      “如果需要，也能去问约旦。”<<he>>说。你们一直坐到大厅里的人渐渐散去。
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
   <</language>>
-  <<npcincr Robin love 1>><<stress -5>><<glove>><<lstress>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -235,24 +270,34 @@
 
 :: RobinTemple Rest
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.rest_day isnot Time.days
+<<robin-temple-prayer-time 30>>
+<<if _robinPrayerTime and $RobinTemple.rest_day isnot Time.days
   and $stress gte $stressmax * 0.8 and $stress lt $stressmax>>
-  <<language>>
-    <<option 'EN'>>
-      You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.
-    <<option 'CN'>>
-      你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。
-  <</language>>
-  <br><br>
-  <<language>>
-    <<option 'EN'>>
-      Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
-    <<option 'CN'>>
-      罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
-  <</language>>
   <<set $RobinTemple.rest_day to Time.days>><<pass 30>>
-  <<run $robinSeen.pushUnique('templeRescue')>>
-  <<stress -12>><<npcincr Robin love 1>><<lstress>><<glove>>
+  <<robin-temple-work-check>>
+  <<if _robinWork>>
+    <<language>>
+      <<option 'EN'>>
+        You tell Robin the hall feels too crowded. Before you can say more, the sound of the prayers fades. Robin catches your arm and helps you to an empty bunk in the quarters.
+      <<option 'CN'>>
+        你告诉罗宾，大厅里的人声让你喘不过气。还没等你说完，祈祷声就渐渐远了。罗宾扶住你的手臂，带你到宿舍里一张空床旁坐下。
+    <</language>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
+      <<option 'CN'>>
+        罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
+    <</language>>
+
+    <<run $robinSeen.pushUnique('templeRescue')>>
+    <<stress -12>><<npcincr Robin love 1>><<lstress>><<glove>>
+  <</if>>
+<<elseif !_robinPrayerTime>>
+  <<language>>
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
+  <</language>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -285,63 +330,72 @@
 
 :: RobinTemple Prayer Observe
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days>>
+<<robin-temple-prayer-time 60>>
+<<if _robinPrayerTime and $RobinTemple.prayer_day isnot Time.days>>
   <<set $RobinTemple.prayer_day to Time.days>><<pass 60>>
-  <!-- 沿用原版 prayoptions 的观察结算，按纯洁决定意识与压力变化。 -->
-  <<if $purity gte 1000>>
-    <<stress 5>><<awareness 2>>
-  <<elseif $purity gte (1000 / 7) * 6>>
-    <<stress 5>><<awareness 1>>
-  <<elseif $purity gte (1000 / 7) * 5>>
-    <<stress 6>><<awareness 1>>
-  <<elseif $purity gte (1000 / 7) * 4>>
-    <<stress 7>><<awareness 1>>
-  <<elseif $purity gte (1000 / 7) * 3>>
-    <<stress 8>><<awareness 1>>
-  <<elseif $purity gte (1000 / 7) * 2>>
-    <<stress 10>><<awareness 1>>
-  <<else>>
-    <<stress 12>><<awareness 1>>
+  <<robin-temple-work-check>>
+  <<if _robinWork>>
+    <!-- 沿用原版 prayoptions 的观察结算，按纯洁决定意识与压力变化。 -->
+    <<if $purity gte 1000>>
+      <<stress 5>><<awareness 2>>
+    <<elseif $purity gte (1000 / 7) * 6>>
+      <<stress 5>><<awareness 1>>
+    <<elseif $purity gte (1000 / 7) * 5>>
+      <<stress 6>><<awareness 1>>
+    <<elseif $purity gte (1000 / 7) * 4>>
+      <<stress 7>><<awareness 1>>
+    <<elseif $purity gte (1000 / 7) * 3>>
+      <<stress 8>><<awareness 1>>
+    <<elseif $purity gte (1000 / 7) * 2>>
+      <<stress 10>><<awareness 1>>
+    <<else>>
+      <<stress 12>><<awareness 1>>
+    <</if>>
+    <<language>>
+      <<option 'EN'>>
+        You open one eye and watch the hall. Visitors kneel along the benches while attendants move quietly between the side rooms, passing messages. Robin notices you counting the people who come and go.
+      <<option 'CN'>>
+        你睁开一只眼，打量大厅。访客跪在长椅旁，侍从轻手轻脚地往返侧室，相互传递消息。罗宾注意到你在数进进出出的人。
+    <</language>>
+    <<gawareness>><<gstress>>
+    <br><br>
+    <<if $awareness gte 400>>
+      <<language>>
+        <<option 'EN'>>
+          Your gaze rises to the shadowed ceiling. For an instant, the darkness above seems to open into an abyss. Fear runs through you, and you cannot keep looking.
+        <<option 'CN'>>
+          你的视线移向阴影笼罩的天花板。一瞬间，上方的黑暗仿佛裂成深渊。恐惧传遍全身，你无法再看下去。
+      <</language>>
+      <<trauma 6>><<stress 6>><<gtrauma>><<gstress>><br><br>
+    <</if>>
+    <<if C.npc.Robin.trauma gte 40>>
+      <<language>>
+        <<option 'EN'>>
+          Robin follows your glance, then looks down at <<his>> hands. You stop watching the doors and sit quietly beside <<him>>.
+        <<option 'CN'>>
+          罗宾顺着你的目光看过去，又低头看着自己的手。你不再盯着那些门，安静地陪<<him>>坐着。
+      <</language>>
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      <<language>>
+        <<option 'EN'>>
+          Robin has been watching the side-room doors too. "What are they doing in there?" <<he>> whispers. Neither of you has an answer. You agree that guessing will not help, and leave the question for Jordan.
+        <<option 'CN'>>
+          罗宾也在看侧室的门。“他们在里面做什么？”<<he>>低声问。你们谁也答不上来。胡乱猜测没有用，你们决定把问题留给约旦。
+      <</language>>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          Robin takes a deep breath. "I don't know," <<he>> says when you ask about the rooms. "We could ask Jordan." <<He>> waits while you gather your thoughts.
+        <<option 'CN'>>
+          罗宾深吸了一口气。你问起那些房间，<<he>>说：“我不知道。可以问问约旦。”<<He>>等着你整理思绪。
+      <</language>>
+    <</if>>
   <</if>>
+<<elseif !_robinPrayerTime>>
   <<language>>
-    <<option 'EN'>>
-      You open one eye and watch the hall. Visitors kneel along the benches while attendants move quietly between the side rooms, passing messages. Robin notices you counting the people who come and go.
-    <<option 'CN'>>
-      你睁开一只眼，打量大厅。访客跪在长椅旁，侍从轻手轻脚地往返侧室，相互传递消息。罗宾注意到你在数进进出出的人。
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
   <</language>>
-  <<gawareness>><<gstress>>
-  <br><br>
-  <<if $awareness gte 400>>
-    <<language>>
-      <<option 'EN'>>
-        Your gaze rises to the shadowed ceiling. For an instant, the darkness above seems to open into an abyss. Fear runs through you, and you cannot keep looking.
-      <<option 'CN'>>
-        你的视线移向阴影笼罩的天花板。一瞬间，上方的黑暗仿佛裂成深渊。恐惧传遍全身，你无法再看下去。
-    <</language>>
-    <<trauma 6>><<stress 6>><<gtrauma>><<gstress>><br><br>
-  <</if>>
-  <<if C.npc.Robin.trauma gte 40>>
-    <<language>>
-      <<option 'EN'>>
-        Robin follows your glance, then looks down at <<his>> hands. You stop watching the doors and sit quietly beside <<him>>.
-      <<option 'CN'>>
-        罗宾顺着你的目光看过去，又低头看着自己的手。你不再盯着那些门，安静地陪<<him>>坐着。
-    <</language>>
-  <<elseif maplebirch.get('RobinTemple').faith lte -20>>
-    <<language>>
-      <<option 'EN'>>
-        Robin has been watching the side-room doors too. "What are they doing in there?" <<he>> whispers. Neither of you has an answer. You agree that guessing will not help, and leave the question for Jordan.
-      <<option 'CN'>>
-        罗宾也在看侧室的门。“他们在里面做什么？”<<he>>低声问。你们谁也答不上来。胡乱猜测没有用，你们决定把问题留给约旦。
-    <</language>>
-  <<else>>
-    <<language>>
-      <<option 'EN'>>
-        Robin takes a deep breath. "I don't know," <<he>> says when you ask about the rooms. "We could ask Jordan." <<He>> waits while you gather your thoughts.
-      <<option 'CN'>>
-        罗宾深吸了一口气。你问起那些房间，<<he>>说：“我不知道。可以问问约旦。”<<He>>等着你整理思绪。
-    <</language>>
-  <</if>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -449,7 +503,7 @@
         罗宾帮你联系悉尼。悉尼答应请西里斯开车，来医院接你。
     <</language>><br><br>
   <</if>>
-  <<socialiseicon 'ask'>><<lanLink '接受检查' 'RobinTemple Hospital Examination'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Accept the examination', '接受检查'] 'RobinTemple Hospital Examination'>><</lanLink>><br>
   <<getouticon>><<lanLink ['Leave the decision for now', '暂时不作决定'] 'Hospital front'>><</lanLink>><br>
 <<else>>
   <<language>>
@@ -652,7 +706,8 @@
 
 :: RobinTemple Prayer Insecurity
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1
+<<robin-temple-prayer-time 60>>
+<<if _robinPrayerTime and $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1
   and ['penis_small', 'penis_big', 'breasts_small', 'breasts_big', 'pregnancy'].some(insecurityExists)>>
   <<language>>
     <<option 'EN'>>
@@ -676,6 +731,11 @@
     <<socialiseicon 'ask'>><<lanLink ['Talk about worries about your pregnant appearance', '说起对孕期外形的困扰'] 'RobinTemple Prayer Acceptance'>><<set $phase to 10>><</lanLink>><br>
   <</if>>
   <<refuseicon>><<lanLink ['Keep it to yourself for now', '暂时不说'] 'RobinTemple Prayer Quiet'>><</lanLink>><br>
+<<elseif !_robinPrayerTime>>
+  <<language>>
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
+  <</language>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -689,55 +749,64 @@
 :: RobinTemple Prayer Acceptance
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<set _robinConcern to ({4: 'penis_small', 6: 'penis_big', 7: 'breasts_small', 9: 'breasts_big', 10: 'pregnancy'})[$phase]>>
-<<if $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1
+<<robin-temple-prayer-time 60>>
+<<if _robinPrayerTime and $RobinTemple.prayer_day isnot Time.days and $daily.templePray isnot 1
   and _robinConcern and insecurityExists(_robinConcern)>>
   <<set $RobinTemple.prayer_day to Time.days>><<set $daily.templePray to 1>>
   <<pass 60>>
-  <!-- 沿用原版身体接纳祈祷的纯洁分档，并且只在这一次结算，正文分支不再重复加。 -->
-  <<set _robinPrayerBand to Math.max(1, Math.min(7, Math.floor($purity * 7 / 1000)))>>
-  <<set _robinAcceptanceGain to 6 + _robinPrayerBand * 2>>
-  <<set _robinPrayerStress to [12, 12, 10, 8, 7, 6, 5, 5][_robinPrayerBand]>>
-  <<acceptance _robinConcern _robinAcceptanceGain>><<stress _robinPrayerStress>>
-  <<language>>
-    <<option 'EN'>>
-      You spend an hour in prayer before telling Robin how the remarks have stayed with you. Saying them aloud is difficult. <<He>> listens without repeating them back as though they were true.
-    <<option 'CN'>>
-      你祈祷了一个小时，才向罗宾说起那些评价怎样一直留在心里。把它们说出口并不容易。<<He>>认真听着，没有把那些话当成事实再说一遍。
-  <</language>><br><br>
-  <<if _robinConcern is 'pregnancy'>>
-    <<if getActivePregnancies('pc').some(pregnancy => pregnancy.donor is 'Robin')>>
-      <<language>>
-        <<option 'EN'>>
-          "It's our child," Robin says, then pauses. "I don't want you to feel you have to handle everyone else's remarks alone. Tell me what would help."
-        <<option 'CN'>>
-          “那是我们的孩子，”罗宾说，又停了停，“我不想让你一个人应付那些闲话。告诉我，怎样能帮到你。”
-      <</language>>
+  <<robin-temple-work-check>>
+  <<if _robinWork>>
+    <!-- 沿用原版身体接纳祈祷的纯洁分档，并且只在这一次结算，正文分支不再重复加。 -->
+    <<set _robinPrayerBand to Math.max(1, Math.min(7, Math.floor($purity * 7 / 1000)))>>
+    <<set _robinAcceptanceGain to 6 + _robinPrayerBand * 2>>
+    <<set _robinPrayerStress to [12, 12, 10, 8, 7, 6, 5, 5][_robinPrayerBand]>>
+    <<acceptance _robinConcern _robinAcceptanceGain>><<stress _robinPrayerStress>>
+    <<language>>
+      <<option 'EN'>>
+        You spend an hour in prayer before telling Robin how the remarks have stayed with you. Saying them aloud is difficult. <<He>> listens without repeating them back as though they were true.
+      <<option 'CN'>>
+        你祈祷了一个小时，才向罗宾说起那些评价怎样一直留在心里。把它们说出口并不容易。<<He>>认真听着，没有把那些话当成事实再说一遍。
+    <</language>><br><br>
+    <<if _robinConcern is 'pregnancy'>>
+      <<if getActivePregnancies('pc').some(pregnancy => pregnancy.donor is 'Robin')>>
+        <<language>>
+          <<option 'EN'>>
+            "It's our child," Robin says, then pauses. "I don't want you to feel you have to handle everyone else's remarks alone. Tell me what would help."
+          <<option 'CN'>>
+            “那是我们的孩子，”罗宾说，又停了停，“我不想让你一个人应付那些闲话。告诉我，怎样能帮到你。”
+        <</language>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            "You shouldn't have to explain yourself to everyone," Robin says. "I can listen, if you want." <<He>> leaves you to decide how much to say.
+          <<option 'CN'>>
+            “你不必向每个人解释自己，”罗宾说，“想说的话，我可以听着。”<<He>>让你自己决定要说多少。
+        <</language>>
+      <</if>>
     <<else>>
-      <<language>>
-        <<option 'EN'>>
-          "You shouldn't have to explain yourself to everyone," Robin says. "I can listen, if you want." <<He>> leaves you to decide how much to say.
-        <<option 'CN'>>
-          “你不必向每个人解释自己，”罗宾说，“想说的话，我可以听着。”<<He>>让你自己决定要说多少。
-      <</language>>
+      <<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
+        <<language>>
+          <<option 'EN'>>
+            "I don't always know what to say when people are cruel," Robin admits. "But I don't think they get to decide what you're worth." <<He>> waits beside you while you collect your thoughts.
+          <<option 'CN'>>
+            “别人说难听的话时，我也不总知道该怎么回答，”罗宾承认，“不过，我觉得他们没有资格决定你值不值得被喜欢。”<<He>>陪在你身旁，等你理清思绪。
+        <</language>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            "Those remarks don't tell me who you are," Robin says. "I've seen how you treat people. That matters to me." <<He>> asks whether you would rather talk or just sit together.
+          <<option 'CN'>>
+            “那些评价说明不了你是怎样的人，”罗宾说，“我见过你怎样对待别人。那才是我在意的。”<<He>>问你，是想再说说，还是只一起坐一会儿。
+        <</language>>
+      <</if>>
     <</if>>
-  <<else>>
-    <<if C.npc.Robin.trauma gte 40 or C.npc.Robin.dom lte 50>>
-      <<language>>
-        <<option 'EN'>>
-          "I don't always know what to say when people are cruel," Robin admits. "But I don't think they get to decide what you're worth." <<He>> waits beside you while you collect your thoughts.
-        <<option 'CN'>>
-          “别人说难听的话时，我也不总知道该怎么回答，”罗宾承认，“不过，我觉得他们没有资格决定你值不值得被喜欢。”<<He>>陪在你身旁，等你理清思绪。
-      <</language>>
-    <<else>>
-      <<language>>
-        <<option 'EN'>>
-          "Those remarks don't tell me who you are," Robin says. "I've seen how you treat people. That matters to me." <<He>> asks whether you would rather talk or just sit together.
-        <<option 'CN'>>
-          “那些评价说明不了你是怎样的人，”罗宾说，“我见过你怎样对待别人。那才是我在意的。”<<He>>问你，是想再说说，还是只一起坐一会儿。
-      <</language>>
-    <</if>>
+    <br><br><<gacceptance>><<gstress>>
   <</if>>
-  <br><br><<gacceptance>><<gstress>>
+<<elseif !_robinPrayerTime>>
+  <<language>>
+    <<option 'EN'>>There is not enough time before Robin's next duty.
+    <<option 'CN'>>罗宾接下来还有事务，眼下没有足够的时间。
+  <</language>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>

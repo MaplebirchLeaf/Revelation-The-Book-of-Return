@@ -6,7 +6,7 @@
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.1.1 includes Robin's temple route, the Confounded Vow, the temple choir and Kylar's Lost Lamb dream.** Future updates will expand character stories and add further story modules.
+**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.2.0 includes Robin's temple route, the Confounded Vow, the temple choir, Kylar's Lost Lamb dream, and temple duties, investigations and priest appointments.**
 
 ---
 
@@ -14,7 +14,7 @@
 
 - [Installation and dependencies](#installation-and-dependencies)
 - [Modules and game guide](#modules-and-game-guide)
-- [Current content in 1.1.1](#current-content-in-111)
+- [Current content in 1.2.0](#current-content-in-120)
 - [Deadwood Reblooms integration](#deadwood-reblooms-integration)
 - [Future updates](#future-updates)
 - [Acknowledgements and related projects](#acknowledgements-and-related-projects)
@@ -31,28 +31,29 @@ Deadwood Reblooms is optional and is not required for the base stories. This ver
 
 ## Modules and game guide
 
-| Module        | Content                                                                                  |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| `RBR`         | Root module and submodule dependencies                                                   |
-| `RobinTemple` | Robin's admission, temple life, promise ceremony, Confounded Vow and joint examinations  |
-| `TempleChoir` | Jordan's choir work, singing skill, lead permission and monthly allowance additions      |
-| `LostLamb`    | Kylar's manor dream, two branches and a main ending, waking conversations and Dream Scar |
+| Module         | Content                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| `RBR`          | Root module and submodule dependencies                                                         |
+| `RobinTemple`  | Robin's admission, temple life, promise ceremony, Confounded Vow and joint examinations        |
+| `TempleChoir`  | Jordan's choir work, singing skill, lead permission and monthly allowance additions            |
+| `TempleDuties` | Temple duties, archive restoration, investigations, priest appointment and companion promotion |
+| `LostLamb`     | Kylar's manor dream, two branches and a main ending, waking conversations and Dream Scar       |
 
 Disabling `RBR` stops all Revelation submodules. The choir can be enabled independently and does not require Robin to join the temple.
 
-With **Deadwood Reblooms 1.3.0** installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. Chapters cover prerequisites, unlocking, locations, steps, effects and troubleshooting. Check **Journal → Robin and the Temple / Temple Choir / Kylar's manor** for current progress and next steps.
+With a version of **Deadwood Reblooms** that provides Mod Hints installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. The four chapters cover entry, steps, schedules, rewards and interruptions. You can also read the [English guides](src/assets/hint/EN) in this repository. The **Journal** tracks Robin, choir work, temple duties and Lost Lamb progress. Finished one-off tasks no longer leave pending reminders.
 
-## Current content in 1.1.1
+## Current content in 1.2.0
 
 ### Robin's temple route
 
-After passing the vanilla admission trial, remaining fully clothed and below maximum stress, and developing a close relationship with Robin, start in **Orphanage → Robin's room** while Robin is able to participate. Visit Jordan together, book and prepare for the purity trial, then complete the assessment to unlock Robin's seat and changing area. The bunk and Saturday stay require Robin to pass the vigil and reach monk rank. Chastity fittings change the invitation's opening dialogue rather than gating the invitation.
+After passing the vanilla admission trial, remaining fully clothed and below maximum stress, and developing a close relationship with Robin, start in **Orphanage → Robin's room** while Robin is able to participate. Visit Jordan together, book and prepare for the purity trial, then complete the assessment to unlock Robin's quarters interaction and changing area. **Robin's bunk** and Saturday stay require Robin to pass the vigil and reach monk rank. Chastity fittings change the invitation's opening dialogue rather than gating the invitation.
 
 Temple life includes shared duties, mass preparation, prayer, gifts, walks, night companionship and a hospital branch. Robin's faith, doubt, contribution and shared experiences affect the route. Entries follow school, temple and other work schedules.
 
 With the required relationship and contributions, request an assessment and hold the promise ceremony. The joint vigil preserves the vanilla trial. Promised partners still face monthly examinations, shared purification after broken vows and chastity-device procedures. Relationship gains alone do not bypass those steps. Device removal requires an application followed by an appointment while Jordan is available.
 
-Route progress is stored in the current save's `$RobinTemple`.
+Shared homes also support temple and Confounded Vow conversations, returning to the same property afterwards. Shared activities must fit before Robin's next commitment.
 
 ### The Confounded Vow
 
@@ -70,6 +71,16 @@ The new **Singing** skill uses vanilla skill grades. Harpy transformation improv
 
 Completed services accumulate an allowance addition, **paid with the vanilla allowance after a successful monthly examination when payment is authorised**. There is no immediate Sunday payout. Leaving early uses that day's mass opportunity and provides no addition for the unfinished service. The journal records practice, services, lead permission and pending earnings.
 
+### Temple duties and priest appointment
+
+After joining the temple, use **Temple hall → Duties book** to apply to Jordan. Count supplies, dry blankets, read old records or investigate reports for pay, grace and skill practice. Fund the archive roof and shelves separately to shorten research time once the work is finished.
+
+Three investigations lead from knocking sounds to root and tentacle encounters. Routes, records, borrowed equipment and the PC's history, science, skulduggery and physical skills affect preparation and strain. Report resolved cases honestly for their one-time payment.
+
+Monks and nuns who complete the vanilla rescue, return the golden spear to the temple and maintain their vows and examination status can undertake the **watch at the lower doorway**. Two non-human battles are joined by tests of the lamps, responses and way back. Return to the warm room for bandaging before Jordan conducts the appointment review.
+
+Sydney and Robin must agree, finish their own lessons and receive the PC's help with the lamps and responses to earn their own watch qualification and interview. The PC may be appointed with them or help later as a priest. School, work, shared-home schedules and temple vows still apply. The bishop's sealed note and the monstrance investigation with Kylar are optional follow-ups.
+
 ### Lost Lamb: Kylar's manor dream
 
 Discover the manor's monstrance, hear Kylar's recollection of the night the parents changed, and experience the first vanilla manor sleep event. Choose **Lie down for a while** in **Kylar's room**, then close your eyes.
@@ -82,19 +93,20 @@ Complete the main ending and wake to gain the **Lost Lamb** feat and **Dream Sca
 
 ## Deadwood Reblooms integration
 
-| Enabled content                          | Integration                                                                                                    |
-| ---------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Robin expansion                          | Tutoring, stands, shop work and hospital stays affect the schedule, and temple income joins Robin's ledger     |
-| Vanilla additions                        | Shared homes affect return and overnight plans, and Unyielding Will changes vigil and Confounded Vow responses |
-| More love interests and social portraits | Awareness grades can retain both Robin and Sydney as lovers, while dual promises still require the ceremony    |
-| NPC sidebar portraits                    | Initiate robes, monk or nun robes and sleepwear change with scenes                                             |
-| More transformations                     | Visible parts from full horse, fish or raven transformation unlock temple-pew interactions                     |
+| Enabled content                          | Integration                                                                                                                                         |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Robin expansion                          | Tutoring, stands, shop work and hospital stays affect the schedule, and temple income joins Robin's ledger                                          |
+| Vanilla additions                        | Unyielding Will changes vigil and Confounded Vow responses                                                                                          |
+| More love interests and social portraits | Awareness grades can retain both Robin and Sydney as lovers, while dual promises still require the ceremony                                         |
+| Finance: housing and donations           | Shared homes affect return and overnight plans; archive repairs use existing payment channels with receipts separate from the food and blanket fund |
+| NPC sidebar portraits                    | Initiate robes, monk or nun robes and sleepwear change with scenes                                                                                  |
+| More transformations                     | Visible parts from full horse, fish or raven transformation unlock temple-pew interactions                                                          |
 
 The full-harpy singing interaction can also practise Singing. Integrations check enabled modules and current character state. The base temple route and choir work remain available without Deadwood Reblooms.
 
 ## Future updates
 
-Version 1.1.1 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
+Version 1.2.0 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
 
 ## Acknowledgements and related projects
 
@@ -103,8 +115,8 @@ Robin's temple route rebuilds material from the author's earlier Maplebirch mod,
 - [Degrees of Lewdity](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 - [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 - [Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
-- [1.1.1 release notes](.github/release-notes/v1.1.1.md)
+- [1.2.0 release notes](.github/release-notes/v1.2.0.md)
 
 ## Reporting issues
 
-Open an [issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues) with game, framework and mod versions, enabled modules, location, steps and the complete error. For Robin's whereabouts, include the in-game time, shared residence and current work. For promises or choir payments, include the promised partner and monthly-examination progress. For Lost Lamb, include the dream location, time, selected action and whether the issue occurred during the dream or after waking.
+Open an [issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues) with game, framework and mod versions, enabled modules, location, steps and the complete error. For Robin's whereabouts, include the in-game time, shared residence and current work. For promises or choir payments, include the promised partner and monthly-examination progress. For Lost Lamb, include the dream location, time, selected action and whether the issue occurred during the dream or after waking. For duties or priest appointments, include the current case, rescue and spear progress, companions, and where the watch stopped.

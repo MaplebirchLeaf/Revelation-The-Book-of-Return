@@ -1,5 +1,11 @@
 :: RobinTemple Prayer Event
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<robin-temple-work-check>>
+<<if !_robinWork or $RobinTemple.prayer_event_day isnot Time.days or $RobinTemple.prayer_event_resolved>>
+  <<lanSwitch 'There is no unfinished encounter here today.' '今天这里已经没有尚未处理的偶遇事件。'>><br><br>
+  <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+  <<exit>>
+<</if>>
 <<set $RobinTemple.prayer_event_done to true>>
 <<switch $RobinTemple.prayer_event>>
   <<case 1>>
@@ -10,7 +16,10 @@
         那名访客从狼街来。施粥所在开门前缺一批干净的碗。罗宾提出从架上搬一箱过去。
     <</language>>
     <br><br>
-    <<templeicon 'quarters'>><<lanLink ['Help deliver bowls (0:30)', '帮忙送碗 (0:30)'] 'RobinTemple Prayer Bowls'>><<pass 30>><</lanLink>><br>
+    <<robin-temple-prayer-time 30>>
+    <<if _robinPrayerTime>>
+      <<templeicon 'quarters'>><<lanLink ['Help deliver bowls (0:30)', '帮忙送碗 (0:30)'] 'RobinTemple Prayer Bowls'>><</lanLink>><br>
+    <</if>>
     <<socialiseicon 'ask'>><<lanLink ['Make a note of what the soup kitchen needs', '记下施粥所需要什么'] 'RobinTemple Prayer Note'>><</lanLink>><br>
   <<case 2>>
     <<language>>
@@ -20,7 +29,10 @@
         见习教徒说自己在布巾清单上写错了数，担心约旦以为少了一整捆。
     <</language>>
     <br><br>
-    <<socialiseicon 'ask'>><<lanLink ['Check the list with Robin (0:15)', '和罗宾一起核对清单 (0:15)'] 'RobinTemple Prayer List'>><<pass 15>><</lanLink>><<ggrace>><<gconviction 'Robin'>><br>
+    <<robin-temple-prayer-time 15>>
+    <<if _robinPrayerTime>>
+      <<socialiseicon 'ask'>><<lanLink ['Check the list with Robin (0:15)', '和罗宾一起核对清单 (0:15)'] 'RobinTemple Prayer List'>><</lanLink>><<ggrace>><<gconviction 'Robin'>><br>
+    <</if>>
     <<loveicon 'hug'>><<lanLink ['Ask Robin to comfort the initiate first', '请罗宾先安慰见习教徒'] 'RobinTemple Prayer Comfort'>><</lanLink>><<glove>><<ggconviction 'Robin'>><br>
   <<case 3>>
     <<language>>
@@ -30,8 +42,13 @@
         访客说今晚找不到安静的地方坐一会儿。罗宾望向宿舍方向，先端来一杯水。
     <</language>>
     <br><br>
-    <<socialiseicon 'ask'>><<lanLink ['Ask Jordan with Robin (0:15)', '帮罗宾去问约旦 (0:15)'] 'RobinTemple Prayer Shelter'>><<pass 15>><</lanLink>><br>
-    <<templeicon 'altar'>><<lanLink ['Stay with the visitor', '留下来陪访客等候'] 'RobinTemple Prayer Wait'>><</lanLink>><br>
+    <<robin-temple-prayer-time 15>>
+    <<if _robinPrayerTime and maplebirch.get('RobinTemple').jordanAvailable>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Jordan with Robin (0:15)', '帮罗宾去问约旦 (0:15)'] 'RobinTemple Prayer Shelter'>><</lanLink>><br>
+    <</if>>
+    <<if maplebirch.get('RobinTemple').jordanAvailable>>
+      <<templeicon 'altar'>><<lanLink ['Stay with the visitor', '留下来陪访客等候'] 'RobinTemple Prayer Wait'>><</lanLink>><br>
+    <</if>>
   <<case 4>>
     <<if C.npc.Robin.trauma gte 40>>
       <<language>>
@@ -56,14 +73,25 @@
       <</language>>
     <</if>>
     <br><br>
-    <<socialiseicon 'ask'>><<lanLink ['Ask Jordan what happened', '请约旦说明情况'] 'RobinTemple Prayer Ask Jordan'>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
+    <<if maplebirch.get('RobinTemple').jordanAvailable>>
+      <<socialiseicon 'ask'>><<lanLink ['Ask Jordan what happened', '请约旦说明情况'] 'RobinTemple Prayer Ask Jordan'>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
+    <</if>>
     <<getouticon>><<lanLink ['Leave with Robin for now', '先和罗宾离开'] 'RobinTemple Prayer Leave'>><</lanLink>><br>
 <</switch>>
+<br>
+<<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Prayer Bowls
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-prayer-time 30>>
+<<if _robinPrayerTime and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
+  <<pass 30>>
+  <<robin-temple-work-check>>
+<<else>>
+  <<set _robinWork to false>>
+<</if>>
+<<if _robinWork>>
   <<language>>
     <<option 'EN'>>
       You and Robin wrap the bowls in linen and carry them to the kitchen on Wolf Street. The cook counts them before setting a pot on the stove.
@@ -85,7 +113,8 @@
 
 :: RobinTemple Prayer Note
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
@@ -113,8 +142,15 @@
 
 :: RobinTemple Prayer List
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-prayer-time 15>>
+<<if _robinPrayerTime and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
+  <<pass 15>>
+  <<robin-temple-work-check>>
+<<else>>
+  <<set _robinWork to false>>
+<</if>>
+<<if _robinWork>>
   <<language>>
     <<option 'EN'>>
       You count each bundle with Robin. The missing linen is on a shelf in the next room. The initiate corrects the entry while you hold the pages together.
@@ -137,7 +173,8 @@
 
 :: RobinTemple Prayer Comfort
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 2 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
@@ -160,8 +197,15 @@
 
 :: RobinTemple Prayer Shelter
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-prayer-time 15>>
+<<if _robinPrayerTime and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved and maplebirch.get('RobinTemple').jordanAvailable>>
   <<set $RobinTemple.prayer_event_resolved to true>>
+  <<pass 15>>
+  <<robin-temple-work-check>>
+<<else>>
+  <<set _robinWork to false>>
+<</if>>
+<<if _robinWork and maplebirch.get('RobinTemple').jordanAvailable>>
   <<language>>
     <<option 'EN'>>
       Jordan listens to the visitor and offers a place to rest until morning. Robin fetches water and a clean blanket, then asks whether the visitor needs anything else.
@@ -183,7 +227,8 @@
 
 :: RobinTemple Prayer Wait
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 3 and !$RobinTemple.prayer_event_resolved and maplebirch.get('RobinTemple').jordanAvailable>>
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
@@ -205,7 +250,8 @@
 
 :: RobinTemple Prayer Ask Jordan
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved and maplebirch.get('RobinTemple').jordanAvailable>>
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
@@ -250,7 +296,8 @@
 
 :: RobinTemple Prayer Leave
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved>>
+<<robin-temple-work-check>>
+<<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 4 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>

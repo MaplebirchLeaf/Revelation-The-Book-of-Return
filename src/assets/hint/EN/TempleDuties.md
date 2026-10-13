@@ -1,58 +1,104 @@
-### Temple duties
+### Entry and recommended route
 
-The **duties book** in the hall opens from 09:00 to 18:00, outside Sunday mass. Ask Jordan for duties to take shifts, visit the old records room and collect assignments.
+Enable **Temple duties**. As an **initiate, monk/nun or priest**, visit **Temple → Hall → Check the temple duties book**. Jordan receives you **09:00–18:00 in daylight**, outside Sunday mass **11:00–13:00**. Remain covered, below maximum stress and free of combat, possession or a priority event.
 
-| Shift                 | Time       | Pay and practice              |
-| --------------------- | ---------- | ----------------------------- |
-| Accounts              | 45 minutes | £25, maths and 1 grace        |
-| Blankets and handover | 60 minutes | £30, housekeeping and 2 grace |
-| Priest supervision    | 45 minutes | £40 and 2 grace               |
+Choose **Ask Jordan for duties (0:10)** to enter the rota and receive access to the old records room.
 
-One paid shift is available each day.
+Recommended route: **daily duties and archive → field assignments → return the golden spear and rescue the missing temple member → lower-door watch → Jordan's review → priest appointment**. Preparing Robin or Sydney can accompany this route. The bishop's requests are optional.
 
-Priests can also inspect the garden and repair wards (45 minutes, £40, housekeeping and 2 grace). The confessional, prayer room and soup kitchen provide the existing daily duties. High Priest Jordan presides over appointments and important rites.
+### Daily duties
 
-### Old records room
+| Duty                                                   | Duration   | Pay and main gains                                          |
+| ------------------------------------------------------ | ---------- | ----------------------------------------------------------- |
+| Count bowls and trace the receipt                      | 45 minutes | £25, Maths, 1 grace and good fame.                          |
+| Air blankets and leave a handover                      | 60 minutes | £30, Housekeeping, 2 grace and good fame; slight tiredness. |
+| Supervise the next shift, after appointment            | 45 minutes | £40, 2 grace and good fame.                                 |
+| Inspect the garden and repair wards, after appointment | 45 minutes | £40, Housekeeping and 2 grace.                              |
 
-Building plans, delivery records and field notes help with routes and investigations. First readings train history. Finding a volume takes 25 minutes.
+These share **one paid shift each day**. Arrive by 17:00 to begin a shift. The confessional, prayer room and soup kitchen retain their existing duties and conditions.
 
-Roof and drainage repairs cost £4,000 and take two days. Shelves cost £1,500 and take one day. Both completed projects reduce reading time to 15 minutes. Sort loose folios once daily for three sessions to save another five minutes.
+### Old records room and repairs
 
-With Finance enabled, project payments use cash and the bank, and their purpose appears on donation receipts. Otherwise pay in cash.
+Enter the **old records room** from the duties desk. Building plans, delivery records and fieldwork precautions give clues for investigations. A first reading trains History. Finding a volume takes **25 minutes**.
+
+| Project                 | Cost   | Completion |
+| ----------------------- | ------ | ---------- |
+| Roof and drainage       | £4,000 | Two days   |
+| Shelves and dry storage | £1,500 | One day    |
+
+Both completed projects reduce reading time to **15 minutes**. Sort loose folios for thirty minutes once daily; after **three sessions**, reading saves another five minutes. Sorting also trains History and Housekeeping and grants grace.
+
+Repairs have their own receipts, separate from the food and blanket fund. With Deadwood Reblooms' **Finance**, payments use its cash and bank funding rules and receipts record the project purpose. Otherwise, repairs require carried cash. Each funded project grants good fame once.
 
 ### Field assignments
 
-- **Knocking after lights-out:** Inspect the drain and shutter. Science helps with the fastening.
-- **Roots beneath the records:** Mark an exit, compare the marks, then clear the roots.
-- **The returned donation crate:** Travel to the docks, rescue the worker and clear the intrusion. Physique and borrowed equipment help with the rescue.
+The desk offers three assignments in order. The last two require **monk/nun or priest** rank:
 
-Borrow a lamp, rope and gloves from Jordan. Building records and skulduggery help plan exits. History or Gwylan’s advice helps compare marks. The last two cases use real encounters and existing combat actions.
+| Assignment                  | Approach                                                         | First truthful completion |
+| --------------------------- | ---------------------------------------------------------------- | ------------------------- |
+| Knocking after lights-out   | Inspect the drain and shutter; Science helps with the fastening. | £60                       |
+| Roots beneath the records   | Mark an exit, compare the marks and clear the roots.             | £150                      |
+| The returned donation crate | Go to the docks, rescue the worker and clear the intrusion.      | £200                      |
 
-Truthfully resolved assignments pay £60, £150 and £200, with grace and good fame. Each fee is paid once. Unfinished cases can be investigated again; priests can revisit resolved cases after a week.
+Borrow the lamp, rope and gloves before leaving. Building records and Skulduggery help plan exits; History or Gwylan's advice helps interpret marks. Physique and equipment help the worker's rescue. The last two assignments include **tentacle combat**, using the game's combat actions.
+
+Return to Jordan and report what happened. Each resolved, truthful assignment also grants **3 grace and good fame**; its money and completion reward are paid once. An unfinished or inaccurately reported investigation can be reopened. Priests may inspect a resolved assignment again after **seven days**, without another completion payment. Finish the current investigation before starting the watch.
 
 ### Priest appointment
 
-Return the golden spear to Jordan, complete the Danube-manor rescue and pass the lower-door watch. Jordan holds the appointment interview before 17:00, reviews your work and asks how you would answer a frightened initiate. The oath commits you to serving God, sacred chastity and watching over the flock. Monthly examinations continue.
+You need to be a **monk/nun**, registered for duties, with your chastity vow intact and the current examination in order. Complete these tasks:
+
+- **Rescue the missing temple member at the Danube manor**; reporting the disappearance alone is insufficient.
+- **Return the golden spear to Jordan**. A lost or stolen spear does not meet this requirement.
+- **Pass the watch at the lower door**.
+
+Return for Jordan's interview **before 17:00**. Discuss the frightened initiate, then consider the vow and accept the appointment by the fire. An answer that sends the initiate back alone leaves the review unfinished; you can reconsider and return. You may also ask for more time.
+
+Appointment gives the **priest** rank, Jordan's affection and good fame. It opens priest duties and later companion appointments. **Monthly chastity examinations continue**. The bishop's cooperation is not required.
 
 ### The lower-door watch
 
-Begin before 14:00, outside Sunday mass, with three hours free. Finish any current investigation. One attempt daily.
+Start **before 14:00**, outside Sunday mass, with **three hours free** and no current investigation. You may attempt it **once each day**. Bring a rested PC ready for two tentacle battles and the spoken response between them.
 
-- The first encounter has twelve roots with 18 health each; 400 effective History or Science, or 500 Skulduggery, reveals a route that reduces the number to eight.
-- The response normally requires 650 effective Willpower and 400 Control. At least 600 effective Singing or English reduces the Willpower requirement to 550 and fatigue from 8 to 5. At least 600 Awareness reduces the Control requirement to 350. Stress still accumulates.
-- The second encounter has ten pale tentacles with 20 health each. Both encounters use native combat actions. Bracing the threshold adds 8/12 pain and fatigue after the respective encounters; 5000 effective Physique or 600 Athletics halves this strain; injuries remain after the watch. The response adds 12 stress and 5–8 fatigue. Robin gains 2 trauma on completing the watch.
-- High Skulduggery or Awareness reveals a discrepancy in the reflection. Use the copied ward pattern and count everyone before sealing. Answering the voice outside, copying the reflection or withdrawing leaves the watch unfinished.
+| Preparation                                          | Effect                                                                           |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Effective History or Science 400, or Skulduggery 500 | Checking the copied wards reveals a safer route and reduces the first encounter. |
+| Effective Willpower 650 and Control 400              | Meets the normal response requirement.                                           |
+| Effective Singing or English 600                     | Reduces required Willpower to 550 and response fatigue.                          |
+| Awareness 600                                        | Reduces required Control to 350 and helps notice the reflection's discrepancy.   |
+| Effective Physique 5,000 or Athletics 600            | Halves the pain and fatigue from bracing the threshold after battle.             |
+
+After the second battle, use the **copied ward pattern and count everyone** before sealing. Answering the voice outside or copying the reflection fails the watch. Combat, the response and bracing cause pain, stress and fatigue; passing does not heal the injuries away. Robin also gains slight trauma after qualifying.
+
+Running out of time, losing a battle, withdrawing or becoming unable to continue leaves the attempt incomplete. Return another day. Completed qualification is recorded; rereading the aftermath does not repeat its costs.
 
 ### Accompanying Robin and Sydney
 
-Each must have passed the Trial of Anguish, become a monk or nun and agree to prepare. Robin needs at least 20 faith and trauma below 60. Outstanding purification and examinations take priority. Native schedules and existing home arrangements still apply.
+Each candidate must already be a **monk/nun**, actually at the temple and free of other commitments, with an intact temple vow. Outstanding purification or examinations take priority. Robin also needs **at least 20 Faith and trauma below 60**.
 
-Accompany each through prayers and a parish visit, then an older priest's ward inspection. During the watch, explicitly support each companion at the lamp and at the response. Winning alone does not qualify a companion. Jordan interviews each successful candidate; Jordan confirms the appointments quietly in the warm room, after dressing wounds and counting everyone. Candidates may accept separately or together when everyone is free. A PC who is already a priest can still accompany them.
+1. Ask whether the candidate wants to become a priest. A candidate may defer or refuse.
+2. Accompany them to **prayers and a parishioner's visit**, then **a ward inspection with an older priest**. Each takes thirty minutes.
+3. Select the candidate for a watch when there is time for the entire visit. **Support each companion separately at the lamp and at the response**. Winning your own battles without both acts of support does not qualify them.
+4. After their successful watch, accompany them to Jordan for a **fifteen-minute interview**.
+5. Return to the warm room to accept appointment, separately or together, while everyone is present and free. A PC already appointed can still accompany them.
 
-Sydney uses the native `sydney.rank`; Robin keeps the existing temple rank and bunk. School, shop duties and other commitments remain part of their schedules.
+You can change the selected companions with **Choose again**. School, shops, punishment and existing home journeys remain part of their schedules. Robin keeps the temple bunk; Sydney's rank and temple access follow the new appointment. Each companion's appointment grants a small affection gain once.
 
-### The bishop and Kylar
+### The bishop and the monstrance
 
-After establishing contact with the bishop, a sealed assignment can appear at the duties desk. Compare the crate records and give the copy to the waiting confessor.
+After making contact with the bishop, a **sealed note** can appear at the duties desk. Accept it, read the old delivery records, truthfully resolve the returned-crate case, compare its records in the archive, then deliver the sealed copy to the waiting confessor. Completing it trains History. Declining closes this private request.
 
-Once appointed and familiar with the bishop’s account of Kylar’s manor, ask about the monstrance. Read the indexed description in the archive, visit Kylar at the manor in the evening, then decide how to handle the observations. The conversations and records follow the existing manor story. Completed or declined requests leave the journal.
+As a priest who has heard the bishop's full account of Kylar's manor, ask about the **monstrance**. Read its indexed description in the records room, then visit **Kylar's room, 18:00–23:00**, while Kylar is available, jealousy is below 30, and you are not being stalked or controlled. Explain the request and let Kylar decide what can be recorded; deliver only the agreed notes. You may instead keep the conversation private and close the investigation. Lost Lamb completion adds a recollection but is not required.
+
+Completed or declined requests leave the Journal. Neither branch promises a cure for Kylar's parents.
+
+### If an entry is missing
+
+| Problem                                         | Check                                                                                         |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Duties desk closed                              | Eligible rank, covered, daylight 09:00–18:00, Jordan available, outside Sunday mass.          |
+| No shift                                        | Registered, no paid shift today, by 17:00.                                                    |
+| No appointment                                  | Monk/nun rank, real rescue, spear returned, vows and examination in order, watch passed.      |
+| No companion watch                              | Candidate agreed, both lessons completed, actually present, enough time before the next duty. |
+| Companion passed combat but cannot be appointed | Both separate support actions, completed watch, Jordan's interview and current availability.  |
+| No private follow-up                            | Bishop contact and relevant records; for Kylar, evening availability and jealousy.            |

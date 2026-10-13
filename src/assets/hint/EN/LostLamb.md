@@ -1,129 +1,55 @@
-### Prerequisites and recommended order
+### Entry and recommended route
 
-Enable **Lost Lamb** and enter through **Kylar's manor → Kylar's room**.
+Enable **Lost Lamb** and visit **Kylar's manor → Kylar's room**. First discover the **monstrance**, hear Kylar's recollection of the night the parents changed, and experience the first manor sleep event. Kylar must be active; combat, another vision or a replay prevents entry.
 
-- Discover the manor's **monstrance**.
-- Ask Kylar about the parents and hear the recollection of the night they changed.
-- Experience the **first vanilla manor sleep event**.
-- Kylar must remain active, and you must not be in combat, another vision or a replay scene.
+Choose **Lie down for a while → Close your eyes (0:30)**. Opening the introduction costs no time. **Sit up** returns to the room.
 
-Recommended order: **investigate the manor and hear Kylar's recollection → rest in the room → experience the shared afternoon → complete both branch dreams → return for the main ending → speak with Kylar after waking**.
+Recommended route: **shared afternoon → garden and kitchen dreams, in either order → main dream → wake → speak with Kylar in the evening**. Sydney's childhood recollections, the bishop's account and Gwylan's remarks add context when you have heard them.
 
-Sydney's account of childhood visits, the bishop's account and Gwylan's remarks about the parents add their corresponding recollections.
+### Dream time and feelings
 
-### Where to enter and how to begin
+You play the younger Kylar. Each entry, including resuming, costs **thirty minutes in the present**. After that, the dream has its own clock, days and weather. Dream days do not advance present rent, work or NPC schedules.
 
-Choose **Lie down for a while** in Kylar's room, read the introduction, then choose **Close your eyes (0:30)**. Opening the introduction alone neither begins the dream nor consumes those thirty minutes. **Sit up** returns to the room.
+The Journal records your current clue, dream date and three feelings:
 
-You act as the younger Kylar. Thirty minutes pass in the present before the dream begins. Subsequent action times, days and weather belong to the dream. Spending days there does not advance the present by days.
+| Feeling         | What matters                                                                                               |
+| --------------- | ---------------------------------------------------------------------------------------------------------- |
+| Doubt           | Recognising contradictions and questioning accounts. More is not always helpful.                           |
+| Unease          | Waiting, breathing and approaching danger. Food, drink and a prepared resting place can help.              |
+| Attention drawn | Being noticed. Noise and confrontation attract attention; ordinary tasks and quiet movement can reduce it. |
 
-Your first visit begins with Sydney's afternoon visit. Draw together, go into the garden, look for food, then continue to supper and the departure. These choices leave experiences that can matter later. **You do not need to complete every activity before continuing.**
+Checks use your condition **before** the selected action changes it. The link's duration and coloured feedback help you plan. **Blind Stats** hides numerical hints. Failed checks usually open a different situation with another way forward; they do not require restarting.
 
-### Journal, hints and three feelings
+### The three dreams
 
-The **Journal** shows the dream's date, day count, current clue and the following feelings. These feelings change through your actions in the current dream. After waking, the journal also records your latest promises.
+The first visit includes an afternoon with Sydney. Drawing, garden games and looking for food leave useful experiences, but every activity is not required. Continue to supper and Sydney's departure to reach the doorway.
 
-| Feeling         | What it affects                                                               | What to consider                                                                       |
-| --------------- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Doubt           | Recognising discrepancies and questioning accounts, sometimes asking for help | Compare voices, order and objects. **Higher is not always better**                     |
-| Unease          | Waiting quietly, breathing steadily, approaching danger and careful movements | Eating, drinking and preparing a safe place can help. Pushing on may deepen it         |
-| Attention drawn | Being noticed while listening, moving quietly or crossing dangerous places    | Calling, arguing and noise draw attention. Ordinary tasks and quiet movements can help |
+| Doorway choice                            | Useful preparation                                                                                 |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Follow Sydney's voice into the garden** | Learn the games' signals, pauses and agreements; compare fixed objects when the afternoon changes. |
+| **Go closer to the talk in the kitchen**  | Listen before approaching, watch the time and leave gaps in accounts you cannot verify.            |
+| **Stay to hear your own voice**           | Complete both other dreams first. Eat, drink, prepare food and keep a route outside.               |
 
-Ordinary links show their duration. Check options name the feeling being tested, and coloured hints preview the action's changes. The vanilla **Blind Stats** setting hides these hints and the journal's numbers.
+Some observations depend on earlier games or preparation. Games cannot be repeated indefinitely to farm feelings. If a special option is missing, continue through the other activities.
 
-<span class="teal">Checks use your condition before the selected action changes it. Earlier choices, preparation order and the current time matter. Failed checks lead to another situation with ways to recover or continue, rather than requiring a restart.</span>
+In the kitchen dream, listening through the connecting door is available **17:00–17:30**, and washing cups while the adults speak is available **16:00–17:00**. The ending time is excluded. Moving, sitting and returning also consume dream time; missing either window still leaves other ways forward.
 
-### Two branches and the main ending
-
-Two branches are available at the doorway after Sydney leaves. **Complete both to unlock the third choice for the main ending.** Their order does not matter. At an ending, choose **Open your eyes** to return to the present.
-
-| Doorway choice                        | What this dream follows                                              | What to know                                                                         |
-| ------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Follow Sydney's voice into the garden | Visits, missed visits, signals and an afternoon that repeats         | The games' agreements and knocks become clues to recognising changes                 |
-| Go closer to the talk in the kitchen  | Listening to adults, questioning a visitor and assembling an account | Timing, attention and doubt change how individual situations unfold                  |
-| Stay to hear your own voice           | The night of breaking glass, then food, help and ways out            | Requires both branches. Eating, drinking and arranging the bed open steadier actions |
-
-Each dream retains its ending record. **Every route ends with a choice between a promise and refusal**, changing the people, doors and voices in its ending.
-
-- In the garden, promise never to let Sydney leave, or make the hand let go. The promise gives the lock a name. Refusing costs part of the drawing, and the knocks still follow.
-- In the kitchen, promise silence, or find the child calling upstairs. Silence quiets the house but makes later calls for help harder.
-- In the main route, give the voice your name in exchange for a house nobody leaves, or refuse and call outside. Temple help cannot restore the parents, and refusal does not end the danger.
-
-Promises carry into the next dream. **The kitchen promise changes speaking in the street, asking for help at the shop and leaving a message.** Break it to seek help, or put the note away and follow the voice indoors. Breaking silence disturbs what is in the house. Keeping it leaves nobody arranged to meet you outside the window. Calling outside at the main route's final choice also breaks the kitchen promise if you made it. Refusing secrecy in the first place is recorded separately from breaking a promise.
-
-### Garden branch: games, signals and the repeating afternoon
-
-| Place or activity                | Conditions and approach                                                                                                      | Effects and later uses                                                             |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Indoor games on a rainy day      | Play cards and hide-and-seek once each before listening downstairs                                                           | Cards affect doubt and attention. Hide-and-seek tests waiting for the full signal  |
-| Check the book's picture         | Play cards first and begin noticing discrepancies                                                                            | Helps compare the story. Other activities remain available if absent               |
-| Knocks beyond the door           | Listen before deciding which door to approach                                                                                | Doubt affects recognition. The pause learned earlier can matter later              |
-| The afternoon's return           | Change cup positions and let Sydney choose rules before checking downstairs                                                  | These affect doubt and attention. Testing the drawn door has further prerequisites |
-| Sounds on both sides of the shed | Remember the proper signal and notice changes to listen closely. An earlier mistake offers a chance to practise a correction | Without that preparation, the daylight side still leads towards the ending         |
-
-Games and checks cannot be repeated endlessly to farm feelings. Quiet movement, fixed objects and the signal's pause lead through different situations from following a voice directly. Success and failure paths both continue towards the branch ending.
-
-### Kitchen branch: listening, the visitor and an explanation
-
-| Place or time                      | Conditions and approach                                                                                        | Effects and later uses                                                                                            |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Landing near the laboratory        | Find a place to listen first, then follow the unfinished sentence                                              | The door gives more information and draws attention. Being noticed opens ways to explain yourself and settle down |
-| Listen through the connecting door | Available **17:00–17:30**, including 17:00 but excluding 17:30                                                 | Sitting, fetching shoes and returning also take time. Plan the order                                              |
-| Write down what you heard          | Doubt affects leaving gaps for words you missed                                                                | Otherwise, cross out your supplied answer. Later choices can preserve the contradiction                           |
-| Prepare supper again               | Warm food, wash cups or fetch a bowl before bringing supper to the doorway                                     | Warming food helps you settle. Washing cups offers listening and draws attention                                  |
-| Wash cups while they speak         | Available **16:00–17:00**, including 16:00 but excluding 17:00                                                 | Other preparation and returns take time. Food and bowls remain ways forward afterwards                            |
-| Approach the answering room        | Lower unease helps you remain and watch. Retreating allows breathing against the wall and counting floorboards | Success and failure offer different follow-up actions, both allowing you to continue                              |
-
-### Main route: breaking glass, temple help and the promise indoors
-
-Once unlocked, choose **Stay to hear your own voice** at the doorway. The dream resumes on the night your parents send you to bed early. After the windows break, find food, care for the parents and try to reach someone outside.
-
-| Activity                                    | What you can do                                                                                         | What it changes                                                                               |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Wait at night and breathe                   | Call for the parents or remain still, then keep breathing space beneath the covers                      | Unease affects staying steady. Failure still allows waiting until morning                     |
-| Eat first or prepare all portions           | Stop your hands shaking first, or prepare everyone's food                                               | Changes food delivery conditions. A disturbed plate can still be released to free your sleeve |
-| Clear a path, drink and check the garden    | Clear a strip, drink and wash, or inspect the gate                                                      | The path leads outside. Earlier quiet delivery may also offer a garden route                  |
-| Ask someone outside for help                | Doubt affects explaining the problem. If you cannot speak clearly, show the broken window               | Later chances still let you keep a contact and ask again                                      |
-| Carry breakfast the next day                | Carry everything or leave one hand free                                                                 | Changes how you block movement in the kitchen. A free hand may help steady a doorframe later  |
-| Leave a message and prepare a resting place | Arrange help by message, or keep silence and follow the voice inside. Rest and observation are optional | A resting place or earlier free hand offers a slower, steadier action                         |
+Each ending offers a **promise or refusal**. Garden and kitchen promises carry into later dreams. In particular, a promise of silence changes asking for help, leaving messages and calling outside in the main dream. Keeping, refusing and breaking a promise produce different records. Both branches must reach their endings before the main choice appears.
 
 ### Waking, continuing and replaying
 
-- **Before an ending:** choose **Wake for now** at any time. Rest again to resume at the same place, retaining this dream's feelings and choices.
-- **At an ending:** choose **Open your eyes**. Your next entry returns to the doorway after Sydney's departure, without repeating the shared afternoon.
-- **Replaying a completed route:** ending records, shared-afternoon experiences and other routes' promises remain. Current feelings and ordinary activities restart. A new final decision replaces the earlier promise for that route.
-- **After waking:** present time, appearance, clothing, belongings, money, weather and character states return to their condition after closing your eyes. Dream progress is retained separately.
-- **Saving or disabling the module:** dream saves can be continued. Loading one after disabling the module restores the present state while retaining recorded progress.
+- **Wake for now** interrupts an unfinished dream. Rest again to resume with its choices and feelings intact.
+- **Open your eyes** at an ending records it. The next entry returns to the doorway without repeating the shared afternoon.
+- Replaying a completed route resets its ordinary activities and current feelings. Other endings and shared-afternoon experiences remain; a new final decision replaces that route's earlier promise.
+- Waking restores present clothing, belongings, money, weather and NPC states to their condition after you closed your eyes. Dream progress is retained separately.
+- A dream save can be continued. Loading it with Lost Lamb disabled restores the present while retaining recorded progress.
 
-<span class="teal">Every entry consumes thirty minutes in the present, including resuming an interrupted dream. Dream days do not additionally advance present rent, work or character schedules.</span>
+### Rewards and Kylar's follow-up
 
-### Rewards and talking to Kylar afterwards
+Complete the main ending and choose **Open your eyes** for the **Lost Lamb** feat and **Dream Scar** trait. Feats retain the game's restrictions on cheats, debug and game modes.
 
-After both branches, complete the main ending and **Open your eyes** to gain the **Lost Lamb** feat and **Dream Scar** trait. The feat follows vanilla restrictions for cheats, debug and game modes. The trait depends on story completion.
+**Dream Scar reduces ongoing nightmare stress during sleep by 25%.** It applies to ordinary sleep and sleep after moor abduction, not combat or story stress inside playable nightmares. Replays do not stack it; disabling Lost Lamb stops the effect.
 
-**Dream Scar reduces ongoing nightmare stress during sleep by 25%.** This covers ordinary sleep and sleep after abduction on the moor, not combat or story stress within playable nightmares. Replaying does not stack the effect. Disabling Lost Lamb stops it.
+After the main ending, visit Kylar's room **from 18:00** while Kylar is present and active. **Talk to Kylar about the dream** offers company, a question about the remembered night, or a little space. Most topics take ten minutes; asking for space takes five. Your promises change the wording and responses: reassurance can help affection and jealousy, while repeating the visitor's assurance can upset Kylar.
 
-After the main ending, **from 18:00**, **Talk to Kylar about the dream** appears while Kylar is active and in the room. You can return on a later evening.
-
-| Choice                                 | Duration     | Effect                                                                                                                          |
-| -------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| Sit with Kylar for a while             | Ten minutes  | Increases affection, reduces jealousy and eases your stress                                                                     |
-| Promise that nobody will take you away | Ten minutes  | Replaces ordinary company after giving the voice your name. Reassures Kylar more strongly that nobody will take you away        |
-| Ask about the night Kylar remembers    | Ten minutes  | Increases affection and eases stress. Gaps in the recollection remain                                                           |
-| Repeat the visitor's assurance         | Ten minutes  | Replaces the ordinary question while the kitchen promise is still kept. Upsets Kylar, increases jealousy and raises your stress |
-| Ask for a little space                 | Five minutes | Eases your stress. High jealousy makes Kylar more suspicious that you want to leave                                             |
-
-Choose one of three topics: company, the night, or time alone. The wording of the first two depends on your dream promises. **The present conversation resolves once. Replaying neither resets it nor rewrites what you already said.** Opening its page without choosing lets you leave and return later. Kylar's response and later short room descriptions depend on your topic, affection and jealousy. High jealousy takes priority.
-
-### Common questions
-
-| Problem                                    | What to check                                                                                                      |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| No resting entry in the room               | Module enabled, monstrance found, recollection heard, first sleep experienced                                      |
-| Only two dreams are available              | Complete both branches, then return to the doorway for the main choice                                             |
-| No book, drawn-door or signal option       | Earlier games and preparation, current feelings and relevant check outcome                                         |
-| Door listening or washing cups disappeared | Check the dream time. Both have time windows. Other actions remain ways forward                                    |
-| A check failed: must I restart?            | Continue. Explanations, retreat and preparation can still progress                                                 |
-| A game cannot be repeated                  | It is already complete for this dream. Continue through other choices                                              |
-| No feat or trait after waking              | Complete the main ending and open your eyes. Two branches are insufficient. Feats retain vanilla mode restrictions |
-| No conversation about the dream            | Main ending complete, no earlier conversation choice, evening, Kylar present                                       |
+The conversation resolves **once** after you choose a topic. You may leave before choosing and return later. Replaying dreams does not reset a completed conversation. Later room descriptions reflect the choice and Kylar's current relationship; high jealousy takes priority.

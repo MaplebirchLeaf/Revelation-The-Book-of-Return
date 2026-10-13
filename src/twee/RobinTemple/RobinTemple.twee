@@ -28,6 +28,7 @@
 <<widget 'robin-temple-home-link'>>
   <<if maplebirch.get('RobinTemple').canTalk>>
     <<robin-temple-room-link 'home'>>
+    <<secret-promise-talk 'Robin'>>
   <</if>>
 <</widget>>
 
@@ -138,6 +139,18 @@
   <<set _robinWork to maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
     and getRobinLocation() is 'temple' and !$combat and !$nextPassageCheck
     and $exposed lte 0 and $stress lt $stressmax>>
+<</widget>>
+
+<<widget 'robin-temple-prayer-time'>>
+  <<robin-temple-work-check>>
+  <<set _robinPrayerTime to _robinWork and maplebirch.get('RobinTemple').canPray
+    and maplebirch.get('RobinTemple').free(_args[0])>>
+  <<if _robinPrayerTime>>
+    <<set _robinEnd to new DateTime(Time.date).addMinutes(_args[0])>>
+    <<set _robinPrayerTime to _robinEnd.hour lt 20
+      and (($robinlocationoverride?.location is 'temple' and $robinlocationoverride.during.includes(_robinEnd.hour))
+      or (!Time.schoolDay and !Time.isWeekEnd() and _robinEnd.hour lt 16))>>
+  <</if>>
 <</widget>>
 
 <<widget 'robin-temple-examination'>>

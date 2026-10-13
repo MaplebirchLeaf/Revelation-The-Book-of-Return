@@ -1,7 +1,8 @@
 :: RobinTemple Confession Widgets [widget]
 <<widget 'robin-temple-confession-band'>>
   <!-- 原版以 _sydneyStatus 分档，罗宾用信念值对应 belief/doubt/steady。 -->
-  <<set _robinBand to maplebirch.get('RobinTemple').band>>
+  <<set _robinFaith to maplebirch.get('RobinTemple').faith>>
+  <<set _robinBand to _robinFaith gte 20 ? 'belief' : _robinFaith lte -20 ? 'doubt' : 'steady'>>
 <</widget>>
 
 <<widget 'robin-temple-confession-lewd'>>
