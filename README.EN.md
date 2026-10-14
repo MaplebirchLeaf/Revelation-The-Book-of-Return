@@ -6,7 +6,7 @@
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.2.1 includes Robin's temple route, the Confounded Vow, the temple choir, Kylar's Lost Lamb dream, and temple duties, investigations and priest appointments.**
+**Revelation: The Book of Return** is a _Degrees of Lewdity_ story mod built on the [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework). **Version 1.3.0 includes Robin's temple route, the Confounded Vow, the temple choir, Kylar's Lost Lamb dream, and temple duties, investigations and priest appointments.**
 
 ---
 
@@ -14,7 +14,7 @@
 
 - [Installation and dependencies](#installation-and-dependencies)
 - [Modules and game guide](#modules-and-game-guide)
-- [Current content in 1.2.1](#current-content-in-121)
+- [Current content in 1.3.0](#current-content-in-130)
 - [Deadwood Reblooms integration](#deadwood-reblooms-integration)
 - [Future updates](#future-updates)
 - [Acknowledgements and related projects](#acknowledgements-and-related-projects)
@@ -43,7 +43,7 @@ Disabling `RBR` stops all Revelation submodules. The choir can be enabled indepe
 
 With a version of **Deadwood Reblooms** that provides Mod Hints installed and enabled, open **Mod Hints** in the sidebar for Revelation's detailed chapters. The directory provides chapter links, search and module checkboxes. The four chapters cover entry, steps, schedules, rewards and interruptions. You can also read the [English guides](src/assets/hint/EN) in this repository. The **Journal** tracks Robin, choir work, temple duties and Lost Lamb progress. Finished one-off tasks no longer leave pending reminders.
 
-## Current content in 1.2.1
+## Current content in 1.3.0
 
 ### Robin's temple route
 
@@ -63,6 +63,8 @@ Sydney must remain corrupt. The first promised partner determines whether Sydney
 
 Completion grants the **Confounded Vow** and connects a second promise, with subsequent changes to joint examinations. Pursuit, weather, lake conditions and character state affect departure and can interrupt the journey. See the game guide for detailed prerequisites and branches.
 
+After the Lost Lamb main ending and the Confounded Vow, a shared dream can join the native sleep dream pool. It connects the two routes without a separate module. Early waking is available, real-world state is restored through the native lifecycle, and its relationships and possible omens remain uncertain.
+
 ### Temple choir and singing
 
 As an eligible temple member, ask Jordan about the choir in the **temple hall**. After joining, practise breathing, pitch or choral singing, and take part in Sunday's three-part mass. Choose to follow, support the harmony or lead according to your current ability and permission.
@@ -70,6 +72,8 @@ As an eligible temple member, ask Jordan about the choir in the **temple hall**.
 The new **Singing** skill uses vanilla skill grades. Harpy transformation improves performance, while fatigue and alcohol reduce it. Lead permission requires **base Singing at grade B**, as well as the necessary practice, completed services and performance.
 
 Completed services accumulate an allowance addition, **paid with the vanilla allowance after a successful monthly examination when payment is authorised**. There is no immediate Sunday payout. Leaving early uses that day's mass opportunity and provides no addition for the unfinished service. The journal records practice, services, lead permission and pending earnings.
+
+Pub and park performances offer three song sections, with tips affected by Singing, English, audience response and the chosen style. Pirate shanty checks consider both English and Singing. With the relevant Deadwood Reblooms features enabled, home banquets also support performing for guests.
 
 ### Temple duties and priest appointment
 
@@ -80,6 +84,8 @@ Three investigations lead from knocking sounds to root and tentacle encounters. 
 Monks and nuns who complete the vanilla rescue, return the golden spear to the temple and maintain their vows and examination status can undertake the **watch at the lower doorway**. Two non-human battles are joined by tests of the lamps, responses and way back. Return to the warm room for bandaging before Jordan conducts the appointment review.
 
 Sydney and Robin must agree, finish their own lessons and receive the PC's help with the lamps and responses to earn their own watch qualification and interview. The PC may be appointed with them or help later as a priest. School, work, shared-home schedules and temple vows still apply. The bishop's sealed note and the monstrance investigation with Kylar are optional follow-ups.
+
+Further duties include blanket handovers with Robin, archive receipt checks with Sydney and visits to resolved cases. Completing the watch grants Watchkeeper, increasing attack and banishment damage against nonhuman creatures by 20%. Priests can enter the prayer room; eligible duty participants can request warmth and bandaging.
 
 ### Lost Lamb: Kylar's manor dream
 
@@ -106,7 +112,7 @@ The full-harpy singing interaction can also practise Singing. Integrations check
 
 ## Future updates
 
-Version 1.2.1 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
+Version 1.3.0 contains the routes and dream described above, rather than the mod's entire planned scope. Future versions will refine existing routes and introduce more character stories and independent story modules. Release notes and the game guide will document new content and its prerequisites as it arrives.
 
 ## Acknowledgements and related projects
 
@@ -115,7 +121,7 @@ Robin's temple route rebuilds material from the author's earlier Maplebirch mod,
 - [Degrees of Lewdity](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 - [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
 - [Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
-- [1.2.1 release notes](.github/release-notes/v1.2.1.md)
+- [1.3.0 release notes](.github/release-notes/v1.3.0.md)
 
 ## Reporting issues
 
