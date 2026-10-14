@@ -44,9 +44,9 @@
   <<if $RobinTemple.vigil_attending>>
     <<language>>
       <<option 'EN'>>
-        Robin is shivering beside the other initiates. <<nnpc_He 'Robin'>> draws closer to the huddle, trying to keep warm.
+        Robin is shivering nearby. <<nnpc_He 'Robin'>> folds <<nnpc_his 'Robin'>> arms across <<nnpc_his 'Robin'>> chest, trying to hold on to a little warmth.
       <<option 'CN'>>
-        罗宾与其他见习教徒一起发着抖，往人群中靠了靠，试图暖和一点。
+        罗宾在不远处发着抖。<<nnpc_He 'Robin'>>双臂交叉抱在胸前，想留住一点暖意。
     <</language>>
     <br><br>
   <</if>>
@@ -291,7 +291,7 @@
       <<option 'EN'>>
         Robin hugs you both, smiling through tears. "I couldn't have done it without you," <<nnpc_he 'Robin'>> says, looking between you and Sydney.
       <<option 'CN'>>
-        罗宾抱住你们两个，眼里含着泪，脸上却带着笑。“没有你们，我做不到。”<<he>>说着，看向你和悉尼。
+        罗宾抱住你们两个，眼里含着泪，脸上却带着笑。“没有你们，我做不到。”<<nnpc_he 'Robin'>>说着，看向你和悉尼。
     <</language>>
   <<else>>
     <<language>>

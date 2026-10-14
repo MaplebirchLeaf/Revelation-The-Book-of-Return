@@ -210,7 +210,7 @@
     <<elseif $purity gte 500>>
       <<His>> expression remains stern as <<he>> examines you head to toe. "<span class="purple">Your dedication to purity is... sub-par.</span> You should strive to improve yourself."
     <<else>>
-      <<He>> frowns as <<he>> regards you. <span class="red">"A pity. Your purity has faded."</span> <<He>> turns to Jordan. "This one should be made to atone before any such rite is permitted, but the say is not mine." <<set $RobinTemple.evaluation_marks -= 5>>
+      <<He>> frowns as <<he>> regards you. <span class="red">"A pity. Your purity has faded."</span> <<He>> turns to Jordan. "This one should be made to atone before any such rite is permitted, but the decision is not mine." <<set $RobinTemple.evaluation_marks -= 5>>
     <</if>>
     <br><br>
     Jordan nods to the <<monk>>, who bows and leaves the room. "The next section of the examination will require you two to be separated. Please come with me." Jordan leads you into a separate, adjacent room with an identical ornate table. "Please wait here while I administer Robin's part of the exam."
@@ -219,7 +219,7 @@
     <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
     <br>
     <<set $skulduggerydifficulty to 700>>
-    <<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
+    <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
   <<option 'CN'>>
     <<effects>>
     <<he>>仔细地把你打量了一番
@@ -250,7 +250,7 @@
     <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
     <br>
     <<set $skulduggerydifficulty to 700>>
-    <<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
+    <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
 <</language>>
 
 :: RobinTemple Evaluation Questions

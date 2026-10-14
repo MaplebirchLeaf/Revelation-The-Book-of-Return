@@ -124,7 +124,7 @@
     <<socialiseicon 'ask'>><<lanLink ['Tell Robin how the spear journey went', '把取矛的经过告诉罗宾'] 'RobinTemple Spear Return'>><</lanLink>><br>
   <</if>>
   <<if $RobinTemple.donation_day isnot Time.days>>
-    <<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
+    <<skinicon 'give'>><<lanLink ['Make a donation with Robin', '和罗宾一起为神殿捐赠'] 'RobinTemple Donation'>><</lanLink>><br>
   <</if>>
   <<if $RobinTemple.transformation_day isnot Time.days>>
     <<set $RobinTemple.transformation_count to 0>>

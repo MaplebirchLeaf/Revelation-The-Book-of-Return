@@ -249,7 +249,7 @@
             <br><br>
           <</if>>
       <</language>>
-      <<lanLink ['Rest (1:00)', '休息 (1:00)'] 'RobinTemple Penance Trial'>><<pass 60>><<pain -30>><<run maplebirch.get('RobinTemple').punishmentRest()>><</lanLink>><<lllpain>><br>
+      <<bedicon 'zzz'>><<lanLink ['Rest (1:00)', '休息 (1:00)'] 'RobinTemple Penance Trial'>><<pass 60>><<pain -30>><<run maplebirch.get('RobinTemple').punishmentRest()>><</lanLink>><<lllpain>><br>
     <<case 'active'>>
       <<for _punishName, _punishPartner range $RobinTemple.punish.partners>>
         <<capture _punishName _punishPartner>>
@@ -907,7 +907,7 @@
   <</language>>
   <br><br>
 <</if>>
-<<lanLink ['Sleep', '睡觉'] 'RobinTemple Hospital Bed'>><</lanLink>><br>
+<<bedicon 'hospital'>><<lanLink ['Sleep', '睡觉'] 'RobinTemple Hospital Bed'>><</lanLink>><br>
 
 :: RobinTemple Penance Genitals Widgets [widget]
 <<widget 'robin-temple-punishment-genitals'>>

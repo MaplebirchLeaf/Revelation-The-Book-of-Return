@@ -17,7 +17,7 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
   maplebirch.tool.patch.traits.add({
     title: 'General Traits',
     name: () => lanSwitch('Dream Scar', '梦痕'),
-    colour: 'lblue',
+    colour: 'black',
     has: () => Boolean(maplebirch.get('LostLamb')?.reward),
     text: () =>
       lanSwitch('You remember the way back from a dream. The ongoing stress caused by nightmares during sleep is reduced by 25%.', '你记得从梦中归来的路。睡眠中因噩梦持续增加的压力减少 25%。')

@@ -99,7 +99,7 @@
   <<for _plateAmount range [100, 500, 2500]>>
     <<if $money gte _plateAmount>>
       <<capture _plateAmount>>
-        <<lanLink ['Donate £' + _plateAmount / 100, '捐出 £' + _plateAmount / 100] 'RobinTemple Donation Result'>>
+        <<skinicon 'give'>><<lanLink ['Donate £' + _plateAmount / 100, '捐出 £' + _plateAmount / 100] 'RobinTemple Donation Result'>>
           <<set $RobinTemple.donation_amount to 0>>
           <<if $RobinTemple.donation_day isnot Time.days and $money gte _plateAmount and maplebirch.get('RobinTemple').canPray>>
             <<set $RobinTemple.donation_day to Time.days>><<set $RobinTemple.donation_amount to _plateAmount>><<money `_plateAmount * -1`>>

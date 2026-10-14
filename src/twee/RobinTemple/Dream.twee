@@ -1,0 +1,273 @@
+:: RobinTemple Dream Widgets [widget]
+<<widget 'secret-dream-check'>>
+  <<silently>>
+    <<set _secretDreamReady to maplebirch.get('RobinTemple') and maplebirch.get('LostLamb')?.reward
+      and $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'
+      and $RobinTemple.secret.dream.day isnot Time.days and !$RobinTemple.secret.dream.active
+      and !$frozenValues and !$statFreeze and !$replayScene and !$activeNightmare and $combat isnot 1
+      and ['Robin', 'Kylar', 'Sydney'].every(name => C.npc[name].init is 1)>>
+  <</silently>>
+<</widget>>
+
+<<widget 'secret-dream-wake'>>
+  <<if $RobinTemple?.secret?.dream?.active and !$replayScene>>
+    <!-- 原版恢复全部变量；只保留梦的记录，不把梦中关系与物品带回现实。 -->
+    <<set _secretDreamProgress to clone($RobinTemple.secret.dream)>>
+    <<set _secretDreamProgress.active to false>><<set _secretDreamProgress.stage to 0>>
+    <<nightmareEnd>>
+    <<set $RobinTemple.secret.dream to _secretDreamProgress>>
+  <</if>>
+<</widget>>
+
+:: RobinTemple Dream Start
+<<effects>><<secret-dream-check>>
+<<if !$RobinTemple.secret.dream.active and _secretDreamReady>>
+  <<nightmareStart 'revelationFourfold'>>
+  <<set $RobinTemple.secret.dream.active to true>><<set $RobinTemple.secret.dream.day to Time.days>>
+  <<set $RobinTemple.secret.dream.stage to 1>><<set $RobinTemple.secret.dream.round to 0>><<set $RobinTemple.secret.dream.seen to true>>
+<</if>>
+<<if !$RobinTemple.secret.dream.active>>
+  <<include 'Bed'>>
+<<else>>
+  <<set $outside to 0>><<set $location to 'bedroom'>><<set $bus to 'bed'>>
+  <<if $RobinTemple.secret.dream.stage lte 2>>
+    <<set $RobinTemple.secret.dream.stage to 2>>
+    <<endevent>>
+    <<language>>
+      <<option 'EN'>>
+        You are already asleep when the knocking starts. Not at the door. Somewhere above it, in the plaster, the way a house settles when nobody is holding it up.
+        <br><br>
+        The bedroom will not stay the right size. The wardrobe is too far from the bed and the window is too close, and between them is a stretch of wall that was never there when you went to sleep. On that wall is a mirror you do not own.
+        <br><br>
+        Robin is sitting on the edge of the bed with the blanket pulled up to <<nnpc_his 'Robin'>> chin, and does not look like someone who was asleep a moment ago. "You told us about this one," <<nnpc_he 'Robin'>> says. "You said there was a mirror."
+        <br><br>
+        <span class='wraith'>Nothing is reflected in it. Not the room, not the four of you.</span>
+      <<option 'CN'>>
+        敲门声响起时你已经睡着了。不是门。是门上方，在灰泥里，像一所没人撑着的房子在往下沉。
+        <br><br>
+        卧室不肯保持正确的大小。衣柜离床太远，窗户又太近，两者之间多出一段你睡下时并不存在的墙。墙上挂着一面不属于你的镜子。
+        <br><br>
+        罗宾坐在床边，毯子一直拉到下巴，看上去一点也不像刚才还睡着的人。“这个你跟我们讲过。”<<nnpc_he 'Robin'>>说，“你说过有一面镜子。”
+        <br><br>
+        <span class='wraith'>镜子里什么都没有映出来。没有房间，没有你们四个人。</span>
+    <</language>>
+    <br><br>
+    <<investigateicon>><<lanLink ['Look into it', '朝镜子里看'] 'RobinTemple Dream Mirror'>><</lanLink>><br>
+    <<getouticon>><<lanLink ['Try to wake up', '试着醒过来'] 'RobinTemple Dream Wake'>><</lanLink>><br>
+  <<else>>
+    <<include 'RobinTemple Dream Wake'>>
+  <</if>>
+<</if>>
+
+:: RobinTemple Dream Mirror
+<<set $outside to 0>><<set $location to 'bedroom'>><<set $bus to 'bed'>><<effects>>
+<<if !$RobinTemple.secret.dream.active>>
+  <<include 'Bedroom'>>
+<<else>>
+  <<if $RobinTemple.secret.dream.stage is 2>>
+    <<set $RobinTemple.secret.dream.stage to 3>>
+    <<endevent>><<clearnpc>><<npc Robin 1>><<npc Kylar 2>><<npc Sydney 3>><<person1>>
+    <<hallucinogen 60>><<arousal 300>><<garousal>>
+  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      The glass does not show the others either. It shows a room you have stood in before, with six narrow windows set high, and a floor of warped water, and channels cut into the walls that are full of something warm.
+      <br><br>
+      "That is not our room," Robin says. <<nnpc_He 'Robin'>> is looking at the stone in the middle, and <<nnpc_he 'Robin'>> is shaking, and <<nnpc_he 'Robin'>> is <span class="purple">unable to look away</span>.
+      <br><br>
+      Kylar has <<nnpc_his 'Kylar'>> back flat against your wardrobe and <<nnpc_his 'Kylar'>> hands flat against it on either side, which is how <<nnpc_he 'Kylar'>> stands in a house <<nnpc_he 'Kylar'>> does not trust. "You have been down there," <<nnpc_he 'Kylar'>> says. It is not a question and <<nnpc_he 'Kylar'>> does not sound pleased about knowing.
+      <br><br>
+      Sydney walks up to the mirror and puts one hand on it. "It is not showing us the temple," <<nnpc_he 'Sydney'>> says. "It is showing us a room that is trying to be the temple and cannot finish. That is a different thing."
+      <br><br>
+      <span class='red'>Four of you came in. Only three have left a name somewhere that will take one.</span>
+    <<option 'CN'>>
+      镜面同样没有映出别人。它映出一间你站过的屋子：六扇窄窗开得很高，地面是扭曲的水，墙上的沟槽里流满了温热的东西。
+      <br><br>
+      “那不是我们的房间。”罗宾说。<<nnpc_He 'Robin'>>看着中间那块石头，<<nnpc_he 'Robin'>>在抖，可<<nnpc_he 'Robin'>>还是<span class="purple">移不开视线</span>。
+      <br><br>
+      凯拉尔整个背贴在衣柜上，两只手分按在两侧——这是<<nnpc_he 'Kylar'>>待在不信任的房子里时的站法。“你去过那里。”<<nnpc_he 'Kylar'>>说。这不是个问题，<<nnpc_he 'Kylar'>>也不像乐意知道答案。
+      <br><br>
+      悉尼走到镜子前，一只手按上去。“它给我们看的不是神殿，”<<nnpc_he 'Sydney'>>说，“是一间正在努力变成神殿、却变不完的屋子。这两件事不一样。”
+      <br><br>
+      <span class='red'>进来了四个人。只有三个人把名字留在了会被接住的地方。</span>
+  <</language>>
+  <br><br>
+  <<bedicon 'zzz'>><<lanLink ['Reach through and take them with you', '伸手穿过镜面，把三个人都带走'] 'RobinTemple Dream Round'>><<set $RobinTemple.secret.dream.round to 1>><<set $sexstart to 1>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Pull back before it closes', '在镜面合上之前退回来'] 'RobinTemple Dream Wake'>><</lanLink>><br>
+<</if>>
+
+
+:: RobinTemple Dream Round
+<<set $outside to 0>><<set $location to 'bedroom'>><<set $bus to 'bed'>><<effects>>
+<<run statusCheck('Robin')>>
+<<run statusCheck('Kylar')>>
+<<run statusCheck('Sydney')>>
+<<if !$RobinTemple.secret.dream.active>>
+  <<include 'Bedroom'>>
+<<else>>
+  <<if $sexstart is 1>>
+    <<set $sexstart to 0>>
+    <<undress 'bed'>>
+    <<endevent>><<clearnpc>><<npc Robin 1>><<npc Kylar 2>><<npc Sydney 3>><<person1>>
+    <<consensual>><<set $consensual to 1>><<neutral 1>>
+    <<maninit>><<npcexpose>>
+    <<set $enemyno to 3>><<set $enemynomax to 3>>
+    <<set $enemytrust += 800>><<set $enemyarousalmax to 1400>>
+  <</if>>
+  <<set _round to $RobinTemple.secret.dream.round>>
+  <<if $RobinTemple.secret.dream.stage lt _round + 3>>
+    <<set $RobinTemple.secret.dream.stage to _round + 3>>
+    <<hallucinogen `[40, 60, 90, 110][Math.clamp(_round - 1, 0, 3)]`>><<arousal 300>><<garousal>>
+  <</if>>
+  <<switch _round>>
+    <<case 1>>
+      <<language>>
+        <<option 'EN'>>
+          The mirror is behind you now and the room has stopped pretending to be your bedroom. It is the six windows. It is the warped water. It is warm underfoot.
+          <br><br>
+          Robin is closest to you, and <<nnpc_he 'Robin'>> is holding the hem of <<nnpc_his 'Robin'>> shirt the way <<nnpc_he 'Robin'>> holds a door open for someone else.
+          <br><br>
+          Kylar has put <<nnpc_himself 'Kylar'>> between you and the stair, which means <<nnpc_he 'Kylar'>> has decided the stair is the way out and that nobody else gets to use it first.
+          <br><br>
+          Sydney has not moved at all. <<nnpc_He 'Sydney'>> is reading the carvings the way <<nnpc_he 'Sydney'>> reads a shelf, and <<nnpc_he 'Sydney'>> has not said a word about the fact that <span class="lewd">there are four of you</span>.
+        <<option 'CN'>>
+          镜子现在在你身后，屋子也不再假装是你的卧室。六扇窗。扭曲的水面。脚下是温的。
+          <br><br>
+          罗宾离你最近，<<nnpc_he 'Robin'>>捏着自己衣角，就像<<nnpc_he 'Robin'>>替别人扶着一扇门。
+          <br><br>
+          凯拉尔把自己挪到了你和断阶之间，意思是<<nnpc_he 'Kylar'>>已经认定断阶是出口，而别人不许先走。
+          <br><br>
+          悉尼一动没动。<<nnpc_He 'Sydney'>>在读墙上的雕纹，像在读书架，而且对<span class="lewd">「你们是四个人」</span>这件事一个字都没说。
+      <</language>>
+      <br><br>
+    <<case 2>>
+      <<language>>
+        <<option 'EN'>>
+          You did not decide to begin. You are simply in the middle of it, and the water on the floor has climbed to your ankles without getting deeper.
+          <br><br>
+          "Again," Kylar says, into the back of your neck, and it comes out with an edge that is not for you. "You said three names. Count them."
+          <br><br>
+          Robin answers instead, quietly, from somewhere near your ribs. "Four."
+          <br><br>
+          Sydney is the one who stops. <<nnpc_He 'Sydney'>> puts a hand flat on the wet floor and holds it there. "The words are for two," <<nnpc_he 'Sydney'>> says. "They were written for two. I have listened to the whole rite and <span class="lustful">there is no third line</span>. Somebody has been <span class="lustful">filling the gap with people</span>."
+        <<option 'CN'>>
+          你不是决定要开始的。你就已经在中间了，而地上的水已经爬到脚踝，却没有变得更深。
+          <br><br>
+          “再来。”凯拉尔贴着你后颈说，那句话里带着刃口，而那刃口不是冲你的。“你说了三个名字。数一遍。”
+          <br><br>
+          罗宾替你答了，声音很轻，从你肋边传来。“四个。”
+          <br><br>
+          停下来的是悉尼。<<nnpc_He 'Sydney'>>把手平按在湿地面上，按着不放。“那些话是给两个人写的，”<<nnpc_he 'Sydney'>>说，“整场仪式我都听过了，<span class="lustful">没有第三句</span>。有人一直在<span class="lustful">用活人补那个缺口</span>。”
+      <</language>>
+      <br><br>
+    <<case 3>>
+      <<language>>
+        <<option 'EN'>>
+          The channels run warm, and the room answers in a voice that is not any of the three of them.
+          <br>
+          "As two, as one."
+          <br>
+          <span class="lustful">"As two, as one."</span>
+          <br><br>
+          Robin stops moving. <<nnpc_He 'Robin'>> says your name and it arrives from the wall. Kylar has <<nnpc_his 'Kylar'>> face pressed into your shoulder and is laughing in a way that has nothing in it.
+          <br><br>
+          "It is not counting us," Sydney says, and he is very close to your ear and very level. "<span class="lustful">It is counting two, and calling the rest of us the same person.</span>"
+        <<option 'CN'>>
+          沟槽里是温的，屋子用一个不属于他们三个中任何人的声音回答。
+          <br>
+          “如两者，如一体。”
+          <br>
+          <span class="lustful">“如两者，如一体。”</span>
+          <br><br>
+          罗宾停住了。<<nnpc_He 'Robin'>>叫你的名字，声音从墙上过来。凯拉尔把脸埋在你肩上，笑得很空。
+          <br><br>
+          “它不是在数我们。”悉尼说。<<nnpc_He 'Sydney'>>贴着你耳朵，语气平得可怕。<span class="lustful">“它在数两个，然后说剩下的都是同一个人。”</span>
+      <</language>>
+      <br><br>
+    <<default>>
+      <<language>>
+        <<option 'EN'>>
+          "We are as one," Robin says, and it is <span class="lustful">the wrong mouth for the sentence</span>. Kylar answers <<nnpc_him 'Robin'>> from across the room, in the cadence of the temple rite, and neither of them appears to notice.
+          <br><br>
+          "As one," Sydney agrees, and then, in <<nnpc_his 'Sydney'>> ordinary voice, <span class="lustful">as if surfacing for one breath</span>: <span class="lustful">"This is where I stop. Do not let it write the next one without me."</span>
+          <br><br>
+          The six windows are warm now. Four bodies, and the floor still repeating a line that was <span class="lustful">only ever given room for two people</span>.
+        <<option 'CN'>>
+          “我们已为一体。”罗宾说，<span class="lustful">那句话配错了嘴</span>。凯拉尔在屋子另一头接了下去，用的是神殿仪式的调子，两个人似乎都没发现。
+          <br><br>
+          “为一体。”悉尼应了一声，然后换回<<nnpc_his 'Sydney'>>平常那个嗓子，<span class="lustful">像只上来换了一口气</span>：<span class="lustful">“我到这里为止。别让它在我不在的时候写下句。”</span>
+          <br><br>
+          六扇窗现在是温的。四具身体，而地板还在重复一句<span class="lustful">只给两个人留过位置</span>的话。
+      <</language>>
+  <</switch>>
+  <br><br>
+  <<effects>><<effectsman>><<man>><<stateman>>
+  <br><br>
+  <<actionsman>>
+  <<if _combatend>>
+    <span id='next'><<lanLink ['Next', '继续'] 'RobinTemple Dream Finish'>><</lanLink>></span><<nexttext>>
+  <<else>>
+    <<capture _round>><span id='next'><<lanLink ['Next', '继续'] 'RobinTemple Dream Round'>><<if $RobinTemple.secret.dream.round is _round>><<set $RobinTemple.secret.dream.round += 1>><</if>><</lanLink>></span><</capture>><<nexttext>>
+  <</if>>
+  <br>
+  <<getouticon>><<lanLink ['Try to wake up', '试着醒过来'] 'RobinTemple Dream Wake'>><</lanLink>><br>
+<</if>>
+
+:: RobinTemple Dream Finish
+<<set $outside to 0>><<set $location to 'bedroom'>><<set $bus to 'bed'>><<effects>>
+<<if !$RobinTemple.secret.dream.active>>
+  <<include 'Bedroom'>>
+<<else>>
+  <<if $RobinTemple.secret.dream.stage gte 4>>
+    <<set $RobinTemple.secret.dream.stage to -1>>
+    <<ejaculation>><<storeon 'bed'>><<clotheson>><<endcombat>>
+  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      The water drains out of the room all at once, and the six windows go grey, and there are still four of you on the floor.
+      <br><br>
+      Robin is folded against your side and out of breath, and <<nnpc_he 'Robin'>> finds your hand before <<nnpc_he 'Robin'>> finds anything else. "You are still you," <<nnpc_he 'Robin'>> says. <<nnpc_He 'Robin'>> is checking, not asking.
+      <br><br>
+      Kylar is sitting up with <<nnpc_his 'Kylar'>> arms locked around <<nnpc_his 'Kylar'>> knees, watching all three of you at once, which is the only way <<nnpc_he 'Kylar'>> can watch anybody. "Which one of us did it pick," <<nnpc_he 'Kylar'>> says. Nobody answers, and <<nnpc_he 'Kylar'>> does not ask twice.
+      <br><br>
+      Sydney is already dressed from the waist down and is looking at the wall, at the carvings, at the place where the third line should have been. "We gave it four people and it kept saying two," <<nnpc_he 'Sydney'>> says. "Bring me here again and I will read that wall until I find out why."
+      <br><br>
+      <span class='red'>The mirror is back. It is showing the bedroom now, and the bedroom is showing the four of you asleep in it.</span>
+    <<option 'CN'>>
+      水一下子就退光了。六扇窗变回灰色，地板上还是四个人。
+      <br><br>
+      罗宾蜷在你身边喘气，<<nnpc_he 'Robin'>>先找到的是你的手，然后才找别的东西。“你还是你。”<<nnpc_he 'Robin'>>说。<<nnpc_He 'Robin'>>是在确认，不是在问。
+      <br><br>
+      凯拉尔坐起来，两臂锁着膝盖，同时盯着你们三个——<<nnpc_he 'Kylar'>>看别人从来只能用这种看法。“它挑了我们哪一个。”<<nnpc_he 'Kylar'>>说。没有人回答，<<nnpc_he 'Kylar'>>也没有问第二遍。
+      <br><br>
+      悉尼下半身已经穿好了，正看着墙，看着雕纹，看着本该有第三句话的那个位置。“我们给了它四个人，它一直在说两个。”<<nnpc_he 'Sydney'>>说，“再把我带来一次，我就在这面墙上把原因读出来。”
+      <br><br>
+      <span class='red'>镜子回来了。它映出的是卧室，而卧室里映着你们四个正睡在其中。</span>
+  <</language>>
+  <br><br>
+  <<getouticon>><<lanLink ['Wake up', '醒过来'] 'RobinTemple Dream Wake'>><</lanLink>><br>
+<</if>>
+
+
+:: RobinTemple Dream Wake
+<<secret-dream-wake>><<effects>><<endevent>>
+<<language>>
+  <<option 'EN'>>
+    You wake with the blanket down around your waist and the room exactly the size it should be. Nobody is beside you. The lamp is still on because you left it on.
+    <br><br>
+    The glass on the dressing table holds the room, and the wardrobe, and you. The knocking has stopped. Whatever it was counting has stopped counting, or has only stopped doing it where you can hear.
+    <br><br>
+    You are alone with the memory of a room that brought Robin, Kylar and Sydney together. You cannot tell how much of it came from memory, and how much you imagined.
+    <br><br>
+    <span class="teal">You cannot tell whether it was only a dream. Its details are already beginning to fade.</span>
+  <<option 'CN'>>
+    你醒来时毯子滑到腰上，房间正好是该有的大小。身边没有人。灯还亮着，因为你没关。
+    <br><br>
+    梳妆台上的那面玻璃里，只有这间屋子、衣柜，还有你。敲门声停了。那个在数数的东西也停了——或者只是不再停在你听得见的地方。
+    <br><br>
+    你独自躺在这里，还记得那间把罗宾、凯拉尔与悉尼带到一起的屋子。你分不清其中有多少来自记忆，又有多少是自己的想象。
+    <br><br>
+    <span class="teal">你还说不清，那是否只是一场梦。细节已经开始淡去。</span>
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Sit up', '坐起来'] ($nightmareExit ?? 'Bed')>><<unset $nightmareExit>><<endevent>><</lanLink>><br>

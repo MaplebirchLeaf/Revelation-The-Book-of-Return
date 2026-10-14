@@ -540,7 +540,8 @@
         The outrage in <<his>> voice betrays <<his>> identity. <span class="pink">It's Robin.</span> <<He>> starts to leave the booth. <<grace -2>><<lgrace>>
         <br><br>
         <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
-        <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
+        <<set _robinHim to wikifier('him').textContent>>
+        <<lanLink ['Let ' + _robinHim + ' leave', '让' + _robinHim + '离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
       <<option 'CN'>>
         <<if _robinBand is 'doubt'>>
           “你在说什么？你不能这样。我要对你再说一遍——我是有对象的，死变态。”
@@ -549,8 +550,9 @@
         <</if>>
         <<his>>声音中的幽愤暴露了<<his>>的真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<grace -2>><<lgrace>>
         <br><br>
-        <<lanLink ['现身', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
-        <<lanLink ['让<<him>>离开', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
+        <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
+        <<set _robinHim to wikifier('him').textContent>>
+        <<lanLink ['Let ' + _robinHim + ' leave', '让' + _robinHim + '离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
     <</language>>
   <<case 'robin_love'>>
     <<language>>

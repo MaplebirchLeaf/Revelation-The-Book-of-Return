@@ -26,7 +26,9 @@
 <</widget>>
 
 <<widget 'robin-temple-home-link'>>
-  <<if maplebirch.get('RobinTemple').canTalk>>
+  <<if maplebirch.get('RobinTemple').canTalk
+      and Array.from(document.querySelectorAll('#passage-content .macro-link[data-passage]'))
+        .some(link => link.dataset.passage === maplebirch.get('Finance').realEstate.current?.street)>>
     <<robin-temple-room-link 'home'>>
     <<secret-promise-talk 'Robin'>>
   <</if>>
@@ -61,7 +63,7 @@
       你来到罗宾的房间。门上的字条写着，<<he>>去了神殿。
   <</language>>
   <br><br>
-  <<main_hall_icon>><<lanLink ['Return to the main hall (0:01)', '返回孤儿院大厅 (0:01)'] 'Orphanage'>><<pass 1>><</lanLink>><br>
+  <<main_hall_icon>><<lanLink ['Return to the main hall', '返回孤儿院大厅'] 'Orphanage'>><</lanLink>><br>
 <</widget>>
 
 <<widget 'robin-temple-room-link'>>
@@ -112,8 +114,7 @@
     <<elseif maplebirch.get('RobinTemple').member>>
       <<if maplebirch.get('RobinTemple').bunk>>
         <<icon 'temple/robin-quarters.png'>>
-        <<lanLink ["Robin's bunk (0:01)", '罗宾的床铺 (0:01)'] 'RobinTemple Bunk'>>
-          <<pass 1>>
+        <<lanLink ["Robin's bunk", '罗宾的床铺'] 'RobinTemple Bunk'>>
         <</lanLink>><br>
       <<else>>
         <<socialiseicon 'ask'>><<lanLink ['Robin', '罗宾'] 'RobinTemple Corner'>><</lanLink>><br>

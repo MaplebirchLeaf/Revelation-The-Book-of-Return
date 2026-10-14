@@ -12,6 +12,27 @@ import TempleDuties from './TempleDuties';
 
   if (maplebirch.get('RBR')) Tips(maplebirch);
 
+  // 梦属于誓约的后续；停用模块或离开梦境时仍沿原版噩梦流程恢复现实。
+  maplebirch.tool.addTo('Header', () => {
+    if (!V.RobinTemple?.secret?.dream?.active || V.replayScene) return;
+    if (maplebirch.get('RobinTemple') && maplebirch.get('LostLamb') && maplebirch.SugarCube.State.passage.startsWith('RobinTemple Dream ')) return;
+    new maplebirch.SugarCube.Wikifier(null, '<<secret-dream-wake>>');
+  });
+  if (maplebirch.get('RobinTemple') && maplebirch.get('LostLamb')) {
+    maplebirch.tool.inject({
+      widgetPassage: {
+        // 只扩展原版候选池，保留睡眠时长、其它噩梦及强制睡眠事件的优先级。
+        'Widgets Nightmares': [
+          {
+            src: '<<if $_possibleNightmares.length gte 1>>',
+            applybefore: '<<secret-dream-check>><<if _secretDreamReady>><<set $_possibleNightmares.pushUnique("RobinTemple Dream Start")>><</if>>\n',
+            expected: 1
+          }
+        ]
+      }
+    });
+  }
+
   // 入口只接入原版正常操作分支，月检、强制事件和昏倒页不开放额外链接。
   // 各模块共享标记，由 LinkZone 排列入口。
   if (maplebirch.get('RobinTemple') || maplebirch.get('TempleChoir') || maplebirch.get('TempleDuties')) {

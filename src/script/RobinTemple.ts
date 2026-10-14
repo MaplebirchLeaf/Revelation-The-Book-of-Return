@@ -49,19 +49,16 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
 
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' }, { widget: 'robin-temple-hall-link', passage: 'Temple' });
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'secret-day-link', passage: 'Temple' });
+  // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
 
-  // 守夜对白放在原版选择前，保留涉及原句替换与判定的精确补丁。
+  // 结果补充放在原版选择前；试炼中的反应在正文对应位置注入。
   maplebirch.tool.addTo(
     'BeforeLinkZone',
-    { widget: 'robin-temple-vigil-arrival', passage: 'Temple Vigil 3' },
-    { widget: 'robin-temple-vigil-cold', passage: 'Temple Vigil 7' },
-    { widget: 'robin-temple-vigil-whisper', passage: 'Temple Vigil 8' },
     { widget: 'robin-temple-vigil-bell', passage: 'Temple Vigil 9' },
     { widget: 'robin-temple-vigil-pyre', passage: 'Temple Vigil 10' },
     { widget: 'robin-temple-vigil-failed', passage: 'Temple Vigil Refuse 2' },
-    { widget: 'robin-temple-vigil-focus', passage: 'Temple Vigil Focus' },
-    { widget: 'robin-temple-vigil-yield', passage: 'Temple Vigil Yield' },
     { widget: 'robin-temple-vigil-failure', passage: ['Temple Vigil End', 'Temple Vigil End Sydney'] },
     { widget: 'robin-temple-vigil-return', passage: ['Temple Vigil Refuse 2', 'Temple Vigil 15', 'Temple Vigil 15 Sydney', 'Temple Vigil End 2', 'Temple Vigil End Sydney 2'] }
   );
@@ -117,7 +114,16 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 1
         }
       ],
+      'Temple Vigil 3': [{ src: '<<stress 2>><<gstress>>', applyafter: '<<robin-temple-vigil-arrival>>', expected: 1 }],
+      'Temple Vigil 7': [
+        {
+          src: "<<if (currentSkillValue('willpower') / 10) gte ($pain + random(0, 10))>>",
+          applybefore: '<<robin-temple-vigil-cold>>',
+          expected: 1
+        }
+      ],
       'Temple Vigil 8': [
+        { src: '<<stress 6>><<trauma 6>><<gstress>><<gtrauma>>', applyafter: '<<robin-temple-vigil-whisper>>', expected: 1 },
         {
           srcmatch: /The four of you|你们四人/,
           to: '<<robin-temple-vigil-group>>',
@@ -168,6 +174,8 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 2
         }
       ],
+      'Temple Vigil Focus': [{ srcmatch: /Then the flame vanishes\.|然后，火焰消逝/, applybefore: '<<robin-temple-vigil-focus>>', expected: 1 }],
+      'Temple Vigil Yield': [{ srcmatch: /Then the flame vanishes\.|然后，火焰消逝/, applybefore: '<<robin-temple-vigil-yield>>', expected: 1 }],
       'Temple Confess': [
         // 在怨灵清空事件池之前添加罗宾告解事件。
         {
@@ -272,17 +280,22 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
         // 扩展誓约伴侣比较，保留原版及其他模组追加的条件。
         {
           srcmatchgroup: /\$templePromised isnot \$_taker/g,
-          applyafter: ' and !($RobinTemple.templePromised is "Robin" and $_taker is "Robin")',
+          applyafter:
+            ' and !($RobinTemple.templePromised is "Robin" and $_taker is "Robin") and !(maplebirch.get("RobinTemple")?.secret.protectsRiteVows' +
+            ' and (["Robin", "Sydney"].includes($_taker) or (Array.isArray(_args[0]) and _args[0].length is 2' +
+            ' and ["Robin", "Sydney"].includes($_npc?.fullDescription) and ["Robin", "Sydney"].includes($_npc2?.fullDescription)' +
+            ' and $_npc.fullDescription isnot $_npc2.fullDescription)))',
           expected: 2
         },
         {
           src: '$templePromised isnot _args[0]',
-          applyafter: ' and !($RobinTemple.templePromised is "Robin" and _args[0] is "Robin")',
+          applyafter: ' and !($RobinTemple.templePromised is "Robin" and _args[0] is "Robin") and !(maplebirch.get("RobinTemple")?.secret.protectsRiteVows and ["Robin", "Sydney"].includes(_args[0]))',
           expected: 1
         },
         {
           src: '$templePromised isnot $_npc.fullDescription',
-          applyafter: ' and !($RobinTemple.templePromised is "Robin" and $_npc.fullDescription is "Robin")',
+          applyafter:
+            ' and !($RobinTemple.templePromised is "Robin" and $_npc.fullDescription is "Robin") and !(maplebirch.get("RobinTemple")?.secret.protectsRiteVows and ["Robin", "Sydney"].includes($_npc.fullDescription))',
           expected: 1
         }
       ]

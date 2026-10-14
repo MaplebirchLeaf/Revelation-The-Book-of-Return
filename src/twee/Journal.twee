@@ -417,6 +417,22 @@
 
 <!-- 混乱誓约 -->
 <<widget 'secret-promise-journal'>>
+  <<if $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'
+      and ['none', 'meal', 'records'].includes($RobinTemple.secret.followup)>>
+    <<revelation-card 'Daylight plans' '白日约定'>>
+      <ul class='journal'>
+        <<if $RobinTemple.secret.followup is 'none'>>
+          <li><<lanSwitch 'Robin asked to eat together; Sydney wants to read the notebook in daylight.' '罗宾约你一起吃饭；悉尼想在白天重读笔记。'>></li>
+        <<elseif $RobinTemple.secret.followup is 'meal'>>
+          <li><<lanSwitch 'The meal is over. Compare your accounts with both companions.' '一起吃过饭了。和两人核对各自的记录。'>></li>
+        <<else>>
+          <li><<lanSwitch 'You agreed to check with one another before following a voice.' '你们约好，跟随声音前，先问过身边的人。'>></li>
+        <</if>>
+        <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions’ next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
+      </ul>
+    <</revelation-card>>
+    <hr>
+  <</if>>
   <<if !$RobinTemple.dual_promise and !$RobinTemple.secret.rite_done
       and $RobinTemple.secret.stage isnot 'complete'
       and (maplebirch.get('RobinTemple').secret.known or $RobinTemple.secret.stage isnot 'none')>>

@@ -125,6 +125,26 @@ export default class SecretPromise {
     );
   }
 
+  /** 首次仪式的第二位尚未登记；只在已同意的双人战斗中保留三份完整誓言。 */
+  public get protectsRiteVows(): boolean {
+    const s = this.state;
+    return Boolean(
+      this.temple.core.get('RobinTemple') &&
+      s.stage === 'ritual' &&
+      s.rite_active === true &&
+      V.combat === 1 &&
+      V.enemytype === 'man' &&
+      V.consensual === 1 &&
+      ((V.passage === 'RobinTemple Secret Sex' && s.rite_stage === 4) || (V.passage === 'RobinTemple Secret Madness' && s.rite_stage === 7)) &&
+      V.player.virginity.temple === true &&
+      C.npc.Robin.virginity.temple === true &&
+      C.npc.Sydney.virginity.temple === true &&
+      V.NPCList.some((npc: { fullDescription: string; virginity: { temple: boolean | string } }) => npc.fullDescription === 'Robin' && npc.virginity.temple === true) &&
+      V.NPCList.some((npc: { fullDescription: string; virginity: { temple: boolean | string } }) => npc.fullDescription === 'Sydney' && npc.virginity.temple === true) &&
+      ((s.first === 'Robin' && V.RobinTemple.templePromised === 'Robin' && !V.templePromised) || (s.first === 'Sydney' && V.templePromised === 'Sydney' && !V.RobinTemple.templePromised))
+    );
+  }
+
   public get active(): boolean {
     return (
       ['travelling', 'decision', 'ritual'].includes(this.state.stage) &&
@@ -132,7 +152,8 @@ export default class SecretPromise {
       this.state.night === Time.days &&
       ((Time.hour >= 21 && Time.isBloodMoon()) || Time.hour < 5) &&
       this.eligible &&
-      (this.state.stage !== 'ritual' || (this.wants.Robin && this.wants.Sydney)) &&
+      // 开始前重新确认欲望；仪式已经开始后，正常消耗欲望不撤销先前的回答。
+      (this.state.stage !== 'ritual' || this.state.rite_active || (this.wants.Robin && this.wants.Sydney)) &&
       (this.state.stage === 'decision' || (this.state.prepared && this.state.robin_day >= 0 && this.state.sydney_day >= 0)) &&
       V.stress < V.stressmax - 12 &&
       V.pain < 50 &&
@@ -187,6 +208,7 @@ export default class SecretPromise {
       this.state.prepared = true;
     } else if (this.state.stage !== 'travelling' || !this.settled || this.state.robin_day < this.state.witness_day + 3 || this.state.sydney_day < this.state.witness_day + 3) return false;
     this.state.stage = 'ritual';
+    this.state.rite_round = 0;
     return true;
   }
 
@@ -222,6 +244,27 @@ export default class SecretPromise {
   public choose(choice: 'burden' | 'exit'): boolean {
     if (!this.active || this.state.stage !== 'ritual' || (choice === 'burden' ? this.state.trial !== '' : this.state.trial !== 'burden')) return false;
     this.state.trial = choice;
+    return true;
+  }
+
+  public advance(stage: 1 | 2 | 3 | 4 | 5 | 6 | 7): boolean {
+    if (!this.state.rite_active) return false;
+    if (this.state.rite_stage >= stage) return false;
+    this.state.rite_stage = stage;
+    return true;
+  }
+
+  /** 同席阶段再走一轮。与祈祷室 loveDrunk 同构，台词与致幻随轮次加深。 */
+  public nextRound(): number {
+    this.state.rite_round += 1;
+    return this.state.rite_round;
+  }
+
+  public closeRite(): boolean {
+    if (!this.state.rite_active) return false;
+    this.state.rite_active = false;
+    this.state.rite_stage = 0;
+    // rite_round 保留：岸上的「再陪一会儿」要接着往下数，不退回第一轮。
     return true;
   }
 

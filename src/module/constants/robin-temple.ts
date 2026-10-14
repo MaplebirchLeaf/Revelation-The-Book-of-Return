@@ -51,8 +51,14 @@ export interface SecretPromiseState {
   trial: '' | 'burden' | 'exit';
   /** 岸边后续同席的进行状态，读档后仍能回到该场景。 */
   rite_active: boolean;
+  /** 亵渎仪式阶段。0 未开始，1 下沉，2 触手，3 致幻，4 同席，5 再下潜，6 合唱，7 收束。 */
+  rite_stage: number;
+  /** 同席阶段的连续次数。与祈祷室的 loveDrunk 同构，每次重入递增，驱动台词与致幻加深。 */
+  rite_round: number;
   /** 完成誓约后，由岸上的后日谈消费此标记以免重复结算。 */
   rite_done: boolean;
+  followup: 'none' | 'meal' | 'records' | 'complete' | 'declined';
+  dream: { active: boolean; day: number; stage: number; round: number; seen: boolean };
 }
 
 export interface RobinTempleState {
@@ -167,7 +173,11 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
     night: -1,
     trial: '',
     rite_active: false,
-    rite_done: false
+    rite_stage: 0,
+    rite_round: 0,
+    rite_done: false,
+    followup: 'none',
+    dream: { active: false, day: -1, stage: 0, round: 0, seen: false }
   },
   punish: null,
   confession_day: -1,

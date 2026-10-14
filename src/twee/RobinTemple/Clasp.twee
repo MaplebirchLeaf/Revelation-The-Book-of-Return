@@ -73,9 +73,9 @@
     <<if maplebirch.get('RobinTemple').claspFee gt 0>>
       <<language>>
         <<option 'EN'>>
-          <span class='teal'>Without a promise, Jordan asks for an £80 donation to remove a virgin's temple fitting. Removing it does not release Robin from the vow.</span>
+          <span class='teal'>Without a promise, Jordan asks for an <span class='gold'>£80</span> donation to remove a virgin's temple fitting. Removing it does not release Robin from the vow.</span>
         <<option 'CN'>>
-          <span class='teal'>尚未承诺、仍保有初次贞洁时，约旦要求捐赠 £80 才会拆除神殿器具。取下它不代表罗宾可以违背誓言。</span>
+          <span class='teal'>尚未承诺、仍保有初次贞洁时，约旦要求捐赠 <span class='gold'>£80</span> 才会拆除神殿器具。取下它不代表罗宾可以违背誓言。</span>
       <</language>><br><br>
     <</if>>
     <<if $money gte maplebirch.get('RobinTemple').claspFee>>

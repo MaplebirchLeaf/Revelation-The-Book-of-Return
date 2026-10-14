@@ -26,23 +26,32 @@ export default function DoLX(core: typeof window.maplebirch): void {
     // 罗宾月检与共同月检共用这个 widget，沿用当前 DoLX 页面里的原生公式。
     const formula = data.passageDataItems.map.get('Temple Test')?.content.match(/<<set _templeAllowance to [^\r\n]+?>>/)?.[0];
     if (core.get('RobinTemple') && formula) {
-      core.tool.inject({
-        widgetPassage: {
-          'RobinTemple Examination Widgets': [
-            { src: '<<if !$RobinTemple.monthly_checked>>', applyafter: formula, expected: 1 },
-            {
-              srcmatch: /maplebirch\.get\('TempleChoir'\)\?\.allowance \?\? \(\$grace \* 4000\)/g,
-              to: "(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))",
-              expected: 6
-            },
-            {
-              src: "<<money `(maplebirch.get('TempleChoir')?.settle() ?? ($grace * 4000))`>>",
-              to: "<<money `(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))` \"templeAllowance\" { divineTfAdjusted: true }>><<if maplebirch.get('TempleChoir')>><<set $TempleChoir.bonus to 0>><</if>>",
-              expected: 1
-            }
-          ]
+      // preparePatch 时模组 Twee 尚未合并到游戏，必须修改等待合并的自有缓存。
+      const cache = core.modUtils.getMod('revelation-the-book-of-return')?.cache;
+      if (!cache) return;
+      const title = 'RobinTemple Examination Widgets';
+      const widget = cache.passageDataItems.map.get(title);
+      if (!widget?.tags.includes('widget')) return;
+      const replacements: Array<[RegExp, string, number]> = [
+        [/<<if !\$RobinTemple\.monthly_checked>>/g, `$&${formula}`, 1],
+        [/maplebirch\.get\('TempleChoir'\)\?\.allowance \?\? \(\$grace \* 4000\)/g, "(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))", 6],
+        [
+          /<<money `\(maplebirch\.get\('TempleChoir'\)\?\.settle\(\) \?\? \(\$grace \* 4000\)\)`>>/g,
+          "<<money `(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))` \"templeAllowance\" { divineTfAdjusted: true }>><<if maplebirch.get('TempleChoir')>><<set $TempleChoir.bonus to 0>><</if>>",
+          1
+        ]
+      ];
+      let content = widget.content;
+      for (const [pattern, replacement, expected] of replacements) {
+        const matches = [...content.matchAll(pattern)].length;
+        if (matches !== expected) {
+          core.log(`${title}: 匹配 ${matches}，预期 ${expected} (${pattern})`, 'WARN');
+          return;
         }
-      });
+        content = core.services.addonPlugin.replace(content, [[pattern, replacement]], title);
+      }
+      widget.content = content;
+      cache.passageDataItems.back2Array();
     }
   });
 }

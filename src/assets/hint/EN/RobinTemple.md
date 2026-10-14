@@ -115,6 +115,18 @@ Successful persuasion does not bypass either companion's desire. A lie about dan
 
 Withdrawal keeps the survey and completed investigation but clears decisions and preparation; arrange new private conversations before retrying. Wraith hostility, pursuit, refitted equipment, excessive pain, stress or tiredness can interrupt a journey. **Unyielding Will** resists ear-slime bodily control but does not remove stimulation, costs or the need for both decisions.
 
+### Daylight plans
+
+After the shared rite, meet in the temple hall on a later day after 13:00, with time before 17:00 and both companions free. Share bread and tea, then compare your accounts: thirty minutes each. Their existing schedules, purification and examination requirements still apply.
+
+Keeping these plans eases stress and tiredness and trains History. A later voice can be checked with Sydney's copy and Robin's route to the hall. English, History, Willpower or Physique offer ways to help; neither companion agrees to follow the voice alone. Completing the follow-up or leaving the questions behind removes its journal reminder.
+
+### An echo in sleep
+
+After completing **Confounded Vow** and the **Lost Lamb main ending**, this dream joins the pool used by ordinary nightmare-enabled sleep. It is selected alongside other dreams, with the usual sleep duration and nightmare interval, at most once a day.
+
+The mirror brings the two memories into one room. Continue looking or wake up. Waking restores your real clothing, stats and relationships before the usual nightmare sleep settlement. The dream makes no decisions for the real companions; whether it was only imagination remains uncertain.
+
 ### Optional integrations
 
 | Module                            | Connection                                                                                                                                 |
