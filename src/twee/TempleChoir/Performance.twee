@@ -1,0 +1,233 @@
+:: TempleChoir Performance Widgets [widget]
+<<widget 'temple-choir-shanty-check'>>
+  <!-- 使用原版同一次检定及成功记录，语文与有效歌唱取较佳者；哈比分支保持原状。 -->
+  <<skill_difficulty `Math.max(currentSkillValue('english'), maplebirch.get('TempleChoir').singing)` 'English' 1 1000 'silent'>>
+  <<if !$settings.blindStatsEnabled>>
+    | <span class='orange'><<lanSwitch 'Singing / English' '歌唱／语文'>></span>
+    <<if $settings.skillCheckStyle isnot 'skillname'>>
+      : <<skillDifficultyText _difficulty>>
+    <</if>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-choir-performance-check'>>
+  <<silently>>
+    <<set _performance to $TempleChoir.performance>>
+    <<set _performanceVenue to _args[0] ?? _performance?.venue>>
+    <<set _performanceSafe to Boolean(maplebirch.get('TempleChoir')) and !$combat and !$possessed
+      and !$nextPassageCheck and !$replayScene and !$statFreeze and !$gag and !$controlled
+      and $stress lt $stressmax and $exposed lte 0 and !isPregnancyEnding()>>
+    <<switch _performanceVenue>>
+      <<case 'pub'>>
+        <<set _performanceSafe to _performanceSafe and $passage is 'Pub Music' and $location is 'pub'
+          and Boolean($per_npc.pubMusic) and !$weekly.pubMusic and !$weekly.theft.pub>>
+      <<case 'park'>>
+        <<set _performanceSafe to _performanceSafe and $passage is 'Park' and $location is 'park'
+          and Time.dayState is 'day' and Weather.precipitation isnot 'rain' and !$eventforced>>
+      <<case 'banquet'>>
+        <<set _choirHost to maplebirch.get('Finance')?.realEstate.banquet>>
+        <<set _performanceSafe to _performanceSafe and $passage is 'Deadwood Reblooms Property Banquet Dinner'
+          and Boolean(_choirHost?.valid) and _choirHost?.state.stage is 'dinner' and _choirHost.state.arrived.length gt 0>>
+      <<default>>
+        <<set _performanceSafe to false>>
+    <</switch>>
+    <<set _performanceReady to _performanceSafe and (_performanceVenue is 'banquet' or $TempleChoir.performanceDay isnot Time.days)>>
+    <<set _performanceActive to _performanceSafe and _performance and !_performance.done
+      and _performance.venue is _performanceVenue and _performance.source is $passage>>
+  <</silently>>
+<</widget>>
+
+<<widget 'temple-choir-pub-entry'>>
+  <<temple-choir-performance-entry 'pub'>>
+<</widget>>
+
+<<widget 'temple-choir-performance-entry'>>
+  <<temple-choir-performance-check _args[0]>>
+  <<if !_performanceSafe>><<exit>><</if>>
+  <<run Dynamic.bindTo('temple-choir-performance', '<<temple-choir-performance-view>>')>>
+  <div id='temple-choir-performance'>
+    <<if _performanceActive or (_performance?.done and _performance.source is $passage)>>
+      <<temple-choir-performance-view>>
+    <<elseif _performanceReady>>
+      <<capture _performanceVenue>>
+        <<icon 'temple/hymnbook.png'>>
+        <<lanLink `_performanceVenue is 'pub' ? ['Offer to sing a set with the musician', '提议和乐师合唱几首'] : _performanceVenue is 'park' ? ['Sing for the passers-by', '为路人唱几首歌'] : ['Sing for your guests', '为宾客唱几首歌']`>>
+          <<temple-choir-performance-check _performanceVenue>>
+          <<if _performanceReady>>
+            <<if _performanceVenue isnot 'banquet'>><<set $TempleChoir.performanceDay to Time.days>><</if>>
+            <<set $TempleChoir.performance to {venue: _performanceVenue, source: $passage,
+              round: 0, score: 0, attention: _performanceVenue is 'pub' ? 35 : _performanceVenue is 'park' ? 20 : 40,
+              last: '', tips: 0, done: false}>>
+            <<run Dynamic.render('temple-choir-performance')>>
+          <</if>>
+        <</lanLink>><br>
+      <</capture>>
+    <<elseif _performanceVenue isnot 'banquet'>>
+      <span class='lblue'><<lanSwitch 'You have already performed for tips today.' '今天已经为小费演唱过了。'>></span><br>
+    <</if>>
+  </div>
+<</widget>>
+
+<<widget 'temple-choir-performance-view'>>
+  <<temple-choir-performance-check>>
+  <<if !_performance>><<exit>><</if>>
+  <<if _performance.done>>
+    <<if _performance.venue isnot 'banquet'>>
+      <<if _performance.round gt 0 and _performance.tips gt 0>><<temple-choir-performance-feedback>><br><br><</if>>
+      <<language>>
+        <<option 'EN'>>
+          <<if _performance.round is 0>>You leave the space clear without beginning the set.
+          <<elseif _performance.tips gt 0>>You thank the listeners and collect your share: <span class='gold'><<printmoney _performance.tips>></span>.
+          <<else>>The set was interrupted before you could collect the tips.<</if>>
+        <<option 'CN'>>
+          <<if _performance.round is 0>>你没有开唱，先把位置让了出来。
+          <<elseif _performance.tips gt 0>>你谢过听众，收起分给你的小费：<span class='gold'><<printmoney _performance.tips>></span>。
+          <<else>>演唱被打断了，你没能收取小费。<</if>>
+      <</language>><br>
+    <</if>>
+    <<exit>>
+  <</if>>
+  <<if !_performanceActive>>
+    <<lanSwitch 'You cannot continue the set here.' '眼下无法在这里继续演唱。'>><br>
+    <<exit>>
+  <</if>>
+  <<if _performance.round is 0>>
+    <<language>>
+      <<option 'EN'>>
+        <<switch _performance.venue>>
+          <<case 'pub'>>The musician leaves a gap between verses. "Half an hour? Keep up with me and we'll split what comes in." A few patrons turn their chairs towards you.
+          <<case 'park'>>You choose a stretch of path clear of the playground and spread a cloth for coins. Walkers slow down to hear the opening line; others keep going.
+          <<case 'banquet'>>You wait until the dishes have been passed around, then offer a song. The glasses settle on the table as the room grows quieter.
+        <</switch>>
+      <<option 'CN'>>
+        <<switch _performance.venue>>
+          <<case 'pub'>>乐师在两段之间留了个空隙。“唱半小时？跟上我的节奏，收来的小费分你一份。”几位客人把椅子转向你。
+          <<case 'park'>>你在远离游乐区、不挡路的地方站好，铺开一块接零钱的布。有人放慢脚步，听你唱起第一句，也有人继续往前走。
+          <<case 'banquet'>>你等餐盘传过一圈，提议唱首歌。杯子被放回桌上，屋里渐渐安静下来。
+        <</switch>>
+    <</language>><br><br>
+  <<else>>
+    <<temple-choir-performance-feedback>>
+    <br><br>
+  <</if>>
+  <<lanSwitch 'Set progress: ' '演唱进度：'>><<print _performance.round>> / 3<br>
+  <<lanSwitch 'Audience: ' '听众：'>>
+  <<if _performance.attention gte 70>>
+    <span class='teal'><<lanSwitch 'engrossed' '听得入神'>></span>
+  <<elseif _performance.attention gte 40>>
+    <span class='lblue'><<lanSwitch 'interested' '有了兴致'>></span>
+  <<elseif _performance.attention gte 20>>
+    <span class='blue'><<lanSwitch 'listening' '还在听'>></span>
+  <<else>>
+    <span class='purple'><<lanSwitch 'distracted' '有些分心'>></span>
+  <</if>><br><br>
+  <<temple-choir-performance-action 'steady' `['Keep the melody steady (0:10)', '稳住旋律与节拍 (0:10)']`>>
+  | <span class='lblue'><<lanSwitch 'Easier to sustain' '容易坚持'>></span><br>
+  <<temple-choir-performance-action 'flourish' `['Add flourishes to the melody (0:10)', '给旋律添些转音 (0:10)']`>>
+  | <span class='orange'><<lanSwitch 'Demanding; more tiring' '要求较高；更累'>></span><br>
+  <<temple-choir-performance-action 'chorus' `['Invite the listeners into the chorus (0:10)', '邀请听众跟着应和 (0:10)']`>>
+  | <span class='lblue'><<lanSwitch 'English helps' '语文有帮助'>></span><br><br>
+  <<capture _performance>>
+    <<getouticon>><<lanLink `_performance.venue is 'banquet' ? ['Bring the evening to a close', '结束今晚的招待'] : ['Finish the set and collect your tips', '收尾并收取小费']`>>
+      <<temple-choir-performance-check>>
+      <<if _performanceActive>>
+        <<temple-choir-performance-finish>>
+        <<if _performance.venue is 'banquet'>>
+          <<goto 'Deadwood Reblooms Property Banquet End'>>
+        <<else>>
+          <<run Dynamic.render('temple-choir-performance')>>
+        <</if>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
+<</widget>>
+
+<<widget 'temple-choir-performance-action'>>
+  <<set _songStyle to _args[0], _songRound to _performance.round, _songSource to _performance.source>>
+  <<capture _songStyle _songRound _songSource>>
+    <<icon 'temple/hymnbook.png'>><<lanLink _args[1]>>
+      <<temple-choir-performance-check>>
+      <<if _performanceActive and _performance.round is _songRound and _performance.round lt 3
+        and ['steady', 'flourish', 'chorus'].includes(_songStyle)>>
+        <<set _performance.round += 1>>
+        <<pass 10>>
+        <<temple-choir-performance-check>>
+        <<if _performanceActive and $passage is _songSource and _performance.round is _songRound + 1>>
+          <<set _songValue to maplebirch.get('TempleChoir').singing
+            + currentSkillValue('english') * (_songStyle is 'chorus' ? 0.3 : 0.1)
+            + _performance.attention * 2 + random(-80, 80)>>
+          <<set _songThreshold to _songStyle is 'steady' ? 200 : _songStyle is 'flourish' ? 700 : 450>>
+          <<set _performance.last to _songValue gte _songThreshold ? 'clear' : _songValue gte _songThreshold - 200 ? 'unsteady' : 'lost'>>
+          <<if _performance.last is 'clear'>>
+            <<set _performance.score += _songStyle is 'steady' ? 1 : _songStyle is 'flourish' ? 3 : 2>>
+            <<set _performance.attention to Math.min(100, _performance.attention + (_songStyle is 'chorus' ? 20 : 12))>>
+            <<stress -1>>
+          <<elseif _performance.last is 'unsteady'>>
+            <<set _performance.score += _songStyle is 'steady' ? 0 : 1>>
+            <<set _performance.attention to Math.max(0, _performance.attention - 3)>>
+          <<else>>
+            <<set _performance.attention to Math.max(0, _performance.attention - 15)>>
+            <<stress 2>>
+          <</if>>
+          <<singingskill `_songStyle is 'steady' ? 4 : 6`>>
+          <<tiredness `_songStyle is 'flourish' ? 2 : 1`>>
+          <<if _performance.round is 3>><<temple-choir-performance-finish>><</if>>
+        <<else>>
+          <<set _performance.done to true>>
+        <</if>>
+        <<if $passage is _songSource and !$nextPassageCheck>>
+          <<if _performance.done and _performance.venue is 'banquet'>>
+            <<if _choirHost.state.stage is 'farewell'>><<goto 'Deadwood Reblooms Property Banquet Farewell'>><</if>>
+          <<else>>
+            <<run Dynamic.render('temple-choir-performance')>>
+          <</if>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
+<</widget>>
+
+<<widget 'temple-choir-performance-finish'>>
+  <<if !_performance or _performance.done>><<exit>><</if>>
+  <<set _performance.done to true>>
+  <<if _performance.venue is 'banquet'>>
+    <<if _performance.round is 3>>
+      <<run _choirHost.host('singing', Math.min(1000, _performance.score * 100))>>
+    <<else>>
+      <<run _choirHost.close(true)>>
+    <</if>>
+  <<elseif _performance.round gt 0>>
+    <<set _performance.tips to _performance.venue is 'pub'
+      ? _performance.round * 500 + _performance.score * 500
+      : _performance.round * 200 + Math.floor(_performance.score * 1000 / 3)>>
+    <<money `_performance.tips` 'singing'>>
+    <<if _performance.round is 3 and _performance.score gte 6>><<famegood 2 null true>><</if>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-choir-performance-feedback'>>
+  <<language>>
+    <<option 'EN'>>
+      <<if _performance.last is 'clear'>>
+        <<if _performance.venue is 'pub'>>The musician catches your last note and carries it into the next phrase. Someone taps a glass in time.
+        <<elseif _performance.venue is 'park'>>A walker stops beside the cloth. Another waits for the song to finish before putting down a coin.
+        <<else>>The table falls quiet for the final line. A guest begins clapping, and the others follow.<</if>>
+        <span class='green'>You keep the song together.</span>
+      <<elseif _performance.last is 'unsteady'>>
+        You lose a little air at the end of a phrase and shorten the next one. <span class='blue'>You find the melody again, though a few listeners have turned away.</span>
+      <<else>>
+        Your voice breaks before the line is finished. You stop, swallow, and begin with a shorter phrase. <span class='purple'>Conversations resume around you.</span>
+      <</if>>
+    <<option 'CN'>>
+      <<if _performance.last is 'clear'>>
+        <<if _performance.venue is 'pub'>>乐师接住你的尾音，把它带进下一句。有人跟着拍子轻敲酒杯。
+        <<elseif _performance.venue is 'park'>>一位路人在布旁停下。另一个人等你唱完，才放下一枚硬币。
+        <<else>>唱到最后一句，桌边安静了下来。有人先鼓起掌，其他人也跟着回应。<</if>>
+        <span class='green'>这首歌唱得顺畅。</span>
+      <<elseif _performance.last is 'unsteady'>>
+        唱到句尾时，你的气息短了些，便把下一句收得更短。<span class='blue'>旋律重新接上，不过有几位听众已经转开了身。</span>
+      <<else>>
+        一句还没唱完，你的声音便断了。你停下来，咽了咽喉咙，换一句短些的开头。<span class='purple'>四周的谈话声又响起来。</span>
+      <</if>>
+  <</language>>
+<</widget>>

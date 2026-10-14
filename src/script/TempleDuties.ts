@@ -1,9 +1,26 @@
-export default function TempleDuties(core: typeof maplebirch): void {
-  core.tool.addTo('BeforeLinkZone', { widget: 'temple-duty-link', passage: 'Temple' }, { widget: 'temple-case-docks-link', passage: 'Docks' }, { widget: 'temple-manor-link', passage: 'Manor Kylar' });
+import Combat from './TempleDuties/Combat';
 
-  core.tool.inject({
+export default function TempleDuties(maplebirch: typeof window.maplebirch): void {
+  Combat(maplebirch);
+
+  maplebirch.tool.addTo(
+    'BeforeLinkZone',
+    { widget: 'temple-duty-link', passage: 'Temple' },
+    { widget: 'temple-case-docks-link', passage: 'Docks' },
+    // widget 要求原版 Chat 菜单，礼物和离场分支不接入。
+    { widget: 'temple-manor-link', passage: 'Manor Kylar' }
+  );
+
+  maplebirch.tool.inject({
     locationPassage: {
       'Temple Library': [{ src: '<<effects>>', applyafter: '<<temple-duty-library>>', expected: 1 }],
+      'Temple Prayer Entrance': [
+        {
+          src: '<<if $temple_garden gte 100 and $temple_quarters gte 100>>',
+          to: '<<if maplebirch.get("TempleDuties") and $temple_rank is "priest">><<temple-duty-prayer>><<elseif $temple_garden gte 100 and $temple_quarters gte 100>>',
+          expected: 1
+        }
+      ],
       'Temple Quarters': [{ srcmatch: /\$temple_rank is "monk"/g, to: '["monk", "priest"].includes($temple_rank)', expected: 3 }],
       'Temple Confessor Intro Ask': [{ src: '<<if $sydney.rank is "monk">>', to: '<<if ["monk", "priest"].includes($sydney.rank)>>', expected: 1 }]
     },
@@ -13,5 +30,5 @@ export default function TempleDuties(core: typeof maplebirch): void {
     }
   });
 
-  core.tool.addTo('Journal', 'temple-duties-journal');
+  maplebirch.tool.addTo('Journal', 'temple-duties-journal');
 }

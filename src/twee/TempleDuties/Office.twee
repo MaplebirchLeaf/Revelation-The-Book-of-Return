@@ -29,7 +29,7 @@
     <</for>>
     <<set _roofReady to $TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof>>
     <<set _shelvesReady to $TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves>>
-    <<set _studyMinutes to (_roofReady and _shelvesReady ? 15 : 25) - ($TempleDuties.archive.sorted gte 3 ? 5 : 0)>>
+    <<set _studyMinutes to (_roofReady and _shelvesReady ? 20 : 30) - ($TempleDuties.archive.sorted gte 3 ? 5 : 0)>>
     <<set _spearReturned to $temple_spear_mission gte 2 and $spear_vessel is 'temple'>>
     <<set _flockRescued to $jordan_ritual_dance gte 4>>
     <<set _dutyCredentials to _dutyOffice and ['monk', 'priest'].includes($temple_rank)
@@ -82,8 +82,7 @@
   <<temple-duty-check>>
   <<if _revelationTempleLinks is 'pray' and _dutyOffice>>
     <<icon 'temple/duties-book.png'>>
-    <<lanLink ['Check the temple duties book (0:01)', '查看神殿职务簿 (0:01)'] 'Revelation Temple Office'>>
-      <<pass 1>>
+    <<lanLink ['Check the temple duties book', '查看神殿职务簿'] 'Revelation Temple Office'>>
     <</lanLink>>
     <br>
   <</if>>
@@ -103,6 +102,32 @@
   <<lanLink ['Return to the duties desk', '返回职务桌'] 'Revelation Temple Office'>>
   <</lanLink>>
   <br>
+<</widget>>
+
+<<widget 'temple-duty-rest-link'>>
+  <<temple-duty-check>>
+  <<if _dutySafe and $TempleDuties.enrolled and $location is 'temple'
+      and $TempleDuties.rest_day isnot Math.floor(Time.days)
+      and ($pain gt 0 or $tiredness gt 0 or $stress gt 0)
+      and ($temple_rank is 'priest'
+      or $TempleDuties.watch?.day is Math.floor(Time.days)
+        and ['passed', 'failed'].includes($TempleDuties.watch.phase)
+      or Object.values($TempleDuties.reports).some(report => report.day === Math.floor(Time.days)))
+      and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
+    <<bedicon>>
+    <<temple-duty-action `['Warm up and have your cuts dressed (0:30)', '暖一暖身子，包扎伤口 (0:30)']` 30 'Revelation Temple Rest'>>
+      <<if $TempleDuties.rest_day isnot Math.floor(Time.days)>>
+        <<set $TempleDuties.rest_day to Math.floor(Time.days)>>
+        <<set $TempleDuties.note to 'rested'>>
+        <<pain -8>>
+        <<tiredness -12>>
+        <<stress -6>>
+      <</if>>
+    <</temple-duty-action>>
+    <<lpain>>
+    <<ltiredness>>
+    <<lstress>><br><br>
+  <</if>>
 <</widget>>
 
 <<widget 'temple-case-title'>>
@@ -153,8 +178,7 @@
       <br>
     <</if>>
     <<icon 'temple/records-room.png'>>
-    <<lanLink ['Visit the old records room (0:01)', '去旧资料室 (0:01)'] 'Temple Library'>>
-      <<pass 1>>
+    <<lanLink ['Visit the old records room', '去旧资料室'] 'Temple Library'>>
     <</lanLink>>
     <br>
     <<if _dutyReport>>
@@ -200,18 +224,31 @@
         <</temple-duty-action>>
         <<ggrace>><br>
         <<icon 'temple/ward-stone.png'>>
-        <<temple-duty-action `['Inspect the garden and repair the wards (0:45)', '巡查花园，修补护符 (0:45)']` 45 'Revelation Temple Task Done'>>
+        <<temple-duty-action `['Inspect the garden and repair the wards (1:00)', '巡查花园，修补护符 (1:00)']` 60 'Revelation Temple Task Done'>>
           <<if $TempleDuties.duty_day isnot Math.floor(Time.days)>>
             <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
             <<set $TempleDuties.duties += 1>>
             <<set $TempleDuties.note to 'wards'>>
+            <<if $temple_garden lt 100>>
+              <<set _gardenGain to currentSkillValue('tending') gte 1500 ? 9
+                : currentSkillValue('tending') gte 1200 ? 8
+                : currentSkillValue('tending') gte 800 ? 7
+                : currentSkillValue('tending') gte 600 ? 6
+                : currentSkillValue('tending') gte 400 ? 5
+                : currentSkillValue('tending') gte 200 ? 4 : 3>>
+              <<set $temple_garden to Math.min(100, $temple_garden + _gardenGain)>>
+            <</if>>
+            <<tending 1>>
             <<housekeeping 1>>
+            <<tiredness 3>>
             <<grace 2>>
             <<money 4000 'templeDuty'>>
           <</if>>
         <</temple-duty-action>>
+        <<gtending>>
         <<ghousekeeping>>
-        <<ggrace>><br>
+        <<ggrace>>
+        <<gtiredness>><br>
       <</if>>
     <</if>>
     <<for _retryId range ['echo', 'roots', 'crate']>>
@@ -262,9 +299,9 @@
   <</if>>
 <</revelation-card>>
 <br>
+<<temple-duty-rest-link>>
 <<getouticon>>
-<<lanLink ['Return to the hall (0:01)', '返回大厅 (0:01)'] 'Temple'>>
-  <<pass 1>>
+<<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
 <</lanLink>>
 <br>
 
@@ -329,7 +366,7 @@
       <<case 'supervised'>>
         You let the clerk finish counting before explaining the discrepancy. Jordan reads both reports and adds your payment to the handover.
       <<case 'wards'>>
-        You work along the garden wall, clearing the damp growth from the inscribed stones. An older priest holds the copied pattern while you mend the damaged lines. You test the doorway together before returning the lamp. Jordan marks the inspection complete.
+        You pull creeping stems away from the flower beds and clear the damp growth from the inscribed stones. An older priest holds the copied pattern while you mend the damaged lines. You leave the gate and its approach clear before returning the lamp. Jordan marks the inspection complete. Beyond the wall, branches still press against the stone.
       <<case 'sorted'>>
         The loose pages now lie between dry sheets, their numbers copied onto the sleeves. You leave the remaining damaged leaves for the next session.
       <<case 'funded'>>
@@ -348,7 +385,7 @@
       <<case 'supervised'>>
         你等侍从数完，才解释数量不符的地方。约旦读过两份报告，把报酬记进交接单。
       <<case 'wards'>>
-        你沿花园墙清理符石上的湿苔。年长的司祭替你举着抄录的图样，你修补受损的线条。两人一起检查门边的护符，再归还灯具。约旦在清单上标记巡查完成。
+        你把蔓生的枝茎从花坛边拉开，清理符石上的湿苔。年长的司祭替你举着抄录的图样，你修补受损的线条。归还灯具前，门口与通路也已清理妥当。约旦在清单上标记巡查完成。墙外的枝条，仍紧贴着石头。
       <<case 'sorted'>>
         散页已经夹进干纸，编号抄在封套上。余下受损的纸页留待下一次修复。
       <<case 'funded'>>
@@ -357,5 +394,25 @@
         付款未能完成。侍从把协议留着，没有签字。
     <</switch>>
 <</language>>
+<br><br>
+<<temple-duty-back>>
+
+:: Revelation Temple Rest
+<<temple-duty-place>>
+<<if $TempleDuties.rest_day is Math.floor(Time.days) and $TempleDuties.note is 'rested'>>
+  <<npc Jordan>>
+  <<person1>>
+  <<language>>
+    <<option 'EN'>>
+      A clerk places a cup beside the fire. You put your things down slowly, then hold still while an older priest checks your hands. Jordan waits until your fingers have stopped shaking. "The doors can wait half an hour, child." Warm water loosens the ache in your fingers. You drink before taking the cup back.
+    <<option 'CN'>>
+      侍从在炉边放下一杯水。你慢慢放下手里的东西，让年长的司祭看看双手。约旦等到你的手指不再发抖，才开口：“那些门能等半小时，孩子。”热水让指间的酸痛松开了一些。你喝完，把杯子交回去。
+  <</language>>
+  <<lpain>>
+  <<ltiredness>>
+  <<lstress>>
+<<else>>
+  <<lanSwitch 'The clerk has cleared the place beside the fire. Ask about resting when you next return.' '侍从已经收拾好炉边的位置。下次回来时，可以再问休息的事。'>>
+<</if>>
 <br><br>
 <<temple-duty-back>>

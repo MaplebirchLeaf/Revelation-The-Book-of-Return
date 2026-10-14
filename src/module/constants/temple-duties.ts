@@ -7,6 +7,8 @@ export interface TempleDutiesState {
   enrolled: boolean;
   duties: number;
   duty_day: number;
+  rest_day: number;
+  followups: Partial<Record<TempleCase, number>>;
   archive: {
     roof: number;
     shelves: number;
@@ -54,6 +56,8 @@ export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
   enrolled: false,
   duties: 0,
   duty_day: -1,
+  rest_day: -1,
+  followups: {},
   archive: { roof: -1, shelves: -1, sorted: 0, sort_day: -1, topics: [] },
   case: null,
   reports: {},

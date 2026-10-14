@@ -45,6 +45,10 @@
   <</language>>
   <br><br>
   <<set _archiveTopics to ['buildings', 'deliveries', 'fieldwork']>>
+  <<if _roofReady and _shelvesReady and $TempleDuties.archive.sorted gte 3
+      and ['monk', 'priest'].includes($temple_rank)>>
+    <<run _archiveTopics.push('ward-notes')>>
+  <</if>>
   <<if ['accepted', 'copied', 'complete'].includes($TempleDuties.manor)>>
     <<run _archiveTopics.push('monstrance')>>
   <</if>>
@@ -57,10 +61,12 @@
           <<set _archive_name to ['Compare old delivery records', '比对旧交货记录']>>
         <<case 'fieldwork'>>
           <<set _archive_name to ['Read the fieldwork precautions', '读外勤注意事项']>>
+        <<case 'ward-notes'>>
+          <<set _archive_name to ['Copy the recovered ward patterns', '抄录修复后的护符图样']>>
         <<case 'monstrance'>>
           <<set _archive_name to ['Read the indexed description of the monstrance', '读索引中的圣体匣描述']>>
       <</switch>>
-      <<icon `({buildings:'temple/building-plans.png', deliveries:'temple/delivery-records.png', fieldwork:'temple/field-kit.png', monstrance:'temple/duties-book.png'})[_archive_topic]`>>
+      <<icon `({buildings:'temple/building-plans.png', deliveries:'temple/delivery-records.png', fieldwork:'temple/field-kit.png', 'ward-notes':'temple/ward-stone.png', monstrance:'temple/duties-book.png'})[_archive_topic]`>>
       <<temple-duty-action `_archive_name` `_studyMinutes` 'Revelation Temple Archive Note'>>
         <<set $TempleDuties.topic to _archive_topic>>
         <<if !$TempleDuties.archive.topics.includes(_archive_topic)>>
@@ -107,8 +113,7 @@
   <</if>>
   <<if $TempleDuties.case?.stage is 'field' and ['echo', 'roots'].includes($TempleDuties.case.id)>>
     <<icon 'temple/records-room.png'>>
-    <<lanLink ['Go to the assigned storeroom (0:02)', '前往委托中的储藏室 (0:02)'] 'Revelation Temple Field'>>
-      <<pass 2>>
+    <<lanLink ['Go to the assigned storeroom', '前往委托中的储藏室'] 'Revelation Temple Field'>>
     <</lanLink>>
     <br>
   <</if>>
@@ -130,7 +135,9 @@
       <<case 'deliveries'>>
         A copied seal is not proof of a matching shipment. The old clerk wrote down the sender, the weight and the person who collected each crate. Several damaged boxes were returned without anyone checking what was inside.
       <<case 'fieldwork'>>
-        The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon.
+        The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
+      <<case 'ward-notes'>>
+        With the leaves dry and numbered, the strokes finally meet across the fold. You copy the pattern without filling the missing space. Beside it, an older hand has written: "Keep the gap turned towards the light." You tuck the sheet beside your lamp strap. It will help you set the light and hold the threshold on your next visit.
       <<case 'monstrance'>>
         The old drawing places the sacramental bread in a sun of metal. Its upper ornament is whole. Silver and bronze appear in the inventory, but the page says nothing about Kylar's parents. You copy the intact outline beside the broken shape you remember.
     <</switch>>
@@ -144,7 +151,9 @@
       <<case 'deliveries'>>
         复制的封印不能证明货物与运单一致。旧侍从记下寄件人、重量和每个取货者。有些破损货箱被退回，却没人检查里面还剩什么。
       <<case 'fieldwork'>>
-        每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。
+        每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。你把出口草图折进笔记，需要赶紧离开时，可以照着走。
+      <<case 'ward-notes'>>
+        纸页晾干、编好号后，跨过折痕的笔画终于接上了。你照着抄下图样，没有补上空缺。旁边一行旧笔迹写着：“让缺口朝向光。”你把纸夹在灯带旁。下次进去，它能帮你安置灯火，也能在撑住门槛时派上用场。
       <<case 'monstrance'>>
         旧图将圣餐面包置于金属构成的太阳中，上方装饰仍完整。清单写着银与青铜，却没有凯拉尔父母的记载。你把完整轮廓抄在记忆中残损的形状旁。
     <</switch>>

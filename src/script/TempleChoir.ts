@@ -10,17 +10,24 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
   maplebirch.tool.addTo('SkillsBonusDisplay', 'temple-choir-skill-bonus');
   maplebirch.tool.addTo('SkillsBox', 'temple-choir-skill-box');
   maplebirch.tool.addTo('Journal', 'temple-choir-journal');
+  maplebirch.on(':passagestart', () => {
+    const performance = V.TempleChoir?.performance;
+    if (!performance || performance.done || V.replayScene || V.statFreeze) return;
+    if (performance.source !== maplebirch.passage.title) performance.done = true;
+  });
   maplebirch.tool.addTo(
     'BeforeLinkZone',
     { widget: 'temple-choir-hall-link', passage: 'Temple' },
     { widget: 'temple-choir-mass-link', passage: 'Temple' },
-    { widget: 'temple-choir-field-practice', passage: 'Bird Tower Sing' }
+    { widget: 'temple-choir-field-practice', passage: 'Bird Tower Sing' },
+    { widget: 'temple-choir-pub-entry', passage: 'Pub Music' }
   );
 
   maplebirch.tool.inject({
     // 收益在玩家点击原版链接时结算，重绘结果页不会重复练唱。
     widgetPassage: {
       'Widgets Pirates': [
+        { src: '<<englishdifficulty 1 1000>>', to: '<<temple-choir-shanty-check>>', expected: 1 },
         {
           srcmatchgroup: /\|Pirate Scum Deck Shanty Join\]\]>>/g,
           applyafter: '<<singingskill 6>>',
@@ -69,6 +76,7 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
         }
       ],
       'Pub Music Sing': [{ src: '<<if $seabird_lullaby gte 2 and random(0,100) is 1>>', applybefore: "<<temple-choir-field-practice 'pub'>><br><br>", expected: 1 }],
+      Park: [{ src: '<<set _kylarLocation to getKylarLocation()>>', applybefore: "<<temple-choir-performance-entry 'park'>>\n", expected: 1 }],
       // 两种月检共用津贴规则，金额显示与发放保持一致。
       ...Object.fromEntries(
         ['Temple Test', 'Sydney Temple Test 2'].map(passage => [

@@ -4,29 +4,37 @@ Enable **Temple duties**. As an **initiate, monk/nun or priest**, visit **Temple
 
 Choose **Ask Jordan for duties (0:10)** to enter the rota and receive access to the old records room.
 
+Viewing the duties book, records-room or temple-storeroom menus and returning to the hall or desk takes no time. Reading, work, investigations and actual walks at the docks retain their displayed durations.
+
 Recommended route: **daily duties and archive → field assignments → return the golden spear and rescue the missing temple member → lower-door watch → Jordan's review → priest appointment**. Preparing Robin or Sydney can accompany this route. The bishop's requests are optional.
 
 ### Daily duties
 
-| Duty                                                   | Duration   | Pay and main gains                                          |
-| ------------------------------------------------------ | ---------- | ----------------------------------------------------------- |
-| Count bowls and trace the receipt                      | 45 minutes | £25, Maths, 1 grace and good fame.                          |
-| Air blankets and leave a handover                      | 60 minutes | £30, Housekeeping, 2 grace and good fame; slight tiredness. |
-| Supervise the next shift, after appointment            | 45 minutes | £40, 2 grace and good fame.                                 |
-| Inspect the garden and repair wards, after appointment | 45 minutes | £40, Housekeeping and 2 grace.                              |
+| Duty                                                   | Duration   | Pay and main gains                                                    |
+| ------------------------------------------------------ | ---------- | --------------------------------------------------------------------- |
+| Count bowls and trace the receipt                      | 45 minutes | £25, Maths, 1 grace and good fame.                                    |
+| Air blankets and leave a handover                      | 60 minutes | £30, Housekeeping, 2 grace and good fame; slight tiredness.           |
+| Supervise the next shift, after appointment            | 45 minutes | £40, 2 grace and good fame.                                           |
+| Inspect the garden and repair wards, after appointment | 60 minutes | £40, Tending, Housekeeping and 2 grace; slight tiredness.             |
+| Take the blanket handover with Robin, both priests     | 30 minutes | £30, Housekeeping, 1 grace, Robin's Faith and affection; less stress. |
+| Check archive receipts with Sydney, both priests       | 30 minutes | £35, History, Maths, 1 grace and Sydney's affection; less stress.     |
 
-These share **one paid shift each day**. Arrive by 17:00 to begin a shift. The confessional, prayer room and soup kitchen retain their existing duties and conditions.
+These and paid return inspections share **one paid shift each day**. Arrive by 17:00 to begin a desk shift. Choir work and the existing joint rota retain their own limits. The confessional, prayer room and soup kitchen retain their existing duties and conditions. Garden work improves the existing garden condition by **3–9 points according to Tending, capped at 100**.
+
+You may discuss duties with Robin or Sydney once daily while they are free and actually at the temple. After their appointment, the discussion also offers shared work when the full thirty minutes fits before their next commitment. **Rest in the warm room once daily for thirty minutes**, easing pain, tiredness and stress. It is available to a priest PC, or after returning from a watch or filing an assignment report that day.
 
 ### Old records room and repairs
 
-Enter the **old records room** from the duties desk. Building plans, delivery records and fieldwork precautions give clues for investigations. A first reading trains History. Finding a volume takes **25 minutes**.
+Enter the **old records room** from the duties desk. Building plans, delivery records and fieldwork precautions give clues for investigations. A first reading trains History. Allow **30 minutes** to find and read the relevant pages.
 
 | Project                 | Cost   | Completion |
 | ----------------------- | ------ | ---------- |
 | Roof and drainage       | £4,000 | Two days   |
 | Shelves and dry storage | £1,500 | One day    |
 
-Both completed projects reduce reading time to **15 minutes**. Sort loose folios for thirty minutes once daily; after **three sessions**, reading saves another five minutes. Sorting also trains History and Housekeeping and grants grace.
+Both completed projects reduce reading time to **20 minutes**. Sort loose folios for thirty minutes once daily; after **three sessions**, reading saves another five minutes. Sorting also trains History and Housekeeping and grants grace.
+
+After both repairs and all three sorting sessions, a monk/nun or priest can **Copy the recovered ward patterns**. These notes reduce comparing field marks to ten minutes, remove one tentacle from field encounters and two roots from the first watch encounter, and further reduce pain and tiredness when bracing the threshold. Fieldwork precautions reduce withdrawal to three minutes; delivery records also help compare the crate's marks faster.
 
 Repairs have their own receipts, separate from the food and blanket fund. With Deadwood Reblooms' **Finance**, payments use its cash and bank funding rules and receipts record the project purpose. Otherwise, repairs require carried cash. Each funded project grants good fame once.
 
@@ -40,9 +48,11 @@ The desk offers three assignments in order. The last two require **monk/nun or p
 | Roots beneath the records   | Mark an exit, compare the marks and clear the roots.             | £150                      |
 | The returned donation crate | Go to the docks, rescue the worker and clear the intrusion.      | £200                      |
 
-Borrow the lamp, rope and gloves before leaving. Building records and Skulduggery help plan exits; History or Gwylan's advice helps interpret marks. Physique and equipment help the worker's rescue. The last two assignments include **tentacle combat**, using the game's combat actions.
+Borrow the lamp, rope and gloves before leaving. Building records and Skulduggery help plan exits; History or Gwylan's advice helps interpret marks. Physique and equipment help the worker's rescue. Equipment shortens fastening checks, route preparation and rescue, reduces rescue tiredness, and reduces the combat burden when you also plan an exit. The last two assignments include **tentacle combat**, using the game's combat actions.
 
-Return to Jordan and report what happened. Each resolved, truthful assignment also grants **3 grace and good fame**; its money and completion reward are paid once. An unfinished or inaccurately reported investigation can be reopened. Priests may inspect a resolved assignment again after **seven days**, without another completion payment. Finish the current investigation before starting the watch.
+Return to Jordan and report what happened. Each resolved, truthful assignment also grants **3 grace and good fame**; its money and completion reward are paid once. An unfinished or inaccurately reported investigation can be reopened.
+
+Once **all three assignments have been truthfully resolved and the PC is a priest**, each assignment offers a paid return inspection after **seven days**. A location may be quiet, damp or rearranged and needs checking again; a quiet inspection can conclude without another battle. Return pay is **£35, £60 or £80** respectively, plus 1 grace, with no repeated first-completion reward. If today's paid shift is already used, the clerk keeps the report open for payment another day. Finish the current investigation before starting the watch.
 
 ### Priest appointment
 
@@ -72,6 +82,8 @@ After the second battle, use the **copied ward pattern and count everyone** befo
 
 Running out of time, losing a battle, withdrawing or becoming unable to continue leaves the attempt incomplete. Return another day. Completed qualification is recorded; rereading the aftermath does not repeat its costs.
 
+Passing the watch grants **Watchkeeper**: active attacks and banishment deal **20% more damage to nonhuman creatures**. Human targets, machines and passive backlash retain their existing damage. A priest can also enter the prayer room while the garden or quarters still need work; its existing prayer duties and precautions continue to apply.
+
 ### Accompanying Robin and Sydney
 
 Each candidate must already be a **monk/nun**, actually at the temple and free of other commitments, with an intact temple vow. Outstanding purification or examinations take priority. Robin also needs **at least 20 Faith and trauma below 60**.
@@ -88,7 +100,7 @@ You can change the selected companions with **Choose again**. School, shops, pun
 
 After making contact with the bishop, a **sealed note** can appear at the duties desk. Accept it, read the old delivery records, truthfully resolve the returned-crate case, compare its records in the archive, then deliver the sealed copy to the waiting confessor. Completing it trains History. Declining closes this private request.
 
-As a priest who has heard the bishop's full account of Kylar's manor, ask about the **monstrance**. Read its indexed description in the records room, then visit **Kylar's room, 18:00–23:00**, while Kylar is available, jealousy is below 30, and you are not being stalked or controlled. Explain the request and let Kylar decide what can be recorded; deliver only the agreed notes. You may instead keep the conversation private and close the investigation. Lost Lamb completion adds a recollection but is not required.
+As a priest who has heard the bishop's full account of Kylar's manor, ask about the **monstrance**. Read its indexed description in the records room, then visit **Kylar's room, 18:00–23:00**, while Kylar is available, jealousy is below 30, and you are not being stalked or controlled. Explain the request and let Kylar decide what can be recorded; deliver only the agreed notes for **£60 and 2 History**. You may instead keep the conversation private and close the investigation. Lost Lamb completion adds a recollection but is not required.
 
 Completed or declined requests leave the Journal. Neither branch promises a cure for Kylar's parents.
 

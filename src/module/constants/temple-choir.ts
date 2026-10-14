@@ -10,6 +10,17 @@ export interface TempleChoirState {
   practices: number;
   exercise: string;
   bonus: number;
+  performanceDay: number;
+  performance: {
+    venue: 'pub' | 'park' | 'banquet';
+    source: string;
+    round: number;
+    score: number;
+    attention: number;
+    last: 'clear' | 'unsteady' | 'lost' | '';
+    tips: number;
+    done: boolean;
+  } | null;
   shift: { round: number; score: number; result: string; bonus: number; done: boolean } | null;
 }
 
@@ -23,5 +34,7 @@ export const DEFAULT_TEMPLE_CHOIR_STATE: TempleChoirState = {
   practices: 0,
   exercise: '',
   bonus: 0,
+  performanceDay: -1,
+  performance: null,
   shift: null
 };

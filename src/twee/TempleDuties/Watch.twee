@@ -4,6 +4,7 @@
     <<set _watchRouteSkill to currentSkillValue('history') gte 400 or currentSkillValue('science') gte 400
       or currentSkillValue('skulduggery') gte 500>>
     <<set _watchFit to currentSkillValue('physique') gte 5000 or currentSkillValue('athletics') gte 600>>
+    <<set _watchNotes to $TempleDuties.archive.topics.includes('ward-notes')>>
     <<set _watchPrayer to (maplebirch.get('TempleChoir')?.singing ?? 0) gte 600 or currentSkillValue('english') gte 600>>
     <<set _watchWill to _watchPrayer ? 550 : 650>>
     <<set _watchControl to $awareness gte 600 ? 350 : 400>>
@@ -182,7 +183,8 @@
         <<set $enemytype to 'tentacles'>>
         <<molested>>
         <<controlloss>>
-        <<tentaclestart `_watch.route ? 8 : 12` 18 'root' 'vine' true>>
+        <<temple-watch-skills>>
+        <<tentaclestart `(_watch.route ? 8 : 12) - (_watchNotes ? 2 : 0)` 18 'root' 'vine' true>>
       <</if>>
     <</temple-duty-action>>
     <br>
@@ -346,7 +348,7 @@
 <</language>>
 <br><br>
 <<if $TempleDuties.watch.phase is 'failed'>>
-  <<lanLink ['Leave with the priest', '随司祭退出'] 'Revelation Temple Watch Failed'>>
+  <<getouticon>><<lanLink ['Leave with the priest', '随司祭退出'] 'Revelation Temple Watch Failed'>>
   <</lanLink>>
   <br>
 <<else>>
@@ -367,6 +369,9 @@
   <<if _watchWon>>
     <<temple-watch-skills>>
     <<set _watchStrain to $TempleDuties.watch.phase is 'roots' ? (_watchFit ? 4 : 8) : (_watchFit ? 6 : 12)>>
+    <<if _watchNotes>>
+      <<set _watchStrain -= 1>>
+    <</if>>
     <<pain _watchStrain>>
     <<tiredness _watchStrain>>
   <</if>>
@@ -397,6 +402,11 @@
   <<option 'CN'>>
     他们把你带回生着炉火的房间。你的手抖得解不开灯带。约旦替你松开，又洗去伤口里的碎屑。<<He>>数了一遍灯，又数了两遍人。“你把他们带回了这一侧。”<<He>>给离得最近的人披上毯子。“先休息，孩子。等你找回自己的声音，我们再谈。”
 <</language>>
+<<if $TempleDuties.trial_day gte 0>>
+  <br><br>
+  <<lanSwitch 'You have gained the trait ' '你获得了特质'>>
+  <span class='gold'><<lanSwitch 'Watchkeeper' '守望者'>></span><<lanSwitch '.' '。'>>
+<</if>>
 <<for _watchName range $TempleDuties.watch.party>>
   <br><br>
   <<if $TempleDuties.candidates[_watchName].trial_day gte 0>>
@@ -406,6 +416,7 @@
   <</if>>
 <</for>>
 <br><br>
+<<temple-duty-rest-link>>
 <<temple-duty-back>>
 
 :: Revelation Temple Watch Failed
@@ -424,6 +435,7 @@
     资深司祭从外门带回灯。其中一盏已经冷了。约旦把它放在其它灯旁。“它的位置还在。能护住灯火时，再来。”钥匙圈压在<<his>>手下，你看不见<<he>>遮住的是哪一把。
 <</language>>
 <br><br>
+<<temple-duty-rest-link>>
 <<temple-duty-back>>
 
 :: Temple Watch Return Widgets [widget]

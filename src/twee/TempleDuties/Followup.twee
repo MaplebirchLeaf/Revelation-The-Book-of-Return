@@ -1,3 +1,65 @@
+:: Temple Companion Duties Widgets [widget]
+<<widget 'temple-companion-check'>>
+  <<temple-duty-check>>
+  <<set _companionName to _args[0]>>
+  <<temple-companion-time _companionName `_args[1] ?? 0`>>
+  <<set _companionFree to _dutyToday and $temple_rank is 'priest' and _templeCompanionTime>>
+  <<if _companionName is 'Robin'>>
+    <<set _companionFree to _companionFree and maplebirch.get('RobinTemple')?.rank is 'priest'
+      and maplebirch.get('RobinTemple').available and getRobinLocation() is 'temple'
+      and !$RobinTemple.punish and $RobinTemple.monthly_checked
+      and $RobinTemple.chastity_timer gt 0 and C.npc.Robin.virginity.temple is true>>
+    <<if (_args[1] ?? 0) gt 0>>
+      <<robin-temple-prayer-time _args[1]>>
+      <<set _companionFree to _companionFree and _robinPrayerTime>>
+    <</if>>
+  <<elseif _companionName is 'Sydney'>>
+    <<sydneySchedule>>
+    <<set _companionFree to _companionFree and $sydney?.rank is 'priest'
+      and C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
+      and _sydney_location is 'temple' and $sydney_templeWork isnot 'mass'
+      and $daily.sydney.punish isnot 1 and C.npc.Sydney.virginity.temple is true>>
+  <<else>>
+    <<set _companionFree to false>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-companion-shift'>>
+  <<set _shiftName to $TempleDuties.speaker>>
+  <<set _shiftUsed to false>>
+  <<capture _shiftName _shiftUsed>>
+    <<socialiseicon>>
+    <<lanLink _args[0]>>
+      <<temple-companion-check _shiftName 30>>
+      <<if !_shiftUsed and _companionFree>>
+        <<set _shiftUsed to true>>
+        <<set _shiftSource to $passage>>
+        <<pass 30>>
+        <<temple-companion-check _shiftName 0>>
+        <<if $passage is _shiftSource and !$nextPassageCheck and _companionFree>>
+          <<set $TempleDuties.duty_day to Math.floor(Time.days)>>
+          <<set $TempleDuties.duties += 1>>
+          <<set $TempleDuties.speaker to _shiftName>>
+          <<set $TempleDuties.note to 'joint-' + _shiftName>>
+          <<if _shiftName is 'Robin'>>
+            <<housekeeping 2>>
+            <<set maplebirch.get('RobinTemple').faith += 1>>
+            <<money 3000 'templeDuty'>>
+          <<else>>
+            <<historyskill 1>>
+            <<mathsskill 1>>
+            <<money 3500 'templeDuty'>>
+          <</if>>
+          <<grace 1>>
+          <<stress -2>>
+          <<npcincr _shiftName love 1>>
+          <<goto 'Revelation Temple Companion Shift'>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
+<</widget>>
+
 :: Revelation Temple Sealed Note
 <<temple-duty-place>>
 <<if !_dutyOffice or !_bishopKnown or !$TempleDuties.enrolled
@@ -30,8 +92,7 @@
 <<elseif !$TempleDuties.bishop_checked>>
   <span class='lblue'><<lanSwitch 'You need the delivery records, a truthful report on the returned crate, and a comparison made in the old records room.' '需要旧交货记录、如实填写的货箱调查报告，再到旧资料室完成比对。'>></span><br>
   <<icon 'temple/records-room.png'>>
-  <<lanLink ['Go to the records room (0:01)', '前往资料室 (0:01)'] 'Temple Library'>>
-    <<pass 1>>
+  <<lanLink ['Go to the records room', '前往资料室'] 'Temple Library'>>
   <</lanLink>>
   <br>
 <<elseif $per_npc.bishop>>
@@ -96,8 +157,7 @@
 <<temple-manor-offer>>
 <br>
 <<getouticon>>
-<<lanLink ['Return through the side door (0:02)', '从侧门返回 (0:02)'] 'Revelation Temple Office'>>
-  <<pass 2>>
+<<lanLink ['Return through the side door', '从侧门返回'] 'Revelation Temple Office'>>
   <<endevent>>
 <</lanLink>>
 <br>
@@ -174,4 +234,54 @@
   <</language>>
 <</if>>
 <br><br>
+<<temple-companion-check $TempleDuties.speaker 30>>
+<<if _companionFree>>
+  <<if $TempleDuties.speaker is 'Robin'>>
+    <<temple-companion-shift `['Take the blanket handover with Robin (£30 0:30)', '和罗宾接一班毯子交接 (£30 0:30)']`>>
+    <<ghousekeeping>>
+    <<ggrace>>
+    <<glove 'Robin'>>
+    <<lstress>><br>
+  <<else>>
+    <<temple-companion-shift `['Check the archive receipts with Sydney (£35 0:30)', '和悉尼核对档案收据 (£35 0:30)']`>>
+    <<ghistory>>
+    <<gmaths>>
+    <<ggrace>>
+    <<glove 'Sydney'>>
+    <<lstress>><br>
+  <</if>>
+<</if>>
+<<temple-duty-back>>
+
+:: Revelation Temple Companion Shift
+<<temple-duty-place>>
+<<if $TempleDuties.duty_day isnot Math.floor(Time.days)
+    or !['joint-Robin', 'joint-Sydney'].includes($TempleDuties.note)>>
+  <<temple-duty-back>>
+  <<exit>>
+<</if>>
+<<npc `$TempleDuties.speaker`>>
+<<person1>>
+<<if $TempleDuties.speaker is 'Sydney'>>
+  <<run statusCheck('Sydney')>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    <<if $TempleDuties.speaker is 'Robin'>>
+      Robin unfolds the list before handing over the blankets. A visitor cannot remember the name on the request. <<if C.npc.Robin.trauma gte 40>><<He>> hesitates, then pulls a chair nearer. "You can sit while we find it."<<elseif C.npc.Robin.dom gte 50>>"One thing at a time," <<he>> says. "Tell us where you stayed last night."<<else>><<He>> checks the next name with you quietly before asking the visitor again.<</if>> You count the dry bundles while <<he>> listens. The missing name turns up on the back of the page. "I would have rushed past that," Robin admits. <<He>> checks the clock before you both leave the signed handover. Jordan has set your pay beside it.
+    <<else>>
+      Sydney sets the old receipt beside the new entry and asks you to read the names back. <<if _sydneyStatus.includes('pure')>><<He>> apologises when a page sticks, then smooths it carefully before continuing. "They should be able to find their own name."<<else>>"A heroic account, three spelling mistakes," <<he>> murmurs. The smile fades when <<he>> finds the wrong collection date. "That part needs fixing."<</if>> You follow the ink through the copied pages, checking the sums together. Sydney puts the key away and glances towards the hall before the next duty. Jordan signs the corrected receipt and leaves your pay with the clerk.
+    <</if>>
+  <<option 'CN'>>
+    <<if $TempleDuties.speaker is 'Robin'>>
+      交出毯子前，罗宾先展开名单。一名访客想不起申请时写下的名字。<<if C.npc.Robin.trauma gte 40>><<He>>迟疑了一下，把椅子拉近。“找的时候，你可以先坐着。”<<elseif C.npc.Robin.dom gte 50>>“一件件来，”<<he>>说，“先告诉我们，昨晚住在哪里。”<<else>><<He>>低声与你核对下一个名字，再问访客一遍。<</if>>你清点干毯子，<<he>>听对方说。漏掉的名字就在纸背面。“我可能会急着翻过去。”罗宾承认。留下签好的交接记录前，<<he>>看了一眼钟。约旦已经把你的报酬放在旁边。
+    <<else>>
+      悉尼把旧收据放在新记录旁，请你读回名字。<<if _sydneyStatus.includes('pure')>>一页纸粘住了，<<he>>先道歉，再仔细展平。“他们也该找得到自己的名字。”<<else>>“一份英勇的记录，三个错字。”<<he>>低声说。发现收货日期不对时，笑容便收起来了。“这里得改。”<</if>>你沿着几页抄录的笔迹查下去，与<<him>>一起核对金额。悉尼收好钥匙，在下项事务前望了望大厅。约旦在更正的收据上签字，把你的报酬交给侍从。
+    <</if>>
+<</language>>
+<<ggrace>>
+<<lstress>>
+<<glove `$TempleDuties.speaker`>>
+<br><br>
+<<temple-duty-rest-link>>
 <<temple-duty-back>>

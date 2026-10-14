@@ -1,0 +1,13 @@
+:: Temple Privilege Widgets [widget]
+<<widget 'temple-duty-prayer'>>
+  <<language>>
+    <<option 'EN'>>
+      The <<monk>> looks at your name in the duties book, then steps aside. <span class='green'>"There is a place for you inside, <<temple_title>>."</span>
+    <<option 'CN'>>
+      <<monk>>看过职务簿上的名字，侧身让开。<span class='green'>“里面有你的位置，<<temple_title>>。”</span>
+  <</language>>
+  <br><br>
+  <<templeicon 'pray'>>
+  <<lanLink ['Pray (1:00)', '祈祷 (1:00)'] 'Temple Prayer Enter'>><</lanLink>>
+  <br>
+<</widget>>
