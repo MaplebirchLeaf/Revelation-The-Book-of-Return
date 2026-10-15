@@ -18,6 +18,7 @@ A **Degrees of Lewdity** story mod built on Maplebirch Framework, exploring temp
 | Choir and singing    | Practise singing, join mass and perform around town.                                              |
 | Temple duties        | Take on work, restore the archive, investigate cases and earn a priest appointment.               |
 | Lost Lamb            | Enter Kylar's old manor dreams and explore their echoes after waking.                             |
+| The Ivory Wraith     | Return the ivory necklace and revisit the lake to ease the consequences of taking it.             |
 
 Choose which parts to enable in the framework's module manager.
 

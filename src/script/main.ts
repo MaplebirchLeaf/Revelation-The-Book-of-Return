@@ -6,11 +6,14 @@ import TempleChoir from './TempleChoir';
 import LostLamb from './LostLamb';
 import DoLX from '../compat/DoLX';
 import TempleDuties from './TempleDuties';
+import Wraith from './Wraith';
 
 (function (maplebirch): void {
   'use strict';
 
   if (maplebirch.get('RBR')) Tips(maplebirch);
+  // 原版再次取物、潜水队移交与办公室显示继续同步已保存的遗物状态。
+  Wraith(maplebirch);
 
   // 梦属于誓约的后续；停用模块或离开梦境时仍沿原版噩梦流程恢复现实。
   maplebirch.tool.addTo('Header', () => {
