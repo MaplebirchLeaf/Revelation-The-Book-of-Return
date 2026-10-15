@@ -4,12 +4,27 @@
 
 [![Game](https://img.shields.io/badge/Game-Degrees%20of%20Lewdity-purple)](https://gitgud.io/Vrelnir/degrees-of-lewdity)
 [![Framework](https://img.shields.io/badge/Framework-maplebirch-blue)](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
+[![ModLoader](https://img.shields.io/badge/SC2-ModLoader-blue)](https://modloader.pages.dev/)
+[![CHS](https://img.shields.io/badge/CHS-DOL--CHS-red)](https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization)
+[![Release](https://img.shields.io/github/v/release/MaplebirchLeaf/Revelation-The-Book-of-Return?label=release)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/MaplebirchLeaf/Revelation-The-Book-of-Return/total?label=downloads)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest)
+[![Stars](https://img.shields.io/github/stars/MaplebirchLeaf/Revelation-The-Book-of-Return?label=stars)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/stargazers)
+[![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-A **Degrees of Lewdity** story mod built on Maplebirch Framework, exploring temple life, character relationships and mysteries from the past.
+**Revelation: The Book of Return** is a **Degrees of Lewdity** story mod built on Maplebirch Framework, exploring temple life, character relationships and mysteries from the past. It supports English and Chinese.
 
-**[Download](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest)** · [Release notes](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases) · [Report an issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
+---
 
-## Content
+## Contents
+
+- [Main content](#main-content)
+- [Installation](#installation)
+- [Guides](#guides)
+- [Feedback and updates](#feedback-and-updates)
+- [Acknowledgements](#acknowledgements)
+- [Links](#links)
+
+## Main content
 
 | Content              | Overview                                                                                          |
 | -------------------- | ------------------------------------------------------------------------------------------------- |
@@ -18,26 +33,36 @@ A **Degrees of Lewdity** story mod built on Maplebirch Framework, exploring temp
 | Choir and singing    | Practise singing, join mass and perform around town.                                              |
 | Temple duties        | Take on work, restore the archive, investigate cases and earn a priest appointment.               |
 | Lost Lamb            | Enter Kylar's old manor dreams and explore their echoes after waking.                             |
-| The Ivory Wraith     | Return the ivory necklace and revisit the lake to ease the consequences of taking it.             |
-
-Choose which parts to enable in the framework's module manager.
+| The Ivory Wraith     | Return the ivory necklace, revisit the lake and face the consequences of taking it.               |
 
 ## Installation
 
-Targets the English and Chinese vanilla **DoL 0.5.12.13**. Requires SugarCube 2 ModLoader and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.2.2 or later**.
+Built for English and Chinese vanilla **DoL 0.5.12.13**. Requires **ModLoader 2.0.0+** and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.2.2+**. Install any other dependencies requested by the loader.
 
-1. Download the `.modpack` and add it to ModLoader.
-2. Meet the dependencies declared by the package.
-3. Enable Revelation and the desired content in the framework's module manager, then reload as prompted.
+1. Download the `.modpack` from [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest) and import it into ModLoader.
+2. Install the required dependencies, enable Revelation and your chosen content in the framework's module manager, and reload as prompted.
 
-[Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms) is an optional integration for housing, schedules, banquets, transformations and character portraits.
+## Guides
 
-## Game guide
+See the [English guides](src/assets/hint/EN) for entry points and requirements, and the in-game Journal for task progress.
 
-See the [English guides](src/assets/hint/EN) for entry points and gameplay details. With Deadwood Reblooms, they are also available through **Mod Hints** in the game sidebar. The **Journal** tracks story and task progress.
+[Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms) is an optional integration. With both mods installed, Revelation's guides are also available through **Mod Hints** in the sidebar.
 
-## Credits and feedback
+## Feedback and updates
 
-Robin's temple route rebuilds material from the author's earlier Maplebirch mod. Thanks to the original game, framework and dependency maintainers, and to players who offer suggestions and testing.
+- [Report an issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues): include the game and mod versions, steps to reproduce, and a screenshot or log for errors.
+- [Release notes](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases)
 
-Please open an [issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues) with game, framework and mod versions, reproduction steps and the complete error.
+## Acknowledgements
+
+Robin's temple route rebuilds material from the author's earlier Maplebirch mod.
+
+Thanks to Vrelnir and the original game contributors, the Chinese localization team, the ModLoader and Maplebirch Framework maintainers, and the players who contribute feedback and testing.
+
+## Links
+
+- [Original game](https://gitgud.io/Vrelnir/degrees-of-lewdity)
+- [Chinese localization](https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization)
+- [ModLoader documentation](https://modloader.pages.dev/)
+- [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)
+- [Deadwood Reblooms](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)
