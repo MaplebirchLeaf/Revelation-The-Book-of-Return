@@ -60,5 +60,12 @@ jobs:
             echo "Missing release notes: $notes" >&2
             exit 1
           fi
-          gh release create "$GITHUB_REF_NAME" "${packages[0]}" --verify-tag \
-            --title "Revelation: The Book of Return ${GITHUB_REF_NAME}" --notes-file "$notes"
+          releases="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/releases" --jq '.[].tag_name')"
+          if grep -Fxq "$GITHUB_REF_NAME" <<< "$releases"; then
+            gh release upload "$GITHUB_REF_NAME" "${packages[0]}" --clobber
+            gh release edit "$GITHUB_REF_NAME" \
+              --title "Revelation: The Book of Return ${GITHUB_REF_NAME}" --notes-file "$notes"
+          else
+            gh release create "$GITHUB_REF_NAME" "${packages[0]}" --verify-tag \
+              --title "Revelation: The Book of Return ${GITHUB_REF_NAME}" --notes-file "$notes"
+          fi
