@@ -1,29 +1,18 @@
 // ./scripts/protected-release.ts
 
 import path from 'node:path';
-import os from 'node:os';
-import { mkdtemp, rm, stat } from 'node:fs/promises';
+import { injectZip } from '../tools/dol-mod-protection-tools/src/inject';
+import { createModPackFromZip } from '../tools/dol-mod-protection-tools/src/modpack';
 import { createZipPackage } from './zip';
 
 const root = path.join(import.meta.dirname, '..');
-const tool = path.join(root, 'tools', 'dol-mod-protection-tools', 'src', 'zip-to-modpack.ts');
 const asset = await createZipPackage(root);
 const input = path.join(root, 'package', asset.fileName);
 const output = input.replace(/\.mod\.zip$/, '.modpack');
-const tempDir = await mkdtemp(path.join(os.tmpdir(), 'revelation-protected-release-'));
 
-try {
-  await stat(input);
-  await stat(tool);
-  // 工具在无凭据模式下生成 auth.json，私钥仅保存在临时目录中。
-  const child = Bun.spawn([process.execPath, 'run', tool, '--input', input, '--out', output, '--auto-auth', '--no-credential-password', '--keys-out', path.join(tempDir, 'release.keys.json')], {
-    cwd: root,
-    stdout: 'inherit',
-    stderr: 'inherit'
-  });
-  if ((await child.exited) !== 0) throw new Error(`Failed to encrypt ${asset.fileName}`);
-  if ((await stat(output)).size === 0) throw new Error(`Empty encrypted package: ${output}`);
-  console.log(`Protected release package: ${output}`);
-} finally {
-  await rm(tempDir, { recursive: true, force: true });
-}
+// 无凭证模式将解密密码内嵌到加载器，不签发玩家凭证或写出私钥。
+const encrypted = await injectZip({ input, autoAuth: true, noCredentialPassword: true });
+if (encrypted.generated?.credential) throw new Error('Credential-free release unexpectedly generated a credential.');
+const modpack = createModPackFromZip(encrypted.modName, encrypted.patchedZip);
+await Bun.write(output, modpack);
+console.log(`Protected release package: ${output}`);
