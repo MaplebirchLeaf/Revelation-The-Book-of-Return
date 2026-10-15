@@ -20,14 +20,14 @@
       and $per_npc.bishop and $TempleDuties.manor is 'none'>>
     <br>
     <<socialiseicon 'ask'>>
-    <<lanLink ['Ask the bishop about the manor and your new duties', '向主教询问庄园与新的职务'] 'Revelation Temple Monstrance'>>
+    <<lanLink ['Ask the bishop about the damaged monstrance at the manor', '向主教询问庄园里残损的圣体匣'] 'Revelation Temple Monstrance'>>
     <</lanLink>>
     <br>
   <<elseif $TempleDuties.manor is 'copied' and $per_npc.bishop
       and $TempleDuties.archive.topics.includes('monstrance')>>
     <br>
     <<socialiseicon 'ask'>>
-    <<temple-duty-action `['Deliver the notes Kylar agreed to share (£60, 0:05)', '交出凯拉尔同意提供的记录 (£60，0:05)']` 5 'Revelation Temple Monstrance End'>>
+    <<temple-duty-action `['Submit the description Kylar agreed to share and collect £60 (0:05)', '交出凯拉尔同意提供的描述，领取 £60 报酬 (0:05)']` 5 'Revelation Temple Monstrance End'>>
       <<if $TempleDuties.manor is 'copied'>>
         <<set $TempleDuties.manor to 'complete'>>
         <<historyskill 2>>
@@ -38,7 +38,7 @@
   <<elseif $TempleDuties.manor is 'accepted'>>
     <br>
     <<refuseicon>>
-    <<temple-duty-action `['Set the private investigation aside (0:01)', '放下这项私下调查 (0:01)']` 1 'Revelation Temple Monstrance Answer'>>
+    <<temple-duty-action `['End this private investigation (0:01)', '结束这项私下调查 (0:01)']` 1 'Revelation Temple Monstrance Answer'>>
       <<set $TempleDuties.manor to 'declined'>>
     <</temple-duty-action>>
     <br>
@@ -58,15 +58,15 @@
   <<option 'EN'>>
     The bishop meets you beside the shadowed doorway. "A priest now," <<he>> says, smiling. "Jordan has good reason to trust you. And you have not forgotten what I told you about that house."
     You recall the hacked metal at the top of the monstrance, and Kylar asking why <<his>> parents had shown it to you. You unfold the sketch you made of it.
-    "Compare what remains with our older descriptions," <<he>> says. "Take care with the child. Kinship makes some doors easier to open." <<His>> smile lingers. The index waits beneath <<his>> fingers. "The records office allows sixty pounds for a completed copy."
+    "The old records room has a drawing of it before the damage," <<he>> says. "Compare the two. Ask the child what you may write down. People tell those closest to them things they would never tell us." <<His>> smile lingers. <<He>> taps the index. "Bring back the description and your comparison. The records office will pay sixty pounds for the copy."
   <<option 'CN'>>
     主教在阴影中的门边接待你。“如今是司祭了，”<<he>>笑着说，“约旦有理由相信你。你也没有忘记我说过那所宅邸的事。”
     你想起圣体匣顶端被砍坏的金属，以及凯拉尔问父母为什么让你们看见它。你摊开那时画下的草图。
-    “把留下的东西与我们的旧记录比一比，”<<he>>说，“对那孩子仔细些。亲近的人，能打开某些门。”<<His>>笑容停留着。索引压在<<his>>指下。“交来完整的副本，资料室会付六十英镑。”
+    “旧资料室里有它受损前的图样，”<<he>>说，“把两者比一比，再问问那孩子，哪些可以写下来。有些话，亲近的人才能问得到。”<<His>>仍带着笑，手指点着索引。“把描述和比对结果带回来。资料室会付六十英镑，作为抄录的报酬。”
 <</language>>
 <br><br>
 <<socialiseicon>>
-<<temple-duty-action `['Agree to investigate after asking Kylar (0:05)', '答应调查，先问过凯拉尔 (0:05)']` 5 'Revelation Temple Monstrance Answer'>>
+<<temple-duty-action `['Accept, on condition that Kylar agrees to share (0:05)', '答应调查，但只记录凯拉尔同意提供的内容 (0:05)']` 5 'Revelation Temple Monstrance Answer'>>
   <<set $TempleDuties.manor to 'accepted'>>
 <</temple-duty-action>>
 <br>
@@ -85,15 +85,15 @@
 <<language>>
   <<option 'EN'>>
     <<if $TempleDuties.manor is 'accepted'>>
-      "How carefully you draw the line," the bishop says. "We shall see what stands on either side." <<He>> gives you a reference to an old description in the records room. No promise of a cure accompanies it.
+      "How carefully you draw the line," the bishop says. <<He>> gives you the reference for the old drawing and description. You still need to read them in the records room and ask Kylar about the damaged shape at the manor. The bishop has offered payment for a record, not a way to cure Kylar's parents.
     <<else>>
-      The bishop folds the reference away. "Jordan's duties will keep you busy enough," <<he>> says. You cannot tell whether <<he>> is disappointed. <<He>> turns to the messenger.
+      The bishop puts the reference back between the pages. "Jordan's duties will keep you busy enough," <<he>> says. You cannot tell whether <<he>> is disappointed. <<He>> closes the book.
     <</if>>
   <<option 'CN'>>
     <<if $TempleDuties.manor is 'accepted'>>
-      “界线画得多仔细。”主教说，“看看两边各有什么吧。”<<He>>给你旧资料室中一份描述的索引，没有同时承诺能够治愈任何人。
+      “界线画得多仔细。”主教说。<<He>>把旧图与描述的索引交给你。你还得去旧资料室查阅，再到庄园问凯拉尔，留下对残损形状的记录。主教许诺的是抄录的报酬，并没有说能治好凯拉尔的父母。
     <<else>>
-      主教收起索引。“约旦的职务就够你忙了，”<<he>>说。你看不出<<he>>是否失望，<<He>>转向传话者。
+      主教把索引夹回书页。“约旦的职务就够你忙了，”<<he>>说。你看不出<<he>>是否失望，<<He>>合上了书。
     <</if>>
 <</language>>
 <br><br>
@@ -140,7 +140,7 @@
 <</temple-duty-action>>
 <br>
 <<refuseicon>>
-<<temple-duty-action `['Put the notebook away and keep this conversation private (0:05)', '收起笔记，将这次谈话留在你们之间 (0:05)']` 5 'Revelation Temple Kylar Answer'>>
+<<temple-duty-action `['Put the notebook away and end the investigation (0:05)', '收起笔记，结束这项调查 (0:05)']` 5 'Revelation Temple Kylar Answer'>>
   <<set $TempleDuties.manor to 'declined'>>
 <</temple-duty-action>>
 <br>
@@ -154,13 +154,13 @@
 <<language>>
   <<option 'EN'>>
     <<if $TempleDuties.manor is 'copied'>>
-      "Just the shape," Kylar says at last. "Nothing about my parents. Nothing about... me." You let <<him>> cross out a line, then read the description back. <<He>> keeps a copy. "Don't let them come here without telling me."
+      "Just the shape," Kylar says at last. "Nothing about my parents. Nothing about... me." You let <<him>> cross out a line, then read the description back to make sure it says only what <<he>> agreed to share. <<He>> keeps a copy. "Don't let them come here without telling me."
     <<else>>
       Kylar watches you put the notebook away. "You can still come here, can't you? Being a priest doesn't mean I have to talk to them." You assure <<him>> this conversation can end here. <<He>> turns the chair back towards you.
     <</if>>
   <<option 'CN'>>
     <<if $TempleDuties.manor is 'copied'>>
-      “只写形状。”凯拉尔终于说，“别写我的父母。别写……我。”你让<<him>>划掉一行，再读回描述。<<He>>留下一份副本。“别让他们不告诉我就来这里。”
+      “只写形状。”凯拉尔终于说，“别写我的父母。别写……我。”你让<<him>>划掉一行，再把描述读给<<him>>听，确认只留下<<he>>同意交出的内容。<<He>>留下一份副本。“别让他们不告诉我就来这里。”
     <<else>>
       凯拉尔看着你收起笔记。“你还是能来这里的，对吧？当了司祭，不代表我就得和他们谈。”你说明这次谈话可以到此为止。<<He>>把椅子转回你这边。
     <</if>>
@@ -181,10 +181,10 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    The bishop reads the description of the broken metal. "And nothing more?" <<he>> asks. You tell <<him>> that is what Kylar agreed to share. <<He>> places it beside the older drawing; some lines match, and some do not. "Then that is what we have."
+    The bishop reads your description of the broken metal beside the drawing you found in the old records. "And nothing more?" <<he>> asks. You tell <<him>> that this is all Kylar agreed to share. Some lines match the old drawing, and some do not. "Then that is what we have."
     The bishop draws a line beneath the description, then places the records fee beside it. <<He>> shuts the ledger before you can see the next entry. The sound follows you through the door.
   <<option 'CN'>>
-    主教读过残损金属的描述。“没有别的？”<<he>>问。你说明，这就是凯拉尔同意分享的内容。<<He>>把纸放在旧图旁，有些线条吻合，有些不同。“那么，我们就只有这些。”
+    主教把你记录的残损形状，与旧资料室的图样并排放好。“没有别的？”<<he>>问。你说明，凯拉尔只同意交出这些。有些线条与旧图吻合，有些不同。“那么，我们就只有这些。”
     主教在描述下划了一道线，把抄录的报酬放在纸旁。你还没看见下一条记录，<<he>>就合上账簿。那一声轻响跟着你穿过门。
 <</language>>
 <br><br>

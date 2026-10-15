@@ -37,7 +37,7 @@
   <<case 'pitch'>>
     <<language>><<option 'EN'>>The starting note hangs in the empty hall. You sing it back, listen to the difference and adjust. The higher phrase takes several attempts. Your throat is tired when you close the book, but you can hear where you went wrong.<<option 'CN'>>起音在空荡的大厅里回响。你跟着唱，听出差别，再一点点调整。较高的那句反复试了好几遍。合上书时，喉咙已有些疲倦，但你能听出自己刚才偏在哪里。<</language>><<gtiredness>><<gsingingskill>>
   <<case 'choir'>>
-    <<language>><<option 'EN'>>You learn to enter after the neighbouring voices instead of trying to overpower them. A missing singer leaves a gap in the lower line. You help hold it through the final verse, then pass the books along the pew.<<option 'CN'>>你学着接住身旁人的声音，而不是用自己的音量盖过他们。低声部有一人缺席，旋律空出一截。你帮着托住最后一节，再把祈祷书沿长椅传回去。<</language>><<gtiredness>><<ggrace>><<gsingingskill>>
+    <<language>><<option 'EN'>>You listen to the singers beside you and practise coming in at the right moment. Someone is absent from the lower part, so you help the others sing it through to the end. After rehearsal, you pass the books along the pew.<<option 'CN'>>你听着身旁歌者的节拍，练习在合适的时候开口。低声部有一人缺席，你便帮着其他人唱完这一声部。排练结束，你把祈祷书沿长椅传回去。<</language>><<gtiredness>><<ggrace>><<gsingingskill>>
   <<default>>
     <<language>>
       <<option 'EN'>>
@@ -71,19 +71,20 @@
     <<case 2>>
       <<language>><<option 'EN'>>A child rustles the prayer book as the final hymn begins. The congregation joins in. You must listen carefully to keep the choir together beneath their uneven voices.<<option 'CN'>>结束赞美诗开始时，一个孩子把祈祷书翻得沙沙响。信众也加入歌唱。你得仔细听，在参差的声音下稳住唱诗班的节奏。<</language>>
   <</switch>><br><br>
-  <<icon 'temple/choir.png'>><<lanLink ['Follow the choir (0:20)', '跟随合唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
-  <<icon 'temple/choir.png'>><<lanLink ['Support the harmony (0:20)', '支撑和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<language>>
+    <<option 'EN'>>
+      <span class='teal'>Following the melody is easier. Trying a harmony part gives you more practice, but requires greater skill. Recent practice helps; tiredness and alcohol make singing harder.</span><br>
+      Performance so far: <span class='gold'><<= $TempleChoir.shift.score>></span> points. A clear verse earns two points, or three when leading. An unsteady verse earns one.
+    <<option 'CN'>>
+      <span class='teal'>跟着大家唱比较容易；尝试和声更考验技巧，也能多练习歌唱。最近的练习有帮助，疲劳和醉酒则会妨碍发挥。</span><br>
+      当前表现：<span class='gold'><<= $TempleChoir.shift.score>></span> 分。稳稳唱完一节得两分，领唱得三分，勉强跟上得一分。
+  <</language>><br><br>
+  <<icon 'temple/choir.png'>><<lanLink ['Follow the melody (0:20)', '跟着大家的旋律唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<lanLink ['Try a harmony part (0:20)', '尝试和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <<if $TempleChoir.lead>>
     <<icon 'temple/choir.png'>><<lanLink ['Lead the verse (0:20)', '领唱这一节 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'lead'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <</if>>
-  <<language>>
-    <<option 'EN'>>
-      <span class='teal'>Following is easier. Harmony requires more skill. Recent practice helps, while tiredness and alcohol make it harder to hold your part.</span><br>
-      Performance so far: <span class='gold'><<= $TempleChoir.shift.score>></span> points. A clear verse earns two points, or three when leading. An unsteady verse earns one.
-    <<option 'CN'>>
-      <span class='teal'>跟随合唱较容易，支撑和声更考验技巧。最近的练习有帮助，疲劳和醉酒则会妨碍发挥。</span><br>
-      当前表现：<span class='gold'><<= $TempleChoir.shift.score>></span> 分。稳稳唱完一节得两分，领唱得三分，勉强跟上得一分。
-  <</language>><br><br>
+
   <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗'] 'Temple'>><<set $TempleChoir.shift to null>><<endevent>><</lanLink>><br>
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
 <<elseif maplebirch.get('TempleChoir')?.active and $TempleChoir.shift.round is 3>>

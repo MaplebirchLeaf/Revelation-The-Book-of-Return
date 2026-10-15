@@ -27,7 +27,7 @@
     <<secret-day-check 0>>
     <<if _secretDayReady>>
       <<socialiseicon 'ask'>>
-      <<lanLink ['Ask Robin and Sydney about your daylight plans', '和罗宾、悉尼谈白天的约定'] 'RobinTemple Daylight'>><</lanLink>>
+      <<lanLink ['Talk to Robin and Sydney about the night at the lake', '和罗宾、悉尼谈谈湖边那晚的事'] 'RobinTemple Daylight'>><</lanLink>>
       <br>
     <</if>>
   <</if>>
@@ -85,22 +85,22 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    Robin has saved a place at the end of the table. Sydney arrives with the notebook beneath <<nnpc_his 'Sydney'>> arm, but leaves it closed.
+    Robin has saved you a seat at the end of the table. Sydney arrives carrying the notebook from your trip to the lake and puts it between you without opening it.
     <br><br>
     <<if $RobinTemple.secret.followup is 'none'>>
-      "You said we'd eat together," Robin says. <<if maplebirch.get('RobinTemple').secret.cornered>>Sydney watches you. "First, tell us what you knew about leaving."<<else>>Sydney pulls a third chair over. "I remember being promised a place too."<</if>>
+      "You said we'd eat together," Robin says. <<if maplebirch.get('RobinTemple').secret.cornered>>Sydney watches you. "You said we couldn't leave that night. What did you actually know?"<<else>>Sydney pulls a third chair over. "I remember being promised a place too."<</if>>
     <<elseif $RobinTemple.secret.followup is 'meal'>>
-      "In daylight," Sydney says, tapping the notebook. "I want to compare what we remember." Robin has brought a clean page rather than the drawing <<nnpc_he 'Robin'>> made that night.
+      "We're all clear-headed now. I want to compare what we remember of that night," Sydney says, tapping the notebook. Robin has brought a clean page to write down the events again.
     <<else>>
       The copy lies between three empty cups. There is a wet mark beneath one, although the cups have been dry for some time.
     <</if>>
   <<option 'CN'>>
-    罗宾在长桌尽头留了位置。悉尼夹着笔记过来，却没有翻开。
+    罗宾在长桌尽头给你留了一个座位。悉尼带来湖边那晚用过的笔记，放在你们中间，没有翻开。
     <br><br>
     <<if $RobinTemple.secret.followup is 'none'>>
-      “你说过，要一起吃饭。”罗宾说。<<if maplebirch.get('RobinTemple').secret.cornered>>悉尼看着你。“先说清楚，你那时到底知道多少，我们能不能离开。”<<else>>悉尼拉来第三张椅子。“我记得，也答应给我留位置了。”<</if>>
+      “你说过，要一起吃饭。”罗宾说。<<if maplebirch.get('RobinTemple').secret.cornered>>悉尼看着你。“那晚你说我们走不了。你当时究竟知道什么？”<<else>>悉尼拉来第三张椅子。“我记得，也答应给我留位置了。”<</if>>
     <<elseif $RobinTemple.secret.followup is 'meal'>>
-      “白天再看。”悉尼轻敲笔记，“我想对一对，各自记得什么。”罗宾带了张干净纸，没有拿那晚画下的图。
+      “现在大家都清醒了，我想核对一下那晚的事。”悉尼轻敲笔记。罗宾也带了张干净纸，准备重新写下记得的经过。
     <<else>>
       誊好的记录放在三只空杯子中间。有只杯子下面留下湿痕，可杯子已经干了好一会儿。
     <</if>>
@@ -138,7 +138,7 @@
   <br>
 <</if>>
 <<refuseicon>>
-<<lanLink ['Leave these questions behind', '不再追问那晚的事'] 'Temple'>>
+<<lanLink ['Decide to stop investigating that night', '决定不再调查那晚的异象'] 'Temple'>>
   <<set $RobinTemple.secret.followup to 'declined'>>
 <</lanLink>>
 <br><br>
@@ -148,24 +148,24 @@
 <<secret-day-place>>
 <<language>>
   <<option 'EN'>>
-    Robin divides the bread, making your piece a little larger before Sydney notices and breaks <<nnpc_his 'Sydney'>> own in half. Nobody says a prayer over the notebook.
+    Robin breaks the bread and gives you the larger piece. Sydney notices and shares half of <<nnpc_his 'Sydney'>> own with you too. The notebook stays closed while you begin to eat.
     <br><br>
     <<if maplebirch.get('RobinTemple').secret.cornered>>
       You admit that the way out was open. Robin puts the bread down. "Then when I say I want to leave, we leave." Sydney waits until you answer, then opens the notebook to a blank page. "Write that first."
     <<elseif maplebirch.get('RobinTemple').secret.rushed>>
-      "I meant what I said," Robin tells you. "I still wish we'd waited." Sydney marks the time you first saw the stone. "Both can be true."
+      "I did mean it when I agreed," Robin tells you. "But now I wish we'd waited a few more days." Sydney notes the date of your first investigation. "Then we'll write that down too. Next time, we find out more before we act."
     <<else>>
-      Robin asks about the ordinary things you will do tomorrow. Sydney tries to fit a library shift between them. For a little while, you need only keep your tea from going cold.
+      Robin asks whether you are free tomorrow, and Sydney tells you about <<nnpc_his 'Sydney'>> library shift. You drink your tea and work out when you can next meet.
     <</if>>
   <<option 'CN'>>
-    罗宾分开面包，悄悄给你留大些的一块。悉尼发现了，把自己的又掰成两半。没有人对着笔记祈祷。
+    罗宾掰开面包，把大些的一块递给你。悉尼看见了，也分了一半给你。你们先吃了几口，没有急着打开笔记。
     <br><br>
     <<if maplebirch.get('RobinTemple').secret.cornered>>
       你承认，那时归路仍然通着。罗宾放下面包。“以后，我说想离开，就离开。”悉尼等你答复，才翻到空白页。“先写这一句。”
     <<elseif maplebirch.get('RobinTemple').secret.rushed>>
-      “我说的是认真的。”罗宾告诉你，“可我还是希望，那时候再等等。”悉尼记下你们第一次看见石头的时刻。“这两件事，都可以是真的。”
+      “那晚我确实答应了。”罗宾告诉你，“可我现在想想，还是觉得应该多等几天。”悉尼记下你们初次调查的日期。“那就把这件事也记上。下次先查清楚，再动手。”
     <<else>>
-      罗宾问起明天要一起做的寻常事情。悉尼试着把图书馆的值班排进去。有一会儿，你们只需要顾着，不让茶凉掉。
+      罗宾问你明天有没有空，悉尼也说起图书馆的值班时间。你们一边喝茶，一边商量下次什么时候能见面。
     <</if>>
 <</language>>
 <br><br>
@@ -178,11 +178,11 @@
 <<secret-day-place>>
 <<language>>
   <<option 'EN'>>
-    Sydney reads each sentence back before copying it. Robin remembers a footstep where you remember water. You leave both accounts on the page. A name occurs twice in different handwriting; none of you remembers writing the second one.
+    Sydney reads the old notes aloud, then copies the events you can confirm onto a clean page. You remember water at one point, while Robin remembers footsteps, so you record both accounts. On the next page, the same name appears twice in different handwriting. You look at one another. None of you remembers writing it a second time.
     <br><br>
     "No following a voice on your own," Robin says. Sydney closes the old notebook and keeps the copy. "If we hear it, we ask one another first."
   <<option 'CN'>>
-    悉尼先把每句话读回来，才往新纸上誊。你记得水声的地方，罗宾记得脚步。你们把两种记忆都留下。有个名字用不同笔迹写了两遍，三个人却都不记得第二遍是谁写的。
+    悉尼逐句读出旧笔记，再把你们确认过的经过抄到新纸上。有一处你记得听见了水声，罗宾却说是脚步声；你们暂时都记下来。翻到下一页，同一个名字竟用两种笔迹写了两遍。三个人互相看了看，谁也不记得第二遍是谁写的。
     <br><br>
     “谁都别自己跟着声音走。”罗宾说。悉尼合上旧本，留下副本。“听见了，就先问身边的人。”
 <</language>>
@@ -201,11 +201,11 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    A voice says your name beyond the closed service door. Robin is beside you. Sydney is beside Robin. Nobody has moved their lips.
-    "Not that way," Robin says, pointing towards the hall. Sydney holds the copy up to the daylight. "It got one word wrong. Listen." Both wait for your answer; neither will go through the door.
+    You carry the notes into the short passage leading back to the hall. A voice calls your name from behind a closed door beside you. You turn to Robin and Sydney. Both are standing with you, and neither has spoken.
+    "Don't go over there," Robin says, catching your sleeve and pointing back towards the hall. Sydney checks the fresh copy and listens again. "It's repeating what was said that night, but one word is wrong." Neither wants to open the door. They wait for you to decide whether to listen here or return to the hall.
   <<option 'CN'>>
-    合着的杂役门后，有声音念出你的名字。罗宾就在你身边，悉尼挨着罗宾。谁也没有动嘴唇。
-    “别走那里。”罗宾指向大厅。悉尼把副本举到日光下。“有一个字不一样。听。”两人等着你的回答，谁也不肯穿过那扇门。
+    你们拿着笔记，走到通往大厅的短廊。旁边一扇关着的门后，突然传来叫你名字的声音。你转头看去，罗宾和悉尼都在你身边，谁也没有开口。
+    “别过去。”罗宾拉住你的衣袖，指了指回大厅的路。悉尼拿起刚抄好的记录，又听了一遍。“它在重复那晚说过的话，可有一个词不对。”两人都不愿开门，等着你决定是留在原地听清楚，还是先回大厅。
 <</language>>
 <br><br>
 <<set _dayListen to currentSkillValue('history') gte 400 or currentSkillValue('english') gte 500>>
@@ -225,7 +225,7 @@
 <</if>>
 <<if _dayLong and _dayHold>>
   <<icon 'physique.png'>>
-  <<secret-day-action `['Hold the door shut while both companions find the hall (0:10)', '抵住门，等两人找到大厅 (0:10)']` 10 'RobinTemple Daylight End'>>
+  <<secret-day-action `['Hold the door shut while Robin and Sydney return to the hall (0:10)', '抵住门，让罗宾和悉尼先退回大厅 (0:10)']` 10 'RobinTemple Daylight End'>>
     <<set $RobinTemple.secret.followup to 'complete'>>
     <<tiredness 5>>
     <<willpower 2>>
@@ -251,10 +251,10 @@
 <<secret-day-place>>
 <<language>>
   <<option 'EN'>>
-    The hall is warm and full of voices. Robin checks that you are all there before releasing your sleeve. Sydney counts the pages and puts the copy away.
+    All three of you return to the warm, busy hall. Robin looks from you to Sydney, then lets out a breath. Sydney counts the pages and puts the copy away.
     "I don't know what that was," Sydney says. "I know neither of us asked you to follow it." Robin keeps a seat beside <<nnpc_him 'Robin'>> until the next bell.
   <<option 'CN'>>
-    大厅里暖和，满是人声。罗宾确认你们都在，才松开你的袖口。悉尼数过纸页，收好副本。
+    你们三个都回到了大厅。这里暖和，也有人在说话。罗宾看看你，又看看悉尼，终于松了口气。悉尼数清纸页，收好副本。
     “我不知道，那是什么。”悉尼说，“可我们谁都没有叫你跟过去。”下一阵钟声响起前，罗宾一直留着身旁的座位。
 <</language>>
 <br><br>

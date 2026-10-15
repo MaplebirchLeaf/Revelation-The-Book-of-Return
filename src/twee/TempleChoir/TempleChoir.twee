@@ -72,16 +72,16 @@
   <<if maplebirch.get('TempleChoir').singing gte 300>>
     <<language>>
       <<option 'EN'>>
-        "You can hear the line before you sing it," <<he>> says. "That will help the others. Join us at practice, and be punctual for Sunday service."
+        "You remember the melody well," <<he>> says. "Help the others during practice too. Be punctual for Sunday service."
       <<option 'CN'>>
-        “你在开口前听得见旋律，”<<he>>说，“这能帮到其他人。来练习吧，周日弥撒不要迟到。”
+        “旋律记得不错，”<<he>>说，“练习时也帮帮其他人。周日弥撒要准时来。”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "You lose the pitch when you run out of breath," <<he>> says, not unkindly. "That is what practice is for. Stand with the quieter voices until you learn the line."
+        "You lose the pitch when you run out of breath," <<he>> says, not unkindly. "Practice will help. Follow the others until you know the melody."
       <<option 'CN'>>
-        “换气时你会丢掉音准，”<<he>>说，语气并不严厉，“练习就是为了这个。先站在声音轻些的人旁边，把旋律学稳。”
+        “换气时音容易跑掉，”<<he>>说，语气并不严厉，“多练习就好了。先跟着大家唱，把旋律记熟。”
     <</language>>
   <</if>>
   <<set $TempleChoir.joined to true>>

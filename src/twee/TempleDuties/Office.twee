@@ -155,9 +155,9 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    Lists of blankets and names lie beside a ring of keys. The high priest reads the last clerk's note before looking up. Behind <<him>>, incense hangs beneath the angel's wings. "Some doors should be opened, child. Some must be kept shut. First, tell me who is still waiting outside."
+    You come to the duties desk. Lists of blankets and names lie beside a ring of keys. The high priest reads the last clerk's note before looking up. Behind <<him>>, incense hangs beneath the angel's wings. "Looking for work, child? The handover will tell you where we need help." <<He>> turns the duties book towards you.
   <<option 'CN'>>
-    毯子清单和名册旁放着一圈钥匙。大司祭约旦读完上一班留下的便条，才抬起头。香烟悬在<<him>>身后天使的翼下。“有些门应当打开，孩子。有些必须守住。先告诉我，还有谁在门外等着。”
+    你来到职务桌前。毯子清单和名册旁放着一圈钥匙。大司祭约旦读完上一班留下的便条，才抬起头。香烟悬在<<him>>身后天使的翼下。“想来帮忙吗，孩子？先看看交接记录，哪里缺人手，都记在上面。”<<He>>把职务簿转向你。
 <</language>>
 <br><br>
 <<revelation-card 'Duties book' '职务簿'>>
@@ -173,7 +173,7 @@
   <<else>>
     <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
       <<icon 'temple/duties-book.png'>>
-      <<lanLink ['Take a shift and read the handover', '接一班职务，读交接记录'] 'Revelation Temple Shift'>>
+      <<lanLink ['Read today’s handover and choose a shift', '查看今日交接，选择一班职务'] 'Revelation Temple Shift'>>
       <</lanLink>>
       <br>
     <</if>>
@@ -188,7 +188,7 @@
       <br>
     <<elseif $TempleDuties.case?.stage is 'field'>>
       <<icon 'temple/duties-book.png'>>
-      <<lanLink ['Check your current assignment', '查看当前委托'] 'Revelation Temple Case Brief'>>
+      <<lanLink ['Review the assignment and prepare', '查看委托说明，准备调查'] 'Revelation Temple Case Brief'>>
       <</lanLink>>
       <br>
     <<elseif !$TempleDuties.case and _dutyNext
@@ -257,7 +257,7 @@
           and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or ($temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7))>>
         <<capture _retryId>>
           <<socialiseicon>>
-          <<temple-duty-action `['Arrange a return inspection (0:05)', '安排回访检查 (0:05)']` 5 'Revelation Temple Case Accepted'>>
+          <<temple-duty-action `['Accept a return inspection (0:05)', '接下回访检查 (0:05)']` 5 'Revelation Temple Case Accepted'>>
             <<temple-case-take _retryId true>>
           <</temple-duty-action>>
           — <<temple-case-title _retryId>><br>
@@ -266,7 +266,7 @@
     <</for>>
     <<if _bishopKnown and !['refused', 'reported'].includes($TempleDuties.bishop)>>
       <<socialiseicon 'ask'>>
-      <<lanLink ['Read the sealed note beside your confession list', '读告解名单旁的密封便条'] 'Revelation Temple Sealed Note'>>
+      <<lanLink ['Read the sealed note left for you', '读留给你的密封便条'] 'Revelation Temple Sealed Note'>>
       <</lanLink>>
       <br>
     <</if>>
@@ -315,9 +315,9 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    A clerk has left two things unfinished: the kitchen received fewer bowls than the list says, and someone folded damp blankets onto the dry shelf. Jordan points to the crossed-out figures. "Check before you copy them."
+    A clerk has left two things unfinished: the kitchen received fewer bowls than the list says, and someone folded damp blankets onto the dry shelf. Jordan points to the crossed-out figures. "Choose one for this shift. Check it before you write the handover."
   <<option 'CN'>>
-    上一班留了两件没处理完的事：厨房收到的碗比清单上少，另有人把潮湿的毯子叠进了干货架。约旦指着划掉的数字。“抄录之前，先核对。”
+    上一班留了两件没处理完的事：厨房收到的碗比清单上少，另有人把潮湿的毯子叠进了干货架。约旦指着划掉的数字。“这一班先选一件做。核对清楚，再写交接记录。”
 <</language>>
 <br><br>
 <<icon 'temple/delivery-records.png'>>
@@ -358,7 +358,7 @@
   <<option 'EN'>>
     <<switch $TempleDuties.note>>
       <<case 'joined'>>
-        Jordan adds your name to the duties book. "Come when you're free. Leave the school and your other commitments in order." <<He>> gives you the key for the records room.
+        Jordan adds your name to the duties book. "Come when you're free. Keep school and your other commitments in order." <<He>> gives you the key to the old records room. You can now choose a shift from the handover or ask about an investigation.
       <<case 'accounts'>>
         The missing bowls are still wrapped beside the kitchen door. You correct the receipt after counting them. Jordan initials your handover; your payment is placed beside it.
       <<case 'blankets'>>
@@ -368,16 +368,16 @@
       <<case 'wards'>>
         You pull creeping stems away from the flower beds and clear the damp growth from the inscribed stones. An older priest holds the copied pattern while you mend the damaged lines. You leave the gate and its approach clear before returning the lamp. Jordan marks the inspection complete. Beyond the wall, branches still press against the stone.
       <<case 'sorted'>>
-        The loose pages now lie between dry sheets, their numbers copied onto the sleeves. You leave the remaining damaged leaves for the next session.
+        You lay this batch of loose pages between dry sheets and copy their numbers onto the sleeves. The damaged leaves are back in order, ready to be checked against the bound volumes.
       <<case 'funded'>>
-        The amount and its purpose are written on the receipt. Jordan keeps the contractor's copy separate from the kitchen fund.
+        Your payment and its purpose are written on the receipt. Jordan files the contractor's copy separately from the kitchen accounts. The work has been arranged; the completion date is recorded with the estimate.
       <<case 'unpaid'>>
         The payment could not be completed. The clerk leaves the agreement unsigned.
     <</switch>>
   <<option 'CN'>>
     <<switch $TempleDuties.note>>
       <<case 'joined'>>
-        约旦把你的名字添进职务簿。“有空时来。学校和你其他应尽的事，也要安排妥当。”<<He>>交给你资料室的钥匙。
+        约旦把你的名字添进职务簿。“有空时来。学校和其他事情，也要安排妥当。”<<He>>交给你旧资料室的钥匙。现在，你可以查看交接记录，挑一班职务，也可以询问需要调查的事。
       <<case 'accounts'>>
         少的碗还包在厨房门边。数清后，你更正了收据。约旦在交接记录上签了字，把报酬放在旁边。
       <<case 'blankets'>>
@@ -387,9 +387,9 @@
       <<case 'wards'>>
         你把蔓生的枝茎从花坛边拉开，清理符石上的湿苔。年长的司祭替你举着抄录的图样，你修补受损的线条。归还灯具前，门口与通路也已清理妥当。约旦在清单上标记巡查完成。墙外的枝条，仍紧贴着石头。
       <<case 'sorted'>>
-        散页已经夹进干纸，编号抄在封套上。余下受损的纸页留待下一次修复。
+        你把这一批散页夹进干纸，将编号抄在封套上。受损的纸页重新排好了顺序，可以拿来核对书中的内容。
       <<case 'funded'>>
-        收据写明了金额和用途。约旦把承包商的副本与厨房基金的账簿分开放好。
+        收据上写着你支付的款项和用途。约旦把承包商的副本与厨房账簿分开放好。施工已经安排，完工日期也记在报价单上。
       <<case 'unpaid'>>
         付款未能完成。侍从把协议留着，没有签字。
     <</switch>>

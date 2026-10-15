@@ -61,7 +61,7 @@
 <<widget 'temple-ordination-roster'>>
   <<if $TempleDuties.party.length>>
     <<socialiseicon>>
-    <<lanLink ['Choose again', '重新选择同伴']>>
+    <<lanLink ['Cancel all invitations', '取消所有邀请']>>
       <<set $TempleDuties.party to []>>
       <<replace '#temple-ordination-roster'>>
         <<temple-ordination-roster>>
@@ -74,7 +74,7 @@
     <<if _candidateReady>>
       <<capture _ordinand>>
         <<socialiseicon>>
-        <<lanLink `[$TempleDuties.party.includes(_ordinand) ? 'Leave ' + maplebirch.auto(_ordinand) + ' for another ceremony' : 'Accept the appointment with ' + maplebirch.auto(_ordinand), $TempleDuties.party.includes(_ordinand) ? '为' + maplebirch.auto(_ordinand) + '另约仪式' : '与' + maplebirch.auto(_ordinand) + '一同接受任命']`>>
+        <<lanLink `[$TempleDuties.party.includes(_ordinand) ? 'Cancel invitation: ' + maplebirch.auto(_ordinand) : 'Invite ' + maplebirch.auto(_ordinand) + ' to the appointment ceremony', $TempleDuties.party.includes(_ordinand) ? '取消对' + maplebirch.auto(_ordinand) + '的邀请' : '邀请' + maplebirch.auto(_ordinand) + '参加任命仪式']`>>
           <<if $TempleDuties.party.includes(_ordinand)>>
             <<run $TempleDuties.party.delete(_ordinand)>>
           <<else>>
@@ -85,7 +85,7 @@
           <</replace>>
         <</lanLink>>
         <<if $TempleDuties.party.includes(_ordinand)>>
-          <span class='teal'><<lanSwitch ' · Attending' ' · 同席'>></span>
+          <span class='teal'><<lanSwitch ' · Invited' ' · 已邀请'>></span>
         <</if>>
         <br>
       <</capture>>
@@ -103,7 +103,7 @@
   <<if _ordinationReady>>
     <br>
     <<templeicon 'altar'>>
-    <<temple-duty-action `['Answer Jordan beside the fire (0:25)', '在炉边回答约旦 (0:25)']` 25 'Revelation Temple Shared Ordained' `$TempleDuties.party`>>
+    <<temple-duty-action `['Confirm the vows and complete the appointment ceremony (0:25)', '确认誓言，完成任命仪式 (0:25)']` 25 'Revelation Temple Shared Ordained' `$TempleDuties.party`>>
       <<set _ordinationReady to _dutyOffice and (_dutyReady and $TempleDuties.review and $TempleDuties.oath is 'care'
         or $temple_rank is 'priest' and $temple_chastity_timer gt 0 and $player.virginity.temple is true)>>
       <<for _ordinand range $TempleDuties.party>>
@@ -133,7 +133,7 @@
     <</temple-duty-action>>
     <br>
   <<else>>
-    <span class='lblue'><<lanSwitch 'Choose someone who has completed the interview and can stay for the rite.' '选好已完成面谈、能留下参加仪式的同伴。'>></span><br>
+    <span class='lblue'><<lanSwitch 'Invite a companion who has completed the interview and has time to attend the appointment ceremony.' '请先邀请一位已完成面谈、有空参加任命仪式的同伴。'>></span><br>
   <</if>>
 <</widget>>
 
@@ -147,9 +147,9 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    Jordan rests the candidates' book beside the prayer texts. "Those who lead the flock must learn its prayers and its troubles. Bring me their own answers, child." A priest waits with a worn thurible and a drawing of the garden wards.
+    Jordan rests the candidates' book beside the prayer texts. "Those who wish to become priests must learn the prayers and how to help the flock. Ask whether your companions wish to prepare. After the lessons and the watch, bring them to me so I can hear their own answers." A priest waits with a worn thurible and a drawing of the garden wards.
   <<option 'CN'>>
-    约旦把候任名册放在祷文旁。“引领教徒的人，也要熟悉他们的祈祷与苦楚。孩子，让他们自己来回答。”一名司祭拿着磨旧的香炉与花园护符图样，在旁等候。
+    约旦把候任名册放在祷文旁。“想成为司祭，就要熟悉祷文，也要学会帮助教徒。先问问同伴是否愿意准备。完成见习和守望后，再带他们来见我，我想听听他们自己的回答。”一名司祭拿着磨旧的香炉与花园护符图样，在旁等候。
 <</language>>
 <br><br>
 <<for _ordinand range ['Robin', 'Sydney']>>
@@ -160,9 +160,9 @@
         <<if _candidateRank is 'priest'>>
           <span class='teal'><<temple_title _ordinand>></span><br>
         <<elseif !_candidatePresent>>
-          <<lanSwitch 'Arrange the next visit when your companion is at the temple and free of other duties.' '等同伴在神殿、有空处理职务时，再继续准备。'>><br>
+          <<lanSwitch 'Continue the preparation when your companion is at the temple and has time free from other duties.' '等同伴回到神殿，并且有空参加见习时，再继续准备。'>><br>
         <<elseif !_candidateStanding>>
-          <span class='lblue'><<lanSwitch 'Jordan will hear the application after the outstanding examination or purification.' '约旦会在待办的检查或净化结束后接待任职申请。'>></span><br>
+          <span class='lblue'><<lanSwitch 'Complete your companion’s outstanding temple examination or purification before applying for appointment.' '请先完成同伴尚未处理的神殿检查或净化，再来申请任职。'>></span><br>
         <<elseif !_candidate.agreed>>
           <<socialiseicon 'ask'>>
           <<lanLink `['Ask ' + maplebirch.auto(_ordinand) + ' about becoming a priest', '问' + maplebirch.auto(_ordinand) + '愿不愿意成为司祭']` 'Revelation Temple Candidate Talk'>>
@@ -182,7 +182,7 @@
                 <<temple-candidate-check _ordinand 30>>
                 <<if _candidateFree>>
                   <<if _lesson is 'wards'>><<icon 'temple/ward-stone.png'>><<else>><<templeicon 'pray'>><</if>>
-                  <<temple-duty-action `[_lesson is 'care' ? 'Attend prayers and hear a parishioner (0:30)' : 'Inspect the wards with an older priest (0:30)', _lesson is 'care' ? '一起祈祷，听教徒诉说 (0:30)' : '陪资深司祭检查护符 (0:30)']` 30 'Revelation Temple Candidate Practice' `_ordinand`>>
+                  <<temple-duty-action `[_lesson is 'care' ? 'Pray together and hear a parishioner seeking help (0:30)' : 'Inspect the garden wards with an older priest (0:30)', _lesson is 'care' ? '一起祈祷，接待前来求助的教徒 (0:30)' : '陪资深司祭巡查花园围墙的护符 (0:30)']` 30 'Revelation Temple Candidate Practice' `_ordinand`>>
                     <<if !$TempleDuties.candidates[_ordinand].lessons.includes(_lesson)>>
                       <<run $TempleDuties.candidates[_ordinand].lessons.push(_lesson)>>
                       <<set $TempleDuties.speaker to _ordinand>>
@@ -193,14 +193,14 @@
                   <<ggrace>><br>
                 <</if>>
               <<else>>
-                <span class='teal'><<lanSwitch `_lesson is 'care' ? 'Prayers and parish visit completed.' : 'Ward inspection completed.'` `_lesson is 'care' ? '已参与祈祷与教区成员接待。' : '已完成护符巡查。'`>></span><br>
+                <span class='teal'><<lanSwitch `_lesson is 'care' ? 'Prayers and parishioner reception completed.' : 'Garden ward inspection completed.'` `_lesson is 'care' ? '已完成祈祷与接待教徒的见习。' : '已完成花园护符巡查。'`>></span><br>
               <</if>>
             <</capture>>
           <</for>>
           <<temple-candidate-check _ordinand 15>>
           <<if _candidate.lessons.includes('care') and _candidate.lessons.includes('wards') and _candidate.trial_day gte 0 and !_candidate.reviewed and _candidateFree>>
             <<socialiseicon 'ask'>>
-            <<temple-duty-action `['Accompany ' + maplebirch.auto(_ordinand) + ' to Jordan (0:15)', '陪' + maplebirch.auto(_ordinand) + '去见约旦 (0:15)']` 15 'Revelation Temple Candidate Review' `_ordinand`>>
+            <<temple-duty-action `['Accompany ' + maplebirch.auto(_ordinand) + ' to the appointment interview (0:15)', '陪' + maplebirch.auto(_ordinand) + '参加任职面谈 (0:15)']` 15 'Revelation Temple Candidate Review' `_ordinand`>>
               <<if $TempleDuties.candidates[_ordinand].agreed
                   and $TempleDuties.candidates[_ordinand].lessons.includesAll('care', 'wards')
                   and $TempleDuties.candidates[_ordinand].trial_day gte 0>>
@@ -211,11 +211,11 @@
             <br>
           <<elseif _candidate.trial_day lt 0 and _candidate.lessons.includesAll('care', 'wards')>>
             <<icon 'temple/watch-door.png'>>
-            <<lanLink ['Prepare the watch together', '一起准备门前守望'] 'Revelation Temple Watch Brief'>>
+            <<lanLink ['Prepare to enter the lower passage for the watch together', '准备一起参加下层通道的守望'] 'Revelation Temple Watch Brief'>>
             <</lanLink>>
             <br>
           <<elseif _candidate.reviewed>>
-            <span class='green'><<lanSwitch 'Jordan has approved the appointment. Return to the warm room when you are ready.' '约旦已同意任职。准备好了，再到暖室作答。'>></span><br>
+            <span class='green'><<lanSwitch 'Your companion has passed Jordan’s appointment interview. When you are ready, go to the room by the fire for the appointment ceremony.' '同伴已通过约旦的任职面谈。准备好后，到炉边的房间参加任命仪式。'>></span><br>
           <</if>>
           <<if !_candidateFree>>
             <span class='lblue'><<lanSwitch 'Leave time before the next duty or service.' '为下一项职务或弥撒留足时间。'>></span><br>
@@ -227,7 +227,7 @@
 <</for>>
 <<if $temple_rank is 'priest'>>
   <<templeicon 'altar'>>
-  <<lanLink ['Wait with the candidates by the fire', '陪同在暖室接受任命'] 'Revelation Temple Shared Oath'>>
+  <<lanLink ['Go to the room by the fire for the companions’ appointments', '到炉边的房间，陪同参加任命仪式'] 'Revelation Temple Shared Oath'>>
   <</lanLink>>
   <br>
 <</if>>
@@ -254,7 +254,7 @@
       <<elseif C.npc.Robin.dom gte 50>>
         "I can look after the younger ones. I already do that at home." <<He>> turns the book over. "But I ought to know what I'm telling them. Will you come to the lessons with me?"
       <<else>>
-        "Would anyone listen to me?" <<He>> smiles a little. "I know how to make room for someone who has nowhere else to go. Perhaps I could learn the rest. If you'll come with me."
+        "Would anyone listen to me?" <<He>> smiles a little. "I know how to care for someone who has nowhere else to go. If you'll come with me, perhaps I could learn the rest."
       <</if>>
       <<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
         "I'd still have to get back to the shop," <<he>> adds, checking the time.
@@ -270,7 +270,7 @@
       <<elseif C.npc.Robin.dom gte 50>>
         “照顾年幼的孩子，我在家里也一直在做。”<<He>>翻过书。“可我得弄懂自己在教他们什么。你会陪我听讲吗？”
       <<else>>
-        “别人会听我说话吗？”<<He>>微微笑了。“我知道该怎样为无处可去的人腾出地方。也许其他事情也能学会。如果你肯陪我。”
+        “别人会听我说话吗？”<<He>>微微笑了。“我知道该怎样照顾无处可去的人。如果你肯陪我，也许其他事情我也能学会。”
       <</if>>
       <<if maplebirch.get('Robin') and $RobinExpansion?.shop>>
         “我还得赶回去照看店铺，”<<he>>看了眼时间，又补充道。
@@ -317,7 +317,7 @@
 <<temple-duty-place>>
 <<npc `$TempleDuties.speaker`>>
 <<person1>>
-<<lanSwitch 'Your companion writes a name beside yours in the preparation book. The older priest marks two visits: prayers with the parishioners, and the garden walls.' '同伴在准备名册里，将自己的名字写在你的旁边。资深司祭标出两次见习：教区成员的祈祷，以及花园围墙的护符。'>>
+<<lanSwitch 'Your companion writes their name beside yours in the preparation book. The older priest notes two lessons: praying with and hearing parishioners, and inspecting the garden wards. After those, you can prepare for the watch together.' '同伴在准备名册里，把自己的名字写在你的旁边。资深司祭记下两项见习：一起祈祷、接待教徒，以及巡查花园围墙的护符。完成后，你们再一起准备守望。'>>
 <br><br>
 <<temple-candidates-back>>
 
@@ -333,15 +333,15 @@
 <<language>>
   <<option 'EN'>>
     <<if $TempleDuties.exercise is 'care'>>
-      Incense passes through the chapel. You answer the prayer together, facing the many-winged angel above the altar. A visitor stays after the others leave, hands clasped too tightly.
+      Incense drifts through the chapel. You and your companion recite the prayer together, facing the many-winged angel above the altar. After the others leave, a visitor remains on the pew, hands clasped tightly.
       <<if $TempleDuties.speaker is 'Robin'>>
-        Robin moves a cushion along the bench and listens. When the visitor asks where they can eat tonight, <<he>> turns to the priest before giving directions to the soup kitchen.
+        Robin moves a cushion along the bench and sits down to listen. When the visitor asks where they can eat tonight, <<he>> checks with the priest before giving directions to the soup kitchen.
       <<else>>
-        Sydney begins the words of forgiveness from memory, then catches the priest's raised hand. The visitor has not finished speaking. <<He>> sits back down and hears the rest before answering.
+        Sydney begins the words of forgiveness from memory before the visitor has finished. The priest raises a hand, asking <<him>> to listen first. <<He>> sits back down and waits until the visitor has said everything before answering.
       <</if>>
-      "Words first, acts after," the priest says. "Learn what you are asking them to do."
+      "Hear them out before deciding how to help," the priest says. "Before you give advice, make sure you know whether they can follow it."
     <<else>>
-      The priest leads you along the garden wall, reading each worn ward against an older pattern. Damp has lifted one edge. <<He>> holds the pattern while your companion repairs it, then burns incense beneath the stone angel.
+      The priest leads you along the garden wall, comparing the worn wards with an older pattern. One ward has curled up at a damp corner. The priest holds the pattern while your companion repairs the damaged ward, then burns incense beneath the stone angel.
       <<if $TempleDuties.speaker is 'Robin'>>
         Robin pauses at a root pushing through the mortar. "What if that moves?" <<he>> asks. The priest shows <<him>> the gate and where to ring for help.
       <<else>>
@@ -351,15 +351,15 @@
     <</if>>
   <<option 'CN'>>
     <<if $TempleDuties.exercise is 'care'>>
-      香烟飘过礼拜堂。你们面向祭坛上多翼的天使，一起应和祷文。其他人离开后，一名访客仍留着，双手紧紧交握。
+      礼拜堂里飘着焚香的烟雾。你和同伴面向祭坛上多翼的天使，一起念诵祷文。其他人离开后，一名访客仍坐在长椅上，双手紧紧交握。
       <<if $TempleDuties.speaker is 'Robin'>>
-        罗宾挪出长椅上的软垫，听对方说完。访客问起今晚能去哪里吃饭时，<<he>>先向司祭确认，再指明施粥所的方向。
+        罗宾挪了挪长椅上的软垫，坐下来听对方诉说。访客问起今晚能去哪里吃饭时，<<he>>先向司祭确认，再指明施粥所的方向。
       <<else>>
-        悉尼熟练地说起宽恕的话，随后看见司祭抬起的手。访客还没有说完。<<He>>重新坐下，听完剩余的话，才作答。
+        访客还没说完，悉尼已经熟练地说起宽恕的话。司祭抬手示意<<him>>先听。<<He>>重新坐下，等访客把话说完，才开口回答。
       <</if>>
-      “先以言语，再以行动，”司祭说，“弄清楚，你是在要求对方做什么。”
+      “先听对方说完，再想怎样帮忙，”司祭说，“给出建议之前，要弄清楚对方能不能做到。”
     <<else>>
-      司祭领你们沿花园围墙巡视，把磨损的护符与旧图样逐一比对。一角已经受潮翘起。<<He>>拿稳图样，让同伴修补，随后在石刻天使下燃起香。
+      司祭领你们沿花园围墙巡视，把磨损的护符与旧图样逐一比对。其中一张护符受了潮，边角已经翘起。司祭拿稳旧图样，让同伴照着修补墙上的护符，随后在石刻天使下焚香。
       <<if $TempleDuties.speaker is 'Robin'>>
         罗宾在一根挤进灰缝的树根前停下。“它要是动起来呢？”<<he>>问。司祭指给<<him>>看出入口，以及求援时该去敲的钟。
       <<else>>
@@ -413,9 +413,9 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    A cloth lies over the candidates' book beside the fire. Dark stains have gone through it. Jordan checks the notes, then looks at the people who have returned. "There's another watch after this one," <<he>> says softly. "Will you still stand with the flock?"
+    A cloth covers the candidates' book beside the fire. Dark stains have seeped through it. Jordan checks the interview notes and spreads the appointment papers on the table while you choose who will attend. "The work will not end with this ceremony," <<he>> says softly. "Are you willing to serve God, keep your sacred chastity and protect the flock?"
   <<option 'CN'>>
-    炉边的候任名册上盖着一块布，深色的痕迹已经渗了过去。约旦核对记录，又抬头看着回来的人。“这一次之后，还有下一次守望，”<<he>>轻声说，“你们仍愿意与教徒站在一起吗？”
+    炉边的候任名册上盖着一块布，深色的痕迹已经渗透布面。约旦核对面谈记录，将任命书摊在桌上，等你选好参加仪式的同伴。“仪式结束后，职责也不会结束，”<<he>>轻声说，“你们愿意侍奉主、守持神圣贞洁，保护神殿的教徒吗？”
 <</language>>
 <br><br>
 <div id='temple-ordination-roster'>
@@ -434,11 +434,11 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    Jordan waits for each quiet answer. The older priest keeps a finger on the page while <<he>> enters the appointments. Nothing rings. From below, three dull knocks carry through the wall. Jordan stops writing until they have faded.
-    "Serve God. Keep the sacred chastity. Watch over those within." <<He>> lays the book aside. "You may sleep here tonight, children."
+    Jordan waits for each person to confirm the vows. The older priest holds the page in place while Jordan records the appointments. No bell rings. Three dull knocks carry up through the wall from the passage below. Jordan stops writing until they fade.
+    "Serve God. Keep your sacred chastity. Protect the people entrusted to you." <<He>> lays the book aside. "The appointments are complete. You may sleep here tonight, children."
   <<option 'CN'>>
-    约旦等着每个低声作出的回答。资深司祭用手指按住书页，让<<he>>记下任命。没有钟声。下方传来三下闷响，沿着墙壁渗进房间。约旦停笔，等声音消退。
-    “侍奉主。守持神圣贞洁。守望里面的人。”<<He>>把名册放到一旁。“孩子们，今晚可以在这里休息。”
+    约旦等每个人确认誓言，再逐一记下任命，资深司祭在旁按住书页。没有钟声。下方的通道里传来三下闷响，沿着墙壁传进房间。约旦停笔，等声音消退。
+    “侍奉主，守持神圣贞洁，保护交托给你们的人。”<<He>>把名册放到一旁。“任命完成了。孩子们，今晚可以在这里休息。”
 <</language>>
 <<for _ordinand range $TempleDuties.ceremony>>
   <<if _ordinand is 'Robin'>>
@@ -465,7 +465,7 @@
 :: Temple Candidate Return Widgets [widget]
 <<widget 'temple-candidates-back'>>
   <<getouticon>>
-  <<lanLink ['Return to the candidates’ book', '返回名册'] 'Revelation Temple Candidates'>>
+  <<lanLink ['Return to the candidates’ book', '返回候任名册'] 'Revelation Temple Candidates'>>
   <</lanLink>>
   <br>
 <</widget>>

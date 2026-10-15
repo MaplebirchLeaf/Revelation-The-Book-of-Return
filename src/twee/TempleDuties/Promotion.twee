@@ -9,17 +9,17 @@
 <span class='gold bold'><<lanSwitch 'Ordination review' '司祭任职审查'>></span><br><br>
 <<language>>
   <<option 'EN'>>
-    Jordan lays out the two records: the missing member of the flock, and the pilgrimage for the spear. "Before we speak of a new office, there are the tasks already entrusted to you."
-    <<He>> opens your handovers and field reports. "The flock must have someone to answer when the dark knocks. I shall hear what happened at the lower door before placing another key in your hands."
+    Jordan lays out the records for the missing member of the flock and the pilgrimage for the spear. "Before we speak of appointing you as a priest, we must check the tasks already entrusted to you."
+    <<He>> opens your handovers and field reports. "When the dark knocks, the flock needs someone to protect them. Before I entrust you with that duty, tell me how you kept everyone safe during the watch in the lower passage."
   <<option 'CN'>>
-    约旦摆出两份记录：失踪的教徒，以及取矛的朝圣。“谈新的职务之前，先看已经交托给你的事情。”
-    <<He>>翻开交接记录与外勤报告。“黑暗叩门时，教徒需要有人应答。把另一把钥匙交给你之前，我要先听下层门前发生过的事情。”
+    约旦把寻找失踪教徒与取回长矛的两份记录摆在桌上。“谈司祭的任命之前，我们先核对交托给你的事情。”
+    <<He>>翻开交接记录与外勤报告。“黑暗叩门时，教徒需要有人保护。把这份职责交给你之前，我想听听，你在下层通道守望时，是怎样照看同行的人。”
 <</language>>
 <br><br>
 <<temple-duty-requirements>>
 <<if _dutyReady and Time.hour lt 17>>
   <<socialiseicon 'ask'>>
-  <<temple-duty-action `['Discuss what happened with Jordan (0:20)', '向约旦讲述经过 (0:20)']` 20 'Revelation Temple Review Choice'>>
+  <<temple-duty-action `['Report your work and the watch to Jordan (0:20)', '向约旦汇报职责与守望的经过 (0:20)']` 20 'Revelation Temple Review Choice'>>
     <<temple-duty-check>>
     <<if _dutyReady>>
       <<set $TempleDuties.review to true>>
@@ -27,7 +27,7 @@
   <</temple-duty-action>>
   <br>
 <<else>>
-  <span class='lblue'><<lanSwitch 'Finish the outstanding work before the interview. Leave an hour before the desk closes.' '先完成尚未履行的职责。面谈需在职务桌关闭前留出一小时。'>></span><br>
+  <span class='lblue'><<lanSwitch 'Complete the outstanding duties before the interview. Leave an hour for the interview and oath before the duties desk closes.' '先完成尚未履行的职责。请在职务桌关闭前，留出一小时参加面谈与宣誓。'>></span><br>
 <</if>>
 <br>
 <<temple-duty-back>>
@@ -43,19 +43,19 @@
 <<language>>
   <<option 'EN'>>
     Jordan reads the account of the rescued member before the record of the returned spear. "One brought a person home. One brought back what we had entrusted to you. Neither was safe work. I'm thankful you returned too." <<He>> asks which parts you could not have managed alone.
-    A clerk comes to the door. Another novice is frightened of going back to the lower storeroom. Jordan asks what you would tell them.
+    A clerk comes to the door and reports that a novice is afraid to return to the lower storeroom. Jordan turns to you. "What would you say if they came to you for help?"
   <<option 'CN'>>
     约旦先读获救教徒的记录，再看交还长矛的那一页。“一件把人带回家，一件带回了我们交托给你的东西。都不是安全的工作。我也很庆幸你回来了。”<<He>>问起哪些事情是你独自做不到的。
-    一名侍从来到门口。另一个见习教徒害怕再去下层储藏室。约旦问你，会怎样回答对方。
+    一名侍从来到门口，说有位见习教徒害怕再去下层储藏室。约旦转向你，问道：“要是对方向你求助，你会怎么回答？”
 <</language>>
 <br><br>
 <<socialiseicon>>
-<<temple-duty-action `['Hear the novice out, then offer to check the room together (0:05)', '先听对方说完，再提出一起检查房间 (0:05)']` 5 'Revelation Temple Review Answer'>>
+<<temple-duty-action `['Say you would listen, then offer to check the room together (0:05)', '回答：先听见习教徒说完，再陪对方检查房间 (0:05)']` 5 'Revelation Temple Review Answer'>>
   <<set $TempleDuties.oath to 'care'>>
 <</temple-duty-action>>
 <br>
 <<socialiseicon>>
-<<temple-duty-action `['Tell the novice to obey and go back alone (0:05)', '要求对方服从，独自回去 (0:05)']` 5 'Revelation Temple Review Answer'>>
+<<temple-duty-action `['Say the novice should obey and return alone (0:05)', '回答：见习教徒应当服从，独自回去 (0:05)']` 5 'Revelation Temple Review Answer'>>
   <<set $TempleDuties.oath to 'obedience'>>
 <</temple-duty-action>>
 <br>
@@ -80,12 +80,12 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      "Good," Jordan says. "You need not promise there is nothing to fear. Promise that you will check, and that you will not leave someone behind to prove a point."
+      "Good," Jordan says. "You need not promise there is no danger. But promise that you will check for yourself, and that you will not leave someone there alone just to prove they should not be afraid."
       <<if $auriga_scar gt 0>>
         There is one more thing you could tell <<him>> about: what the Elk left with you. You can also keep that experience private.
       <</if>>
     <<option 'CN'>>
-      “很好，”约旦说，“不必保证没有任何可怕的东西。保证你会核实，也不会为了证明什么而把别人丢在后面。”
+      “很好，”约旦说，“你不必保证那里没有危险。但你应当答应，会亲自核实，也不会为了证明对方不该害怕，就把人独自留在那里。”
       <<if $auriga_scar gt 0>>
         还有一件事，你可以向<<him>>说明：麋鹿留在你身上的影响。你也可以不谈这段经历。
       <</if>>
@@ -99,7 +99,7 @@
     <br>
   <</if>>
   <<templeicon 'altar'>>
-  <<lanLink ['Keep your private experiences to yourself and consider the oath', '保留私人经历，考虑誓言'] 'Revelation Temple Oath'>>
+  <<lanLink ['Keep your experiences private and consider whether to take the oath', '先不谈私人经历，考虑是否宣誓'] 'Revelation Temple Oath'>>
     <<set $TempleDuties.declaration to 'private'>>
   <</lanLink>>
   <br>
@@ -120,16 +120,16 @@
     <<if $TempleDuties.declaration is 'scar'>>
       Jordan listens, then rests a hand beside your report. "Come to us if it troubles you again, child."
     <</if>>
-    Jordan places the appointment beside your record of the returned spear, on the little table beside the fire. "Will you serve God, keep your sacred chastity and stand watch over the flock?" A priest by the door folds a stained cloth. "What you answer here must follow you outside, child."
+    Jordan places the appointment on the little table beside the fire, next to your record of the returned spear. "Will you serve God, keep your sacred chastity and protect the flock?" A priest by the door folds a stained cloth. Jordan continues, "Remember the vows you make here when you leave the temple too, child."
   <<option 'CN'>>
     <<if $TempleDuties.declaration is 'scar'>>
       约旦听完，把手放在报告旁。“它再次困扰你时，来找我们，孩子。”
     <</if>>
-    约旦把任命书放在取回长矛的记录旁，就搁在炉边的小桌上。“你愿意侍奉主、守持神圣贞洁，守望教徒吗？”门边的司祭叠起一块沾着血的布。“这里的回答，要随你走到外面，孩子。”
+    约旦把任命书放在炉边的小桌上，旁边是你取回长矛的记录。“你愿意侍奉主、守持神圣贞洁，保护神殿的教徒吗？”门边的司祭叠起一块沾着血的布。约旦接着说：“离开神殿以后，也要记住你在这里许下的誓言，孩子。”
 <</language>>
 <br><br>
 <<templeicon 'altar'>>
-<<temple-duty-action `['Answer Jordan and accept the appointment (0:20)', '回答约旦，接受任命 (0:20)']` 20 'Revelation Temple Ordained'>>
+<<temple-duty-action `['Make the vows to Jordan and accept appointment as a priest (0:20)', '向约旦宣誓，接受司祭任命 (0:20)']` 20 'Revelation Temple Ordained'>>
   <<temple-duty-check>>
   <<if _dutyReady and $TempleDuties.review and $TempleDuties.oath is 'care'>>
     <<temple-ordain-player>>
@@ -137,7 +137,7 @@
 <</temple-duty-action>>
 <br>
 <<templeicon 'altar'>>
-<<lanLink ['Accept the appointment beside Robin or Sydney', '与罗宾或悉尼一同接受任命'] 'Revelation Temple Shared Oath'>>
+<<lanLink ['Invite Robin or Sydney to share the appointment ceremony', '邀请罗宾或悉尼一同参加任命仪式'] 'Revelation Temple Shared Oath'>>
   <<set $TempleDuties.party to []>>
 <</lanLink>>
 <br>
@@ -156,9 +156,9 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    Jordan signs the appointment beside the fire. "A priest of our order," <<he>> says quietly. <<He>> leaves the duties book closed. "There will be work tomorrow. For now, stay where it is warm." The priest at the door lays another strip of linen beside you.
+    Jordan signs your appointment beside the fire. "You are a priest of our order now," <<he>> says quietly. <<He>> leaves the duties book closed. "There will be work tomorrow. For now, stay here and warm yourself." The priest at the door lays a clean strip of linen beside you.
   <<option 'CN'>>
-    约旦在炉边签下任命。“我们教团的司祭。”<<He>>轻声说，没有打开职务簿。“明天还有事要做。现在，先留在暖和的地方。”门边的司祭在你身旁放下另一条布巾。
+    约旦在炉边签下你的任命书。“现在，你是我们教团的司祭了。”<<He>>轻声说，没有打开职务簿。“明天还有事要做。现在，先在这里暖暖身子吧。”门边的司祭在你身旁放下一条干净的布巾。
 <</language>>
 <br><br>
 <<temple-duty-back>>
@@ -168,13 +168,13 @@
   <<if !_flockRescued or !_spearReturned or $TempleDuties.trial_day lt 0>>
     <ul class='journal'>
     <<if !_flockRescued>>
-      <li><<lanSwitch 'Find the missing temple member at the Danube manor.' '寻回多瑙河街宅邸失踪的神殿成员。'>></li>
+      <li><<lanSwitch 'Rescue the missing temple member from the manor on Danube Street.' '从多瑙河街的宅邸救回失踪的神殿成员。'>></li>
     <</if>>
     <<if !_spearReturned>>
       <li><<lanSwitch 'Bring the golden spear back to Jordan.' '将金色长矛交还约旦。'>></li>
     <</if>>
     <<if $TempleDuties.trial_day lt 0>>
-      <li><<lanSwitch 'Complete the watch at the lower door.' '完成下层门前的守望。'>></li>
+      <li><<lanSwitch 'Complete the watch in the lower passage.' '完成下层通道的守望。'>></li>
     <</if>>
     </ul>
   <</if>>

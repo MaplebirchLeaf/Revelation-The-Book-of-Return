@@ -69,16 +69,16 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    You recognise the dark wax seal. The note asks you to compare the returned crate's mark with the old relief records. It gives no name for the sender. "A copy for our hands, child. Keep the public account accurate."
-    A smaller sheet is tucked inside: "Leave your answer with the clerk."
+    A clerk hands you a folded note. You recognise the bishop's dark wax seal, though there is no signature. It asks you to compare the mark on the returned crate at the docks with the old relief records. "Make a separate copy of your findings for me, child. Keep Jordan's official report accurate."
+    A smaller sheet gives the reply instructions: "Leave word with the clerk at the duties desk. When the copy is ready, bring it here. I will receive it as your confessor."
   <<option 'CN'>>
-    你认出那枚深色蜡封。便条请你把退回货箱上的标记与旧救济记录比对，没有写寄件人的姓名。“给我们的双手留一份副本，孩子。公开账目仍要如实填写。”
-    里面夹着一张小纸：“答复留给侍从。”
+    侍从递给你一张折好的便条。上面没有署名，但你认得主教所用的深色蜡封。便条请你核对码头退回货箱上的标记与旧救济记录。“把查到的结果另抄一份给我，孩子。交给约旦的正式报告，仍要如实写。”
+    里面夹着一张小纸，交代如何答复：“先把答复留给职务桌的侍从。副本备好后，也带到这里。我会以告解员的身份接收。”
 <</language>>
 <br><br>
 <<if $TempleDuties.bishop isnot 'accepted'>>
   <<socialiseicon>>
-  <<temple-duty-action `['Agree to compare the records (0:05)', '答应核对记录 (0:05)']` 5 'Revelation Temple Sealed Answer'>>
+  <<temple-duty-action `['Accept the bishop’s private request (0:05)', '答应替主教私下核对记录 (0:05)']` 5 'Revelation Temple Sealed Answer'>>
     <<set $TempleDuties.bishop to 'accepted'>>
     <<set $TempleDuties.note to 'bishop-accepted'>>
   <</temple-duty-action>>
@@ -90,14 +90,14 @@
   <</temple-duty-action>>
   <br>
 <<elseif !$TempleDuties.bishop_checked>>
-  <span class='lblue'><<lanSwitch 'You need the delivery records, a truthful report on the returned crate, and a comparison made in the old records room.' '需要旧交货记录、如实填写的货箱调查报告，再到旧资料室完成比对。'>></span><br>
+  <span class='lblue'><<lanSwitch 'Read the old delivery records, resolve the returned-crate investigation and give Jordan a truthful report. Then compare the two in the old records room and make the separate copy.' '先查阅旧交货记录，完成货箱调查并向约旦如实汇报，再到旧资料室比对两份记录，抄出要交给主教的副本。'>></span><br>
   <<icon 'temple/records-room.png'>>
   <<lanLink ['Go to the records room', '前往资料室'] 'Temple Library'>>
   <</lanLink>>
   <br>
 <<elseif $per_npc.bishop>>
   <<socialiseicon 'ask'>>
-  <<temple-duty-action `['Take the sealed copy to the waiting confessor (0:05)', '把密封副本交给等候的告解员 (0:05)']` 5 'Revelation Temple Bishop'>>
+  <<temple-duty-action `['Give the sealed copy to the bishop waiting as a confessor (0:05)', '把密封副本交给以告解员身份等候的主教 (0:05)']` 5 'Revelation Temple Bishop'>>
     <<if $TempleDuties.bishop is 'accepted' and $TempleDuties.bishop_checked>>
       <<set $TempleDuties.bishop to 'reported'>>
       <<historyskill 3>>
@@ -105,7 +105,7 @@
   <</temple-duty-action>>
   <br>
 <<else>>
-  <span class='lblue'><<lanSwitch 'No confessor is waiting. Keep the sealed copy until your original contact can receive it.' '没有告解员在等候。保存副本，等原先的联络人能够接收。'>></span><br>
+  <span class='lblue'><<lanSwitch 'The bishop is not here to receive the copy. Keep it sealed until you can hand it over.' '主教不在这里，暂时不能接收副本。你收好封好的副本，留待再次见面。'>></span><br>
 <</if>>
 <br>
 <<temple-duty-back>>
@@ -116,20 +116,20 @@
   <<option 'EN'>>
     <<switch $TempleDuties.note>>
       <<case 'bishop-accepted'>>
-        You leave a brief acceptance in the folded note. The original reports remain in the duties book; only the comparison will be copied.
+        You write that you will compare the records and give the reply to the clerk to pass on. Your original investigation report will stay in Jordan's duties book. The bishop will receive a separate copy of the comparison.
       <<case 'bishop-refused'>>
-        You write that you will keep to your public duties. The messenger takes the folded note without arguing. Jordan's duties book remains where you left it.
+        You write that you will keep to your duties for Jordan. The clerk takes your reply to pass on. The private request is over; Jordan's assignments remain available.
       <<case 'bishop-checked'>>
-        The old ledger gives a weight and a collection date, but no matching signature. You copy those omissions as well as the mark. They may matter to the confessors; they do not prove who sent the crate.
+        The old ledger gives the crate's weight and collection date, but the signature that should identify the collector is missing. You copy the mark and note the blank space. It leaves a gap in the shipment's history, not proof of who sent it. You seal the comparison, ready to take back to the duties desk.
     <</switch>>
   <<option 'CN'>>
     <<switch $TempleDuties.note>>
       <<case 'bishop-accepted'>>
-        你在折好的便条里留下简短答复。原始报告仍留在职务簿里，只会抄出比对结果。
+        你写下答应核对记录的回信，交给侍从转交。原始调查报告仍留在约旦的职务簿里；交给主教的，是另外抄出的比对结果。
       <<case 'bishop-refused'>>
-        你写明只承担公开职务。传话者没有争辩，接过折好的便条。约旦的职务簿仍在原处。
+        你写明只接约旦交办的职务，把回信交给侍从转交。这份私下委托到此为止，职务簿里的工作仍照常交接。
       <<case 'bishop-checked'>>
-        旧账簿写着重量和提货日期，却没有对应的签字。你把缺失的部分与标记一并抄下。这些也许对告解员有用，却不能证明是谁寄了货箱。
+        旧账簿写着货箱的重量和提货日期，确认提货者身份的签字处却是空的。你抄下标记，也注明缺了签字。货物经过了谁的手，记录在这里断了，还不能据此认定寄件人。你把比对结果封好，准备带回职务桌交付。
     <</switch>>
 <</language>>
 <br><br>
@@ -145,13 +145,13 @@
 <<person1>>
 <<language>>
   <<option 'EN'>>
-    The messenger guides you through a side door. The bishop breaks the seal, smiling over the page. "You even copied what was missing. Most people prefer to fill the empty space."
-    <<He>> folds the comparison into <<his>> robe. "Jordan's people need a safe room and an honest ledger. We may need to find who left it otherwise." <<He>> lets the last word hang. "You've promised a report, child. Nothing more."
-    The messenger opens the side door for you. You fold your copy of the ledger into your pocket.
+    The confessor waiting beside the duties desk is the bishop who sent the note. <<He>> takes you through a side door, then breaks the seal and reads your comparison. "You even noted what was missing. Most people prefer to fill the empty space."
+    <<He>> folds the comparison into <<his>> robe. "Jordan needs to keep the storerooms safe and the accounts honest. I want to know whose hands that crate passed through." <<He>> pauses. "You promised me the comparison, child. Nothing more."
+    The bishop opens the side door for you. You keep your own copy of the records and return to the duties desk.
   <<option 'CN'>>
-    传话者领你穿过侧门。主教拆开封印，低头读着，露出笑容。“你连缺失的部分也抄了。多数人更喜欢把空白填满。”
-    <<He>>把比对结果折进袍里。“约旦的人需要安全的房间与真实的账簿。我们也许需要找到让它变得不安全的人。”<<He>>让这句话停了一会儿。“你答应的是报告，孩子。仅此而已。”
-    传话者替你打开侧门。你把账簿的副本折好，收进口袋。
+    职务桌旁等候的告解员，正是送来便条的那位主教。<<He>>领你穿过侧门，拆开蜡封，低头读你的比对记录。“你连缺失的部分也记下了。多数人更喜欢把空白填满。”
+    <<He>>把比对结果折进袍里。“约旦得确保储藏室安全，账目也不出差错。我想知道的，是那只货箱究竟经过了谁的手。”<<He>>停了一会儿。“孩子，你答应替我核对记录。仅此而已。”
+    主教替你打开侧门。你收好自己留存的记录，回到职务桌。
 <</language>>
 <br><br>
 <<temple-manor-offer>>

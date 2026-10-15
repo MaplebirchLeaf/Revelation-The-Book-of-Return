@@ -98,7 +98,7 @@ You can change the selected companions with **Choose again**. School, shops, pun
 
 ### The bishop and the monstrance
 
-After making contact with the bishop, a **sealed note** can appear at the duties desk. Accept it, read the old delivery records, truthfully resolve the returned-crate case, compare its records in the archive, then deliver the sealed copy to the waiting confessor. Completing it trains History. Declining closes this private request.
+After making contact with the bishop, a **sealed note** can appear at the duties desk. Accept it, read the old delivery records, truthfully resolve the returned-crate case, compare its records in the archive, then deliver the sealed copy to the bishop waiting as a confessor. Completing it trains History. Declining closes this private request.
 
 As a priest who has heard the bishop's full account of Kylar's manor, ask about the **monstrance**. Read its indexed description in the records room, then visit **Kylar's room, 18:00–23:00**, while Kylar is available, jealousy is below 30, and you are not being stalked or controlled. Explain the request and let Kylar decide what can be recorded; deliver only the agreed notes for **£60 and 2 History**. You may instead keep the conversation private and close the investigation. Lost Lamb completion adds a recollection but is not required.
 

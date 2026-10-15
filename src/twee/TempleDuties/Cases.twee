@@ -33,7 +33,7 @@
       <<pass 2>>
     <</lanLink>>
     <br>
-    <span class='lblue'><<lanSwitch 'Take your report to Jordan when you next reach the temple.' '下次到神殿时，将报告交给约旦。'>></span>
+    <span class='lblue'><<lanSwitch 'Return to the temple duties desk to tell Jordan what you found.' '回到神殿后，到职务桌向约旦汇报这次调查。'>></span>
   <<else>>
     <<lanLink ['Return to the duties desk', '返回职务桌'] 'Revelation Temple Office'>>
     <</lanLink>>
@@ -45,7 +45,7 @@
   <<temple-duty-check>>
   <<if _dutySafe and $TempleDuties.case?.id is 'crate' and $TempleDuties.case.stage is 'field'>>
     <<icon 'cargo-stack.png'>>
-    <<lanLink ['Inspect the temple’s returned crate (0:02)', '检查退回的神殿货箱 (0:02)'] 'Revelation Temple Field'>>
+    <<lanLink ['Go to the warehouse and inspect the returned crate (0:02)', '去仓库检查退回的神殿货箱 (0:02)'] 'Revelation Temple Field'>>
       <<pass 2>>
     <</lanLink>>
     <br>
@@ -82,21 +82,21 @@
   <<option 'EN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        The night clerk heard knocking behind the wall after putting out the lamps. Jordan hands you the building plan. "Find where it comes from. Frightened people need an answer; they don't need another fright."
+        A clerk heard knocking behind the lower storeroom wall after putting out the lamps. Jordan hands you the building plan. "Find where it comes from. Frightened people need an answer; they don't need another fright."
       <<case 'roots'>>
         Roots have pushed beneath a stack of delivery books in the lower storeroom. "The last clerk felt them move," Jordan says. "Keep a way out. If you can't bring the books back safely, bring yourself back."
       <<case 'crate'>>
-        A relief crate came back from the docks heavier than it left. The seal is unbroken. "The porter heard a second person calling from inside," Jordan says. "Find everyone before you close anything."
+        A crate sent out with temple relief supplies has been returned. It is still at the docks warehouse, heavier than the dispatch record says, though its seal is unbroken. "A porter heard someone calling for help further inside the warehouse," Jordan says. "Check the crate, and find that person. Make sure everyone is out before you shut the door."
     <</switch>>
     The report asks for what you saw, what you checked, and what remains uncertain.
   <<option 'CN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        夜班侍从熄灯后听见墙后敲击。约旦把建筑图交给你。“找到声音的来源。受惊的人需要答案，不需要再受一次惊吓。”
+        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“找到声音的来源。受惊的人需要答案，不需要再受一次惊吓。”
       <<case 'roots'>>
         下层储藏室里，根须挤进一堆交货簿下面。“上一班的人感觉它们动了，”约旦说，“留好出口。不能安全带回书，就先把自己带回来。”
       <<case 'crate'>>
-        救济货箱从码头退回来，重量比发货时还大，封条却没破。“搬运工听见里面有另一个人呼救，”约旦说，“关上任何东西之前，先找到所有人。”
+        神殿发出的救济货箱被退了回来，现在还放在码头的仓库里。货箱比发货记录上写的更重，封条却没有破。“搬运工听见仓库深处有人呼救，”约旦说，“去检查货箱，也找到那个人。确认所有人都出来，再关门。”
     <</switch>>
     报告上要写清你看见了什么、核对了什么，以及哪些事还不能确定。
 <</language>>
@@ -132,7 +132,7 @@
     <</if>>
     <<if _briefId is 'crate'>>
       <<getouticon>>
-      <<lanLink ['Go back to the hall and head for the docks', '返回大厅，准备前往码头'] 'Temple'>>
+      <<lanLink ['Return to the hall; make your way to the docks', '先返回大厅，再自行前往码头'] 'Temple'>>
       <</lanLink>>
       <br>
     <<else>>
@@ -142,7 +142,7 @@
       <br>
     <</if>>
     <<socialiseicon 'ask'>>
-    <<temple-duty-action `['Return the assignment to Jordan (0:05)', '把委托交还约旦 (0:05)']` 5 'Revelation Temple Report'>>
+    <<temple-duty-action `['End this investigation and tell Jordan you are withdrawing (0:05)', '结束本次调查，向约旦说明退出 (0:05)']` 5 'Revelation Temple Report'>>
       <<set $TempleDuties.case.stage to 'report'>>
       <<set $TempleDuties.case.result to 'withdrawn'>>
     <</temple-duty-action>>
@@ -182,11 +182,11 @@
     <<else>>
       <<switch $TempleDuties.case.id>>
       <<case 'echo'>>
-        The knocking stops when you hold your breath, then starts again with a gust. The wall feels cold. There are fresh scratches on the shutter, and the drain leads down through the floor.
+        You reach the lower storeroom and hold your breath to listen. The knocking stops for a moment, then starts again with a gust of wind. Beside the cold wall, fresh scratches mark the shutter. A drain runs from below the window down through the floor.
       <<case 'roots'>>
         A delivery book lies half-open beneath the roots. They tighten when the lamp passes over them. The steps behind you are slick; a narrow route runs along the dry wall.
       <<case 'crate'>>
-        The returned crate stands beneath the warehouse awning. An adult porter holds the door open for you. A voice calls from further inside, where the floorboards dip into an impossible patch of dark water.
+        At the docks warehouse, the returned crate stands beneath the awning by the entrance. An adult porter holds the warehouse door open for you. You look beyond the crate, towards the part of the warehouse the calls came from. The floorboards there sag into a patch of dark water. Something moves beneath it; you cannot see where the water has come from.
       <</switch>>
       <<if _dampVisit>>
         Water has reached the old marks. The lamp throws a wavering line across the wet floor. Someone has left boots beside the entrance, still full of water.
@@ -206,11 +206,11 @@
     <<else>>
       <<switch $TempleDuties.case.id>>
       <<case 'echo'>>
-        你屏住呼吸时，敲击停了。一阵风过，又开始了。墙面冰冷。百叶窗上有新刮痕，排水管从地板下穿过。
+        你来到下层储藏室，屏住呼吸仔细听。敲击声停了一会儿，一阵风吹过，又响了起来。墙面冰冷，旁边的百叶窗上有新的刮痕。一根排水管从窗下向下延伸，穿过地板。
       <<case 'roots'>>
         一本交货簿被根须压住，摊开了一半。灯照过去时，根须收紧。身后的台阶湿滑，干燥的墙边却留着一条窄路。
       <<case 'crate'>>
-        退回的货箱放在仓库雨棚下。一位成年搬运工替你撑着门。更深处有人呼救，地板向一片不该出现在这里的黑水弯下去。
+        你来到码头仓库。退回的货箱放在入口旁的雨棚下，一名成年搬运工替你撑着仓库的门。你望向刚才传来呼救声的地方，在货箱后方、仓库更深处。那里的地板向下塌陷，浸在一片黑水里。水下有什么东西动了一下，看不出水是从哪儿来的。
       <</switch>>
       <<if _dampVisit>>
         水已经淹到旧标记。灯在湿地板上映出摇晃的一道线。入口边放着一双靴子，里面仍盛着水。
@@ -271,7 +271,7 @@
     <<set _markMinutes to currentSkillValue('history') gte 300 or $TempleDuties.case.advised
       or $TempleDuties.archive.topics.includes('ward-notes')
       or $TempleDuties.case.id is 'crate' and $TempleDuties.archive.topics.includes('deliveries') ? 10 : 20>>
-    <<temple-duty-action `['Compare the marks with your records', '把标记与记录比对']` `_markMinutes` 'Revelation Temple Case Note'>>
+    <<temple-duty-action `['Copy the marks and compare them with the old records', '抄下现场标记，与旧记录比对']` `_markMinutes` 'Revelation Temple Case Note'>>
       <<run $TempleDuties.case.clues.pushUnique('marks')>>
       <<historyskill 1>>
       <<set $TempleDuties.note to 'marks'>>
@@ -301,7 +301,7 @@
     <br>
   <<elseif !_quietVisit>>
   <<templeicon 'altar'>>
-  <<temple-duty-action `['Defend the exit (0:01)', '守住出口 (0:01)']` 1 'Revelation Temple Combat'>>
+  <<temple-duty-action `['Stand at the exit and fight back (0:01)', '守住出口，迎击侵入物 (0:01)']` 1 'Revelation Temple Combat'>>
     <<set $TempleDuties.case.stage to 'combat'>>
     <<set $combat to 1>>
     <<set $enemytype to 'tentacles'>>
@@ -321,7 +321,7 @@
 <</if>>
 <<socialiseicon>>
 <<set _withdrawMinutes to $TempleDuties.case.prepared or $TempleDuties.archive.topics.includes('fieldwork') ? 3 : 5>>
-<<temple-duty-action `['Withdraw with your notes', '带上笔记撤离']` `_withdrawMinutes` 'Revelation Temple Withdrawal'>>
+<<temple-duty-action `['End this investigation and withdraw with your notes', '带笔记撤离，结束本次调查']` `_withdrawMinutes` 'Revelation Temple Withdrawal'>>
   <<set $TempleDuties.case.stage to 'report'>>
   <<set $TempleDuties.case.result to 'withdrawn'>>
   <<if $TempleDuties.case.clues.includes('visit-damp') and !$TempleDuties.case.prepared>>
@@ -332,7 +332,7 @@
 <<if _dampVisit and !$TempleDuties.case.prepared>><<gtiredness>><</if>><br>
 <br>
 <<getouticon>>
-<<lanLink `['Return to prepare', '返回准备']` `$TempleDuties.case.id is 'crate' ? 'Docks' : 'Revelation Temple Case Brief'`>>
+<<lanLink `['Leave for now and continue later', '先离开这里，稍后继续调查']` `$TempleDuties.case.id is 'crate' ? 'Docks' : 'Revelation Temple Case Brief'`>>
 <</lanLink>>
 <br>
 
@@ -355,18 +355,18 @@
       <<case 'kit'>>
         Jordan counts the rope and gloves with you. The lamp is filled. You test the knot and turn its light over the notes. It will be easier to work a fastening, keep your way back visible and bring someone across a broken floor. All three are to be returned with your report.
       <<case 'pipe'>>
-        The sound travels down the empty pipe. When the wind drops, it fades. You write both observations down.
+        The knocking carries along the empty drain. It grows quieter when the wind drops. You note how the pipe carries the sound into the room. Hearing it behind the wall does not mean that its source is inside the wall.
       <<case 'shutter'>>
-        The fastening is loose. Its marks match the stone beside it. You can reproduce the knock by pushing the shutter a little.
+        The shutter fastening is loose. It strikes the stone beside the window, exactly where the scratches are. A light push reproduces the knock. Fastening it will let you check whether the wind was causing the sound.
       <<case 'route'>>
-        You mark the dry side and leave the door wedged open. A line of chalk leads back to it.
+        You find a dry way back to the door, wedge it open and mark the route in chalk. You can now find the exit even if you have to leave in a hurry.
       <<case 'marks'>>
-        The lines differ from the copied seal. Your notes record the difference; it is not enough to name whoever made them.
+        The marks at the site differ from the seal copied in the old records. You sketch both and mark the differences. The old seal cannot explain these marks on its own, and neither tells you who left them.
       <<case 'rescued'>>
         <<if $TempleDuties.case.clues.includes('visit-quiet')>>
           The repeated name belongs to one worker who helped with two loads. You read the list back and let the porter correct it. Everyone answers from this side of the door.
         <<else>>
-          You work the rope beneath the worker's arms, or make a bridge from the porters' boards. Together you bring the adult back onto sound flooring. The porter leads them outside.
+          Using a rope or the porters' boards to cross the damaged floor, you bring the trapped adult worker back onto sound flooring. The porter at the door leads them outside. The calls stop, but the dark water remains.
         <</if>>
     <</switch>>
   <<option 'CN'>>
@@ -374,18 +374,18 @@
       <<case 'kit'>>
         约旦和你一起数清绳索与手套，灯已经加满。你试过绳结，让灯光落在笔记上。有了它们，检查扣件、留好归路，以及把人带过破损地板都会容易些。交报告时，三样都要归还。
       <<case 'pipe'>>
-        声音沿空管传下去。风停时，声音也弱下来。你把两种观察都记下。
+        敲击声沿着空的排水管传下来，风停时，声音也小了。你记下这一点：声音会沿管道传进房间，听起来在墙后，源头却不一定在墙里。
       <<case 'shutter'>>
-        扣件松了，刮痕与旁边的石头吻合。轻推百叶窗，就能重现那阵敲击。
+        百叶窗的扣件松了，晃动时正好敲在窗边有刮痕的石头上。你轻推窗扇，又听见同样的敲击声。把窗固定住，就能再试试风吹过时还会不会响。
       <<case 'route'>>
-        你标出干燥的一侧，楔开门，用一条粉笔线指向出口。
+        你沿干燥的一侧找到返回门口的路，把门楔住，再用粉笔标出路线。真要匆忙撤离时，也能沿着标记找到出口。
       <<case 'marks'>>
-        线条与抄录的封印不同。你记下区别，却还不能仅凭这一点断言是谁留下的。
+        现场标记的线条，与旧记录里抄下的封印不同。你把两种图样画在一起，标出差别。旧封印不能直接解释眼前的痕迹，你也还不知道是谁留下了这些标记。
       <<case 'rescued'>>
         <<if $TempleDuties.case.clues.includes('visit-quiet')>>
           名字重复的工人帮忙搬了两批货。你读回名单，让搬运工更正。所有人都在门的这一侧应答。
         <<else>>
-          你把绳索穿到工人腋下，或用搬运工的木板搭出通路。大家合力把这位成年人带上坚实的地板，由搬运工领到外面。
+          你用绳索接应，或借搬运工的木板搭过破损处，把受困的成年工人带回完好的地板上。门边的搬运工接过人，领到仓库外。呼救声停了，里面的黑水却还在。
         <</if>>
     <</switch>>
 <</language>>
@@ -448,14 +448,14 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    The growth recoils from the cleared passage. You get back through the door and count everyone before it is shut.
+    The growth draws back from the doorway for a moment. You take the chance to get through the door and back onto safe ground.
     <<if $TempleDuties.case?.result is 'resolved'>>
       The records and your notes are outside with you.
     <<else>>
       You have not secured everything you came for. You mark the place for a better prepared return.
     <</if>>
   <<option 'CN'>>
-    侵入物从清出的通路退开。你穿过门，数清所有人，才让门合上。
+    侵入物暂时从门前退开。你趁机穿过门，回到安全的一侧。
     <<if $TempleDuties.case?.result is 'resolved'>>
       记录与笔记也带出来了。
     <<else>>
@@ -566,9 +566,9 @@
       <<case 'resolved'>>
         Jordan reads the evidence before signing. "You checked, and you brought back what mattered." <<He>> enters the work in the duties book.
       <<case 'withdrawn'>>
-        "Coming back for help is a decision too," Jordan says. <<He>> marks the place as unsafe and keeps the assignment for another visit.
+        "Coming back for help is a decision too," Jordan says. <<He>> marks the place as unsafe and files what you found. If you decide to return, ask at the duties desk to take the assignment again.
       <<case 'mistaken'>>
-        "Then it was the fastening, or the pipe. We should check both," Jordan says. "Undo the seal, and write down the correction."
+        "Then the seal has not stopped it. The fastening and the pipe still need checking," Jordan says. <<He>> asks the clerk to record the unsuccessful attempt. You can take the assignment again if you want to investigate further.
       <<case 'inflated'>>
         Jordan compares your account with the clerk's notes. "These don't say the same thing. I can't sign a report I can't trust."
     <</switch>>
@@ -579,9 +579,9 @@
       <<case 'resolved'>>
         约旦先看证据，才签字。“你核对过，也把重要的东西带回来了。”<<He>>将这次工作记进职务簿。
       <<case 'withdrawn'>>
-        “回来求援，也是一种判断。”约旦说。<<He>>标明危险位置，把委托留待再次调查。
+        “回来求援，也是一种判断。”约旦说。<<He>>标明危险位置，收好你已经查到的记录。等你准备再次调查时，可以在职务桌重新接下委托。
       <<case 'mistaken'>>
-        “那么，是扣件，或者排水管。两样都该核对。”约旦说，“先撤下封印，再记下更正。”
+        “这么说，封印没能止住声音。扣件和排水管，两样都还得查。”约旦让侍从记下这次未成的尝试。如果想再调查，你可以重新接下委托。
       <<case 'inflated'>>
         约旦把你的说法与侍从便条比对。“这两份讲的不是同一回事。我不能签一份无法信任的报告。”
     <</switch>>
@@ -627,7 +627,7 @@
 <<temple-duty-place>>
 <<if $TempleDuties.case>>
   <span class='gold bold'><<temple-case-title $TempleDuties.case.id>></span><br><br>
-  <<lanSwitch 'The assignment is entered under your name. Collect what you need before leaving; the book keeps your place if you return later.' '委托已经记在你名下。出发前先领齐需要的东西，晚些回来时，职务簿仍会保留你的进度。'>><br><br>
+  <<lanSwitch 'Jordan has entered the assignment under your name. You can borrow equipment or read the old records before going to the site. If you leave to prepare, the investigation stays open; tell Jordan if you decide to withdraw.' '约旦已把委托记在你名下。出发前，可以借用器具，也可以先去旧资料室查阅记录。暂时离开不会结束调查；如果决定退出，再向约旦说明。'>><br><br>
   <<icon 'temple/field-kit.png'>>
   <<lanLink ['Review the instructions and prepare', '核对说明，做好准备'] 'Revelation Temple Case Brief'>>
   <</lanLink>>
@@ -639,7 +639,7 @@
 <<temple-duty-back>>
 
 :: Revelation Temple Withdrawal
-<<lanSwitch 'You leave the unsafe area with your notes. The investigation remains incomplete; Jordan will need a factual account before another visit.' '你带着笔记离开危险区域。调查尚未完成，回访前需要先向约旦如实交代。'>><br><br>
+<<lanSwitch 'You leave the unsafe area with your notes and end this attempt. Take what you found to Jordan before arranging another visit.' '你带着笔记撤出危险区域，这次调查到此为止。先把已经查到的事告诉约旦，再安排回访。'>><br><br>
 <<temple-case-return>>
 
 :: Revelation Temple Inspection End

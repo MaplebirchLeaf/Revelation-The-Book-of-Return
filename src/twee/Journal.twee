@@ -419,14 +419,14 @@
 <<widget 'secret-promise-journal'>>
   <<if $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'
       and ['none', 'meal', 'records'].includes($RobinTemple.secret.followup)>>
-    <<revelation-card 'Daylight plans' '白日约定'>>
+    <<revelation-card 'After the night at the lake' '湖边那晚之后'>>
       <ul class='journal'>
         <<if $RobinTemple.secret.followup is 'none'>>
-          <li><<lanSwitch 'Robin asked to eat together; Sydney wants to read the notebook in daylight.' '罗宾约你一起吃饭；悉尼想在白天重读笔记。'>></li>
+          <li><<lanSwitch 'Robin has asked you and Sydney to share a meal and talk about the night at the lake.' '罗宾约你和悉尼一起吃饭，谈谈湖边那晚发生的事。'>></li>
         <<elseif $RobinTemple.secret.followup is 'meal'>>
           <li><<lanSwitch 'The meal is over. Compare your accounts with both companions.' '一起吃过饭了。和两人核对各自的记录。'>></li>
         <<else>>
-          <li><<lanSwitch 'You agreed to check with one another before following a voice.' '你们约好，跟随声音前，先问过身边的人。'>></li>
+          <li><<lanSwitch 'You have compared your accounts and agreed to check with one another if a voice calls. When all three of you are free, you can investigate the sound together.' '你们已核对那晚的记录，也约好听见呼唤时先向彼此确认。三个人有空时，可以继续查看那道声音。'>></li>
         <</if>>
         <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions’ next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
       </ul>
@@ -500,11 +500,11 @@
           <</language>>
           </li>
         <<elseif $RobinTemple.secret.stage is 'decision'>>
-          <li><<lanSwitch 'You are discussing whether to continue tonight. Both companions must answer.' '你们正在商量是否当晚继续，两人都需要作出回答。'>></li>
+          <li><<lanSwitch 'You have examined the stone. You are deciding whether to attempt the rite tonight, and both Robin and Sydney must agree.' '你们已经查看过石头。现在要决定今晚是否举行仪式，罗宾和悉尼都需要明确同意。'>></li>
         <<elseif $RobinTemple.secret.stage is 'travelling'>>
-          <li><<lanSwitch 'The journey is underway. Continue together at the lake ruin, or return together.' '同行已经开始。在湖底废墟继续，或一起返回。'>></li>
+          <li><<lanSwitch 'You have met Robin and Sydney at the lake. You can visit the stone in the ruins together or call off this journey.' '你和罗宾、悉尼已经在湖边会合。可以一起前往废墟里的石头，也可以结束这次同行。'>></li>
         <<elseif $RobinTemple.secret.stage is 'ritual'>>
-          <li><<lanSwitch 'The rite is underway. Each companion must answer for themselves.' '仪式已经开始。每人都需要亲自回答。'>></li>
+          <li><<lanSwitch 'The rite is underway. Each of you must give your own answer; one person cannot decide for the other two.' '仪式正在进行。你们需要各自表明意愿，不能由一个人替另外两人作主。'>></li>
         <</if>>
         <<if C.npc.Robin.trauma lt 40>>
           <li>
@@ -702,7 +702,7 @@
             <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
           <</if>>
           <<if _journalPreparation.trial_day lt 0>>
-            <li><<lanSwitch 'Take the lower-door watch together. Keep the lamp steady and help with both responses.' '共同参加下层门前的守望，护住灯火，协助同伴完成两次应答。'>></li>
+            <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文；两处都需要照应。'>></li>
           <<elseif !_journalPreparation.reviewed>>
             <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
           <<else>>
@@ -717,9 +717,9 @@
       <<revelation-card 'The sealed comparison' '密封的比对记录'>>
         <ul class='journal'>
         <<if $TempleDuties.bishop_checked>>
-          <li><<lanSwitch 'Take the sealed copy to the waiting confessor at the duties desk.' '在职务桌把密封副本交给等候的告解员。'>></li>
+          <li><<lanSwitch 'Return to the duties desk and give the sealed copy to the bishop waiting there as a confessor.' '回职务桌，把密封副本交给以告解员身份等候的主教。'>></li>
         <<else>>
-          <li><<lanSwitch 'Read the delivery records and resolve the returned-crate case truthfully, then compare both in the old records room.' '查阅交货档案，如实完成货箱调查，再到旧资料室比对两份记录。'>></li>
+          <li><<lanSwitch 'Read the old crate handover records, resolve the crate investigation and report honestly to Jordan, then compare the marks in the old records room.' '查阅旧货箱交接记录，完成货箱调查并向约旦如实汇报，再到旧资料室比对标记。'>></li>
         <</if>>
         </ul>
       <</revelation-card>>

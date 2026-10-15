@@ -115,7 +115,7 @@ Successful persuasion does not bypass either companion's desire. A lie about dan
 
 Withdrawal keeps the survey and completed investigation but clears decisions and preparation; arrange new private conversations before retrying. Wraith hostility, pursuit, refitted equipment, excessive pain, stress or tiredness can interrupt a journey. **Unyielding Will** resists ear-slime bodily control but does not remove stimulation, costs or the need for both decisions.
 
-### Daylight plans
+### After the night at the lake
 
 After the shared rite, meet in the temple hall on a later day after 13:00, with time before 17:00 and both companions free. Share bread and tea, then compare your accounts: thirty minutes each. Their existing schedules, purification and examination requirements still apply.
 

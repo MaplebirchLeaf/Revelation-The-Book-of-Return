@@ -56,15 +56,15 @@
     <<capture _archive_topic>>
       <<switch _archive_topic>>
         <<case 'buildings'>>
-          <<set _archive_name to ['Read the building plans', '读建筑图纸']>>
+          <<set _archive_name to ['Read the plans for the lower storeroom', '查阅下层储藏室的建筑图纸']>>
         <<case 'deliveries'>>
-          <<set _archive_name to ['Compare old delivery records', '比对旧交货记录']>>
+          <<set _archive_name to ['Read the old crate delivery records', '查阅旧货箱交接记录']>>
         <<case 'fieldwork'>>
-          <<set _archive_name to ['Read the fieldwork precautions', '读外勤注意事项']>>
+          <<set _archive_name to ['Read the fieldwork and withdrawal notes', '查阅外勤与撤离记录']>>
         <<case 'ward-notes'>>
           <<set _archive_name to ['Copy the recovered ward patterns', '抄录修复后的护符图样']>>
         <<case 'monstrance'>>
-          <<set _archive_name to ['Read the indexed description of the monstrance', '读索引中的圣体匣描述']>>
+          <<set _archive_name to ['Read the old drawing and description of the monstrance', '查阅圣体匣的旧图与描述']>>
       <</switch>>
       <<icon `({buildings:'temple/building-plans.png', deliveries:'temple/delivery-records.png', fieldwork:'temple/field-kit.png', 'ward-notes':'temple/ward-stone.png', monstrance:'temple/duties-book.png'})[_archive_topic]`>>
       <<temple-duty-action `_archive_name` `_studyMinutes` 'Revelation Temple Archive Note'>>
@@ -103,7 +103,7 @@
       and $TempleDuties.reports.crate?.honest
       and $TempleDuties.reports.crate?.result is 'resolved'>>
     <<icon 'temple/delivery-records.png'>>
-    <<temple-duty-action `['Compare the seal and old crate receipts (0:20)', '比对封印与旧货箱收据 (0:20)']` 20 'Revelation Temple Sealed Answer'>>
+    <<temple-duty-action `['Compare your crate report with the old receipts (0:20)', '比对货箱调查报告与旧收据 (0:20)']` 20 'Revelation Temple Sealed Answer'>>
       <<if !$TempleDuties.bishop_checked>>
         <<set $TempleDuties.bishop_checked to true>>
         <<set $TempleDuties.note to 'bishop-checked'>>
@@ -131,15 +131,15 @@
   <<option 'EN'>>
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
-        The plans show a drain behind the wall and a shutter above it. Knocking carried through the pipe once frightened the novices. The margin asks the next clerk to check the gutter before ordering another blessing.
+        The plans show a drain running behind the lower storeroom wall, with a shutter above it. An old note says that knocking once travelled down this pipe and frightened the novices. The next clerk was told to check the shutter and drain before arranging another blessing.
       <<case 'deliveries'>>
-        A copied seal is not proof of a matching shipment. The old clerk wrote down the sender, the weight and the person who collected each crate. Several damaged boxes were returned without anyone checking what was inside.
+        The old delivery book lists each crate's sender, weight and collector. Several damaged crates were returned without anyone checking their contents. A note warns that a seal can be copied: the mark alone does not prove that a crate still holds its original shipment.
       <<case 'fieldwork'>>
         The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
       <<case 'ward-notes'>>
         With the leaves dry and numbered, the strokes finally meet across the fold. You copy the pattern without filling the missing space. Beside it, an older hand has written: "Keep the gap turned towards the light." You tuck the sheet beside your lamp strap. It will help you set the light and hold the threshold on your next visit.
       <<case 'monstrance'>>
-        The old drawing places the sacramental bread in a sun of metal. Its upper ornament is whole. Silver and bronze appear in the inventory, but the page says nothing about Kylar's parents. You copy the intact outline beside the broken shape you remember.
+        The old drawing shows sacramental bread at the centre of a metal sun. The ornament at the top is intact. The inventory lists silver and bronze, but says nothing about Kylar's parents. You copy the whole outline so that you can compare it with the damaged monstrance at the manor.
     <</switch>>
     <<if $TempleDuties.archive.sorted gte 3>>
       The dried folios have made the page numbers legible again. You can cross-check the references without guessing which leaf has gone missing.
@@ -147,15 +147,15 @@
   <<option 'CN'>>
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
-        图纸标着墙后的排水管，以及上方的一扇百叶窗。管中传来的敲击曾吓坏见习教徒。页边提醒下一班：再安排祝祷之前，先检查排水槽。
+        图纸上，下层储藏室的墙后有一根排水管，上方是一扇百叶窗。页边的旧记录提到，敲击声曾沿管道传进来，吓坏了见习教徒。下一班因此被叮嘱：安排祝祷之前，先检查窗扇和排水管。
       <<case 'deliveries'>>
-        复制的封印不能证明货物与运单一致。旧侍从记下寄件人、重量和每个取货者。有些破损货箱被退回，却没人检查里面还剩什么。
+        旧交货簿逐项记着货箱的寄件人、重量和提货者。有几只破损货箱被退回时，没有人核对里面还剩什么。页边另有一句提醒：封印可以照样仿制，不能只看标记，就认定箱里的货物没有换过。
       <<case 'fieldwork'>>
         每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。你把出口草图折进笔记，需要赶紧离开时，可以照着走。
       <<case 'ward-notes'>>
         纸页晾干、编好号后，跨过折痕的笔画终于接上了。你照着抄下图样，没有补上空缺。旁边一行旧笔迹写着：“让缺口朝向光。”你把纸夹在灯带旁。下次进去，它能帮你安置灯火，也能在撑住门槛时派上用场。
       <<case 'monstrance'>>
-        旧图将圣餐面包置于金属构成的太阳中，上方装饰仍完整。清单写着银与青铜，却没有凯拉尔父母的记载。你把完整轮廓抄在记忆中残损的形状旁。
+        旧图上的圣体匣像一轮金属太阳，中央放着圣餐面包，顶端的装饰还是完好的。清单列着银和青铜，没有提到凯拉尔的父母。你抄下完整的轮廓，留着与庄园里残损的圣体匣比对。
     <</switch>>
     <<if $TempleDuties.archive.sorted gte 3>>
       晾干的散页重新显出页码。你可以核对引用，不必再猜缺了哪一张。
@@ -177,9 +177,16 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    Jordan spreads the estimates beside the damaged books. "The kitchen fund is already promised for food and blankets. These repairs need their own receipt." <<He>> shows you where the contractor has marked the leaking gutter, and where the carpenter will fit the shelves.
+    Jordan spreads the estimates beside the damaged books. "The kitchen fund is for food and blankets, child. If you want to pay for these repairs, we will keep a separate account." <<He>> points out the leaking gutter and the space for the new shelves.
   <<option 'CN'>>
-    约旦把报价单铺在受损的书旁。“厨房基金已经答应买食物和毯子。这里的修缮，要另开收据。”<<He>>指给你看承包商标出的漏水排水槽，以及木工将安装书架的位置。
+    约旦把报价单铺在受损的书旁。“孩子，厨房的经费要留着买食物和毯子。你愿意出钱修缮的话，这笔款项会另外记账。”<<He>>指给你看漏水的排水槽，以及安放新书架的位置。
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>>
+    Once both jobs are finished, finding and reading a volume will take twenty minutes instead of thirty. Three sessions drying and sorting the folios save another five minutes. The roof and drainage work will be finished in two days; the shelves will be ready the next day after payment.
+  <<option 'CN'>>
+    两项修缮都完工后，每次查阅由三十分钟缩短为二十分钟。另用三次整理修复散页，还能再省五分钟。付款后，屋顶与排水两天后修好，书架次日装好。
 <</language>>
 <br><br>
 <<for _repair range ['roof', 'shelves']>>
@@ -190,7 +197,7 @@
       <span class='gold'><<printmoney _repairCost>></span><br>
       <<if $TempleDuties.archive[_repair] lt 0>>
         <<icon `_repair is 'roof' ? 'temple/roof-repair.png' : 'temple/dry-shelves.png'`>>
-        <<temple-duty-action `['Sign the estimate (0:05)', '签署报价单 (0:05)']` 5 'Revelation Temple Task Done'>>
+        <<temple-duty-action `['Pay for the repairs and arrange the work (0:05)', '支付修缮款，安排施工 (0:05)']` 5 'Revelation Temple Task Done'>>
           <<if $TempleDuties.archive[_repair] lt 0>>
             <<set _repairPaid to false>>
             <<if typeof maplebirch.get('Finance')?.donations?.sponsor is 'function'>>
@@ -218,13 +225,6 @@
     <</revelation-card>>
   <</capture>>
 <</for>>
-<<language>>
-  <<option 'EN'>>
-    Dry shelves and a repaired roof reduce the time needed to find a volume from twenty-five minutes to fifteen. Restoring the folios through three sorting sessions saves another five minutes.
-  <<option 'CN'>>
-    干燥的书架与修好的屋顶能将查找书卷的时间从二十五分钟缩短至十五分钟。通过三次整理修复散页，还能再省五分钟。
-<</language>>
-<br><br>
 <<icon 'temple/records-room.png'>>
 <<lanLink ['Return to the records room', '返回资料室'] 'Temple Library'>>
 <</lanLink>>
