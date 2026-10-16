@@ -16,6 +16,7 @@
     "bump": "bumpp --no-push --tag v%s",
     "release": "bun run scripts/release.ts",
     "check": "oxlint --disable-nested-config && oxfmt --check --disable-nested-config",
+    "test": "bun test",
     "typecheck": "tsc --noEmit",
     "fix": "oxlint --fix --disable-nested-config && oxfmt --disable-nested-config"
   },
