@@ -1,6 +1,6 @@
 {
   "name": "revelation-the-book-of-return",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "private": true,
   "description": "A DoL story mod built on the maplebirch framework.",
   "author": "Maplebirch Leaf",
@@ -41,7 +41,7 @@
     "dependenceInfo": [
       {
         "modName": "maplebirch",
-        "version": ">=5.2.2"
+        "version": ">=5.4.9"
       },
       {
         "modName": "ModLoader",
