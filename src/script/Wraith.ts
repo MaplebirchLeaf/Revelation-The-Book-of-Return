@@ -23,8 +23,10 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Town Hall Projects Diving 2': [
         {
-          src: '$museumAntiques.antiques.antiqueivorynecklace isnot "found" and $necklaceThief is "player"',
-          to: '$museumAntiques.antiques.antiqueivorynecklace isnot "found" and $necklaceThief is "player" and !$RBR?.necklace?.returned',
+          // 前置归还判断，保留怨灵的倒影 1.3.4 使用的 `"player">>` 尾部锚点。
+          // 接受已注入的前缀，使重复处理保持幂等；其它模组追加的条件原样保留。
+          srcmatch: /(?:!\$RBR\?\.necklace\?\.returned and )?(\$museumAntiques\.antiques\.antiqueivorynecklace isnot "found" and \$necklaceThief is "player")/,
+          to: '!$RBR?.necklace?.returned and $1',
           expected: 1
         }
       ],
