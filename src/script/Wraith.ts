@@ -16,7 +16,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 再次拿走后清除当前归还状态；随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
           src: '<<set $necklaceThief to "player">>',
-          applyafter: '<<wraith-necklace-retake>>',
+          applyafter: '<<wraith-necklace-taken>>',
           expected: 1
         },
         { src: '<<if _leave>>', applyafter: '<<ivory-necklace-link>>', expected: 1 }
@@ -34,7 +34,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 潜水队仍可取得放回的项链；不把潜水队的行为计作PC再次盗取。
           src: '<<set $necklaceThief to "diver">>',
-          applyafter: '<<if $RBR?.necklace and !$replayScene and !$statFreeze>><<set $RBR.necklace.returned to false>><</if>>',
+          applyafter: '<<wraith-necklace-taken>>',
           expected: 1
         }
       ],

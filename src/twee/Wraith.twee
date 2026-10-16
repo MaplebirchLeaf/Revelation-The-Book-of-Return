@@ -1,4 +1,9 @@
 :: Revelation Wraith Widgets [widget]
+<!-- 原版后代与愤怒冷却是怨恨的唯一事实来源；不另存模组愤怒状态。 -->
+<<widget 'revelation-wraith-grievance-check'>>
+  <<set _wraithVisitAngry to ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
+<</widget>>
+
 <<widget 'ivory-necklace-check'>>
   <<silently>>
     <<set _ivorySafe to Boolean(maplebirch.get('RBR')) and Boolean($RBR?.necklace)
@@ -25,18 +30,21 @@
   <</if>>
 <</widget>>
 
-<<widget 'wraith-necklace-retake'>>
-  <<if $RBR?.necklace?.returned and !$replayScene and !$statFreeze>>
+<<widget 'wraith-necklace-taken'>>
+  <<if $RBR?.necklace and ($RBR.necklace.returned or $necklaceThief is 'diver') and !$replayScene and !$statFreeze>>
     <<set $RBR.necklace.returned to false>>
-    <<set $RBR.necklace.retaken to ($RBR.necklace.retaken ?? 0) + 1>>
-    <!-- 不替未登场的怨灵初始化。已登场时重算原版盗取状态，痴迷20由原版取物页结算。 -->
-    <<if C.npc['Ivory Wraith']?.init is 1>><<checkWraith>><</if>>
+    <!-- 由原版刚写入的盗取者区分PC与潜水队；潜水队不增加PC再取历史。 -->
+    <<if $necklaceThief is 'player'>>
+      <<set $RBR.necklace.retaken to ($RBR.necklace.retaken ?? 0) + 1>>
+      <!-- 不替未登场的怨灵初始化；痴迷20仍由原版取物页结算。 -->
+      <<if C.npc['Ivory Wraith']?.init is 1>><<checkWraith>><</if>>
+    <</if>>
   <</if>>
 <</widget>>
 
 <<widget 'revelation-wraith-visit-check'>>
   <<ivory-necklace-check>>
-  <<set _wraithVisitAngry to ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
+  <<revelation-wraith-grievance-check>>
   <<set _wraithVisitHere to _ivorySafe and $RBR.necklace.returned
     and $location is 'lake' and $outside is 1 and $bus is 'lakeshore'
     and ['Lake Shore', 'Revelation Wraith Shore'].includes($passage)
@@ -168,8 +176,8 @@
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
     <<set $antiquemoney -= 2000>>
     <<if ['haunt', 'despair'].includes($wraith?.state)>><<set $wraith.state to 'active'>><</if>>
-    <<if C.npc['Ivory Wraith']?.init is 1
-        and !['dead', 'sold'].includes($wraith?.offspring) and !($wraithAngerCooldown gt 0)>>
+    <<revelation-wraith-grievance-check>>
+    <<if C.npc['Ivory Wraith']?.init is 1 and !_wraithVisitAngry>>
       <<set C.npc['Ivory Wraith'].lust to Math.max(0, C.npc['Ivory Wraith'].lust - (_ivoryFirstReturn ? 10 : 1))>>
     <</if>>
     <<wateraction>>
@@ -212,7 +220,8 @@
     你低头看着空空的双手。<<if $RBR.necklace.retaken gt 0>>同样的事，你已经做过一次了。你把项链留在原处，转向门口。<<else>>指尖还有些发冷，脑后那股紧绷的感觉却松了一些。你在憋不住气之前转向门口。<</if>>
 <</language>>
 <br><br>
-<<if ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
+<<revelation-wraith-grievance-check>>
+<<if _wraithVisitAngry>>
   <<language>>
     <<option 'EN'>>
       Its stare stays with you after it vanishes. Your stomach tightens. You remember the pale creatures, and know that the necklace cannot answer for what happened to them.
