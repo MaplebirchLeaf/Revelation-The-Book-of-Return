@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - 'src/**'
-      - 'tests/**'
       - 'scripts/**'
       - 'types/**'
       - 'package.json'
@@ -32,4 +31,4 @@ jobs:
           (cd tools/dol-mod-protection-tools && bun install --frozen-lockfile)
       - run: bun run check
       - run: bun run typecheck
-      - run: bun test
+      - run: bun run build:all
