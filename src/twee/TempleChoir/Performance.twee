@@ -1,6 +1,6 @@
 :: TempleChoir Performance Widgets [widget]
 <<widget 'temple-choir-shanty-check'>>
-  <!-- 使用原版同一次检定及成功记录，语文与有效歌唱取较佳者；哈比分支保持原状。 -->
+  <!-- 使用原版同一次检定及成功记录，语文与有效歌唱取较佳者，哈比分支保持原状。 -->
   <<skill_difficulty `Math.max(currentSkillValue('english'), maplebirch.get('TempleChoir').singing)` 'English' 1 1000 'silent'>>
   <<if !$settings.blindStatsEnabled>>
     | <span class='orange'><<lanSwitch 'Singing / English' '歌唱／语文'>></span>
@@ -124,7 +124,7 @@
   <<temple-choir-performance-action 'steady' `['Keep the melody steady (0:10)', '稳住旋律与节拍 (0:10)']`>>
   | <span class='lblue'><<lanSwitch 'Easier to sustain' '容易坚持'>></span><br>
   <<temple-choir-performance-action 'flourish' `['Add flourishes to the melody (0:10)', '给旋律添些转音 (0:10)']`>>
-  | <span class='orange'><<lanSwitch 'Demanding; more tiring' '要求较高；更累'>></span><br>
+  | <span class='orange'><<lanSwitch 'Demanding; more tiring' '要求较高，更累'>></span><br>
   <<temple-choir-performance-action 'chorus' `['Invite the listeners into the chorus (0:10)', '邀请听众跟着应和 (0:10)']`>>
   | <span class='lblue'><<lanSwitch 'English helps' '语文有帮助'>></span><br><br>
   <<capture _performance>>

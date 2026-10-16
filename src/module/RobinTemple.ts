@@ -165,7 +165,7 @@ class RobinTemple extends Module {
     return this.member && this.playerReady && this.available && window.getRobinLocation() === 'temple' && Time.hour >= 11 && Time.hour < 20 && !(Time.weekDay === 1 && Time.hour < 13);
   }
 
-  /** 只预测行程是否撞上既有事务；员工不自动替罗宾取消看店日程。 */
+  /** 只预测行程是否撞上既有事务，员工不自动替罗宾取消看店日程。 */
   public free(minutes: number): boolean {
     if (!(this.canTalk || this.canPray) || !Number.isFinite(minutes) || minutes <= 0) return false;
     const start = Time.hour * 60 + Time.minute;

@@ -1,13 +1,13 @@
 :: Temple Duties Combat Widgets [widget]
 
-<!-- 守望试炼的记录赋予奖励；身份、回放与梦中冻结均不代替这一记录。 -->
+<!-- 守望试炼的记录赋予奖励，身份、回放与梦中冻结均不代替这一记录。 -->
 <<widget 'temple-watch-ready'>>
   <<silently>>
     <<set _watchReady to Boolean(maplebirch.get('TempleDuties') and $TempleDuties?.trial_day gte 0 and $combat is 1 and !$possessed and !$statFreeze and !$replayScene)>>
   <</silently>>
 <</widget>>
 
-<!-- 使用实际目标的物种；机器与伪装成人形的普通人不由 enemytype 推断。 -->
+<!-- 使用实际目标的物种，机器与伪装成人形的普通人不由 enemytype 推断。 -->
 <<widget 'temple-watch-target'>>
   <<silently>>
     <<temple-watch-ready>>
@@ -71,7 +71,7 @@
   <</silently>>
 <</widget>>
 
-<!-- 原伤害已从触手扣除，只追加增幅；记录与实际扣血使用同一数值。 -->
+<!-- 原伤害已从触手扣除，只追加增幅，记录与实际扣血使用同一数值。 -->
 <<widget 'temple-watch-tentacle'>>
   <<silently>>
     <<set _watchOrgan to _args[0]>>
@@ -92,7 +92,7 @@
   <</silently>>
 <</widget>>
 
-<!-- 枯木的清除有独立结算，捕获实际扣血再追加；未启用归途时不调用。 -->
+<!-- 枯木的清除有独立结算，捕获实际扣血再追加，未启用归途时不调用。 -->
 <<widget 'temple-watch-expunge-start'>>
   <<silently>>
     <<temple-watch-ready>>

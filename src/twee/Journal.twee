@@ -1,5 +1,5 @@
 :: Revelation Journal Widgets [widget]
-<!-- 日志入口与栏目集中维护；只读当前存档，进度结算仍由各模块负责。 -->
+<!-- 日志入口与栏目集中维护，只读当前存档，进度结算仍由各模块负责。 -->
 <!-- 凯拉尔庄园梦境与记录 -->
 <<widget 'lost-lamb-journal'>>
   <<language>>
@@ -702,7 +702,7 @@
             <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
           <</if>>
           <<if _journalPreparation.trial_day lt 0>>
-            <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文；两处都需要照应。'>></li>
+            <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文，两处都需要照应。'>></li>
           <<elseif !_journalPreparation.reviewed>>
             <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
           <<else>>

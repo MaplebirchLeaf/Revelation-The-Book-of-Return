@@ -15,7 +15,7 @@ import Wraith from './Wraith';
   // 原版再次取物、潜水队移交与办公室显示继续同步已保存的遗物状态。
   Wraith(maplebirch);
 
-  // 梦属于誓约的后续；停用模块或离开梦境时仍沿原版噩梦流程恢复现实。
+  // 梦属于誓约的后续，停用模块或离开梦境时仍沿原版噩梦流程恢复现实。
   maplebirch.tool.addTo('Header', () => {
     if (!V.RobinTemple?.secret?.dream?.active || V.replayScene) return;
     if (maplebirch.get('RobinTemple') && maplebirch.get('LostLamb') && maplebirch.SugarCube.State.passage.startsWith('RobinTemple Dream ')) return;

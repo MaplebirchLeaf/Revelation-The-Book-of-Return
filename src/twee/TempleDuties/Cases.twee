@@ -627,7 +627,7 @@
 <<temple-duty-place>>
 <<if $TempleDuties.case>>
   <span class='gold bold'><<temple-case-title $TempleDuties.case.id>></span><br><br>
-  <<lanSwitch 'Jordan has entered the assignment under your name. You can borrow equipment or read the old records before going to the site. If you leave to prepare, the investigation stays open; tell Jordan if you decide to withdraw.' '约旦已把委托记在你名下。出发前，可以借用器具，也可以先去旧资料室查阅记录。暂时离开不会结束调查；如果决定退出，再向约旦说明。'>><br><br>
+  <<lanSwitch 'Jordan has entered the assignment under your name. You can borrow equipment or read the old records before going to the site. If you leave to prepare, the investigation stays open; tell Jordan if you decide to withdraw.' '约旦已把委托记在你名下。出发前，可以借用器具，也可以先去旧资料室查阅记录。暂时离开不会结束调查，如果决定退出，再向约旦说明。'>><br><br>
   <<icon 'temple/field-kit.png'>>
   <<lanLink ['Review the instructions and prepare', '核对说明，做好准备'] 'Revelation Temple Case Brief'>>
   <</lanLink>>

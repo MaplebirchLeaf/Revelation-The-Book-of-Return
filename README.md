@@ -46,7 +46,7 @@
 
 路线入口与条件见[中文指南](src/assets/hint/CN)，任务进度可在游戏日志中查看。
 
-[枯木逢春](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)为可选联动；同时安装后，可在侧栏的**模组提示**中阅读归途之书的指南。
+[枯木逢春](https://github.com/MaplebirchLeaf/Deadwood-Reblooms)为可选联动，同时安装后，可在侧栏的**模组提示**中阅读归途之书的指南。
 
 ## 反馈与更新
 

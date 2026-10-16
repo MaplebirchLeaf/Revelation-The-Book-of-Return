@@ -76,7 +76,7 @@
       <span class='teal'>Following the melody is easier. Trying a harmony part gives you more practice, but requires greater skill. Recent practice helps; tiredness and alcohol make singing harder.</span><br>
       Performance so far: <span class='gold'><<= $TempleChoir.shift.score>></span> points. A clear verse earns two points, or three when leading. An unsteady verse earns one.
     <<option 'CN'>>
-      <span class='teal'>跟着大家唱比较容易；尝试和声更考验技巧，也能多练习歌唱。最近的练习有帮助，疲劳和醉酒则会妨碍发挥。</span><br>
+      <span class='teal'>跟着大家唱比较容易，尝试和声更考验技巧，也能多练习歌唱。最近的练习有帮助，疲劳和醉酒则会妨碍发挥。</span><br>
       当前表现：<span class='gold'><<= $TempleChoir.shift.score>></span> 分。稳稳唱完一节得两分，领唱得三分，勉强跟上得一分。
   <</language>><br><br>
   <<icon 'temple/choir.png'>><<lanLink ['Follow the melody (0:20)', '跟着大家的旋律唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>

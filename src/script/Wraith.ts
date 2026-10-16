@@ -1,6 +1,6 @@
 /** 象牙怨灵的岸边回访与遗物归还共用此处接入。 */
 export default function Wraith(maplebirch: typeof window.maplebirch): void {
-  // 项链放回基座后仍可再次拿走；原版 notFound、拾取与潜水队取得流程保持有效。
+  // 项链放回基座后仍可再次拿走，原版 notFound、拾取与潜水队取得流程保持有效。
   // 当前归还标记需随原版物品去向更新，即使玩家随后关闭根模块也如此。
   maplebirch.tool.inject({
     locationPassage: {
@@ -14,7 +14,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Lake Ruin Plinth': [
         {
-          // 再次拿走后清除当前归还状态；随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
+          // 再次拿走后清除当前归还状态，随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
           src: '<<set $necklaceThief to "player">>',
           applyafter: '<<wraith-necklace-retake>>',
           expected: 1
@@ -32,7 +32,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Town Hall Projects Diving Buy': [
         {
-          // 潜水队仍可取得放回的项链；不把潜水队的行为计作PC再次盗取。
+          // 潜水队仍可取得放回的项链，不把潜水队的行为计作PC再次盗取。
           src: '<<set $necklaceThief to "diver">>',
           applyafter: '<<if $RBR?.necklace and !$replayScene and !$statFreeze>><<set $RBR.necklace.returned to false>><</if>>',
           expected: 1
@@ -40,7 +40,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Town Hall Computer 2': [
         {
-          // 原版这一段总是假定展示盒里有项链；这里只包裹该段，不改电脑任务。
+          // 原版这一段总是假定展示盒里有项链，这里只包裹该段，不改电脑任务。
           src: '<<if $necklaceThief is "player">>',
           to: '<<if $RBR?.necklace?.returned>><<ivory-necklace-quinn-empty>><<else>><<if $necklaceThief is "player">>',
           expected: 1

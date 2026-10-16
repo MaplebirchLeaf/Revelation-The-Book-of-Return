@@ -103,9 +103,9 @@
       <ul class='journal'>
         <<if $RBR.necklace.returned>>
           <li><<lanSwitch 'You put the necklace back on the plinth beneath the lake. It remains there, outside the antiques you can sell.' '你把项链放回了湖底的基座。它仍在那里，已经不计入待出售的古董。'>></li>
-          <li><<lanSwitch 'You may take it again. Doing so restores the wraith’s full obsession; putting it back again only eases that obsession a little.' '仍然可以再次拿走它。这样会重新招来怨灵满额的痴迷；之后再放回，只能稍微缓和痴迷。'>></li>
+          <li><<lanSwitch 'You may take it again. Doing so restores the wraith’s full obsession; putting it back again only eases that obsession a little.' '仍然可以再次拿走它。这样会重新招来怨灵满额的痴迷，之后再放回，只能稍微缓和痴迷。'>></li>
           <li><<lanSwitch 'The loss of the necklace no longer keeps the wraith obsessed with you. Other grudges and pursuits remain.' '失去项链的执念不再使怨灵紧盯着你。其他怨恨与追逐仍然存在。'>></li>
-          <li><<lanSwitch 'After three days, you may spend a quiet quarter-hour on the lake shore. Further visits must be at least three days apart. A pursuit or a grievance over its offspring prevents this.' '三天后，可以到湖岸安静地待上一刻钟；之后每次至少间隔三天。追逐尚未结束，或怨灵仍因苍白后代的遭遇而怀恨时，无法以这种方式接近它。'>></li>
+          <li><<lanSwitch 'After three days, you may spend a quiet quarter-hour on the lake shore. Further visits must be at least three days apart. A pursuit or a grievance over its offspring prevents this.' '三天后，可以到湖岸安静地待上一刻钟，之后每次至少间隔三天。追逐尚未结束，或怨灵仍因苍白后代的遭遇而怀恨时，无法以这种方式接近它。'>></li>
           <<if !$RBR.necklace.followedUp>><li><<lanSwitch 'You can tell Gwylan what happened during a normal visit to the forest shop.' '下次去森林商店时，可以告诉格威岚发生了什么。'>></li><</if>>
         <<elseif $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
           <li><<lanSwitch 'You still have the ivory necklace. Return to the plinth beneath the lake to examine where you found it.' '象牙项链仍在你手里。可以回到湖底的基座旁，查看取走它的地方。'>></li>
@@ -153,7 +153,7 @@
 <</language>>
 <br><br>
 <<if $RBR.necklace.returnedOnce>>
-  <span class='lblue'><<lanSwitch 'You have put it back before. Without other grievances, doing so again only eases the wraith’s obsession by one point. Grievances over its offspring remain.' '你已经放回过一次。若没有其他怨恨，这次再放回只会使怨灵的痴迷稍缓 1 点；对苍白后代的怨恨仍然保留。'>></span><br><br>
+  <span class='lblue'><<lanSwitch 'You have put it back before. Without other grievances, doing so again only eases the wraith’s obsession by one point. Grievances over its offspring remain.' '你已经放回过一次。若没有其他怨恨，这次再放回只会使怨灵的痴迷稍缓 1 点，对苍白后代的怨恨仍然保留。'>></span><br><br>
 <</if>>
 <<icon 'clothes/ivory-necklace.png'>>
 <<lanLink ['Set the necklace on the plinth and let go', '将项链放在基座上，松开手']>>
@@ -161,7 +161,7 @@
   <<if _ivoryReady>>
     <<set _ivorySource to $passage>>
     <<set _ivoryFirstReturn to !$RBR.necklace.returnedOnce>>
-    <!-- 先交还实物、扣除待售账目，再走原版水下行动；时间钩子重入也不会重复结算。 -->
+    <!-- 先交还实物、扣除待售账目，再走原版水下行动，时间钩子重入也不会重复结算。 -->
     <<set $RBR.necklace.returned to true>>
     <<set $RBR.necklace.returnedOnce to true>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>

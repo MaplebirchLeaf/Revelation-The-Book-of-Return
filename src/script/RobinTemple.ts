@@ -53,7 +53,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
 
-  // 结果补充放在原版选择前；试炼中的反应在正文对应位置注入。
+  // 结果补充放在原版选择前，试炼中的反应在正文对应位置注入。
   maplebirch.tool.addTo(
     'BeforeLinkZone',
     { widget: 'robin-temple-vigil-bell', passage: 'Temple Vigil 9' },

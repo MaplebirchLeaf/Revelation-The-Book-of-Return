@@ -125,7 +125,7 @@ export default class SecretPromise {
     );
   }
 
-  /** 首次仪式的第二位尚未登记；只在已同意的双人战斗中保留三份完整誓言。 */
+  /** 首次仪式的第二位尚未登记，只在已同意的双人战斗中保留三份完整誓言。 */
   public get protectsRiteVows(): boolean {
     const s = this.state;
     return Boolean(
@@ -152,7 +152,7 @@ export default class SecretPromise {
       this.state.night === Time.days &&
       ((Time.hour >= 21 && Time.isBloodMoon()) || Time.hour < 5) &&
       this.eligible &&
-      // 开始前重新确认欲望；仪式已经开始后，正常消耗欲望不撤销先前的回答。
+      // 开始前重新确认欲望，仪式已经开始后，正常消耗欲望不撤销先前的回答。
       (this.state.stage !== 'ritual' || this.state.rite_active || (this.wants.Robin && this.wants.Sydney)) &&
       (this.state.stage === 'decision' || (this.state.prepared && this.state.robin_day >= 0 && this.state.sydney_day >= 0)) &&
       V.stress < V.stressmax - 12 &&
