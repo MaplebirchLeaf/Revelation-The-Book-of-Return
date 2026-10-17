@@ -63,6 +63,7 @@
 :: Revelation Temple Sealed Note
 <<temple-duty-place>>
 <<if !_dutyOffice or !_bishopKnown or !$TempleDuties.enrolled
+    or !['monk', 'priest'].includes($temple_rank)
     or ['refused', 'reported'].includes($TempleDuties.bishop)>>
   <<temple-duty-back>>
   <<exit>>
@@ -165,8 +166,9 @@
 :: Revelation Temple Companion
 <<temple-duty-place>>
 <<if !_dutySafe or !$TempleDuties.speaker
-    or ($TempleDuties.speaker is 'Robin' and getRobinLocation() isnot 'temple')
-    or ($TempleDuties.speaker is 'Sydney' and (_sydney_location isnot 'temple' or $daily.sydney.punish is 1))>>
+    or ($TempleDuties.speaker is 'Robin' and (C.npc.Robin.init isnot 1 or getRobinLocation() isnot 'temple'))
+    or ($TempleDuties.speaker is 'Sydney' and (C.npc.Sydney.init isnot 1
+    or _sydney_location isnot 'temple' or $daily.sydney.punish is 1))>>
   <<lanSwitch 'The person you meant to speak to has another duty now. You can talk when you next meet here.' '你想交谈的人已经有了别的安排。下次在这里遇见时，可以再聊。'>><br><br>
   <<temple-duty-back>>
   <<exit>>

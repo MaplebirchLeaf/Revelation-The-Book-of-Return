@@ -139,8 +139,9 @@
 
 :: Revelation Temple Candidates
 <<temple-duty-place>>
-<<if !_dutyOffice or !$TempleDuties.enrolled or !['monk', 'priest'].includes($temple_rank)>>
-  <<temple-duty-back>>
+<<if !_dutyOffice or !$TempleDuties.enrolled
+    or !['monk', 'priest'].includes($temple_rank)>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc Jordan>>
@@ -152,13 +153,16 @@
     约旦把候任名册放在祷文旁。“想成为司祭，就要熟悉祷文，也要学会帮助教徒。先问问同伴是否愿意准备。完成见习和守望后，再带他们来见我，我想听听他们自己的回答。”一名司祭拿着磨旧的香炉与花园护符图样，在旁等候。
 <</language>>
 <br><br>
-<<for _ordinand range ['Robin', 'Sydney']>>
+<<set _ordinandList to ['Robin', 'Sydney']>>
+<<for _ordinand range _ordinandList>>
   <<temple-candidate-check _ordinand 15>>
   <<if _candidateRank is 'monk' or _candidate.agreed>>
     <<capture _ordinand>>
       <<revelation-card `maplebirch.auto(_ordinand)` `maplebirch.auto(_ordinand)`>>
         <<if _candidateRank is 'priest'>>
           <span class='teal'><<temple_title _ordinand>></span><br>
+        <<elseif _candidateRank isnot 'monk'>>
+          <span class='lblue'><<lanSwitch 'They have not taken the vigil yet. Companions can prepare for the appointment only after becoming a monk or nun themselves.' '对方还没有完成守夜试炼。同伴先成为修士或修女，才能准备司祭任命。'>></span><br>
         <<elseif !_candidatePresent>>
           <<lanSwitch 'Continue the preparation when your companion is at the temple and has time free from other duties.' '等同伴回到神殿，并且有空参加见习时，再继续准备。'>><br>
         <<elseif !_candidateStanding>>
@@ -232,13 +236,13 @@
   <br>
 <</if>>
 <br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Revelation Temple Candidate Talk
 <<temple-duty-place>>
 <<temple-candidate-check $TempleDuties.speaker 15>>
-<<if !_dutyOffice or !_candidatePresent or _candidateRank isnot 'monk'>>
-  <<temple-duty-back>>
+<<if _dutySafe isnot true or !_candidatePresent or _candidateRank isnot 'monk'>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc `$TempleDuties.speaker`>>
@@ -302,30 +306,22 @@
 <br><br>
 <<if _candidateFree>>
   <<socialiseicon>>
-  <<temple-duty-action `['Offer to prepare together (0:15)', '提议一起准备任职 (0:15)']` 15 'Revelation Temple Candidate Answer' `$TempleDuties.speaker`>>
+  <<temple-duty-action `['Offer to prepare together (0:15)', '提议一起准备任职 (0:15)']` 15 'Revelation Temple Candidates' `$TempleDuties.speaker`>>
     <<set $TempleDuties.candidates[$TempleDuties.speaker].agreed to true>>
   <</temple-duty-action>>
   <br>
 <</if>>
 <<refuseicon>>
-<<lanLink ['Leave the appointment for now', '暂时放下任职的事'] 'Revelation Temple Candidates'>>
+<<lanLink ['Leave the appointment for now', '暂时放下任职的事'] 'Temple'>>
   <<set $TempleDuties.candidates[$TempleDuties.speaker].agreed to false>>
 <</lanLink>>
 <br>
-
-:: Revelation Temple Candidate Answer
-<<temple-duty-place>>
-<<npc `$TempleDuties.speaker`>>
-<<person1>>
-<<lanSwitch 'Your companion writes their name beside yours in the preparation book. The older priest notes two lessons: praying with and hearing parishioners, and inspecting the garden wards. After those, you can prepare for the watch together.' '同伴在准备名册里，把自己的名字写在你的旁边。资深司祭记下两项见习：一起祈祷、接待教徒，以及巡查花园围墙的护符。完成后，你们再一起准备守望。'>>
-<br><br>
-<<temple-candidates-back>>
 
 :: Revelation Temple Candidate Practice
 <<temple-duty-place>>
 <<temple-candidate-check $TempleDuties.speaker 0>>
 <<if !_candidatePresent or !$TempleDuties.candidates[$TempleDuties.speaker].agreed>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc `$TempleDuties.speaker`>>
@@ -375,7 +371,7 @@
 <<temple-duty-place>>
 <<temple-candidate-check $TempleDuties.speaker 0>>
 <<if !_candidateFree or !_candidate.reviewed>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc Jordan>>
@@ -406,7 +402,7 @@
 :: Revelation Temple Shared Oath
 <<temple-duty-place>>
 <<if !_dutyOffice or !$TempleDuties.enrolled or !($temple_rank is 'priest' or _dutyReady and $TempleDuties.review and $TempleDuties.oath is 'care')>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc Jordan>>
@@ -427,7 +423,7 @@
 :: Revelation Temple Shared Ordained
 <<temple-duty-place>>
 <<if !$TempleDuties.ceremony.length>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc Jordan>>
@@ -460,12 +456,16 @@
   <</if>>
 <</for>>
 <br><br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Temple Candidate Return Widgets [widget]
 <<widget 'temple-candidates-back'>>
   <<getouticon>>
   <<lanLink ['Return to the candidates’ book', '返回候任名册'] 'Revelation Temple Candidates'>>
+  <</lanLink>>
+  <br>
+  <<getouticon>>
+  <<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>>
   <</lanLink>>
   <br>
 <</widget>>

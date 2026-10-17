@@ -1,6 +1,5 @@
 :: Revelation Journal Widgets [widget]
-<!-- 日志入口与栏目集中维护，只读当前存档，进度结算仍由各模块负责。 -->
-<!-- 凯拉尔庄园梦境与记录 -->
+
 <<widget 'lost-lamb-journal'>>
   <<language>>
     <<option 'EN'>>
@@ -692,7 +691,7 @@
     <<for _journalCandidate range ['Robin', 'Sydney']>>
       <<set _journalRank to _journalCandidate is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
       <<set _journalPreparation to $TempleDuties.candidates[_journalCandidate]>>
-      <<if _journalPreparation.agreed and _journalRank is 'monk'>>
+      <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and _journalRank is 'monk'>>
         <<revelation-card `maplebirch.auto(_journalCandidate) + ' · Ordination'` `maplebirch.auto(_journalCandidate) + ' · 司祭任职'`>>
           <ul class='journal'>
           <<if !_journalPreparation.lessons.includes('care')>>

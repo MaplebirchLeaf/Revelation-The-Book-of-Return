@@ -22,11 +22,13 @@ export default function TempleDuties(maplebirch: typeof window.maplebirch): void
         }
       ],
       'Temple Quarters': [{ srcmatch: /\$temple_rank is "monk"/g, to: '["monk", "priest"].includes($temple_rank)', expected: 3 }],
-      'Temple Confessor Intro Ask': [{ src: '<<if $sydney.rank is "monk">>', to: '<<if ["monk", "priest"].includes($sydney.rank)>>', expected: 1 }]
+      'Temple Confessor Intro Ask': [{ src: '<<if $sydney.rank is "monk">>', to: '<<if ["monk", "priest"].includes($sydney.rank)>>', expected: 1 }],
+      'Temple Jordan': [{ src: '<<if $temple_rank is "initiate">>', applybefore: '<<temple-duty-jordan-links>>\n\t', expected: 1 }]
     },
     widgetPassage: {
       // 普通店内菜单已通过原版日程与强制剧情判断，再添加咨询入口。
-      'Gwylan Widgets': [{ src: '<<gwylanOptionsClothing>>', applyafter: '<<temple-case-gwylan-link>>', expected: 1 }]
+      'Gwylan Widgets': [{ src: '<<gwylanOptionsClothing>>', applyafter: '<<temple-case-gwylan-link>>', expected: 1 }],
+      'Widgets Sydney': [{ src: '<<prayoptions>>', applybefore: "<<temple-duty-pew-link 'Sydney'>>\n\t\t\t\t\t\t", expected: 1 }]
     }
   });
 

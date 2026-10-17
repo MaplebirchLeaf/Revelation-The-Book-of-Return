@@ -2,7 +2,9 @@
 
 Enable **Temple duties**. As an **initiate, monk/nun or priest**, visit **Temple → Hall → Check the temple duties book**. Jordan receives you **09:00–18:00 in daylight**, outside Sunday mass **11:00–13:00**. Remain covered, below maximum stress and free of combat, possession or a priority event.
 
-Choose **Ask Jordan for duties (0:10)** to enter the rota and receive access to the old records room.
+Choose **Ask Jordan for duties (0:10)** to enter the rota and receive access to the old records room. The book opens by rank: an **initiate** sees the handover, the records room and any available assignment; a **monk/nun** also turns to the lower-door watch; a **priest** adds shift supervision and the garden wards.
+
+Ordination is not handled at the desks. As a **monk/nun**, question Jordan in the **temple hall** and choose **Enquire about ordination**, beside the vanilla advancement option. Companion preparation lives at the pews too: talk to **Robin or Sydney while they pray** and choose **Ask them about becoming a priest**; if they have not taken the vigil yet, the page tells you what is missing.
 
 Viewing the duties book, records-room or temple-storeroom menus and returning to the hall or desk takes no time. Reading, work, investigations and actual walks at the docks retain their displayed durations.
 

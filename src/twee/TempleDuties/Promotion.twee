@@ -3,7 +3,7 @@
 <<npc Jordan>>
 <<person1>>
 <<if !_dutyOffice or $temple_rank isnot 'monk'>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <span class='gold bold'><<lanSwitch 'Ordination review' '司祭任职审查'>></span><br><br>
@@ -30,14 +30,14 @@
   <span class='lblue'><<lanSwitch 'Complete the outstanding duties before the interview. Leave an hour for the interview and oath before the duties desk closes.' '先完成尚未履行的职责。请在职务桌关闭前，留出一小时参加面谈与宣誓。'>></span><br>
 <</if>>
 <br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Revelation Temple Review Choice
 <<temple-duty-place>>
 <<npc Jordan>>
 <<person1>>
 <<if !_dutyReady or !$TempleDuties.review>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<language>>
@@ -60,14 +60,14 @@
 <</temple-duty-action>>
 <br>
 <br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Revelation Temple Review Answer
 <<temple-duty-place>>
 <<npc Jordan>>
 <<person1>>
 <<if !_dutyReady or !$TempleDuties.review>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<if $TempleDuties.oath is 'obedience'>>
@@ -105,14 +105,14 @@
   <br>
 <</if>>
 <br><br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Revelation Temple Oath
 <<temple-duty-place>>
 <<npc Jordan>>
 <<person1>>
 <<if !_dutyReady or !$TempleDuties.review or $TempleDuties.oath isnot 'care'>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<language>>
@@ -151,7 +151,7 @@
 <<npc Jordan>>
 <<person1>>
 <<if $TempleDuties.ordained lt 0 or $temple_rank isnot 'priest'>>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<language>>
@@ -161,7 +161,7 @@
     约旦在炉边签下你的任命书。“现在，你是我们教团的司祭了。”<<He>>轻声说，没有打开职务簿。“明天还有事要做。现在，先在这里暖暖身子吧。”门边的司祭在你身旁放下一条干净的布巾。
 <</language>>
 <br><br>
-<<temple-duty-back>>
+<<temple-duty-hall-back>>
 
 :: Temple Duties Review Widgets [widget]
 <<widget 'temple-duty-requirements'>>

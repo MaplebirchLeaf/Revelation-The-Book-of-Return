@@ -164,6 +164,7 @@
     <<option 'CN'>>罗宾现在有别的事务。
   <</language>><br><br>
 <</if>>
+<<temple-duty-pew-link 'Robin'>>
 <<getouticon>><<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>><</lanLink>><br>
 
 :: RobinTemple Prayer Others
