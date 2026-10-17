@@ -44,7 +44,7 @@
 <<widget 'robin-temple-punishment-status'>>
   <<language>>
     <<option 'EN'>>
-      <<print lanSwitch(_args[0], _args[0] is 'Robin' ? '罗宾' : '悉尼')>> looks
+      <<print _args[0]>> looks
       <<switch _args[1].pain>>
         <<case 0>><span class="green">unharmed</span>
         <<case 1>><span class="teal">uncomfortable</span>
@@ -64,7 +64,7 @@
       <</switch>>
 
     <<option 'CN'>>
-      <<print lanSwitch(_args[0], _args[0] is 'Robin' ? '罗宾' : '悉尼')>>看起来
+      <<print _args[0] is 'Robin' ? '罗宾' : '悉尼'>>看起来
       <<switch _args[1].pain>>
         <<case 0>><span class="green">安然无恙</span>
         <<case 1>><span class="teal">有些不适</span>
@@ -207,8 +207,8 @@
         <<option 'EN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">The pain is too much.</span> You buckle and collapse, tumbling over with <<if $RobinTemple.punish.joint>>Robin and Sydney<<else>>Robin<</if>>.
           <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">It's too much.</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> lets out a blood-curdling cry through <<nnpc_his _punishCauseName>> gag.</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print _punishCauseName>> lets out a blood-curdling cry through <<nnpc_his _punishCauseName>> gag.</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print _punishCauseName>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
           <</if>>
           <br><br>
           The <<priest>> holds up <<his>> hand. "Cease." The <<monks>> stop, and snuff the incense burners. "Your bodies betray you. You will be given time to recover, and then we will begin again." <<gggstress>>
@@ -229,8 +229,8 @@
         <<option 'CN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">疼痛已经无法承受。</span>你弯下腰，和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>一起瘫倒在地。
           <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">已经到了极限。</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>隔着口球发出一声撕心裂肺的叫喊。</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print lanSwitch(_punishCauseName, _punishCauseName is 'Robin' ? '罗宾' : '悉尼')>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print _punishCauseName is 'Robin' ? '罗宾' : '悉尼'>>隔着口球发出一声撕心裂肺的叫喊。</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print _punishCauseName is 'Robin' ? '罗宾' : '悉尼'>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
           <</if>>
           <br><br>
           <<priest>>抬起手。“可以了。”<<monks>>纷纷停下，熄灭了燃香盏。“你们的身体背叛了你。给你们点时间恢复，然后我们重新开始。”<<gggstress>>
@@ -238,7 +238,7 @@
           <<monks>>熄灭了房间里的火光，一个接一个地离开。当最后一个人离开后，你<<if $RobinTemple.punish.joint>>、罗宾和悉尼<</if>><<if !$RobinTemple.punish.joint>>和罗宾<</if>>陷入了一片黑暗。
           <br><br>
           <<if $RobinTemple.punish.joint>>
-            他们的吐息轻轻拂过你的肌肤。一想到<<lanSwitch 'They' '他们'>>都在这里，你便平静了下来。<<lanSwitch 'They' '他们'>>把你抱得更紧了，你也用力抱了回去。<<lstress>>
+            他们的吐息轻轻拂过你的肌肤。一想到他们都在这里，你便平静了下来。他们把你抱得更紧了，你也用力抱了回去。<<lstress>>
           <<else>>
             罗宾的吐息轻轻拂过你的肌肤。一想到<<nnpc_hes "Robin">>在这里，你便平静了下来。<<nnpc_He "Robin">>把你抱得更紧了，你也用力抱了回去。<<lstress>>
           <</if>>
@@ -454,7 +454,7 @@
           <br><br>
           <<priest>>摇了摇头。“可悲，拒绝担负责任。你们的惩罚不会再拖了。”
         <<else>>
-          你猛地一挣，将悉尼和罗宾推开。为什么要连带你一起惩罚？<<lanSwitch 'They' '他们'>>含泪看向你，一脸被背叛的表情。
+          你猛地一挣，将悉尼和罗宾推开。为什么要连带你一起惩罚？他们含泪看向你，一脸被背叛的表情。
           <br><br>
           <<priest>>摇了摇头。“可悲，拒绝担负责任。你们的惩罚不会再拖了。”
         <</if>>
@@ -522,22 +522,22 @@
     <<language>>
       <<option 'EN'>>
         The <<monks>> strip you and Robin and Sydney bare, leaving only your gags and collars.
-        You're led to the padding and forced down onto your knees. The <<priest>> pulls out some belts and grabs ahold of your arms. Your arms are wrapped around their waist, and your wrists are bound behind <<person1>>them. their arms are restrained similarly. The <<person3>><<priest>> acquires more belts and wraps them around you and their waists, pressing the three of you together. One more belt wraps around all three of your backs, leaving little wriggle room. Finally, a pair of shackles bind your legs together.
+        You're led to the padding and forced down onto your knees. The <<priest>> pulls out some belts and grabs ahold of your arms. Your arms are wrapped around their waists, and your wrists are bound behind <<person1>>them. Their arms are restrained similarly. The <<person3>><<priest>> acquires more belts and wraps them around you and their waists, pressing the three of you together. One more belt wraps around all three of your backs, leaving little wriggle room. Finally, a pair of shackles bind your legs together.
         <br><br>
         "<<if $RobinTemple.templePromised is "Robin">>You have broken your promise to one another,<<else>>All three of you have succumbed to pleasure and desire with one another,<</if>>" the <<priest>> speaks, brandishing a whip with nine chords hanging from the cudgel. "Given your special bond, you'll experience pain with one another as the first step to make amends." You can feel their heart race. You're overcome with fear yourself at what's coming<<if $masochism_level gte 1>>, along with a hint of excitement<</if>>.
         <br><br>
         The whip strikes down onto your back first without warning, stinging tremendously. Another strike causes you to thrash in pain. You let out a scream into your gag while tears fill your eyes. You can feel their panicked breathing at your pain. <<person1>>They let out a garbled protest at the torment you're receiving. Another strike comes down onto your back, stinging your flesh from the heavy chords. <<gggpain>>
         <br><br>
-        The <<person3>><<priest>> moves over to Robin and Sydney and, without hesitation, lashes the whip onto <<person1>>their back. They squeal into their gag and then receives another strike. The whip strikes their back a third time, leaving them in tears. <<ggstress>>
+        The <<person3>><<priest>> moves over to Robin and Sydney and, without hesitation, lashes the whip onto <<person1>>their back. They squeal into their gags and then receive another strike. The whip strikes their back a third time, leaving them in tears. <<ggstress>>
       <<option 'CN'>>
         <<monks>>把你们扒光，只留下口球和项圈。
-        你们被领到软垫旁，被迫跪下。<<priest>>拿下一些绑带，一头捆住你的胳膊，然后把你的双手摆弄成环住悉尼和罗宾腰肢的姿势，手腕系在了<<lanSwitch 'They' '他们'>>的身后。悉尼和罗宾也和你一样。<<person3>><<priest>>拿来更多绑带，缠绕上你和悉尼还有罗宾的腰，把你们紧贴在一起。当最后一根绑带捆上你的后背时，你们的身体间几乎没留下空隙。最后，一对脚镣把你们的腿铐上了。
+        你们被领到软垫旁，被迫跪下。<<priest>>拿下一些绑带，一头捆住你的胳膊，然后把你的双手摆弄成环住悉尼和罗宾腰肢的姿势，手腕系在了他们的身后。悉尼和罗宾也和你一样。<<person3>><<priest>>拿来更多绑带，缠绕上你和悉尼还有罗宾的腰，把你们紧贴在一起。当最后一根绑带捆上你的后背时，你们的身体间几乎没留下空隙。最后，一对脚镣把你们的腿铐上了。
         <br><br>
         “<<if $RobinTemple.templePromised is "Robin">>你违背了对彼此许下的承诺，<<else>>你们三个人都向快感和对彼此的渴求屈服了，<</if>>”<<priest>>说着，挥舞起手中的九尾鞭。“鉴于你们特殊的羁绊，你们的第一个弥补就是和对方一起体验痛苦。”你可以感受到悉尼和罗宾加速的心跳。想到即将到来的事，你也被恐惧<<if $masochism_level gte 1>>和一丝兴奋<</if>>所淹没。
         <br><br>
         第一鞭没有任何预兆地落下，强烈的刺痛顿时席卷了全身，紧接的一鞭更是疼得你猛然一抖。你隔着口球尖叫着，泪水涌上眼眶。你可以感受到悉尼和罗宾惊惧的呼吸。看着你所承受的痛苦，<<person2>><<He>>含混地喊着不要。又是重重的一鞭刮在你的皮肉上，随着响亮的鞭响，刺痛袭击了你的肉体。<<gggpain>>
         <br><br>
-        <<person3>><<priest>>走到悉尼和罗宾身边，没有任何犹豫地甩鞭挥向<<lanSwitch 'They' '他们'>>的后背。<<lanSwitch 'They' '他们'>>的尖叫闷在口球里，接着又受了一鞭。鞭子再一次落在悉尼和罗宾的背上，<<lanSwitch 'They' '他们'>>痛得满脸泪水。<<ggstress>>
+        <<person3>><<priest>>走到悉尼和罗宾身边，没有任何犹豫地甩鞭挥向他们的后背。他们的尖叫闷在口球里，接着又受了一鞭。鞭子再一次落在悉尼和罗宾的背上，他们痛得满脸泪水。<<ggstress>>
     <</language>>
   <<else>>
     <<language>>
@@ -596,7 +596,7 @@
         "Your atonement has only just begun. Ready yourselves." <<person3>><<His>> voice suddenly sounds muffled. You look over to see the <<priest>> and <<monks>> all donning strange masks, as they begin to light the incense burners. You start to feel a warmth building within you, and <span class="lewd">something inside the waist belts begins to vibrate.</span>
       <<option 'CN'>>
         <<if $RobinTemple.punish.phase is 1>>
-          你的眼神死死锁在悉尼和罗宾身上，无声地让<<lanSwitch 'They' '他们'>>专注于你，不要想别的事。眼泪不住地流下，但你想<<lanSwitch 'They' '他们'>>正努力挤出一个笑容。
+          你的眼神死死锁在悉尼和罗宾身上，无声地让他们专注于你，不要想别的事。眼泪不住地流下，但你想他们正努力挤出一个笑容。
         <<elseif $RobinTemple.punish.phase is 2>>
           你的眼神死死锁在悉尼身上，无声地让悉尼专注于你，不要想别的事。眼泪不住地流下，但你想<<nnpc_he "Sydney">>正努力挤出一个笑容，却忽视了罗宾的哭泣。
         <<elseif $RobinTemple.punish.phase is 3>>
@@ -605,7 +605,7 @@
           你紧紧闭上双眼，试图忽视悉尼和罗宾的哭泣。过了几分钟，你还是没忍住睁开了眼睛。
         <</if>>
         <br><br>
-        那个<<person3>><<priest>>映入眼帘。“你们的羁绊必须坚如磐石，超越任何欲望，强过痛苦本身。”<<he>>循循善诱着。尽管悉尼和罗宾仍在抽泣，但你想这番话让<<lanSwitch 'They' '他们'>>变得坚强了起来。悉尼和罗宾把你缠得更紧了，你也倚在<<lanSwitch 'They' '他们'>>的身上。<span class="blue">你们知道，你们只能共同挺过这一切。</span>
+        那个<<person3>><<priest>>映入眼帘。“你们的羁绊必须坚如磐石，超越任何欲望，强过痛苦本身。”<<he>>循循善诱着。尽管悉尼和罗宾仍在抽泣，但你想这番话让他们变得坚强了起来。悉尼和罗宾把你缠得更紧了，你也倚在他们的身上。<span class="blue">你们知道，你们只能共同挺过这一切。</span>
         <br><br>
         你的后背和<<bottom>>受了更多鞭打，悉尼和罗宾也挨了同样的数目。像是过了几辈子，<<person3>><<priest>>终于收起九尾鞭。<<gpain>>
         <br><br>
