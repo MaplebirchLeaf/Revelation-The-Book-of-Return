@@ -6,7 +6,6 @@ import { choice, type LostLambEnding, type LostLambScene, type LostLambTalk } fr
 import { LOST_LAMB_VERDICT_SCENES } from './lost-lamb-verdict';
 
 export interface LostLambState {
-  unlocked: boolean;
   recalled: boolean;
   active: boolean;
   scene: string;
@@ -32,7 +31,6 @@ export const LOST_LAMB_VOWS: readonly (readonly string[])[] = [
 ];
 
 export const DEFAULT_LOST_LAMB_STATE: LostLambState = {
-  unlocked: false,
   recalled: false,
   active: false,
   scene: '',

@@ -25,7 +25,6 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
 
   maplebirch.tool.inject({
     locationPassage: {
-      'Manor Kylar Secret 5': [{ src: '<<effects>>', applyafter: '\n<<set $LostLamb.unlocked to true>>', expected: 1 }],
       'Manor Kylar Word 2': [{ src: '<<effects>>', applyafter: '\n<<set $LostLamb.recalled to true>>', expected: 1 }],
       // 原版绑架后的睡眠独立于 sleephour，同样减轻持续噩梦压力。
       'Moor Abduction Sleep': [

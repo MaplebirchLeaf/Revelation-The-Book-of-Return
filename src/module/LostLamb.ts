@@ -29,7 +29,7 @@ export default class LostLamb extends Module {
       C.npc.Kylar.init === 1 &&
       C.npc.Kylar.state === 'active' &&
       V.location === 'kylarmanor' &&
-      (this.state.unlocked || V.kylar_manor_secret >= 2) &&
+      (V.kylar_manor_secret ?? 0) >= 1 &&
       this.state.recalled &&
       V.kylar_sleep_abduction !== undefined &&
       V.combat !== 1 &&
