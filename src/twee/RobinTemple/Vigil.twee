@@ -126,16 +126,16 @@
       <<takeHandholdingVirginity 'Robin' 'romantic'>>
       <<language>>
         <<option 'EN'>>
-          Robin stumbles towards you. You take <<nnpc_his 'Robin'>> hand to steady <<nnpc_him 'Robin'>>. <<nnpc_He 'Robin'>> holds on tightly.
+          Robin stumbles towards you. You catch <<nnpc_him 'Robin'>>, taking <<nnpc_his 'Robin'>> hand to steady <<nnpc_him 'Robin'>>. <<nnpc_He 'Robin'>> holds on tightly.
         <<option 'CN'>>
-          罗宾摇摇晃晃地来到你身边。你握住<<nnpc_his 'Robin'>>的手，扶<<nnpc_him 'Robin'>>站稳。<<nnpc_He 'Robin'>>紧紧回握住你。
+          罗宾跌跌撞撞地走到你身边。你接住<<nnpc_him 'Robin'>>，握着<<nnpc_his 'Robin'>>的手，扶<<nnpc_him 'Robin'>>站稳。<<nnpc_He 'Robin'>>紧紧回握住你。
       <</language>>
     <<else>>
       <<language>>
         <<option 'EN'>>
-          Robin murmurs something, but the crackle of the flames drowns it out.
+          Robin repeats something under <<nnpc_his 'Robin'>> breath, but the crackle of the flames drowns it out.
         <<option 'CN'>>
-          罗宾小声念叨着什么，却被火焰的噼啪声淹没了。
+          罗宾重复念叨着什么，但被火焰的噼啪声淹没了。
       <</language>>
     <</if>>
     <br><br>
@@ -169,16 +169,16 @@
     <<if maplebirch.get('RobinTemple').faith gte 20>>
       <<language>>
         <<option 'EN'>>
-          You feel Robin's mind reject the revelation, even as <<nnpc_his 'Robin'>> body melds with yours.
+          You melt away. Your body melds together with Robin's, and you feel Robin's mind reject what you're both seeing.
         <<option 'CN'>>
-          罗宾的躯壳与你融在一起，你却感觉到<<nnpc_his 'Robin'>>的意识在抗拒这启示。
+          你的躯壳融化了，和罗宾的一同融合在一起。你能感觉到，罗宾的意识排斥着你们所看到的一切。
       <</language>>
     <<else>>
       <<language>>
         <<option 'EN'>>
-          Robin's body melds with yours. Together, you share the profane revelation.
+          You melt away. Your body melds together with Robin's, and the two of you share this profane revelation.
         <<option 'CN'>>
-          罗宾的躯壳与你融在一起。你们一同接受了这亵渎般的启示。
+          你的躯壳融化了，和罗宾的一同融合在一起。你们共同接受这亵渎般的启示。
       <</language>>
     <</if>>
     <br><br>
@@ -190,16 +190,16 @@
     <<if maplebirch.get('RobinTemple').faith lte -20>>
       <<language>>
         <<option 'EN'>>
-          There is conflict. You feel Robin's curiosity as if it were your own, searching for an answer within the light.
+          Yet, there is conflict. You feel Robin's curiosity, as if it were your own, begging you to peer deeper inside, to search for some answer.
         <<option 'CN'>>
-          然而，存在某种矛盾。你察觉到罗宾的探索欲，如同你自己的求知欲般，在光芒中寻找答案。
+          然而，存在某种矛盾。你察觉到了罗宾的求知欲，如同你自己的求知欲般，祈求着更深入的窥探与解答。
       <</language>>
     <<else>>
       <<language>>
         <<option 'EN'>>
-          You feel Robin beside you, as if you were in <<nnpc_his 'Robin'>> body. As one, you behold glory.
+          You feel Robin hit the ground, as if you were in <<nnpc_his 'Robin'>> body. As one, you behold glory.
         <<option 'CN'>>
-          你感觉罗宾就在身旁，仿佛自己也在<<nnpc_his 'Robin'>>的身体里。融为一体，你们一同凝视这宏伟壮大的美丽。
+          你感觉到<<nnpc_him 'Robin'>>摔在了地面上，就像你在<<nnpc_his 'Robin'>>身体里一样。融为一体，你们一同凝视这宏伟壮大的美丽。
       <</language>>
     <</if>>
     <br><br>
@@ -221,8 +221,8 @@
       <<option 'EN'>>
         An attendant brings Robin over. Jordan wraps <<nnpc_him 'Robin'>> in another warm cloth.
       <<option 'CN'>>
-        一名侍从带着罗宾过来。约旦用另一块暖和的布裹住<<nnpc_him 'Robin'>>。
-    <</language>>
+        一名侍从带着罗宾过来。约旦用另一块温暖的布料裹住<<nnpc_him 'Robin'>>。
+      <</language>>
     <br><br>
   <</if>>
 <</widget>>
@@ -232,7 +232,7 @@
     <<option 'EN'>>
       There is no sign of the fire. An unlit pyre lies beneath you; dawn shines above the temple. The bell rings three times. Jordan hurries over and wraps you<<if $phase is 2>> and Sydney<</if>> and Robin in a warm cloth.
     <<option 'CN'>>
-      火已不见踪影，身下只剩未燃的柴堆。神殿屋顶亮起晨光，钟声急促地响了三下。约旦赶来，用暖和的布裹住你<<if $phase is 2>>、悉尼<</if>>和罗宾。
+      当火焰无迹可寻，仅剩你脚边将熄的余烬时，耀日点亮了神殿之顶，圣洁的黎明驱散了黑夜。三道钟声连鸣。约旦急匆匆地跑来，将钟铃放下。一块温暖的布料盖在你<<if $phase is 2>>、悉尼<</if>>和罗宾身上，遮住了你们的胴体。
   <</language>>
   <<npcincr Jordan love 5>><<gglove 'Jordan'>><br><br>
   <<if $phase is 2>>
@@ -240,7 +240,7 @@
       <<option 'EN'>>
         Sydney is still holding your other hand. Jordan draws the cloth around all three of you. "Normally only one initiate may succeed," <<nnpc_he 'Jordan'>> says. "But you entered the pyre as one. You haven't disobeyed the scripture. Congratulations!"
       <<option 'CN'>>
-        悉尼仍握着你的另一只手。约旦把布拉过来，裹住你们三人。“通常只能有一名见习教徒通过，”<<nnpc_he 'Jordan'>>说，“但你们作为一体走进火堆，并没有违背经文。恭喜！”
+        悉尼仍握着你的另一只手。约旦把布料拉过来，盖住你们三人。“通常我们仅允许一位见习教徒通过试炼，”<<nnpc_he 'Jordan'>>庆贺道，“但你们如若一体般进入了火堆。这没有违背圣典。祝贺你们！”
     <</language>>
     <br><br>
     <<run statusCheck('Sydney')>>
@@ -249,21 +249,21 @@
         <<option 'EN'>>
           Sydney pushes closer beneath the cloth and squeezes you before hugging you.
         <<option 'CN'>>
-          悉尼在布下贴近你，捏了捏你，随后抱住了你。
+          悉尼从布料下拱到你身边，和你贴了贴，然后将你抱住，以此表示感谢。
       <</language>>
     <<else>>
       <<language>>
         <<option 'EN'>>
           Sydney's embarrassment quickly returns, but <<nnpc_he 'Sydney'>> stays close and hugs you.
         <<option 'CN'>>
-          悉尼很快又害羞起来，但<<nnpc_he 'Sydney'>>没有挪开，而是紧紧抱住你。
+          悉尼很快又陷入了赤裸的尴尬，但并没有试图离开你，反而感激地抱住了你。
       <</language>>
     <</if>>
     <<language>>
       <<option 'EN'>>
         "I couldn't have done it without you here with me."
       <<option 'CN'>>
-        “没有你陪着我，我不可能完成试炼。”
+        “要是没有你陪着，我肯定做不到的。”
     <</language>>
     <<arousal 10>><<garousal>>
     <<set $sydney.rank to 'monk'>>
@@ -274,7 +274,7 @@
       <<option 'EN'>>
         "I knew you'd do it!" Jordan says. "Normally only one initiate may succeed, but you entered the pyre as one. You haven't disobeyed the scripture. Congratulations, both of you." Sydney hurries over and hugs you, stammering words of pride and happiness.
       <<option 'CN'>>
-        “我就知道你能做到！”约旦说，“通常只能有一名见习教徒通过，但你们作为一体走进火堆，并没有违背经文。恭喜你们。”悉尼赶来抱住你，结结巴巴地说着祝贺的话。
+        “我就知道你能做到！”约旦庆贺道，“通常我们仅允许一位见习教徒通过试炼，但你们如若一体般进入了火堆。这没有违背圣典。祝贺你们！”悉尼冲过来抱住你，结结巴巴地吐露着自己的自豪与幸福。
     <</language>>
     <<npcincr Sydney love 5>><<glove 'Sydney'>>
   <</if>>
@@ -284,21 +284,21 @@
       <<option 'EN'>>
         Robin clings to you beneath the cloth. "We made it," <<nnpc_he 'Robin'>> whispers, as if <<nnpc_he 'Robin'>> still cannot believe it.
       <<option 'CN'>>
-        罗宾在布下紧紧抱住你。“我们过了，”<<nnpc_he 'Robin'>>轻声说，像是仍不敢相信。
+        罗宾在布料下紧紧抱住你。“我们通过了，”<<nnpc_he 'Robin'>>轻声说，像是仍不敢相信。
     <</language>>
   <<elseif $phase is 2>>
     <<language>>
       <<option 'EN'>>
         Robin hugs you both, smiling through tears. "I couldn't have done it without you," <<nnpc_he 'Robin'>> says, looking between you and Sydney.
       <<option 'CN'>>
-        罗宾抱住你们两个，眼里含着泪，脸上却带着笑。“没有你们，我做不到。”<<nnpc_he 'Robin'>>说着，看向你和悉尼。
+        罗宾抱住你们两个，眼里含着泪，脸上却带着笑。“要是没有你们，我肯定做不到的，”<<nnpc_he 'Robin'>>说着，望向你和悉尼。
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
         Robin hugs you, smiling through tears. "I couldn't have done it without you."
       <<option 'CN'>>
-        罗宾抱住你，眼里含着泪，脸上却带着笑。“没有你，我做不到。”
+        罗宾抱住你，眼里含着泪，脸上却带着笑。“要是没有你，我肯定做不到的。”
     <</language>>
   <</if>>
   <<npcincr Robin love 10>><<gglove 'Robin'>><br><br>
@@ -324,8 +324,8 @@
       <<option 'EN'>>
         Robin rushes over with the other initiates and hugs you. "You did it!" <<nnpc_he 'Robin'>> says. For the moment, <<nnpc_he 'Robin'>> seems to have forgotten <<nnpc_his 'Robin'>> own failure.
       <<option 'CN'>>
-        罗宾与其他见习教徒一起赶来，抱住了你。“你过了！”<<nnpc_he 'Robin'>>说，这一刻仿佛忘了自己没能通过。
-    <</language>>
+        罗宾与其他见习教徒一起冲过来抱住你。“你做到了！”<<nnpc_he 'Robin'>>说。<<nnpc_He 'Robin'>>似乎并不在意自己的失败，也不在意你的赤裸。
+      <</language>>
     <br><br>
   <</if>>
 <</widget>>
@@ -336,8 +336,8 @@
       <<option 'EN'>>
         Robin follows you into the warm room. <<nnpc_He 'Robin'>> gives you another hug before collecting <<nnpc_his 'Robin'>> clothes.
       <<option 'CN'>>
-        罗宾跟你一起进了暖和的房间，领回衣物前又抱了抱你。
-    <</language>>
+        罗宾跟着你走进了暖和的房间，在领回自己的衣物前又抱了抱你。
+      <</language>>
     <br><br>
   <</if>>
   <<set $RobinTemple.vigil_attending to false>><<set $RobinTemple.vigil_with_robin to false>>
@@ -378,7 +378,7 @@
     <<option 'EN'>>
       Robin smiles when you mention the vigil. "We really did it," <<he>> says, reaching for your hand.
     <<option 'CN'>>
-      提起守夜，罗宾笑了，伸手牵住你。“我们真的过了。”<<he>>说。
+      提起守夜，罗宾露出笑容，伸手牵住你。“我们真的做到了，”<<he>>说。
   <</language>>
 <<elseif $RobinTemple.vigil_result is 'failed'>>
   <<if $temple_rank is 'initiate'>>
@@ -386,14 +386,14 @@
       <<option 'EN'>>
         "I'm sorry about the trial," Robin says with a bitter little smile. "We'll do better next time, won't we?"
       <<option 'CN'>>
-        “试炼的事，对不起，”罗宾露出一丝苦涩的微笑，“下次我们会做得更好，对吗？”
+        “试炼的事，对不起，”罗宾露出一丝苦涩的微笑，“下次我们会做得更好，对不对？”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
         "I didn't make it," Robin says, then smiles at you. "But you did. I'm glad."
       <<option 'CN'>>
-        “我没能通过，”罗宾说，随后向你笑了笑，“不过你过了。我很高兴。”
+        “我没能通过，”罗宾说，随后向你笑了笑，“不过你通过了。我真为你高兴。”
     <</language>>
   <</if>>
 <<else>>

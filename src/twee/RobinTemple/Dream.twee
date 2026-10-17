@@ -47,7 +47,7 @@
         <br><br>
         卧室不肯保持正确的大小。衣柜离床太远，窗户又太近，两者之间多出一段你睡下时并不存在的墙。墙上挂着一面不属于你的镜子。
         <br><br>
-        罗宾坐在床边，毯子一直拉到下巴，看上去一点也不像刚才还睡着的人。“这个你跟我们讲过。”<<nnpc_he 'Robin'>>说，“你说过有一面镜子。”
+        罗宾坐在床边，毯子一直拉到下巴，看上去一点也不像刚才还睡着的人。“这个你跟我们讲过，”<<nnpc_he 'Robin'>>说，“你说过有一面镜子。”
         <br><br>
         <span class='wraith'>镜子里什么都没有映出来。没有房间，没有你们四个人。</span>
     <</language>>
@@ -83,13 +83,13 @@
     <<option 'CN'>>
       镜面同样没有映出别人。它映出一间你站过的屋子：六扇窄窗开得很高，地面是扭曲的水，墙上的沟槽里流满了温热的东西。
       <br><br>
-      “那不是我们的房间。”罗宾说。<<nnpc_He 'Robin'>>看着中间那块石头，<<nnpc_he 'Robin'>>在抖，可<<nnpc_he 'Robin'>>还是<span class="purple">移不开视线</span>。
+      “那不是我们的房间，”罗宾说。<<nnpc_He 'Robin'>>看着中间那块石头，<<nnpc_he 'Robin'>>在发抖，却还是<span class="purple">移不开视线</span>。
       <br><br>
-      凯拉尔整个背贴在衣柜上，两只手分按在两侧——这是<<nnpc_he 'Kylar'>>待在不信任的房子里时的站法。“你去过那里。”<<nnpc_he 'Kylar'>>说。这不是个问题，<<nnpc_he 'Kylar'>>也不像乐意知道答案。
+      凯拉尔整个背贴在衣柜上，两手紧按在两侧——这是<<nnpc_he 'Kylar'>>待在不信任的屋子里时的站法。“你去过那里，”<<nnpc_he 'Kylar'>>说。这不是个疑问，<<nnpc_he 'Kylar'>>听起来也并不高兴知道答案。
       <br><br>
-      悉尼走到镜子前，一只手按上去。“它给我们看的不是神殿，”<<nnpc_he 'Sydney'>>说，“是一间正在努力变成神殿、却变不完的屋子。这两件事不一样。”
+      悉尼走到镜子前，一只手按了上去。“它给我们看的不是神殿，”<<nnpc_he 'Sydney'>>说，“是一间试图变成神殿、却变不完整的房间。这两件事不一样。”
       <br><br>
-      <span class='red'>进来了四个人。只有三个人把名字留在了会被接住的地方。</span>
+      <span class='red'>进来了四个人。只有三个人把名字留在了会被接纳的地方。</span>
   <</language>>
   <br><br>
   <<bedicon 'zzz'>><<lanLink ['Reach through and take them with you', '伸手穿过镜面，把三个人都带走'] 'RobinTemple Dream Round'>><<set $RobinTemple.secret.dream.round to 1>><<set $sexstart to 1>><</lanLink>><br>
@@ -133,11 +133,11 @@
         <<option 'CN'>>
           镜子现在在你身后，屋子也不再假装是你的卧室。六扇窗。扭曲的水面。脚下是温的。
           <br><br>
-          罗宾离你最近，<<nnpc_he 'Robin'>>捏着自己衣角，就像<<nnpc_he 'Robin'>>替别人扶着一扇门。
+          罗宾离你最近，<<nnpc_he 'Robin'>>扯着自己的衣角，就像<<nnpc_he 'Robin'>>替别人扶着一扇门。
           <br><br>
           凯拉尔把自己挪到了你和断阶之间，意思是<<nnpc_he 'Kylar'>>已经认定断阶是出口，而别人不许先走。
           <br><br>
-          悉尼一动没动。<<nnpc_He 'Sydney'>>在读墙上的雕纹，像在读书架，而且对<span class="lewd">「你们是四个人」</span>这件事一个字都没说。
+          悉尼一动未动。<<nnpc_He 'Sydney'>>在读墙上的雕纹，像在阅读书架，而且对<span class="lewd">“你们是四个人”</span>这件事只字未提。
       <</language>>
       <br><br>
     <<case 2>>
@@ -153,11 +153,11 @@
         <<option 'CN'>>
           你不是决定要开始的。你就已经在中间了，而地上的水已经爬到脚踝，却没有变得更深。
           <br><br>
-          “再来。”凯拉尔贴着你后颈说，那句话里带着刃口，而那刃口不是冲你的。“你说了三个名字。数一遍。”
+          “再来，”凯拉尔贴着你后颈说，那句话里带着刃口，而那刃口不是冲你的，“你说了三个名字。数一遍。”
           <br><br>
-          罗宾替你答了，声音很轻，从你肋边传来。“四个。”
+          罗宾替你答了，声音很轻，从你肋旁传来：“四个。”
           <br><br>
-          停下来的是悉尼。<<nnpc_He 'Sydney'>>把手平按在湿地面上，按着不放。“那些话是给两个人写的，”<<nnpc_he 'Sydney'>>说，“整场仪式我都听过了，<span class="lustful">没有第三句</span>。有人一直在<span class="lustful">用活人补那个缺口</span>。”
+          停下来的是悉尼。<<nnpc_He 'Sydney'>>把手平按在潮湿的地面上，按着不放。“那些话是给两个人写的，”<<nnpc_he 'Sydney'>>说，“整场仪式我都听过了，<span class="lustful">没有第三句</span>。有人一直在<span class="lustful">用活人补那个缺口</span>。”
       <</language>>
       <br><br>
     <<case 3>>
@@ -179,9 +179,9 @@
           <br>
           <span class="lustful">“如两者，如一体。”</span>
           <br><br>
-          罗宾停住了。<<nnpc_He 'Robin'>>叫你的名字，声音从墙上过来。凯拉尔把脸埋在你肩上，笑得很空。
+          罗宾停住了。<<nnpc_He 'Robin'>>叫你的名字，声音仿佛从墙壁深处传来。凯拉尔把脸埋在你肩上，笑得很空。
           <br><br>
-          “它不是在数我们。”悉尼说。<<nnpc_He 'Sydney'>>贴着你耳朵，语气平得可怕。<span class="lustful">“它在数两个，然后说剩下的都是同一个人。”</span>
+          “它不是在数我们，”悉尼说。<<nnpc_He 'Sydney'>>贴着你耳朵，语气平缓得可怕：<span class="lustful">“它在数两个，然后说剩下的都是同一个人。”</span>
       <</language>>
       <br><br>
     <<default>>
@@ -193,11 +193,11 @@
           <br><br>
           The six windows are warm now. Four bodies, and the floor still repeating a line that was <span class="lustful">only ever given room for two people</span>.
         <<option 'CN'>>
-          “我们已为一体。”罗宾说，<span class="lustful">那句话配错了嘴</span>。凯拉尔在屋子另一头接了下去，用的是神殿仪式的调子，两个人似乎都没发现。
+          “我们已为一体，”罗宾说，<span class="lustful">那句话配错了嘴</span>。凯拉尔在屋子另一头接了下去，用的是神殿仪式的调子，两个人似乎都没发现。
           <br><br>
           “为一体。”悉尼应了一声，然后换回<<nnpc_his 'Sydney'>>平常那个嗓子，<span class="lustful">像只上来换了一口气</span>：<span class="lustful">“我到这里为止。别让它在我不在的时候写下句。”</span>
           <br><br>
-          六扇窗现在是温的。四具身体，而地板还在重复一句<span class="lustful">只给两个人留过位置</span>的话。
+          六扇窗现在是温热的。四具身体，而地板还在重复一句<span class="lustful">只给两个人留过位置</span>的话。
       <</language>>
   <</switch>>
   <br><br>
@@ -236,11 +236,11 @@
     <<option 'CN'>>
       水一下子就退光了。六扇窗变回灰色，地板上还是四个人。
       <br><br>
-      罗宾蜷在你身边喘气，<<nnpc_he 'Robin'>>先找到的是你的手，然后才找别的东西。“你还是你。”<<nnpc_he 'Robin'>>说。<<nnpc_He 'Robin'>>是在确认，不是在问。
+      罗宾蜷在你身边喘气，<<nnpc_he 'Robin'>>先找到的是你的手，然后才找别的东西。“你还是你，”<<nnpc_he 'Robin'>>说。<<nnpc_He 'Robin'>>是在确认，不是在询问。
       <br><br>
-      凯拉尔坐起来，两臂锁着膝盖，同时盯着你们三个——<<nnpc_he 'Kylar'>>看别人从来只能用这种看法。“它挑了我们哪一个。”<<nnpc_he 'Kylar'>>说。没有人回答，<<nnpc_he 'Kylar'>>也没有问第二遍。
+      凯拉尔坐起来，双臂锁着膝盖，同时盯着你们三个——<<nnpc_he 'Kylar'>>看别人从来只能用这种眼神。“它挑了我们之中的哪一个？”<<nnpc_he 'Kylar'>>说。没有人回答，<<nnpc_he 'Kylar'>>也没有问第二遍。
       <br><br>
-      悉尼下半身已经穿好了，正看着墙，看着雕纹，看着本该有第三句话的那个位置。“我们给了它四个人，它一直在说两个。”<<nnpc_he 'Sydney'>>说，“再把我带来一次，我就在这面墙上把原因读出来。”
+      悉尼下半身已经穿戴好了，正看着墙，看着雕纹，看着本该有第三句话的那个位置。“我们给了它四个人，它却一直在说两个，”<<nnpc_he 'Sydney'>>说，“再把我带来一次，我就在这面墙上把原因读出来。”
       <br><br>
       <span class='red'>镜子回来了。它映出的是卧室，而卧室里映着你们四个正睡在其中。</span>
   <</language>>
@@ -263,11 +263,11 @@
   <<option 'CN'>>
     你醒来时毯子滑到腰上，房间正好是该有的大小。身边没有人。灯还亮着，因为你没关。
     <br><br>
-    梳妆台上的那面玻璃里，只有这间屋子、衣柜，还有你。敲门声停了。那个在数数的东西也停了——或者只是不再停在你听得见的地方。
+    梳妆台上的镜面里，只有这间屋子、衣柜，还有你。敲击声停了。那个在数数的东西也停了——或者只是不再停在你听得见的地方。
     <br><br>
     你独自躺在这里，还记得那间把罗宾、凯拉尔与悉尼带到一起的屋子。你分不清其中有多少来自记忆，又有多少是自己的想象。
     <br><br>
-    <span class="teal">你还说不清，那是否只是一场梦。细节已经开始淡去。</span>
+    <span class="teal">你还说不清，那是否只是一场梦境。细节已经开始从脑海中淡去。</span>
 <</language>>
 <br><br>
 <<getouticon>><<lanLink ['Sit up', '坐起来'] ($nightmareExit ?? 'Bed')>><<unset $nightmareExit>><<endevent>><</lanLink>><br>

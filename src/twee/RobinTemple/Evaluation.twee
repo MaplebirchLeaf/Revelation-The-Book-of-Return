@@ -41,18 +41,18 @@
       <<if !$robinSeen.includes("evaluation")>>
         你告诉罗宾你准备好了。<<He>>听罢深吸一口气，和你一起走向约旦。
         <br><br>
-        约旦见你们走来，向你们打招呼。“欢迎回来。” 罗宾紧紧握住了你的手。
+        约旦见你们走来，向你们打招呼。“欢迎回来。”罗宾紧紧握住了你的手。
         <br><br>
         “我、我们有件事想问问，”罗宾断断续续地说着。你给了<<him>>一个安抚的目光，<<he>>的迟疑缓和了些。“我们……我是说，我们爱着彼此。所以想问问……关于第一誓约的事。能不能……”罗宾说不下去，埋下了头，脸唰的一下变红了。约旦笑了。
         <br><br>
-        “我明白了。你也知道规矩，罗宾。当且仅当两个人之间的爱被认为是纯洁无瑕的，并且他们经历了结为伴侣或结婚的仪式时，两个人的结合才被允许。你们俩都还在上学，对吧？我个人建议不要在这个时候结婚。”
+        “我明白了。你也知道规矩，罗宾。两个人的结合，要神殿认定你们之间的爱纯洁无瑕，还要走过结为伴侣或成婚的仪式，才能得到许可。你们俩都还在上学，对吧？我个人建议不要在这个时候结婚。”
         <br><br>
-        你能感受到罗宾手掌下跳动的脉搏。“是，是的，我们想好了，”<<He>>拉着你一起向前一步，“我们想进行承诺仪式的评估程序。”
+        你能感受到罗宾手掌下跳动的脉搏。“是、是的，我们想好了，”<<He>>拉着你一起向前一步，“我们想参加承诺仪式的评估。”
       <<else>>
         你告诉罗宾你准备好了，于是你们再次走向约旦。“欢迎回来，”<<nnpc_he "Jordan">>说，“我想你们是来进行评估的吧？”你们点点头。
       <</if>>
       <br><br>
-      约旦对你们露出庄严的微笑。“请和我来，你们二人都通过了定期的贞洁测试，所以我们可以跳过这个步骤。至于现在……”<<nnpc_He "Jordan">>带你们走出主厅，来到一个小房间。
+      约旦对你们露出庄严的微笑。“请随我来。你们二人都按期通过了贞洁测试，这一步便可暂且略去。”<<nnpc_He "Jordan">>领着你们步出大厅，步入一间静室。
       <br><br>
       <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Records'>><<pass 5>><<set $RobinTemple.evaluation_day to Time.days>><</lanLink>>
       <br>
@@ -129,59 +129,59 @@
     <<set $RobinTemple.evaluation_marks to 0>>
 
     <<npc "Jordan" 2>><<person2>><<generate3>><<person3>>
-    “评估的重点会集中在你们之间的羁绊和对神殿的贡献上。”约旦一边解释，一边关上了身后的门。<<person2>><<He>>指引你们两人在一张华丽的桌前落了座，自己从斗篷里拿出一个小号笔记本。
+    “评估会考察你们彼此间的羁绊，以及各自对修会的奉献。”约旦一边解释，一边随手带上身后的门。<<person2>><<He>>示意你和罗宾在一张雕花长桌前入座，自己从长袍中取出一本小册子。
     <<if $robinSeen.includes("evaluation")>>
-      “你们已经回答过这些问题了，但因为这是一次全新的评估，所以我仍然会提同样的问题。”
+      “虽然你们之前已经回答过这些问题，但既然这是全新的评估，我仍须按例重问一遍。”
     <<else>>
       <<set $robinSeen.pushUnique("evaluation")>>
     <</if>>
     <br><br>
     <<if $RobinTemple.grace gte 90>>
       <<set $RobinTemple.evaluation_marks += 10>>
-      约旦开始询问你们对神殿的奉献。<span class='green'>罗宾的回答让约旦十分满意。</span><<He>>转向你，问了一些相同的问题。
+      约旦开始询问你们对神殿的奉献。<span class='green'>罗宾的回答让约旦十分满意。</span><<He>>转向你，问了相同的问题。
     <<elseif $RobinTemple.grace gte 75>>
       <<set $RobinTemple.evaluation_marks += 5>>
-      约旦开始询问你们对神殿的奉献。<span class='teal'>约旦认可罗宾的贡献。</span><<He>>转向你，问了一些相同的问题。
+      约旦开始询问你们对神殿的奉献。<span class='teal'>约旦认可罗宾的贡献。</span><<He>>转向你，问了相同的问题。
     <<elseif $RobinTemple.grace gte 60>>
       <<set $RobinTemple.evaluation_marks += 2>>
-      约旦开始询问你们对神殿的奉献。<span class='lblue'>约旦承认罗宾的贡献。</span><<He>>转向你，问了一些相同的问题。
+      约旦开始询问你们对神殿的奉献。<span class='lblue'>约旦承认罗宾的贡献。</span><<He>>转向你，问了相同的问题。
     <<else>>
       <<set $RobinTemple.evaluation_marks -= 5>>
-      约旦开始询问你们对神殿的奉献。<span class='red'>约旦认为罗宾的贡献有待提高。</span><<He>>转向你，问了一些相同的问题。
+      约旦开始询问你们对神殿的奉献。<span class='red'>约旦对罗宾的奉献心存质疑。</span><<He>>转向你，问了相同的问题。
     <</if>>
     <br>
 
     <<if $grace gte 90>>
-      “你的奉献十分出众，这一点在过去已经得到了证明。<span class="green">你是我们信仰的骄傲，每个人都能够向你学习。</span>我完全相信你可以通过评估，但我们还是得走程序。”
+      “你过往的虔诚有口皆碑，对此毋庸置疑。<span class="green">你是信徒中的楷模，每个人都该向你学习。</span>我相信你定能通过这次评估，但规矩依旧得遵守。”
       <<set $RobinTemple.evaluation_marks += 20>>
     <<elseif $grace gte 50>>
-      “<span class="teal">你一直是我们信仰中的杰出成员，</span>我相信你的话。”
+      “<span class="teal">你一直是我们信仰中令人敬重的信徒，</span>我相信你的话。”
       <<set $RobinTemple.evaluation_marks += 10>>
     <<elseif $grace gte 1>>
-      “<span class="lblue">你一直是我们信仰中的优良成员。</span>我认可你的贡献，但你仍需努力修炼自己。”
+      “<span class="lblue">你一直是我们信仰里恪尽职守的信徒。</span>我认可你的奉献，但你仍当精进修行。”
       <<set $RobinTemple.evaluation_marks += 5>>
     <<else>>
-      <span class="red">“你的贡献有待商榷，”</span><<he>>说，“我们都知道你可以做得更好。”
+      <span class="red">“我对你是否真心奉献心存疑虑，”</span><<he>>说道，“我们都清楚你本可以做得更好。”
     <</if>>
     <br><br>
     <<if $worn.head.name.includes("rose wedding") or $worn.upper.name.includes("rose wedding")>>
       <<set $RobinTemple.evaluation_marks += 5>>
-      <<He>>用拇指轻轻摩挲着你衣服上的玫瑰花纹，“虽然这身婚纱不太适合这场仪式，但我能明白，你是把心意都直白地穿在了身上。”
+      <<He>>用拇指轻轻摩挲着你衣物上的玫瑰花纹，“虽然这身婚纱在这场仪式上并不合规矩，但我能明白，你这是把满腔心意都毫无保留地穿在了身上。”
       <br><br>
-      罗宾的脸唰的一下变红了。“我……我希望某天能看到<<phim>>再次穿上这件衣服。”
+      罗宾红了脸，把视线移向一旁。“我……我真想某天能再看你穿一次。”
       <br><br>
     <</if>>
-    <<He>>从斗篷里拿出一枚小铃铛摇了几次。<<person3>>一个年长的<<monk>>进入房间，向约旦点点头。“请站直了。”那个<<monk>>说。
-    <<He>>非常仔细地打量罗宾，尽管<<person1>><<he>>没表现出丝毫不适。<<person3>>
+    约旦从长袍中取出一枚小铃，摇了四下。<<person3>>一个年长的<<monk>>推门而入，向约旦颔首。“请起立。”<<monk>>说道。
+    <<He>>仔细打量着罗宾，而<<person1>><<he>>神色坦然，未显丝毫不适。<<person3>>
     <br>
     <<if maplebirch.get('RobinTemple').faith gte 20>>
-      “<span class="green">你和加入我们那天一样纯洁，</span>罗宾<<nnpc_brother "Robin">>。祝你永远保持这样。”<<monk>>露出了亲和的微笑。
+      “<span class="green">你还是和刚来那天一样纯洁，</span><<nnpc_brother "Robin">>罗宾。愿你永远保持这般无瑕，”<<monk>>露出宽厚的微笑。
       <<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
-      “<span class="blue">我感觉你的纯洁有减损的趋势，</span>罗宾<<nnpc_brother "Robin">>。要注意，别让你对这位<<temple_title>>的爱将你拉入堕落。”罗宾听着<<his>>的话，神态有些退缩。
+      “<span class="blue">我感到你的纯洁正在动摇，</span><<nnpc_brother "Robin">>罗宾。千万小心，莫让你对这位<<temple_title>>的倾慕将你引向堕落。”罗宾被<<his>>的话刺痛，畏缩了一下。
     <</if>>
     <br><br>
-    在评估完罗宾之后，那个<<monk>>转身走向了你。
+    修道士转而朝你走来。
     <br><br>
     <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
     <br>
@@ -222,29 +222,29 @@
     <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
   <<option 'CN'>>
     <<effects>>
-    <<he>>仔细地把你打量了一番
+    <<he>>仔细地把你打量了一番。
     <<if $angel gte 6>>
-      ，<<His>>的眼睛缓缓放大，一会儿之后，<<he>>后退几步，惊讶地注视着你。“<span class="gold">这个人……在发着圣光。</span>一座真正的纯洁的灯塔。”<<He>>转向约旦，“我完全相信此人会严肃地对待这个誓约。”<<set $RobinTemple.evaluation_marks += 20>>
+      <<His>>的眼睛缓缓睁大，片刻后，<<he>>不由自主地后退半步，敬畏地注视着你。“<span class="gold">此人……圣光萦绕。</span>当真是纯洁的灯塔。”<<He>>转向约旦，“我坚信此人必会郑重对待这份誓约。”<<set $RobinTemple.evaluation_marks += 20>>
     <<elseif $fallenangel gte 2 or $demon gte 6>>
-      ，缓缓地皱起了眉头。“<span class="red">这个人……一团污秽。</span>真可悲。”
+      <<His>>的眉头缓缓拧紧。“<span class="red">此人……污秽不堪。</span>真是可悲。”
       <<if $fallenangel gte 2 and $forgiveintro is 1>>
         <br><br>
-        约旦露出了微笑。“<<pShe>>已经向我坦白了<<pher>>的错误，并希望改进自己。如果要评价的话，<span class="green"><<pher>>愿意承认错误，并渴望改正这点是值得赞许的</span>。”
+        约旦露出一抹温和的微笑。“<<pShe>>已向我忏悔过过失，且心怀向善之念。若要评断，<span class="green"><<pher>>直面己罪、渴求自新的诚心实属难能可贵</span>。”
         <<set $RobinTemple.evaluation_marks += 5>>
       <<else>>
         <<set $RobinTemple.evaluation_marks -= 10>>
       <</if>>
     <<elseif $purity gte 999>>
-      <<He>>从头到脚审视了你一番，脸上露出轻快的笑容。<span class="green">“你对纯洁的奉献，着实令人倾佩。”</span><<set $RobinTemple.evaluation_marks += 15>>
+      <<He>>从头到脚审视了你一番，脸上浮现出宽慰的微笑。<span class="green">“你对纯洁的坚守着实令人钦佩。”</span><<set $RobinTemple.evaluation_marks += 15>>
     <<elseif $purity gte 900>>
-      <<He>>从头到脚审视了你一番，对你微微一笑。<span class="lblue">“你对纯洁的奉献，值得赞许。”</span><<set $RobinTemple.evaluation_marks += 10>>
+      <<He>>从头到脚审视了你一番，对你赞许地微微一笑。<span class="lblue">“你对纯洁的坚守值得称道。”</span><<set $RobinTemple.evaluation_marks += 10>>
     <<elseif $purity gte 500>>
-      <<He>>从头到脚审视了你一番，神情始终非常严肃。“<span class="purple">你对纯洁的奉献……有所欠缺，</span>你应该努力鞭策自己。”
+      <<He>>从头到脚审视了你一番，神情始终严肃。“<span class="purple">你对纯洁的坚守……尚有欠缺。</span>你当好自自省。”
     <<else>>
-      <<He>>皱着眉头审视着你。<span class="red">“可惜，你的纯洁已经散尽。”</span><<He>>转向约旦，“这个人应该先赎罪，之后才能参与仪式，但决定不在我。”<<set $RobinTemple.evaluation_marks -= 5>>
+      <<He>>皱着眉头审视着你。<span class="red">“甚是可惜，你身上的纯洁已然蒙尘。”</span><<He>>转向约旦，“在此等仪式获准前，理应令其先行赎罪。不过，最终决断仍在阁下。”<<set $RobinTemple.evaluation_marks -= 5>>
     <</if>>
     <br><br>
-    约旦对<<monk>>点点头，那人鞠了一躬，随即离开了房间。“接下来的部分需要你们分开进行测试，请随我来。”约旦带你走向一个紧邻的单间，里面同样放着一张华丽的桌子。“请在这儿等一会儿，我需要先对罗宾进行测试。”
+    约旦向修道士微微颔首，对方行了一礼退下。“接下来的考查需要你们二人分开进行，请随我来。”约旦领着你来到隔壁的单间，里面摆着一张同样样式的雕花木桌。“请在此稍候，我先为罗宾进行测试。”
     <br><br>
     <<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
     <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
@@ -276,16 +276,16 @@
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_phase is 1>>
-      你坐等约旦回来，盯着桌上那雕刻华丽的花纹发呆。
+      你独自坐着等待约旦回来，目光漫无目的地掠过桌上雕琢精细的花纹。
     <<elseif $RobinTemple.evaluation_phase is 2>>
-      你坐等约旦回来，百无聊赖，只好一直盯着桌面上雕刻的华丽花纹发呆，希望能发现其它可能藏在哪儿的机关。
+      你独自坐着等待约旦回来，无事可做，只得端详着桌面上繁复的雕花纹路，暗自揣摩其中是否还暗藏着什么玄机。
     <<else>>
-      你听见约旦走近门口，于是迅速跑回座位。
+      你听见约旦走近门口的脚步声，连忙快步跑回座位坐好。
     <</if>>
     <br><br>
-    约旦进入房间，脸上仍挂着微笑。“抱歉久等了，现在请诚实地回答我的提问，不论内容是什么。”<<person2>><<he>>说着坐到了你对面，翻开了<<his>>的笔记。
+    约旦推门步入房间，脸上依旧带着平静的微笑。“久等了。接下来不论我问什么，请务必如实相告。”<<person2>><<he>>在你对面落座，翻开手中的小册子。
     <br><br>
-    “你和罗宾在哪里一起长大？”
+    “你和罗宾是在哪里一起长大的？”
     <br><br>
 
     <<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage'>><</lanLink>><br>
@@ -319,19 +319,19 @@
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_answer is "orphanage">>
-      约旦点点头，写在了<<his>>的笔记本上。“你的记性很好嘛。”<<set $RobinTemple.evaluation_marks += 10>>
+      约旦微微颔首，在册子上记下一笔。“记得很清楚。”<<set $RobinTemple.evaluation_marks += 10>>
     <<elseif $RobinTemple.evaluation_answer is "forgot">>
-      约旦顿了顿，皱起眉头。“那应该是值得记住的东西。”<<set $RobinTemple.evaluation_marks -= 5>>
+      约旦笔尖微顿，轻轻皱眉。“这理应铭记在心。”<<set $RobinTemple.evaluation_marks -= 5>>
     <<else>>
-      约旦顿了顿，皱起了眉头。“罗宾不是这么说的。”
+      约旦笔尖微顿，轻轻皱起眉头。“罗宾与你所言并不相合。”
     <</if>>
     <br><br>
-    <<He>>抓上你的手，从斗篷里拿出一个指围尺。“我需要量一下你的指围，以便在你通过评估后制作戒指。”<<he>>用尺子量了量你的无名指。
+    <<He>>伸手执起你的手，从长袍中取出一副指围规。“倘若你们通过，我需知晓你的戒指尺寸。”你任由<<him>>测过你的无名指，听着<<he>>继续说下去。
     <br><br>
-    “你应该明白承诺誓约的要求和限制吧？”你摇摇头，“这是两名信徒间神圣的结合，展现的是伴侣双方纯洁的爱意。结为伴侣免除了守洁的义务，但也仅限你们之间。要是你们任何一人不忠，我们会知道的。”
-    <<He>>量好了你的指围，“这种联结并不能保护你们的纯洁，因此有着严格的规定。在我们的信仰中，这样的特权是为婚姻而保留的。你们的贞洁测试将在可能的情况下同时进行，如果你们中的任何一人在誓言过后未能通过贞洁测试，<span class="red">你们将会一同受罚。</span>”
+    “你可明白承诺誓约的意义与戒律？”你摇了摇头。“这是修会两名信徒之间神圣的羁绊，证明彼此满怀纯洁的爱意。它允许你们免除贞洁誓约的约束，但仅限于你们彼此之间。倘若你们中有人不贞，修会自会知晓。”
+    <<He>>测好了你的尺寸。“这等羁绊无法庇护你们免受玷污，因而戒规森严——在我们的信仰中，那份神圣庇佑仅赐予正式婚姻。日后只要条件允许，你们的贞洁测试都会同时进行。一旦立誓之后任一方测试未过，<span class="red">你们将被视作一体，共同受罚。</span>”
     <br><br>
-    约旦的表情更加严肃起来。“告诉我，我的孩子。你确定你不是因为欲望，而是因为对对方的爱，才许下这个承诺的？”
+    约旦的神情变得愈发庄严肃穆。“告诉我，我的孩子。你确信驱使你立下此誓的是爱意，而非肉欲么？”
     <br><br>
     <<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
     <br>
@@ -374,21 +374,21 @@
     <<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
   <<option 'CN'>>
     <<effects>>
-    约旦离开了桌子。
+    约旦离席站起身。
     <<if $RobinTemple.evaluation_phase is 1>>
-      “很好。在仪式完成之前，你们仍需遵守现有誓约。”<<set $RobinTemple.evaluation_marks += 10>>
+      “很好。在仪式彻底礼成之前，你们二人仍须严守现有的贞洁誓约。”<<set $RobinTemple.evaluation_marks += 10>>
     <<else>>
-      “那么，你仍有顾虑。你可以要求更多考虑的时间，但我必须把这些顾虑纳入评估。”<<set $RobinTemple.evaluation_marks -= 10>>
+      “那么，你心底尚有疑虑。你可以请求更多时间细思，但我必须将这份游移考量在内。”<<set $RobinTemple.evaluation_marks -= 10>>
     <</if>>
     <br><br>
     <<if $RobinTemple.evaluation_marks gte 60>>
-      “你们的虔诚已得到证明。恭喜，<span class="green">你们都通过了</span>。在参加仪式之前，你们仍可以要求更多考虑的时间。”
+      “你们的虔诚与心意已然昭彰。恭喜，<span class="green">你们二人都通过了</span>。在正式步入仪式前，你们若还需时间沉淀，尽可随时开口。”
       <br><br>
       <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>>
       <br>
       <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
     <<elseif $RobinTemple.evaluation_marks gte 40>>
-      “你确实做出了非常大的贡献，这一点有目共睹。然而，我仍然对你的真正动机表示怀疑，因此我将进行一次非计划的贞洁测试，如果你依然纯洁无瑕，你将通过这次评估。否则……<span class="blue">你将被净化，并可在一个月后再次参与这次评估。</span>”
+      “你的虔诚毋庸置疑，这有目共睹。然而，我依然对你真正的动机存有疑虑。我需要当场为你进行一次例外的贞洁检验。若你依然洁白无瑕，便算你通过评估。否则……<span class="blue">你将接受净化，且须在满一月之后方可再次申请。</span>”
       <br><br>
       <<lanLink ['Allow examination', '允许检验'] 'RobinTemple Evaluation Examination'>><</lanLink>>
       <br>
@@ -397,7 +397,7 @@
       <<lanLink ['Say you are impure', '坦白你不纯洁了'] 'RobinTemple Evaluation Admit'>><</lanLink>>
       <br>
     <<else>>
-      “很遗憾，<span class="red">你没有通过此次评估。</span>根据你的近期状况，我无法真心地让你们结合。<span class="blue">但是，你被允许在下个月再次进行评估。</span>”
+      “很遗憾，<span class="red">你未通过这次评估。</span>以你眼下的状况，我断不能心安理得地准许你们结合。<span class="blue">不过，一个月后你仍有资格再次申请。</span>”
       <br><br>
       <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
       <br>
@@ -420,12 +420,12 @@
     <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "temple">><<npc Robin 1>><<npc Jordan 2>><<person2>><<temple_effects>><<effects>><<set $RobinTemple.stage to "member">>
-    约旦将你带到罗宾在等待的那个房间。<<person1>><<He>>看起来很兴奋，但当注意到你的脸色时，表情迅速僵住了。
+    约旦领着你回到隔壁房间。罗宾正满怀期待地候在那里，可当<<person1>><<he>>看清你脸上的神情时，眼底的光彩瞬间黯淡了下去。
     <br><br>
-    “我很抱歉。我会给你们二人空间，如果你们需要的话。”约旦转身离开，“如果你们想谈谈，你们知道我在哪里。”
+    “我很抱歉。你们二人若需要独处，尽可待在此处。”约旦转身准备退下，“若想找我谈谈，随时可以来寻我。”
     <br><br>
-    罗宾牵起你的手。“没……没事。如果必要的话，我……我可以等。我保证。”只见<<His>>眼里涌上泪水，你一把将<<him>>紧紧抱在怀里，你们就这么待了很久很久。
-    <<tearful>>你和<<him>>一起离开，返回了神殿。
+    罗宾牵住你的手。“别……别担心我，”<<he>>小声说着，声音微微发颤，“我们还可以再试的。不管多久都没关系。”<<His>>的眼眶湿润起来。你将<<him>>紧紧揽入怀中，静静相拥了仿佛几个小时之久。
+    <<tearful>>你和<<him>>步出静室，一同回到了神殿之中。
     <br><br>
     <<endevent>><<npc "Robin">><<person1>>
     <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
@@ -442,7 +442,7 @@
     <br>
   <<option 'CN'>>
     <<effects>>
-    “那我只能假设最糟的情况了，”约旦说着，一直盯着自己的脚尖，“很遗憾，你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“考虑到你的感受，罗宾不会被净化，也不会知晓此事。”
+    “那我只能假设最糟的情况了，”约旦说着，一直盯着自己的脚尖，“很遗憾，你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“为了你，罗宾不会被惩罚，也不会知晓此事。”
     <br><br>
     <<endevent>>
     <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
@@ -469,14 +469,14 @@
   <<option 'CN'>>
     <<effects>>
     <<if $speech_attitude is "meek">>
-      “我，我的贞洁，已经失去了，”你说，“抱歉。”
+      “它……它被人强行夺走了，”你低声说，“对不起。”
     <<elseif $speech_attitude is "bratty">>
-      “不需要了，”你说，“我没通过你那白痴任务。”
+      “不必了，”你说，“我没通过你那无聊的任务。”
     <<else>>
-      “抱歉，”你说，“我没有保持贞洁。”
+      “抱歉，”你说，“我没能守住贞洁。”
     <</if>>
     <br><br>
-    “谢谢你的坦诚，”约旦说着，一直盯着自己的脚尖，“你必须被净化。我会召集专人来，请一定要配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“考虑到你的感受，罗宾不会被净化，也不会知晓此事。”
+    “谢谢你的坦诚，”约旦说着，一直盯着自己的脚尖，“你必须被净化。我会召集专人来，请一定要配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“为了你，罗宾不会被惩罚，也不会知晓此事。”
     <br><br>
     <<endevent>>
     <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
@@ -504,13 +504,13 @@
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_phase is 1>>
-      约旦点点头。“我相信你的话。”
+      约旦微微颔首。“我相信你的话。”
     <<else>>
-      约旦点点头。“我欣赏你的诚实。”
+      约旦微微颔首。“我赞赏你的诚实。”
     <</if>>
     <<He>>站起身来。
     <br><br>
-    “最后一个问题。在仪式完成之前，你愿意继续遵守现有誓约吗？”
+    “最后一个问题。在仪式彻底礼成之前，你可愿意继续恪守现有的誓约？”
     <br><br>
     <<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
     <br>
@@ -525,7 +525,7 @@
     <<option 'EN'>>
       You press your ear to the door. Jordan asks where you grew up together. "At the orphanage," Robin answers.
     <<option 'CN'>>
-      你把耳朵贴在门上。约旦问你们在哪里一起长大。“在孤儿院。”罗宾答道。
+      你把耳朵紧贴在门扇上。约旦询问你们是在哪里一起长大的。“在孤儿院，”罗宾轻声答道。
   <</language>>
   <br><br>
   <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Eavesdrop Followup'>><</lanLink>><br>
@@ -534,7 +534,7 @@
     <<option 'EN'>>
       You were not quiet enough. Jordan opens the door and looks at you. "Please be patient. I'll return shortly."
     <<option 'CN'>>
-      你没有足够小心。约旦打开门，看向你。“请耐心等待，我很快就回来。”
+      你的动静不够轻巧。约旦拉开门，平静地注视着你。“请耐心稍候，我很快便回。”
   <</language>>
   <<set $RobinTemple.evaluation_marks -= 10>><br><br>
   <<lanLink ['Next (0:15)', '继续 (0:15)'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>><br>
@@ -621,54 +621,54 @@
       <<endevent>>
     <</if>>
   <<option 'CN'>>
-    约旦向你郑重点头。“请脱掉衣服。”
-    你脱掉衣物，希望这里别这么冷。约旦在两手间擦拭上白色粉末，然后跪在了你的面前。
+    约旦向你郑重点头。“请脱去衣物。”
+    你褪去衣物，不禁暗想这里要是不这么冷就好了。约旦在掌心揉开白色的粉末，随后在你面前屈膝跪下。
     <<if playerChastity() and $worn.genitals.origin is "temple">>
-      <<He>>拿着一根奇怪的杆状物抵住你的$worn.genitals.cn_name_cap，装置随即咔嗒落地。
+      <<He>>拿着一根奇异的金属短杆抵住你的$worn.genitals.cn_name_cap，装置随即应声咔嗒落地。
     <</if>>
     <<if $player.penisExist>>
       <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
-        <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，一边检查一边轻轻摆弄。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>的审视下变得更硬了。
+        <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，一边检查一边轻柔摆弄。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>的审视下愈发坚挺。
       <<else>>
-        <<He>>用两根食指夹住你的阴茎，一边紧盯着，一边温柔套弄着柱身。你试图分散自己的注意力，但阴茎还是在<<his>>的抚摸下慢慢挺立。
+        <<He>>用两根食指夹住你的阴茎，一边仔细凝视，一边温柔套弄着柱身。你试图分散注意力，但阴茎还是在<<his>>的抚弄下不可抑制地逐渐挺立。
       <</if>>
     <</if>>
     <<if $player.vaginaExist>>
       <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
-        <<He>>用<<his>>双手的拇指放在你的$worn.genitals.cn_name_cap边上，试图检查你的阴部。
+        <<He>>将双手的拇指抵在你的$worn.genitals.cn_name_cap边缘，试图检查你的私处。
         <br>
       <<else>>
-        <<He>>用<<his>>双手的拇指轻触着你的阴部，温柔地打开了你的
+        <<He>>将双手的拇指轻触着你的私处，温柔地分开了你的
         <<if setup.bodyliquid.combined("vagina") gte 2>>
           <<if setup.bodyliquid.combined("vagina") gte 6>>
-            阴唇。淫液喷涌而出，溅了约旦一脸，沿着<<his>>的双手流下。
-            <<He>>震惊地跌坐在地，慌忙擦掉了眼中和嘴里的液体。
+            阴唇。浓稠的淫液骤然喷涌而出，溅了约旦满头满脸，沿着<<his>>的双手汩汩流淌。
+            <<He>>惊愕地跌坐在地，慌忙擦拭着眼角与唇边的污浊。
             <br>
-            <<He>>看向你。
+            <<He>>怔怔地望向你。
           <<elseif setup.bodyliquid.combined("vagina") gte 4>>
-            阴唇。一股淫液涌出，滴在了约旦的手上，很快浸没到<<his>>的袖子里。
-            <<He>>惊叫地向后跳去，惊恐地甩着双手。
+            阴唇。一股黏稠的爱液滚滚涌出，溅在约旦手上，一路渗入了<<his>>的袖口。
+            <<He>>短促地惊呼一声向后退开，惊慌失措地甩着双手。
             <br>
           <<else>>
-            阴唇。淫液如细流淌下你的双腿，约旦吃惊地抽出双手。
+            阴唇。淫靡的蜜液如细流顺着大腿滑落，约旦吃惊地抽回双手。
             <br>
           <</if>>
-          “那可不是一个好兆头。”<<he>>喃喃道。
+          “那可不是什么好兆头，”<<he>>低声喃喃道。
           <br><br>
         <<else>>
-          阴唇，以便<<him>>能清晰查看里面的景象。
+          阴唇，以便<<him>>能清晰查看内里的光景。
           <br>
         <</if>>
       <</if>>
-      你不愿承认，但你的身体确实在淫荡地回应着这个检验。
+      你虽不愿承认，但在这样的查验下，身体却不可抑制地泛起了羞耻的反应。
     <</if>>
     <br><br>
-    抚弄持续了几分钟。最后，<<he>>完成了手里的活儿。<<He>>退后一步，看着你。
+    查验持续了数分钟。终于，<<he>>停下了动作，退后半步凝视着你。
     <<arousal 1000 "genitals">>
     <<if $player.virginity.penile is true and $player.virginity.vaginal is true or $player.virginity.temple is true>>
-      “恭喜，你依然纯洁无瑕，希望你继续保持。评估结束了，你通过了。”
+      “恭喜。你依然洁白无瑕，愿你永远保持这般纯净。评估结束了，你已通过。”
       <<if playerChastity() and $worn.genitals.origin is "temple">>
-        <<He>>没有把贞操带还给你。“接下来的步骤本来也需要把它取下来。”<<set $phase2 to 1>>
+        <<He>>并未将贞操带还给你。“接下来的仪式横竖也需将其取下。”<<set $phase2 to 1>>
         <<set $worn.genitals.type.push("broken")>>
         <<genitalsruined>>
         <<if $vaginalchastityparasite isnot 0>>
@@ -689,11 +689,11 @@
         <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
       <</if>>
       <br><br>
-      <<He>>转过身，让你将衣物穿好。
+      <<He>>转过身去，让你从容穿戴整齐。
       <br><br>
     <<else>>
       <<set $templetest to "failed">>
-      “很抱歉，你已经不再纯洁。”<<His>>的声音有些颤抖，你不确定自己是否听错了。“你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一个小铃铛，摇了摇。“为了你，罗宾不会被惩罚，也不会知晓此事。”
+      “很遗憾，你已不再洁净。”<<His>>的声音微不可察地颤抖了一下，不知是否是你的错觉。“你必须接受净化。我会召集专人前来，届时请务必配合。”<<He>>从长袍中取出一枚小铃，轻轻晃响。“为了你，罗宾不会被惩罚，也不会知晓此事。”
       <br><br>
       <<endevent>>
     <</if>>
@@ -737,28 +737,28 @@
     <br>
   <<option 'CN'>>
     <<effects>>
-    “你应该明白承诺誓约的要求和限制吧？”
+    “你可明白承诺誓约的要求与戒律？”
     <br>
-    “是的。”
+    “明白。”
     <br>
-    “那你愿意接受一个月检之外的贞洁测试来证明你的纯洁和虔诚吗？”
+    “那么，为了证明你的虔诚与纯洁，你可愿意接受一次例外的贞洁检验？”
     <br>
-    “当然。”
+    “当然愿意。”
     <br>
-    “很好。”又是一个停顿。
+    “很好。”又是一阵停顿。
 
 
-    你继续伏在门上偷听。另一侧似乎有什么东西掉了下来，吓得你连忙准备跑回座位，直到你听见约旦的声音再次响起。
+    门另一头突然传来东西落地的轻响，惊得你心头一跳。你正手忙脚乱地准备退回座中，便听见约旦的声音再度响起。
     <br><br>
-    “在仪式完成之前，你会继续遵守现有誓约吗？”一个短暂的停顿。
+    “在仪式彻底礼成之前，你可愿继续坚守现有的誓约？”少顷的沉默。
     <br>
     <<if maplebirch.get('RobinTemple').faith gte 20>>
-      “会、会的。我想好好完成这件事。我们可以等。”
+      “会、会的。我想堂堂正正地走完仪式。我们等得起。”
     <<else>>
-      “会、会的。只要这样能让我们在一起，我……我会等的。”
+      “会、会的。只要能让我们在一起，我……多久我都等。”
     <</if>>
     <br>
-    “谢谢你的坦诚，我信任你。你这部分的评估已经完成了。”
+    “谢谢你的坦诚，我信任你的承诺。你这部分的考查已经完成了。”
     <br><br>
     <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 3>><</lanLink>>
     <br>

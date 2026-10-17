@@ -44,12 +44,12 @@
       <<if $kylar_manor_secret gte 3>>The bishop said Kylar's parents had unknowingly befriended servants of Auriga. He spoke of an altar and a blood moon. They begged for their child to be spared. You remember how easily he admitted what he had done.<br><br><</if>>
       You lie down. A door closes somewhere in the house. Before the footsteps fade, you almost hear someone calling a child downstairs for supper.
     <<option 'CN'>>
-      <<if $LostLamb.marks.includes('promised')>>你说过会留着那幅没画完的画，你确实留住了。你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<<else>>你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<</if>>上缘扭曲着，像是被砍掉过一部分。凯拉尔之前并不知道它在那里。“我没觉得父母信教。”
+      <<if $LostLamb.marks.includes('promised')>>你说过会留着那幅没画完的画，你确实留住了。你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<<else>>你将手放在凯拉尔的一只枕头上。你记起阁楼的灰尘、亮起的灯，以及围着空心排列的银与青铜尖角。<</if>>上缘扭曲着，像是被砍掉过一部分。凯拉尔之前并不知道它在那里。“我不认为我的父母信教。”
       <br><br>
-      问起异变时，<<nnpc_he 'Kylar'>>只能说出围绕它的那个夜晚。父母很兴奋，让<<nnpc_him 'Kylar'>>早点上床。楼下的窗户碎了。<<nnpc_He 'Kylar'>>藏在被子下面。到了早晨，他们已经不一样。
+      问起异变时，<<nnpc_he 'Kylar'>>只能说出围绕它的那个夜晚。父母很兴奋，让<<nnpc_him 'Kylar'>>早点上床。楼下的窗户碎了。<<nnpc_He 'Kylar'>>藏在被子下面。到了早晨，他们就变得不一样了。
       <br><br>
       <<if $sydneySeen.includes('Kylar manor')>>悉尼以前会来这所房子玩，两家的父母互相认识。后来，悉尼被告知不能再来。你努力回想，<<nnpc_he 'Sydney'>>有没有说过原因。<br><br><</if>>
-      <<if $kylar_manor_secret gte 3>>主教说过，凯拉尔的父母不知情地结交了奥里加的仆从。他提到祭坛与血月，提到他们恳求放过自己的孩子。你仍记得，他承认这些时有多轻松。<br><br><</if>>
+      <<if $kylar_manor_secret gte 3>>主教说过，凯拉尔的父母不知情地结交了奥里加的仆从。他提到染血的祭坛与血色的红月，提到他们哀求放过自己的孩子。你仍记得，他承认这些时语气有多轻描淡写。<br><br><</if>>
       你躺下。房子里有扇门关上。脚步声还没消失，你几乎听见有人喊一个孩子下楼吃晚饭。
   <</language>>
   <br><br>

@@ -433,7 +433,7 @@
         <span class='red'>It remains inert.</span> Jordan frowns.
         "I'm sorry, but one of you is spoilt." <<person1>><<His>> voice shakes slightly, you're not sure if you imagined it.
       <<option 'CN'>>
-        <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们有人已经不洁了。”<<person1>><<His>>的声音有些颤抖，你不确定自己是否听错了。
+        <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们中有人已经不再纯洁了。”<<person1>><<His>>的声音有些颤抖，你不确定自己是否听错了。
     <</language>>
     <br><br>
     <<robin-temple-purification-summons false>>
@@ -447,7 +447,7 @@
     <<option 'EN'>>
       "Then I must assume the worst," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      “那我必须设想最坏的情况。”约旦说，直直地盯着脚尖。
+      “那我只能设想最坏的情况了，”约旦看着<<his>>的脚尖说道。
   <</language>>
   <br><br>
   <<robin-temple-purification-summons false>>
@@ -463,28 +463,28 @@
       <<option 'EN'>>
         "I, I haven’t kept it," you say. "I’m sorry. I’m so sorry..."
       <<option 'CN'>>
-        “我，我没有守节，”你说，“抱歉，我真的很抱歉……”
+        “我，我的誓约……我没能守住，”你说，“对不起，真的很对不起……”
     <</language>>
   <<elseif $speech_attitude is 'bratty'>>
     <<language>>
       <<option 'EN'>>
         "No need," you say. "I haven’t been faithful."
       <<option 'CN'>>
-        “没必要了，”你说，“我没能保持忠诚。”
+        “没必要测了，”你说，“我没能保持忠诚。”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
         "I’m sorry," you say. "I haven’t been faithful."
       <<option 'CN'>>
-        “抱歉，”你说，“我没有保持忠诚。”
+        “抱歉，”你说，“我没能保持忠诚。”
     <</language>>
   <</if>><br><br>
   <<language>>
     <<option 'EN'>>
       "Thank you for your honesty," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      “谢谢你的坦诚。”约旦说，直直地盯着脚尖。
+      “谢谢你的坦诚，”约旦说着，一直盯着自己的脚尖。
   <</language>>
   <br><br>
   <<robin-temple-purification-summons false>>

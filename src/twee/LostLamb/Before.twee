@@ -88,7 +88,7 @@
           <br><br>
           悉尼用笔点了点被困住的小人。“得让它能出去啊。”
           <br><br>
-          你想让<<nnpc_he 'Sydney'>>喜欢这座房子。你也想让门开在自己选好的地方，这要求明明很合理。没经过你同意，悉尼一笔也没画。你把手掌压得更平，<<nnpc_he 'Sydney'>>还在等。
+          你想让<<nnpc_him 'Sydney'>>喜欢这座房子。你也想让门开在自己选好的地方，这要求明明很合理。没经过你同意，悉尼一笔也没画。你把手掌压得更平，<<nnpc_he 'Sydney'>>还在等。
       <</language>>
     <<case 'drawing-end'>>
       <<language>>
@@ -150,7 +150,7 @@
           <br><br>
           Inside, the floor feels cool through your shoes. Someone has left two cups out. You put your own beside Sydney's and turn the handles the same way. Sydney drinks from the wrong one. You start to protest, then decide it does not matter today.
         <<option 'CN'>>
-          <<if $LostLamb.marks.includes('flower')>>你把花递给悉尼。“它本来就断了。”悉尼说<<nnpc_he 'Sydney'>>看见了。父母中的一人推开花园门时，你又说了一遍。对方看看花，又看看你们身上挂着的叶子。“吃饭前洗手。”只有这一句。悉尼把花塞进口袋，差点将它压扁。<<else>>你把花放在小路边，这样就不会被踩到。悉尼先到了花园门口，替你把门撑开。最后几步你故意走慢了一点，好像自己并没有在赶上去。<</if>>
+          <<if $LostLamb.marks.includes('flower')>>你把花递给悉尼。“它本来就断了。”悉尼说<<nnpc_he 'Sydney'>>看见了。你的父母之一推开花园门时，你又说了一遍。对方看看花，又看看你们身上挂着的叶子。“吃饭前洗手。”只有这一句。悉尼把花塞进口袋，差点将它压扁。<<else>>你把花放在小路边，这样就不会被踩到。悉尼先到了花园门口，替你把门撑开。最后几步你故意走慢了一点，好像自己并没有在赶上去。<</if>>
           <br><br>
           进屋后，隔着鞋底也觉得地板凉。有人留出了两个杯子。你把自己的放在悉尼的旁边，将杯柄转向同一侧。悉尼端错了杯子。你刚想抗议，又决定今天没关系。
       <</language>>
@@ -167,7 +167,7 @@
           <br><br>
           Sydney takes the cutlery. You stay beside the counter. The cooling strips are close enough to reach, and the adults have begun talking about whether the shop will still be open. You could try a little before anyone looks back. Or you could carry the cups out and come back for the whole piece.
         <<option 'CN'>>
-          你站在厨房门口，等父母中的一人看见你。“已经饿了？”
+          你站在厨房门口，等父母之一看见你。“已经饿了？”
           <br><br>
           你还没来得及说自己只是来看看，悉尼已经说饿了。父母从酥皮边上切下两条，放到小碟里晾凉。你站在门口就想朝自己那条吹气。
           <br><br>
@@ -190,7 +190,7 @@
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('helped')>>杯子被你擦了两遍。摆好后，父母给你和悉尼各一条酥皮。你的大些。悉尼发现了，你赶在<<nnpc_he 'Sydney'>>开口前，掰下一角放进<<nnpc_his 'Sydney'>>的碟里。<<else>>你趁大人没看，咬了一口。悉尼盯着你嚼。父母立刻就发现缺掉的那一角。你说是刀弄的。悉尼开始笑，你也绷不住了。最后杯子还是得由你来拿。<</if>>
           <br><br>
-          另一位父母腋下夹着纸走进来。炉边的人说：“别放凉了。给你留了喜欢的那一角。”
+          另一位家长腋下夹着纸走进来。炉边的人说：“别放凉了。给你留了喜欢的那一角。”
           <br><br>
           纸被放到高处的架子上，免得碍事。父母靠着柜台，从小碟里拿东西吃。你开始讲悉尼在哪件事上作弊了。悉尼每一段都要反驳，连你还没讲到的部分也不放过。
           <br><br>
@@ -211,7 +211,7 @@
           <br><br>
           大人说起送错地方的东西，又提到镇上共同认识的人。那家商店你知道，却没听懂故事哪里好笑。悉尼用勺柄搅饮料，你跟着学，直到父母默默把两把勺子都转了过来。
           <br><br>
-          谈话转到了工作上。一个名字被盘子刮擦声盖住。父母中的一人伸着两只手解释什么，又想起面包，先把它递过去。悉尼的家长问了个问题。你只能等着，自己的还没机会问。
+          谈话转到了工作上。一个名字被盘子刮擦声盖住。你的父母之一伸着两手比划着解释什么，又想起面包，先把它递过去。悉尼的家长问了个问题。你只能等着，自己的还没机会问。
           <br><br>
           你伸得太远，父母赶在袖子碰到杯子前扶住了它。拇指贴着杯柄，等你缩回手，杯子就又交给你了。你喝了一口，看看悉尼，不明白这顿饭到底还要吃多久。
       <</language>>

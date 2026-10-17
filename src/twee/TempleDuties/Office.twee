@@ -183,7 +183,7 @@
   <</if>>
   <<temple-candidate-check _pewName 0>>
 <</silently>>
-<!-- 只问一次；答应之后，见习与守望都回职务桌办理。 -->
+<!-- 只问一次。答应之后，见习与守望都回职务桌办理。 -->
 <<if _pewReady and _candidateRank is 'monk' and _candidateStanding and !_candidate.agreed>>
   <<socialiseicon 'ask'>>
   <<lanLink `['Ask ' + maplebirch.auto(_pewName) + ' about becoming a priest', '问' + maplebirch.auto(_pewName) + '愿不愿意当司祭']` 'Revelation Temple Candidate Talk'>>
