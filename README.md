@@ -37,7 +37,7 @@
 
 ## 安装与依赖
 
-面向中英文原版 **DoL 0.5.12.13**。需要 **ModLoader 2.0.0+** 和[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.4.13+**，其余前置按加载器提示安装。
+当前版本 **1.3.6**，面向中英文原版 **DoL 0.5.12.13**。需要 **ModLoader 2.0.0+** 和[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.4.15+**，其余前置按加载器提示安装。
 
 1. 从 [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest) 下载 `.modpack`，导入 ModLoader。
 2. 安装所需依赖，在框架模块管理中启用归途之书及所需内容，按提示重载。
