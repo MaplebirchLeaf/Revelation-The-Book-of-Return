@@ -1,7 +1,7 @@
 :: TempleChoir Widgets [widget]
 <<widget "temple-choir-hall-link">>
   <<if _revelationTempleLinks is 'pray' and maplebirch.get('TempleChoir').member>>
-    <<if !$TempleChoir.joined>>
+    <<if !$TempleChoir.joined and $daily.jordanMissing isnot 1 and !['night', 'dusk'].includes(Time.dayState)>>
       <<icon 'temple/hymnbook.png'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
     <<elseif maplebirch.get('TempleChoir').practice>>
       <<icon 'temple/hymnbook.png'>><<lanLink ['Choose a choir exercise', '选择唱诗练习'] 'TempleChoir Practice'>><</lanLink>><br>
@@ -11,7 +11,7 @@
 
 <<widget "temple-choir-mass-link">>
   <<if _revelationTempleLinks is 'mass' and maplebirch.get('TempleChoir').service>>
-    <<icon 'temple/choir.png'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
+    <<icon 'temple/choir.png'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<robin-temple-mass-record 'choir'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
   <</if>>
 <</widget>>
 
@@ -58,6 +58,14 @@
       You have already joined the choir. Your journal records the practice and service times.
     <<option 'CN'>>
       你已经加入唱诗班。练习与唱诗的时间安排记在日志里。
+  <</language>><br><br>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
+<<elseif $daily.jordanMissing is 1 or ['night', 'dusk'].includes(Time.dayState)>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan is not in the hall. You can ask about the choir when <<nnpc_he 'Jordan'>> returns.
+    <<option 'CN'>>
+      约旦不在大厅。等<<nnpc_he 'Jordan'>>回来，再问问唱诗班的事。
   <</language>><br><br>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <<else>>

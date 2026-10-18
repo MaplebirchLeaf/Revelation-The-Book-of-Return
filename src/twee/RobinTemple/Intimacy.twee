@@ -112,7 +112,12 @@
   <</if>>
   <br><br>
   <<loveicon 'kiss'>><<lanLink ['Make love with Robin', '与罗宾做爱'] 'RobinTemple Bed Sex'>><<set $sexstart to 1>><</lanLink>><<promiscuous1>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
-  <<loveicon 'hug'>><<lanLink ['Just hold Robin for a while', '只抱着罗宾待一会儿'] 'RobinTemple Bed Afternoon Hold'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Just hold Robin for a while', '只抱着罗宾待一会儿'] 'RobinTemple Bed Afternoon Hold'>>
+    <<robin-temple-work-check>>
+    <<if _robinWork and $robinromance is 1 and $RobinTemple.templePromised is 'Robin'>>
+      <<npcincr Robin love 1>>
+    <</if>>
+  <</lanLink>><<glove 'Robin'>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -150,7 +155,7 @@
         “就抱一会儿？”罗宾问。你点点头，<<he>>也抱住了你。你们安静地坐了一阵。“这样就很好，”<<he>>终于说，话出口又有些不好意思。钟声响起后，你帮<<him>>收起屏风。
     <</language>>
   <</if>>
-  <<npcincr Robin love 1>><<glove>>
+  <<glove 'Robin'>>
 <<else>>
   <<language>>
     <<option 'EN'>>

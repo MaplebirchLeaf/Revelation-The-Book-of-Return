@@ -6,6 +6,7 @@ export default function TempleDuties(maplebirch: typeof window.maplebirch): void
   maplebirch.tool.addTo(
     'BeforeLinkZone',
     { widget: 'temple-duty-link', passage: 'Temple' },
+    { widget: 'temple-duty-quarters', passage: 'Temple Quarters' },
     { widget: 'temple-case-docks-link', passage: 'Docks' },
     // widget 要求原版 Chat 菜单，礼物和离场分支不接入。
     { widget: 'temple-manor-link', passage: 'Manor Kylar' }

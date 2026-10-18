@@ -70,6 +70,22 @@ class RobinTemple extends Module {
     return ['member', 'approved', 'promised'].includes(V.RobinTemple?.stage);
   }
 
+  /** 宿舍工作表中的实际劳动，祈祷、守夜、上课和同行期间不代做清扫。 */
+  public get templeWork(): 'garden' | 'quarters' | '' {
+    if (!this.member || !this.available || C.npc.Robin.state !== 'active' || V.RobinTemple.punish || V.replayScene || V.statFreeze || T.robinTempleWork) return '';
+    if (Time.schoolDay || Time.isWeekEnd() || window.getRobinLocation() !== 'temple') return '';
+    if (Time.hour >= 9 && Time.hour < 11) return 'garden';
+    return Time.hour >= 13 && Time.hour < 16 ? 'quarters' : '';
+  }
+
+  /** 在原版逐小时循环中执行，不因重绘或重返宿舍补算。 */
+  public maintain(): void {
+    const work = this.templeWork;
+    if (!work) return;
+    const field = work === 'garden' ? 'temple_garden' : 'temple_quarters';
+    if (Number.isFinite(V[field])) V[field] = Math.min(100, V[field] + 1);
+  }
+
   /** 当前路线的身份来自入殿与晋升结果，不另存一份等级。 */
   public get rank(): 'prospective' | 'monk' | 'initiate' | 'priest' {
     if (!this.member) return 'prospective';
@@ -118,7 +134,14 @@ class RobinTemple extends Module {
 
   /** 是否能参与日常活动，不包含神殿成员资格和当前地点。 */
   public get available(): boolean {
-    return C.npc.Robin?.init === 1 && !V.robinmissing && V.robin.timer.hurt === 0 && C.npc.Robin.trauma < 80 && !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted');
+    return (
+      C.npc.Robin?.init === 1 &&
+      C.npc.Robin.state === 'active' &&
+      !V.robinmissing &&
+      V.robin.timer.hurt === 0 &&
+      C.npc.Robin.trauma < 80 &&
+      !(this.core.get('Robin') && V.RobinExpansion?.asylum?.status === 'admitted')
+    );
   }
 
   private get playerReady(): boolean {

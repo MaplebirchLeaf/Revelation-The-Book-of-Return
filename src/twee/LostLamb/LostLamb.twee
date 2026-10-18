@@ -25,7 +25,7 @@
     <</language>><br><br>
   <</if>>
   <<if maplebirch.get('LostLamb')?.talkReady>>
-    <<loveicon 'hug'>><<lanLink ['Talk to Kylar about the dream', '和凯拉尔谈谈那个梦'] 'Lost Lamb Talk'>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Talk to Kylar about the dream', '和凯拉尔谈谈那个梦'] 'Lost Lamb Talk'>><</lanLink>><br>
   <</if>>
   <<if maplebirch.get('LostLamb')?.available>>
     <<bedicon 'kylar'>><<lanLink ['Lie down for a while', '躺下休息一会儿'] 'Lost Lamb Recall'>><</lanLink>><br>

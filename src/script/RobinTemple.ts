@@ -48,7 +48,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   });
 
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' }, { widget: 'robin-temple-hall-link', passage: 'Temple' });
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'secret-day-link', passage: 'Temple' });
   // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
@@ -68,6 +68,18 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   maplebirch.tool.inject({
     locationPassage: {
       Temple: [
+        // 原版先过一小时再进入弥撒正文，入场时记录同场者，跨过13点也不丢失本场叙事。
+        {
+          srcmatchgroup: /\|Temple Mass(?: Angel| Fallen Angel| Demon)?\]\]>>/g,
+          applyafter: "<<robin-temple-mass-record 'vanilla'>>",
+          expected: 4
+        },
+        // 两人的描述与各自入口相邻，罗宾留在普通大厅的人物区，不依赖链接数量定位。
+        {
+          src: '<<if C.npc.Sydney.init is 1 and $exposed lte 0>>',
+          applybefore: '<<robin-temple-hall-link>>\n\t',
+          expected: 1
+        },
         // 同一条月检分支优先处理罗宾，不拆改原版悉尼与单人检查的条件。
         {
           src: '<<elseif $temple_chastity_timer lte 0',
@@ -75,6 +87,19 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
           expected: 1
         }
       ],
+      ...Object.fromEntries(
+        ['Temple Mass', 'Temple Mass Angel', 'Temple Mass Fallen Angel', 'Temple Mass Demon'].map(passage => [
+          passage,
+          [
+            {
+              // 追加在原版弥撒与悉尼互动之后，继续链接保留原样。
+              srcmatch: /<<endevent>>(?=\s*<<link \[\[[^\n]+\|Temple\]\]>>)/,
+              applybefore: '<<robin-temple-mass-presence>>\n',
+              expected: 1
+            }
+          ]
+        ])
+      ),
       'Temple Quarters': [{ src: '<<getouticon>>', applybefore: '<<robin-temple-links>>', expected: 1 }],
       'Sydney Temple Pure': [
         // 神殿不主持第二份誓约，亵渎仪式独立结算。

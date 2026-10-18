@@ -42,12 +42,12 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 原版这一段总是假定展示盒里有项链，这里只包裹该段，不改电脑任务。
           src: '<<if $necklaceThief is "player">>',
-          to: '<<if $RBR?.necklace?.returned>><<ivory-necklace-quinn-empty>><<else>><<if $necklaceThief is "player">>',
+          applybefore: '<<if $RBR?.necklace?.returned>><<ivory-necklace-quinn-empty>><<else>>',
           expected: 1
         },
         {
           srcmatchgroup: /(<<\/if>>\s*[^<]*<br><br>)/,
-          to: '$1<</if>>',
+          applyafter: '<</if>>',
           expected: 1
         }
       ]

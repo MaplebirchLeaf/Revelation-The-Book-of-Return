@@ -58,9 +58,9 @@
 <<widget 'robin-temple-room-note'>>
   <<language>>
     <<option 'EN'>>
-      You go to Robin's room. A note on the door says <<he>> is at the temple.
+      You go to Robin's room. A note on the door says <<nnpc_he 'Robin'>> is at the temple.
     <<option 'CN'>>
-      你来到罗宾的房间。门上的字条写着，<<he>>去了神殿。
+      你来到罗宾的房间。门上的字条写着，<<nnpc_he 'Robin'>>去了神殿。
   <</language>>
   <br><br>
   <<main_hall_icon>><<lanLink ['Return to the main hall', '返回孤儿院大厅'] 'Orphanage'>><</lanLink>><br>
@@ -117,7 +117,7 @@
         <<lanLink ["Robin's bunk", '罗宾的床铺'] 'RobinTemple Bunk'>>
         <</lanLink>><br>
       <<else>>
-        <<socialiseicon 'ask'>><<lanLink ['Robin', '罗宾'] 'RobinTemple Corner'>><</lanLink>><br>
+        <<templeicon 'quarters'>><<lanLink ["Robin's place in the quarters", '罗宾在宿舍的位置'] 'RobinTemple Corner'>><</lanLink>><br>
       <</if>>
       <<if $RobinTemple.punish>>
         <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
@@ -138,7 +138,10 @@
 
 <<widget 'robin-temple-work-check'>>
   <<set _robinWork to maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
-    and getRobinLocation() is 'temple' and !$combat and !$nextPassageCheck
+    and C.npc.Robin.state is 'active' and !$RobinTemple.punish
+    and $location is 'temple' and getRobinLocation() is 'temple'
+    and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
+    and !$replayScene and !$statFreeze and !isPregnancyEnding()
     and $exposed lte 0 and $stress lt $stressmax>>
 <</widget>>
 

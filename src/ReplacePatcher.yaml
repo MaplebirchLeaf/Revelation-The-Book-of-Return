@@ -2,3 +2,8 @@
 - fileName: 'ingame.js'
   from: 'else if (!between(Time.hour, 7, 20)) {'
   before: "else if (maplebirch.get(\"RobinTemple\")?.templeTime) {\n\t\tT.robin_location = \"temple\";\n\t} "
+
+# 与原版悉尼劳动处于同一逐小时循环，仅在罗宾实际负责花园或宿舍时生效。
+- fileName: 'time.js'
+  from: 'if (V.wolfpatrolsent >= 1) V.wolfpatrolsent++;'
+  after: "\n\t\tmaplebirch.get('RobinTemple')?.maintain();"

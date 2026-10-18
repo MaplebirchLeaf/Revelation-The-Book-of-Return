@@ -2,7 +2,9 @@
 
 Enable **Temple duties**. As an **initiate, monk/nun or priest**, visit **Temple → Hall → Check the temple duties book**. Jordan receives you **09:00–18:00 in daylight**, outside Sunday mass **11:00–13:00**. Remain covered, below maximum stress and free of combat, possession or a priority event.
 
-Choose **Ask Jordan for duties (0:10)** to enter the rota and receive access to the old records room. The book opens by rank: an **initiate** sees the handover, the records room and any available assignment; a **monk/nun** also turns to the lower-door watch; a **priest** adds shift supervision and the garden wards.
+As a new initiate, first help make the **upstairs quarters spotless (cleanliness 100)**. An attendant will mention that Jordan needs help with the daily duties. Return to the hall to **Check the temple duties book**, then decide whether to **Ask Jordan for duties (0:10)**. This preparation is needed only once; later mess does not remove access. Priests can apply directly.
+
+Joining the rota grants access to the old records room. The book opens by rank: an **initiate** sees the handover, the records room and any available assignment; a **monk/nun** also turns to the lower-door watch; a **priest** adds shift supervision and the garden wards.
 
 Ordination is not handled at the desks. As a **monk/nun**, question Jordan in the **temple hall** and choose **Enquire about ordination**, beside the vanilla advancement option. Companion preparation lives at the pews too: talk to **Robin or Sydney while they pray** and choose **Ask them about becoming a priest**; if they have not taken the vigil yet, the page tells you what is missing.
 
@@ -90,7 +92,7 @@ Passing the watch grants **Watchkeeper**: active attacks and banishment deal **2
 
 Each candidate must already be a **monk/nun**, actually at the temple and free of other commitments, with an intact temple vow. Outstanding purification or examinations take priority. Robin also needs **at least 20 Faith and trauma below 60**.
 
-1. Ask whether the candidate wants to become a priest. A candidate may defer or refuse.
+1. Ask whether the candidate wants to become a priest **at their pew while they pray**. A candidate may defer or refuse. If they agree, arrange their preparation at the duties desk.
 2. Accompany them to **prayers and a parishioner's visit**, then **a ward inspection with an older priest**. Each takes thirty minutes.
 3. Select the candidate for a watch when there is time for the entire visit. **Support each companion separately at the lamp and at the response**. Winning your own battles without both acts of support does not qualify them.
 4. After their successful watch, accompany them to Jordan for a **fifteen-minute interview**.
@@ -108,11 +110,11 @@ Completed or declined requests leave the Journal. Neither branch promises a cure
 
 ### If an entry is missing
 
-| Problem                                         | Check                                                                                         |
-| ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Duties desk closed                              | Eligible rank, covered, daylight 09:00–18:00, Jordan available, outside Sunday mass.          |
-| No shift                                        | Registered, no paid shift today, by 17:00.                                                    |
-| No appointment                                  | Monk/nun rank, real rescue, spear returned, vows and examination in order, watch passed.      |
-| No companion watch                              | Candidate agreed, both lessons completed, actually present, enough time before the next duty. |
-| Companion passed combat but cannot be appointed | Both separate support actions, completed watch, Jordan's interview and current availability.  |
-| No private follow-up                            | Bishop contact and relevant records; for Kylar, evening availability and jealousy.            |
+| Problem                                         | Check                                                                                                                        |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Duties desk closed                              | First make the quarters spotless (100); eligible rank, covered, daylight 09:00–18:00, Jordan available, outside Sunday mass. |
+| No shift                                        | Registered, no paid shift today, by 17:00.                                                                                   |
+| No appointment                                  | Monk/nun rank, real rescue, spear returned, vows and examination in order, watch passed.                                     |
+| No companion watch                              | Candidate agreed, both lessons completed, actually present, enough time before the next duty.                                |
+| Companion passed combat but cannot be appointed | Both separate support actions, completed watch, Jordan's interview and current availability.                                 |
+| No private follow-up                            | Bishop contact and relevant records; for Kylar, evening availability and jealousy.                                           |

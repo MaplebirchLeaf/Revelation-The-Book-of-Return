@@ -33,13 +33,17 @@ When Robin is absent, **Ask the attendant where Robin went** in the quarters. Th
 
 ### Work and prayer
 
-| Activity                    | Duration and window                                                                                                      | Main gains                                    |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| Clean the quarters together | One hour, starting 13:00–15:00 on a school-free weekday or before 19:00 on an arranged evening visit; end times excluded | Shared shift, Faith, PC grace and love.       |
-| Sort temple supplies        | One hour in the same windows                                                                                             | Shared shift, Faith, PC grace and confidence. |
-| Prepare Sunday mass         | Thirty minutes, Sunday **11:00–11:30**, excluding the end time, with Robin present                                       | Shared shift, Faith, PC grace and love.       |
+When Robin is scheduled to tend the garden or clean the quarters, each working hour improves that area by **1 point, capped at 100**. A shared hour of cleaning adds **3–9 points** according to the PC’s Housekeeping, without counting Robin’s hourly contribution again. School, prayer, mass and rest do not count as cleaning, and native daily changes still apply.
+
+| Activity                    | Duration and window                                                                                                      | Main gains                                                                                |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Clean the quarters together | One hour, starting 13:00–15:00 on a school-free weekday or before 19:00 on an arranged evening visit; end times excluded | Quarters cleanliness +3–9, Housekeeping practice, shared shift, Faith, PC grace and love. |
+| Sort temple supplies        | One hour in the same windows                                                                                             | Shared shift, Faith, PC grace and confidence.                                             |
+| Prepare Sunday mass         | Thirty minutes, Sunday **11:00–11:30**, excluding the end time, with Robin present                                       | Shared shift, Faith, PC grace and love.                                                   |
 
 These share **one daily work opportunity**. Carrying bowls and checking lists during some bench encounters also count as work. Conversation alone does not.
+
+After mass, returning Robin’s smile gives **1 love** without taking extra time. When Sydney is also present after a choir service, responding to both gives **1 love each**. This response is rewarded once per day.
 
 **PC grace, Robin's contribution, shared shifts and Faith are separate.** Robin's contribution changes with the calendar and pendant; raising PC grace does not directly fill it. The Journal records each and the next steps.
 
@@ -54,7 +58,7 @@ The bench also has one daily encounter concerning visitors, supplies or temple r
 
 ### Gifts, donations and walks
 
-At the bench, choose carried food and confirm a **five-minute gift**. Food and drinks have different responses. **Sticky toffee pudding** records Robin's favourite and uses the related feat; afterwards you can ask for a taste or watch Robin finish.
+At the bench, choose carried food and confirm a **five-minute gift**, following the original **one gift per day** limit. Ordinary food gives **1 love**; **sticky toffee pudding** gives **3 love**, records Robin’s favourite and grants the related feat. Asking for a taste gives **1 confidence**; watching Robin finish does not change confidence.
 
 Shared offerings use **carried cash**, once daily, **11:00–20:00 outside mass**. £1 gives love; £5 also gives grace; £25 gives more grace and can reveal the soup kitchen. They do not replace contribution or evaluation.
 

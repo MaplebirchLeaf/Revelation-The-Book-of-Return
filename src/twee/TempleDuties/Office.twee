@@ -2,13 +2,19 @@
 <<widget 'temple-duty-check'>>
   <<if !maplebirch.get('TempleDuties') or !$TempleDuties>>
     <<set _dutySafe to false>>
+    <<set _dutyAccess to false>>
     <<set _dutyOffice to false>>
     <<set _dutyReady to false>>
     <<exit>>
   <</if>>
   <<silently>>
+    <!-- 日常变脏不撤回资格，已有职务、调查和任命进度照常保留。此处只检查，不消耗首次清扫后的交谈。 -->
+    <<set _dutyAccess to $TempleDuties.quarters_ready or $TempleDuties.enrolled or $temple_rank is 'priest'
+      or $TempleDuties.duties gt 0 or $TempleDuties.case or Object.keys($TempleDuties.reports).length
+      or $TempleDuties.watch or $TempleDuties.review or $TempleDuties.ordained gte 0 or $TempleDuties.trial_day gte 0>>
     <<set _dutySafe to Boolean(maplebirch.get('TempleDuties'))
       and ['initiate', 'monk', 'priest'].includes($temple_rank)
+      and _dutyAccess
       and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
       and !$replayScene and !$statFreeze and $exposed lte 0
       and $stress lt $stressmax and !isPregnancyEnding()>>
@@ -85,6 +91,20 @@
     <<lanLink ['Check the temple duties book', '查看神殿职务簿'] 'Revelation Temple Office'>>
     <</lanLink>>
     <br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-duty-quarters'>>
+  <!-- 记录与转告放在实际宿舍入口，避免日志等共享检查提前消耗这次契机。 -->
+  <<if maplebirch.get('TempleDuties') and $TempleDuties and !$TempleDuties.quarters_ready
+      and ['initiate', 'monk', 'priest'].includes($temple_rank) and $temple_quarters gte 100
+      and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
+      and !$replayScene and !$statFreeze and $exposed lte 0
+      and $stress lt $stressmax and !isPregnancyEnding()>>
+    <<set $TempleDuties.quarters_ready to true>>
+    <<if !$TempleDuties.enrolled and $temple_rank isnot 'priest'>>
+      <<lanSwitch 'An attendant looks over the clean bunks and nods. "Thank you. Jordan could use another pair of hands with the daily duties. Ask in the hall if you want to help."' '一名侍从看了看整理干净的床铺，点点头。“辛苦了。约旦那边的日常职务也缺人手。你要是愿意帮忙，可以去大厅问问。”'>><br><br>
+    <</if>>
   <</if>>
 <</widget>>
 
@@ -237,7 +257,11 @@
 :: Revelation Temple Office
 <<temple-duty-place>>
 <<if !_dutyOffice>>
-  <<lanSwitch 'The duties book is closed. The next clerk will take over during the day, outside Sunday mass.' '职务簿合上了。下一班侍从会在白天、周日弥撒以外的时段接待。'>><br><br>
+  <<if !_dutyAccess>>
+    <<lanSwitch 'The duties book is closed to you for now. There is still work to finish in the quarters upstairs.' '你暂时还不能接下这里的职务。楼上的宿舍还有活没干完。'>>
+  <<else>>
+    <<lanSwitch 'The duties book is closed. The next clerk will take over during the day, outside Sunday mass.' '职务簿合上了。下一班侍从会在白天、周日弥撒以外的时段接待。'>>
+  <</if>><br><br>
   <<getouticon>>
   <<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
   <</lanLink>>

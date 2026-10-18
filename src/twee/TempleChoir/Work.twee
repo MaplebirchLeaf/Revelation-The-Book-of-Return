@@ -103,6 +103,7 @@
   <</if>>
   <<switch $TempleChoir.shift.round>>
     <<case 0>>
+      <<robin-temple-mass-presence 'opening'>>
       <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. The singer beside you points to the first line.<<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。身旁的歌者指了指第一行。<</language>>
     <<case 1>>
       <<language>><<option 'EN'>>Jordan finishes the reading and turns towards the choir. The response begins softly, with a higher phrase halfway through. You have a moment to take your breath.<<option 'CN'>>约旦读完经文，转向唱诗班。答唱轻声起头，中段的音会抬高一些。你还有片刻可以换气。<</language>>
@@ -188,6 +189,7 @@
         信众已经离开。本次唱诗的 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> 津贴加款已登记。
     <</language>>
   <</if>><br><br>
+  <<robin-temple-mass-presence>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 <<else>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>

@@ -48,9 +48,9 @@
   <</if>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink ['Ask how Robin feels at the temple (0:30)', '问罗宾在神殿过得怎样 (0:30)'] 'RobinTemple Walk Faith'>><</lanLink>><<gdom>><<gconviction 'Robin'>><br>
-  <<loveicon 'hug'>><<lanLink ['Ask about the children at the orphanage (0:30)', '问起孤儿院的孩子 (0:30)'] 'RobinTemple Walk Home'>><</lanLink>><<glove>><<lstress>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask about the children at the orphanage (0:30)', '问起孤儿院的孩子 (0:30)'] 'RobinTemple Walk Home'>><</lanLink>><<glove>><<lstress>><br>
   <<if $robinromance is 1>>
-    <<loveicon 'kiss'>><<lanLink ["Take Robin's hand (0:30)", '牵住罗宾的手 (0:30)'] 'RobinTemple Walk Hand'>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
+    <<loveicon>><<lanLink ["Take Robin's hand (0:30)", '牵住罗宾的手 (0:30)'] 'RobinTemple Walk Hand'>><</lanLink>><<handholdingvirginitywarning>><<NPCvirginitywarning 'Robin' 'handholding'>><br>
   <</if>>
   <<if $RobinTemple.work_day is Time.days>>
     <<foresticon>><<lanLink ['Go to the forest with Robin (0:30)', '和罗宾去森林 (0:30)'] 'Robin Forest'>><<set $RobinTemple.walk_day to Time.days>><<set $daily.robin.walk to 1>><<pass 30>><</lanLink>><<glove>><br>
@@ -205,9 +205,9 @@
     <<takeHandholdingVirginity 'Robin' 'romantic'>>
     <<language>>
       <<option 'EN'>>
-        You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the shuttered shops without hurrying.
+        You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the <<if Time.hour lt 18>>open<<else>>shuttered<</if>> shops without hurrying.
       <<option 'CN'>>
-        你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过已经打烊的店铺。
+        你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过<<if Time.hour lt 18>>开着门的<<else>>已经打烊的<</if>>店铺。
     <</language>>
     <br><br>
     <<language>>

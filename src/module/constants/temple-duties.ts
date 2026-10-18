@@ -4,6 +4,7 @@ export type Ordinand = 'Robin' | 'Sydney';
 export interface TempleDutiesState {
   note: string;
   topic: string;
+  quarters_ready: boolean;
   enrolled: boolean;
   duties: number;
   duty_day: number;
@@ -53,6 +54,7 @@ export interface TempleDutiesState {
 export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
   note: '',
   topic: '',
+  quarters_ready: false,
   enrolled: false,
   duties: 0,
   duty_day: -1,

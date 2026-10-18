@@ -1,3 +1,41 @@
+:: RobinTemple Quarters Widgets [widget]
+<!-- 共同行动完成后才结算；只清理原版宿舍，不改玩家身体或其它住处的污渍。 -->
+<<widget 'robin-temple-cleaning-link'>>
+  <<robin-temple-work-check>>
+  <<if _robinWork and $RobinTemple.work_day isnot Time.days and $temple_quarters lt 100
+    and $location is 'temple' and Time.dayState isnot 'night' and !pcAreArmsBound('both')
+    and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced
+    and !isPregnancyEnding()>>
+    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)']>>
+      <<robin-temple-work-check>>
+      <<if _robinWork and $RobinTemple.work_day isnot Time.days and $temple_quarters lt 100
+        and maplebirch.get('RobinTemple').free(60) and Time.dayState isnot 'night'
+        and !pcAreArmsBound('both') and !$possessed and !$replayScene and !$statFreeze
+        and !$nextPassage and !$eventforced and !isPregnancyEnding()>>
+        <<set _cleaningSource to $passage, _cleaningDay to Time.days>>
+        <<run maplebirch.get('RobinTemple').visit(60)>>
+        <<set _robinTempleWork to true>>
+        <<pass 60>>
+        <<unset _robinTempleWork>>
+        <<robin-temple-work-check>>
+        <<if _robinWork and $passage is _cleaningSource and $location is 'temple'
+          and Time.days is _cleaningDay and $RobinTemple.work_day isnot Time.days
+          and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced
+          and !pcAreArmsBound('both') and !isPregnancyEnding()>>
+          <!-- 原版每小时家务效率：3–9；共同打扫不叠加一份额外清洁度。 -->
+          <<set _cleaningSkill to currentSkillValue('housekeeping')>>
+          <<set $temple_quarters to Math.min(100, $temple_quarters + 3 + [200, 400, 600, 800, 1200, 1500].filter(value => value <= _cleaningSkill).length)>>
+          <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
+          <<set maplebirch.get('RobinTemple').faith += 3>>
+          <<grace 1>><<housekeeping 1 1000>><<npcincr Robin love 1>>
+          <<set $phase to 'robin-temple-cleaning'>>
+          <<goto 'RobinTemple Cleaning'>>
+        <</if>>
+      <</if>>
+    <</lanLink>><<ggrace>><<ghousekeeping>><<glove>><<ggconviction 'Robin'>><br>
+  <</if>>
+<</widget>>
+
 :: RobinTemple Corner
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
@@ -130,11 +168,8 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days and Time.hour lt 15 and maplebirch.get('RobinTemple').free(60)>>
-    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>>
-      <<run maplebirch.get('RobinTemple').visit(60)>>
-      <<pass 60>>
-    <</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon 'garden'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
+    <<robin-temple-cleaning-link>>
+    <<icon 'supplies.png'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
       <<run maplebirch.get('RobinTemple').visit(60)>>
       <<pass 60>>
     <</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
@@ -155,11 +190,8 @@
   <</language>>
   <br><br>
   <<if $RobinTemple.work_day isnot Time.days and Time.hour lt 19 and maplebirch.get('RobinTemple').free(60)>>
-    <<choreicon "sweep">><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'] 'RobinTemple Cleaning'>>
-      <<run maplebirch.get('RobinTemple').visit(60)>>
-      <<pass 60>>
-    <</lanLink>><<ggrace>><<glove>><<ggconviction 'Robin'>><br>
-    <<templeicon "garden">><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
+    <<robin-temple-cleaning-link>>
+    <<icon 'supplies.png'>><<lanLink ['Help Robin sort temple supplies (1:00)', '帮罗宾整理神殿物资 (1:00)'] 'RobinTemple Supplies'>>
       <<run maplebirch.get('RobinTemple').visit(60)>>
       <<pass 60>>
     <</lanLink>><<ggrace>><<gdom>><<ggconviction 'Robin'>><br>
@@ -173,7 +205,7 @@
   <<if $RobinTemple.stage is 'approved'>>
     <<templeicon 'altar'>><<lanLink ['Meet Jordan for the promise rite', '和罗宾去见约旦举行仪式'] 'RobinTemple Promise Rite'>><</lanLink>><br>
   <<else>>
-    <<loveicon 'hug'>><<lanLink ['Discuss a promise with Robin', '和罗宾谈谈承诺仪式'] 'RobinTemple Evaluation'>><</lanLink>><br>
+    <<socialiseicon 'ask'>><<lanLink ['Discuss a promise with Robin', '和罗宾谈谈承诺仪式'] 'RobinTemple Evaluation'>><</lanLink>><br>
   <</if>>
 <</if>>
 <<if _robinAtTemple and (maplebirch.get('RobinTemple').publicPromise is 'Robin'
@@ -204,10 +236,9 @@
 
 :: RobinTemple Cleaning
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<robin-temple-work-check>>
-<<if _robinWork and $RobinTemple.work_day isnot Time.days>>
-  <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-  <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
+<<if $phase is 'robin-temple-cleaning' and $RobinTemple.work_day is Time.days>>
+  <<unset $phase>>
+  <<ggconviction 'Robin'>>
   <<language>>
     <<option 'EN'>>
       You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
@@ -221,8 +252,8 @@
     <<option 'CN'>>
       离开前约旦来巡视。“谢谢你们两个。”
   <</language>>
-  <<grace 1>><<npcincr Robin love 1>><<ggrace>><<glove>>
-<<elseif !_robinWork>>
+  <<ggrace>><<ghousekeeping>><<glove>>
+<<elseif $RobinTemple.work_day isnot Time.days>>
   <<lanSwitch 'Robin is no longer available for the shift. The shared work remains unfinished.' '罗宾已经无法继续这班职务，共同工作还未完成。'>>
 <<else>>
   <<language>>

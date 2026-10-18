@@ -1,6 +1,7 @@
 :: RobinTemple Spear
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen>>
+<<if maplebirch.get('RobinTemple').canPray and $robinromance is 1
+  and $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen>>
   <<set $RobinTemple.spear_seen to true>>
   <<language>>
     <<option 'EN'>>
@@ -16,8 +17,14 @@
       罗宾说，约旦建议先去博物馆，那里只在周末开放。“可以去问温特，”<<he>>说，“回来以后，告诉我发生了什么。”
   <</language>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink ['Promise to tell Robin when you return', '答应回来告诉罗宾'] 'RobinTemple Spear Reassure'>><</lanLink>><br>
-  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to check your preparations', '请罗宾帮你检查准备'] 'RobinTemple Spear Prepare'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Promise to tell Robin when you return', '答应回来告诉罗宾'] 'RobinTemple Spear Reassure'>>
+    <<robin-temple-work-check>>
+    <<if _robinWork>><<npcincr Robin love 2>><<stress -2>><</if>>
+  <</lanLink>><<glove 'Robin'>><<lstress>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to check your preparations', '请罗宾帮你检查准备'] 'RobinTemple Spear Prepare'>>
+    <<robin-temple-work-check>>
+    <<if _robinWork>><<willpower 1>><<npcincr Robin dom 1>><</if>>
+  <</lanLink>><<gwillpower>><<gdom 'Robin'>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -33,11 +40,11 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
 <<language>>
   <<option 'EN'>>
-    "I will," you say. Robin folds the receipt back into its old creases and hands it to you. <<He>> stays with you until Jordan calls for the evening prayer.
+    "I will," you say. Robin nods and closes the schoolbook on <<his>> lap. "Be careful," <<he>> says.
   <<option 'CN'>>
-    “我会的。”你说。罗宾沿着旧折痕把收据折好，交给你。<<He>>一直陪着你，直到约旦召集晚祷。
+    “我会的。”你说。罗宾点了点头，把课本合好，放在膝上。“路上小心。”<<he>>说。
 <</language>>
-<<npcincr Robin love 2>><<stress -2>><<glove>><<lstress>><br><br>
+<<glove 'Robin'>><<lstress>><br><br>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Prepare
@@ -64,12 +71,13 @@
       罗宾帮你检查包里的食物和水。“离开博物馆后要去哪里，也告诉我一声，”<<he>>说，“这样你要是回来晚了，我就知道去哪里找你。”
   <</language>>
 <</if>>
-<<willpower 1>><<npcincr Robin dom 1>><br><br><<gwillpower>><<gdom>>
+<br><br><<gwillpower>><<gdom 'Robin'>>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Spear Return
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if !$RobinTemple.spear_return_seen>>
+<<if maplebirch.get('RobinTemple').canPray and $temple_spear_mission gte 2
+  and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
   <<set $RobinTemple.spear_return_seen to true>>
   <<language>>
     <<option 'EN'>>

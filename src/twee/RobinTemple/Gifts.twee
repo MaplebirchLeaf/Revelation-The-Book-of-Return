@@ -7,14 +7,42 @@
     你想把什么送给罗宾？
 <</language>>
 <br><br>
-<<food_gift_list>>
-<<if _food_gift_found is true>>
-  <<skinicon 'give'>><<lanLink ['Give the food to Robin (0:05)', '送给罗宾 (0:05)'] 'RobinTemple Gift'>><<pass 5>><<give_gift Robin>><</lanLink>><br>
+<<robin-temple-prayer-time 5>>
+<<if _robinPrayerTime and C.npc.Robin.trauma lt 40 and canGiftFood('Robin')>>
+  <<food_gift_list>>
+  <<if _food_gift_found is true>>
+    <<skinicon 'give'>><<lanLink ['Give the food to Robin (0:05)', '送给罗宾 (0:05)']>>
+      <<robin-temple-prayer-time 5>>
+      <<if _robinPrayerTime and C.npc.Robin.trauma lt 40 and canGiftFood('Robin')
+        and setup.foodstuff[$gift]?.category is 'dish' and $foodstuff[$gift]?.amount gte 1>>
+        <<set _giftSource to $passage, _giftDay to Time.days>>
+        <<pass 5>>
+        <<robin-temple-work-check>>
+        <<if _robinWork and $passage is _giftSource and Time.days is _giftDay
+          and C.npc.Robin.trauma lt 40 and canGiftFood('Robin') and $foodstuff[$gift]?.amount gte 1
+          and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced>>
+          <<give_gift Robin>>
+          <<npcincr Robin love `($gift is 'sticky_toffee_pudding' ? 3 : 1)`>>
+          <<if $gift is 'sticky_toffee_pudding'>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><</if>>
+          <<set $phase to 'robin-temple-gift'>>
+          <<goto 'RobinTemple Gift'>>
+        <</if>>
+      <</if>>
+    <</lanLink>><br>
+  <</if>>
+<<else>>
+  <<lanSwitch 'Robin cannot accept food now, or you have already given a gift today.' '罗宾现在不便接受食物，或是你今天已经送过一份了。'>><br><br>
 <</if>>
 <<getouticon>><<lanLink ['Reconsider', '重新考虑'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
+<<if $phase isnot 'robin-temple-gift' or $daily.giftedFood.Robin isnot $gift>>
+  <<lanSwitch 'This gift has already been given, or there is no food to share now.' '这份礼物已经送出，或是现在没有可分享的食物。'>><br><br>
+  <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
+  <<exit>>
+<</if>>
+<<unset $phase>>
 <!-- 沿用原版 Robin Gifts 的读取方式：$gift 是 setup.foodstuff 的键，而不是物品对象。 -->
 <<set _foodstuff to $gift ? setup.foodstuff[$gift] : undefined>>
 <<set _giftLabel to _foodstuff ? _foodstuff.name + (_foodstuff.food.handheld_gift ? ' gift' : '') : ''>>
@@ -33,7 +61,7 @@
     <<option 'CN'>>
       “贝利以前不让我吃这个，”<<he>>说，“你带来这个，我很高兴。”
   <</language>>
-  <<npcincr Robin love 3>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><<gglove>>
+  <<gglove 'Robin'>>
 <<elseif _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
     <<option 'EN'>>
@@ -41,7 +69,7 @@
     <<option 'CN'>>
       罗宾双手接过辣味食物。第一口下去，<<his>>的眼睛就湿了，但<<he>>没有放下。
   <</language>>
-  <<npcincr Robin love 1>><<glove>>
+  <<glove 'Robin'>>
 <<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>
   <<language>>
     <<option 'EN'>>
@@ -49,7 +77,7 @@
     <<option 'CN'>>
       罗宾看了看饮料，从口袋里摸出另一根吸管。“一起喝吗？”<<he>>问。
   <</language>>
-  <<npcincr Robin love 1>><<glove>>
+  <<glove 'Robin'>>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -57,11 +85,11 @@
     <<option 'CN'>>
       罗宾道了谢，把食物放在你们中间。“吃完我来洗盘子，”<<he>>说。
   <</language>>
-  <<npcincr Robin love 1>><<glove>>
+  <<glove 'Robin'>>
 <</if>>
 <br><br>
 <<if $gift is 'sticky_toffee_pudding'>>
-  <<socialiseicon 'ask'>><<lanLink ['Ask Robin for a taste', '问罗宾能不能尝一口'] 'RobinTemple Gift Pudding Ask'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin for a taste', '问罗宾能不能尝一口'] 'RobinTemple Gift Pudding Ask'>><<npcincr Robin dom 1>><</lanLink>><<gdom 'Robin'>><br>
   <<loveicon 'hug'>><<lanLink ['Let Robin finish the pudding', '看罗宾吃完'] 'RobinTemple Gift Pudding Watch'>><</lanLink>><br>
 <<else>>
   <<loveicon 'hug'>><<lanLink ['Share it with Robin', '与罗宾分享'] 'RobinTemple Gift Share'>><</lanLink>><br>
@@ -92,7 +120,7 @@
   <<option 'CN'>>
     “对不起，我忘了问你。”罗宾把盘子推过来。你们一起吃完布丁，<<he>>坚持要把盘子洗干净。
 <</language>>
-<<npcincr Robin dom -1>><<ldom>><br><br>
+<<gdom 'Robin'>><br><br>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Pudding Watch
@@ -103,10 +131,11 @@
   <<option 'CN'>>
     你看着罗宾吃完布丁。最后一口咽下后，<<he>>闭上眼笑了笑，随后才发现你还在看<<him>>。
 <</language>>
-<<npcincr Robin dom 1>><<gdom>><br><br>
+<br><br>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Share
+<<set _foodstuff to setup.foodstuff[$gift]>>
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
 <<if _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
@@ -131,10 +160,10 @@
   <</language>>
 <</if>>
 <br><br>
-<<if $gift is 'sticky_toffee_pudding'>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><</if>>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Gift Alone
+<<set _foodstuff to setup.foodstuff[$gift]>>
 <<set $outside to 0>><<set $location to 'temple'>><<effects>><<npc Robin>><<person1>>
 <<if _foodstuff and _foodstuff.food.tags.includes('spicy')>>
   <<language>>
@@ -153,9 +182,9 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Robin eats slowly, keeping you company while the last light fades from the windows. <<He>> thanks you again before taking the plate to the kitchen.
+      Robin eats slowly while you sit together. <<He>> thanks you again before taking the plate to the kitchen.
     <<option 'CN'>>
-      罗宾慢慢吃着，陪你坐到窗外最后一点天光消失。<<He>>再次道谢，随后把盘子送去厨房。
+      罗宾慢慢吃着，你在旁边陪<<him>>坐着。<<He>>再次道谢，随后把盘子送去厨房。
   <</language>>
 <</if>>
 <br><br>

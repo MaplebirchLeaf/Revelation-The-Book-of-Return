@@ -36,8 +36,8 @@
     <<set _candidateWilling to true>>
     <<if _candidateName is 'Robin'>>
       <<set _candidatePresent to Boolean(maplebirch.get('RobinTemple')?.available) and getRobinLocation() is 'temple'>>
-      <<set _candidateStanding to Boolean($RobinTemple?.monthly_checked)
-        and $RobinTemple.chastity_timer gt 0 and !$RobinTemple.punish
+      <<set _candidateStanding to Boolean(maplebirch.get('RobinTemple')?.member)
+        and !maplebirch.get('RobinTemple').examinationDue and !$RobinTemple.punish
         and C.npc.Robin.virginity.temple is true>>
       <<set _candidateWilling to maplebirch.get('RobinTemple')?.faith gte 20 and C.npc.Robin.trauma lt 60>>
     <<elseif _candidateName is 'Sydney'>>
@@ -166,7 +166,16 @@
         <<elseif !_candidatePresent>>
           <<lanSwitch 'Continue the preparation when your companion is at the temple and has time free from other duties.' '等同伴回到神殿，并且有空参加见习时，再继续准备。'>><br>
         <<elseif !_candidateStanding>>
-          <span class='lblue'><<lanSwitch 'Complete your companion’s outstanding temple examination or purification before applying for appointment.' '请先完成同伴尚未处理的神殿检查或净化，再来申请任职。'>></span><br>
+          <<if _ordinand is 'Robin' and !$RobinTemple.punish and !maplebirch.get('RobinTemple').examinationDue>>
+            <span class='lblue'><<lanSwitch 'Robin’s temple vow is broken. Resolve this with the temple before applying for appointment.' '罗宾的神殿誓言已被打破。请先处理誓言问题，再来申请任职。'>></span><br>
+          <<else>>
+            <span class='lblue'><<lanSwitch 'Complete your companion’s outstanding temple examination or purification before applying for appointment.' '请先完成同伴尚未处理的神殿检查或净化，再来申请任职。'>></span><br>
+          <</if>>
+          <<if _ordinand is 'Robin' and $RobinTemple.punish>>
+            <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
+          <<elseif _ordinand is 'Robin' and maplebirch.get('RobinTemple').examinationDue>>
+            <<templeicon 'altar'>><<lanLink ['Return to the hall for the examination', '返回大厅接受检查'] 'Temple'>><</lanLink>><br>
+          <</if>>
         <<elseif !_candidate.agreed>>
           <<socialiseicon 'ask'>>
           <<lanLink `['Ask ' + maplebirch.auto(_ordinand) + ' about becoming a priest', '问' + maplebirch.auto(_ordinand) + '愿不愿意成为司祭']` 'Revelation Temple Candidate Talk'>>

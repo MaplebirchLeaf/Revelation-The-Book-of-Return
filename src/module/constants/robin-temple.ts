@@ -72,6 +72,8 @@ export interface RobinTempleState {
   visit_override: { location: string; during: number[] } | null;
   /** 自宅谈话的实际出发住处，返回时重新核对同住资格。 */
   talk_home: string | null;
+  /** 弥撒入场时的实际同场者与每日一次的无耗时回应，不计共同职务。 */
+  mass: { day: number; robin: boolean; sydney: boolean; replied: boolean };
   service: number;
   grace: number;
   pendant: boolean;
@@ -137,6 +139,7 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
   prepared_day: -1,
   visit_override: null,
   talk_home: null,
+  mass: { day: -1, robin: false, sydney: false, replied: false },
   service: 0,
   grace: 0,
   pendant: false,
