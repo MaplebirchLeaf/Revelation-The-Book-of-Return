@@ -188,7 +188,7 @@
           <br><br>
           When your fingers leave greasy marks on a cup, your parent gives you the cloth again. You rub one mark away. Sydney puts another beside it. The adults let you laugh for a little before telling you both to stop.
         <<option 'CN'>>
-          <<if $LostLamb.marks.includes('helped')>>杯子被你擦了两遍。摆好后，父母给你和悉尼各一条酥皮。你的大些。悉尼发现了，你赶在<<nnpc_he 'Sydney'>>开口前，掰下一角放进<<nnpc_his 'Sydney'>>的碟里。<<else>>你趁大人没看，咬了一口。悉尼盯着你嚼。父母立刻就发现缺掉的那一角。你说是刀弄的。悉尼开始笑，你也绷不住了。最后杯子还是得由你来拿。<</if>>
+          <<if $LostLamb.marks.includes('helped')>>杯子被你擦了两遍。摆好后，父母给你和悉尼各一条酥皮。你的大些。悉尼发现了，你赶在<<nnpc_he 'Sydney'>>开口前，掰下一角放进<<nnpc_his 'Sydney'>>碟里。<<else>>你趁大人没看，咬了一口。悉尼盯着你嚼。父母立刻就发现缺掉的那一角。你说是刀弄的。悉尼开始笑，你也绷不住了。最后杯子还是得由你来拿。<</if>>
           <br><br>
           另一位家长腋下夹着纸走进来。炉边的人说：“别放凉了。给你留了喜欢的那一角。”
           <br><br>
@@ -207,7 +207,7 @@
           <br><br>
           When you reach too far, your parent catches the cup before your sleeve can knock it over. A thumb remains against the handle while you pull your arm back. Then the cup is yours again. You drink and look at Sydney, wondering how much longer supper can possibly take.
         <<option 'CN'>>
-          桌边坐得下所有人，只是为了让大人从后面经过，悉尼得把椅子挪到你旁边。悉尼的家长问你们有没有添麻烦。你说没有，悉尼却同时说“只有一点点”，你在桌下踢了<<nnpc_his 'Sydney'>>的鞋。
+          桌边坐得下所有人，只是为了让大人从后面经过，悉尼得把椅子挪到你旁边。悉尼的家长问你们有没有添麻烦。你说没有，悉尼却同时说“只有一点点”，你在桌下踢了<<nnpc_his 'Sydney'>>鞋。
           <br><br>
           大人说起送错地方的东西，又提到镇上共同认识的人。那家商店你知道，却没听懂故事哪里好笑。悉尼用勺柄搅饮料，你跟着学，直到父母默默把两把勺子都转了过来。
           <br><br>

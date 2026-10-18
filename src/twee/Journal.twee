@@ -367,7 +367,7 @@
               <</if>>
               accounts.
             <<option 'CN'>>
-              神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<nnpc_his 'Robin'>>的经营收入
+              神殿事务为罗宾带来每周 <span class='gold'>£<<= $RobinTemple.grace * 10>></span> 的津贴，计入<<nnpc_his 'Robin'>>经营收入
               <<if !maplebirch.get('Finance')?.orphanage.robinFree and !$RobinExpansion?.bailey_defeated>>
                 与房租结算
               <</if>>

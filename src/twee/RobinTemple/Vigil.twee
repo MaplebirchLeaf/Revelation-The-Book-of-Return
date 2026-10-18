@@ -128,7 +128,7 @@
         <<option 'EN'>>
           Robin stumbles towards you. You catch <<nnpc_him 'Robin'>>, taking <<nnpc_his 'Robin'>> hand to steady <<nnpc_him 'Robin'>>. <<nnpc_He 'Robin'>> holds on tightly.
         <<option 'CN'>>
-          罗宾跌跌撞撞地走到你身边。你接住<<nnpc_him 'Robin'>>，握着<<nnpc_his 'Robin'>>的手，扶<<nnpc_him 'Robin'>>站稳。<<nnpc_He 'Robin'>>紧紧回握住你。
+          罗宾跌跌撞撞地走到你身边。你接住<<nnpc_him 'Robin'>>，握着<<nnpc_his 'Robin'>>手，扶<<nnpc_him 'Robin'>>站稳。<<nnpc_He 'Robin'>>紧紧回握住你。
       <</language>>
     <<else>>
       <<language>>

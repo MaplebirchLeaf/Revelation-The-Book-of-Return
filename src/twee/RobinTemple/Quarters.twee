@@ -104,7 +104,7 @@
     <<option 'EN'>>
       Robin is away. The work list and <<his>> schoolbook have been left on the table.
     <<option 'CN'>>
-      罗宾现在不在。工作表和<<his>>的课本还放在桌上。
+      罗宾现在不在。工作表和<<his>>课本还放在桌上。
   <</language>>
   <br><br>
   <<socialiseicon 'ask'>><<lanLink ['Ask the attendant where Robin went', '问值班侍从罗宾去了哪里'] 'RobinTemple Whereabouts'>><</lanLink>><br>
@@ -114,7 +114,7 @@
     <<option 'EN'>>
       Robin is taking part in the trial of anguish. <<His>> belongings have been left on the table.
     <<option 'CN'>>
-      罗宾正在参加苦难审判。<<His>>的物品留在桌上。
+      罗宾正在参加苦难审判。<<His>>物品留在桌上。
   <</language>>
 <<elseif maplebirch.get('RobinTemple').bunk
   and (Time.weekDay is 7 and Time.hour gte 21 or Time.weekDay is 1 and Time.hour lt 7)>>
@@ -122,7 +122,7 @@
     <<option 'EN'>>
       Robin has turned in for the night. <<His>> schoolbook lies closed beside the bunk.
     <<option 'CN'>>
-      罗宾今晚睡在这里。<<His>>的课本合好，放在床铺旁。
+      罗宾今晚睡在这里。<<His>>课本合好，放在床铺旁。
   <</language>>
 <<elseif Time.weekDay is 1 and Time.hour is 11>>
   <<language>>
@@ -156,7 +156,7 @@
       <<option 'EN'>>
         Robin is helping in the hall. You hear <<his>> voice when the doors open.
       <<option 'CN'>>
-        罗宾在大厅帮忙。门一开，你就听见了<<his>>的声音。
+        罗宾在大厅帮忙。门一开，你就听见了<<his>>声音。
     <</language>>
   <</if>>
 <<elseif !Time.schoolDay and !Time.isWeekEnd() and Time.hour gte 13 and Time.hour lt 16>>

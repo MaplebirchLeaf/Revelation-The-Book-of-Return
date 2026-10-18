@@ -52,7 +52,7 @@
     <<option 'EN'>>
       "Then I must assume the worst," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      “那我只能设想最坏的情况了，”约旦看着<<his>>的脚尖说道。
+      “那我只能设想最坏的情况了，”约旦看着<<his>>脚尖说道。
   <</language>>
   <br><br>
   <<robin-temple-purification-summons true>>

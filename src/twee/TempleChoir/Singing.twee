@@ -36,7 +36,7 @@
         <<option 'EN'>>
           You wait for a break in <<bhis>> song, then answer. The <<beasttype>> turns towards you. <<if $birdBask is 1>>You feel <<bhis>> chest stir against you as <<bhe>> takes another breath.<<else>><<bHe>> draws closer along the perch.<</if>> This time, you begin together. <span class='green'>Your voices hold the same note before parting again.</span>
         <<option 'CN'>>
-          你等<<bhis>>的歌声稍停，再开口应和。<<beasttype>>转向你。<<if $birdBask is 1>>你贴着<<bhis>>的胸膛，感觉到<<bhe>>再次吸气。<<else>><<bHe>>沿着栖木靠近了些。<</if>>这一回，你们同时开口，<span class='green'>两个声音在同一个音上相合，又各自散开。</span>
+          你等<<bhis>>歌声稍停，再开口应和。<<beasttype>>转向你。<<if $birdBask is 1>>你贴着<<bhis>>胸膛，感觉到<<bhe>>再次吸气。<<else>><<bHe>>沿着栖木靠近了些。<</if>>这一回，你们同时开口，<span class='green'>两个声音在同一个音上相合，又各自散开。</span>
       <</language>>
     <<else>>
       <<language>>

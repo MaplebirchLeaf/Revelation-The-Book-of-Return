@@ -67,7 +67,7 @@
     <<option 'EN'>>
       Robin accepts the spicy food with both hands. After the first mouthful, <<his>> eyes water, but <<he>> does not put it down.
     <<option 'CN'>>
-      罗宾双手接过辣味食物。第一口下去，<<his>>的眼睛就湿了，但<<he>>没有放下。
+      罗宾双手接过辣味食物。第一口下去，<<his>>眼睛就湿了，但<<he>>没有放下。
   <</language>>
   <<glove 'Robin'>>
 <<elseif _foodstuff and _foodstuff.food.tags.includes('drink')>>

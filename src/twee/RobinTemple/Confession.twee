@@ -46,7 +46,7 @@
     <</if>>
   <<else>>
     <<language>>
-      <<option 'EN'>>You get an unobstructed view of <<his>> <<robin-temple-punishment-genitals 'Robin'>>.<<option 'CN'>>你可以清楚地看到<<his>>的<<robin-temple-punishment-genitals 'Robin'>>。
+      <<option 'EN'>>You get an unobstructed view of <<his>> <<robin-temple-punishment-genitals 'Robin'>>.<<option 'CN'>>你可以清楚地看到<<his>><<robin-temple-punishment-genitals 'Robin'>>。
     <</language>>
   <</if>>
 <</widget>>
@@ -94,7 +94,7 @@
             <br><br>
             <<He>>沉默了。你鼓励<<him>>继续。
             <br><br>
-            “我爱人和我。我们进行了承诺仪式，但是……我们今天已经做过亲密的事了。这感觉很罪恶，可我仍在渴望<<pher>>的抚摸。”
+            “我爱人和我。我们进行了承诺仪式，但是……我们今天已经做过亲密的事了。这感觉很罪恶，可我仍在渴望<<pher>>抚摸。”
         <</language>>
         <<robin-temple-confession-options>>
       <</addinlineevent>>
@@ -217,7 +217,7 @@
               <br><br>
               “我……我竟然一直在想这种事。”<<he>>深吸一口气，“我和我的爱人缔结了契约。正因为如此，我们才能亲密无间。但如果我们中的任何一方违背誓言与别人结合，我们就会受到惩罚。至少我们会一起受到惩罚，不是吗？但是……”
               <br><br>
-              <<his>>的声音带着一丝哽咽。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我心爱的人被侵犯了怎么办？”<<he>>问道。“请原谅我这么说，<<sister>>，但为此惩罚<<phim>>似乎太不公平了。”话语像洪水般涌出。你感觉到<<his>>的疑虑紧贴着你的嘴唇，逼迫着你做出回应。<<stress 3>><<gstress>>
+              <<his>>声音带着一丝哽咽。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我心爱的人被侵犯了怎么办？”<<he>>问道。“请原谅我这么说，<<sister>>，但为此惩罚<<phim>>似乎太不公平了。”话语像洪水般涌出。你感觉到<<his>>疑虑紧贴着你的嘴唇，逼迫着你做出回应。<<stress 3>><<gstress>>
               <br><br>
               “又不是<<pshe>>求着发生这种事。确实，也许<<pshe>>不该把自己置于可能遭遇袭击的境地，但即使<<pshe>>无可指摘，也还是发生了呢？为此惩罚<<phim>>是公正合理的吗？为什么我也要跟<<phim>>一起受罚？”<<He>>停顿了一下，“哦，听起来好自私。我想我也得为此请求宽恕。”
             <</if>>
@@ -246,7 +246,7 @@
             <br><br>
             “我曾向我最敬佩的人倾诉我的烦恼，因为我欠下了很多债务。但<<pshe>>替我把债务承担了下来，我现在感觉很内疚，<<sister>>。”
             <br><br>
-            门外<<his>>的声音很轻。“我不知道该怎么做。我心里始终有个结。你能宽恕我吗，<<sister>>？”
+            门外<<his>>声音很轻。“我不知道该怎么做。我心里始终有个结。你能宽恕我吗，<<sister>>？”
         <</language>>
         <<robin-temple-confession-options>>
       <</addinlineevent>>
@@ -547,7 +547,7 @@
         <<else>>
           “我……我刚才说我有对象了，你不能这么对我，<<sister>>。如果你执意如此，我想我会检举你。”
         <</if>>
-        <<his>>声音中的愤怒暴露了<<his>>的真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<grace -2>><<lgrace>>
+        <<his>>声音中的愤怒暴露了<<his>>真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<grace -2>><<lgrace>>
         <br><br>
         <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
         <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
@@ -764,7 +764,7 @@
       <br><br>
       <<He>>在你旁边的长凳上坐下。
       <<if C.npc.Robin.lust gte 50>>
-        你将一只手放在<<his>>的胸前，温柔地将<<him>>推倒。<<He>>忍不住喘出一口气，抱住了你。
+        你将一只手放在<<his>>胸前，温柔地将<<him>>推倒。<<He>>忍不住喘出一口气，抱住了你。
         <<robin-temple-confession-lewd>>
         <br><br>
         <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
@@ -774,7 +774,7 @@
         <<seductioncheck>>
         <<seductionskilluptext>>
         <<seductionskilluse>>
-        你把手放在<<his>>的胸部，温柔地让<<him>>躺了下来。
+        你把手放在<<his>>胸部，温柔地让<<him>>躺了下来。
         <<if $seductionrating gte $seductionrequired>>
           <span class="green"><<He>>重重吐出一口气，张开双臂拥住了你。</span>
           <<robin-temple-confession-lewd>>
@@ -783,20 +783,20 @@
         <<else>>
           “等，等等！我……我真不知道该怎么办……”<<He>>微微颤抖着。
           <br>
-          照顾到<<his>>的犹豫，你决定放慢节奏。
-          你开始隔着<<his>>的内裤<<handtext>>爱抚<<his>>的<<robin-temple-punishment-genitals 'Robin'>><<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>，<span class="lewd">但你感觉到有什么东西阻碍了你</span><</if>>。<<He>>看起来非常的紧张，但没有试图去阻止你。<<He>>温柔地放开了你的手，然后把双腿分开，以便你更容易地接触。你脱下了<<his>>的内裤。
+          照顾到<<his>>犹豫，你决定放慢节奏。
+          你开始隔着<<his>>内裤<<handtext>>爱抚<<his>><<robin-temple-punishment-genitals 'Robin'>><<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>，<span class="lewd">但你感觉到有什么东西阻碍了你</span><</if>>。<<He>>看起来非常的紧张，但没有试图去阻止你。<<He>>温柔地放开了你的手，然后把双腿分开，以便你更容易地接触。你脱下了<<his>>内裤。
           <br><br>
-          <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>的贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>的脖子上轻吻，引得<<he>>发出呻吟。
+          <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>脖子上轻吻，引得<<he>>发出呻吟。
           <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
             然而，由于有贞操带遮挡，你无法让<<him>>达到高潮。你只能选择继续挑逗<<him>>。
           <<else>>
             再也没有能阻挡你的东西，你
             <<if C.npc.Robin.penis isnot 'none'>>
-              抓住<<his>>的阴茎，然后用拇指开始摩擦龟头。
+              抓住<<his>>阴茎，然后用拇指开始摩擦龟头。
             <<else>>
               慢慢地插入一根手指。<<Hes>>出奇的湿润，手指很轻松地进去了。
             <</if>>
-            <<him>>没有坚持太久。在你让<<him>>达到高潮时，<<He>>用一只手紧紧抓住你，而另一只手捂住<<his>>的嘴巴来压制住呻吟。
+            <<him>>没有坚持太久。在你让<<him>>达到高潮时，<<He>>用一只手紧紧抓住你，而另一只手捂住<<his>>嘴巴来压制住呻吟。
           <</if>>
           <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
           <br><br>

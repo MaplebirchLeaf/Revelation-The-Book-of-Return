@@ -16,6 +16,7 @@
     <<lanLink _args[0]>>
       <<print _talkContents>>
       <<set $RobinTemple.talk_home to null>>
+      <<if $nextPassage or $nextPassageCheck>><<exit>><</if>>
       <<if _talkHome and maplebirch.get('Finance')?.realEstate.visit(_talkHome)>>
         <<goto 'Deadwood Reblooms Property Home'>>
       <<else>>

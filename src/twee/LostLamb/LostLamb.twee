@@ -17,7 +17,7 @@
           <<if $LostLamb.talkVow is 'offered'>>你进来时，凯拉尔望了望门。“谁也别想把你带走。”<<nnpc_he 'Kylar'>>说着，抓紧了椅背。<br><<elseif $LostLamb.talkVow is 'refused'>>你进来时，凯拉尔暂停了游戏。“你回来了。”<<nnpc_He 'Kylar'>>朝你身后看了一眼，才放下手柄。<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔稍稍转动电脑椅，让你和门口都留在视线里。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔看了一眼你先前坐过的地方，把一只枕头挪到旁边。<<else>>凯拉尔没有调高电脑的音量。如果你还想坐一会儿，枕头旁边有空位。<</if>>
         <<elseif $LostLamb.talk is 'night'>>
-          <<if $LostLamb.talkVow is 'sealed'>>凯拉尔先看你的嘴唇，才看向你的脸。“别再说那个人的话。”<<nnpc_He 'Kylar'>>调高了电脑音量。<br><<elseif $LostLamb.talkVow is 'broken'>>你进来时，凯拉尔调低了音量。“再梦到的话，可以告诉我。”<<nnpc_He 'Kylar'>>的眼睛仍盯着屏幕。<br><</if>>
+          <<if $LostLamb.talkVow is 'sealed'>>凯拉尔先看你的嘴唇，才看向你的脸。“别再说那个人的话。”<<nnpc_He 'Kylar'>>调高了电脑音量。<br><<elseif $LostLamb.talkVow is 'broken'>>你进来时，凯拉尔调低了音量。“再梦到的话，可以告诉我。”<<nnpc_His 'Kylar'>>眼睛仍盯着屏幕。<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>你经过床边时，凯拉尔抬头看你，又看向房门。<<nnpc_He 'Kylar'>>没有让你再讲一次那个梦。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>你经过床边时，凯拉尔的目光跟着你。“你睡得还好吗？”听到你的回答后，<<nnpc_he 'Kylar'>>才重新看向屏幕。<<else>>凯拉尔瞥向床边，张了张嘴，最后什么也没问，转回去继续游戏。<</if>>
         <<else>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔看着你进来。<<nnpc_He 'Kylar'>>刚要转动椅子，又停住了，床边的空位没有被占去。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔抬起头。“这次想让我陪着吗？”你还在考虑，<<nnpc_he 'Kylar'>>便留在电脑旁等着。<<else>>凯拉尔对你轻轻点头，仍坐在电脑前，让你自己挑个地方坐下。<</if>>
@@ -170,14 +170,14 @@
     <<if Time.hour gte 18 and maplebirch.get('LostLamb')?.kylarHere>>
       凯拉尔从电脑前转过头。
       <<if maplebirch.get('LostLamb').reaction is 'guarded'>>
-        “你、你刚才在喊谁？”<<nnpc_His 'Kylar'>>的目光移向门口，又看回你的嘴唇。你说自己做了个梦。“没人进来。”<<nnpc_he 'Kylar'>>说着，转过椅子，让房门留在<<nnpc_him 'Kylar'>>身后。
+        “你、你刚才在喊谁？”<<nnpc_His 'Kylar'>>目光移向门口，又看回你的嘴唇。你说自己做了个梦。“没人进来。”<<nnpc_he 'Kylar'>>说着，转过椅子，让房门留在<<nnpc_him 'Kylar'>>身后。
       <<elseif maplebirch.get('LostLamb').reaction is 'close'>>
-        “你刚才在说话。”<<nnpc_He 'Kylar'>>来到床边。你想掀开被子，<<nnpc_he 'Kylar'>>便抓住了它。“要走了吗？”你说自己才刚醒。<<nnpc_His 'Kylar'>>的手指仍攥着布料。“哦。那……再待一会儿吧。”
+        “你刚才在说话。”<<nnpc_He 'Kylar'>>来到床边。你想掀开被子，<<nnpc_he 'Kylar'>>便抓住了它。“要走了吗？”你说自己才刚醒。<<nnpc_His 'Kylar'>>手指仍攥着布料。“哦。那……再待一会儿吧。”
       <<else>>
         “做噩梦了？”<<nnpc_He 'Kylar'>>调低电脑的声音。你点头。凯拉尔看了看枕头，又瞥向床底。“你可以坐这里。”<<nnpc_He 'Kylar'>>把椅子推近，在床与电脑之间给你留下位置。
       <</if>>
     <<elseif Time.hour lte 6 and C.npc.Kylar.state is 'active'>>
-      凯拉尔在被子下动了一下。你停住，等<<nnpc_his 'Kylar'>>的呼吸重新平稳。你不知道<<nnpc_he 'Kylar'>>有没有听见。
+      凯拉尔在被子下动了一下。你停住，等<<nnpc_his 'Kylar'>>呼吸重新平稳。你不知道<<nnpc_he 'Kylar'>>有没有听见。
     <<else>>
       椅子那边没有人应答。你坐起来，听过屋里的动静才站起身。
     <</if>>
@@ -224,7 +224,7 @@
           Kylar watches the game, occasionally glancing your way. When you shift on the mattress, <<nnpc_he 'Kylar'>> turns towards you. "You will come back?" You have not said anything about leaving.
         <<option 'CN'>>
           <<if $LostLamb.talkVow is 'offered'>>
-            “没人能把我带走。”你说。凯拉尔怔住，随即来到你身旁，快得让椅子撞上桌沿。“真的？就算他们来找你？”<<nnpc_He 'Kylar'>>握住你的手，等你再回答一遍。你点头，<<nnpc_his 'Kylar'>>的肩膀才放松。“那我会让他们离远点。”<<nnpc_His 'Kylar'>>的手越握越紧，你不得不让<<nnpc_him 'Kylar'>>轻一点。
+            “没人能把我带走。”你说。凯拉尔怔住，随即来到你身旁，快得让椅子撞上桌沿。“真的？就算他们来找你？”<<nnpc_He 'Kylar'>>握住你的手，等你再回答一遍。你点头，<<nnpc_his 'Kylar'>>肩膀才放松。“那我会让他们离远点。”<<nnpc_His 'Kylar'>>手越握越紧，你不得不让<<nnpc_him 'Kylar'>>轻一点。
           <<else>>
             你在凯拉尔旁边坐下，请<<nnpc_him 'Kylar'>>讲讲电脑上的游戏。<<nnpc_He 'Kylar'>>说得太快，停了一下，又重新开始。<<if maplebirch.get('LostLamb').reaction is 'guarded'>>“就一会儿？”<<nnpc_He 'Kylar'>>瞥向房门。你重复说，现在想坐在这里。<<nnpc_He 'Kylar'>>将椅子挪近。<<else>>“下次可以一起玩。”说这句话时，<<nnpc_he 'Kylar'>>一直望着你，没有看屏幕。<</if>>
           <</if>>

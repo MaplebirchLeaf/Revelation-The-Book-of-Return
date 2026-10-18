@@ -54,7 +54,7 @@
     <<option 'EN'>>
       Robin is finishing the afternoon work list at the long table. The other initiates have gone to their duties. The space around <<his>> bunk is empty.
     <<option 'CN'>>
-      罗宾在长桌旁核对下午的工作表。其他见习教徒都去做各自的事了，<<his>>的床铺周围没有人。
+      罗宾在长桌旁核对下午的工作表。其他见习教徒都去做各自的事了，<<his>>床铺周围没有人。
   <</language>>
   <<if $RobinTemple.templePromised is 'Robin' and $robinromance is 1
     and !$RobinTemple.punish and C.npc.Robin.trauma lt 80
@@ -259,7 +259,7 @@
     <<option 'EN'>>
       You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
     <<option 'CN'>>
-      你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
+      你在毯子下给罗宾挪出位置。过了一会儿，<<his>>呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
   <</language>>
   <<lstress>><<glove 'Robin'>><br><br>
 <<else>>

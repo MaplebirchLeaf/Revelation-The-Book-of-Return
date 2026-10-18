@@ -32,7 +32,7 @@ class TempleChoir extends Module {
   }
 
   public begin(): boolean {
-    if (!this.service) return false;
+    if (!this.service || V.location !== 'temple' || V.combat || V.possessed || V.nextPassage || V.nextPassageCheck || V.replayScene || V.statFreeze) return false;
     V.TempleChoir.serviceDay = Time.days;
     V.daily.massAttended = 1;
     V.TempleChoir.shift = { round: 0, score: 0, result: '', bonus: 0, done: false };
@@ -40,7 +40,19 @@ class TempleChoir extends Module {
   }
 
   public get active(): boolean {
-    return this.member && V.TempleChoir.joined && V.location === 'temple' && V.TempleChoir.serviceDay === Time.days && Boolean(V.TempleChoir.shift && !V.TempleChoir.shift.done);
+    return (
+      this.member &&
+      V.TempleChoir.joined &&
+      V.location === 'temple' &&
+      V.TempleChoir.serviceDay === Time.days &&
+      !V.combat &&
+      !V.possessed &&
+      !V.nextPassage &&
+      !V.nextPassageCheck &&
+      !V.replayScene &&
+      !V.statFreeze &&
+      Boolean(V.TempleChoir.shift && !V.TempleChoir.shift.done)
+    );
   }
 
   /** 在链接中结算一次，再进入下一段正文，避免重访页面重复工作。 */

@@ -452,7 +452,7 @@
       <<option 'EN'>>
         Robin looks at the place where <<nnpc_his 'Robin'>> name has been written. "Priest," <<nnpc_he 'Robin'>> murmurs, as if checking the word. <<nnpc_He 'Robin'>> keeps a hand close to yours beneath the blanket. "Could you sit with me a little longer?"
       <<option 'CN'>>
-        罗宾看着写下自己名字的地方。“司祭。”<<nnpc_he 'Robin'>>轻声念道，像是在核对这个词。毯子下面，<<nnpc_he 'Robin'>>的手留在你的手旁。“能再陪我坐一会儿吗？”
+        罗宾看着写下自己名字的地方。“司祭。”<<nnpc_he 'Robin'>>轻声念道，像是在核对这个词。毯子下面，<<nnpc_he 'Robin'>>把手留在你的手旁。“能再陪我坐一会儿吗？”
     <</language>>
   <<elseif _ordinand is 'Sydney'>>
     <br><br>

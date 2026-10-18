@@ -15,7 +15,7 @@
     <<set _performance to $TempleChoir.performance>>
     <<set _performanceVenue to _args[0] ?? _performance?.venue>>
     <<set _performanceSafe to Boolean(maplebirch.get('TempleChoir')) and !$combat and !$possessed
-      and !$nextPassageCheck and !$replayScene and !$statFreeze and !$gag and !$controlled
+      and !$nextPassage and !$nextPassageCheck and !$replayScene and !$statFreeze and !$gag and !$controlled
       and $stress lt $stressmax and $exposed lte 0 and !isPregnancyEnding()>>
     <<switch _performanceVenue>>
       <<case 'pub'>>
@@ -175,7 +175,7 @@
         <<else>>
           <<set _performance.done to true>>
         <</if>>
-        <<if $passage is _songSource and !$nextPassageCheck>>
+        <<if $passage is _songSource and !$nextPassage and !$nextPassageCheck>>
           <<if _performance.done and _performance.venue is 'banquet'>>
             <<if _choirHost.state.stage is 'farewell'>><<goto 'Deadwood Reblooms Property Banquet Farewell'>><</if>>
           <<else>>

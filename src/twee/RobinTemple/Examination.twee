@@ -186,9 +186,9 @@
       <</if>>
       <<if $player.penisExist>>
         <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
-          <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，轻轻地摆弄着。<<He>>一边检查着它，一边在上面涂抹灰色粉末。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>的审视下变得更硬了。
+          <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，轻轻地摆弄着。<<He>>一边检查着它，一边在上面涂抹灰色粉末。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>审视下变得更硬了。
         <<else>>
-          约旦用两根食指夹住你的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了你的阴茎上，用以细致地检查包皮的状况。你试图分散自己的注意力，但阴茎还是在<<his>>的抚摸下慢慢挺立。
+          约旦用两根食指夹住你的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了你的阴茎上，用以细致地检查包皮的状况。你试图分散自己的注意力，但阴茎还是在<<his>>抚摸下慢慢挺立。
         <</if>>
       <</if>>
       <<if $player.vaginaExist>>
@@ -199,12 +199,12 @@
           随后<<He>>用<<his>>双手的拇指轻触着你的阴部，温柔地打开了你的
           <<if setup.bodyliquid.combined("vagina") gte 2>>
             <<if setup.bodyliquid.combined("vagina") gte 6>>
-              阴唇。淫液喷涌而出，溅了约旦一脸，沿着<<his>>的双手流下。
+              阴唇。淫液喷涌而出，溅了约旦一脸，沿着<<his>>双手流下。
               <<He>>震惊地跌坐在地，慌忙擦掉了眼中和嘴里的液体。
               <br>
               <<He>>看向你。
             <<elseif setup.bodyliquid.combined("vagina") gte 4>>
-              阴唇。一股淫液涌出，滴在了约旦的手上，很快浸没到<<his>>的袖子里。
+              阴唇。一股淫液涌出，滴在了约旦的手上，很快浸没到<<his>>袖子里。
               <<He>>惊叫地向后跳去，惊恐地甩着双手。
               <br>
             <<else>>
@@ -291,7 +291,7 @@
           <<if $player.vaginaExist>>
             <<He>>给罗宾做着同样的工作。
           <<else>>
-            <<He>>用拇指轻触罗宾的阴部，温柔地打开了<<person2>><<his>>的阴唇。
+            <<He>>用拇指轻触罗宾的阴部，温柔地打开了<<person2>><<his>>阴唇。
           <</if>>
 
           <<person1>><<He>>在入口处涂抹上了灰色的粉末。
@@ -354,10 +354,10 @@
             <<if $player.vaginaExist>>
               <<He>>给悉尼做着同样的工作。
             <<else>>
-              <<He>>用拇指轻触悉尼的阴部，温柔地打开了<<person3>><<his>>的阴唇。
+              <<He>>用拇指轻触悉尼的阴部，温柔地打开了<<person3>><<his>>阴唇。
             <</if>>
             <<if $daily.sydney.sydneyCum>>
-              淫液如细流淌下<<person3>><<his>>的双腿，约旦吃惊地抽出双手。<<person1>>
+              淫液如细流淌下<<person3>><<his>>双腿，约旦吃惊地抽出双手。<<person1>>
               <br>
               “那可不是个好的迹象。”<<person1>><<he>>喃喃道。悉尼迅速捂住<<person3>><<his>>绯红的脸颊。深知这是你的功劳，你感到十分得意。
               <br><br>
@@ -433,7 +433,7 @@
         <span class='red'>It remains inert.</span> Jordan frowns.
         "I'm sorry, but one of you is spoilt." <<person1>><<His>> voice shakes slightly, you're not sure if you imagined it.
       <<option 'CN'>>
-        <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们中有人已经不再纯洁了。”<<person1>><<His>>的声音有些颤抖，你不确定自己是否听错了。
+        <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们中有人已经不再纯洁了。”<<person1>><<His>>声音有些颤抖，你不确定自己是否听错了。
     <</language>>
     <br><br>
     <<robin-temple-purification-summons false>>
@@ -447,7 +447,7 @@
     <<option 'EN'>>
       "Then I must assume the worst," Jordan says, looking at <<his>> feet.
     <<option 'CN'>>
-      “那我只能设想最坏的情况了，”约旦看着<<his>>的脚尖说道。
+      “那我只能设想最坏的情况了，”约旦看着<<his>>脚尖说道。
   <</language>>
   <br><br>
   <<robin-temple-purification-summons false>>

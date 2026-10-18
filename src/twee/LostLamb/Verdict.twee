@@ -31,7 +31,7 @@
           <br><br>
           From the kitchen, one of your parents calls your name. The voice sounds impatient, which is almost a relief. You know what to do with impatience. You can say you are coming and go in. You keep your coat against your chest for a moment longer. Beneath it, the hook you left free is only a hook. There is no hidden message written on it. You want to check anyway. When you turn to leave, the window catches the stairs behind you. Someone appears to be standing on the landing, though the stairs are empty when you look directly.
         <<option 'CN'>>
-          悉尼的挂钩空着。你知道这是<<nnpc_his 'Sydney'>>的，因为以前会把自己的外套挪开。明明还有别的挂钩，你偏要给<<nnpc_him 'Sydney'>>留这一只。木头上有个浅色的小长方形，像刚揭掉一张标签。你却不记得那里贴过标签。
+          悉尼的挂钩空着。你知道这是<<nnpc_his 'Sydney'>>，因为以前会把自己的外套挪开。明明还有别的挂钩，你偏要给<<nnpc_him 'Sydney'>>留这一只。木头上有个浅色的小长方形，像刚揭掉一张标签。你却不记得那里贴过标签。
           <br><br>
           你的外套掉了，一只袖子横在地垫上，伸向门口。你捡起来，衬里发出干脆的一小声。不是骨头断了。还没有任何理由想到骨头，你已经这样告诉自己。只是口袋里的纸，被折成了厚厚的小方块。你暂时没有打开。
           <br><br>
