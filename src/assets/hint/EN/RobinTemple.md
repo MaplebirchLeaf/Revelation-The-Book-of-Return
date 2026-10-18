@@ -45,8 +45,6 @@ These share **one daily work opportunity**. Carrying bowls and checking lists du
 
 After mass, returning Robin’s smile gives **1 love** without taking extra time. When Sydney is also present after a choir service, responding to both gives **1 love each**. This response is rewarded once per day.
 
-**PC grace, Robin's contribution, shared shifts and Faith are separate.** Robin's contribution changes with the calendar and pendant; raising PC grace does not directly fill it. The Journal records each and the next steps.
-
 Choose **Approach Robin** in the hall **11:00–20:00**, covered, below maximum stress, with Robin present, outside Sunday mass. Timed activities must finish before Robin leaves the temple. One daily prayer offers:
 
 - **People in need (1:00):** Faith, grace and stress relief.
@@ -54,17 +52,23 @@ Choose **Approach Robin** in the hall **11:00–20:00**, covered, below maximum 
 - **Observe visitors (1:00):** Awareness, with stress and possible trauma under the usual observation rules.
 - **Discuss body mockery (1:00):** relevant acceptance and stress; requires the insecurity and no corresponding prayer today.
 
-The bench also has one daily encounter concerning visitors, supplies or temple rules. Resolving it fixes the day's outcome. **Faith and Doubt oppose each other**: gains cancel the opposite side before becoming positive. A changed outlook may prompt a later conversation. With the Robin expansion, contribution-based temple earnings enter Robin's existing weekly account.
+The bench also has one daily encounter concerning visitors, supplies or temple rules. Resolving it fixes the day's outcome. **Faith and Doubt oppose each other**: gains cancel the opposite side before becoming positive. A changed outlook may prompt a later conversation.
+
+**PC grace, Robin's contribution, shared shifts and Faith are separate.** Robin's contribution changes with the calendar and pendant; raising PC grace does not directly fill it. The Journal records each and the next steps.
+
+With the Robin expansion, contribution-based temple earnings enter Robin's existing weekly account.
 
 ### Gifts, donations and walks
 
-At the bench, choose carried food and confirm a **five-minute gift**, following the original **one gift per day** limit. Ordinary food gives **1 love**; **sticky toffee pudding** gives **3 love**, records Robin’s favourite and grants the related feat. Asking for a taste gives **1 confidence**; watching Robin finish does not change confidence.
+At the bench, while Robin’s **trauma is below 40**, choose carried food and confirm a **five-minute gift**, following the original **one gift per day** limit. Ordinary food gives **1 love**; **sticky toffee pudding** gives **3 love**, records Robin’s favourite and grants the related feat. Asking for a taste gives **1 confidence**; watching Robin finish does not change confidence.
 
 Shared offerings use **carried cash**, once daily, **11:00–20:00 outside mass**. £1 gives love; £5 also gives grace; £25 gives more grace and can reveal the soup kitchen. They do not replace contribution or evaluation.
 
-Ask for a walk **before 19:00**, once daily. Conversations improve Faith, confidence or love. Forest and cinema outings need **today's shared work completed**; cinema also requires **£15**, suitable affection, remaining time and the daily visit limit. The spear mission has preparation and return conversations, but you must still complete the mission itself.
+Ask for a walk once daily, with the full **thirty minutes finishing before 20:00** and Robin’s next commitment. Conversations improve Faith, confidence or love. Forest and cinema outings need **today's shared work completed**; cinema must start **before 19:00** and also requires **£15**, suitable affection, remaining time and the daily visit limit. The spear mission has preparation and return conversations, but you must still complete the mission itself.
 
 Full fox, wolf, cat, harpy and cow transformations offer bench interactions through visible, enabled tails, ears, wings or horns. They share **three ten-minute interactions daily**, each completed before Robin leaves, improving love and easing stress, tiredness or trauma depending on the form. Horse, whale and raven require **More transformations**. Harpy singing trains Singing when the choir is enabled.
+
+With stress at **80% of maximum or above, but below collapse**, a daily half-hour rest at the bench can lead to a hospital visit. Treatment and departure depend on trauma. The assisted severe-trauma branch needs introductions to Sydney and Sirris, and either a Sydney romance or **Sydney love 40**. Continue an unfinished visit from the hospital entrance.
 
 ### Trial of Anguish and Robin's bunk
 
@@ -74,15 +78,15 @@ Shared success gives Robin monk/nun rank and **Robin's bunk**, with the wardrobe
 
 During a Saturday overnight stay, a romantic PC may sit nearby, kiss or sleep together. Longer sleep can include memories, weather or ledger scenes alongside the usual dreams. These are not guaranteed nightly. After a promise, a present and available Robin can join you at the bunk on school-free weekdays **13:00–15:45**, excluding the end time. Conversation and a hug remain alternatives to intimacy.
 
-With stress at **80% of maximum or above, but below collapse**, a daily half-hour rest at the bench can lead to a hospital visit. Treatment and departure depend on trauma. The assisted severe-trauma branch needs introductions to Sydney and Sirris, and either a Sydney romance or **Sydney love 40**. Continue an unfinished visit from the hospital entrance.
-
-### Confession, promise and monthly examination
+### Confession
 
 **Confession:** after you have heard **five confessions**, a temple-member Robin actually at the temple can enter the usual confessional event pool. This is a random visitor, at most once daily, rather than a separate guaranteed conversation. The topic reflects Robin's relationship, vows, experiences and Faith.
 
 Use **Forgive / Repent / Contrition**. Their effects depend on the topic; for example, treating promised intimacy as wrongdoing may hurt the response. **Purge** and revealing your identity have their own reactions. Once your identity is known, Robin uses **three knocks** as a signal. Inviting Robin to your side requires a romance; Robin can refuse, and **trauma 40 or above** leads to leaving together instead.
 
-**Rite of Promise:** Robin must be a member and romantic partner. Both must have joined the temple, with no active shared purification, no existing promise to someone else, and Robin's Faith no lower than −20.
+### Rite of Promise and monthly examination
+
+Robin must be a member and romantic partner. Both must have joined the temple, with no active shared purification, no existing promise to someone else, and Robin's Faith no lower than −20.
 
 1. Discuss the rite in the quarters **by daylight** while Jordan is available.
 2. Build both contributions and shared work. Faith, PC purity, transformations, attire, shared history and answers affect evaluation. Eavesdropping uses Skulduggery and harms the result if detected.
@@ -105,19 +109,27 @@ Robin can also request refitting when no other equipment conflicts: fifteen minu
 
 This secret route attempts a second promise with Robin and Sydney. Its Journal reminder disappears after completion.
 
-**Required discoveries:** hear the bishop's full revelation about Kylar's parents **in this save**, reach the Underground Compound ending with the gaoler and witch together, and see the vision beneath the lake. A feat from another save does not replace these experiences.
+**Prerequisites:**
 
-**Required relationships and vows:** Promiscuity 6, both romances, Robin love **80**, trauma **40–79**, Sydney love **125** and a current corrupt outlook, with all three temple vows intact and exactly one existing promise. Robin must remain able to take part in normal activities. With **Sydney promised first**, the ordinary promise is sufficient. With **Robin first**, finish Sydney's corrupt rite too. None of the three may wear a chastity belt, cage or anal shield.
+- Hear the bishop's full revelation about Kylar's parents **in this save**, reach the Underground Compound ending with the gaoler and witch together, and see the vision beneath the lake. A feat from another save does not replace these experiences.
+- Reach **Promiscuity 6**, be in a romance with both companions and have exactly one promise, with all three temple vows intact, no shared purification and no possession.
+- With **Sydney promised first**, the ordinary promise is sufficient while Sydney is currently corrupt. With **Robin first**, finish Sydney's corrupt rite too.
+- Robin must have joined the temple, with **love at least 80 and trauma at least 40 but below 80**. Sydney needs **love at least 125** and a current corrupt outlook. Injury, disappearance or asylum admission prevents travel.
+- **None of the three may wear a chastity belt, cage or anal shield.** Discussing or requesting removal does not replace taking the fittings off.
+
+**Investigation and first journey:**
 
 1. Talk privately with Robin at home, then Sydney at an available conversation spot in the library, temple or shop. Each agrees to investigate, not yet to perform the rite.
 2. Survey the lake ruin **by daylight**, with an unfrozen lake and no pursuit. Finish preparation after both conversations. Wait **three days after the latest conversation or survey**.
 3. Meet on a **blood moon, 21:00–23:00**, with an unfrozen lake and no rain, crowd or pursuit. The PC needs **pain below 50, tiredness below 1,500 and stress more than 40 below maximum**. Witness the stone's response together.
-4. Return as planned, wait **three more days**, then hear both companions' new decisions and prepare for another suitable blood moon. Alternatively, the same-night persuasion choices use Skulduggery; their effects and difficulty differ.
-5. Both companions need **lust 60** for the actual rite and must answer separately. Proceed through their answers, name each person and confirm **Confounded Vow** after returning to shore. Speaking for them or attempting to make escape impossible aborts it.
+
+Witnessing the response does not grant the second promise. Return as planned, wait **three more days**, then hear both companions' new decisions and prepare for another suitable blood moon. Alternatively, the same-night persuasion choices use Skulduggery; their effects and difficulty differ, and failure means leaving together.
+
+**For the actual rite, both companions need lust of at least 60 and must agree separately.** Proceed through their answers, name each person and confirm **Confounded Vow** after returning to shore to gain one promise partner. Speaking for them or attempting to make escape impossible aborts it.
 
 Successful persuasion does not bypass either companion's desire. A lie about danger can raise Robin's trauma, lower desire and damage trust if exposed. Current love, trauma, outlook and equipment are checked throughout; recovery below the required trauma pauses progress without deleting discoveries. Recovery after completion does not revoke the vow.
 
-Withdrawal keeps the survey and completed investigation but clears decisions and preparation; arrange new private conversations before retrying. Wraith hostility, pursuit, refitted equipment, excessive pain, stress or tiredness can interrupt a journey. **Unyielding Will** resists ear-slime bodily control but does not remove stimulation, costs or the need for both decisions.
+Withdrawal keeps the survey and completed investigation but clears decisions and preparation; arrange new private conversations before retrying on another night. Wraith hostility, pursuit, grievances over lost offspring, refitted equipment, excessive pain, stress or tiredness can interrupt a journey.
 
 ### After the night at the lake
 
@@ -133,25 +145,27 @@ The mirror brings the two memories into one room. Continue looking or wake up. W
 
 ### Optional integrations
 
-| Module                            | Connection                                                                                                                                 |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| Robin expansion                   | Tutoring, shop and asylum schedules; temple earnings in existing weekly accounts.                                                          |
-| Finance                           | Conversations at your shared home, return journeys, outings and rides. Temple relief projects remain separate from small shared offerings. |
-| Temple duties                     | PC-assisted preparation and priest appointment for Robin and Sydney.                                                                       |
-| Temple choir                      | Harpy singing practice and pending earnings paid at joint examinations.                                                                    |
-| NPC avatars and sidebar portraits | Temple clothing, post-vigil clothing and bunk pyjamas follow the scene and rank. Attitudes visibility retains its awareness requirement.   |
+The basic route works without Deadwood Reblooms. Enable the relevant modules for these additions:
 
-The basic route works without Deadwood Reblooms. Its property, finance and transformation integrations require the relevant modules. Confounded Vow does not choose love interests or arrange cohabitation.
+| Module                                                 | Connection                                                                                                                                                                                                   |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Robin expansion                                        | Tutoring, shop and asylum schedules; temple earnings in existing weekly accounts.                                                                                                                            |
+| Finance, property and transport                        | Conversations at your shared home, return journeys, outings and rides.                                                                                                                                       |
+| Temple relief fund                                     | Separate from small shared offerings; funding, deliveries, purchases and corrected accounts appear in temple conversations.                                                                                  |
+| Temple duties                                          | PC-assisted preparation and priest appointment for Robin and Sydney.                                                                                                                                         |
+| Temple choir                                           | Harpy singing practice and pending earnings paid at joint examinations.                                                                                                                                      |
+| More transformations                                   | Horse, whale and raven interactions at the bench.                                                                                                                                                            |
+| More love interests, NPC avatars and sidebar portraits | At Awareness level 4 or above, attitudes can retain Robin and Sydney as love interests. Temple clothing, post-vigil clothing and bunk pyjamas follow the scene and rank, retaining relationship expressions. |
+| Unyielding Will                                        | Resists ear-slime bodily control; stimulation, wraith danger and other costs remain.                                                                                                                         |
 
 Finance's **temple relief fund at the town hall** orders food and blankets after **£10,000 total funding**, arriving two days later. **£5,000 in named contributions** permits a purchase discussion while Jordan is available. Delivery, inspection and corrected accounts are reflected in temple conversations; the small shared offerings do not enter this fund.
 
 ### If an entry is missing
 
-| Problem                           | Check                                                                                                               |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| No invitation                     | Ordinary home conversation, PC rank/clothing/stress, Robin love 100 and current availability.                       |
-| Appointment cannot proceed        | Date, Jordan's daylight availability, school window and Robin's health. A delay keeps the booking.                  |
-| No work or prayer                 | Robin's actual location, activity hours, today's shared allowance and other commitments.                            |
-| No confession                     | Five previous confessions, Robin present at the temple, suitable topic and random visitor selection.                |
-| No promise or monthly examination | Evaluation waiting period, relationship/vows, purification and required companions present.                         |
-| No secret journey                 | Discoveries in this save, promise order, current relationships/outlook/trauma, actual fittings and lake conditions. |
+- **No invitation or booking:** check the ordinary home conversation, PC rank, clothing and stress, Robin's love of at least 100, current whereabouts and free time, and Jordan's availability.
+- **Appointment cannot proceed:** check the date, daylight availability, school window and Robin's health. A delay keeps the booking.
+- **No shared work or prayer:** check Robin's actual location, the afternoon, evening or Sunday window, today's allowance and other commitments.
+- **No bunk:** Robin must pass the Trial of Anguish; a promise does not replace promotion.
+- **No confession:** you need five previous confessions, Robin at the temple and a suitable topic; visitor selection remains random.
+- **No promise or examination:** check existing promises, daylight, Faith, purification, required companions and the thirty-day waiting period after evaluation failure.
+- **No Confounded Vow or lake journey:** check all three discoveries in this save, promise order, relationships, trauma, Sydney's outlook, actual fittings, both conversations, survey, preparation, waiting periods, weather, pursuit and the PC's condition.
