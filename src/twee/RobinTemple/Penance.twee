@@ -152,9 +152,6 @@
             <</language>>
           <</if>>
         <</if>>
-        <br><br>
-        <<lanLink ['Next', '继续'] 'RobinTemple Penance End'>><</lanLink>>
-        <br>
       <<else>>
         <<language>>
           <<option 'EN'>>
@@ -200,10 +197,10 @@
             <</language>>
           <</if>>
         <</if>>
-        <br><br>
-        <<lanLink ['Next', '继续'] 'RobinTemple Penance End'>><</lanLink>>
-        <br>
       <</if>>
+      <br><br>
+      <<lanLink ['Next', '继续'] 'RobinTemple Penance End'>><</lanLink>>
+      <br>
     <<case 'rest'>>
       <<if _punishNewRound>>
         <<set _punishNpcArousal to !($pain gte 100 and $willpowerpain is 0) and $arousal lt $arousalmax and !Object.values($RobinTemple.punish.partners).some(npc => npc.pain gte 6)>>
