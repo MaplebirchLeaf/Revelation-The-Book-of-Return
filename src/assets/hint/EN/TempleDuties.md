@@ -23,7 +23,7 @@ Recommended route: **daily duties and archive → field assignments → return t
 
 These and paid return inspections share **one paid shift each day**. Arrive by 17:00 to begin a desk shift. Choir work and the existing joint rota retain their own limits. The confessional, prayer room and soup kitchen retain their existing duties and conditions. Garden work improves the existing garden condition by **3–9 points according to Tending, capped at 100**.
 
-You may discuss duties with Robin or Sydney once daily while they are free and actually at the temple. After their appointment, the discussion also offers shared work when the full thirty minutes fits before their next commitment. **Rest in the warm room once daily for thirty minutes**, easing pain, tiredness and stress. It is available to a priest PC, or after returning from a watch or filing an assignment report that day.
+You may discuss duties with Robin or Sydney at their own temple pew, once daily for five minutes while they are present and free. The duties desk handles shifts, investigations and handovers. After their appointment, the discussion also offers shared work when the full thirty minutes fits before their next commitment. **Rest in the warm room once daily for thirty minutes**, easing pain, tiredness and stress. It is available to a priest PC, or after returning from a watch or filing an assignment report that day.
 
 ### Old records room and repairs
 

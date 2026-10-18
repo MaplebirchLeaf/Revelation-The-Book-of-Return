@@ -461,7 +461,7 @@
 
 :: RobinTemple Confession Contrition
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if !$contritionsCycle>><<set $contritionsCycle to 0>>><</if>>
+<<if !$contritionsCycle>><<set $contritionsCycle to 0>><</if>>
 <<switch $attendant>>
   <<case 'robin_promised' 'robin_romance'>>
     <<language>>
@@ -904,7 +904,7 @@
     <</language>>
     <<set $RobinTemple.confession.choice to 'correct'>>
   <<elseif $RobinTemple.confession.choice is 'contrition'>>
-    <<if !$contritionsCycle>><<set $contritionsCycle to 0>>><</if>>
+    <<if !$contritionsCycle>><<set $contritionsCycle to 0>><</if>>
     <<wearProp 'pen'>>
     <<language>>
       <<option 'EN'>>
@@ -1049,7 +1049,7 @@
   <<stateman>>
   <br><br>
   <<actionsman>>
-  <<if _sound is 1>><<set $RobinTemple.confession.sound += 1>>><</if>>
+  <<if _sound is 1>><<set $RobinTemple.confession.sound += 1>><</if>>
   <<if _combatend>>
     <span id="next"><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex Finish'>><</lanLink>></span><<nexttext>>
   <<else>>

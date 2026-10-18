@@ -9,7 +9,7 @@
   <<silently>>
     <<set _dutySafe to Boolean(maplebirch.get('TempleDuties'))
       and ['initiate', 'monk', 'priest'].includes($temple_rank)
-      and !$combat and !$possessed and !$nextPassageCheck
+      and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
       and !$replayScene and !$statFreeze and $exposed lte 0
       and $stress lt $stressmax and !isPregnancyEnding()>>
     <<set _dutyOffice to _dutySafe and C.npc.Jordan.init is 1
@@ -172,26 +172,6 @@
   <br>
 <</widget>>
 
-<<widget 'temple-duty-pew-link'>><<silently>>
-  <<set _pewName to _args[0]>>
-  <<set _pewReady to false>>
-  <<if _pewName is 'Robin' and maplebirch.get('RobinTemple')>>
-    <<set _pewReady to C.npc.Robin.init is 1 and getRobinLocation() is 'temple' and maplebirch.get('RobinTemple').member>>
-  <<elseif _pewName is 'Sydney'>>
-    <<set _pewReady to C.npc.Sydney.init is 1 and _sydney_location is 'temple'
-      and $sydney_templeWork is 'pray' and $daily.sydney.punish isnot 1>>
-  <</if>>
-  <<temple-candidate-check _pewName 0>>
-<</silently>>
-<!-- 只问一次。答应之后，见习与守望都回职务桌办理。 -->
-<<if _pewReady and _candidateRank is 'monk' and _candidateStanding and !_candidate.agreed>>
-  <<socialiseicon 'ask'>>
-  <<lanLink `['Ask ' + maplebirch.auto(_pewName) + ' about becoming a priest', '问' + maplebirch.auto(_pewName) + '愿不愿意当司祭']` 'Revelation Temple Candidate Talk'>>
-    <<set $TempleDuties.speaker to _pewName>>
-  <</lanLink>><br>
-<</if>>
-<</widget>>
-
 <<widget 'temple-duty-jordan-links'>>
   <<temple-duty-check>>
   <<if _dutySafe and $temple_rank is 'monk' and !$TempleDuties.review>>
@@ -214,24 +194,6 @@
       <</lanLink>>
       <br>
     <</revelation-card>>
-  <</if>>
-  <<if $TempleDuties.companion_day isnot Math.floor(Time.days)>>
-    <<for _speaker range ['Robin', 'Sydney']>>
-      <<if (_speaker is 'Robin' and C.npc.Robin.init is 1 and getRobinLocation() is 'temple')
-          or (_speaker is 'Sydney' and C.npc.Sydney.init is 1
-          and _sydney_location is 'temple' and $daily.sydney.punish isnot 1)>>
-        <<capture _speaker>>
-          <<revelation-card 'Companion' '同伴'>>
-            <<socialiseicon>>
-            <<temple-duty-action `['Talk with ' + maplebirch.auto(_speaker) + ' about your duties (0:05)', '与' + maplebirch.auto(_speaker) + '谈谈职务 (0:05)']` 5 'Revelation Temple Companion'>>
-              <<set $TempleDuties.speaker to _speaker>>
-              <<set $TempleDuties.companion_day to Math.floor(Time.days)>>
-            <</temple-duty-action>>
-            <br>
-          <</revelation-card>>
-        <</capture>>
-      <</if>>
-    <</for>>
   <</if>>
 <</widget>>
 

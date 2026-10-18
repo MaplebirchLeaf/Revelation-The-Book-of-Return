@@ -1,4 +1,61 @@
 :: Temple Companion Duties Widgets [widget]
+<<widget 'temple-duty-pew-check'>>
+  <<silently>>
+    <<temple-duty-check>>
+    <<set _pewName to _args[0]>>
+    <<set _pewReady to false>>
+    <<if !_dutySafe or $location isnot 'temple'>><<exit>><</if>>
+    <<if _pewName is 'Robin'>>
+      <<set _pewReady to Boolean(maplebirch.get('RobinTemple')?.canPray)>>
+    <<elseif _pewName is 'Sydney'>>
+      <<sydneySchedule>>
+      <<set _pewReady to C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
+        and _sydney_location is 'temple' and $sydney_templeWork is 'pray'
+        and $daily.sydney.punish isnot 1>>
+    <</if>>
+  <</silently>>
+<</widget>>
+
+<<widget 'temple-duty-pew-link'>>
+  <<temple-duty-pew-check _args[0]>>
+  <<if !_pewReady>><<exit>><</if>>
+  <<capture _pewName>>
+    <<temple-candidate-check _pewName 0>>
+    <!-- 只问一次。答应之后，见习与守望都回职务桌办理。 -->
+    <<if _candidateRank is 'monk' and _candidateStanding and !_candidate.agreed>>
+      <<socialiseicon 'ask'>>
+      <<lanLink `['Ask ' + maplebirch.auto(_pewName) + ' about becoming a priest', '问' + maplebirch.auto(_pewName) + '愿不愿意当司祭']` 'Revelation Temple Candidate Talk'>>
+        <<set $TempleDuties.speaker to _pewName>>
+      <</lanLink>><br>
+    <</if>>
+    <<if $TempleDuties.enrolled and $TempleDuties.companion_day isnot Math.floor(Time.days)>>
+      <<set _talkUsed to false>>
+      <<capture _talkUsed>>
+        <<socialiseicon>>
+        <<lanLink `['Talk with ' + maplebirch.auto(_pewName) + ' about your duties (0:05)', '与' + maplebirch.auto(_pewName) + '谈谈职务 (0:05)']`>>
+          <<temple-duty-pew-check _pewName>>
+          <<if !_talkUsed and _pewReady and $TempleDuties.enrolled
+              and $TempleDuties.companion_day isnot Math.floor(Time.days)>>
+            <<set _talkUsed to true>>
+            <<set _talkSource to $passage>>
+            <<pass 5>>
+            <<temple-duty-pew-check _pewName>>
+            <<if $passage is _talkSource and !$nextPassage and !$nextPassageCheck and !$eventforced>>
+              <<if _pewReady>>
+                <<set $TempleDuties.speaker to _pewName>>
+                <<set $TempleDuties.companion_day to Math.floor(Time.days)>>
+                <<goto 'Revelation Temple Companion'>>
+              <<else>>
+                <<goto 'Temple'>>
+              <</if>>
+            <</if>>
+          <</if>>
+        <</lanLink>><br>
+      <</capture>>
+    <</if>>
+  <</capture>>
+<</widget>>
+
 <<widget 'temple-companion-check'>>
   <<temple-duty-check>>
   <<set _companionName to _args[0]>>
@@ -165,12 +222,10 @@
 
 :: Revelation Temple Companion
 <<temple-duty-place>>
-<<if !_dutySafe or !$TempleDuties.speaker
-    or ($TempleDuties.speaker is 'Robin' and (C.npc.Robin.init isnot 1 or getRobinLocation() isnot 'temple'))
-    or ($TempleDuties.speaker is 'Sydney' and (C.npc.Sydney.init isnot 1
-    or _sydney_location isnot 'temple' or $daily.sydney.punish is 1))>>
+<<temple-duty-pew-check $TempleDuties?.speaker>>
+<<if !_pewReady>>
   <<lanSwitch 'The person you meant to speak to has another duty now. You can talk when you next meet here.' '你想交谈的人已经有了别的安排。下次在这里遇见时，可以再聊。'>><br><br>
-  <<temple-duty-back>>
+  <<temple-duty-hall-back>>
   <<exit>>
 <</if>>
 <<npc `$TempleDuties.speaker`>>
@@ -253,7 +308,9 @@
     <<lstress>><br>
   <</if>>
 <</if>>
-<<temple-duty-back>>
+<<getouticon>>
+<<lanLink ['Return to the pew', '返回长椅'] `$TempleDuties.speaker is 'Robin' ? 'RobinTemple Prayer' : 'Temple Sydney'`>>
+<</lanLink>><br>
 
 :: Revelation Temple Companion Shift
 <<temple-duty-place>>

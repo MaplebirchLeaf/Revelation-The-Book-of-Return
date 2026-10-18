@@ -1,4 +1,33 @@
 :: TempleChoir Work Widgets [widget]
+<<widget 'temple-choir-practice-action' 'container'>>
+  <<set _practiceKind to _args[1]>>
+  <<set _practiceBody to _contents>>
+  <<capture _practiceKind _practiceBody>>
+    <<lanLink _args[0]>>
+      <<if maplebirch.get('TempleChoir')?.practice
+          and !$combat and !$possessed and !$replayScene and !$statFreeze
+          and !$nextPassage and !$nextPassageCheck and !$eventforced
+          and $stress lt $stressmax and !isPregnancyEnding()>>
+        <<set _practiceSource to $passage>>
+        <<set _practiceDay to Time.days>>
+        <<pass 30>>
+        <<if $passage is _practiceSource and $location is 'temple' and Time.days is _practiceDay
+            and maplebirch.get('TempleChoir')?.member and $TempleChoir.joined
+            and $TempleChoir.practiceDay isnot Time.days
+            and !$combat and !$possessed and !$replayScene and !$statFreeze
+            and !$nextPassage and !$nextPassageCheck and !$eventforced
+            and $stress lt $stressmax and !isPregnancyEnding()>>
+          <<set $TempleChoir.exercise to _practiceKind>>
+          <<set $TempleChoir.practiceDay to Time.days>>
+          <<set $TempleChoir.practices += 1>>
+          <<print _practiceBody>>
+          <<goto 'TempleChoir Practice Result'>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
+<</widget>>
+
 <<widget 'temple-choir-round'>>
   <<if maplebirch.get('TempleChoir').sing(_args[0])>>
     <<pass 20>><<tiredness 2>>
@@ -17,9 +46,18 @@
       唱诗班围在一排长椅旁。有人把祈祷书翻到周日要唱的赞美诗，另一人给出起音。一名资深歌者问你，今天想练哪一部分。<br><br>
       <span class='teal'>选择一项练习，耗时三十分钟。最近两天的练习有助于你在弥撒中稳住旋律。</span>
   <</language>><br><br>
-  <<icon 'temple/hymnbook.png'>><<lanLink ['Practise breathing (0:30)', '练习换气 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'breath'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 12>><<pass 30>><<tiredness 1>><<stress -3>><</lanLink>><<gtiredness>><<lstress>><<gsingingskill>><br>
-  <<icon 'temple/hymnbook.png'>><<lanLink ['Match the pitch (0:30)', '练习音准 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'pitch'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 18>><<pass 30>><<tiredness 2>><</lanLink>><<gtiredness>><<gsingingskill>><br>
-  <<icon 'temple/choir.png'>><<lanLink ['Rehearse with the choir (0:30)', '排练合唱 (0:30)'] 'TempleChoir Practice Result'>><<set $TempleChoir.exercise to 'choir'>><<set $TempleChoir.practiceDay to Time.days>><<set $TempleChoir.practices += 1>><<singingskill 15>><<pass 30>><<tiredness 1>><<grace 1>><</lanLink>><<gtiredness>><<ggrace>><<gsingingskill>><br>
+  <<icon 'temple/hymnbook.png'>>
+  <<temple-choir-practice-action `['Practise breathing (0:30)', '练习换气 (0:30)']` 'breath'>>
+    <<singingskill 12>><<tiredness 1>><<stress -3>>
+  <</temple-choir-practice-action>><<gtiredness>><<lstress>><<gsingingskill>><br>
+  <<icon 'temple/hymnbook.png'>>
+  <<temple-choir-practice-action `['Match the pitch (0:30)', '练习音准 (0:30)']` 'pitch'>>
+    <<singingskill 18>><<tiredness 2>>
+  <</temple-choir-practice-action>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>>
+  <<temple-choir-practice-action `['Rehearse with the choir (0:30)', '排练合唱 (0:30)']` 'choir'>>
+    <<singingskill 15>><<tiredness 1>><<grace 1>>
+  <</temple-choir-practice-action>><<gtiredness>><<ggrace>><<gsingingskill>><br>
 <<else>>
   <<language>><<option 'EN'>>There is no practice available now. Check the choir schedule in your journal.<<option 'CN'>>现在没有可参加的练习。可以在日志中查看唱诗班的时间安排。<</language>><br><br>
 <</if>>

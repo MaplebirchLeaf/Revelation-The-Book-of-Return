@@ -249,7 +249,7 @@
     你在毯子下给罗宾挪出位置。过了一会儿，<<his>>的呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
 <</language>>
 <<stress -2>><<npcincr Robin love 1>><<lstress>><<glove>><br><br>
-<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Go back to sleep', '继续睡觉'] 'RobinTemple Sleep'>><</lanLink>><br>
+<<icon 'temple/robin-temple-bed.png'>><<lanLink ['Go back to sleep', '继续睡觉'] 'RobinTemple Bed'>><</lanLink>><br>
 
 :: RobinTemple Sleep
 <<set $outside to 0>><<set $location to 'temple'>>

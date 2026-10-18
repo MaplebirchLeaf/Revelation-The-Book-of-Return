@@ -4,7 +4,7 @@
     <<if !$TempleChoir.joined>>
       <<icon 'temple/hymnbook.png'>><<lanLink ['Ask about the choir (0:10)', '询问唱诗班 (0:10)'] 'TempleChoir Audition'>><<pass 10>><</lanLink>><br>
     <<elseif maplebirch.get('TempleChoir').practice>>
-      <<icon 'temple/hymnbook.png'>><<lanLink ['Attend choir practice (0:30)', '参加唱诗练习 (0:30)'] 'TempleChoir Practice'>><</lanLink>><br>
+      <<icon 'temple/hymnbook.png'>><<lanLink ['Choose a choir exercise', '选择唱诗练习'] 'TempleChoir Practice'>><</lanLink>><br>
     <</if>>
   <</if>>
 <</widget>>
