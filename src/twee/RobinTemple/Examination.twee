@@ -410,9 +410,6 @@
         <<person1>><<He>> turns away to let you both dress.
         <<robin-temple-examination-success>>
         Robin hugs you. "I love you." <<stress -6>><<lstress>>
-        <br><br>
-        <<clotheson>>
-        <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>
       <<option 'CN'>>
         <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
         “你们对彼此忠诚，希望继续保持。”
@@ -423,10 +420,10 @@
         <<person1>><<He>>转过身，让你们将衣物穿好。
         <<robin-temple-examination-success>>
         罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
-        <br><br>
-        <<clotheson>>
-        <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>
     <</language>>
+    <br><br>
+    <<clotheson>>
+    <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>
   <<else>>
     <<language>>
       <<option 'EN'>>

@@ -33,10 +33,6 @@
       <</if>>
       <br><br>
       Jordan gives you both a solemn smile. "Please come with me. You're both up to date on your chastity exams, so we can skip that step. For now." <<nnpc_He "Jordan">> begins to lead you out of the main hall and into a small room.
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Records'>><<pass 5>><<set $RobinTemple.evaluation_day to Time.days>><</lanLink>>
-      <br>
-
     <<option 'CN'>>
       <<if !$robinSeen.includes("evaluation")>>
         你告诉罗宾你准备好了。<<He>>听罢深吸一口气，和你一起走向约旦。
@@ -53,11 +49,10 @@
       <</if>>
       <br><br>
       约旦对你们露出庄严的微笑。“请随我来。你们二人都按期通过了贞洁测试，这一步便可暂且略去。”<<nnpc_He "Jordan">>领着你们步出大厅，步入一间静室。
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Records'>><<pass 5>><<set $RobinTemple.evaluation_day to Time.days>><</lanLink>>
-      <br>
-
   <</language>>
+  <br><br>
+  <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Records'>><<pass 5>><<set $RobinTemple.evaluation_day to Time.days>><</lanLink>>
+  <br>
 <</if>>
 
 :: RobinTemple Evaluation Records
@@ -121,9 +116,6 @@
     <</if>>
     <br><br>
     The <<monk>> approaches you.
-    <br><br>
-    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<effects>>
     <<set $RobinTemple.evaluation_marks to 0>>
@@ -182,10 +174,10 @@
     <</if>>
     <br><br>
     修道士转而朝你走来。
-    <br><br>
-    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
+<br>
 
 :: RobinTemple Evaluation Belief
 <<language>>
@@ -214,12 +206,6 @@
     <</if>>
     <br><br>
     Jordan nods to the <<monk>>, who bows and leaves the room. "The next section of the examination will require you two to be separated. Please come with me." Jordan leads you into a separate, adjacent room with an identical ornate table. "Please wait here while I administer Robin's part of the exam."
-    <br><br>
-    <<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
-    <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
-    <br>
-    <<set $skulduggerydifficulty to 700>>
-    <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
   <<option 'CN'>>
     <<effects>>
     <<he>>仔细地把你打量了一番。
@@ -245,13 +231,13 @@
     <</if>>
     <br><br>
     约旦向修道士微微颔首，对方行了一礼退下。“接下来的考查需要你们二人分开进行，请随我来。”约旦领着你来到隔壁的单间，里面摆着一张同样样式的雕花木桌。“请在此稍候，我先为罗宾进行测试。”
-    <br><br>
-    <<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
-    <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
-    <br>
-    <<set $skulduggerydifficulty to 700>>
-    <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
 <</language>>
+<br><br>
+<<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
+<<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
+<br>
+<<set $skulduggerydifficulty to 700>>
+<<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
 
 :: RobinTemple Evaluation Questions
 <<language>>
@@ -268,11 +254,6 @@
     Jordan enters the room, still smiling. "Apologies for the wait. Please answer me honestly, no matter the question," <<person2>><<he>> says as <<he>> sits opposite to you. <<He>> flips <<his>> notebook to a fresh page.
     <br><br>
     "Where did you and Robin grow up together?"
-    <br><br>
-
-    <<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage'>><</lanLink>><br>
-    <<lanLink ['At school', '在学校'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'school'>><</lanLink>><br>
-    <<lanLink ["Say you don't remember", '说你不记得了'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'forgot'>><</lanLink>><br>
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_phase is 1>>
@@ -286,12 +267,12 @@
     约旦推门步入房间，脸上依旧带着平静的微笑。“久等了。接下来不论我问什么，请务必如实相告。”<<person2>><<he>>在你对面落座，翻开手中的小册子。
     <br><br>
     “你和罗宾是在哪里一起长大的？”
-    <br><br>
-
-    <<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage'>><</lanLink>><br>
-    <<lanLink ['At school', '在学校'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'school'>><</lanLink>><br>
-    <<lanLink ["Say you don't remember", '说你不记得了'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'forgot'>><</lanLink>><br>
 <</language>>
+<br><br>
+
+<<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage'>><</lanLink>><br>
+<<lanLink ['At school', '在学校'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'school'>><</lanLink>><br>
+<<lanLink ["Say you don't remember", '说你不记得了'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'forgot'>><</lanLink>><br>
 
 :: RobinTemple Evaluation Answer
 <<language>>
@@ -311,11 +292,6 @@
     <<He>> finds your ring size. "This bond does not protect your purity, hence the strict requirements. Such a privilege is reserved for marriage in our faith. Your chastity exams will be taken simultaneously, when possible. Should either one of you fail your chastity exam after your new vow, <span class="red">you will both be punished as one.</span>"
     <br><br>
     Jordan's face has become serious. "Tell me, my child. Are you certain it is not lust, but love that drives you to take this vow?"
-    <br><br>
-    <<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
-    <br>
-    <<lanLink ['No', '不是'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_answer is "orphanage">>
@@ -332,78 +308,74 @@
     <<He>>测好了你的尺寸。“这等羁绊无法庇护你们免受玷污，因而戒规森严——在我们的信仰中，那份神圣庇佑仅赐予正式婚姻。日后只要条件允许，你们的贞洁测试都会同时进行。一旦立誓之后任一方测试未过，<span class="red">你们将被视作一体，共同受罚。</span>”
     <br><br>
     约旦的神情变得愈发庄严肃穆。“告诉我，我的孩子。你确信驱使你立下此誓的是爱意，而非肉欲么？”
-    <br><br>
-    <<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
-    <br>
-    <<lanLink ['No', '不是'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
+<br>
+<<lanLink ['No', '不是'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
+<br>
 
 :: RobinTemple Evaluation Result
+<<effects>>
 <<language>>
   <<option 'EN'>>
-    <<effects>>
     Jordan steps away from the table.
-    <<if $RobinTemple.evaluation_phase is 1>>
-      "Very well. Until the rite is complete, neither of you is released from your current vows." <<set $RobinTemple.evaluation_marks += 10>>
-    <<else>>
-      "Then you still have doubts. You may ask for more time, but I must take those doubts into account." <<set $RobinTemple.evaluation_marks -= 10>>
-    <</if>>
-    <br><br>
-    <<if $RobinTemple.evaluation_marks gte 60>>
-      "Your devotion is clear. Congratulations. <span class="green">You've both passed</span>. You may still ask for more time before taking the rite."
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>>
-      <br>
-      <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
-    <<elseif $RobinTemple.evaluation_marks gte 40>>
-      "You are devoted. That much is plain. However, I still question your true motivations. I will administer an off-schedule chastity exam, and should you still be found pure, you will pass this evaluation. Otherwise... <span class="blue">you will be purified, and allowed to take this test again in one month's time.</span>"
-      <br><br>
-      <<lanLink ['Allow examination', '允许检验'] 'RobinTemple Evaluation Examination'>><</lanLink>>
-      <br>
-      <<lanLink ['Refuse examination', '拒绝检验'] 'RobinTemple Evaluation Refuse'>><</lanLink>>
-      <br>
-      <<lanLink ['Say you are impure', '坦白你不纯洁了'] 'RobinTemple Evaluation Admit'>><</lanLink>>
-      <br>
-    <<else>>
-      "I am sorry, but <span class="red">you've failed this evaluation.</span> I cannot in good faith allow your union in your current state. <span class="blue">However, you will be allowed to take this test again in one month's time.</span>"
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
-      <br>
-    <</if>>
-    <<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
   <<option 'CN'>>
-    <<effects>>
     约旦离席站起身。
-    <<if $RobinTemple.evaluation_phase is 1>>
-      “很好。在仪式彻底礼成之前，你们二人仍须严守现有的贞洁誓约。”<<set $RobinTemple.evaluation_marks += 10>>
-    <<else>>
-      “那么，你心底尚有疑虑。你可以请求更多时间细思，但我必须将这份游移考量在内。”<<set $RobinTemple.evaluation_marks -= 10>>
-    <</if>>
-    <br><br>
-    <<if $RobinTemple.evaluation_marks gte 60>>
-      “你们的虔诚与心意已然昭彰。恭喜，<span class="green">你们二人都通过了</span>。在正式步入仪式前，你们若还需时间沉淀，尽可随时开口。”
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>>
-      <br>
-      <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
-    <<elseif $RobinTemple.evaluation_marks gte 40>>
-      “你的虔诚毋庸置疑，这有目共睹。然而，我依然对你真正的动机存有疑虑。我需要当场为你进行一次例外的贞洁检验。若你依然洁白无瑕，便算你通过评估。否则……<span class="blue">你将接受净化，且须在满一月之后方可再次申请。</span>”
-      <br><br>
-      <<lanLink ['Allow examination', '允许检验'] 'RobinTemple Evaluation Examination'>><</lanLink>>
-      <br>
-      <<lanLink ['Refuse examination', '拒绝检验'] 'RobinTemple Evaluation Refuse'>><</lanLink>>
-      <br>
-      <<lanLink ['Say you are impure', '坦白你不纯洁了'] 'RobinTemple Evaluation Admit'>><</lanLink>>
-      <br>
-    <<else>>
-      “很遗憾，<span class="red">你未通过这次评估。</span>以你眼下的状况，我断不能心安理得地准许你们结合。<span class="blue">不过，一个月后你仍有资格再次申请。</span>”
-      <br><br>
-      <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
-      <br>
-    <</if>>
-    <<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
 <</language>>
+<<if $RobinTemple.evaluation_phase is 1>>
+  <<language>>
+    <<option 'EN'>>
+      "Very well. Until the rite is complete, neither of you is released from your current vows." <<set $RobinTemple.evaluation_marks += 10>>
+    <<option 'CN'>>
+      “很好。在仪式彻底礼成之前，你们二人仍须严守现有的贞洁誓约。”<<set $RobinTemple.evaluation_marks += 10>>
+  <</language>>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      "Then you still have doubts. You may ask for more time, but I must take those doubts into account." <<set $RobinTemple.evaluation_marks -= 10>>
+    <<option 'CN'>>
+      “那么，你心底尚有疑虑。你可以请求更多时间细思，但我必须将这份游移考量在内。”<<set $RobinTemple.evaluation_marks -= 10>>
+  <</language>>
+<</if>>
+<br><br>
+<<if $RobinTemple.evaluation_marks gte 60>>
+  <<language>>
+    <<option 'EN'>>
+      "Your devotion is clear. Congratulations. <span class="green">You've both passed</span>. You may still ask for more time before taking the rite."
+    <<option 'CN'>>
+      “你们的虔诚与心意已然昭彰。恭喜，<span class="green">你们二人都通过了</span>。在正式步入仪式前，你们若还需时间沉淀，尽可随时开口。”
+  <</language>>
+  <br><br>
+  <<lanLink ['Next', '继续'] 'RobinTemple Promise Rite'>><<set $RobinTemple.stage to 'approved'>><</lanLink>>
+  <br>
+  <<lanLink ['Ask for more time', '再考虑一段时间'] 'RobinTemple Corner'>><<set $RobinTemple.stage to 'approved'>><</lanLink>><br>
+<<elseif $RobinTemple.evaluation_marks gte 40>>
+  <<language>>
+    <<option 'EN'>>
+      "You are devoted. That much is plain. However, I still question your true motivations. I will administer an off-schedule chastity exam, and should you still be found pure, you will pass this evaluation. Otherwise... <span class="blue">you will be purified, and allowed to take this test again in one month's time.</span>"
+    <<option 'CN'>>
+      “你的虔诚毋庸置疑，这有目共睹。然而，我依然对你真正的动机存有疑虑。我需要当场为你进行一次例外的贞洁检验。若你依然洁白无瑕，便算你通过评估。否则……<span class="blue">你将接受净化，且须在满一月之后方可再次申请。</span>”
+  <</language>>
+  <br><br>
+  <<lanLink ['Allow examination', '允许检验'] 'RobinTemple Evaluation Examination'>><</lanLink>>
+  <br>
+  <<lanLink ['Refuse examination', '拒绝检验'] 'RobinTemple Evaluation Refuse'>><</lanLink>>
+  <br>
+  <<lanLink ['Say you are impure', '坦白你不纯洁了'] 'RobinTemple Evaluation Admit'>><</lanLink>>
+  <br>
+<<else>>
+  <<language>>
+    <<option 'EN'>>
+      "I am sorry, but <span class="red">you've failed this evaluation.</span> I cannot in good faith allow your union in your current state. <span class="blue">However, you will be allowed to take this test again in one month's time.</span>"
+    <<option 'CN'>>
+      “很遗憾，<span class="red">你未通过这次评估。</span>以你眼下的状况，我断不能心安理得地准许你们结合。<span class="blue">不过，一个月后你仍有资格再次申请。</span>”
+  <</language>>
+  <br><br>
+  <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
+  <br>
+<</if>>
+<<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
 
 :: RobinTemple Evaluation Fail
 <<language>>
@@ -415,9 +387,6 @@
     <br><br>
     Robin takes you by the hand. "Don't... don't worry about me," <<he>> says, though <<his>> voice isn't steady. "We can try again. However long it takes." <<His>> eyes begin to water. You pull <<him>> into a tight hug, and stay there for what feels like hours.
     <<tearful>> you exit back into the temple with <<him>>.
-    <br><br>
-    <<endevent>><<npc "Robin">><<person1>>
-    <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "temple">><<npc Robin 1>><<npc Jordan 2>><<person2>><<temple_effects>><<effects>><<set $RobinTemple.stage to "member">>
     约旦领着你回到隔壁房间。罗宾正满怀期待地候在那里，可当<<person1>><<he>>看清你脸上的神情时，眼底的光彩瞬间黯淡了下去。
@@ -426,28 +395,24 @@
     <br><br>
     罗宾牵住你的手。“别……别担心我，”<<he>>小声说着，声音微微发颤，“我们还可以再试的。不管多久都没关系。”<<His>>眼眶湿润起来。你将<<him>>紧紧揽入怀中，静静相拥了仿佛几个小时之久。
     <<tearful>>你和<<him>>步出静室，一同回到了神殿之中。
-    <br><br>
-    <<endevent>><<npc "Robin">><<person1>>
-    <<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <</language>>
+<br><br>
+<<endevent>><<npc "Robin">><<person1>>
+<<templeicon 'quarters'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 
 :: RobinTemple Evaluation Refuse
 <<language>>
   <<option 'EN'>>
     <<effects>>
     "Then I must assume the worst," Jordan says, looking at <<his>> feet. "I'm sorry. You will be purified. I will summon the specialists. Please cooperate with them." <<He>> produces a small bell from <<his>> robes, and rings. "Robin will not be punished, or informed of this, for your sake."
-    <br><br>
-    <<endevent>>
-    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<effects>>
     “那我只能假设最糟的情况了，”约旦说着，一直盯着自己的脚尖，“很遗憾，你必须被净化。我会召集专人来，请一定配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“为了你，罗宾不会被惩罚，也不会知晓此事。”
-    <br><br>
-    <<endevent>>
-    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<endevent>>
+<<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
+<br>
 
 :: RobinTemple Evaluation Admit
 <<language>>
@@ -462,10 +427,6 @@
     <</if>>
     <br><br>
     "Thank you for your honesty," Jordan says, looking at <<his>> feet. "You must be purified. I will summon the specialists. Please cooperate with them." <<He>> produces a small bell from <<his>> robes, and rings. "Robin will not be punished, or informed of this, for your sake."
-    <br><br>
-    <<endevent>>
-    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<effects>>
     <<if $speech_attitude is "meek">>
@@ -477,11 +438,11 @@
     <</if>>
     <br><br>
     “谢谢你的坦诚，”约旦说着，一直盯着自己的脚尖，“你必须被净化。我会召集专人来，请一定要配合。”<<He>>从斗篷里拿出一枚小铃，轻轻晃响了它。“为了你，罗宾不会被惩罚，也不会知晓此事。”
-    <br><br>
-    <<endevent>>
-    <<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<endevent>>
+<<lanLink ['Next', '继续'] 'Temple Arcade Intro'>><</lanLink>>
+<br>
 
 :: RobinTemple Evaluation Contact
 <<language>>
@@ -495,12 +456,6 @@
     <<He>> stands up.
     <br><br>
     "One final question. Are you willing to keep your current vows until the rite is complete?"
-    <br><br>
-    <<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
-    <br>
-    <<lanLink ["I'm not sure", '还没想好'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-    <br>
-
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_phase is 1>>
@@ -511,12 +466,12 @@
     <<He>>站起身来。
     <br><br>
     “最后一个问题。在仪式彻底礼成之前，你可愿意继续恪守现有的誓约？”
-    <br><br>
-    <<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
-    <br>
-    <<lanLink ["I'm not sure", '还没想好'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
+<br>
+<<lanLink ["I'm not sure", '还没想好'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
+<br>
 
 :: RobinTemple Evaluation Eavesdrop
 <<effects>><<skulduggerycheck>><<skulduggeryuse>>
@@ -732,9 +687,6 @@
     <</if>>
     <br>
     "Thank you for being honest. I trust your word. Your section of this evaluation is complete."
-    <br><br>
-    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 3>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<effects>>
     “你可明白承诺誓约的要求与戒律？”
@@ -759,7 +711,7 @@
     <</if>>
     <br>
     “谢谢你的坦诚，我信任你的承诺。你这部分的考查已经完成了。”
-    <br><br>
-    <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 3>><</lanLink>>
-    <br>
 <</language>>
+<br><br>
+<<lanLink ['Next', '继续'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 3>><</lanLink>>
+<br>

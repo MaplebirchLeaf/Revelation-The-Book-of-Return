@@ -647,9 +647,6 @@
       Doctor Harper enters, carrying <<person1>><<his>> usual clipboard. <<He>> assures you that there is no immediate concern, but <<he>> would like to examine you further.
     <</if>>
     <br><br>
-
-    <<lanLink ['Next', '继续'] 'RobinTemple Hospital Examination'>><</lanLink>>
-    <br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "hospital">><<effects>>
     <<set $hunger to 0>><<set $thirst to 0>><<set $tiredness to 0>><<set $hygiene to 0>>
@@ -683,9 +680,9 @@
       哈珀医生拿着<<person1>><<his>>惯用的写字板走了进来。<<He>>向你保证目前没有紧急情况，但<<he>>想对你做进一步检查。
     <</if>>
     <br><br>
-    <<lanLink ['Next', '继续'] 'RobinTemple Hospital Examination'>><</lanLink>>
-    <br>
 <</language>>
+<<lanLink ['Next', '继续'] 'RobinTemple Hospital Examination'>><</lanLink>>
+<br>
 
 :: RobinTemple Hospital Examination
 <<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>

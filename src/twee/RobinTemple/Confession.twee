@@ -538,9 +538,6 @@
           "I... I just told you I'm taken. You can't do this to me, <<sister>>. If you insist, I think I'll report you."
         <</if>>
         The outrage in <<his>> voice betrays <<his>> identity. <span class="pink">It's Robin.</span> <<He>> starts to leave the booth. <<grace -2>><<lgrace>>
-        <br><br>
-        <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
-        <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
       <<option 'CN'>>
         <<if _robinBand is 'doubt'>>
           “你在说什么？你不能这样。我要对你再说一遍——我是有对象的，死变态。”
@@ -548,10 +545,10 @@
           “我……我刚才说我有对象了，你不能这么对我，<<sister>>。如果你执意如此，我想我会检举你。”
         <</if>>
         <<his>>声音中的愤怒暴露了<<his>>真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<grace -2>><<lgrace>>
-        <br><br>
-        <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
-        <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
     <</language>>
+    <br><br>
+    <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
+    <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
@@ -698,8 +695,6 @@
         "So, um... do you want to confess anything to me?"
       <</if>>
       <<He>> pulls you close.
-      <br><br>
-      <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
     <<option 'CN'>>
       “你……又在这里？现在？”<<He>>走出了隔间，“谢谢你，<<sister>>。谢谢你愿意听我倾诉。”<<He>>稍微观察了一下周围，确保没人在看。你替<<him>>打开了你这侧的门。
       <br><br>
@@ -710,100 +705,119 @@
         “那个……你有什么想对我忏悔的吗？”
       <</if>>
       <<He>>把你拉近到身边。
-      <br><br>
-      <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
-    <</language>>
+  <</language>>
+  <br><br>
+  <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
       "Here? In the confessional? I..." <<He>> exits the booth. "Th-thank you, <<sister>>. For listening." <<He>> spends a moment just outside, making sure no one is watching. You open your door for <<him>>.
-      <br><br>
-      <<He>> sits next to you on the bench.
-      <<if C.npc.Robin.lust gte 50>>
-        You place a hand on <<his>> chest and gently push <<him>> into a lying position. <<He>> lets out a held breath and embraces you.
-        <<robin-temple-confession-lewd>>
-        <br><br>
-        <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
-      <<else>>
-        <br><br>
-        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) + maplebirch.get('RobinTemple').faith>>
-        <<seductioncheck>>
-        <<seductionskilluptext>>
-        <<seductionskilluse>>
-        You place a hand on <<his>> chest and ease <<him>> into a lying position.
-        <<if $seductionrating gte $seductionrequired>>
-          <span class="green"><<He>> lets out a held breath and embraces you.</span>
-          <<robin-temple-confession-lewd>>
-          <br><br>
-          <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
-        <<else>>
-          "W-wait! I... I really don't know about this..." <<He>> lightly trembles.
-          <br>
-          You decide to take it slow in light of <<his>> hesitation.
-          You begin to <<handtext>> fondle <<his>> <<robin-temple-punishment-genitals 'Robin'>> through <<his>> underwear<<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>, <span class="lewd">but you feel something obstructing you</span><</if>>. <<He>> looks nervous, but doesn't stop you. <<He>> gingerly spreads <<his>> legs to give you easier access. You remove <<his>> underwear.
-          <br><br>
-          <<robin-temple-confession-expose>> You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if C.npc.Robin.penis isnot 'none'>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
-          <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
-            However, with the belt in the way, there's no way you can bring <<him>> to orgasm. You settle for teasing <<him>>.
-          <<else>>
-            With nothing obstructing you, you
-            <<if C.npc.Robin.penis isnot 'none'>>
-              take hold of <<his>> penis and begin rubbing the tip with your thumb.
-            <<else>>
-              slowly insert a finger. <<Hes>> surprisingly wet, and it goes in easily.
-            <</if>>
-            It doesn't take long. <<He>> grips you hard with one hand, using the other to cover <<his>> mouth and suppress <<his>> moans as you bring <<him>> to orgasm.
-          <</if>>
-          <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
-          <br><br>
-          <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Tempt End'>><<set $phase to 2>><</lanLink>><br>
-        <</if>>
-      <</if>>
     <<option 'CN'>>
       “在这里？在忏悔室里？我……”<<He>>走出了隔间，“谢、谢谢你，<<sister>>。谢谢你愿意听我倾诉。”<<He>>稍微观察了一下周围，确保没人在看。你替<<him>>打开了你这侧的门。
-      <br><br>
+  <</language>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      <<He>> sits next to you on the bench.
+    <<option 'CN'>>
       <<He>>在你旁边的长凳上坐下。
-      <<if C.npc.Robin.lust gte 50>>
+  <</language>>
+  <<if C.npc.Robin.lust gte 50>>
+    <<language>>
+      <<option 'EN'>>
+        You place a hand on <<his>> chest and gently push <<him>> into a lying position. <<He>> lets out a held breath and embraces you.
+      <<option 'CN'>>
         你将一只手放在<<his>>胸前，温柔地将<<him>>推倒。<<He>>忍不住喘出一口气，抱住了你。
-        <<robin-temple-confession-lewd>>
-        <br><br>
-        <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
-      <<else>>
-        <br><br>
-        <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) + maplebirch.get('RobinTemple').faith>>
-        <<seductioncheck>>
-        <<seductionskilluptext>>
-        <<seductionskilluse>>
+    <</language>>
+    <<robin-temple-confession-lewd>>
+    <br><br>
+    <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
+  <<else>>
+    <br><br>
+    <<set $seductiondifficulty to 7900 - ((C.npc.Robin.love + C.npc.Robin.lust) * 15) + maplebirch.get('RobinTemple').faith>>
+    <<seductioncheck>>
+    <<seductionskilluptext>>
+    <<seductionskilluse>>
+    <<language>>
+      <<option 'EN'>>
+        You place a hand on <<his>> chest and ease <<him>> into a lying position.
+      <<option 'CN'>>
         你把手放在<<his>>胸部，温柔地让<<him>>躺了下来。
-        <<if $seductionrating gte $seductionrequired>>
+    <</language>>
+    <<if $seductionrating gte $seductionrequired>>
+      <<language>>
+        <<option 'EN'>>
+          <span class="green"><<He>> lets out a held breath and embraces you.</span>
+        <<option 'CN'>>
           <span class="green"><<He>>重重吐出一口气，张开双臂拥住了你。</span>
-          <<robin-temple-confession-lewd>>
-          <br><br>
-          <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
-        <<else>>
+      <</language>>
+      <<robin-temple-confession-lewd>>
+      <br><br>
+      <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><<set $sexstart to 1>><</lanLink>><br>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          "W-wait! I... I really don't know about this..." <<He>> lightly trembles.
+        <<option 'CN'>>
           “等，等等！我……我真不知道该怎么办……”<<He>>微微颤抖着。
-          <br>
+      <</language>>
+      <br>
+      <<language>>
+        <<option 'EN'>>
+          You decide to take it slow in light of <<his>> hesitation.
+          You begin to <<handtext>> fondle <<his>> <<robin-temple-punishment-genitals 'Robin'>> through <<his>> underwear<<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>, <span class="lewd">but you feel something obstructing you</span><</if>>. <<He>> looks nervous, but doesn't stop you. <<He>> gingerly spreads <<his>> legs to give you easier access. You remove <<his>> underwear.
+        <<option 'CN'>>
           照顾到<<his>>犹豫，你决定放慢节奏。
           你开始隔着<<his>>内裤<<handtext>>爱抚<<his>><<robin-temple-punishment-genitals 'Robin'>><<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>，<span class="lewd">但你感觉到有什么东西阻碍了你</span><</if>>。<<He>>看起来非常的紧张，但没有试图去阻止你。<<He>>温柔地放开了你的手，然后把双腿分开，以便你更容易地接触。你脱下了<<his>>内裤。
-          <br><br>
+      <</language>>
+      <br><br>
+      <<language>>
+        <<option 'EN'>>
+          <<robin-temple-confession-expose>> You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if C.npc.Robin.penis isnot 'none'>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
+        <<option 'CN'>>
           <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>脖子上轻吻，引得<<he>>发出呻吟。
-          <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
+      <</language>>
+      <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
+        <<language>>
+          <<option 'EN'>>
+            However, with the belt in the way, there's no way you can bring <<him>> to orgasm. You settle for teasing <<him>>.
+          <<option 'CN'>>
             然而，由于有贞操带遮挡，你无法让<<him>>达到高潮。你只能选择继续挑逗<<him>>。
-          <<else>>
+        <</language>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            With nothing obstructing you, you
+          <<option 'CN'>>
             再也没有能阻挡你的东西，你
-            <<if C.npc.Robin.penis isnot 'none'>>
+        <</language>>
+        <<if C.npc.Robin.penis isnot 'none'>>
+          <<language>>
+            <<option 'EN'>>
+              take hold of <<his>> penis and begin rubbing the tip with your thumb.
+            <<option 'CN'>>
               抓住<<his>>阴茎，然后用拇指开始摩擦龟头。
-            <<else>>
+          <</language>>
+        <<else>>
+          <<language>>
+            <<option 'EN'>>
+              slowly insert a finger. <<Hes>> surprisingly wet, and it goes in easily.
+            <<option 'CN'>>
               慢慢地插入一根手指。<<Hes>>出奇的湿润，手指很轻松地进去了。
-            <</if>>
-            <<him>>没有坚持太久。在你让<<him>>达到高潮时，<<He>>用一只手紧紧抓住你，而另一只手捂住<<his>>嘴巴来压制住呻吟。
-          <</if>>
-          <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
-          <br><br>
-          <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Tempt End'>><<set $phase to 2>><</lanLink>><br>
+          <</language>>
         <</if>>
+        <<language>>
+          <<option 'EN'>>
+            It doesn't take long. <<He>> grips you hard with one hand, using the other to cover <<his>> mouth and suppress <<his>> moans as you bring <<him>> to orgasm.
+          <<option 'CN'>>
+            <<him>>没有坚持太久。在你让<<him>>达到高潮时，<<He>>用一只手紧紧抓住你，而另一只手捂住<<his>>嘴巴来压制住呻吟。
+        <</language>>
       <</if>>
-    <</language>>
+      <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
+      <br><br>
+      <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Tempt End'>><<set $phase to 2>><</lanLink>><br>
+    <</if>>
+  <</if>>
 <</if>>
 
 
@@ -844,43 +858,43 @@
   <<language>>
     <<option 'EN'>>
       Your penitent awaits your response.
-      <<if $orgasmdown gte 1>>
+    <<option 'CN'>>
+      忏悔者在等着你的回应。
+  <</language>>
+  <<if $orgasmdown gte 1>>
+    <<language>>
+      <<option 'EN'>>
         <span class="lewd">Your orgasmic spasms stop you from answering.</span>
         <span class="red"><<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> gasps in indignation, realising what you're doing.</span> "Fucking perverts!"
         <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> flees the confessional. <<grace -4>><<lgrace>>
-        <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
-      <<else>>
-        Robin draws back, giving you room to speak. The booth stills.
-        <br><br>
-        <span class="blue">How do you respond?</span>
-        <br>
-        <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
-        <br>
-        <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
-        <br>
-        <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
-        <br>
-      <</if>>
-    <<option 'CN'>>
-      忏悔者在等着你的回应。
-      <<if $orgasmdown gte 1>>
+      <<option 'CN'>>
         <span class="lewd">你因高潮的兴奋而无法回复。</span>
         <span class="red"><<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>愤怒地抽了口气，意识到了你在做的事。</span>“死变态！”
         <<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>从忏悔室跑了出去。<<grace -4>><<lgrace>>
-        <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
-      <<else>>
+    <</language>>
+    <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        Robin draws back, giving you room to speak. The booth stills.
+      <<option 'CN'>>
         罗宾退开了一些，让你能开口回答。隔间重新安静下来。
-        <br><br>
+    <</language>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        <span class="blue">How do you respond?</span>
+      <<option 'CN'>>
         <span class="blue">你要如何回应？</span>
-        <br>
-        <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
-        <br>
-        <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
-        <br>
-        <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
-        <br>
-      <</if>>
-  <</language>>
+    <</language>>
+    <br>
+    <<lanLink ['Forgive', '宽恕'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'forgive'>><</lanLink>>
+    <br>
+    <<lanLink ['Repent', '忏悔'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'repent'>><</lanLink>>
+    <br>
+    <<lanLink ['Contrition', '赎罪'] 'RobinTemple Confession Sex'>><<set $RobinTemple.confession.choice to 'contrition'>><</lanLink>>
+    <br>
+  <</if>>
 <<elseif $timer lte 0 and $RobinTemple.confession.state is 'leaving'>>
   <<set $RobinTemple.confession.state to 'gone'>>
   <<if $RobinTemple.confession.choice is 'forgive'>>
