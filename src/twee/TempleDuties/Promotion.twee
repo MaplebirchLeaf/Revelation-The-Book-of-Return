@@ -165,19 +165,48 @@
 
 :: Temple Duties Review Widgets [widget]
 <<widget 'temple-duty-requirements'>>
-  <<if !_flockRescued or !_spearReturned or $TempleDuties.trial_day lt 0>>
-    <ul class='journal'>
-    <<if !_flockRescued>>
-      <li><<lanSwitch 'Rescue the missing temple member from the manor on Danube Street.' '从多瑙河街的宅邸救回失踪的神殿成员。'>></li>
-    <</if>>
-    <<if !_spearReturned>>
-      <li><<lanSwitch 'Bring the golden spear back to Jordan.' '将金色长矛交还约旦。'>></li>
-    <</if>>
-    <<if $TempleDuties.trial_day lt 0>>
-      <li><<lanSwitch 'Complete the watch in the lower passage.' '完成下层通道的守望。'>></li>
-    <</if>>
-    </ul>
-  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan turns the pages of the parish book with care:
+      <<if _flockRescued>>
+        <br>· <span class='teal'>"You brought the lost member back from that Danube manor,"</span> <<he>> says, tapping the parchment. <span class='teal'>"A shepherd does not abandon the vulnerable to predators."</span>
+      <<else>>
+        <br>· <span class='gold'>"The novice who vanished into the Danube Street manor is still trapped,"</span> <<he>> says quietly. <span class='gold'>"Help us bring them home before we discuss your appointment. Come to me if you need help, child."</span>
+      <</if>>
+      <<if _spearReturned>>
+        <br>· <span class='teal'>"The sacred golden spear rests once more in the sanctuary,"</span> <<he>> glances towards the chapel. <span class='teal'>"You brought back the relic entrusted to you."</span>
+      <<else>>
+        <br>· <span class='gold'>"The golden spear has not yet been returned to the temple,"</span> <<he>> murmurs. <span class='gold'>"The holy relic must be recovered and brought home to the altar."</span>
+      <</if>>
+      <<if $TempleDuties.trial_day gte 0>>
+        <br>· <span class='teal'>"You kept the vigil before the three doors in the lower passage and brought everyone back safe,"</span> <<he>> nods with quiet approval.
+      <<else>>
+        <br>· <span class='gold'>"You have yet to lead the vigil in the lower passage,"</span> <<he>> points to the heavy iron keys. <span class='gold'>"Before you lead the flock in daylight, you must know how to stand fast before the darkness beneath. Come before 14:00 with three hours free."</span>
+      <</if>>
+      <<if $templetest is 'failed' or $temple_chastity_timer lte 0 or !$player.virginity.temple>>
+        <br>· <span class='red'>"Your sacred vows of chastity and purity have been shaken,"</span> <<he>> says with grave sorrow. <span class='red'>"A priest must stand as an untainted beacon. Seek penance and restore your standing before we speak of taking vows."</span>
+      <</if>>
+    <<option 'CN'>>
+      约旦神色温和而郑重地翻过手边的教区记录：
+      <<if _flockRescued>>
+        <br>· <span class='teal'>“你从多瑙河街的那栋宅邸里，把失踪的教徒救了回来，”</span><<he>>按着泛黄的纸页，语气欣慰。<span class='teal'>“牧者绝不会任由受难的同伴沦为掠食者的猎物。”</span>
+      <<else>>
+        <br>· <span class='gold'>“多瑙河街宅邸里失踪的那位见习教徒，至今仍身陷囹圄，”</span><<he>>轻声叹息，眉宇间带着担忧。<span class='gold'>“先帮我们把人救回来，再谈任命。需要帮助就来找我，孩子。”</span>
+      <</if>>
+      <<if _spearReturned>>
+        <br>· <span class='teal'>“那柄神圣的金色长矛，如今已安放在内殿的圣所之中，”</span><<he>>望向礼拜堂的方向。<span class='teal'>“你把交托给你的圣物带回来了。”</span>
+      <<else>>
+        <br>· <span class='gold'>“那柄金色长矛，还没有交还神殿，”</span><<he>>轻声说道。<span class='gold'>“教团遗失的圣物若不归位，任命的誓言便仍有残缺。去把它寻回神殿吧。”</span>
+      <</if>>
+      <<if $TempleDuties.trial_day gte 0>>
+        <br>· <span class='teal'>“你已在下层通道的三道门前完成了守望，并将所有同伴平安带回，”</span><<he>>微微点头。<span class='teal'>“你懂得如何在迷障与黑暗中照料身旁的人。”</span>
+      <<else>>
+        <br>· <span class='gold'>“你尚未完成下层通道的门前守望，”</span><<he>>指向桌旁沉重的铁钥匙。<span class='gold'>“在日光下引领教徒之前，你必须先证明，自己能在地下的黑暗与呼唤叩门时寸步不退。请在14:00前留足三小时，走完那三道门。”</span>
+      <</if>>
+      <<if $templetest is 'failed' or $temple_chastity_timer lte 0 or !$player.virginity.temple>>
+        <br>· <span class='red'>“你身上的纯洁与贞洁誓言受损了，”</span><<he>>的神色凝重而关切。<span class='red'>“司祭应当如明烛般不受污损。在祈求任命前，先接受忏悔与净化，洗去誓言上的阴霾吧。”</span>
+      <</if>>
+  <</language>>
 <</widget>>
 
 

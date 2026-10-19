@@ -156,17 +156,24 @@
       <<socialiseicon 'ask'>>
       <<lanLink ['Report to Jordan', '向约旦汇报'] 'Revelation Temple Report'>>
       <</lanLink>>
+      <<if $TempleDuties.case?.id>>
+        — <<temple-case-title $TempleDuties.case.id>>
+      <</if>>
       <br>
     <<elseif $TempleDuties.case?.stage is 'field'>>
       <<icon 'temple/duties-book.png'>>
       <<lanLink ['Review the assignment and prepare', '查看委托说明，准备调查'] 'Revelation Temple Case Brief'>>
       <</lanLink>>
+      <<if $TempleDuties.case?.id>>
+        — <<temple-case-title $TempleDuties.case.id>>
+      <</if>>
       <br>
     <<elseif !$TempleDuties.case and _dutyNext
         and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
       <<socialiseicon 'ask'>>
       <<lanLink ['Ask what needs investigating', '询问需要调查的事情'] 'Revelation Temple Case Brief'>>
       <</lanLink>>
+      — <<temple-case-title _dutyNext>>
       <br>
     <</if>>
     <<for _retryId range ['echo', 'roots', 'crate']>>

@@ -82,21 +82,21 @@
   <<option 'EN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        A clerk heard knocking behind the lower storeroom wall after putting out the lamps. Jordan hands you the building plan. "Find where it comes from. Frightened people need an answer; they don't need another fright."
+        A night-shift attendant heard knocking behind the lower storeroom wall after lights-out. Jordan hands you the building plan. "Listen along the drainpipe and check the shutter fastening. If you find loose fittings, fasten them and test the drain. Find the cause before drawing a seal on the wall."
       <<case 'roots'>>
-        Roots have pushed beneath a stack of delivery books in the lower storeroom. "The last clerk felt them move," Jordan says. "Keep a way out. If you can't bring the books back safely, bring yourself back."
+        "Roots have grown through the lower storeroom wall and trapped the delivery books," Jordan says. "The last attendant saw them move. Take a lamp, rope and gloves. Mark a clear way back and copy the marks around the roots before trying to recover the books. If they attack, keep the doorway clear. Leave if you cannot manage it safely."
       <<case 'crate'>>
-        A crate sent out with temple relief supplies has been returned. It is still at the docks warehouse, heavier than the dispatch record says, though its seal is unbroken. "A porter heard someone calling for help further inside the warehouse," Jordan says. "Check the crate, and find that person. Make sure everyone is out before you shut the door."
+        "A relief crate has been returned to the docks warehouse," Jordan says. "Its seal is unbroken, but it weighs more than the dispatch record says. A porter also heard someone calling for help inside. Mark a safe route, check the crate and bring that person out. If anything blocks the doorway, drive it back. Make sure everyone is outside before you lock up."
     <</switch>>
     The report asks for what you saw, what you checked, and what remains uncertain.
   <<option 'CN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“找到声音的来源。受惊的人需要答案，不需要再受一次惊吓。”
+        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“沿排水管听听声音，再检查百叶窗扣件。若是器物松动，就固定好，再测试排水管。先查清原因，别急着在墙上画封印。”
       <<case 'roots'>>
-        下层储藏室里，根须挤进一堆交货簿下面。“上一班的人感觉它们动了，”约旦说，“留好出口。不能安全带回书，就先把自己带回来。”
+        “根须从下层储藏室的墙缝里长出来，缠住了交货簿，”约旦说，“上一班的人看见它们动了。领好提灯、绳索和手套，先标好退路，抄下根须周围的痕迹，再想办法带回账簿。如果它们袭击你，就守住门口。应付不了，先撤回来。”
       <<case 'crate'>>
-        神殿发出的救济货箱被退了回来，现在还放在码头的仓库里。货箱比发货记录上写的更重，封条却没有破。“搬运工听见仓库深处有人呼救，”约旦说，“去检查货箱，也找到那个人。确认所有人都出来，再关门。”
+        “一箱救济物资被退回了码头仓库，”约旦说，“封条没破，却比发货记录上重。还有搬运工听见里面有人呼救。先标好安全路线，检查货箱，把受困的人带出来。若有东西堵住门口，就将它们赶开。确认所有人都出来，再锁门。”
     <</switch>>
     报告上要写清你看见了什么、核对了什么，以及哪些事还不能确定。
 <</language>>
@@ -221,6 +221,33 @@
 <</language>>
 <br><br>
 <<if $TempleDuties.case.id is 'echo'>>
+  <<if !_quietVisit>>
+  <<language>>
+    <<option 'EN'>>
+      <<if !$TempleDuties.case.clues.includes('pipe')>>
+        The iron drainpipe below the window hums with every passing gust, vibrating against the stone and throwing distorted knocking sounds across the vaulted ceiling.
+      <<else>>
+        You have heard the knocking carry along the empty drainpipe. It grows quieter when the wind drops.
+      <</if>>
+      <<if !$TempleDuties.case.clues.includes('shutter')>>
+        Across the cold wall, the storm shutter hangs slightly askew; a rusted hinge rattles against the stone masonry whenever the air pressure shifts outside.
+      <<else>>
+        You have found a loose shutter fastening. It strikes the stone beside the drainpipe when the wind rises.
+      <</if>>
+    <<option 'CN'>>
+      <<if !$TempleDuties.case.clues.includes('pipe')>>
+        窗下的铁质排水管随着穿堂风发出空洞的嗡鸣，管壁轻微震颤，将外界气压变动放大成断断续续的沉闷敲击声，在石拱顶下回荡。
+      <<else>>
+        你已经听出敲击声沿空排水管传来。风停时，声音也会减弱。
+      <</if>>
+      <<if !$TempleDuties.case.clues.includes('shutter')>>
+        冰冷的墙面上，风暴百叶窗略微倾斜，锈蚀的铰链扣件在气流掀动下时不时磕碰石壁，留下浅浅的刮痕。
+      <<else>>
+        你已经找到松动的百叶窗扣件。风起时，它会撞上排水管旁的石壁。
+      <</if>>
+  <</language>>
+  <</if>>
+  <br>
   <<if !$TempleDuties.case.clues.includes('pipe')>>
     <<socialiseicon>>
     <<set _pipeMinutes to $TempleDuties.case.prepared or $TempleDuties.archive.topics.includes('buildings') ? 10 : 15>>
@@ -250,13 +277,76 @@
     <br>
   <</if>>
   <<templeicon 'altar'>>
-  <<temple-duty-action `['Draw a seal on the wall (0:20)', '在墙上画下封印 (0:20)']` 20 'Revelation Temple Report'>>
+  <<temple-duty-action `['Draw a seal on the wall (0:20)', '在墙上画下驱邪封印 (0:20)']` 20 'Revelation Temple Report'>>
     <<set $TempleDuties.case.result to 'mistaken'>>
     <<set $TempleDuties.case.stage to 'report'>>
     <<stress 4>>
   <</temple-duty-action>>
   <br>
 <<else>>
+  <<if !_quietVisit>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $TempleDuties.case.id is 'roots'>>
+        <<if !$TempleDuties.case.clues.includes('route')>>
+          The stone steps behind you are slick with foul-smelling subterranean mold. In the gloom, a sudden retreat looks treacherous.
+        <<else>>
+          A clear white chalk line marks a path across the dry flagstones, providing a safe, unobstructed route back up the stairs.
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('marks')>>
+          The dark roots constricting the old delivery books pulse like slow veins, but their tangled nodes and growth patterns remain unsketched.
+        <<else>>
+          You have copied the marks beside the roots and noted how they differ from the seals in the old records.
+        <</if>>
+      <<else>>
+        <<if !$TempleDuties.case.clues.includes('rescued')>>
+          From the collapsed floorboards over the sunken bilge, a trapped dockhand's muffled, desperate cries echo weakly across the dark water.
+        <<else>>
+          The rescued dockhand rests safely on the dry timber gangway by the entrance, wrapped in a coarse wool blanket.
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('route')>>
+          The wet floorboards sag dangerously over the bilge; no clear path has been staked to navigate the collapse.
+        <<else>>
+          You have laid sturdy planks across the sagging timbers, securing a clear passage to the entrance.
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('marks')>>
+          The returned relief crate stands under the dripping awning, but its seals and cargo records have not yet been examined.
+        <<else>>
+          You have thoroughly examined the crate's seals and weighbills, confirming the strange discrepancies in its cargo.
+        <</if>>
+      <</if>>
+    <<option 'CN'>>
+      <<if $TempleDuties.case.id is 'roots'>>
+        <<if !$TempleDuties.case.clues.includes('route')>>
+          身后的石阶覆着一层滑腻发黑的冷苔，在昏暗中湿滑难辨，稍有不慎便会失足跌入泥泞。
+        <<else>>
+          沿着干燥石壁画出的白色粉笔线分明醒目，标出了一条通向石门台阶的安全退路。
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('marks')>>
+          绞缠在账册上的暗色根须如血管般缓慢抽动，表皮复杂的异变节理尚未有人抄录记录。
+        <<else>>
+          你已抄下根须旁的标记，并记下了它们与旧记录中封印的差别。
+        <</if>>
+      <<else>>
+        <<if !$TempleDuties.case.clues.includes('rescued')>>
+          仓库深处坍塌浸水的底板下方，受困搬运工微弱而绝望的求救声断断续续传来，黑水泛着冰冷的气泡。
+        <<else>>
+          获救的搬运工已经转移到入口干燥的木质货台上，裹着粗毛毯惊魂未定地喘息。
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('route')>>
+          浸湿的板条在积水上方危险地摇晃下沉，尚未架设出一条通往大门的稳妥通道。
+        <<else>>
+          你已用木板与绳索稳妥加固了一条通往入口大门的畅通通道。
+        <</if>>
+        <<if !$TempleDuties.case.clues.includes('marks')>>
+          退回的神殿货箱静置在滴水的雨棚下，封蜡与货单的异状尚未仔细核验比对。
+        <<else>>
+          你已仔细勘验了货箱四周的封蜡印章与运单批号，确认了箱体异常增重的诡异差额。
+        <</if>>
+      <</if>>
+  <</language>>
+  <</if>>
+  <br>
   <<if !$TempleDuties.case.clues.includes('route')>>
     <<socialiseicon>>
     <<set _routeMinutes to $TempleDuties.case.prepared or $TempleDuties.archive.topics.includes('buildings') or currentSkillValue('skulduggery') gte 400 ? 10 : 20>>
@@ -300,23 +390,24 @@
     <</temple-duty-action>>
     <br>
   <<elseif !_quietVisit>>
-  <<templeicon 'altar'>>
-  <<temple-duty-action `['Stand at the exit and fight back (0:01)', '守住出口，迎击侵入物 (0:01)']` 1 'Revelation Temple Combat'>>
-    <<set $TempleDuties.case.stage to 'combat'>>
-    <<set $combat to 1>>
-    <<set $enemytype to 'tentacles'>>
-    <<molested>>
-    <<controlloss>>
-    <<set _fieldCount to ($TempleDuties.case.prepared and $TempleDuties.case.clues.includes('route') ? 4 : 8)
-      + ($TempleDuties.case.clues.includes('visit-shifted') ? 2 : 0)
-      - ($TempleDuties.archive.topics.includes('ward-notes') ? 1 : 0)>>
-    <<if $TempleDuties.case.id is 'roots'>>
-      <<tentaclestart _fieldCount 12 'root' 'vine' true>>
-    <<else>>
-      <<tentaclestart _fieldCount 15 'tentacle' 'pale'>>
-    <</if>>
-  <</temple-duty-action>>
-  <br>
+    <<set _fieldReady to $TempleDuties.case.clues.includesAll('route', 'marks') and ($TempleDuties.case.id isnot 'crate' or $TempleDuties.case.clues.includes('rescued'))>>
+    <<templeicon 'altar'>>
+    <<temple-duty-action `[_fieldReady ? ($TempleDuties.case.id is 'roots' ? 'Stand at the dry doorway and sever the surging roots (0:01)' : 'Stand on the gangway and fight off the pale tendrils (0:01)') : ($TempleDuties.case.id is 'roots' ? 'Rush forward to hack at the tangled roots (0:01)' : 'Wade in to fight off the pale tendrils (0:01)'), _fieldReady ? ($TempleDuties.case.id is 'roots' ? '扼守干燥石门，迎击斩退抽动的暗根 (0:01)' : '扼守大门栈道，击退破水而出的苍白触手 (0:01)') : ($TempleDuties.case.id is 'roots' ? '直接冲上前斩断暗根 (0:01)' : '直接涉水迎战苍白触手 (0:01)')]` 1 'Revelation Temple Combat'>>
+      <<set $TempleDuties.case.stage to 'combat'>>
+      <<set $combat to 1>>
+      <<set $enemytype to 'tentacles'>>
+      <<molested>>
+      <<controlloss>>
+      <<set _fieldCount to ($TempleDuties.case.prepared and $TempleDuties.case.clues.includes('route') ? 4 : 8)
+        + ($TempleDuties.case.clues.includes('visit-shifted') ? 2 : 0)
+        - ($TempleDuties.archive.topics.includes('ward-notes') ? 1 : 0)>>
+      <<if $TempleDuties.case.id is 'roots'>>
+        <<tentaclestart _fieldCount 12 'root' 'vine' true>>
+      <<else>>
+        <<tentaclestart _fieldCount 15 'tentacle' 'pale'>>
+      <</if>>
+    <</temple-duty-action>>
+    <br>
   <</if>>
 <</if>>
 <<socialiseicon>>
@@ -448,18 +539,18 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    The growth draws back from the doorway for a moment. You take the chance to get through the door and back onto safe ground.
+    You get back through the doorway and pull the door shut. The sounds from inside fade as you catch your breath.
     <<if $TempleDuties.case?.result is 'resolved'>>
-      The records and your notes are outside with you.
+      You have secured the records and notes you came for. Everyone is outside. You can return to Jordan with your report.
     <<else>>
-      You have not secured everything you came for. You mark the place for a better prepared return.
+      You have not completed the investigation. You mark the entrance and prepare to tell Jordan what happened before making another attempt.
     <</if>>
   <<option 'CN'>>
-    侵入物暂时从门前退开。你趁机穿过门，回到安全的一侧。
+    你退过门槛，将门拉上。里面的声音渐渐减弱，你站在门边缓了口气。
     <<if $TempleDuties.case?.result is 'resolved'>>
-      记录与笔记也带出来了。
+      需要的记录与笔记已经带出来，人也都在门外。你可以回去向约旦汇报了。
     <<else>>
-      这次没能带出所有需要的东西。你标好位置，准备下次再来。
+      调查还没有完成。你在入口留下警示记号，准备先向约旦说明经过，再找机会回来。
     <</if>>
 <</language>>
 <br><br>

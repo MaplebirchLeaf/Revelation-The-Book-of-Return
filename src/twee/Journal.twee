@@ -674,14 +674,20 @@
     <<if $temple_rank is 'monk' and $TempleDuties.ordained lt 0>>
       <<revelation-card 'Priest appointment' '司祭任命'>>
         <ul class='journal'>
-        <<if !_flockRescued>>
-          <li><<lanSwitch 'Complete the rescue of the missing temple member at the Danube manor.' '完成多瑙河宅邸失踪教徒的营救。'>></li>
+        <<if _flockRescued>>
+          <li class='teal'><<lanSwitch 'The missing temple member has been rescued from the Danube Street manor.' '已从多瑙河街宅邸救回失踪教徒。'>></li>
+        <<else>>
+          <li><<lanSwitch 'Rescue the missing temple member from the manor on Danube Street.' '从多瑙河街的宅邸救回失踪的神殿成员。'>></li>
         <</if>>
-        <<if !_spearReturned>>
+        <<if _spearReturned>>
+          <li class='teal'><<lanSwitch 'The golden spear has been returned to Jordan.' '已将金色长矛交还约旦。'>></li>
+        <<else>>
           <li><<lanSwitch 'Bring the golden spear back to Jordan.' '将金色长矛交还约旦。'>></li>
         <</if>>
-        <<if $TempleDuties.trial_day lt 0>>
-          <li><<lanSwitch 'Complete the lower-door watch before the appointment interview. Begin before 14:00 with three hours free.' '任职面谈前，先完成下层门前的守望。14:00 前开始，预留三小时。'>></li>
+        <<if $TempleDuties.trial_day gte 0>>
+          <li class='teal'><<lanSwitch 'The lower-door watch has been completed.' '已完成下层门前的守望。'>></li>
+        <<else>>
+          <li><<lanSwitch 'Complete the lower-door watch before the interview. Begin before 14:00 with three hours free.' '任职面谈前，先完成下层门前的守望。14:00 前开始，预留三小时。'>></li>
         <</if>>
         <li><<lanSwitch 'Jordan can discuss your appointment at the duties desk before 17:00.' '17:00 前可在职务桌与约旦商谈任命。'>></li>
         </ul>

@@ -3,7 +3,6 @@
   <<silently>>
     <<set _watchRouteSkill to currentSkillValue('history') gte 400 or currentSkillValue('science') gte 400
       or currentSkillValue('skulduggery') gte 500>>
-    <<set _watchFit to currentSkillValue('physique') gte 5000 or currentSkillValue('athletics') gte 600>>
     <<set _watchNotes to $TempleDuties.archive.topics.includes('ward-notes')>>
     <<set _watchPrayer to (maplebirch.get('TempleChoir')?.singing ?? 0) gte 600 or currentSkillValue('english') gte 600>>
     <<set _watchWill to _watchPrayer ? 550 : 650>>
@@ -90,18 +89,29 @@
     <<if !_watch.aids.includes(_watchAid)>>
       <<capture _watchName _watchAid>>
         <<socialiseicon>>
-        <<temple-duty-action `['Help ' + maplebirch.auto(_watchName) + ' steady the lamp and recite the prayer (0:05)', '陪' + maplebirch.auto(_watchName) + '持稳灯，一起念祷文 (0:05)']` 5 'Revelation Temple Watch Support' `_watchName`>>
-          <<temple-watch-check>>
-          <<if _watchSafe and !_watch.aids.includes(_watchAid)>>
-            <<run _watch.aids.push(_watchAid)>>
-            <<set $TempleDuties.speaker to _watchName>>
-          <</if>>
-        <</temple-duty-action>>
+        <<if _args[0] is 'lamp'>>
+          <<temple-duty-action `['Help ' + maplebirch.auto(_watchName) + ' steady the lamp against the cold draft (0:05)', '在第一道门前帮' + maplebirch.auto(_watchName) + '扶稳提灯，抵御阴风 (0:05)']` 5 'Revelation Temple Watch Support' `_watchName`>>
+            <<temple-watch-check>>
+            <<if _watchSafe and !_watch.aids.includes(_watchAid)>>
+              <<run _watch.aids.push(_watchAid)>>
+              <<set $TempleDuties.speaker to _watchName>>
+            <</if>>
+          <</temple-duty-action>>
+        <<else>>
+          <<temple-duty-action `['Guide ' + maplebirch.auto(_watchName) + ' through the prayer response against the calling (0:05)', '在第二道门前引领' + maplebirch.auto(_watchName) + '应和答词，抵御呼唤 (0:05)']` 5 'Revelation Temple Watch Support' `_watchName`>>
+            <<temple-watch-check>>
+            <<if _watchSafe and !_watch.aids.includes(_watchAid)>>
+              <<run _watch.aids.push(_watchAid)>>
+              <<set $TempleDuties.speaker to _watchName>>
+            <</if>>
+          <</temple-duty-action>>
+        <</if>>
         <br>
       <</capture>>
     <</if>>
   <</for>>
 <</widget>>
+
 
 :: Revelation Temple Watch Brief
 <<temple-duty-place>>
@@ -121,7 +131,6 @@
     <<He>>合拢手指，遮住第三把钥匙。“带上祷文和护符图样，每人拿一盏灯。若有同伴参加，记得在第一扇门前帮他们持稳灯，在第二扇门前陪他们念祷文。我会在外门这里，等你们回来。”
 <</language>>
 <br><br>
-<<temple-duty-requirements>>
 <<if _watchActive>>
   <<icon 'temple/watch-door.png'>>
   <<lanLink ['Return to the unfinished watch', '继续尚未结束的守望'] 'Revelation Temple Watch'>>
@@ -159,8 +168,36 @@
     <<language>>
       <<option 'EN'>>
         The passage runs beside the garden wall. You can hear water beyond the wall, though it has not rained here. The older priest leads you to the first door and points to the roots caught beneath it. "The forest has found this way again. Clear those roots so we can pass. Keep the lamps facing the outer door, where we came in."
+        <<if _watch.party.includes('Robin')>>
+          <<if _watch.aids.includes('Robin:lamp')>>
+            <br><br>Robin stays close beside you, holding the lamp with both hands. The flame burns steady and clear, casting a warm amber ring across the flagstones.
+          <<else>>
+            <br><br>The icy draft whistling beneath the door flutters Robin's habit. Robin shivers slightly, knuckles pale around the lantern handle as the flame gutters violently in the wind.
+          <</if>>
+        <</if>>
+        <<if _watch.party.includes('Sydney')>>
+          <<if _watch.aids.includes('Sydney:lamp')>>
+            <br><br>Sydney holds the lantern upright and still; its level glow illuminates every scratch and mortar seam in the ancient stonework.
+          <<else>>
+            <br><br>Sydney is squinting into the gloom along the stone vault, lantern swaying in the sudden draft, casting jittery shadows against the wall.
+          <</if>>
+        <</if>>
       <<option 'CN'>>
         通道沿着花园围墙延伸。墙后传来水声，可这里并没有下雨。资深司祭领你来到第一扇门前，指着卡在门下的根须。“森林又找到这里了。先清开这些根须，我们才能过去。让灯照着进来时的外门，别忘了退路。”
+        <<if _watch.party.includes('Robin')>>
+          <<if _watch.aids.includes('Robin:lamp')>>
+            <br><br>罗宾紧挨在你身旁，双手稳稳端着提灯。灯火明亮而安定，在石板地上晕开一圈温暖的橙光。
+          <<else>>
+            <br><br>门缝里灌入的刺骨阴风吹乱了罗宾的衣袍。罗宾单薄的身子微微发抖，手指发白地攥着提灯把手，火苗在气流中狂乱晃荡，几欲熄灭。
+          <</if>>
+        <</if>>
+        <<if _watch.party.includes('Sydney')>>
+          <<if _watch.aids.includes('Sydney:lamp')>>
+            <br><br>悉尼手中的提灯平稳端正，明亮稳定的火光将石壁上的每一道刻痕与灰缝照得分毫毕现。
+          <<else>>
+            <br><br>悉尼正凝神观察石拱深处的黑暗，冷风灌来，手中的提灯摇晃不定，石壁上的阴影也跟着混乱地摆动。
+          <</if>>
+        <</if>>
     <</language>>
     <br><br>
     <<temple-watch-support 'lamp'>>
@@ -192,8 +229,36 @@
     <<language>>
       <<option 'EN'>>
         At the second door, a voice calls your name from the other side and asks you to come closer. Behind you, a lamp gutters as someone draws breath to answer. You look down at the prayer sheet. One instruction has been underlined: "Keep those beside you on this side of the door."
+        <<if _watch.party.includes('Robin')>>
+          <<if _watch.aids.includes('Robin:answer')>>
+            <br><br>Robin's voice rises clear beside yours, chanting the ancient cadence. The steady prayer drowns out the insidious whispers from the door.
+          <<else>>
+            <br><br>As the gentle whisper seeps through the door, Robin's chest heaves. Robin's lips part slightly in confusion, struggling against the eerie impulse to answer.
+          <</if>>
+        <</if>>
+        <<if _watch.party.includes('Sydney')>>
+          <<if _watch.aids.includes('Sydney:answer')>>
+            <br><br>Sydney's palms are clasped tightly against the prayer sheet, reciting the holy words with firm resolve, barring the murmurs from your midst.
+          <<else>>
+            <br><br>Sydney freezes, eyes widening as the distorted voice calls from the latch. Sydney's knuckles strain against the prayer paper, momentarily lost in the whisper.
+          <</if>>
+        <</if>>
       <<option 'CN'>>
         到了第二扇门前，门后的声音叫出了你的名字，请你再走近些。身后一盏灯晃了晃，有人吸气，像是准备回答那道声音。你低头看向祷文，其中一句被划了线：“让同行的人留在门的这一边。”
+        <<if _watch.party.includes('Robin')>>
+          <<if _watch.aids.includes('Robin:answer')>>
+            <br><br>罗宾的声音与你清晰地重合在一起，神圣祷文的韵律在石廊中回响，彻底压过了门后诡异诱人的低语。
+          <<else>>
+            <br><br>门后的呢喃声丝丝缕缕地飘来，罗宾胸口剧烈起伏，嘴唇微微张开，眼中带着惶惑，正艰难地抵御着应声的冲动。
+          <</if>>
+        <</if>>
+        <<if _watch.party.includes('Sydney')>>
+          <<if _watch.aids.includes('Sydney:answer')>>
+            <br><br>悉尼双手合拢紧扣着祷文纸，字字沉稳地诵念着答词，将门后传来的惑人幻音彻底隔绝。
+          <<else>>
+            <br><br>门后扭曲的声音让悉尼浑身一僵，手中的祷文纸被捏出深深的皱褶，目光在门缝前显出片刻的迷惘与挣扎。
+          <</if>>
+        <</if>>
     <</language>>
     <br><br>
     <<temple-watch-support 'answer'>>
@@ -208,6 +273,13 @@
         <<temple-watch-skills>>
         <<set _watch.phase to currentSkillValue('willpower') gte _watchWill and $control gte _watchControl ? 'shadow' : 'failed'>>
         <<set $TempleDuties.note to _watch.phase is 'failed' ? 'watch-voices' : 'watch-answer'>>
+        <<if _watch.phase is 'shadow'>>
+          <<for _wName range _watch.party>>
+            <<if !_watch.aids.includes(_wName + ':answer')>>
+              <<run _watch.aids.push(_wName + ':answer')>>
+            <</if>>
+          <</for>>
+        <</if>>
         <<stress 12>>
         <<tiredness `_watchPrayer ? 5 : 8`>>
       <</if>>
@@ -367,13 +439,13 @@
     and ($tentacles.active lte $tentacles.max / 2 or _combatend)>>
   <<set _watchWon to $tentacles.active lte $tentacles.max / 2 and $stress lt $stressmax and !$possessed>>
   <<if _watchWon>>
-    <<temple-watch-skills>>
-    <<set _watchStrain to $TempleDuties.watch.phase is 'roots' ? (_watchFit ? 4 : 8) : (_watchFit ? 6 : 12)>>
-    <<if _watchNotes>>
-      <<set _watchStrain -= 1>>
+    <<if $TempleDuties.watch.phase is 'roots'>>
+      <<for _wName range $TempleDuties.watch.party>>
+        <<if !$TempleDuties.watch.aids.includes(_wName + ':lamp')>>
+          <<run $TempleDuties.watch.aids.push(_wName + ':lamp')>>
+        <</if>>
+      <</for>>
     <</if>>
-    <<pain _watchStrain>>
-    <<tiredness _watchStrain>>
   <</if>>
   <<clotheson>>
   <<endcombat>>
@@ -384,7 +456,24 @@
   <</lanLink>>
   <<exit>>
 <</if>>
-<<lanSwitch 'Loose stone has scraped your arms during the struggle. You stand beside the lamps and count the people still with you. Beyond the wall, something taps once.' '混乱中，碎石刮破了你的手臂。你站到灯旁，清点仍在身边的人。墙的另一侧，有什么东西轻叩了一下。'>>
+<<language>>
+  <<option 'EN'>>
+    <<if $TempleDuties.watch?.phase is 'voices'>>
+      The severed roots wither back into the damp mortar of the stone wall, twitching feebly before stilling completely. Loose dust and stone chips have scraped your arms, but the clear path to the threshold remains open. You help your companions steady their lamps and check that everyone's flame burns clear. From the dark passage ahead, a soft draft brings the smell of cold, subterranean water.
+    <<elseif $TempleDuties.watch?.phase is 'seal'>>
+      The thrashing pale shapes recoil from the burning lamps, dissolving into oily moisture along the stone floor. Your breath comes ragged in the close air, but the lanterns held firmly by your companions kept the darkness from closing in. The older priest slides the iron bolt home behind you with a heavy clang. "All accounted for," the older priest whispers, hands steadying. Ahead, the final door stands waiting.
+    <<else>>
+      Loose stone has scraped your arms during the struggle. You stand beside the lamps and count the people still with you. Beyond the wall, something taps once.
+    <</if>>
+  <<option 'CN'>>
+    <<if $TempleDuties.watch?.phase is 'voices'>>
+      被斩断的根须在湿冷的石灰缝中抽搐了几下，终于软垂萎缩。激战中飞溅的碎石刮破了你的手臂，但通往外门的退路依然畅通。你帮身旁的同伴扶稳提灯，逐一确认所有人的火苗都依然明亮。前方的幽暗通道里，拂来一阵夹杂着潮气的冷风。
+    <<elseif $TempleDuties.watch?.phase is 'seal'>>
+      狂乱抽打的苍白触须被灯火逼退，化作石板上的一滩油腻水渍。逼仄的空气中，呼吸声沉重而急促，但同行伙伴高举的提灯护住了彼此，未让黑暗将任何人吞噬。身后的资深司祭推上沉重的铁栓，发出笃定的钝响。“人都在，”资深司祭低声说，手也稳了下来。前方，最后一道门静静伫立在灯光下。
+    <<else>>
+      混乱中，碎石刮破了你的手臂。你站到灯旁，清点仍在身边的人。墙的另一侧，有什么东西轻叩了一下。
+    <</if>>
+<</language>>
 <br><br>
 <<temple-watch-back>>
 
