@@ -10,10 +10,18 @@
 <<language>>
   <<option 'EN'>>
     Jordan lays out the records for the missing member of the flock and the pilgrimage for the spear. "Before we speak of appointing you as a priest, we must check the tasks already entrusted to you."
-    <<He>> opens your handovers and field reports. "When the dark knocks, the flock needs someone to protect them. Before I entrust you with that duty, tell me how you kept everyone safe during the watch in the lower passage."
+    <<if $TempleDuties.trial_day gte 0>>
+      <<He>> opens the report of your watch in the lower passage. "I want to hear what you saw, and how you decided when to withdraw."
+    <<else>>
+      <<He>> sets three keys beside the book. "You must also take the watch in the lower passage. An older priest will go with you. Ask at the duties desk when you are ready."
+    <</if>>
   <<option 'CN'>>
     约旦把寻找失踪教徒与取回长矛的两份记录摆在桌上。“谈司祭的任命之前，我们先核对交托给你的事情。”
-    <<He>>翻开交接记录与外勤报告。“黑暗叩门时，教徒需要有人保护。把这份职责交给你之前，我想听听，你在下层通道守望时，是怎样照看同行的人。”
+    <<if $TempleDuties.trial_day gte 0>>
+      <<He>>翻开下层通道的守望记录。“我想听听你看见了什么，又是怎样判断该不该撤退。”
+    <<else>>
+      <<He>>把三把钥匙放在名册旁。“你还需要到下层通道守望，会有资深司祭陪同。准备好以后，到职务桌询问。”
+    <</if>>
 <</language>>
 <br><br>
 <<temple-duty-requirements>>
@@ -26,8 +34,10 @@
     <</if>>
   <</temple-duty-action>>
   <br>
+<<elseif !_dutyReady>>
+  <span class='lblue'><<lanSwitch 'Complete the outstanding duties listed above, then return for the interview.' '先完成上面尚未办妥的事情，再来面谈。'>></span><br>
 <<else>>
-  <span class='lblue'><<lanSwitch 'Complete the outstanding duties before the interview. Leave an hour for the interview and oath before the duties desk closes.' '先完成尚未履行的职责。请在职务桌关闭前，留出一小时参加面谈与宣誓。'>></span><br>
+  <span class='lblue'><<lanSwitch 'Appointment interviews begin before 17:00. Return tomorrow between 09:00 and 17:00.' '任职面谈须在 17:00 前开始。可以明天 09:00 至 17:00 前再来。'>></span><br>
 <</if>>
 <br>
 <<temple-duty-hall-back>>
@@ -165,48 +175,39 @@
 
 :: Temple Duties Review Widgets [widget]
 <<widget 'temple-duty-requirements'>>
-  <<language>>
-    <<option 'EN'>>
-      Jordan turns the pages of the parish book with care:
+  <ul class='journal'>
+    <li>
       <<if _flockRescued>>
-        <br>· <span class='teal'>"You brought the lost member back from that Danube manor,"</span> <<he>> says, tapping the parchment. <span class='teal'>"A shepherd does not abandon the vulnerable to predators."</span>
+        <span class='teal'><<lanSwitch 'The missing member of the flock has been rescued from the Danube Street manor.' '已从多瑙河街宅邸救回失踪的教徒。'>></span>
       <<else>>
-        <br>· <span class='gold'>"The novice who vanished into the Danube Street manor is still trapped,"</span> <<he>> says quietly. <span class='gold'>"Help us bring them home before we discuss your appointment. Come to me if you need help, child."</span>
+        <<lanSwitch 'Rescue the missing member of the flock from the Danube Street manor. Ask Jordan about the disappearance if you have not heard about it yet.' '先救回多瑙河街宅邸里失踪的教徒。还没听说这件事时，可以向约旦询问。'>>
       <</if>>
+    </li>
+    <li>
       <<if _spearReturned>>
-        <br>· <span class='teal'>"The sacred golden spear rests once more in the sanctuary,"</span> <<he>> glances towards the chapel. <span class='teal'>"You brought back the relic entrusted to you."</span>
+        <span class='teal'><<lanSwitch 'The golden spear has been returned to Jordan.' '已将金色长矛交还约旦。'>></span>
       <<else>>
-        <br>· <span class='gold'>"The golden spear has not yet been returned to the temple,"</span> <<he>> murmurs. <span class='gold'>"The holy relic must be recovered and brought home to the altar."</span>
+        <<lanSwitch 'Recover the golden spear and hand it to Jordan. Finding it alone is not enough.' '找回金色长矛，亲手交给约旦。仅仅找到长矛还不算完成。'>>
       <</if>>
-      <<if $TempleDuties.trial_day gte 0>>
-        <br>· <span class='teal'>"You kept the vigil before the three doors in the lower passage and brought everyone back safe,"</span> <<he>> nods with quiet approval.
-      <<else>>
-        <br>· <span class='gold'>"You have yet to lead the vigil in the lower passage,"</span> <<he>> points to the heavy iron keys. <span class='gold'>"Before you lead the flock in daylight, you must know how to stand fast before the darkness beneath. Come before 14:00 with three hours free."</span>
-      <</if>>
-      <<if $templetest is 'failed' or $temple_chastity_timer lte 0 or !$player.virginity.temple>>
-        <br>· <span class='red'>"Your sacred vows of chastity and purity have been shaken,"</span> <<he>> says with grave sorrow. <span class='red'>"A priest must stand as an untainted beacon. Seek penance and restore your standing before we speak of taking vows."</span>
-      <</if>>
-    <<option 'CN'>>
-      约旦神色温和而郑重地翻过手边的教区记录：
-      <<if _flockRescued>>
-        <br>· <span class='teal'>“你从多瑙河街的那栋宅邸里，把失踪的教徒救了回来，”</span><<he>>按着泛黄的纸页，语气欣慰。<span class='teal'>“牧者绝不会任由受难的同伴沦为掠食者的猎物。”</span>
-      <<else>>
-        <br>· <span class='gold'>“多瑙河街宅邸里失踪的那位见习教徒，至今仍身陷囹圄，”</span><<he>>轻声叹息，眉宇间带着担忧。<span class='gold'>“先帮我们把人救回来，再谈任命。需要帮助就来找我，孩子。”</span>
-      <</if>>
-      <<if _spearReturned>>
-        <br>· <span class='teal'>“那柄神圣的金色长矛，如今已安放在内殿的圣所之中，”</span><<he>>望向礼拜堂的方向。<span class='teal'>“你把交托给你的圣物带回来了。”</span>
-      <<else>>
-        <br>· <span class='gold'>“那柄金色长矛，还没有交还神殿，”</span><<he>>轻声说道。<span class='gold'>“教团遗失的圣物若不归位，任命的誓言便仍有残缺。去把它寻回神殿吧。”</span>
-      <</if>>
-      <<if $TempleDuties.trial_day gte 0>>
-        <br>· <span class='teal'>“你已在下层通道的三道门前完成了守望，并将所有同伴平安带回，”</span><<he>>微微点头。<span class='teal'>“你懂得如何在迷障与黑暗中照料身旁的人。”</span>
-      <<else>>
-        <br>· <span class='gold'>“你尚未完成下层通道的门前守望，”</span><<he>>指向桌旁沉重的铁钥匙。<span class='gold'>“在日光下引领教徒之前，你必须先证明，自己能在地下的黑暗与呼唤叩门时寸步不退。请在14:00前留足三小时，走完那三道门。”</span>
-      <</if>>
-      <<if $templetest is 'failed' or $temple_chastity_timer lte 0 or !$player.virginity.temple>>
-        <br>· <span class='red'>“你身上的纯洁与贞洁誓言受损了，”</span><<he>>的神色凝重而关切。<span class='red'>“司祭应当如明烛般不受污损。在祈求任命前，先接受忏悔与净化，洗去誓言上的阴霾吧。”</span>
-      <</if>>
-  <</language>>
+    </li>
+    <<if _args[0] isnot 'watch'>>
+      <li>
+        <<if $TempleDuties.trial_day gte 0>>
+          <span class='teal'><<lanSwitch 'You completed the lower-door watch and brought the lamp back.' '已完成下层门前的守望，将灯带了回来。'>></span>
+        <<else>>
+          <<lanSwitch 'Complete the lower-door watch. Ask at the duties desk before 14:00, with three hours free after entering the passage.' '还需完成下层门前的守望。14:00 前到职务桌询问，并为进入通道后的守望留出三小时。'>>
+        <</if>>
+      </li>
+    <</if>>
+    <<if !$TempleDuties.enrolled>>
+      <li><<lanSwitch 'Ask Jordan for duties through the duties book first.' '先通过职务簿向约旦申请职务。'>></li>
+    <</if>>
+    <<if $templetest is 'failed' or !$player.virginity.temple>>
+      <li class='red'><<lanSwitch 'Your temple standing has not been restored. Complete the examination or purification in the hall first.' '你尚未恢复神殿资格。先到大厅处理检查或净化。'>></li>
+    <<elseif $temple_chastity_timer lte 0>>
+      <li><<lanSwitch 'Your monthly examination is due. Return to the hall for it; an expired examination date does not itself mean you broke your vows.' '月度检查已经到期，先回大厅接受检查。到期本身不代表违誓。'>></li>
+    <</if>>
+  </ul>
 <</widget>>
 
 

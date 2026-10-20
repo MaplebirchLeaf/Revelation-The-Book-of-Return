@@ -61,10 +61,12 @@
     and !(Time.weekDay is 1 and Time.hour lt 13)
     and !_watchActive and $TempleDuties.watch?.day isnot Math.floor(Time.days)
     and !$TempleDuties.case>>
+  <<set _watchUnavailable to []>>
   <<for _watchName range $TempleDuties.party>>
     <<temple-candidate-check _watchName 185>>
     <<if !_candidateFree or !_candidate.agreed or !_candidate.lessons.includesAll('care', 'wards')>>
       <<set _watchStart to false>>
+      <<run _watchUnavailable.push(_watchName)>>
     <</if>>
   <</for>>
   <<if _watchStart>>
@@ -79,7 +81,19 @@
     <</temple-duty-action>>
     <br>
   <<else>>
-    <span class='lblue'><<lanSwitch 'Finish your current investigation before starting the watch. Come before 14:00, outside Sunday mass, and leave three hours free for everyone attending. You can attempt the watch once a day.' '先完成手头的调查，再开始守望。请在14:00前、周日弥撒以外的时段前来，并确保所有同行的人都能留出三小时。每天只能尝试一次。'>></span><br>
+    <<if !_dutyCredentials>>
+      <<temple-duty-requirements 'watch'>>
+    <<elseif $TempleDuties.case>>
+      <span class='lblue'><<lanSwitch 'Finish the current investigation and report to Jordan before taking the watch.' '先完成手头的调查并向约旦汇报，再接下守望。'>></span><br>
+    <<elseif $TempleDuties.watch?.day is Math.floor(Time.days)>>
+      <span class='lblue'><<lanSwitch 'You have already attempted the watch today. You may return tomorrow.' '今天已经尝试过守望，可以明天再来。'>></span><br>
+    <<elseif Time.weekDay is 1 and Time.hour lt 13>>
+      <span class='lblue'><<lanSwitch 'Wait until Sunday mass ends at 13:00 before beginning the watch.' '等周日弥撒结束，13:00 后再开始守望。'>></span><br>
+    <<elseif Time.hour gte 14>>
+      <span class='lblue'><<lanSwitch 'It is too late to begin today. Return before 14:00, with three hours free after entering the passage.' '今天已经来不及开始。请在 14:00 前再来，并为进入通道后的守望留出三小时。'>></span><br>
+    <<elseif _watchUnavailable.length>>
+      <span class='lblue'><<print _watchUnavailable.map(name => maplebirch.auto(name)).join(lanSwitch(', ', '、'))>><<lanSwitch ': not ready for this watch, or unable to stay for the entry and three-hour watch. Check the preparation book or cancel the invitation.' '：尚未准备好，或无法为入场和三小时守望留出空闲。请核对候任名册，也可以取消邀请。'>></span><br>
+    <</if>>
   <</if>>
 <</widget>>
 

@@ -278,6 +278,10 @@
           <</language>>
           </li>
         <<case 'promised'>>
+          <<set _templeExamDays to Math.max(0,
+            $RobinTemple.dual_promise or maplebirch.get('RobinTemple').publicPromise is 'Robin'
+              ? ($RobinTemple.monthly_checked ? Math.min($temple_chastity_timer, $RobinTemple.chastity_timer) : 0)
+              : $temple_chastity_timer)>>
           <<if $RobinTemple.dual_promise>>
             <li>
             <<language>>
@@ -300,11 +304,14 @@
           <li>
           <<language>>
             <<option 'EN'>>
-              Days until the next examination: <span class='gold'><<= Math.max(0, maplebirch.get('RobinTemple').publicPromise is 'Sydney' ? $temple_chastity_timer : $RobinTemple.chastity_timer)>></span>
+              Days until the next examination: <span class='gold'><<= _templeExamDays>></span>
             <<option 'CN'>>
-              距离下次检查还有：<span class='gold'><<= Math.max(0, maplebirch.get('RobinTemple').publicPromise is 'Sydney' ? $temple_chastity_timer : $RobinTemple.chastity_timer)>></span>
+              距离下次检查还有：<span class='gold'><<= _templeExamDays>></span>
           <</language>>
           </li>
+          <<if _templeExamDays is 0>>
+            <li><<lanSwitch 'Go to the temple hall for the examination. If Robin cannot attend, the examination will wait.' '到神殿大厅处理月度检查。罗宾暂时无法到场时，检查会等候。'>></li>
+          <</if>>
       <</switch>>
       <<if !maplebirch.get('RobinTemple').available>>
         <li><<lanSwitch 'Robin cannot take part in normal activities at present. Temple duties and invitations will wait.' '罗宾暂时无法正常活动。神殿事务与同行邀请需等候。'>></li>
@@ -415,6 +422,69 @@
 <</widget>>
 
 <!-- 混乱誓约 -->
+<<widget 'secret-promise-next-step'>>
+  <<set _secret to maplebirch.get('RobinTemple').secret>>
+  <<if !_secret.eligible>>
+    <<if !_secret.known>>
+      <<lanSwitch 'You still need the bishop’s account, the gaoler and witch’s ending, and the vision beneath the lake before pursuing this plan.' '你还需亲历主教的揭密、狱卒与女巫的结局，以及湖底幻境，才能追查这个计划。'>>
+    <<elseif !maplebirch.get('RobinTemple').member or !$temple_rank or $temple_rank is 'prospective'>>
+      <<lanSwitch 'Both you and Robin must formally join the temple before pursuing this promise.' '你与罗宾都需正式加入神殿，再追查这份承诺。'>>
+    <<elseif !_secret.unfitted>>
+      <<lanSwitch 'You, Robin and Sydney must first remove all chastity fittings. Discuss Robin’s temple fittings at the temple quarters; asking for removal does not remove them.' '你、罗宾和悉尼都需要先取下贞操器具。罗宾的神殿器具可以到宿舍商量拆除，仅提出申请不算取下。'>>
+    <<elseif !maplebirch.get('RobinTemple').available>>
+      <<lanSwitch 'Robin cannot go with you at present. Wait until Robin can take part in ordinary activities again.' '罗宾暂时无法同行。等罗宾能够正常活动后，再商量出行。'>>
+    <<elseif $RobinTemple.punish or $player.virginity.temple isnot true
+        or C.npc.Robin.virginity.temple isnot true or C.npc.Sydney.virginity.temple isnot true>>
+      <<lanSwitch 'Resolve the outstanding purification or broken temple vows before continuing.' '先处理尚未结束的净化或破损的神殿誓言，再继续调查。'>>
+    <<elseif $robinromance isnot 1 or $sydneyromance isnot 1 or C.npc.Robin.love lt 80 or C.npc.Sydney.love lt 125>>
+      <<lanSwitch 'This plan needs a close romantic relationship with both companions: Robin’s love must be at least 80, and Sydney’s at least 125.' '这个计划需要你与两人保持亲密的恋爱关系：罗宾爱意至少 80，悉尼爱意至少 125。'>>
+    <<elseif C.npc.Robin.trauma lt 40>>
+      <<lanSwitch 'Robin’s distress has eased, and Robin no longer wants to pursue this investigation. The plan is on hold.' '罗宾的创伤已经缓和，不再愿意追查这件事。计划暂时搁下。'>>
+    <<elseif C.npc.Sydney.purity gte 50 or C.npc.Sydney.corruption lt 10>>
+      <<lanSwitch 'Sydney’s current beliefs do not allow this rite. You cannot continue with Sydney in this state.' '悉尼目前的信仰立场不允许这场仪式，无法按原计划继续。'>>
+    <<elseif $RobinTemple.templePromised is 'Robin' and !$sydneySeen?.includes('corruptroom')>>
+      <<lanSwitch 'Sydney has not yet completed the corrupt promise rite. Speak with Sydney about that before seeking a second promise.' '悉尼尚未完成堕落仪式。先与悉尼处理这件事，再寻求第二份承诺。'>>
+    <<elseif !hasSexStat('promiscuity', 6)>>
+      <<lanSwitch 'You are not yet prepared to seek both promises.' '你还没有准备好同时寻求两份承诺。'>><<promiscuous 6>>
+    <<else>>
+      <<lanSwitch 'This plan requires one existing promise, with Robin or Sydney. If that promise changes during the investigation, you cannot continue with the old plan.' '这个计划需要你已与罗宾或悉尼中的一人承诺。调查期间，已有承诺发生变化，就无法继续原来的计划。'>>
+    <</if>>
+  <<elseif $RobinTemple.secret.stage is 'none'>>
+    <<lanSwitch 'Speak to Robin privately at home to begin the investigation.' '在家中找有空的罗宾，私下谈起调查。'>>
+  <<elseif $RobinTemple.secret.witness_day gte 0 and !_secret.settled>>
+    <<lanSwitch 'Give both companions three days after returning from the shared investigation before asking them to reconsider.' '共同调查回来后，先给两人三天考虑，再分别询问。'>>
+  <<elseif $RobinTemple.secret.robin_day lt 0
+      or $RobinTemple.secret.witness_day gte 0 and $RobinTemple.secret.robin_day lt $RobinTemple.secret.witness_day + 3>>
+    <<lanSwitch 'Speak to Robin privately at home when Robin is free. This conversation has not been settled yet.' '仍需和罗宾私下谈妥。在家中找有空的罗宾。'>>
+  <<elseif $RobinTemple.secret.sydney_day lt 0
+      or $RobinTemple.secret.witness_day gte 0 and $RobinTemple.secret.sydney_day lt $RobinTemple.secret.witness_day + 3>>
+    <<lanSwitch 'Speak to Sydney privately at the school library, temple or adult shop when Sydney is free.' '仍需和悉尼私下谈妥。在学校图书馆、神殿或成人用品商店找有空的悉尼。'>>
+  <<elseif $RobinTemple.secret.survey_day lt 0>>
+    <<lanSwitch 'Survey the lake ruin in daylight, while the lake is unfrozen and no pursuit is underway.' '湖面未结冰、没有追猎时，白天到湖畔勘查废墟路线。'>>
+  <<elseif !$RobinTemple.secret.prepared>>
+    <<lanSwitch 'At the lake, review the route and your findings, then confirm the departure preparations.' '到湖畔核对路线与调查所得，再确认出发准备。'>>
+  <<elseif $RobinTemple.secret.witness_day lt 0
+      and Time.days lt Math.max($RobinTemple.secret.robin_day, $RobinTemple.secret.sydney_day, $RobinTemple.secret.survey_day) + 3>>
+    <<lanSwitch 'Leave three days after the most recent conversation or survey before setting out together.' '最后一次谈话或勘查后，需留出三天，再一同出发。'>>
+  <<elseif $RobinTemple.secret.witness_day gte 0 and (!_secret.wants.Robin or !_secret.wants.Sydney)>>
+    <<lanSwitch 'One or both companions do not currently want the rite. Do not set out until both freely agree.' '目前仍有人不愿参与仪式。等两人都明确愿意，再商量出发。'>>
+  <<elseif $stress gte $stressmax - 40 or $pain gte 50 or $tiredness gte 1500>>
+    <<lanSwitch 'Rest before setting out. You are too tense, hurt or tired for the journey.' '先休息，缓和压力、疼痛或疲劳，再安排这次同行。'>>
+  <<elseif $RobinTemple.secret.night is Time.days>>
+    <<lanSwitch 'You have already set out together tonight. Choose another blood moon night.' '今晚已经一同出发过了，另选一个血月夜吧。'>>
+  <<elseif _secret.threatened>>
+    <<lanSwitch 'A pursuit or the wraith’s hostility makes the lake unsafe. Settle that danger before arranging a meeting.' '追猎或怨灵的敌意仍使湖边不安全。先处理眼前的危险，再安排会合。'>>
+  <<elseif Weather.isFrozen('lake') or Weather.precipitation is 'rain'>>
+    <<lanSwitch 'Wait for a rainless night with an unfrozen lake.' '等湖面未结冰、没有下雨的夜晚再来。'>>
+  <<elseif $laketeenspresent>>
+    <<lanSwitch 'People are still at the lake. Wait until the shore is empty.' '湖边还有人，等岸边无人时再来。'>>
+  <<elseif !Time.isBloodMoon() or Time.hour lt 21 or Time.hour gte 23>>
+    <<lanSwitch 'Your preparations are complete. Meet at the lake on a blood moon night between 21:00 and 23:00.' '准备已经齐全。血月夜 21:00 至 23:00 前，到湖畔会合。'>>
+  <<else>>
+    <<lanSwitch 'The preparations and conditions are right. You can meet Robin and Sydney at the lake now.' '准备与时机都已合适，现在可以到湖畔与罗宾、悉尼会合。'>>
+  <</if>>
+<</widget>>
+
 <<widget 'secret-promise-journal'>>
   <<if $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'
       and ['none', 'meal', 'records'].includes($RobinTemple.secret.followup)>>
@@ -437,142 +507,28 @@
       and (maplebirch.get('RobinTemple').secret.known or $RobinTemple.secret.stage isnot 'none')>>
     <<revelation-card 'Confounded Vow' '混乱誓约'>>
       <ul class='journal'>
-      <<if $RobinTemple.secret.stage is 'none'>>
-        <li>
-        <<language>>
-          <<option 'EN'>>
-            Your existing promise may be with Robin or Sydney. Sydney must currently have a corrupt outlook. With Robin first, Sydney's corrupt rite must also be complete. With stable relationships and intact vows, speak to Robin privately at home.
-          <<option 'CN'>>
-            第一份承诺可以与罗宾或悉尼缔结，悉尼当前须已转向堕落。罗宾先承诺时，还须完成悉尼的堕落仪式。关系稳固、誓言完整时，去家中和罗宾私下谈谈。
-        <</language>>
-        </li>
-        <<if !hasSexStat('promiscuity', 6)>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              You are not yet ready to seek a promise with both companions.
-            <<option 'CN'>>
-              你还没有准备好寻求同时与两人缔结承诺。
-          <</language>>
-          <<promiscuous 6>></li>
-        <</if>>
-      <<else>>
-        <<if $RobinTemple.secret.stage is 'research'>>
-          <<if $RobinTemple.secret.witness_day gte 0 and !maplebirch.get('RobinTemple').secret.settled>>
-            <li><<lanSwitch 'After returning, leave three days before asking either companion to reconsider.' '返回后留出三天，再请两人重新考虑。'>></li>
-          <<else>>
-            <<if $RobinTemple.secret.robin_day lt 0>>
-              <li><<lanSwitch 'A private conversation with Robin is still needed. Find Robin at home when free.' '仍需和罗宾私下谈妥。在家中找有空的罗宾。'>></li>
-            <</if>>
-            <<if $RobinTemple.secret.sydney_day lt 0>>
-              <li><<lanSwitch 'A private conversation with Sydney is still needed. Find Sydney at the library, temple or shop when free to talk.' '仍需和悉尼私下谈妥。在图书馆、神殿或商店找有空交谈的悉尼。'>></li>
-            <</if>>
+      <<switch $RobinTemple.secret.stage>>
+        <<case 'none' 'research'>>
+          <<if $RobinTemple.secret.stage is 'research'>>
+            <li>
+              <<if $RobinTemple.secret.witness_day lt 0>>
+                <<lanSwitch 'The first journey is only to investigate the stone. After returning, each companion will decide whether to attempt the rite.' '第一次同行只调查石头。回来后，再由两人分别决定是否参与仪式。'>>
+              <<else>>
+                <<lanSwitch 'After examining the stone together, you are considering the rite. Each of you remains free to change your mind.' '你们已经一起查看过石头，接下来要商议是否举行仪式。每个人都可以改变主意。'>>
+              <</if>>
+            </li>
           <</if>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin:
-              <<if $RobinTemple.secret.robin_day gte 0>>
-                agreed.
-              <<else>>
-                not yet agreed.
-              <</if>>
-              Sydney:
-              <<if $RobinTemple.secret.sydney_day gte 0>>
-                agreed.
-              <<else>>
-                not yet agreed.
-              <</if>>
-            <<option 'CN'>>
-              罗宾：
-              <<if $RobinTemple.secret.robin_day gte 0>>
-                已谈妥。
-              <<else>>
-                尚未谈妥。
-              <</if>>
-              悉尼：
-              <<if $RobinTemple.secret.sydney_day gte 0>>
-                已谈妥。
-              <<else>>
-                尚未谈妥。
-              <</if>>
-          <</language>>
-          </li>
-        <<elseif $RobinTemple.secret.stage is 'decision'>>
-          <li><<lanSwitch 'You have examined the stone. You are deciding whether to attempt the rite tonight, and both Robin and Sydney must agree.' '你们已经查看过石头。现在要决定今晚是否举行仪式，罗宾和悉尼都需要明确同意。'>></li>
-        <<elseif $RobinTemple.secret.stage is 'travelling'>>
-          <li><<lanSwitch 'You have met Robin and Sydney at the lake. You can visit the stone in the ruins together or call off this journey.' '你和罗宾、悉尼已经在湖边会合。可以一起前往废墟里的石头，也可以结束这次同行。'>></li>
-        <<elseif $RobinTemple.secret.stage is 'ritual'>>
-          <li><<lanSwitch 'The rite is underway. Each of you must give your own answer; one person cannot decide for the other two.' '仪式正在进行。你们需要各自表明意愿，不能由一个人替另外两人作主。'>></li>
-        <</if>>
-        <<if C.npc.Robin.trauma lt 40>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin's trauma has eased. The investigation cannot continue in <<nnpc_his 'Robin'>> current state.
-            <<option 'CN'>>
-              罗宾的创伤已经缓和，目前的状态不再满足继续调查的条件。
-          <</language>>
-          </li>
-        <</if>>
-        <<if $RobinTemple.secret.witness_day gte 0 and (!maplebirch.get('RobinTemple').secret.wants.Robin or !maplebirch.get('RobinTemple').secret.wants.Sydney)>>
-          <li><i>
-          <<language>>
-            <<option 'EN'>>
-              Both companions must be ready for the rite.
-              <<if !maplebirch.get('RobinTemple').secret.wants.Robin>>
-                Robin is not ready.
-              <</if>>
-              <<if !maplebirch.get('RobinTemple').secret.wants.Sydney>>
-                Sydney is not ready.
-              <</if>>
-            <<option 'CN'>>
-              仪式需要两人都准备好。
-              <<if !maplebirch.get('RobinTemple').secret.wants.Robin>>
-                罗宾还没有准备好。
-              <</if>>
-              <<if !maplebirch.get('RobinTemple').secret.wants.Sydney>>
-                悉尼还没有准备好。
-              <</if>>
-          <</language>>
-          </i></li>
-        <</if>>
-        <<if $RobinTemple.secret.stage is 'research'>>
-          <<if $RobinTemple.secret.survey_day lt 0>>
-            <li><<lanSwitch 'Survey the lake ruin by daylight, with the lake unfrozen and no pursuit.' '湖面未结冰、没有追猎时，白天勘查湖底废墟。'>></li>
-          <<elseif $RobinTemple.secret.robin_day gte 0 and $RobinTemple.secret.sydney_day gte 0>>
-            <<if !$RobinTemple.secret.prepared>>
-              <li><<lanSwitch 'Review the route and your findings at the lake.' '到湖畔核对路线与调查所得。'>></li>
-            <<else>>
-              <li>
-              <<language>>
-                <<option 'EN'>>
-                  <<if $RobinTemple.secret.witness_day lt 0>>
-                    Allow three days after the latest conversation or survey, then meet on an empty, rainless blood moon night, 21:00–23:00.
-                  <<else>>
-                    Meet on a later blood moon night, 21:00–23:00, with an unfrozen lake, no rain, no crowd and no pursuit.
-                  <</if>>
-                <<option 'CN'>>
-                  <<if $RobinTemple.secret.witness_day lt 0>>
-                    最后一次谈话或勘查后留出三天，在无人、无雨的血月夜，21:00–23:00 会合。
-                  <<else>>
-                    在之后的血月夜，21:00–23:00 会合。湖面须未结冰，没有下雨、人群或追猎。
-                  <</if>>
-              <</language>>
-              </li>
-            <</if>>
-          <</if>>
-        <</if>>
-      <</if>>
-      <<if !$RobinTemple.dual_promise and !maplebirch.get('RobinTemple').secret.unfitted>>
-        <li>
-        <<language>>
-          <<option 'EN'>>
-            <span class='teal'>You, Robin and Sydney must all be free of chastity belts, cages and anal shields. Request removal of Robin's temple fitting, then accompany Robin to Jordan during daylight, outside Sunday mass.</span>
-          <<option 'CN'>>
-            <span class='teal'>你、罗宾与悉尼都不能佩戴贞操带、贞操笼或护肛板。先提出拆除罗宾神殿器具的申请，白天约旦在场、没有主持周日弥撒时，再陪罗宾办理。</span>
-        <</language>>
-        </li>
+          <li><<secret-promise-next-step>></li>
+        <<case 'decision'>>
+          <li><<lanSwitch 'You have examined the stone. Decide whether to attempt the rite tonight. Robin and Sydney must each give their own consent.' '你们已经查看过石头。现在要决定今晚是否举行仪式，罗宾和悉尼都需要各自明确同意。'>></li>
+        <<case 'travelling'>>
+          <li><<lanSwitch 'You have met Robin and Sydney at the lake. Visit the stone together or call off the journey.' '你和罗宾、悉尼已经在湖边会合。可以一起查看废墟里的石头，也可以结束这次同行。'>></li>
+        <<case 'ritual'>>
+          <li><<lanSwitch 'The rite is underway. Each of you must give your own answer; no one can decide for the other two.' '仪式正在进行。你们需要各自表明意愿，不能由一个人替另外两人作主。'>></li>
+      <</switch>>
+      <<if ['travelling', 'decision', 'ritual'].includes($RobinTemple.secret.stage)
+          and !maplebirch.get('RobinTemple').secret.active>>
+        <li class='red'><<lanSwitch 'This journey has been interrupted. Return to the lake shore to call it off before making another plan.' '这次同行已经中断。回到湖畔取消这次同行，再安排新的计划。'>></li>
       <</if>>
       </ul>
     <</revelation-card>>
