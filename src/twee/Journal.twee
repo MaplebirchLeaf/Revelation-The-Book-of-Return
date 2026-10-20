@@ -184,6 +184,13 @@
 <</widget>>
 
 <!-- 罗宾与神殿 -->
+<<widget 'robin-temple-examination-days'>>
+  <<set _templeExamDays to Math.max(0,
+    maplebirch.get('RobinTemple') and ($RobinTemple.dual_promise or maplebirch.get('RobinTemple').publicPromise is 'Robin')
+      ? ($RobinTemple.monthly_checked ? Math.min($temple_chastity_timer, $RobinTemple.chastity_timer) : 0)
+      : $temple_chastity_timer)>>
+<</widget>>
+
 <<widget 'robin-temple-journal'>>
   <<if $RobinTemple?.stage and $RobinTemple.stage isnot 'none'>>
     <<revelation-card 'Robin and the temple' '罗宾与神殿'>>
@@ -278,10 +285,7 @@
           <</language>>
           </li>
         <<case 'promised'>>
-          <<set _templeExamDays to Math.max(0,
-            $RobinTemple.dual_promise or maplebirch.get('RobinTemple').publicPromise is 'Robin'
-              ? ($RobinTemple.monthly_checked ? Math.min($temple_chastity_timer, $RobinTemple.chastity_timer) : 0)
-              : $temple_chastity_timer)>>
+          <<robin-temple-examination-days>>
           <<if $RobinTemple.dual_promise>>
             <li>
             <<language>>

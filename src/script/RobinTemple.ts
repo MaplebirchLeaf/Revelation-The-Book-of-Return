@@ -211,6 +211,11 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
       ]
     },
     widgetPassage: {
+      // 原版备忘与共同检查使用同一显示日期，不改动各自的月检计时。
+      'Widgets Journal': [
+        { src: '<<if $temple_chastity_timer lte 0>>', applybefore: '<<robin-temple-examination-days>>', expected: 1 },
+        { srcmatch: /\$temple_chastity_timer/g, to: '_templeExamDays', expected: 3 }
+      ],
       'Widgets Temple': [
         {
           // 只添加 Robin 分支，PC、Sydney 与 dark 分支保留原版。
