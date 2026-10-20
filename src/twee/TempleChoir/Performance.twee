@@ -32,8 +32,10 @@
         <<set _performanceSafe to false>>
     <</switch>>
     <<set _performanceReady to _performanceSafe and (_performanceVenue is 'banquet' or $TempleChoir.performanceDay isnot Time.days)>>
-    <<set _performanceActive to _performanceSafe and _performance and !_performance.done
-      and _performance.venue is _performanceVenue and _performance.source is $passage>>
+    <<set _performanceCurrent to _performance and _performance.venue is _performanceVenue
+      and _performance.source is $passage
+      and (_performanceVenue is 'banquet' or $TempleChoir.performanceDay is Time.days)>>
+    <<set _performanceActive to _performanceSafe and _performanceCurrent and !_performance.done>>
   <</silently>>
 <</widget>>
 
@@ -46,7 +48,7 @@
   <<if !_performanceSafe>><<exit>><</if>>
   <<run Dynamic.bindTo('temple-choir-performance', '<<temple-choir-performance-view>>')>>
   <div id='temple-choir-performance'>
-    <<if _performanceActive or (_performance?.done and _performance.source is $passage)>>
+    <<if _performanceCurrent and (_performanceActive or _performance.done)>>
       <<temple-choir-performance-view>>
     <<elseif _performanceReady>>
       <<capture _performanceVenue>>

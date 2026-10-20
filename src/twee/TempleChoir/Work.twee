@@ -84,7 +84,6 @@
         这次练习已经结束。可以在日志中查看下一次练习的时间。
     <</language>>
 <</switch>>
-<<set $TempleChoir.exercise to ''>>
 <br><br>
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 
@@ -126,69 +125,64 @@
 
   <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗'] 'Temple'>><<set $TempleChoir.shift to null>><<endevent>><</lanLink>><br>
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
-<<elseif maplebirch.get('TempleChoir')?.active and $TempleChoir.shift.round is 3>>
-  <<set _choirWasLead to $TempleChoir.lead>>
+<<elseif maplebirch.get('TempleChoir') and $TempleChoir.serviceDay is Time.days
+    and $TempleChoir.shift?.round is 3 and (maplebirch.get('TempleChoir').active or $TempleChoir.shift.done)>>
+  <!-- 只结算一次；正文、领唱许可与同伴回应在重绘后仍可查看。 -->
   <<if maplebirch.get('TempleChoir').finish()>>
     <<purity 10>><<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>
+  <</if>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $TempleChoir.shift.result is 'clear'>>
+        The final chord settles cleanly.
+      <<elseif $TempleChoir.shift.result is 'unsteady'>>
+        Your last note falters, but the choir carries it to the end.
+      <<else>>
+        You lose the final line and close your book as the others finish.
+      <</if>>
+      Jordan dismisses the congregation, then calls you over.
+    <<option 'CN'>>
+      <<if $TempleChoir.shift.result is 'clear'>>
+        最后一个和弦稳稳落下。
+      <<elseif $TempleChoir.shift.result is 'unsteady'>>
+        你的尾音有些摇晃，唱诗班陪着你把它唱完。
+      <<else>>
+        你没能跟住最后一句，等其他人唱完才合上书。
+      <</if>>
+      约旦送走信众，随后示意你过来。
+  <</language>><<gtiredness>><<if $TempleChoir.shift.result is 'lost'>><<gstress>><<else>><<lstress>><</if>><<gsingingskill>><br><br>
+  <<if $TempleChoir.shift.score gte 5>>
     <<language>>
       <<option 'EN'>>
-        <<if $TempleChoir.shift.result is 'clear'>>
-          The final chord settles cleanly.
-        <<elseif $TempleChoir.shift.result is 'unsteady'>>
-          Your last note falters, but the choir carries it to the end.
-        <<else>>
-          You lose the final line and close your book as the others finish.
-        <</if>>
-        Jordan dismisses the congregation, then calls you over.
+        "You listened to the others. Keep doing that. A choir needs more than a loud voice," Jordan says. <<He>> marks your attendance and records your choir earnings in the allowance ledger.
       <<option 'CN'>>
-        <<if $TempleChoir.shift.result is 'clear'>>
-          最后一个和弦稳稳落下。
-        <<elseif $TempleChoir.shift.result is 'unsteady'>>
-          你的尾音有些摇晃，唱诗班陪着你把它唱完。
-        <<else>>
-          你没能跟住最后一句，等其他人唱完才合上书。
-        <</if>>
-        约旦送走信众，随后示意你过来。
-    <</language>><<gtiredness>><<if $TempleChoir.shift.result is 'lost'>><<gstress>><<else>><<lstress>><</if>><<gsingingskill>><br><br>
-    <<if $TempleChoir.shift.score gte 5>>
-      <<language>>
-        <<option 'EN'>>
-          "You listened to the others. Keep doing that. A choir needs more than a loud voice," Jordan says. <<He>> marks your attendance and records your choir earnings in the allowance ledger.
-        <<option 'CN'>>
-          “你有在听其他人的声音。继续这样做，唱诗班需要的不只是响亮的嗓子。”约旦记下你的出勤，把唱诗加款记入津贴账册。
-      <</language>><<glove>>
-    <<else>>
-      <<language>>
-        <<option 'EN'>>
-          "Next time, stay with the quieter line until you're sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
-        <<option 'CN'>>
-          “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了弥撒，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
-      <</language>>
-    <</if>><br><br>
-    <<language>>
-      <<option 'EN'>>
-        This service adds <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> to your monthly allowance. <span class='teal'>Collect it with your temple allowance after a successful monthly examination. If your allowance is withheld, the choir earnings remain on the ledger.</span>
-      <<option 'CN'>>
-        本次唱诗为月度津贴增加 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span>。<span class='teal'>月度检查通过后，随神殿津贴一并领取。若津贴被扣发，唱诗加款仍留在账册上。</span>
-    <</language>><<gpurity>><<ggrace>>
-    <<if !_choirWasLead and $TempleChoir.lead>>
-      <br><br>
-      <<language>>
-        <<option 'EN'>>
-          <span class='green'>"At the next service, you may lead a response,"</span> Jordan adds. "Watch for my signal. The others will answer you."
-        <<option 'CN'>>
-          约旦又补了一句，<span class='green'>“下次弥撒，你可以试着领唱答唱。”</span>“看我的示意，其他人会接你的声音。”
-      <</language>>
-    <</if>>
+        “你有在听其他人的声音。继续这样做，唱诗班需要的不只是响亮的嗓子。”约旦记下你的出勤，把唱诗加款记入津贴账册。
+    <</language>><<glove>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        The congregation has left. This service's <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> allowance bonus has already been recorded.
+        "Next time, stay with the quieter line until you're sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
       <<option 'CN'>>
-        信众已经离开。本次唱诗的 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> 津贴加款已登记。
+        “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了弥撒，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
     <</language>>
   <</if>><br><br>
+  <<language>>
+    <<option 'EN'>>
+      This service adds <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> to your monthly allowance. <span class='teal'>Collect it with your temple allowance after a successful monthly examination. If your allowance is withheld, the choir earnings remain on the ledger.</span>
+    <<option 'CN'>>
+      本次唱诗为月度津贴增加 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span>。<span class='teal'>月度检查通过后，随神殿津贴一并领取。若津贴被扣发，唱诗加款仍留在账册上。</span>
+  <</language>><<gpurity>><<ggrace>>
+  <<if $TempleChoir.lead>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        <span class='green'>"You may lead a response,"</span> Jordan adds. "Watch for my signal. The others will answer you."
+      <<option 'CN'>>
+        约旦又补了一句，<span class='green'>“你可以领唱答唱。”</span>“看我的示意，其他人会接你的声音。”
+    <</language>>
+  <</if>>
+  <br><br>
   <<robin-temple-mass-presence>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 <<else>>

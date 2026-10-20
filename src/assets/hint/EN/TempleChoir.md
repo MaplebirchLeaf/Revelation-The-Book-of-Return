@@ -4,7 +4,7 @@ Enable **Temple choir**, pass the temple entrance assessment and become an **ini
 
 Recommended route: **join → practise daily → sing at Sunday services → collect earnings at monthly examinations → qualify to lead**.
 
-**Attend choir practice** opens once daily, **09:00–18:00**, outside Sunday mass **11:00–13:00**. Choose one thirty-minute exercise:
+**Choose a choir exercise** opens once daily, **09:00–18:00**, outside Sunday mass **11:00–13:00**. Choose one thirty-minute exercise:
 
 | Exercise                | Effect                                                |
 | ----------------------- | ----------------------------------------------------- |
