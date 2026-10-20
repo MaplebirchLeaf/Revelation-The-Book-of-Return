@@ -13,14 +13,12 @@
   <<set _talkHome to $RobinTemple.talk_home and maplebirch.get('RobinTemple').residence?.id is $RobinTemple.talk_home ? $RobinTemple.talk_home : null>>
   <<capture _talkContents _talkHome>>
     <<if _args[1] is 'hug'>><<loveicon 'hug'>><<else>><<getouticon>><</if>>
-    <<lanLink _args[0]>>
+    <<lanLink _args[0] 'Robin Options'>>
       <<print _talkContents>>
       <<set $RobinTemple.talk_home to null>>
       <<if $nextPassage or $nextPassageCheck>><<exit>><</if>>
       <<if _talkHome and maplebirch.get('Finance')?.realEstate.visit(_talkHome)>>
-        <<goto 'Deadwood Reblooms Property Home'>>
-      <<else>>
-        <<goto 'Robin Options'>>
+        <<set $nextPassage to 'Deadwood Reblooms Property Home'>>
       <</if>>
     <</lanLink>>
   <</capture>>
@@ -39,17 +37,15 @@
   <<set _robinResidence to maplebirch.get('RobinTemple').residence>>
   <<set _returnMinutes to _args[0]>>
   <<capture _robinResidence _returnMinutes>>
-    <<getouticon>><<lanLink `_robinResidence ? ['Go back to your shared home with Robin', '陪罗宾回你们的住处'] : ['Take Robin back to the orphanage', '送罗宾回孤儿院']`>>
+    <<getouticon>><<lanLink `_robinResidence ? ['Go back to your shared home with Robin', '陪罗宾回你们的住处'] : ['Take Robin back to the orphanage', '送罗宾回孤儿院']` 'Orphanage'>>
       <<set _robinReturnSource to $passage>>
       <<run maplebirch.get('RobinTemple').visit(0)>>
       <<pass _returnMinutes>>
-      <<if $passage is _robinReturnSource and !$nextPassageCheck>>
+      <<if $passage is _robinReturnSource and !$nextPassage and !$nextPassageCheck>>
         <<set $RobinTemple.talk_home to null>>
         <<if _robinResidence and maplebirch.get('Finance')?.realEstate.visit(_robinResidence.id)>>
           <<run maplebirch.get('Finance').realEstate.outings.receive('Robin', _robinResidence.id, 'temple')>>
-          <<goto 'Deadwood Reblooms Property Home'>>
-        <<else>>
-          <<goto 'Orphanage'>>
+          <<set $nextPassage to 'Deadwood Reblooms Property Home'>>
         <</if>>
       <</if>>
     <</lanLink>><br>
@@ -144,6 +140,9 @@
     and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
     and !$replayScene and !$statFreeze and !isPregnancyEnding()
     and $exposed lte 0 and $stress lt $stressmax>>
+  <<if _robinWork and _args[0]>>
+    <<set _robinWork to maplebirch.get('RobinTemple').templeWork is _args[0]>>
+  <</if>>
 <</widget>>
 
 <<widget 'robin-temple-prayer-time'>>
@@ -151,10 +150,10 @@
   <<set _robinPrayerTime to _robinWork and maplebirch.get('RobinTemple').canPray
     and maplebirch.get('RobinTemple').free(_args[0])>>
   <<if _robinPrayerTime>>
-    <<set _robinEnd to new DateTime(Time.date).addMinutes(_args[0])>>
-    <<set _robinPrayerTime to _robinEnd.hour lt 20
-      and (($robinlocationoverride?.location is 'temple' and $robinlocationoverride.during.includes(_robinEnd.hour))
-      or (!Time.schoolDay and !Time.isWeekEnd() and _robinEnd.hour lt 16))>>
+    <<set $_robinEnd to new DateTime(Time.date).addMinutes(_args[0])>>
+    <<set _robinPrayerTime to $_robinEnd.hour lt 20
+      and (($robinlocationoverride?.location is 'temple' and $robinlocationoverride.during.includes($_robinEnd.hour))
+      or (!Time.schoolDay and !Time.isWeekEnd() and $_robinEnd.hour lt 16))>>
   <</if>>
 <</widget>>
 

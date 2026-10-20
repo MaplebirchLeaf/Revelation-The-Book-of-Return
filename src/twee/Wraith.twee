@@ -5,9 +5,9 @@
       and !$combat and !$possessed and !$replayScene and !$statFreeze
       and !$nextPassage and !$nextPassageCheck and !$eventforced
       and $stress lt $stressmax and !isPregnancyEnding()>>
-    <<set _ivoryHeld to $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
+    <<set $_ivoryHeld to $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
       and $necklaceThief is 'player' and $antiquemoney gte 2000>>
-    <<set _ivoryReady to _ivorySafe and _ivoryHeld and !$RBR.necklace.returned
+    <<set _ivoryReady to _ivorySafe and $_ivoryHeld and !$RBR.necklace.returned
       and $location is 'lake_ruin' and !Time.isBloodMoon()
       and $oxygen gt 0 and !pcAreArmsBound('both')
       and ['Lake Ruin Plinth', 'Revelation Ivory Necklace Return'].includes($passage)>>

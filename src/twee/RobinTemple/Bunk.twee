@@ -127,7 +127,7 @@
 <<wardrobeicon>><<lanLink ['Wardrobe', '衣柜'] 'Temple Wardrobe'>><</lanLink>><br>
 <<icon 'mirror.png'>><<lanLink ['Mirror', '镜子'] 'Temple Mirror'>><<preMirror>><<endevent>><</lanLink>><br>
 <<if maplebirch.get('RobinTemple').available and getRobinLocation() is 'temple'>>
-  <<socialiseicon 'ask'>><<lanLink ['Talk to Robin', '和罗宾交谈'] 'RobinTemple Corner'>><</lanLink>><br>
+  <<socialiseicon>><<lanLink ['Talk to Robin', '和罗宾交谈'] 'RobinTemple Corner'>><</lanLink>><br>
 <<else>>
   <<socialiseicon 'ask'>><<lanLink ['Ask the attendant where Robin went', '问值班侍从罗宾去了哪里'] 'RobinTemple Whereabouts'>><</lanLink>><br>
 <</if>>

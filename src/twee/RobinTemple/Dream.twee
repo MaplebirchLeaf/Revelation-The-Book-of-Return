@@ -12,10 +12,10 @@
 <<widget 'secret-dream-wake'>>
   <<if $RobinTemple?.secret?.dream?.active and !$replayScene>>
     <!-- 原版恢复全部变量，只保留梦的记录，不把梦中关系与物品带回现实。 -->
-    <<set _secretDreamProgress to clone($RobinTemple.secret.dream)>>
-    <<set _secretDreamProgress.active to false>><<set _secretDreamProgress.stage to 0>>
+    <<set $_secretDreamProgress to clone($RobinTemple.secret.dream)>>
+    <<set $_secretDreamProgress.active to false>><<set $_secretDreamProgress.stage to 0>>
     <<nightmareEnd>>
-    <<set $RobinTemple.secret.dream to _secretDreamProgress>>
+    <<set $RobinTemple.secret.dream to $_secretDreamProgress>>
   <</if>>
 <</widget>>
 

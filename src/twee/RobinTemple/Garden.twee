@@ -1,0 +1,22 @@
+:: RobinTemple Garden Work
+<<set $outside to 1>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
+<<if $phase is 'robin-temple-garden' and $RobinTemple.work_day is Time.days>>
+  <<unset $phase>>
+  <<language>>
+    <<option 'EN'>>
+      Robin hands you a pair of gloves, then kneels beside the flower bed. You loosen the soil while <<he>> gathers the weeds into a bucket. When it fills, <<he>> reaches for the handle at the same time as you.
+      <br><br>
+      "I'll take it. Could you get the watering can?" <<He>> smiles at you before carrying the bucket to the compost heap. By the time you return, <<he>> has left a clear path between the beds.
+    <<option 'CN'>>
+      罗宾递给你一副手套，随后在花坛旁蹲下。你松土，<<he>>把拔出的杂草拢进桶里。桶满了，你们同时伸手去提。
+      <br><br>
+      “我来吧。能帮忙拿一下洒水壶吗？”<<He>>朝你笑笑，提着桶走向堆肥处。你回来时，<<he>>已经把花坛间的小路清了出来。
+  <</language>>
+  <<gtending>><<ggrace monk>><<gtiredness>><<glove>><<ggconviction 'Robin'>>
+<<elseif $RobinTemple.work_day isnot Time.days>>
+  <<lanSwitch 'Robin is no longer available for the shift. The shared work remains unfinished.' '罗宾已经无法继续这班职务，共同工作还未完成。'>>
+<<else>>
+  <<lanSwitch 'The work is already done today.' '今天的工作已经做完了。'>>
+<</if>>
+<br><br>
+<<templeicon 'garden'>><<lanLink ['Return to the garden', '返回神殿花园'] 'Temple Garden'>><</lanLink>><br>

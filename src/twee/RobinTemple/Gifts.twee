@@ -11,21 +11,21 @@
 <<if _robinPrayerTime and C.npc.Robin.trauma lt 40 and canGiftFood('Robin')>>
   <<food_gift_list>>
   <<if _food_gift_found is true>>
-    <<skinicon 'give'>><<lanLink ['Give the food to Robin (0:05)', '送给罗宾 (0:05)']>>
+    <<skinicon 'give'>><<lanLink ['Give the food to Robin (0:05)', '送给罗宾 (0:05)'] 'RobinTemple Gift'>>
       <<robin-temple-prayer-time 5>>
       <<if _robinPrayerTime and C.npc.Robin.trauma lt 40 and canGiftFood('Robin')
         and setup.foodstuff[$gift]?.category is 'dish' and $foodstuff[$gift]?.amount gte 1>>
-        <<set _giftSource to $passage, _giftDay to Time.days>>
+        <<set _giftSource to $passage, _giftDay to Time.days, _giftChoice to $gift>>
         <<pass 5>>
         <<robin-temple-work-check>>
         <<if _robinWork and $passage is _giftSource and Time.days is _giftDay
-          and C.npc.Robin.trauma lt 40 and canGiftFood('Robin') and $foodstuff[$gift]?.amount gte 1
+          and C.npc.Robin.trauma lt 40 and canGiftFood('Robin') and $gift is _giftChoice
+          and setup.foodstuff[$gift]?.category is 'dish' and $foodstuff[$gift]?.amount gte 1
           and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced>>
           <<give_gift Robin>>
           <<npcincr Robin love `($gift is 'sticky_toffee_pudding' ? 3 : 1)`>>
           <<if $gift is 'sticky_toffee_pudding'>><<saveFavoriteFood 'Robin' $gift>><<earnFeat 'Hungry Orphan'>><</if>>
           <<set $phase to 'robin-temple-gift'>>
-          <<goto 'RobinTemple Gift'>>
         <</if>>
       <</if>>
     <</lanLink>><br>

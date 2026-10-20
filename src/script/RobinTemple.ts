@@ -50,6 +50,7 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'secret-day-link', passage: 'Temple' });
+  maplebirch.tool.addTo('CustomLinkZone', { widget: [1, 'robin-temple-cleaning-link "garden"'], passage: 'Temple Garden' });
   // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
 

@@ -45,14 +45,14 @@
 <!-- 同场快照跟随存档，结果页重绘不把罗宾的出席算成PC完成共同职务。 -->
 <<widget 'robin-temple-mass-record'>>
   <<if maplebirch.get('RobinTemple') and !$replayScene and !$statFreeze>>
-    <<set _massReady to $location is 'temple' and Time.weekDay is 1 and Time.hour gte 11 and Time.hour lt 13
+    <<set $_massReady to $location is 'temple' and Time.weekDay is 1 and Time.hour gte 11 and Time.hour lt 13
       and $exposed lte 0 and $stress lt $stressmax and !$combat and !$possessed
       and !$nextPassage and !$nextPassageCheck and !$eventforced>>
     <<set $RobinTemple.mass to {
       day: Time.days,
-      robin: _massReady and maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
+      robin: $_massReady and maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available
         and C.npc.Robin.state is 'active' and !$RobinTemple.punish and getRobinLocation() is 'temple',
-      sydney: _massReady and ((_args[0] is 'vanilla' and ($sydneySeen is undefined or !$sydneySeen.includes('mass')))
+      sydney: $_massReady and ((_args[0] is 'vanilla' and ($sydneySeen is undefined or !$sydneySeen.includes('mass')))
         or (C.npc.Sydney.init is 1 and !['prison', 'dungeon'].includes(C.npc.Sydney.state)
           and $daily.sydney?.punish isnot 1 and _sydney_location is 'temple')),
       replied: $RobinTemple.mass.day is Time.days and $RobinTemple.mass.replied
@@ -182,7 +182,7 @@
     <</if>>
     <<robin-temple-prayer-time 30>>
     <<if _robinPrayerTime>>
-      <<loveicon 'hug'>><<lanLink ['Talk to Robin about your doubts (0:30)', '和罗宾谈谈心里的疑虑 (0:30)'] 'RobinTemple Prayer Doubt'>><</lanLink>><<glove>><<lstress>><br>
+      <<socialiseicon>><<lanLink ['Talk to Robin about your doubts (0:30)', '和罗宾谈谈心里的疑虑 (0:30)'] 'RobinTemple Prayer Doubt'>><</lanLink>><<glove>><<lstress>><br>
     <</if>>
     <<robin-temple-prayer-time 60>>
     <<if _robinPrayerTime>>
@@ -409,8 +409,6 @@
 <</if>>
 <<if maplebirch.get('RobinTemple').bunk>>
   <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Sit beside Robin’s bunk a while longer', '在罗宾床边再坐一会儿'] 'RobinTemple Bunk'>><</lanLink>><br>
-<<else>>
-  <<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 <</if>>
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 

@@ -1,26 +1,26 @@
 :: Temple Ordinand Widgets [widget]
 <<widget 'temple-companion-time'>>
   <<silently>>
-    <<set _templeCompanionName to _args[0]>>
-    <<set _templeCompanionMinutes to _args[1] ?? 0>>
-    <<set _templeCompanionEnd to new DateTime(Time.date).addMinutes(_templeCompanionMinutes)>>
-    <<set _templeCompanionTime to Number.isFinite(_templeCompanionMinutes) and _templeCompanionMinutes gte 0
-      and _templeCompanionEnd.hour lt 18 and !['night', 'dusk'].includes(_templeCompanionEnd.dayState)
-      and !(Time.weekDay is 1 and Time.hour lt 11 and _templeCompanionEnd.hour gte 11)
+    <<set $_templeCompanionName to _args[0]>>
+    <<set $_templeCompanionMinutes to _args[1] ?? 0>>
+    <<set $_templeCompanionEnd to new DateTime(Time.date).addMinutes($_templeCompanionMinutes)>>
+    <<set _templeCompanionTime to Number.isFinite($_templeCompanionMinutes) and $_templeCompanionMinutes gte 0
+      and $_templeCompanionEnd.hour lt 18 and !['night', 'dusk'].includes($_templeCompanionEnd.dayState)
+      and !(Time.weekDay is 1 and Time.hour lt 11 and $_templeCompanionEnd.hour gte 11)
       and !($englishPlay is 'ongoing' and $englishPlayDays is 0
-        and Time.hour lt 17 and _templeCompanionEnd.hour gte 17)>>
-    <<if _templeCompanionName is 'Sydney' and Time.hour lt 16
-        and _templeCompanionEnd.hour gte 16 and $adultshophelped isnot 1>>
+        and Time.hour lt 17 and $_templeCompanionEnd.hour gte 17)>>
+    <<if $_templeCompanionName is 'Sydney' and Time.hour lt 16
+        and $_templeCompanionEnd.hour gte 16 and $adultshophelped isnot 1>>
       <<set _templeCompanionTime to _templeCompanionTime and Time.weekDay isnot 6
         and !($adultshopunlocked and (Time.weekDay is 4 and C.npc.Sydney.corruption gt 10
           or Time.weekDay is 5 and C.npc.Sydney.corruption gt 20))>>
     <</if>>
-    <<set _templeCompanionOutings to maplebirch.get('Finance')?.realEstate.outings>>
-    <<set _templeCompanionRide to maplebirch.get('Transport')?.state.commute>>
-    <<if _templeCompanionOutings?.live and _templeCompanionOutings.plan?.name is _templeCompanionName
-        and (_templeCompanionOutings.travelling or _templeCompanionOutings.plan.stage is 'booked'
-          and _templeCompanionOutings.plan.at lte _templeCompanionEnd.timeStamp)
-        or _templeCompanionRide?.npc is _templeCompanionName and _templeCompanionRide.boarded and !_templeCompanionRide.arrived>>
+    <<set $_templeCompanionOutings to maplebirch.get('Finance')?.realEstate.outings>>
+    <<set $_templeCompanionRide to maplebirch.get('Transport')?.state.commute>>
+    <<if $_templeCompanionOutings?.live and $_templeCompanionOutings.plan?.name is $_templeCompanionName
+        and ($_templeCompanionOutings.travelling or $_templeCompanionOutings.plan.stage is 'booked'
+          and $_templeCompanionOutings.plan.at lte $_templeCompanionEnd.timeStamp)
+        or $_templeCompanionRide?.npc is $_templeCompanionName and $_templeCompanionRide.boarded and !$_templeCompanionRide.arrived>>
       <<set _templeCompanionTime to false>>
     <</if>>
   <</silently>>
@@ -28,28 +28,28 @@
 
 <<widget 'temple-candidate-check'>>
   <<silently>>
-    <<set _candidateName to _args[0]>>
-    <<set _candidate to $TempleDuties.candidates[_candidateName]>>
-    <<set _candidateRank to _candidateName is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
+    <<set $_candidateName to _args[0]>>
+    <<set _candidate to $TempleDuties.candidates[$_candidateName]>>
+    <<set _candidateRank to $_candidateName is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
     <<set _candidatePresent to false>>
     <<set _candidateStanding to false>>
     <<set _candidateWilling to true>>
-    <<if _candidateName is 'Robin'>>
+    <<if $_candidateName is 'Robin'>>
       <<set _candidatePresent to Boolean(maplebirch.get('RobinTemple')?.available) and getRobinLocation() is 'temple'>>
       <<set _candidateStanding to Boolean(maplebirch.get('RobinTemple')?.member)
         and !maplebirch.get('RobinTemple').examinationDue and !$RobinTemple.punish
         and C.npc.Robin.virginity.temple is true>>
       <<set _candidateWilling to maplebirch.get('RobinTemple')?.faith gte 20 and C.npc.Robin.trauma lt 60>>
-    <<elseif _candidateName is 'Sydney'>>
+    <<elseif $_candidateName is 'Sydney'>>
       <<sydneySchedule>>
       <<set _candidatePresent to C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
         and _sydney_location is 'temple' and $sydney_templeWork isnot 'mass'>>
       <<set _candidateStanding to $daily.sydney.punish isnot 1 and C.npc.Sydney.virginity.temple is true>>
     <</if>>
-    <<temple-companion-time _candidateName `_args[1] ?? 0`>>
+    <<temple-companion-time $_candidateName `_args[1] ?? 0`>>
     <<set _candidateFree to _dutyOffice and _candidatePresent and _candidateStanding
       and _candidateWilling and _candidateRank is 'monk' and _templeCompanionTime>>
-    <<if _candidateName is 'Robin' and (_args[1] ?? 0) gt 0
+    <<if $_candidateName is 'Robin' and (_args[1] ?? 0) gt 0
         and maplebirch.get('RobinTemple')?.templeTime and Time.weekDay isnot 1>>
       <<set _candidateFree to _candidateFree and Time.hour * 60 + Time.minute + (_args[1] ?? 0) lt 16 * 60>>
     <</if>>
@@ -174,7 +174,7 @@
           <<if _ordinand is 'Robin' and $RobinTemple.punish>>
             <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
           <<elseif _ordinand is 'Robin' and maplebirch.get('RobinTemple').examinationDue>>
-            <<templeicon 'altar'>><<lanLink ['Return to the hall for the examination', '返回大厅接受检查'] 'Temple'>><</lanLink>><br>
+            <span class='lblue'><<lanSwitch 'Robin is due for an examination in the main hall.' '罗宾需要在大厅接受检查。'>></span><br>
           <</if>>
         <<elseif !_candidate.agreed>>
           <<socialiseicon 'ask'>>
@@ -471,10 +471,6 @@
 <<widget 'temple-candidates-back'>>
   <<getouticon>>
   <<lanLink ['Return to the candidates’ book', '返回候任名册'] 'Revelation Temple Candidates'>>
-  <</lanLink>>
-  <br>
-  <<getouticon>>
-  <<lanLink ['Return to the temple hall', '返回神殿大厅'] 'Temple'>>
   <</lanLink>>
   <br>
 <</widget>>

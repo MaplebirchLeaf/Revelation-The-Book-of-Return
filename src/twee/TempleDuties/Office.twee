@@ -49,35 +49,35 @@
 <</widget>>
 
 <<widget 'temple-duty-action' 'container'>>
-  <<set _dutyBody to _contents>>
-  <<set _dutyMinutes to _args[1]>>
-  <<set _dutyTarget to _args[2]>>
-  <<set _dutyPartners to Array.isArray(_args[3]) ? clone(_args[3]) : (_args[3] ? [_args[3]] : [])>>
-  <<set _dutyUsed to false>>
-  <<capture _dutyBody _dutyMinutes _dutyTarget _dutyPartners _dutyUsed>>
+  <<set $_dutyBody to _contents>>
+  <<set $_dutyMinutes to _args[1]>>
+  <<set $_dutyTarget to _args[2]>>
+  <<set $_dutyPartners to Array.isArray(_args[3]) ? clone(_args[3]) : (_args[3] ? [_args[3]] : [])>>
+  <<set $_dutyUsed to false>>
+  <<capture $_dutyBody $_dutyMinutes $_dutyTarget $_dutyPartners $_dutyUsed>>
     <<lanLink _args[0]>>
       <<temple-duty-check>>
-      <<set _dutyGuests to true>>
-      <<for _guest range _dutyPartners>>
-        <<temple-candidate-check _guest _dutyMinutes>>
+      <<set $_dutyGuests to true>>
+      <<for _guest range $_dutyPartners>>
+        <<temple-candidate-check _guest $_dutyMinutes>>
         <<if !_candidateFree>>
-          <<set _dutyGuests to false>>
+          <<set $_dutyGuests to false>>
         <</if>>
       <</for>>
-      <<if !_dutyUsed and _dutySafe and _dutyGuests>>
-        <<set _dutyUsed to true>>
-        <<set _dutySource to $passage, _dutyLocation to $location>>
-        <<pass _dutyMinutes>>
+      <<if !$_dutyUsed and _dutySafe and $_dutyGuests>>
+        <<set $_dutyUsed to true>>
+        <<set $_dutySource to $passage, _dutyLocation to $location>>
+        <<pass $_dutyMinutes>>
         <<temple-duty-check>>
-        <<for _guest range _dutyPartners>>
+        <<for _guest range $_dutyPartners>>
           <<temple-candidate-check _guest 0>>
           <<if !_candidateFree>>
-            <<set _dutyGuests to false>>
+            <<set $_dutyGuests to false>>
           <</if>>
         <</for>>
-        <<if $passage is _dutySource and $location is _dutyLocation and !$nextPassageCheck and _dutySafe and _dutyGuests>>
-          <<print _dutyBody>>
-          <<goto _dutyTarget>>
+        <<if $passage is $_dutySource and $location is _dutyLocation and !$nextPassageCheck and _dutySafe and $_dutyGuests>>
+          <<print $_dutyBody>>
+          <<goto $_dutyTarget>>
         <</if>>
       <</if>>
     <</lanLink>>

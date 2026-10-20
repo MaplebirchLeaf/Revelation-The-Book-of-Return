@@ -1,38 +1,52 @@
 :: RobinTemple Quarters Widgets [widget]
-<!-- 共同行动完成后才结算；只清理原版宿舍，不改玩家身体或其它住处的污渍。 -->
+<!-- 两处值勤共用每日进度，完成后才结算原版环境与技能。 -->
 <<widget 'robin-temple-cleaning-link'>>
-  <<robin-temple-work-check>>
-  <<if _robinWork and $RobinTemple.work_day isnot Time.days and $temple_quarters lt 100
-    and $location is 'temple' and Time.dayState isnot 'night' and !pcAreArmsBound('both')
-    and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced
-    and !isPregnancyEnding()>>
-    <<choreicon 'sweep'>><<lanLink ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)']>>
-      <<robin-temple-work-check>>
-      <<if _robinWork and $RobinTemple.work_day isnot Time.days and $temple_quarters lt 100
-        and maplebirch.get('RobinTemple').free(60) and Time.dayState isnot 'night'
-        and !pcAreArmsBound('both') and !$possessed and !$replayScene and !$statFreeze
-        and !$nextPassage and !$eventforced and !isPregnancyEnding()>>
-        <<set _cleaningSource to $passage, _cleaningDay to Time.days>>
-        <<run maplebirch.get('RobinTemple').visit(60)>>
-        <<set _robinTempleWork to true>>
-        <<pass 60>>
-        <<unset _robinTempleWork>>
-        <<robin-temple-work-check>>
-        <<if _robinWork and $passage is _cleaningSource and $location is 'temple'
-          and Time.days is _cleaningDay and $RobinTemple.work_day isnot Time.days
-          and !$possessed and !$replayScene and !$statFreeze and !$nextPassage and !$eventforced
-          and !pcAreArmsBound('both') and !isPregnancyEnding()>>
-          <!-- 原版每小时家务效率：3–9；共同打扫不叠加一份额外清洁度。 -->
-          <<set _cleaningSkill to currentSkillValue('housekeeping')>>
-          <<set $temple_quarters to Math.min(100, $temple_quarters + 3 + [200, 400, 600, 800, 1200, 1500].filter(value => value <= _cleaningSkill).length)>>
-          <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
-          <<set maplebirch.get('RobinTemple').faith += 3>>
-          <<grace 1>><<housekeeping 1 1000>><<npcincr Robin love 1>>
-          <<set $phase to 'robin-temple-cleaning'>>
-          <<goto 'RobinTemple Cleaning'>>
+  <<set $_robinWorkKind to _args[0] is 'garden' ? 'garden' : 'quarters'>>
+  <<set $_robinWorkField to 'temple_' + $_robinWorkKind>>
+  <<robin-temple-work-check $_robinWorkKind>>
+  <<if _robinWork and $RobinTemple.work_day isnot Time.days and State.variables[$_robinWorkField] lt 100
+    and ($_robinWorkKind is 'garden' ? Time.hour lt 10 : Time.hour lt 15 and maplebirch.get('RobinTemple').free(60))
+    and !pcAreArmsBound('both')>>
+    <<if $_robinWorkKind is 'garden'>>
+      <<templeicon 'garden'>>
+      <<set $_robinWorkLabel to ['Tend the garden with Robin (1:00)', '和罗宾一起打理花园 (1:00)'], _robinWorkPassage to 'RobinTemple Garden Work'>>
+    <<else>>
+      <<choreicon 'sweep'>>
+      <<set $_robinWorkLabel to ['Clean the quarters together (1:00)', '和罗宾一起打扫宿舍 (1:00)'], _robinWorkPassage to 'RobinTemple Cleaning'>>
+    <</if>>
+    <<capture $_robinWorkKind $_robinWorkField>>
+      <<lanLink $_robinWorkLabel _robinWorkPassage>>
+        <<robin-temple-work-check $_robinWorkKind>>
+        <<if _robinWork and $RobinTemple.work_day isnot Time.days and State.variables[$_robinWorkField] lt 100
+          and ($_robinWorkKind is 'garden' ? Time.hour lt 10 : Time.hour lt 15 and maplebirch.get('RobinTemple').free(60))
+          and !pcAreArmsBound('both')>>
+          <<set _cleaningSource to $passage, _cleaningDay to Time.days>>
+          <<run maplebirch.get('RobinTemple').visit(60)>>
+          <<set _robinTempleWork to true>>
+          <<pass 60>>
+          <<unset _robinTempleWork>>
+          <<robin-temple-work-check $_robinWorkKind>>
+          <<if _robinWork and $passage is _cleaningSource
+            and Time.days is _cleaningDay and $RobinTemple.work_day isnot Time.days
+            and !pcAreArmsBound('both')>>
+            <!-- 原版每小时效率：3–9；同行期间不叠加罗宾自己的小时维护。 -->
+            <<set $_cleaningSkill to currentSkillValue($_robinWorkKind is 'garden' ? 'tending' : 'housekeeping')>>
+            <<set State.variables[$_robinWorkField] to Math.min(100, State.variables[$_robinWorkField] + 3 + [200, 400, 600, 800, 1200, 1500].filter(value => value <= $_cleaningSkill).length)>>
+            <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
+            <<set maplebirch.get('RobinTemple').faith += 3>>
+            <<if $_robinWorkKind is 'garden'>>
+              <<grace 1 monk>><<tiredness 6>><<tending 1>>
+              <<set $phase to 'robin-temple-garden'>>
+            <<else>>
+              <<grace 1>><<housekeeping 1 1000>>
+              <<set $phase to 'robin-temple-cleaning'>>
+            <</if>>
+            <<npcincr Robin love 1>>
+          <</if>>
         <</if>>
-      <</if>>
-    <</lanLink>><<ggrace>><<ghousekeeping>><<glove>><<ggconviction 'Robin'>><br>
+      <</lanLink>>
+    <</capture>>
+    <<if $_robinWorkKind is 'garden'>><<gtending>><<ggrace monk>><<gtiredness>><<else>><<ggrace>><<ghousekeeping>><</if>><<glove>><<ggconviction 'Robin'>><br>
   <</if>>
 <</widget>>
 

@@ -33,12 +33,13 @@ When Robin is absent, **Ask the attendant where Robin went** in the quarters. Th
 
 ### Work and prayer
 
-When Robin is scheduled to tend the garden or clean the quarters, each working hour improves that area by **1 point, capped at 100**. A shared hour of cleaning adds **3–9 points** according to the PC’s Housekeeping, without counting Robin’s hourly contribution again. School, prayer, mass and rest do not count as cleaning, and native daily changes still apply.
+When Robin is scheduled to tend the garden or clean the quarters, each working hour improves that area by **1 point, capped at 100**. A shared hour adds **3–9 points** according to the PC’s Tending or Housekeeping, without counting Robin’s hourly contribution again. School, prayer, mass and rest do not count as work, and native daily changes still apply. Join gardening from the temple garden; choose the other duties in Robin's quarters conversation.
 
 | Activity                    | Duration and window                                                                                                      | Main gains                                                                                |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| Clean the quarters together | One hour, starting 13:00–15:00 on a school-free weekday or before 19:00 on an arranged evening visit; end times excluded | Quarters cleanliness +3–9, Housekeeping practice, shared shift, Faith, PC grace and love. |
-| Sort temple supplies        | One hour in the same windows                                                                                             | Shared shift, Faith, PC grace and confidence.                                             |
+| Tend the garden with Robin  | One hour, starting 09:00–10:00 on a school-free weekday while Robin is actually gardening; end time excluded             | Garden condition +3–9, Tending practice, shared shift, Faith, PC grace and love.          |
+| Clean the quarters together | One hour, starting 13:00–15:00 on a school-free weekday while Robin is actually cleaning; end time excluded              | Quarters cleanliness +3–9, Housekeeping practice, shared shift, Faith, PC grace and love. |
+| Sort temple supplies        | One hour, starting 13:00–15:00 on a school-free weekday or before 19:00 on an arranged evening visit; end times excluded | Shared shift, Faith, PC grace and confidence.                                             |
 | Prepare Sunday mass         | Thirty minutes, Sunday **11:00–11:30**, excluding the end time, with Robin present                                       | Shared shift, Faith, PC grace and love.                                                   |
 
 These share **one daily work opportunity**. Carrying bowls and checking lists during some bench encounters also count as work. Conversation alone does not.

@@ -1,7 +1,7 @@
 :: RobinTemple Daylight Widgets [widget]
 <<widget 'secret-day-check'>>
   <<silently>>
-    <<set _secretMinutes to _args[0] ?? 0>>
+    <<set $_secretMinutes to _args[0] ?? 0>>
     <<set _secretDayReady to false>>
     <<if maplebirch.get('RobinTemple') and $RobinTemple.dual_promise
         and $RobinTemple.secret.stage is 'complete' and Time.days gt $RobinTemple.secret.night
@@ -13,11 +13,11 @@
         and $temple_chastity_timer gt 0 and $RobinTemple.chastity_timer gt 0
         and C.npc.Robin.love gte 60 and C.npc.Sydney.love gte 60>>
       <<sydneySchedule>>
-      <<robin-temple-prayer-time `Math.max(1, _secretMinutes)`>>
+      <<robin-temple-prayer-time `Math.max(1, $_secretMinutes)`>>
       <<set _secretDayReady to _robinPrayerTime and C.npc.Sydney.init is 1
         and C.npc.Sydney.state is 'active' and _sydney_location is 'temple'
         and !['sleep', 'mass', 'anguish'].includes($sydney_templeWork)
-        and Time.hour gte 13 and Time.hour * 60 + Time.minute + _secretMinutes lt 17 * 60>>
+        and Time.hour gte 13 and Time.hour * 60 + Time.minute + $_secretMinutes lt 17 * 60>>
     <</if>>
   <</silently>>
 <</widget>>
@@ -34,24 +34,23 @@
 <</widget>>
 
 <<widget 'secret-day-action' 'container'>>
-  <<set _dayBody to _contents>>
-  <<set _dayMinutes to _args[1]>>
-  <<set _dayTarget to _args[2]>>
-  <<set _dayStep to $RobinTemple.secret.followup>>
-  <<set _dayUsed to false>>
-  <<secret-day-check _dayMinutes>>
+  <<set $_dayBody to _contents>>
+  <<set $_dayMinutes to _args[1]>>
+  <<set $_dayTarget to _args[2]>>
+  <<set $_dayStep to $RobinTemple.secret.followup>>
+  <<set $_dayUsed to false>>
+  <<secret-day-check $_dayMinutes>>
   <<if !_secretDayReady>><<exit>><</if>>
-  <<capture _dayBody _dayMinutes _dayTarget _dayStep _dayUsed>>
-    <<lanLink _args[0]>>
-      <<secret-day-check _dayMinutes>>
-      <<if !_dayUsed and _secretDayReady and $RobinTemple.secret.followup is _dayStep>>
-        <<set _dayUsed to true>>
-        <<set _daySource to $passage>>
-        <<pass _dayMinutes>>
+  <<capture $_dayBody $_dayMinutes $_dayTarget $_dayStep $_dayUsed>>
+    <<lanLink _args[0] $_dayTarget>>
+      <<secret-day-check $_dayMinutes>>
+      <<if !$_dayUsed and _secretDayReady and $RobinTemple.secret.followup is $_dayStep>>
+        <<set $_dayUsed to true>>
+        <<set $_daySource to $passage>>
+        <<pass $_dayMinutes>>
         <<secret-day-check 0>>
-        <<if _secretDayReady and $passage is _daySource>>
-          <<print _dayBody>>
-          <<goto _dayTarget>>
+        <<if _secretDayReady and $passage is $_daySource>>
+          <<print $_dayBody>>
         <</if>>
       <</if>>
     <</lanLink>>

@@ -58,10 +58,10 @@
 
 <<widget 'temple-companion-check'>>
   <<temple-duty-check>>
-  <<set _companionName to _args[0]>>
-  <<temple-companion-time _companionName `_args[1] ?? 0`>>
+  <<set $_companionName to _args[0]>>
+  <<temple-companion-time $_companionName `_args[1] ?? 0`>>
   <<set _companionFree to _dutyToday and $temple_rank is 'priest' and _templeCompanionTime>>
-  <<if _companionName is 'Robin'>>
+  <<if $_companionName is 'Robin'>>
     <<set _companionFree to _companionFree and maplebirch.get('RobinTemple')?.rank is 'priest'
       and maplebirch.get('RobinTemple').available and getRobinLocation() is 'temple'
       and !$RobinTemple.punish and $RobinTemple.monthly_checked
@@ -70,7 +70,7 @@
       <<robin-temple-prayer-time _args[1]>>
       <<set _companionFree to _companionFree and _robinPrayerTime>>
     <</if>>
-  <<elseif _companionName is 'Sydney'>>
+  <<elseif $_companionName is 'Sydney'>>
     <<sydneySchedule>>
     <<set _companionFree to _companionFree and $sydney?.rank is 'priest'
       and C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'

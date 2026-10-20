@@ -427,13 +427,13 @@
 
 <!-- 混乱誓约 -->
 <<widget 'secret-promise-next-step'>>
-  <<set _secret to maplebirch.get('RobinTemple').secret>>
-  <<if !_secret.eligible>>
-    <<if !_secret.known>>
+  <<set $_secret to maplebirch.get('RobinTemple').secret>>
+  <<if !$_secret.eligible>>
+    <<if !$_secret.known>>
       <<lanSwitch 'You still need the bishop’s account, the gaoler and witch’s ending, and the vision beneath the lake before pursuing this plan.' '你还需亲历主教的揭密、狱卒与女巫的结局，以及湖底幻境，才能追查这个计划。'>>
     <<elseif !maplebirch.get('RobinTemple').member or !$temple_rank or $temple_rank is 'prospective'>>
       <<lanSwitch 'Both you and Robin must formally join the temple before pursuing this promise.' '你与罗宾都需正式加入神殿，再追查这份承诺。'>>
-    <<elseif !_secret.unfitted>>
+    <<elseif !$_secret.unfitted>>
       <<lanSwitch 'You, Robin and Sydney must first remove all chastity fittings. Discuss Robin’s temple fittings at the temple quarters; asking for removal does not remove them.' '你、罗宾和悉尼都需要先取下贞操器具。罗宾的神殿器具可以到宿舍商量拆除，仅提出申请不算取下。'>>
     <<elseif !maplebirch.get('RobinTemple').available>>
       <<lanSwitch 'Robin cannot go with you at present. Wait until Robin can take part in ordinary activities again.' '罗宾暂时无法同行。等罗宾能够正常活动后，再商量出行。'>>
@@ -455,7 +455,7 @@
     <</if>>
   <<elseif $RobinTemple.secret.stage is 'none'>>
     <<lanSwitch 'Speak to Robin privately at home to begin the investigation.' '在家中找有空的罗宾，私下谈起调查。'>>
-  <<elseif $RobinTemple.secret.witness_day gte 0 and !_secret.settled>>
+  <<elseif $RobinTemple.secret.witness_day gte 0 and !$_secret.settled>>
     <<lanSwitch 'Give both companions three days after returning from the shared investigation before asking them to reconsider.' '共同调查回来后，先给两人三天考虑，再分别询问。'>>
   <<elseif $RobinTemple.secret.robin_day lt 0
       or $RobinTemple.secret.witness_day gte 0 and $RobinTemple.secret.robin_day lt $RobinTemple.secret.witness_day + 3>>
@@ -470,13 +470,13 @@
   <<elseif $RobinTemple.secret.witness_day lt 0
       and Time.days lt Math.max($RobinTemple.secret.robin_day, $RobinTemple.secret.sydney_day, $RobinTemple.secret.survey_day) + 3>>
     <<lanSwitch 'Leave three days after the most recent conversation or survey before setting out together.' '最后一次谈话或勘查后，需留出三天，再一同出发。'>>
-  <<elseif $RobinTemple.secret.witness_day gte 0 and (!_secret.wants.Robin or !_secret.wants.Sydney)>>
+  <<elseif $RobinTemple.secret.witness_day gte 0 and (!$_secret.wants.Robin or !$_secret.wants.Sydney)>>
     <<lanSwitch 'One or both companions do not currently want the rite. Do not set out until both freely agree.' '目前仍有人不愿参与仪式。等两人都明确愿意，再商量出发。'>>
   <<elseif $stress gte $stressmax - 40 or $pain gte 50 or $tiredness gte 1500>>
     <<lanSwitch 'Rest before setting out. You are too tense, hurt or tired for the journey.' '先休息，缓和压力、疼痛或疲劳，再安排这次同行。'>>
   <<elseif $RobinTemple.secret.night is Time.days>>
     <<lanSwitch 'You have already set out together tonight. Choose another blood moon night.' '今晚已经一同出发过了，另选一个血月夜吧。'>>
-  <<elseif _secret.threatened>>
+  <<elseif $_secret.threatened>>
     <<lanSwitch 'A pursuit or the wraith’s hostility makes the lake unsafe. Settle that danger before arranging a meeting.' '追猎或怨灵的敌意仍使湖边不安全。先处理眼前的危险，再安排会合。'>>
   <<elseif Weather.isFrozen('lake') or Weather.precipitation is 'rain'>>
     <<lanSwitch 'Wait for a rainless night with an unfrozen lake.' '等湖面未结冰、没有下雨的夜晚再来。'>>
@@ -655,9 +655,9 @@
       <hr>
     <</if>>
     <<for _journalCandidate range ['Robin', 'Sydney']>>
-      <<set _journalRank to _journalCandidate is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
+      <<set $_journalRank to _journalCandidate is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
       <<set _journalPreparation to $TempleDuties.candidates[_journalCandidate]>>
-      <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and _journalRank is 'monk'>>
+      <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and $_journalRank is 'monk'>>
         <<revelation-card `maplebirch.auto(_journalCandidate) + ' · Ordination'` `maplebirch.auto(_journalCandidate) + ' · 司祭任职'`>>
           <ul class='journal'>
           <<if !_journalPreparation.lessons.includes('care')>>

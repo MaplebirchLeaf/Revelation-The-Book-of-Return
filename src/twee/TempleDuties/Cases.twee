@@ -5,11 +5,11 @@
       and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))
       and ['echo', 'roots', 'crate'].includes(_args[0])
       and (_args[0] is 'echo' or ['monk', 'priest'].includes($temple_rank))>>
-    <<set _oldReport to $TempleDuties.reports[_args[0]]>>
+    <<set $_oldReport to $TempleDuties.reports[_args[0]]>>
     <<if (!_args[1] and _dutyNext is _args[0])
-        or (_args[1] and _oldReport
-        and (!(_oldReport.honest and _oldReport.result is 'resolved')
-        or ($temple_rank is 'priest' and Time.days gte _oldReport.day + 7)))>>
+        or (_args[1] and $_oldReport
+        and (!($_oldReport.honest and $_oldReport.result is 'resolved')
+        or ($temple_rank is 'priest' and Time.days gte $_oldReport.day + 7)))>>
       <<run delete $TempleDuties.reports[_args[0]]>>
       <<set $TempleDuties.case to {
         id: _args[0], stage: 'field', clues: [],
@@ -18,7 +18,7 @@
       <<if _args[1] and $temple_rank is 'priest'
           and $TempleDuties.rewards.includesAll('echo', 'roots', 'crate')>>
         <<if $TempleDuties.followups[_args[0]] is undefined>>
-          <<set $TempleDuties.followups[_args[0]] to _oldReport.day>>
+          <<set $TempleDuties.followups[_args[0]] to $_oldReport.day>>
         <</if>>
         <<run $TempleDuties.case.clues.push(['visit-quiet', 'visit-damp', 'visit-shifted'][random(0, 2)])>>
       <</if>>
@@ -150,7 +150,9 @@
   <</if>>
 <</capture>>
 <br>
-<<temple-duty-back>>
+<<if !$TempleDuties.case or _briefId isnot 'crate'>>
+  <<temple-duty-back>>
+<</if>>
 
 :: Revelation Temple Field
 <<if $TempleDuties.case?.id is 'crate'>>

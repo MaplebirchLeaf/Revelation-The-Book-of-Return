@@ -1,26 +1,26 @@
 :: TempleChoir Work Widgets [widget]
 <<widget 'temple-choir-practice-action' 'container'>>
-  <<set _practiceKind to _args[1]>>
-  <<set _practiceBody to _contents>>
-  <<capture _practiceKind _practiceBody>>
+  <<set $_practiceKind to _args[1]>>
+  <<set $_practiceBody to _contents>>
+  <<capture $_practiceKind $_practiceBody>>
     <<lanLink _args[0]>>
       <<if maplebirch.get('TempleChoir')?.practice
           and !$combat and !$possessed and !$replayScene and !$statFreeze
           and !$nextPassage and !$nextPassageCheck and !$eventforced
           and $stress lt $stressmax and !isPregnancyEnding()>>
-        <<set _practiceSource to $passage>>
-        <<set _practiceDay to Time.days>>
+        <<set $_practiceSource to $passage>>
+        <<set $_practiceDay to Time.days>>
         <<pass 30>>
-        <<if $passage is _practiceSource and $location is 'temple' and Time.days is _practiceDay
+        <<if $passage is $_practiceSource and $location is 'temple' and Time.days is $_practiceDay
             and maplebirch.get('TempleChoir')?.member and $TempleChoir.joined
             and $TempleChoir.practiceDay isnot Time.days
             and !$combat and !$possessed and !$replayScene and !$statFreeze
             and !$nextPassage and !$nextPassageCheck and !$eventforced
             and $stress lt $stressmax and !isPregnancyEnding()>>
-          <<set $TempleChoir.exercise to _practiceKind>>
+          <<set $TempleChoir.exercise to $_practiceKind>>
           <<set $TempleChoir.practiceDay to Time.days>>
           <<set $TempleChoir.practices += 1>>
-          <<print _practiceBody>>
+          <<print $_practiceBody>>
           <<goto 'TempleChoir Practice Result'>>
         <</if>>
       <</if>>
