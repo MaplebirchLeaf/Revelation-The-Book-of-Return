@@ -82,21 +82,21 @@
   <<option 'EN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        A night-shift attendant heard knocking behind the lower storeroom wall after lights-out. Jordan hands you the building plan. "Listen along the drainpipe and check the shutter fastening. If you find loose fittings, fasten them and test the drain. Find the cause before drawing a seal on the wall."
+        A night-shift attendant heard knocking behind the lower storeroom wall after lights-out. Jordan hands you the building plan. "Listen along the drainpipe and inspect the shutter fastening. If wind is causing loose fittings to strike the masonry, fasten them and test the drain. Learn the actual physical cause before leaping to conclusions or drawing exorcism seals on the stone."
       <<case 'roots'>>
-        "Roots have grown through the lower storeroom wall and trapped the delivery books," Jordan says. "The last attendant saw them move. Take a lamp, rope and gloves. Mark a clear way back and copy the marks around the roots before trying to recover the books. If they attack, keep the doorway clear. Leave if you cannot manage it safely."
+        "Abnormal roots have crept through the lower storeroom wall, tangling around the old delivery books," Jordan says, tapping the ledger. "They are not ordinary vines; the last attendant saw them lash out. Do not rush in recklessly. Borrow a lamp, rope and gloves from the equipment locker. Once inside, first mark a chalk retreat path and copy down the growth marks around the roots. Only then, with your retreat secured, move to sever the roots and retrieve the books. If they swarm you, hold the stone doorway where you cannot be flanked."
       <<case 'crate'>>
-        "A relief crate has been returned to the docks warehouse," Jordan says. "Its seal is unbroken, but it weighs more than the dispatch record says. A porter also heard someone calling for help inside. Mark a safe route, check the crate and bring that person out. If anything blocks the doorway, drive it back. Make sure everyone is outside before you lock up."
+        "A crate of relief supplies has been returned to the docks warehouse," Jordan says, pointing to the shipping note. "Its seal is unbroken, yet it weighs far more than recorded, and a porter heard cries for help near the collapsed bilge floorboards. Go there and secure a stable gangway over the dark water before anything else. Bring the trapped worker out to safety, and inspect the seals on the crate. If pale tendrils surge from the water, stand firm on the reinforced planks to drive them back. Ensure everyone is safely outside before you lock up."
     <</switch>>
     The report asks for what you saw, what you checked, and what remains uncertain.
   <<option 'CN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“沿排水管听听声音，再检查百叶窗扣件。若是器物松动，就固定好，再测试排水管。先查清原因，别急着在墙上画封印。”
+        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“沿排水管听听声音，再仔细检查百叶窗扣件。若是气流吹动器物松动撞击石壁，就固定好，再测试排水管。先查清原因，别急着在墙上画封印。”
       <<case 'roots'>>
-        “根须从下层储藏室的墙缝里长出来，缠住了交货簿，”约旦说，“上一班的人看见它们动了。领好提灯、绳索和手套，先标好退路，抄下根须周围的痕迹，再想办法带回账簿。如果它们袭击你，就守住门口。应付不了，先撤回来。”
+        “下层储藏室的墙缝里生出了一些异状根须，缠住了存放的旧交货簿，”约旦翻开记录交待道，“那些根须不仅在生长，而且有攻击活物的迹象。别单打独斗盲目硬闯。去后备房带上提灯、绳索与手套；到了储藏室，先用粉笔标好撤离路线，再抄录下根须周围的异变节理。稳住退路后，再斩断根须把账簿抢出来。万一被围攻，退到石门处扼守狭道。”
       <<case 'crate'>>
-        “一箱救济物资被退回了码头仓库，”约旦说，“封条没破，却比发货记录上重。还有搬运工听见里面有人呼救。先标好安全路线，检查货箱，把受困的人带出来。若有东西堵住门口，就将它们赶开。确认所有人都出来，再锁门。”
+        “一箱发往外地的救济物资被退回了码头仓库，”约旦指着运单批号说，“封条完好，但重量远超记录，有搬运工还听见箱子附近的黑水底板下传来呼救声。码头阴暗潮湿，容易滋生水生秽物。你过去后，先用木板在积水上架稳撤离通道，把受困的工人救出来，并核对货箱封印与单据。若水下有苍白触手阻拦，就立足在加固栈道上将它们逼退。务必确认所有人都安全脱困，再上锁回报。”
     <</switch>>
     报告上要写清你看见了什么、核对了什么，以及哪些事还不能确定。
 <</language>>
@@ -393,8 +393,25 @@
     <br>
   <<elseif !_quietVisit>>
     <<set _fieldReady to $TempleDuties.case.clues.includesAll('route', 'marks') and ($TempleDuties.case.id isnot 'crate' or $TempleDuties.case.clues.includes('rescued'))>>
+    <<if !_fieldReady>>
+      <span class='blue'>
+      <<if $TempleDuties.case.id is 'roots'>>
+        <<lanSwitch 'The dark roots writhe aggressively in the gloom. Rushing in before marking your retreat and recording the marks will leave you open to an ambush!' '昏暗中，暗色根须剧烈抽动。在尚未标出退路、记录痕迹前盲目硬闯，极易腹背受敌，陷入重围！'>>
+      <<else>>
+        <<lanSwitch 'Dark bilge water bubbles menacingly beneath the broken timbers. Wading in recklessly before securing a walkway and rescuing the trapped worker will cut off your escape!' '破损地板下的黑水翻涌冒泡。在尚未架设撤离栈道、救出受困工人前贸然涉水，后路极可能被暗流截断！'>>
+      <</if>>
+      </span><br>
+    <<else>>
+      <span class='teal'>
+      <<if $TempleDuties.case.id is 'roots'>>
+        <<lanSwitch 'With your chalk retreat marked and the strange marks copied, you can hold the dry doorway to safely sever the roots and recover the books.' '撤离路线已用粉笔标清，节理痕迹也已抄录完毕。你只需扼守干燥石门，便能安全斩断根须，夺回账簿。'>>
+      <<else>>
+        <<lanSwitch 'The gangway is secured and the worker is safely clear. You can stand firm on the reinforced planks to drive back the pale tendrils.' '撤离栈道已加固完毕，受困工人也已安全脱离积水。你立足稳固栈道，能够从容击退破水而出的苍白触手。'>>
+      <</if>>
+      </span><br>
+    <</if>>
     <<templeicon 'altar'>>
-    <<temple-duty-action `[_fieldReady ? ($TempleDuties.case.id is 'roots' ? 'Stand at the dry doorway and sever the surging roots (0:01)' : 'Stand on the gangway and fight off the pale tendrils (0:01)') : ($TempleDuties.case.id is 'roots' ? 'Rush forward to hack at the tangled roots (0:01)' : 'Wade in to fight off the pale tendrils (0:01)'), _fieldReady ? ($TempleDuties.case.id is 'roots' ? '扼守干燥石门，迎击斩退抽动的暗根 (0:01)' : '扼守大门栈道，击退破水而出的苍白触手 (0:01)') : ($TempleDuties.case.id is 'roots' ? '直接冲上前斩断暗根 (0:01)' : '直接涉水迎战苍白触手 (0:01)')]` 1 'Revelation Temple Combat'>>
+    <<temple-duty-action `[_fieldReady ? ($TempleDuties.case.id is 'roots' ? 'Hold the doorway and sever the roots to secure the books (0:01)' : 'Hold the reinforced gangway and drive back the pale tendrils (0:01)') : ($TempleDuties.case.id is 'roots' ? 'Risk ambush and hack blindly at the tangled roots (0:01)' : 'Risk having your retreat cut off and wade into the dark water (0:01)'), _fieldReady ? ($TempleDuties.case.id is 'roots' ? '扼守干燥石门，按部就班斩断根须夺回账簿 (0:01)' : '立足稳固栈道，掩护现场击退异动触手 (0:01)') : ($TempleDuties.case.id is 'roots' ? '冒着被围攻的危险强行斩除暗根 (0:01)' : '冒着后路被截断的危险涉水迎战 (0:01)')]` 1 'Revelation Temple Combat'>>
       <<set $TempleDuties.case.stage to 'combat'>>
       <<set $combat to 1>>
       <<set $enemytype to 'tentacles'>>
@@ -528,8 +545,15 @@
 :: Revelation Temple Combat End
 <<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles' and ($tentacles.active lte $tentacles.max / 2 or _combatend)>>
   <<set _caseWon to $tentacles.active lte $tentacles.max / 2 and $stress lt $stressmax and !$possessed>>
-  <<set $TempleDuties.case.result to _caseWon and $TempleDuties.case.clues.includesAll('route', 'marks')
-    and ($TempleDuties.case.id isnot 'crate' or $TempleDuties.case.clues.includes('rescued')) ? 'resolved' : 'withdrawn'>>
+  <<if _caseWon>>
+    <<run $TempleDuties.case.clues.pushUnique('route', 'marks')>>
+    <<if $TempleDuties.case.id is 'crate'>>
+      <<run $TempleDuties.case.clues.pushUnique('rescued')>>
+    <</if>>
+    <<set $TempleDuties.case.result to 'resolved'>>
+  <<else>>
+    <<set $TempleDuties.case.result to 'withdrawn'>>
+  <</if>>
   <<set $TempleDuties.case.stage to 'report'>>
   <<clotheson>>
   <<endcombat>>
@@ -541,18 +565,28 @@
 <</if>>
 <<language>>
   <<option 'EN'>>
-    You get back through the doorway and pull the door shut. The sounds from inside fade as you catch your breath.
     <<if $TempleDuties.case?.result is 'resolved'>>
-      You have secured the records and notes you came for. Everyone is outside. You can return to Jordan with your report.
+      <<if $TempleDuties.case?.id is 'roots'>>
+        With a decisive strike, you drive the writhing roots recoiling deep into the stone wall crevices, where they shudder into stillness. Catching your breath, you wrench the damaged delivery books free from the severed coils, copy down the strange growth marks in your notes, and back safely through the doorway.
+      <<else>>
+        You fight with everything you have, driving the pale tendrils back into the churning bilge water until they retreat into the dark depths. With the walkway clear, you make sure the dockhand is safely outside, check the relief crate's seal, and lock the warehouse doors once everyone has left.
+      <</if>>
+      <br><br>
+      You have secured the records and notes you came for. Everyone is safe outside. You can return to Jordan with your report.
     <<else>>
-      You have not completed the investigation. You mark the entrance and prepare to tell Jordan what happened before making another attempt.
+      Overwhelmed by the thrashing anomaly, you fall back through the doorway and slam the heavy door shut. The sounds from inside fade as you catch your breath. You leave a warning mark at the entrance and prepare to tell Jordan what happened before making another attempt.
     <</if>>
   <<option 'CN'>>
-    你退过门槛，将门拉上。里面的声音渐渐减弱，你站在门边缓了口气。
     <<if $TempleDuties.case?.result is 'resolved'>>
-      需要的记录与笔记已经带出来，人也都在门外。你可以回去向约旦汇报了。
+      <<if $TempleDuties.case?.id is 'roots'>>
+        随着一记决然的重击，抽动的暗色根须剧烈痉挛，终于畏缩着退回石墙裂缝深处止住了动作。你大口平复着紊乱的呼吸，从断落的根茎中一把扯出受潮破损的交货簿，并迅速拓下周围的异变节理，随后稳步退回石门之后。
+      <<else>>
+        你拼尽全力迎击，将破水而出的苍白触手打退回翻滚的黑水深处，直至波澜暂息。通路畅通后，你确认搬运工已在安全处，记下货箱封印的异状，等所有人离开后锁好仓库大门。
+      <</if>>
+      <br><br>
+      需要的记录与笔记已经带出，人也都在门外安全无虞。你可以回去向约旦汇报了。
     <<else>>
-      调查还没有完成。你在入口留下警示记号，准备先向约旦说明经过，再找机会回来。
+      面对不断涌出的异状，你咬牙退过门槛，将厚重的门扇猛地拉上。里面的声音在门板阻隔下渐渐减弱，你站在门边缓了口气。你在入口留下警示记号，准备先向约旦说明经过，再找机会回来。
     <</if>>
 <</language>>
 <br><br>
