@@ -20,6 +20,17 @@ A necklace already handed to the museum or Quinn cannot be returned. Winter can 
 
 ### Visits to the shore
 
-**Three days after the return**, when original pursuits, random encounters and Winter's visits have finished and the shore shows its ordinary activities, you may sit by the lake and wait. You must have met the wraith, and it must still have some obsession. Blood moons, combat, possession, a pursuit or a grievance over its pale offspring prevent a visit.
+**Three days after the return**, when original pursuits, random encounters and Winter's visits have finished and the shore shows its ordinary activities, you may sit by the lake and wait. You must have met the wraith. Pending story visits remain available even at zero obsession; after the story, ordinary visits require some remaining obsession. Blood moons, combat, possession, a pursuit or a grievance over its pale offspring prevent a visit.
 
 Looking and leaving take no time. Spending **15 uninterrupted minutes** there reduces obsession by **1**. Wait at least **three days** before another visit. These visits gradually ease the tension without ending an existing pursuit, erasing other grievances or changing a romance.
+
+---
+
+### After returning it
+
+- Complete one quiet shore visit, then return to your own bed at the orphanage and choose **Close your eyes and rest for an hour**. The dream also joins that bed’s normal nightmare pool, without replacing other dreams.
+- Watch, approach, speak, or try to wake up. Having experienced the original **Schism** adds remembered details; this dream does not complete Schism for you.
+- Afterwards, talk to Robin when free in the orphanage room, Sydney while praying at the temple pews, or Gwylan during normal shop hours. **One conversation is enough**. You may also keep it private and think it over at the shore.
+- Leave at least three days between shore visits. The next meeting provides a one-time moment of relief; later visits retain their usual rules. Your journal records the current lead and retires the finished thread.
+
+Taking the necklace again interrupts quiet contact until you return it. It does not reset completed scenes. Blood moons, pursuits, and grievances over the pale offspring retain their existing consequences.

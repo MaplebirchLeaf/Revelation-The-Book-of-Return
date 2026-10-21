@@ -1,0 +1,354 @@
+:: Revelation Ivory Aftercare Widgets [widget]
+<<widget 'wraith-return-dream-check'>>
+  <<ivory-necklace-check>>
+  <<set _ivoryDreamReady to _ivorySafe and $RBR.necklace.returned
+    and $RBR.necklace.aftercare is 'dream' and !Time.isBloodMoon()
+    and !$wraith?.hunt and !$foresthunt and !$controlled
+    and !['dead', 'sold'].includes($wraith?.offspring) and !($wraithAngerCooldown gt 0)
+    and $location is 'home' and ['Bed', 'Revelation Ivory Dream Start'].includes($passage)>>
+<</widget>>
+
+<<widget 'wraith-return-rest-link'>>
+  <<wraith-return-dream-check>>
+  <<if _ivoryDreamReady>>
+    <<bedicon>>
+    <<lanLink ['Close your eyes and rest for an hour (1:00)', '闭上眼睛，休息一小时 (1:00)']>>
+      <<wraith-return-dream-check>>
+      <<if _ivoryDreamReady>>
+        <<set $sleephour to 1>><<set $nightmareExit to 'Bed'>>
+        <<goto 'Revelation Ivory Dream Start'>>
+      <</if>>
+    <</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-dream-wake'>>
+  <<if $activeNightmare is 'revelationIvoryReturn' and !$replayScene>>
+    <!-- 原版恢复现实；仅把本场选择带回，不保留梦里的地点、物品或属性。 -->
+    <<set $_ivoryProgress to clone($RBR.necklace)>>
+    <<set $_ivoryProgress.aftercare to _args[0] is 'abort' ? 'dream' : 'talk'>>
+    <<nightmareEnd>>
+    <<set $RBR.necklace to $_ivoryProgress>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-dream-cleanup'>>
+  <<if $activeNightmare is 'revelationIvoryReturn'
+      and (!maplebirch.get('RBR') or !passage().startsWith('Revelation Ivory Dream '))>>
+    <<wraith-return-dream-wake 'abort'>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-talk-check'>>
+  <<ivory-necklace-check>>
+  <<set _ivoryTalkReady to _ivorySafe and $RBR.necklace.returned
+    and ['talk', 'shore'].includes($RBR.necklace.aftercare)
+    and !$RBR.necklace.confidants.includes(_args[0]) and C.npc[_args[0]]?.init is 1>>
+  <<if _ivoryTalkReady>>
+    <<switch _args[0]>>
+      <<case 'Robin'>>
+        <<set _ivoryTalkReady to $location is 'home' and getRobinLocation() is 'orphanage'
+          and !$robinmissing and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
+      <<case 'Sydney'>>
+        <<sydneySchedule>>
+        <<set _ivoryTalkReady to $passage is 'Temple Sydney' and _sydney_location is 'temple'
+          and $sydney_templeWork is 'pray'>>
+      <<case 'Gwylan'>>
+        <<set _ivoryTalkReady to $location is 'forest_shop' and gwylanSchedule() is 'shop'>>
+      <<default>><<set _ivoryTalkReady to false>>
+    <</switch>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-talk-link'>>
+  <<wraith-return-talk-check _args[0]>>
+  <<if _ivoryTalkReady>>
+    <<set _ivoryConfidant to _args[0]>>
+    <<set _ivoryTalkMinutes to _ivoryConfidant is 'Gwylan' ? 10 : 15>>
+    <<capture _ivoryConfidant _ivoryTalkMinutes>>
+      <span @id="'ivory-return-talk-' + _ivoryConfidant">
+        <<socialiseicon 'ask'>>
+        <<lanLink `['Talk about the dream by the lake (0:' + _ivoryTalkMinutes + ')', '谈谈湖边的梦 (0:' + _ivoryTalkMinutes + ')']`>>
+          <<wraith-return-talk-check _ivoryConfidant>>
+          <<if _ivoryTalkReady>>
+            <<set _ivoryTalkSource to $passage>>
+            <<pass _ivoryTalkMinutes>>
+            <<wraith-return-talk-check _ivoryConfidant>>
+            <<if _ivoryTalkReady and $passage is _ivoryTalkSource>>
+              <<set $RBR.necklace.confidants.pushUnique(_ivoryConfidant)>>
+              <<set $RBR.necklace.aftercare to 'shore'>>
+              <<replace `'#ivory-return-talk-' + _ivoryConfidant`>>
+                <<wraith-return-support _ivoryConfidant>>
+              <</replace>>
+            <<elseif $passage is _ivoryTalkSource>>
+              <<replace `'#ivory-return-talk-' + _ivoryConfidant`>>
+                <<if $nextPassageCheck or $nextPassage>>
+                  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>>
+                <<else>>
+                  <<lanSwitch 'There is no longer time to finish the conversation. You can bring it up another time.' '已经没有时间继续这段交谈了。可以下次再提。'>>
+                <</if>>
+              <</replace>>
+            <</if>>
+          <</if>>
+        <</lanLink>>
+      </span><br>
+    <</capture>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-journal'>>
+  <<if ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
+    <li><<lanSwitch 'The necklace is back, but there are other grievances between you. Waiting at the shore will not settle them.' '项链已经归还，但你们之间还有其他旧怨。在岸边等待，并不能解决这些事。'>></li>
+  <<elseif Time.isBloodMoon() and $RBR.necklace.aftercare isnot 'complete'>>
+    <li><<lanSwitch 'The blood moon has risen. Returning the necklace did not make tonight safe. Wait until it has passed before seeking another quiet meeting.' '血月已经升起。归还项链并不能保你今晚平安。等血月过去，再找机会平静地见它。'>></li>
+  <<else>>
+    <<switch $RBR.necklace.aftercare>>
+      <<case 'dream'>>
+        <li><<lanSwitch 'You keep remembering the figure at the water’s edge. You could try resting in your own bed at the orphanage.' '你总想起站在水边的身影。可以回孤儿院，在自己的床上试着休息。'>></li>
+      <<case 'talk'>>
+        <li><<lanSwitch 'The dream has stayed with you. You could speak to someone you know, or decide for yourself whether to return to the shore.' '那个梦仍留在你脑海里。可以找熟悉的人说说，也可以自己想一想，再决定是否回湖边。'>></li>
+      <<case 'shore'>>
+        <li><<lanSwitch 'If you want to see the figure again, return to the lake shore after a few days. Avoid the blood moon.' '想再看看那道身影的话，隔几天可以回到湖畔。记得避开血月。'>></li>
+      <<case 'complete'>>
+      <<default>>
+        <li><<lanSwitch 'You returned the necklace. After a few days, you could sit at the lake shore and see whether anything has changed. Avoid the blood moon.' '你已归还项链。隔几天，可以到湖畔坐一会儿，看看是否有什么变化。记得避开血月。'>></li>
+    <</switch>>
+    <<if $RBR.necklace.aftercare is 'talk'>>
+      <<if C.npc.Robin.init is 1>>
+        <li><<lanSwitch 'Robin may be free to listen in the orphanage room.' '罗宾在孤儿院房间有空时，可以谈谈这件事。'>></li>
+      <</if>>
+      <<if C.npc.Sydney.init is 1>>
+        <li><<lanSwitch 'You could speak to Sydney while resting at the temple pews.' '悉尼在神殿长椅上祈祷时，也可以和对方谈谈。'>></li>
+      <</if>>
+      <<if C.npc.Gwylan?.init is 1>>
+        <li><<lanSwitch 'Gwylan may listen during a normal visit to the forest shop.' '也可以在森林商店正常营业时，向格威岚提起。'>></li>
+      <</if>>
+    <</if>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-support'>>
+  <<language>>
+    <<option 'EN'>>
+      You describe the necklace, the figure on the shore, and the dream. You stop before trying to explain what it all meant.
+    <<option 'CN'>>
+      你说起项链、站在岸边的身影，还有那个梦。说完这些，你停了下来，没有替那身影解释什么。
+  <</language>>
+  <br><br>
+  <<switch _args[0]>>
+    <<case 'Robin'>>
+      <<language>>
+        <<option 'EN'>>
+          <<if C.npc.Robin.trauma gte 40>>
+            Robin rubs <<nnpc_his 'Robin'>> hands together. "I-I don't know what that was," <<nnpc_he 'Robin'>> says. "Could you stay here a little longer? Just until you feel better."
+          <<elseif C.npc.Robin.dom gte 50>>
+            Robin puts <<nnpc_his 'Robin'>> things aside. "You don't have to go back just because it was in a dream," <<nnpc_he 'Robin'>> says. "Sit down. You've barely caught your breath."
+          <<else>>
+            "Was it very frightening?" Robin asks. <<nnpc_He 'Robin'>> moves over to make room for you. "You can stay a while, if you want. I don't mind."
+          <</if>>
+          <br><br>
+          <<if $robinromance is 1>>Robin slips <<nnpc_his 'Robin'>> hand into yours. You sit together until your fingers feel warm again.<<else>>You sit beside Robin. The familiar room makes the stone doorway seem a little further away.<</if>>
+          <br><br>
+          Robin cannot tell you what waits at the lake. For now, <<nnpc_he 'Robin'>> stays beside you.
+        <<option 'CN'>>
+          <<if C.npc.Robin.trauma gte 40>>
+            罗宾搓了搓双手。“我、我不知道那是什么，”<<nnpc_he 'Robin'>>说，“你能再待一会儿吗？等好些了再走。”
+          <<elseif C.npc.Robin.dom gte 50>>
+            罗宾放下手里的东西。“梦见了，也不一定就得回去，”<<nnpc_he 'Robin'>>说，“先坐下。你还没缓过来呢。”
+          <<else>>
+            “很吓人吗？”罗宾问。<<nnpc_He 'Robin'>>往旁边挪了挪，给你让出地方。“想待一会儿也可以。我不介意。”
+          <</if>>
+          <br><br>
+          <<if $robinromance is 1>>罗宾握住你的手。你们坐在一起，直到手指重新暖和起来。<<else>>你在罗宾身边坐下。看着熟悉的房间，梦里的石门仿佛远了些。<</if>>
+          <br><br>
+          罗宾不知道湖里有什么在等你。至少现在，<<nnpc_he 'Robin'>>还坐在你身边。
+      <</language>>
+      <<npcincr Robin love 1>><<glove 'Robin'>>
+    <<case 'Sydney'>>
+      <<run statusCheck('Sydney')>>
+      <<language>>
+        <<option 'EN'>>
+          Sydney listens, keeping a finger between the pages of <<nnpc_his 'Sydney'>> prayer book.
+          <br><br>
+          <<if _sydneyStatus.includes('corrupt')>>
+            "Well, I'm glad you gave it back," <<nnpc_he 'Sydney'>> says. "But don't go jumping into the lake because something in a dream looked at you. It can wait."
+          <<else>>
+            "Returning it was the right thing to do," <<nnpc_he 'Sydney'>> says. "I could pray with you. But I can't promise that would keep it away. I don't know what it is."
+          <</if>>
+          <br><br>
+          <<if $sydneyromance is 1>>Sydney rests <<nnpc_his 'Sydney'>> hand over yours. "I'm glad you told me."<<else>>Sydney closes the book. "Would you like to sit here for a bit?"<</if>>
+          <br><br>
+          You stay on the pew together. Nobody asks you to close your eyes.
+        <<option 'CN'>>
+          悉尼听着，手指还夹在祈祷书的书页间。
+          <br><br>
+          <<if _sydneyStatus.includes('corrupt')>>
+            “好吧，至少你把东西还回去了，”<<nnpc_he 'Sydney'>>说，“不过，别因为梦里的东西看了你一眼，就又往湖里跳。让它等着。”
+          <<else>>
+            “还回去是对的，”<<nnpc_he 'Sydney'>>说，“我可以陪你祈祷。不过，我不能保证这样就能让它远离你。我不知道那究竟是什么。”
+          <</if>>
+          <br><br>
+          <<if $sydneyromance is 1>>悉尼把手覆在你的手上。“谢谢你愿意告诉我。”<<else>>悉尼合上书。“想在这里坐一会儿吗？”<</if>>
+          <br><br>
+          你们一起留在长椅上。没有人要求你闭上眼睛。
+      <</language>>
+      <<npcincr Sydney love 1>><<glove 'Sydney'>>
+    <<case 'Gwylan'>>
+      <<language>>
+        <<option 'EN'>>
+          Gwylan sets a cup in front of you. "That sounds like a dream," <<nnpc_he 'Gwylan'>> says. "Whether it was only a dream, I couldn't tell you."
+          <br><br>
+          "I don't know what it wanted," you say.
+          <br><br>
+          "I wouldn’t pretend I knew either." Gwylan lets that hang for a moment. "You returned something. That doesn't oblige it to explain itself. Or you to go back."
+          <<if $gwylanSeen?.includes('bloodmoon')>><br><br>"You remember what I said about the blood moon? That still stands."<</if>>
+          <br><br>
+          You hold the warm cup between your hands. Gwylan leaves you time to finish it.
+        <<option 'CN'>>
+          格威岚在你面前放了只杯子。“听起来像个梦，”<<nnpc_he 'Gwylan'>>说，“至于是不是只有梦，我可说不准。”
+          <br><br>
+          “我不知道它想做什么，”你说。
+          <br><br>
+          “我也不能装作自己知道。”格威岚等了一会儿，“你还了东西，它也不一定就得向你解释。你也没有非回去不可。”
+          <<if $gwylanSeen?.includes('bloodmoon')>><br><br>“还记得我说过血月的事吗？那些话仍然算数。”<</if>>
+          <br><br>
+          你用双手捧住温热的杯子。格威岚没有催你喝完。
+      <</language>>
+  <</switch>>
+  <<stress -3>><<lstress>>
+<</widget>>
+
+<<widget 'wraith-return-reunion'>>
+  <!-- 本场静坐完整结束后才调用；结局与一次性宽慰一并登记。 -->
+  <<set $RBR.necklace.aftercare to 'complete'>>
+  <<language>>
+    <<option 'EN'>>
+      You sit where you sat before. A pale shape appears at the edge of the water. It looks down at your hands.
+      <br><br>
+      <<if $RBR.necklace.dreamChoice is 'approach'>>You remember the hand reaching towards you from the doorway. This time, you keep your hands in your lap.<<elseif $RBR.necklace.dreamChoice is 'call'>>You could repeat what you said in the dream. Instead, you let your empty hands rest where it can see them.<<elseif $RBR.necklace.dreamChoice is 'wake'>>You remember how badly you wanted to wake up. Here, you can stand and walk away. You stay seated a little longer.<<else>>You stay still, as you did in the dream. There is dry earth beneath you, and a path at your back.<</if>>
+      <br><br>
+      <<if $RBR.necklace.retaken gt 0>>Its fingers tighten. You remember taking the necklace again. Neither of you has forgotten.<<else>>Its hand rises towards its throat, then falls to its side. You wait. It does not reach for you.<</if>>
+      <br><br>
+      <<if $RBR.necklace.confidants.includes('Robin')>>You remember sitting beside Robin in the familiar room. <<elseif $RBR.necklace.confidants.includes('Sydney')>>You remember Sydney leaving the prayer book closed while you sat together. <<elseif $RBR.necklace.confidants.includes('Gwylan')>>You remember the warmth of Gwylan's cup. <<else>>You feel the ground under your palms, and listen to the water against the shore. <</if>>You do not move closer.
+      <br><br>
+      When you next look up, the shore is empty. You stand and move further from the water. Nothing follows. You cannot know what another night will bring, but for now, you can leave.
+    <<option 'CN'>>
+      你在上次坐过的地方坐下。水边出现一道苍白的身影。它低头看着你的双手。
+      <br><br>
+      <<if $RBR.necklace.dreamChoice is 'approach'>>你想起门边那只朝你伸来的手。这次，你把双手留在膝上。<<elseif $RBR.necklace.dreamChoice is 'call'>>你可以再说一遍梦里的话。你没有开口，只把空着的双手放在它能看见的地方。<<elseif $RBR.necklace.dreamChoice is 'wake'>>你记得当时有多想醒来。现在，你随时可以站起来离开。你又坐了一会儿。<<else>>你像梦里那样留在原地。身下是干燥的泥土，身后还有一条小路。<</if>>
+      <br><br>
+      <<if $RBR.necklace.retaken gt 0>>它收紧手指。你想起自己曾把项链再次拿走。你们谁也没有忘记。<<else>>它抬手碰了碰喉间，又把手放回身侧。你等着，它没有朝你伸手。<</if>>
+      <br><br>
+      <<if $RBR.necklace.confidants.includes('Robin')>>你想起和罗宾一起坐在那间熟悉的房间里。<<elseif $RBR.necklace.confidants.includes('Sydney')>>你想起悉尼陪着你时，一直没有翻开的祈祷书。<<elseif $RBR.necklace.confidants.includes('Gwylan')>>你想起格威岚递来的那只温热的杯子。<<else>>你用手掌感受身下的泥土，听着湖水拍打岸边。<</if>>你没有靠近。
+      <br><br>
+      再抬起头时，岸边已经空了。你站起来，往离水更远的地方退了几步。没有什么跟上来。你不知道下次入夜会怎样。不过现在，你可以离开。
+  <</language>>
+  <<stress -6>><<llstress>>
+<</widget>>
+
+:: Revelation Ivory Dream Start
+<<if $activeNightmare isnot 'revelationIvoryReturn'>>
+  <<wraith-return-dream-check>>
+  <<if !_ivoryDreamReady>>
+    <<getouticon>><<lanLink ['Return to bed', '回到床上'] 'Bed'>><</lanLink>><br>
+    <<exit>>
+  <</if>>
+  <<if !Number.isFinite($sleephour) or $sleephour is 0>><<set $sleephour to 1>><</if>>
+  <<set $nightmareExit to 'Bed'>>
+  <<nightmareStart 'revelationIvoryReturn'>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    You close your eyes. At first, you can still feel the sheets beneath your fingers. Then your hand slips against cold stone.
+    <br><br>
+    You stand in the room beneath the lake. The necklace lies on its plinth. You look down at your hands. They are empty.
+    <br><br>
+    Something moves beyond the doorway. The pale figure stands there, one hand at its throat. You cannot see its eyes.
+  <<option 'CN'>>
+    你闭上眼睛。起初，指间还能摸到床单。随后，手掌滑过冰冷的石面。
+    <br><br>
+    你站在湖底的石室里。项链放在基座上。你低头看看自己的双手，手里什么也没有。
+    <br><br>
+    门外有什么动了一下。那道苍白的身影站在那里，一只手按在喉间。你看不清它的眼睛。
+<</language>>
+<br><br>
+<<if $wraithPrison?.vision>>
+  <<lanSwitch 'You remember sharing its pain at the loss of the necklace. Seeing the hand at its throat brings that feeling back.' '你曾在它的记忆里感受过失去项链的痛苦。那只按在喉间的手，让你又想起了当时的感觉。'>><br><br>
+<</if>>
+<<investigateicon>><<lanLink ['Stay by the door and watch', '留在门边，观察'] 'Revelation Ivory Dream Answer'>><<set $RBR.necklace.dreamChoice to 'watch'>><</lanLink>><br>
+<<walkicon>><<lanLink ['Approach the plinth', '走近基座'] 'Revelation Ivory Dream Answer'>><<set $RBR.necklace.dreamChoice to 'approach'>><</lanLink>><br>
+<<socialiseicon 'ask'>><<lanLink ['Tell it you returned the necklace', '告诉它，你已经归还项链'] 'Revelation Ivory Dream Answer'>><<set $RBR.necklace.dreamChoice to 'call'>><</lanLink>><br>
+<<getouticon>><<lanLink ['Try to wake up', '试着醒过来'] 'Revelation Ivory Dream Wake'>><<set $RBR.necklace.dreamChoice to 'wake'>><</lanLink>><br>
+
+:: Revelation Ivory Dream Answer
+<<if $activeNightmare isnot 'revelationIvoryReturn'>>
+  <<getouticon>><<lanLink ['Return to bed', '回到床上'] 'Bed'>><</lanLink>><br><<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    <<switch $RBR.necklace.dreamChoice>>
+      <<case 'approach'>>
+        You step towards the necklace. The figure's hand leaves its throat. Long fingers reach towards you, but the figure stays beyond the doorway. You stop. It does not move again.
+        <br><br>
+        You spread your empty hands and take a step back. The necklace stays on the stone.
+      <<case 'call'>>
+        "I put it back," you say. Your voice sounds muffled, as though you spoke through water.
+        <br><br>
+        The figure turns its head. Its mouth moves. You cannot hear a reply. You do not know whether it heard you either.
+      <<default>>
+        You stay where you are. The figure looks towards the necklace, then back at you. You wait for it to come closer. It does not.
+        <br><br>
+        Water trickles down the wall behind you. You look over your shoulder. There is no way to tell how long you have been standing here.
+    <</switch>>
+    <br><br>
+    A blue glimmer catches on the chain. You blink, trying to keep the room in sight, but the stone beneath your hand has softened into cloth.
+  <<option 'CN'>>
+    <<switch $RBR.necklace.dreamChoice>>
+      <<case 'approach'>>
+        你向项链迈了一步。那身影放下按在喉间的手。它朝你伸出细长的手指，却始终留在门外。你停下，它也没有再动。
+        <br><br>
+        你摊开空着的双手，退后一步。项链仍放在石面上。
+      <<case 'call'>>
+        “我把它放回去了，”你说。声音闷闷的，像是隔着一层水。
+        <br><br>
+        那身影转过头。它的嘴唇动了动，你听不见回答。你也不知道，它是否听见了你的话。
+      <<default>>
+        你留在原地。那身影看看项链，又看看你。你等着它走近，它却没有动。
+        <br><br>
+        水沿着身后的石墙往下流。你回头望去，不知道自己已经站了多久。
+    <</switch>>
+    <br><br>
+    链子上闪过一点蓝光。你眨着眼，想再看清这间屋子，手掌下的石面却变成了柔软的布料。
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Open your eyes', '睁开眼睛'] 'Revelation Ivory Dream Wake'>><</lanLink>><br>
+
+:: Revelation Ivory Dream Wake
+<<wraith-return-dream-wake>>
+<<effects>>
+<<if $passage isnot 'Revelation Ivory Dream Wake'>><<exit>><</if>>
+<<if $nextPassageCheck or $nextPassage>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+<</if>>
+<<if !maplebirch.get('RBR') or !['talk', 'shore', 'complete'].includes($RBR?.necklace?.aftercare)>>
+  <<getouticon>><<lanLink ['Return to bed', '回到床上'] 'Bed'>><</lanLink>><br><<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    You open your eyes and draw a sharp breath. Your hand is tangled in the sheet. There is no stone, and no water.
+    <br><br>
+    <<if $RBR.necklace.dreamChoice is 'wake'>>You do not remember getting out of that room. You are glad you did.<<else>>You can still see the necklace on the plinth when you close your eyes. You cannot tell whether the figure was remembering you, or you were remembering it.<</if>>
+    <br><br>
+    You could tell someone about the dream. You could also keep it to yourself.
+  <<option 'CN'>>
+    你睁开眼，猛地吸了一口气。手指还缠着床单。没有石头，也没有水。
+    <br><br>
+    <<if $RBR.necklace.dreamChoice is 'wake'>>你不记得自己是怎么离开那间屋子的。能醒来就好。<<else>>闭上眼时，你仍能看见基座上的项链。你不知道，是那身影还记得你，还是你一直记着它。<</if>>
+    <br><br>
+    你可以找人说说这个梦，也可以把它留在心里。
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Get up; perhaps talk about it later', '先起床，之后找人谈谈'] 'Bedroom'>><<unset $nightmareExit>><</lanLink>><br>
+<<if $RBR.necklace.aftercare is 'talk'>>
+  <<investigateicon>><<lanLink ['Keep it to yourself and think it over', '暂时不告诉别人，自己想一想'] 'Bedroom'>><<set $RBR.necklace.aftercare to 'shore'>><<unset $nightmareExit>><</lanLink>><br>
+<</if>>

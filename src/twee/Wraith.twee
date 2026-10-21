@@ -3,6 +3,7 @@
   <<silently>>
     <<set _ivorySafe to Boolean(maplebirch.get('RBR')) and Boolean($RBR?.necklace)
       and !$combat and !$possessed and !$replayScene and !$statFreeze
+      and !$activeNightmare and !$frozenValues
       and !$nextPassage and !$nextPassageCheck and !$eventforced
       and $stress lt $stressmax and !isPregnancyEnding()>>
     <<set $_ivoryHeld to $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
@@ -40,12 +41,12 @@
   <<set _wraithVisitHere to _ivorySafe and $RBR.necklace.returned
     and $location is 'lake' and $outside is 1 and $bus is 'lakeshore'
     and ['Lake Shore', 'Revelation Wraith Shore'].includes($passage)
-    and $wraith?.state is 'active' and C.npc['Ivory Wraith']?.init is 1
+    and $wraith?.state is 'active' and $wraith.init and C.npc['Ivory Wraith']?.init is 1
     and !Time.isBloodMoon() and !$wraith.hunt and !$foresthunt
     and !(Time.hour gte 15 and $halloween is 1 and Time.monthDay is 31 and $halloween_lake is 1)
     and !($town_projects.diving is 1 or $town_projects.diving is 3)>>
   <<set _wraithVisitReady to _wraithVisitHere and !_wraithVisitAngry
-    and C.npc['Ivory Wraith'].lust gte 1
+    and (C.npc['Ivory Wraith'].lust gte 1 or $RBR.necklace.aftercare isnot 'complete')
     and Math.floor(Time.days) gte ($RBR.wraithVisitDay ?? -1) + 3>>
 <</widget>>
 
@@ -98,22 +99,30 @@
 <</widget>>
 
 <<widget 'ivory-necklace-journal'>>
-  <<if maplebirch.get('RBR') and $RBR?.necklace and ($necklaceThief is 'player' or $RBR.necklace.returnedOnce or $RBR.necklace.returned)>>
+  <<if maplebirch.get('RBR') and $RBR?.necklace
+      and !$statFreeze and !$replayScene
+      and ($RBR.necklace.returned ? ($RBR.necklace.advised and !$RBR.necklace.followedUp)
+          or ($RBR.necklace.aftercare isnot 'complete' and !['dead', 'sold'].includes($wraith?.offspring))
+        : $necklaceThief is 'player' and $museumAntiques?.antiques?.antiqueivorynecklace is 'found')>>
     <<revelation-card 'The ivory necklace' '象牙项链'>>
       <ul class='journal'>
         <<if $RBR.necklace.returned>>
-          <li><<lanSwitch 'You put the necklace back on the plinth beneath the lake. It remains there, outside the antiques you can sell.' '你把项链放回了湖底的基座。它仍在那里，已经不计入待出售的古董。'>></li>
-          <li><<lanSwitch 'You may take it again. Doing so restores the wraith’s full obsession; putting it back again only eases that obsession a little.' '仍然可以再次拿走它。这样会重新招来怨灵满额的痴迷，之后再放回，只能稍微缓和痴迷。'>></li>
-          <li><<lanSwitch 'The loss of the necklace no longer keeps the wraith obsessed with you. Other grudges and pursuits remain.' '失去项链的执念不再使怨灵紧盯着你。其他怨恨与追逐仍然存在。'>></li>
-          <li><<lanSwitch 'After three days, you may spend a quiet quarter-hour on the lake shore. Further visits must be at least three days apart. A pursuit or a grievance over its offspring prevents this.' '三天后，可以到湖岸安静地待上一刻钟，之后每次至少间隔三天。追逐尚未结束，或怨灵仍因苍白后代的遭遇而怀恨时，无法以这种方式接近它。'>></li>
-          <<if !$RBR.necklace.followedUp>><li><<lanSwitch 'You can tell Gwylan what happened during a normal visit to the forest shop.' '下次去森林商店时，可以告诉格威岚发生了什么。'>></li><</if>>
-        <<elseif $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
-          <li><<lanSwitch 'You still have the ivory necklace. Return to the plinth beneath the lake to examine where you found it.' '象牙项链仍在你手里。可以回到湖底的基座旁，查看取走它的地方。'>></li>
-          <li><<lanSwitch 'Return it outside a blood moon, while you can still act and have air left. You may ask Gwylan for advice first.' '避开血月，在仍能行动、还有空气时归还。也可以先请教格威岚。'>></li>
-          <<if $RBR.necklace.retaken gt 0>><li class='red'><<lanSwitch 'You took it again after putting it back. Repeated returns do not earn the relief of the first return.' '你把已经放回的项链又拿走了。再次归还，不会再有初次归还时的宽慰。'>></li><</if>>
+          <<wraith-return-journal>>
+          <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
+            <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
+          <</if>>
         <<else>>
-          <li><<lanSwitch 'You no longer have the necklace. A necklace already handed to the museum or Quinn cannot be returned at the plinth.' '项链已经不在你手里。交给博物馆或奎恩的项链，无法再带到基座旁归还。'>></li>
-          <li><<lanSwitch 'Winter can tell you where the museum sent it: the mayor’s office.' '可以向温特打听项链的去向：博物馆已将它送往市长办公室。'>></li>
+          <<if $RBR.necklace.advised>>
+            <li><<lanSwitch 'Gwylan suggested returning the necklace to where you found it, away from the red moon. Take it back to the plinth beneath the lake if you decide to follow that advice.' '格威岚建议避开红月，把项链送回找到它的地方。若决定照做，就带着它回湖底的基座。'>></li>
+          <<else>>
+            <li><<lanSwitch 'You still have the necklace taken from beneath the lake. If you decide to return it, you can take it back to the plinth.' '你仍拿着从湖底取走的项链。想归还的话，可以带回原来的基座。'>></li>
+            <<if C.npc.Gwylan?.init is 1>>
+              <li><<lanSwitch 'You could ask Gwylan about the necklace at the forest shop.' '也可以去森林商店，问问格威岚项链的事。'>></li>
+            <</if>>
+          <</if>>
+          <<if $RBR.necklace.retaken gt 0>>
+            <li class='red'><<lanSwitch 'You took the necklace again after returning it. The pale figure has not forgotten.' '你把已经归还的项链又拿走了。那苍白的身影没有忘记。'>></li>
+          <</if>>
         <</if>>
       </ul>
     <</revelation-card>>
@@ -303,9 +312,12 @@
       <br><br>
       你可以在这里待一会儿。不下水，也不招呼什么东西靠近。
   <</language>>
+  <<if $RBR.necklace.aftercare is 'talk'>>
+    <br><br><<lanSwitch 'You have not told anyone about the dream. You could think it over here yourself, without waiting for someone else to explain it.' '你还没有向别人提起那个梦。你也可以在这里自己想一想，不必等别人给你解释。'>>
+  <</if>>
   <br><br>
   <<lakeicon>>
-  <<lanLink ['Stay quietly for a quarter-hour (0:15)', '安静地坐上一刻钟 (0:15)']>>
+  <<lanLink `[$RBR.necklace.aftercare is 'talk' ? 'Think it over by yourself and stay a quarter-hour (0:15)' : 'Stay quietly for a quarter-hour (0:15)', $RBR.necklace.aftercare is 'talk' ? '自己想一想，坐上一刻钟 (0:15)' : '安静地坐上一刻钟 (0:15)']`>>
     <<revelation-wraith-visit-check>>
     <<if _wraithVisitReady>>
       <<set _wraithVisitSource to $passage>>
@@ -317,25 +329,34 @@
         <<replace '#revelation-wraith-visit'>>
           <<if _wraithVisitReady>>
             <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
-            <<language>>
-              <<option 'EN'>>
-                <<if C.npc['Ivory Wraith'].lust gte 10>>
-                  A pale shape stands near the water. You did not see it arrive. Its hands are clenched, and its eyes stay on you. You keep your hands on your knees. After a while, its fingers loosen.
-                <<else>>
-                  Something pale moves at the edge of your vision. You turn your head. The figure stands by the water, its pale clothes briefly catching the light. It looks from your empty hands to your face, and stays where it is.
-                <</if>>
-                <br><br>
-                <<if $wraithPrison?.vision>>You remember the loss you felt in its dream. You leave that memory unspoken. <</if>>Neither of you comes any closer. When you look up again, the figure has gone. You let out the breath you were holding, and stand.
-              <<option 'CN'>>
-                <<if C.npc['Ivory Wraith'].lust gte 10>>
-                  一道苍白的身影站在水边。你没有看见它过来。它紧攥着双手，双眼始终盯着你。你把手留在膝上。过了一会儿，那几根手指松开了些。
-                <<else>>
-                  眼角有什么苍白的东西动了一下。你转过头，那身影站在水边，苍白的衣袍映过一点微光。它看看你空着的双手，又看看你的脸，仍留在原地。
-                <</if>>
-                <br><br>
-                <<if $wraithPrison?.vision>>你想起曾在它的梦里感到的失落，没有将这段记忆说出口。<</if>>你们谁也没有靠近。再次抬头时，那身影已经不见了。你松开一直憋着的那口气，站起身来。
-            <</language>>
-            <<lobsession 1>>
+            <<if $RBR.necklace.aftercare is 'talk'>><<set $RBR.necklace.aftercare to 'shore'>><</if>>
+            <<if $RBR.necklace.aftercare is 'shore'>>
+              <<wraith-return-reunion>>
+            <<else>>
+              <<language>>
+                <<option 'EN'>>
+                  <<if C.npc['Ivory Wraith'].lust gte 10>>
+                    A pale shape stands near the water. You did not see it arrive. Its hands are clenched, and its eyes stay on you. You keep your hands on your knees. After a while, its fingers loosen.
+                  <<else>>
+                    Something pale moves at the edge of your vision. You turn your head. The figure stands by the water, its pale clothes briefly catching the light. It looks from your empty hands to your face, and stays where it is.
+                  <</if>>
+                  <br><br>
+                  <<if $wraithPrison?.vision>>You remember the loss you felt in its dream. You leave that memory unspoken. <</if>>Neither of you comes any closer. When you look up again, the figure has gone. You let out the breath you were holding, and stand.
+                <<option 'CN'>>
+                  <<if C.npc['Ivory Wraith'].lust gte 10>>
+                    一道苍白的身影站在水边。你没有看见它过来。它紧攥着双手，双眼始终盯着你。你把手留在膝上。过了一会儿，那几根手指松开了些。
+                  <<else>>
+                    眼角有什么苍白的东西动了一下。你转过头，那身影站在水边，苍白的衣袍映过一点微光。它看看你空着的双手，又看看你的脸，仍留在原地。
+                  <</if>>
+                  <br><br>
+                  <<if $wraithPrison?.vision>>你想起曾在它的梦里感到的失落，没有将这段记忆说出口。<</if>>你们谁也没有靠近。再次抬头时，那身影已经不见了。你松开一直憋着的那口气，站起身来。
+              <</language>>
+              <<if !$RBR.necklace.aftercare or $RBR.necklace.aftercare is 'none'>>
+                <<set $RBR.necklace.aftercare to 'dream'>>
+                <br><br><<lanSwitch 'When you stand up, you keep remembering its hands. You wonder whether you will sleep any better in your own bed.' '起身后，你仍想起那双手。不知道回自己的床上睡一觉，会不会好些。'>>
+              <</if>>
+            <</if>>
+            <<if C.npc['Ivory Wraith'].lust gt 0>><<lobsession 1>><</if>>
             <<run UIBar.update()>>
           <<else>>
             <<lanSwitch 'You are interrupted before the quarter-hour is over. Whatever you thought you saw by the water is gone.' '还没坐满一刻钟，就有别的事打断了你。水边那道仿佛出现过的影子，已经不见了。'>>

@@ -10,6 +10,9 @@ export const DEFAULT_REVELATION_STATE = {
     returnedOnce: false,
     retaken: 0,
     advised: false,
-    followedUp: false
+    followedUp: false,
+    aftercare: 'none',
+    dreamChoice: '',
+    confidants: [] as string[]
   }
 };

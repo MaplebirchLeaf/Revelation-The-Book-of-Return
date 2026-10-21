@@ -54,9 +54,20 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
     },
     widgetPassage: {
       // 只在格威岚的正常店内菜单出现，不越过追逐、礼物或离场分支。
-      'Gwylan Widgets': [{ src: '<<gwylanOptionsClothing>>', applyafter: '<<ivory-necklace-gwylan-link>>', expected: 1 }]
+      'Gwylan Widgets': [{ src: '<<gwylanOptionsClothing>>', applyafter: '<<ivory-necklace-gwylan-link>><<wraith-return-talk-link "Gwylan">>', expected: 1 }],
+      'Widgets Robin': [{ src: '<<robinbully>>', applybefore: '<<wraith-return-talk-link "Robin">>', expected: 1 }],
+      'Widgets Sydney': [{ src: '<<widget "sydneyOptionsTalk">>', applyafter: '<<wraith-return-talk-link "Sydney">>', expected: 1 }],
+      'Widgets Nightmares': [
+        {
+          src: '<<if $_possibleNightmares.length gte 1>>',
+          applybefore: '<<wraith-return-dream-check>><<if _ivoryDreamReady>><<set $_possibleNightmares.pushUnique("Revelation Ivory Dream Start")>><</if>>',
+          expected: 1
+        }
+      ]
     }
   });
 
   maplebirch.tool.addTo('Journal', 'ivory-necklace-journal');
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'wraith-return-rest-link', passage: 'Bed' });
+  maplebirch.tool.addTo('Header', 'wraith-return-dream-cleanup');
 }
