@@ -11,6 +11,12 @@ export const DEFAULT_REVELATION_STATE = {
     retaken: 0,
     advised: false,
     followedUp: false,
+    reclaimed: false,
+    saleChecked: false,
+    known: false,
+    prepared: false,
+    attemptDay: -1,
+    stage: '',
     aftercare: 'none',
     dreamChoice: '',
     confidants: [] as string[]

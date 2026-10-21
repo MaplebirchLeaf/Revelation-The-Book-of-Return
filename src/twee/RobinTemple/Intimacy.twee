@@ -19,8 +19,8 @@
       “我在圣坛前说的话是真心的，”<<he>>说，“就算我还要照顾生意、回孤儿院，也是一样。”
   <</language>>
   <br><br>
-  <<socialiseicon 'ask'>><<lanLink ['Ask Robin how the new vow feels', '问罗宾是否习惯了新的誓言'] 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
-  <<loveicon 'kiss'>><<lanLink ['Ask Robin if they want to be closer', '问罗宾要不要更亲近些'] 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
+  <<socialiseicon 'ask'>><<lanLink ['Ask Robin how the new vow feels', '问罗宾是否习惯新的誓言'] 'RobinTemple Bed Afternoon Talk'>><</lanLink>><br>
+  <<loveicon 'kiss'>><<lanLink ['Ask Robin if they want to be closer', '问罗宾想不想更亲近'] 'RobinTemple Bed Afternoon Invite'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>

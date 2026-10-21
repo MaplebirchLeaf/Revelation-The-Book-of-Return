@@ -40,7 +40,7 @@
   <</language>>
   <<if $robinromance is 1>>
     <br><br>
-    <<loveicon 'hug'>><<lanLink ['Sit with Robin by the bunk (0:15)', '在床边陪罗宾坐一会儿 (0:15)'] 'RobinTemple Bunk Talk'>>
+    <<loveicon 'hug'>><<lanLink ['Sit with Robin by the bunk (0:15)', '在床边陪罗宾坐会儿 (0:15)'] 'RobinTemple Bunk Talk'>>
       <<robin-temple-bunk-ready>>
       <<if _robinBunkReady>>
         <<pass 15>>

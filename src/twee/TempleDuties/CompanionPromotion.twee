@@ -224,7 +224,7 @@
             <br>
           <<elseif _candidate.trial_day lt 0 and _candidate.lessons.includesAll('care', 'wards')>>
             <<icon 'temple/watch-door.png'>>
-            <<lanLink ['Prepare to enter the lower passage for the watch together', '准备一起参加下层通道的守望'] 'Revelation Temple Watch Brief'>>
+            <<lanLink ['Prepare for lower watch together', '准备共同参与守望'] 'Revelation Temple Watch Brief'>>
             <</lanLink>>
             <br>
           <<elseif _candidate.reviewed>>
@@ -240,7 +240,7 @@
 <</for>>
 <<if $temple_rank is 'priest'>>
   <<templeicon 'altar'>>
-  <<lanLink ['Go to the room by the fire for the companions’ appointments', '到炉边的房间，陪同参加任命仪式'] 'Revelation Temple Shared Oath'>>
+  <<lanLink ['Attend companions\' appointment', '陪同参加任命仪式'] 'Revelation Temple Shared Oath'>>
   <</lanLink>>
   <br>
 <</if>>

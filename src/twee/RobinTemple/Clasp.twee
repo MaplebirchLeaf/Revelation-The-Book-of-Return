@@ -54,9 +54,9 @@
     <br><br>
     <<if maplebirch.get('RobinTemple').claspReady>>
       <<if $RobinTemple.clasp_request is 'remove'>>
-        <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+        <<lockicon 'unlock'>><<lanLink ['Accompany Robin for removal (0:15)', '陪同拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
       <<else>>
-        <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+        <<lockicon>><<lanLink ['Accompany Robin for refitting (0:05)', '陪同戴上贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
       <</if>>
     <<else>>
       <<language>>
@@ -79,7 +79,7 @@
       <</language>><br><br>
     <</if>>
     <<if $money gte maplebirch.get('RobinTemple').claspFee>>
-      <<lockicon 'unlock'>><<lanLink ['Ask if Robin wants the chastity lock removed (0:15)', '问罗宾是否想取下贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
+      <<lockicon 'unlock'>><<lanLink ['Discuss removing chastity lock (0:15)', '商量取下贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
         <<if $RobinTemple.clasp_request is '' and $RobinTemple.clasp_equipped
           and C.npc.Robin.chastity.anus is 'anal shield'
           and C.npc.Robin.chastity.vagina is 'chastity belt'
@@ -97,7 +97,7 @@
     and C.npc.Robin.chastity.anus is ''
     and C.npc.Robin.chastity.vagina is ''
     and C.npc.Robin.chastity.penis is ''>>
-    <<lockicon>><<lanLink ['Ask if Robin wants the chastity lock put back on (0:15)', '问罗宾是否想重新戴上贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
+    <<lockicon>><<lanLink ['Discuss refitting chastity lock (0:15)', '商量戴上贞操带 (0:15)'] 'RobinTemple Clasp Request'>>
       <<if $RobinTemple.clasp_request is '' and !$RobinTemple.clasp_equipped
         and C.npc.Robin.chastity.anus is ''
         and C.npc.Robin.chastity.vagina is ''
@@ -145,9 +145,9 @@
   <br><br>
   <<if maplebirch.get('RobinTemple').claspReady>>
     <<if $RobinTemple.clasp_request is 'remove'>>
-      <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <<lockicon 'unlock'>><<lanLink ['Accompany Robin for removal (0:15)', '陪同拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
     <<else>>
-      <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <<lockicon>><<lanLink ['Accompany Robin for refitting (0:05)', '陪同戴上贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
     <</if>>
   <<else>>
     <<language>>

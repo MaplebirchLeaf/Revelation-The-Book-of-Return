@@ -9,7 +9,7 @@
       and Array.from(document.querySelectorAll('#passage-content .macro-link[data-passage]'))
         .some(link => link.dataset.passage === 'Kylar Chat')>>
     <<socialiseicon 'ask'>>
-    <<lanLink ['Ask whether Kylar wants to discuss the monstrance', '询问凯拉尔是否愿意谈圣体匣'] 'Revelation Temple Kylar'>>
+    <<lanLink ['Discuss the monstrance', '打听圣体匣'] 'Revelation Temple Kylar'>>
     <</lanLink>>
     <br>
   <</if>>
@@ -20,7 +20,7 @@
       and $per_npc.bishop and $TempleDuties.manor is 'none'>>
     <br>
     <<socialiseicon 'ask'>>
-    <<lanLink ['Ask the bishop about the damaged monstrance at the manor', '向主教询问庄园里残损的圣体匣'] 'Revelation Temple Monstrance'>>
+    <<lanLink ['Ask bishop about monstrance', '向主教打听圣体匣'] 'Revelation Temple Monstrance'>>
     <</lanLink>>
     <br>
   <<elseif $TempleDuties.manor is 'copied' and $per_npc.bishop

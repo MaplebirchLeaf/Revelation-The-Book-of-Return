@@ -109,7 +109,7 @@
     <br>
   <</if>>
   <<templeicon 'altar'>>
-  <<lanLink ['Keep your experiences private and consider whether to take the oath', '先不谈私人经历，考虑是否宣誓'] 'Revelation Temple Oath'>>
+  <<lanLink ['Consider whether to take the oath', '考虑是否宣誓'] 'Revelation Temple Oath'>>
     <<set $TempleDuties.declaration to 'private'>>
   <</lanLink>>
   <br>
@@ -139,7 +139,7 @@
 <</language>>
 <br><br>
 <<templeicon 'altar'>>
-<<temple-duty-action `['Make the vows to Jordan and accept appointment as a priest (0:20)', '向约旦宣誓，接受司祭任命 (0:20)']` 20 'Revelation Temple Ordained'>>
+<<temple-duty-action `['Take vows and accept appointment (0:20)', '宣誓接受司祭任命 (0:20)']` 20 'Revelation Temple Ordained'>>
   <<temple-duty-check>>
   <<if _dutyReady and $TempleDuties.review and $TempleDuties.oath is 'care'>>
     <<temple-ordain-player>>
@@ -147,7 +147,7 @@
 <</temple-duty-action>>
 <br>
 <<templeicon 'altar'>>
-<<lanLink ['Invite Robin or Sydney to share the appointment ceremony', '邀请罗宾或悉尼一同参加任命仪式'] 'Revelation Temple Shared Oath'>>
+<<lanLink ['Invite companion to ceremony', '邀请同伴共赴任命仪式'] 'Revelation Temple Shared Oath'>>
   <<set $TempleDuties.party to []>>
 <</lanLink>>
 <br>

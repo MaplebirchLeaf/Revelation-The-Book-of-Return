@@ -144,7 +144,7 @@
   <<else>>
     <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
       <<icon 'temple/duties-book.png'>>
-      <<lanLink ['Read today’s handover and choose a shift', '查看今日交接，选择一班职务'] 'Revelation Temple Shift'>>
+      <<lanLink ['Choose today\'s shift', '选择今日值班职务'] 'Revelation Temple Shift'>>
       <</lanLink>>
       <br>
     <</if>>
@@ -162,7 +162,7 @@
       <br>
     <<elseif $TempleDuties.case?.stage is 'field'>>
       <<icon 'temple/duties-book.png'>>
-      <<lanLink ['Review the assignment and prepare', '查看委托说明，准备调查'] 'Revelation Temple Case Brief'>>
+      <<lanLink ['Review assignment', '查看委托说明'] 'Revelation Temple Case Brief'>>
       <</lanLink>>
       <<if $TempleDuties.case?.id>>
         — <<temple-case-title $TempleDuties.case.id>>

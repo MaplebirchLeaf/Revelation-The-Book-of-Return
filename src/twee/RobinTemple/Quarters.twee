@@ -237,9 +237,9 @@
   <</if>>
   <<if $RobinTemple.clasp_request isnot '' and maplebirch.get('RobinTemple').claspReady>>
     <<if $RobinTemple.clasp_request is 'remove'>>
-      <<lockicon 'unlock'>><<lanLink ['Accompany Robin to Jordan for removal (0:15)', '陪罗宾找约旦拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <<lockicon 'unlock'>><<lanLink ['Accompany Robin for removal (0:15)', '陪同拆除贞操带 (0:15)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
     <<else>>
-      <<lockicon>><<lanLink ['Accompany Robin to Jordan for refitting (0:05)', '陪罗宾找约旦重新戴好贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
+      <<lockicon>><<lanLink ['Accompany Robin for refitting (0:05)', '陪同戴上贞操带 (0:05)'] 'RobinTemple Clasp Result'>><</lanLink>><br>
     <</if>>
   <<else>>
     <<lockicon>><<lanLink ['Talk to Robin about the chastity lock', '和罗宾谈谈贞操带'] 'RobinTemple Clasp'>><</lanLink>><br>

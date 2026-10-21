@@ -624,7 +624,7 @@
         <<option 'CN'>>
           你一点点挪凳子，不让它的腿擦地。比预料沉，你想要人帮，可帮忙就又有人站在身旁。你试图拥有一个没人决定该站哪里的片刻。
           <br><br>
-          站上凳子，就能越过台面看。隔壁门框后露出椅子的一角，那是来客的椅子，手搁在扶手上，旁边桌上有杯子。你来回看，终于拼出一个人该在什么位置。声音却从更远处说话，不是回声，是一整句，开头带着呼吸。
+          站上凳子，就能越过台面看。隔壁门框后露出椅子的一角，那是来客的椅子，手搁在扶手上，旁边桌上有杯子。你来回看，终于拼出一个人该在什么位置。声音却从更远处传来。那绝非回声，而是完整的一句话，句首还带着清晰的吐息。
           <br><br>
           你先拿碗，不先决定这意味着什么。它套在另一个碗里，提开时清清地响。大人停下说话，你盯着架子。有人问需不需要帮助。你说不用，因为已经拿到碗，也因为下凳时不想有人站在脚下。
           <br><br>
@@ -797,7 +797,7 @@
           <br><br>
           椅子上搭着外套，你先认出肩，再认出袖口。意味着来客脱过它。你寻找能做到的人。椅子后，工作台边垂着一条布，撕得与床下身体周围的破布相似，看不见连着什么。味道使眼睛流泪，你希望看不清只是因为这个。
           <br><br>
-          一只手摸着工作台底下，银色接住了光。它还没再动，你先把前脚退过门槛。罐没有动，外套仍然搭着。危险的不是发怪响的道具，是藏得够低，能被普通家具挡住的身体。
+          一只手摸着工作台底下，银色接住了光。它还没再动，你先把前脚退过门槛。罐没有动，外套仍然搭着。真正危险的并非发出怪响的器具，而是矮到足以藏在寻常家具底下的躯体。
           <br><br>
           上方某处，平静的声音说，工作总有后果。你不肯为了找说话的人，就移开盯手的目光。那句子套得进家里几乎所有坏东西，却不解释身体为何现在朝鞋伸。<span class='red'>不要为了听完，就走进那只手够得到的地方。</span>你能留在门槛看，也能借门让缝变窄，两样都在过道这边。指尖追着鞋留在地上的影子，停在光前。你不知道它在躲光，还是只决定怎样继续动。
       <</language>>
@@ -812,7 +812,7 @@
           <br><br>
           At once the lights steady. The reaching hand stops. A chair is pulled out somewhere you cannot see. The house has heard that you want a complete answer and is arranging a place to give one. For a moment that feels like help. Then the chemical smell disappears too quickly. You can still see wet jars and torn cloth. A room does not lose its smell simply because somebody has begun a different conversation. You keep your hand on the doorframe until the calm voice invites you into another room. This time you will take a place for somebody who saw the night, not merely somebody willing to explain it.
         <<option 'CN'>>
-          <<if $LostLamb.marks.includes('verdict-lab-slit')>>你推门，只留工作台一条，手指没有伸出来。上方的声音更大，像音量能补回被你拒绝的视野。你留在自己的这一边。<<else>>你站在门槛，挪到门框挡住一部分腿。手还在找鞋的影子，脚挪开，它先追旧位置，再转。你知道了一点动作，不是把它变成这样的那个夜晚。<</if>>
+          <<if $LostLamb.marks.includes('verdict-lab-slit')>>你推门，只留工作台一条，手指没有伸出来。上方的声音更大，像音量能补回被你拒绝的视野。你留在自己的这一边。<<else>>你站在门槛，挪到门框挡住一部分腿。手还在找鞋的影子，脚挪开，它先追旧位置，再转。你只摸清了它的一点动作规律，至于究竟是哪个夜晚把它变成了这副模样，依旧一无所知。<</if>>
           <br><br>
           灯闪起来，你看不见原因。一次闪光里，台下有两个身影，下一次却只有布堆。你不弯下去数。已经看得够多，知道靠近危险。数量不能让距离安全。
           <br><br>

@@ -45,7 +45,7 @@
   <<temple-duty-check>>
   <<if _dutySafe and $TempleDuties.case?.id is 'crate' and $TempleDuties.case.stage is 'field'>>
     <<icon 'cargo-stack.png'>>
-    <<lanLink ['Go to the warehouse and inspect the returned crate (0:02)', '去仓库检查退回的神殿货箱 (0:02)'] 'Revelation Temple Field'>>
+    <<lanLink ['Inspect the returned crate at warehouse (0:02)', '检查退回的货箱 (0:02)'] 'Revelation Temple Field'>>
       <<pass 2>>
     <</lanLink>>
     <br>
@@ -56,7 +56,7 @@
   <<temple-duty-check>>
   <<if _dutySafe and $location is 'forest_shop' and _gwylanLocation is 'shop' and $TempleDuties.case?.stage is 'field' and !$TempleDuties.case.advised and C.npc.Gwylan.init is 1>>
     <<socialiseicon 'ask'>>
-    <<lanLink ['Ask Gwylan about the marks on your field notes (0:10)', '请格威岚看看外勤记录上的标记 (0:10)'] 'Revelation Temple Gwylan'>>
+    <<lanLink ['Ask Gwylan to check marks on notes (0:10)', '向格威岚核对标记 (0:10)'] 'Revelation Temple Gwylan'>>
       <<pass 10>>
     <</lanLink>>
     <br>
@@ -132,7 +132,7 @@
     <</if>>
     <<if _briefId is 'crate'>>
       <<getouticon>>
-      <<lanLink ['Return to the hall; make your way to the docks', '先返回大厅，再自行前往码头'] 'Temple'>>
+      <<lanLink ['Return to hall', '先返回大厅'] 'Temple'>>
       <</lanLink>>
       <br>
     <<else>>
@@ -142,7 +142,7 @@
       <br>
     <</if>>
     <<socialiseicon 'ask'>>
-    <<temple-duty-action `['End this investigation and tell Jordan you are withdrawing (0:05)', '结束本次调查，向约旦说明退出 (0:05)']` 5 'Revelation Temple Report'>>
+    <<temple-duty-action `['Withdraw from investigation (0:05)', '向约旦说明退出 (0:05)']` 5 'Revelation Temple Report'>>
       <<set $TempleDuties.case.stage to 'report'>>
       <<set $TempleDuties.case.result to 'withdrawn'>>
     <</temple-duty-action>>
@@ -363,7 +363,7 @@
     <<set _markMinutes to currentSkillValue('history') gte 300 or $TempleDuties.case.advised
       or $TempleDuties.archive.topics.includes('ward-notes')
       or $TempleDuties.case.id is 'crate' and $TempleDuties.archive.topics.includes('deliveries') ? 10 : 20>>
-    <<temple-duty-action `['Copy the marks and compare them with the old records', '抄下现场标记，与旧记录比对']` `_markMinutes` 'Revelation Temple Case Note'>>
+    <<temple-duty-action `['Copy and compare marks', '抄录标记并比对']` `_markMinutes` 'Revelation Temple Case Note'>>
       <<run $TempleDuties.case.clues.pushUnique('marks')>>
       <<historyskill 1>>
       <<set $TempleDuties.note to 'marks'>>
@@ -386,7 +386,7 @@
   <<if _quietVisit and $TempleDuties.case.clues.includesAll('route', 'marks')
       and ($TempleDuties.case.id isnot 'crate' or $TempleDuties.case.clues.includes('rescued'))>>
     <<socialiseicon>>
-    <<temple-duty-action `['Finish the inspection and take back the records (0:10)', '完成检查，带回记录 (0:10)']` 10 `$TempleDuties.case.id is 'crate' ? 'Revelation Temple Inspection End' : 'Revelation Temple Report'`>>
+    <<temple-duty-action `['Complete inspection (0:10)', '完成核对带回记录 (0:10)']` 10 `$TempleDuties.case.id is 'crate' ? 'Revelation Temple Inspection End' : 'Revelation Temple Report'`>>
       <<set $TempleDuties.case.result to 'resolved'>>
       <<set $TempleDuties.case.stage to 'report'>>
     <</temple-duty-action>>
@@ -411,7 +411,7 @@
       </span><br>
     <</if>>
     <<templeicon 'altar'>>
-    <<temple-duty-action `[_fieldReady ? ($TempleDuties.case.id is 'roots' ? 'Hold the doorway and sever the roots to secure the books (0:01)' : 'Hold the reinforced gangway and drive back the pale tendrils (0:01)') : ($TempleDuties.case.id is 'roots' ? 'Risk ambush and hack blindly at the tangled roots (0:01)' : 'Risk having your retreat cut off and wade into the dark water (0:01)'), _fieldReady ? ($TempleDuties.case.id is 'roots' ? '扼守干燥石门，按部就班斩断根须夺回账簿 (0:01)' : '立足稳固栈道，掩护现场击退异动触手 (0:01)') : ($TempleDuties.case.id is 'roots' ? '冒着被围攻的危险强行斩除暗根 (0:01)' : '冒着后路被截断的危险涉水迎战 (0:01)')]` 1 'Revelation Temple Combat'>>
+    <<temple-duty-action `[_fieldReady ? ($TempleDuties.case.id is 'roots' ? 'Hold doorway and sever roots (0:01)' : 'Hold gangway and fight tendrils (0:01)') : ($TempleDuties.case.id is 'roots' ? 'Risk ambush and hack roots (0:01)' : 'Risk wading in to fight (0:01)'), _fieldReady ? ($TempleDuties.case.id is 'roots' ? '扼守石门斩断根须 (0:01)' : '立足栈道击退触手 (0:01)') : ($TempleDuties.case.id is 'roots' ? '冒险强行斩除暗根 (0:01)' : '冒险涉水正面迎战 (0:01)')]` 1 'Revelation Temple Combat'>>
       <<set $TempleDuties.case.stage to 'combat'>>
       <<set $combat to 1>>
       <<set $enemytype to 'tentacles'>>
@@ -431,7 +431,7 @@
 <</if>>
 <<socialiseicon>>
 <<set _withdrawMinutes to $TempleDuties.case.prepared or $TempleDuties.archive.topics.includes('fieldwork') ? 3 : 5>>
-<<temple-duty-action `['End this investigation and withdraw with your notes', '带笔记撤离，结束本次调查']` `_withdrawMinutes` 'Revelation Temple Withdrawal'>>
+<<temple-duty-action `['Withdraw with your notes', '携带笔记撤离']` `_withdrawMinutes` 'Revelation Temple Withdrawal'>>
   <<set $TempleDuties.case.stage to 'report'>>
   <<set $TempleDuties.case.result to 'withdrawn'>>
   <<if $TempleDuties.case.clues.includes('visit-damp') and !$TempleDuties.case.prepared>>
@@ -442,7 +442,7 @@
 <<if _dampVisit and !$TempleDuties.case.prepared>><<gtiredness>><</if>><br>
 <br>
 <<getouticon>>
-<<lanLink `['Leave for now and continue later', '先离开这里，稍后继续调查']` `$TempleDuties.case.id is 'crate' ? 'Docks' : 'Revelation Temple Case Brief'`>>
+<<lanLink `['Leave for now', '先离开这里']` `$TempleDuties.case.id is 'crate' ? 'Docks' : 'Revelation Temple Case Brief'`>>
 <</lanLink>>
 <br>
 

@@ -7,7 +7,7 @@
       and !$nextPassage and !$nextPassageCheck and !$eventforced
       and $stress lt $stressmax and !isPregnancyEnding()>>
     <<set $_ivoryHeld to $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
-      and $necklaceThief is 'player' and $antiquemoney gte 2000>>
+      and ($RBR?.necklace?.reclaimed or ($necklaceThief is 'player' and $antiquemoney gte 2000))>>
     <<set _ivoryReady to _ivorySafe and $_ivoryHeld and !$RBR.necklace.returned
       and $location is 'lake_ruin' and !Time.isBloodMoon()
       and $oxygen gt 0 and !pcAreArmsBound('both')
@@ -63,7 +63,7 @@
 <<widget 'ivory-necklace-gwylan-link'>>
   <<ivory-necklace-check>>
   <<if _ivorySafe and $location is 'forest_shop' and _gwylanLocation is 'shop'
-      and C.npc.Gwylan.init is 1 and $necklaceThief is 'player'
+      and C.npc.Gwylan.init is 1 and ($necklaceThief is 'player' or $RBR.necklace.reclaimed)
       and ((!$RBR.necklace.returned and !$RBR.necklace.advised)
       or ($RBR.necklace.returned and !$RBR.necklace.followedUp))>>
     <<socialiseicon 'ask'>>
@@ -103,7 +103,8 @@
       and !$statFreeze and !$replayScene
       and ($RBR.necklace.returned ? ($RBR.necklace.advised and !$RBR.necklace.followedUp)
           or ($RBR.necklace.aftercare isnot 'complete' and !['dead', 'sold'].includes($wraith?.offspring))
-        : $necklaceThief is 'player' and $museumAntiques?.antiques?.antiqueivorynecklace is 'found')>>
+        : ($RBR.necklace.known and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace))
+          or (($necklaceThief is 'player' or $RBR.necklace.reclaimed) and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'))>>
     <<revelation-card 'The ivory necklace' '象牙项链'>>
       <ul class='journal'>
         <<if $RBR.necklace.returned>>
@@ -111,9 +112,14 @@
           <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
             <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
           <</if>>
+        <<elseif ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
+          <li><<lanSwitch 'The necklace was taken to the mayor’s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
+          <<if $RBR.necklace.prepared>>
+            <li><<lanSwitch 'You have studied the visitors and the stairway. Getting past reception will only be the beginning; the case is guarded by a camera.' '你已经留意过访客和楼梯。混过前台只是第一步，展示盒旁还有摄像头。'>></li>
+          <</if>>
         <<else>>
           <<if $RBR.necklace.advised>>
-            <li><<lanSwitch 'Gwylan suggested returning the necklace to where you found it, away from the red moon. Take it back to the plinth beneath the lake if you decide to follow that advice.' '格威岚建议避开红月，把项链送回找到它的地方。若决定照做，就带着它回湖底的基座。'>></li>
+            <li><<lanSwitch 'Gwylan suggested returning the necklace to its original plinth, away from the red moon. Take it back to the plinth beneath the lake if you decide to follow that advice.' '格威岚建议避开红月，把项链送回原来的基座。若决定照做，就带着它回湖底的基座。'>></li>
           <<else>>
             <li><<lanSwitch 'You still have the necklace taken from beneath the lake. If you decide to return it, you can take it back to the plinth.' '你仍拿着从湖底取走的项链。想归还的话，可以带回原来的基座。'>></li>
             <<if C.npc.Gwylan?.init is 1>>
@@ -150,15 +156,15 @@
   <<option 'EN'>>
     You hold the necklace above the bare plinth. The blue gemstones catch what little light reaches the room. The chain shifts between your fingers, heavy despite the water.
     <br><br>
-    It was here when you found it. You could put it back. You curl your fingers around it once, then loosen your grip.
+    <<if $RBR.necklace.reclaimed>>This is the plinth the necklace was taken from. You could leave it here.<<else>>It was here when you found it. You could put it back.<</if>> You curl your fingers around it once, then loosen your grip.
     <br><br>
-    <span class='gold'>Giving it back means giving up the necklace and the £2,000 the museum would pay for it.</span> It will not settle every grievance the pale figure has against you.
+    <span class='gold'><<if $RBR.necklace.reclaimed>>Giving it back means leaving the recovered necklace here. No money will change hands.<<else>>Giving it back means giving up the necklace and the £2,000 the museum would pay for it.<</if>></span> It will not settle every grievance the pale figure has against you.
   <<option 'CN'>>
     你将项链托在空着的基座上方。房间里仅有的一点光落进蓝色宝石中。链子从指间滑动，即使浸在水里，仍有些沉。
     <br><br>
-    你就是在这里找到它的。现在，你可以把它放回去。你收紧手指握了一下，又慢慢松开。
+    <<if $RBR.necklace.reclaimed>>这里就是项链原本所在的基座。现在，你可以把它留在这里。<<else>>你就是在这里找到它的。现在，你可以把它放回去。<</if>>你收紧手指握了一下，又慢慢松开。
     <br><br>
-    <span class='gold'>归还后，你会失去项链，也放弃博物馆愿意为它支付的 £2,000。</span>这不能一笔勾销那苍白身影对你的所有怨恨。
+    <span class='gold'><<if $RBR.necklace.reclaimed>>归还后，取回的项链会留在这里，不涉及金钱。<<else>>归还后，你会失去项链，也放弃博物馆愿意为它支付的 £2,000。<</if>></span>这不能一笔勾销那苍白身影对你的所有怨恨。
 <</language>>
 <br><br>
 <<if $RBR.necklace.returnedOnce>>
@@ -175,7 +181,7 @@
     <<set $RBR.necklace.returnedOnce to true>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
-    <<set $antiquemoney -= 2000>>
+    <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>
     <<if ['haunt', 'despair'].includes($wraith?.state)>><<set $wraith.state to 'active'>><</if>>
     <<if C.npc['Ivory Wraith']?.init is 1
         and !['dead', 'sold'].includes($wraith?.offspring) and !($wraithAngerCooldown gt 0)>>
@@ -262,7 +268,7 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      "You want to give it back?" Gwylan rests <<his>> hands on the counter. "Then start where you found it. Put it down, and be ready to leave."
+      "You want to give it back?" Gwylan rests <<his>> hands on the counter. "Then start where it was taken from. Put it down, and be ready to leave."
       <br><br>
       "Away from the red moon," <<he>> adds. "And don't bargain with it. You aren't buying a promise."
       <br><br>
@@ -272,7 +278,7 @@
         You tell <<him>> the necklace is no longer in your possession. Gwylan sighs. "I can't give you something I don't have." <<He>> takes <<his>> hands off the counter. "You can't put it back if you haven't got it."
       <</if>>
     <<option 'CN'>>
-      “你想把它还回去？”格威岚将双手搭在柜台上。“先回到你找到它的地方。放下它，也做好离开的准备。”
+      “你想把它还回去？”格威岚将双手搭在柜台上。“先回到它被拿走的地方。放下它，也做好离开的准备。”
       <br><br>
       “避开红月，”<<he>>又说，“别拿它谈条件。还一样东西，换不来一个承诺。”
       <br><br>

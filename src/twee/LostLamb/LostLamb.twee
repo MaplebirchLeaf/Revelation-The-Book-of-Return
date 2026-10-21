@@ -297,7 +297,7 @@
   <<if $LostLamb.marks.includes('verdict-vow-sealed')>>
     <<bedicon 'kylar'>><<lanLink ["Repeat the visitor's assurance (0:10)", '重复来客的保证 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<llove 'Kylar'>><<gksuspicion>><<gstress>><br>
   <<else>>
-    <<bedicon 'kylar'>><<lanLink ['Ask about the night Kylar remembers (0:10)', '问起凯拉尔记得的那个夜晚 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
+    <<bedicon 'kylar'>><<lanLink ['Ask about the night Kylar remembers (0:10)', '问起凯拉尔记得的那一夜 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
   <</if>>
   <<relaxicon>><<lanLink ['Ask for a little space (0:05)', '想独自待一会儿 (0:05)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('space')>><</lanLink>><<if maplebirch.get('LostLamb').reaction is 'guarded'>><<gksuspicion>><</if>><<lstress>><br>
 <<elseif $LostLamb.talk and maplebirch.get('LostLamb')?.kylarHere>>
@@ -375,7 +375,7 @@
     <br><br>
     Sydney's hand freezes mid-movement. A book slides an inch across the surface before resting against <<nnpc_his 'Sydney'>> wrist. <<nnpc_He 'Sydney'>> slowly lifts <<nnpc_his 'Sydney'>> head, staring at your fingers, <<nnpc_his 'Sydney'>> eyes wide with disbelief and an ache long buried.
     <br><br>
-    "That rhythm..." <<nnpc_his 'Sydney'>> voice is barely more than a whisper. "Where did you... That was our secret knock. Outside the garden door. Before the church told me I was never allowed to visit that house again."
+    "That rhythm..." <<nnpc_His 'Sydney'>> voice is barely more than a whisper. "Where did you... That was our secret knock. Outside the garden door. Before the church told me I was never allowed to visit that house again."
     <br><br>
     <<nnpc_He 'Sydney'>> looks into your eyes, a tremor in <<nnpc_his 'Sydney'>> breath.
     <br><br>
@@ -403,7 +403,7 @@
     <br><br>
     悉尼长长地呼出一口气，肩膀微微松弛下来，仿佛卸下了从孩童时起就一直悬在心头的一块重石。
     <br><br>
-    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不详的东西落在了那里……可我总记挂着留在桌上的画纸。我真的很庆幸……庆幸凯拉尔身边终于有人陪伴了。”
+    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不祥的东西落在了那里……可我总记挂着留在桌上的画纸。我真的很庆幸……庆幸凯拉尔身边终于有人陪伴了。”
     <br><br>
     <<nnpc_He 'Sydney'>>伸出手，轻轻覆在你的手背上，眼中满是温和与感激。
 <</language>>

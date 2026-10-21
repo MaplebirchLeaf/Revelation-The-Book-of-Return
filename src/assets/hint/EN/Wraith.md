@@ -2,7 +2,7 @@
 
 ### Returning the ivory necklace
 
-After taking the necklace from the plinth beneath the lake, you may give it back. You must still possess the **unsold necklace**. A necklace already handed to the museum or Quinn cannot be returned remotely.
+After taking the necklace from the plinth beneath the lake, you may give it back. You must possess the **unsold necklace**, or recover the actual necklace from Quinn first. It cannot be returned remotely.
 
 Visit the plinth room in the lake ruin **outside a blood moon**, then choose “Examine the plinth with the ivory necklace in hand.” Returning it requires no combat, possession or forced event, at least one free arm, stress below maximum and some air remaining. Examining it and cancelling take no time. Setting it down uses the original underwater action, spending time and air according to swimming skill.
 
@@ -16,7 +16,13 @@ The **first return** removes the obsession floor caused by the theft. If no pale
 
 During an ordinary forest-shop visit when Gwylan is available to talk, you may ask for advice or report what happened after the return. Each conversation takes ten minutes. Advice is optional.
 
-A necklace already handed to the museum or Quinn cannot be returned. Winter can explain that the museum sent it to the mayor's office.
+### Recovering it from Quinn
+
+After Winter explains where the necklace went, or you see it in Quinn's office, visit the mayor's waiting room during the day. Directly handing it to Quinn or seeing the diving team's recovery also provides the lead. The necklace must actually be in Quinn's custody.
+
+Watch the visitors for **15 minutes**. On a later or the same visit, look for an opportunity to pass reception while Quinn is downstairs. There are separate skulduggery checks for reception (**600**), the camera (**500**) and the reinforced case (**900**). At least half your maximum physique also allows you to break the case, at the cost of an alarm and theft/destruction crime. You can retreat at every stage. Only one attempt is possible each day. Nighttime shutters remain impassable.
+
+The recovered necklace has **no resale value**. Neither Winter nor Quinn pays again; returning and taking it from the plinth does not restore its value or award museum credit again. It adds no money to the antiques awaiting sale, so returning it deducts none. Recovering it alone does not reduce the wraith's obsession. Take it beneath the lake to use the existing return and follow-up.
 
 ### Visits to the shore
 

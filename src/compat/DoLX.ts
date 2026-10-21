@@ -20,7 +20,10 @@ export default function DoLX(core: typeof window.maplebirch): void {
   if (core.get('TempleDuties')) {
     // 保留 DoLX 已计算的挑衅伤害，只在结果之后结算守望者加成。
     for (const rule of zone.widgetPassage.Widgets ?? []) {
-      if (rule.applyafter?.includes('<<temple-watch-defiance')) rule.src = '<<set _thedamage to Math.max(0, 2 * (Number.isFinite(_defiance) ? _defiance : Number(_args[0]) || 1))>>';
+      if (!rule.applyafter?.includes('<<temple-watch-defiance')) continue;
+      delete rule.src;
+      rule.srcmatch =
+        /<<if !Number\.isFinite\(_thedamage\) or _thedamage lt 0>>\s*<<set _thedamage to Math\.max\(0, 2 \* \(Number\.isFinite\(_defiance\) \? _defiance : Number\(_args\[0\]\) \|\| 1\)\)>>\s*<<\/if>>/;
     }
     for (const rule of zone.widgetPassage['Widgets Struggle'] ?? []) {
       if (rule.to?.includes('<<temple-watch-damage')) rule.srcmatch = /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<set _struggleDefenseResult to "guard">>)/;

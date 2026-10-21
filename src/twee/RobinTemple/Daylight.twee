@@ -27,7 +27,7 @@
     <<secret-day-check 0>>
     <<if _secretDayReady>>
       <<socialiseicon 'ask'>>
-      <<lanLink ['Talk to Robin and Sydney about the night at the lake', '和罗宾、悉尼谈谈湖边那晚的事'] 'RobinTemple Daylight'>><</lanLink>>
+      <<lanLink ['Talk about the night at the lake', '谈起湖边异象'] 'RobinTemple Daylight'>><</lanLink>>
       <br>
     <</if>>
   <</if>>
@@ -133,11 +133,11 @@
   <</if>>
 <<else>>
   <<socialiseicon 'ask'>>
-  <<lanLink ['Ask both companions to stay while you check the sound', '请两人留下，和你一起辨认声音'] 'RobinTemple Daylight Echo'>><</lanLink>>
+  <<lanLink ['Ask both to stay to identify sound', '共同辨认声音'] 'RobinTemple Daylight Echo'>><</lanLink>>
   <br>
 <</if>>
 <<refuseicon>>
-<<lanLink ['Decide to stop investigating that night', '决定不再调查那晚的异象'] 'Temple'>>
+<<lanLink ['Stop investigating that night', '放弃调查异象'] 'Temple'>>
   <<set $RobinTemple.secret.followup to 'declined'>>
 <</lanLink>>
 <br><br>

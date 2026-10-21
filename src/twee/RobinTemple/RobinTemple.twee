@@ -74,7 +74,7 @@
       <<elseif maplebirch.get('RobinTemple').assessmentReady
         and maplebirch.get('RobinTemple').canMeetJordan
         and (Time.hour lt 17 or Time.minute lt 40)>>
-        <<templeicon 'altar'>><<lanLink ["Accompany Robin to the purity trial (0:20)", '陪罗宾去参加纯洁试炼 (0:20)'] 'Temple Quarters'>>
+        <<templeicon 'altar'>><<lanLink ["Accompany Robin to the purity trial (0:20)", '陪罗宾参加纯洁试炼 (0:20)'] 'Temple Quarters'>>
           <<run maplebirch.get('RobinTemple').visit(20)>>
           <<pass 20>>
         <</lanLink>><br>
@@ -89,7 +89,7 @@
           <<pass 45>>
         <</lanLink>><br>
       <<elseif $RobinTemple.stage is 'failed' and Time.days gte $RobinTemple.exam_day + 7>>
-        <<socialiseicon 'ask'>><<lanLink ['Ask Robin to try the purity trial again', '问罗宾愿不愿意再试一次纯洁试炼'] 'RobinTemple Retry'>><<set $RobinTemple.talk_home to _robinTalkHome>><</lanLink>><br>
+        <<socialiseicon 'ask'>><<lanLink ['Ask Robin about retrying the trial', '商量重试纯洁试炼'] 'RobinTemple Retry'>><<set $RobinTemple.talk_home to _robinTalkHome>><</lanLink>><br>
       <<elseif maplebirch.get('RobinTemple').member
         and maplebirch.get('RobinTemple').free(15)
         and ((Time.hour gte 17 and (Time.hour lt 19 or Time.hour is 19 and Time.minute lt 45))

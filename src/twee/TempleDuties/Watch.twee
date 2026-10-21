@@ -300,7 +300,7 @@
     <</temple-duty-action>>
     <span class='lblue'><<lanSwitch ' | Willpower and control' ' | 意志与自控'>></span><br>
     <<socialiseicon>>
-    <<lanLink ['Answer the voice calling your name beyond the door', '回答门后叫你名字的声音'] 'Revelation Temple Watch Failed'>>
+    <<lanLink ['Answer the calling voice', '回应门后的呼唤'] 'Revelation Temple Watch Failed'>>
       <<set _watch.phase to 'failed'>>
     <</lanLink>>
     <br>
@@ -356,7 +356,7 @@
     <</temple-duty-action>>
     <br>
     <<mirroricon>>
-    <<lanLink ['Fill the gap on your paper to match the reflection', '照镜中的样子，补齐纸上图样的缺口'] 'Revelation Temple Watch Failed'>>
+    <<lanLink ['Copy the gap from reflection', '照倒影补齐图样'] 'Revelation Temple Watch Failed'>>
       <<set _watch.phase to 'failed'>>
     <</lanLink>>
     <br>
@@ -551,7 +551,7 @@
 
 <<widget 'temple-watch-leave'>>
   <<getouticon>>
-  <<lanLink ['End this watch and ask the priest to lead everyone out', '结束这次守望，请司祭带所有人退出'] 'Revelation Temple Watch Failed'>>
+  <<lanLink ['End watch and lead everyone out', '结束守望，带众人离开'] 'Revelation Temple Watch Failed'>>
     <<if !$combat and $TempleDuties.watch and !['passed', 'failed'].includes($TempleDuties.watch.phase)>>
       <<set $TempleDuties.watch.phase to 'failed'>>
     <</if>>

@@ -92,8 +92,8 @@
       <span class='red'>进来了四个人。只有三个人把名字留在了会被接纳的地方。</span>
   <</language>>
   <br><br>
-  <<bedicon 'zzz'>><<lanLink ['Reach through and take them with you', '伸手穿过镜面，把三个人都带走'] 'RobinTemple Dream Round'>><<set $RobinTemple.secret.dream.round to 1>><<set $sexstart to 1>><</lanLink>><br>
-  <<getouticon>><<lanLink ['Pull back before it closes', '在镜面合上之前退回来'] 'RobinTemple Dream Wake'>><</lanLink>><br>
+  <<bedicon 'zzz'>><<lanLink ['Reach through and bring them close', '穿过镜面带走大家'] 'RobinTemple Dream Round'>><<set $RobinTemple.secret.dream.round to 1>><<set $sexstart to 1>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Pull back before it closes', '趁合上前抽身退回'] 'RobinTemple Dream Wake'>><</lanLink>><br>
 <</if>>
 
 

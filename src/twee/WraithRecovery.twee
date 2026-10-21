@@ -1,0 +1,277 @@
+:: Revelation Ivory Recovery Widgets [widget]
+<<widget 'ivory-necklace-history'>>
+  <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues
+      and $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
+    <<set $RBR.necklace.stage to ''>>
+  <</if>>
+  <<if $RBR?.necklace and !$RBR.necklace.saleChecked and !$replayScene and !$statFreeze and !$frozenValues>>
+    <!-- 旧版直接出售给奎恩会扣款却留下 found；只修有实际出售收入证据、且未进入归还循环的旧档。 -->
+    <<if !$RBR.necklace.reclaimed and !$RBR.necklace.returnedOnce
+        and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
+        and $necklaceThief is 'player' and $town_projects?.diving gte 3
+        and $moneyStats?.townProject?.earned gte 600000>>
+      <<set $museumAntiques.antiques.antiqueivorynecklace to 'museum'>>
+      <<set $RBR.necklace.known to true>>
+    <</if>>
+    <<set $RBR.necklace.saleChecked to true>>
+  <</if>>
+<</widget>>
+
+<<widget 'ivory-necklace-learn'>>
+  <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues
+      and !$RBR.necklace.returned
+      and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
+    <<set $RBR.necklace.known to true>>
+  <</if>>
+<</widget>>
+
+<<widget 'ivory-necklace-recovery-check'>>
+  <<ivory-necklace-check>>
+  <!-- 这些结果由地点、入口和回调共用；局部检定过程则留在各自 widget 内。 -->
+  <<set _ivoryQuinn to Boolean($RBR?.necklace) and !$RBR.necklace.returned
+    and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
+  <<set _ivoryRecovery to _ivorySafe and _ivoryQuinn and $RBR.necklace.known
+    and $location is 'townhall' and $outside is 0 and $exposed lte 0
+    and Time.dayState isnot 'night' and !pcAreArmsBound('both')
+    and (!$RBR.necklace.stage or $RBR.necklace.attemptDay is Math.floor(Time.days))>>
+<</widget>>
+
+<<widget 'ivory-necklace-recovery-link'>>
+  <<ivory-necklace-recovery-check>>
+  <<if _ivoryRecovery>>
+    <<investigateicon>><<lanLink ['Look for a way to reach the ivory necklace', '寻找接近象牙项链的机会'] 'Revelation Ivory Necklace Recon'>><</lanLink>><br>
+  <</if>>
+<</widget>>
+
+<<widget 'ivory-necklace-recovery-place'>>
+  <<set _ivoryRecovery to false>>
+  <<set $_recoverySource to $passage>>
+  <<set $outside to 0>><<location 'townhall'>><<effects>>
+  <<if $passage isnot $_recoverySource>><<exit>><</if>>
+  <<ivory-necklace-recovery-check>>
+  <<if $nextPassageCheck or $nextPassage>>
+    <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+  <<elseif !_ivoryRecovery>>
+    <<lanSwitch 'You cannot reach the necklace now.' '现在无法接近项链。'>><br><br>
+    <<ivory-necklace-recovery-leave>>
+  <</if>>
+<</widget>>
+
+<<widget 'ivory-necklace-recovery-leave'>>
+  <<getouticon>><<lanLink ['Leave the mayor’s office', '离开市长办公室'] 'Cliff Street'>>
+    <<if $RBR?.necklace>><<set $RBR.necklace.stage to ''>><</if>>
+    <<endevent>><<set $eventskip to 1>>
+  <</lanLink>><br>
+<</widget>>
+
+<<widget 'ivory-necklace-resale-stop'>>
+  <<language>>
+    <<option 'EN'>>
+      You keep the necklace out of sight. Quinn would recognise the necklace taken from the office. Offering it for sale would give away what you have done.
+    <<option 'CN'>>
+      你把项链藏好。奎恩会认出办公室里丢失的项链，再拿出来兜售，无异于承认自己做了什么。
+  <</language>>
+  <br><br><<ivory-necklace-recovery-leave>>
+<</widget>>
+
+:: Revelation Ivory Necklace Recon
+<<ivory-necklace-recovery-place>>
+<<if !_ivoryRecovery>><<exit>><</if>>
+<<language>>
+  <<option 'EN'>>
+    You stand by the notices on the waiting-room wall. Beyond the front desk, a staircase leads up to the mayor's office. Visitors occasionally pass through without joining the queue. Most carry folders, and none stop to ask directions.
+    <br><br>
+    The necklace is upstairs. You doubt Quinn would simply hand it over. You could watch the stairs for a while, without approaching the desk.
+  <<option 'CN'>>
+    你站在候见室墙边，装作查看告示。前台后方有道楼梯，通往楼上的市长办公室。偶尔有访客不排队便径直穿过，他们大都夹着文件，也没有人停下问路。
+    <br><br>
+    项链就在楼上，奎恩恐怕不会轻易交出来。你可以先留意一下楼梯，不去惊动前台。
+<</language>>
+<br><br>
+<<if $RBR.necklace.prepared>>
+  <<sneakicon>><<lanLink ['Check the stairway again', '再看看楼梯那边'] 'Revelation Ivory Necklace Plan'>><</lanLink>><br>
+<<else>>
+  <<loitericon>><<lanLink ['Watch the visitors (0:15)', '观察来往的访客 (0:15)'] 'Revelation Ivory Necklace Plan'>>
+    <<pass 15>><<ivory-necklace-recovery-check>>
+    <<if _ivoryRecovery>><<set $RBR.necklace.prepared to true>><</if>>
+  <</lanLink>><br>
+<</if>>
+<<ivory-necklace-recovery-leave>>
+
+:: Revelation Ivory Necklace Plan
+<<ivory-necklace-recovery-place>>
+<<if !_ivoryRecovery>><<exit>><</if>>
+<<if !$RBR.necklace.prepared>>
+  <<ivory-necklace-recovery-leave>><<exit>>
+<</if>>
+<<if $RBR.necklace.attemptDay is Math.floor(Time.days)>>
+  <<lanSwitch 'The receptionist keeps looking towards the stairs. You would be recognised if you tried again today.' '前台不时望向楼梯。今天再试一次，恐怕会被认出来。'>><br><br>
+  <<ivory-necklace-recovery-leave>><<exit>>
+<</if>>
+<<language>>
+  <<option 'EN'>>
+    A visitor comes downstairs, shaking Quinn's hand. The mayor follows them into a room off the hall. The office upstairs should be empty for a little while.
+    <br><br>
+    A stack of forms lies beside the notices. You pick one up. The receptionist bends to retrieve something beneath the desk; you could walk past with the paper in hand, as though you know where you are going.
+    <br><br>
+    <span class='orange'>If you are stopped, there may not be another opportunity today.</span>
+  <<option 'CN'>>
+    一名访客走下楼来，与奎恩握了握手。市长随后陪着对方走进走廊旁的房间。楼上的办公室应该能空出一小会儿。
+    <br><br>
+    告示旁放着一叠表格。你抽出一张，前台恰好俯身去拿桌下的东西。你可以拿着纸走过去，装作熟门熟路的样子。
+    <br><br>
+    <span class='orange'>若被拦下，今天恐怕就没有第二次机会了。</span>
+<</language>>
+<br><br>
+<<set $skulduggerydifficulty to 600>>
+<<sneakicon>><<lanLink ['Walk past the desk without hesitating (0:05)', '若无其事地走过前台 (0:05)'] 'Revelation Ivory Necklace Camera'>>
+  <<ivory-necklace-recovery-check>>
+  <<if _ivoryRecovery and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
+    <<set $RBR.necklace.attemptDay to Math.floor(Time.days)>>
+    <<set $RBR.necklace.stage to 'failed'>>
+    <<set $skulduggerydifficulty to 600>><<skulduggerycheck 'silent'>><<skulduggeryuse>>
+    <<if $skulduggerysuccess is 1>><<set $RBR.necklace.stage to 'camera'>><</if>>
+    <<pass 5>><<ivory-necklace-recovery-check>>
+    <<if !_ivoryRecovery>><<set $RBR.necklace.stage to ''>><</if>>
+  <</if>>
+<</lanLink>><<skulduggerydifficulty>><br>
+<<ivory-necklace-recovery-leave>>
+
+:: Revelation Ivory Necklace Camera
+<<ivory-necklace-recovery-place>>
+<<if !_ivoryRecovery>><<exit>><</if>>
+<<if $RBR.necklace.stage is 'failed'>>
+  <<set $outside to 1>><<set $location to 'town'>>
+  <<language>>
+    <<option 'EN'>>
+      "Where are you going?" The receptionist calls you back before you reach the stairs. You claim to have taken a wrong turn, but they keep watching until you leave the building.
+    <<option 'CN'>>
+      “你要去哪儿？”还没走到楼梯，前台便叫住了你。你说自己走错了地方，对方却一直盯着你，直到你离开大门。
+  <</language>>
+<<elseif $RBR.necklace.stage is 'camera'>>
+  <<language>>
+    <<option 'EN'>>
+      No one calls you back. You climb the stairs and ease the office door open. The necklace gleams inside a reinforced case beside the desk. Above it, a camera slowly turns towards the door.
+      <br><br>
+      The light on its casing blinks red. You feel an urge to stand still and look straight into it. You grip the doorframe, keeping your eyes on the floor.
+    <<option 'CN'>>
+      没有人叫住你。你走上楼梯，轻轻推开办公室的门。桌旁的加固展示盒里，项链泛着微光。上方的摄像头正缓缓转向门口。
+      <br><br>
+      镜头旁闪着红灯。你忽然很想站直身子，抬头望过去。你攥住门框，强迫自己盯着地板。
+  <</language>>
+  <br><br>
+  <<set $skulduggerydifficulty to 500>>
+  <<sneakicon>><<lanLink ['Wait for the camera to turn away, then slip inside (0:05)', '等摄像头转开，再溜进去 (0:05)'] 'Revelation Ivory Necklace Case'>>
+    <<ivory-necklace-recovery-check>>
+    <<if _ivoryRecovery and $RBR.necklace.stage is 'camera'>>
+      <<set $RBR.necklace.stage to 'failed'>>
+      <<set $skulduggerydifficulty to 500>><<skulduggerycheck 'silent'>><<skulduggeryuse>>
+      <<if $skulduggerysuccess is 1>><<set $RBR.necklace.stage to 'case'>><</if>>
+      <<pass 5>><<ivory-necklace-recovery-check>>
+      <<if !_ivoryRecovery>><<set $RBR.necklace.stage to ''>><</if>>
+    <</if>>
+  <</lanLink>><<skulduggerydifficulty>><br>
+<</if>>
+<br><<ivory-necklace-recovery-leave>>
+
+:: Revelation Ivory Necklace Case
+<<ivory-necklace-recovery-place>>
+<<if !_ivoryRecovery>><<exit>><</if>>
+<<if $RBR.necklace.stage is 'failed'>>
+  <!-- 进入结局时消费失败状态，刷新不会重复增加犯罪。 -->
+  <<set $RBR.necklace.stage to ''>><<set $outside to 1>><<set $location to 'town'>><<crimeUp 100 'trespassing'>>
+  <<language>>
+    <<option 'EN'>>
+      The red light catches your eye. Your hand falls from the doorframe. For a moment, you cannot remember why you came upstairs.
+      <br><br>
+      A hand closes around your shoulder. "You shouldn't be here." An attendant steers you downstairs, giving your description to the receptionist. Only when the front door shuts behind you does your head begin to clear.
+    <<option 'CN'>>
+      红光晃进眼角，你扶着门框的手垂了下来。一时间，你竟想不起自己为什么要上楼。
+      <br><br>
+      有人按住了你的肩。“这里不对外开放。”一名职员将你领下楼，向前台描述着你的模样。直到大门在身后关上，脑中的雾才慢慢散去。
+  <</language>><<crime 'trespassing'>>
+<<elseif $RBR.necklace.stage is 'case'>>
+  <<language>>
+    <<option 'EN'>>
+      You cross beneath the camera as it turns away. The desk hides you from its next sweep. Above your shoulder, a stuffed boar stares from the wall.
+      <br><br>
+      Up close, the case is sturdier than it looked. Metal strips hold the glass in place; the lock is small, but there is little room to work. You hear voices downstairs. Quinn will not stay away forever.
+    <<option 'CN'>>
+      趁摄像头转开，你贴着墙穿过它的下方，借书桌挡住下一轮扫视。墙上一颗野猪头标本，恰好瞪着你的肩后。
+      <br><br>
+      走近后，展示盒比想象中还要结实。玻璃嵌在金属框里，锁孔虽小，却几乎没有下手的余地。楼下隐约有人说话，奎恩不会一直待在那里。
+  <</language>>
+  <br><br>
+  <<set $skulduggerydifficulty to 900>>
+  <<sneakicon>><<lanLink ['Work the lock without disturbing the glass (0:10)', '避开玻璃，试着撬锁 (0:10)'] 'Revelation Ivory Necklace Escape'>>
+    <<ivory-necklace-recovery-check>>
+    <<if _ivoryRecovery and $RBR.necklace.stage is 'case'>>
+      <<set $RBR.necklace.stage to 'failed'>>
+      <<set $skulduggerydifficulty to 900>><<skulduggerycheck 'silent'>><<skulduggeryuse>>
+      <<if $skulduggerysuccess is 1>><<set $RBR.necklace.stage to 'take'>><</if>>
+      <<pass 10>><<ivory-necklace-recovery-check>>
+      <<if !_ivoryRecovery>><<set $RBR.necklace.stage to ''>><</if>>
+    <</if>>
+  <</lanLink>><<skulduggerydifficulty>><br>
+  <<if $physique gte $physiquesize / 2>>
+    <<lanLink ['Break the case with the chair and grab the necklace (0:05)', '用椅子砸开展示盒，抓走项链 (0:05)'] 'Revelation Ivory Necklace Escape'>>
+      <<ivory-necklace-recovery-check>>
+      <<if _ivoryRecovery and $RBR.necklace.stage is 'case'>>
+        <<set $RBR.necklace.stage to 'smash'>>
+        <<pass 5>><<ivory-necklace-recovery-check>>
+        <<if !_ivoryRecovery>><<set $RBR.necklace.stage to ''>><</if>>
+      <</if>>
+    <</lanLink>> | <span class='red'><<lanSwitch 'Noise and broken glass' '响声与碎玻璃'>></span><br>
+  <</if>>
+<</if>>
+<br><<ivory-necklace-recovery-leave>>
+
+:: Revelation Ivory Necklace Escape
+<<ivory-necklace-recovery-place>>
+<<if !_ivoryRecovery>><<exit>><</if>>
+<<switch $RBR.necklace.stage>>
+  <<case 'take' 'smash'>>
+    <<set _ivorySmashed to $RBR.necklace.stage is 'smash'>>
+    <!-- 成功只转移唯一实物；不重发待售款、历史收入、馆藏或好感。原始盗取者保留作闪回用。 -->
+    <<set $museumAntiques.antiques.antiqueivorynecklace to 'found'>>
+    <<set $RBR.necklace.reclaimed to true>>
+    <<set $RBR.necklace.stage to ''>>
+    <<set $outside to 1>><<set $location to 'town'>>
+    <<if _ivorySmashed>><<crimeUp 400 'thievery'>><<crimeUp 200 'destruction'>><</if>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _ivorySmashed>>
+          You drive the chair into the case. The first blow cracks the glass; the next showers it across the desk. An alarm shrieks. You snatch the necklace and run, knocking the chair behind you as footsteps pound up the stairs.
+          <br><br>
+          Someone shouts after you in the waiting room. You shove through the front door without looking back. There is no chance they will overlook the broken case.
+        <<else>>
+          The lock turns. You lift the lid just far enough to work the chain loose, then lower it again. The blue stones vanish into your pocket before the camera comes round.
+          <br><br>
+          You pass the receptionist with the form still in your hand. Outside, you walk to the corner before looking down at the necklace. Quinn will find an empty case.
+        <</if>>
+        <br><br>
+        It is cold against your palm. Taking it from Quinn has not returned it to the lake. Neither the museum nor Quinn will pay you for it again.
+      <<option 'CN'>>
+        <<if _ivorySmashed>>
+          你抡起椅子砸向展示盒。第一下砸裂了玻璃，第二下将碎片溅得满桌都是。警报尖叫起来，你抓走项链便跑，把椅子推翻在身后。楼梯上传来急促的脚步声。
+          <br><br>
+          穿过候见室时，有人在身后大喊。你撞开大门，头也不回地跑了出去。那只破碎的展示盒，绝不会被轻易忽略。
+        <<else>>
+          锁芯转动了。你将盖子抬起一道缝，慢慢抽出链子，再把盖子放回原处。摄像头转回来之前，蓝色宝石已经藏进衣袋。
+          <br><br>
+          你拿着那张表格从前台旁走过。到了门外，又走出一段路，才低头看向手里的项链。奎恩回来后，只会看见空着的盒子。
+        <</if>>
+        <br><br>
+        项链冰凉地贴着掌心。从奎恩手里取回它，并不等于送回湖底。博物馆和奎恩都不会再为它付一次钱。
+    <</language>>
+    <br><br><<icon 'clothes/ivory-necklace.png'>><span class='gold'><<lanSwitch 'You have the ivory necklace.' '你得到了象牙项链。'>></span><<if _ivorySmashed>><<crimes 'thievery' 'destruction'>><</if>>
+  <<case 'failed'>>
+    <<set $RBR.necklace.stage to ''>><<set $outside to 1>><<set $location to 'town'>><<crimeUp 100 'trespassing'>>
+    <<language>>
+      <<option 'EN'>>
+        The pick catches. Before you can free it, the door handle turns. You duck around the desk and slip past the attendant coming in. They shout for you to stop. You keep running, leaving the necklace behind the glass.
+      <<option 'CN'>>
+        撬锁的工具卡住了。还没来得及抽出，门把手已经转动。你绕过书桌，从进门的职员身旁挤了过去。对方喊你停下，你一路奔下楼梯，将项链留在了玻璃后。
+    <</language>><<crime 'trespassing'>>
+<</switch>>
+<br><br><<ivory-necklace-recovery-leave>>
