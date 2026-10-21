@@ -29,7 +29,7 @@ You can also invite Robin on a school-free weekday **09:00–15:45**, excluding 
 
 With Deadwood Reblooms' Robin expansion, tutoring runs **Tuesday/Thursday 17:30–18:30 on school days**, adding Friday after six lessons. An opened shop occupies **18:30–21:00**; hiring staff does not cancel Robin's shift. Finance's outings and rides take priority. Cohabitation sends Robin home instead of the ordinary Saturday overnight stay, while retaining temple duties.
 
-When Robin is absent, **Ask the attendant where Robin went** in the quarters. The attendant, door notes and Journal distinguish school, stalls, tutoring, shop duty, vigils, home and travel.
+When Robin is absent, **Ask the attendant where Robin went** in the quarters. The attendant and door notes distinguish school, stalls, tutoring, shop duty, vigils, home and travel.
 
 ### Work and prayer
 
@@ -55,7 +55,7 @@ Choose **Approach Robin** in the hall **11:00–20:00**, covered, below maximum 
 
 The bench also has one daily encounter concerning visitors, supplies or temple rules. Resolving it fixes the day's outcome. **Faith and Doubt oppose each other**: gains cancel the opposite side before becoming positive. A changed outlook may prompt a later conversation.
 
-**PC grace, Robin's contribution, shared shifts and Faith are separate.** Robin's contribution changes with the calendar and pendant; raising PC grace does not directly fill it. The Journal records each and the next steps.
+**PC grace, Robin's contribution, shared shifts and Faith are separate.** Robin's contribution changes with the calendar and pendant; raising PC grace does not directly fill it. The Journal records appointments and unfinished plans, with contribution and shared shifts while preparing for promise approval. Faith and Doubt appear in Robin's social information.
 
 With the Robin expansion, contribution-based temple earnings enter Robin's existing weekly account.
 
