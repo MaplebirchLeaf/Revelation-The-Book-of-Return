@@ -497,6 +497,7 @@
 
 :: RobinTemple Evaluation Examination
 <<effects>><<npc Jordan 2>><<person2>>
+<<unset $templetest>>
 <<language>>
   <<option 'EN'>>
     Jordan gives you a solemn nod. "Please undress."

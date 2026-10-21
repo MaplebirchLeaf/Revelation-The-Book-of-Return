@@ -1,6 +1,7 @@
 :: RobinTemple Examination Widgets [widget]
 <<widget 'robin-temple-examination-success'>>
   <<if !$RobinTemple.monthly_checked>>
+    <<unset $templetest>>
     <<set $RobinTemple.monthly_checked to true>>
     <<language>>
       <<option 'EN'>>

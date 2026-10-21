@@ -490,6 +490,7 @@ class RobinTemple extends Module {
       this.core.SugarCube.Wikifier.wikifyEval(`<<npcincr Robin trauma ${Math.max(0, trauma - comfort)}>>`);
       C.npc.Robin.comforted = 0;
     }
+    delete V.templetest;
     V.player.virginity.temple = true;
     C.npc.Robin.virginity.temple = true;
     if (p.joint) {

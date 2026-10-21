@@ -57,6 +57,6 @@ import Wraith from './Wraith';
   if (maplebirch.get('TempleChoir')) TempleChoir(maplebirch);
   // 即使模块关闭，保存于梦中的存档仍需要 Header 恢复。
   LostLamb(maplebirch);
-  DoLX(maplebirch);
   if (maplebirch.get('TempleDuties')) TempleDuties(maplebirch);
+  DoLX(maplebirch);
 })(maplebirch);

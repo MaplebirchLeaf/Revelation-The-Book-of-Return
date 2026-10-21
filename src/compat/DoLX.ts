@@ -4,6 +4,28 @@
 export default function DoLX(core: typeof window.maplebirch): void {
   const data = core.services.addonPlugin.SC2DataManager.getSC2DataInfoAfterPatch();
   if (!data.scriptFileItems.getByNameWithOrWithoutPath('xchange.js')) return;
+  const zone = core.tool.zone;
+  if (core.get('RobinTemple')) {
+    // DoLX 增加了誓约检查分支，各处继续使用罗宾独立的誓约状态。
+    for (const rule of zone.widgetPassage['Widgets Text'] ?? []) {
+      if (rule.srcmatchgroup?.source === '\\$templePromised isnot _args\\[0\\]') rule.expected = 6;
+    }
+    for (const rule of zone.widgetPassage['Widgets Combat'] ?? []) {
+      if (rule.src !== '$templePromised isnot _args[0]') continue;
+      delete rule.src;
+      rule.srcmatchgroup = /\$templePromised isnot _args\[0\]/g;
+      rule.expected = 2;
+    }
+  }
+  if (core.get('TempleDuties')) {
+    // 保留 DoLX 已计算的挑衅伤害，只在结果之后结算守望者加成。
+    for (const rule of zone.widgetPassage.Widgets ?? []) {
+      if (rule.applyafter?.includes('<<temple-watch-defiance')) rule.src = '<<set _thedamage to Math.max(0, 2 * (Number.isFinite(_defiance) ? _defiance : Number(_args[0]) || 1))>>';
+    }
+    for (const rule of zone.widgetPassage['Widgets Struggle'] ?? []) {
+      if (rule.to?.includes('<<temple-watch-damage')) rule.srcmatch = /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<set _struggleDefenseResult to "guard">>)/;
+    }
+  }
   if (core.get('TempleChoir')) {
     for (const title of ['Temple Test', 'Sydney Temple Test 2']) {
       const rules = core.tool.zone.locationPassage[title] ?? [];
