@@ -1,10 +1,26 @@
 :: Lost Lamb Widgets [widget]
 <<widget 'lost-lamb-entry'>>
+  <<if $LostLamb.endings.includes('main')>>
+    <<language>>
+      <<option 'EN'>>
+        <<if Time.hour gte 7 and Time.hour lt 18>>
+          A pale sliver of daylight filters through the parted curtains, resting on the floorboards. On the third stair outside, the board no longer creaks with that hollow dread. In the hand-width gap between two thick encyclopedias on the shelf, an old, carefully folded paper tower stands upright, undisturbed across the years.
+        <<else>>
+          The steady hum of the computer fan keeps the shadows at bay. In the hand-width gap between two heavy books on the shelf, the faded paper tower from long ago remains quietly in place.
+        <</if>>
+      <<option 'CN'>>
+        <<if Time.hour gte 7 and Time.hour lt 18>>
+          厚重的窗帘拉开了一线，一缕白昼的微光斜斜落在地板上。门外第三级台阶不再发出那种空洞惊悸的吱呀声。书架上两本厚百科全书之间、那道手掌宽的缝隙里，静静立着一座多年前折好的褪色纸塔，穿过漫长岁月依然完好。
+        <<else>>
+          电脑风扇平稳的低鸣驱散了走廊里的阴翳。书架上两本厚书之间的缝隙中，那座多年前折好的褪色小纸塔依旧安静地立在那里。
+        <</if>>
+    <</language>><br><br>
+  <</if>>
   <<if $LostLamb.talk and Time.hour gte 18 and maplebirch.get('LostLamb')?.kylarHere>>
     <<language>>
       <<option 'EN'>>
         <<if $LostLamb.talk is 'company'>>
-          <<if $LostLamb.talkVow is 'offered'>>Kylar looks towards the door as you enter. "Nobody's taking you away," <<nnpc_he 'Kylar'>> says, gripping the back of the chair.<br><<elseif $LostLamb.talkVow is 'refused'>>Kylar pauses the game when you come in. "You came back." <<nnpc_He 'Kylar'>> glances past you before putting the controller down.<br><</if>>
+          <<if $LostLamb.talkVow is 'offered'>>Kylar looks towards the door as you enter. "Nobody's taking you away," <<nnpc_he 'Kylar'>> says, gripping the back of the chair. "I'll wait for you at home."<br><<elseif $LostLamb.talkVow is 'refused'>>Kylar pauses the game when you come in. "You came back." <<nnpc_He 'Kylar'>> glances past you before putting the controller down.<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>Kylar turns the computer chair a little, keeping both you and the doorway in view.<<elseif maplebirch.get('LostLamb').reaction is 'close'>>Kylar glances at the place where you sat and moves a pillow aside.<<else>>Kylar leaves the sound from the computer low. There is room beside the pillows if you want to sit again.<</if>>
         <<elseif $LostLamb.talk is 'night'>>
           <<if $LostLamb.talkVow is 'sealed'>>Kylar watches your mouth before looking at your face. "Don't say what that person said." <<nnpc_He 'Kylar'>> turns the computer's sound up.<br><<elseif $LostLamb.talkVow is 'broken'>>Kylar lowers the sound when you enter. "You can tell me if it happens again." <<nnpc_He 'Kylar'>> keeps <<nnpc_his 'Kylar'>> eyes on the screen.<br><</if>>
@@ -14,7 +30,7 @@
         <</if>>
       <<option 'CN'>>
         <<if $LostLamb.talk is 'company'>>
-          <<if $LostLamb.talkVow is 'offered'>>你进来时，凯拉尔望了望门。“谁也别想把你带走。”<<nnpc_he 'Kylar'>>说着，抓紧了椅背。<br><<elseif $LostLamb.talkVow is 'refused'>>你进来时，凯拉尔暂停了游戏。“你回来了。”<<nnpc_He 'Kylar'>>朝你身后看了一眼，才放下手柄。<br><</if>>
+          <<if $LostLamb.talkVow is 'offered'>>你进来时，凯拉尔望了望门。“谁也别想把你带走。”<<nnpc_he 'Kylar'>>说着，抓紧了椅背。“我在家等你。”<br><<elseif $LostLamb.talkVow is 'refused'>>你进来时，凯拉尔暂停了游戏。“你回来了。”<<nnpc_He 'Kylar'>>朝你身后看了一眼，才放下手柄。<br><</if>>
           <<if maplebirch.get('LostLamb').reaction is 'guarded'>>凯拉尔稍稍转动电脑椅，让你和门口都留在视线里。<<elseif maplebirch.get('LostLamb').reaction is 'close'>>凯拉尔看了一眼你先前坐过的地方，把一只枕头挪到旁边。<<else>>凯拉尔没有调高电脑的音量。如果你还想坐一会儿，枕头旁边有空位。<</if>>
         <<elseif $LostLamb.talk is 'night'>>
           <<if $LostLamb.talkVow is 'sealed'>>凯拉尔先看你的嘴唇，才看向你的脸。“别再说那个人的话。”<<nnpc_He 'Kylar'>>调高了电脑音量。<br><<elseif $LostLamb.talkVow is 'broken'>>你进来时，凯拉尔调低了音量。“再梦到的话，可以告诉我。”<<nnpc_His 'Kylar'>>眼睛仍盯着屏幕。<br><</if>>
@@ -30,6 +46,80 @@
   <<if maplebirch.get('LostLamb')?.available>>
     <<bedicon 'kylar'>><<lanLink ['Lie down for a while', '躺下休息一会儿'] 'Lost Lamb Recall'>><</lanLink>><br>
   <</if>>
+<</widget>>
+
+<<widget 'lost-lamb-followup-check'>>
+  <<set _lambFollowupReady to Boolean(maplebirch.get('LostLamb')?.reward)
+    and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
+    and $stress lt $stressmax and !isPregnancyEnding()>>
+  <<if !_lambFollowupReady>><<exit>><</if>>
+  <<switch _args[0]>>
+    <<case 'Sydney'>>
+      <<sydneySchedule>>
+      <<set _lambFollowupReady to _lambFollowupReady and !$LostLamb.sydneyTalk
+        and C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
+        and ($location is 'school' and $bus is 'schoollibrary' and _sydney_location is 'library'
+          or $location is 'adult_shop' and _sydney_location is 'shop'
+          or $location is 'temple' and _sydney_location is 'temple' and $sydney_templeWork is 'pray')>>
+    <<case 'Gwylan'>>
+      <<set _lambFollowupReady to _lambFollowupReady and !$LostLamb.gwylanTalk
+        and C.npc.Gwylan.init is 1 and C.npc.Gwylan.state is 'active'
+        and $location is 'forest_shop' and gwylanSchedule() is 'shop'>>
+    <<case 'bishop'>>
+      <<set _lambFollowupReady to _lambFollowupReady and !$LostLamb.bishopTalk
+        and $kylar_manor_secret gte 3 and Boolean($per_npc?.bishop) and $location is 'temple'
+        and ['Temple Confessor Intro Ask', 'Revelation Temple Bishop', 'Revelation Temple Monstrance'].includes($passage)>>
+    <<default>><<set _lambFollowupReady to false>>
+  <</switch>>
+<</widget>>
+
+<<widget 'lost-lamb-followup-link'>>
+  <<lost-lamb-followup-check _args[0]>>
+  <<if !_lambFollowupReady>><<exit>><</if>>
+  <<set _lambName to _args[0], _lambMinutes to _args[2], _lambTarget to _args[3], _lambUsed to false>>
+  <<capture _lambName _lambMinutes _lambTarget _lambUsed>>
+    <<socialiseicon 'ask'>>
+    <<lanLink _args[1]>>
+      <<lost-lamb-followup-check _lambName>>
+      <<if _lambFollowupReady and !_lambUsed>>
+        <<set _lambUsed to true, _lambSource to $passage>>
+        <<pass _lambMinutes>>
+        <<lost-lamb-followup-check _lambName>>
+        <<if _lambFollowupReady and $passage is _lambSource>>
+          <!-- 在入场链接登记并结算；正文重绘、读档和旧链接均不再重复发放。 -->
+          <<switch _lambName>>
+            <<case 'Sydney'>>
+              <<set $LostLamb.sydneyTalk to true>>
+              <<set $LostLamb_sydneyReturn to ({school: 'School Library', adult_shop: 'Adult Shop', temple: 'Temple Sydney'})[$location]>>
+              <<npcincr Sydney love 2>><<stress -5>>
+            <<case 'Gwylan'>>
+              <<set $LostLamb.gwylanTalk to true>>
+              <<run $gwylanSeen ??= []>><<run $gwylanSeen.pushUnique('kylar_parents')>>
+              <<stress -10>><<trauma -5>><<npcincr Gwylan love 1>>
+            <<case 'bishop'>>
+              <<set $LostLamb.bishopTalk to true>>
+              <<set $LostLamb_bishopReturn to _lambSource is 'Revelation Temple Bishop' ? 'Revelation Temple Office' : _lambSource>>
+              <<awareness 5>><<stress 5>>
+          <</switch>>
+          <<goto _lambTarget>>
+        <<elseif $passage is _lambSource>>
+          <<goto `$nextPassageCheck || $nextPassage || _lambSource`>>
+        <</if>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
+<</widget>>
+
+<<widget 'lost-lamb-sydney-link'>>
+  <<lost-lamb-followup-link 'Sydney' `['Tap the secret rhythm (0:05)', '轻叩桌上的暗号 (0:05)']` 5 'Lost Lamb Sydney Talk'>>
+<</widget>>
+
+<<widget 'lost-lamb-gwylan-link'>>
+  <<lost-lamb-followup-link 'Gwylan' `['Ask Gwylan about the past (0:10)', '向格威岚打听旧事 (0:10)']` 10 'Lost Lamb Gwylan Talk'>>
+<</widget>>
+
+<<widget 'lost-lamb-bishop-link'>>
+  <<lost-lamb-followup-link 'bishop' `['Ask about the sealed manor (0:10)', '询问封死的宅邸 (0:10)']` 10 'Lost Lamb Bishop Talk'>>
 <</widget>>
 
 :: Lost Lamb Recall
@@ -268,3 +358,144 @@
   <<language>><<option 'EN'>>The room is quiet. You leave the conversation for a time when Kylar is here and awake.<<option 'CN'>>房间很安静。你把这段话留到凯拉尔在这里，也醒着的时候再说。<</language>><br><br>
 <</if>>
 <<getouticon>><<lanLink ['Return to the room', '回到房间'] 'Manor Kylar Room'>><</lanLink>><br>
+
+:: Lost Lamb Sydney Talk
+<<set $outside to 0>><<effects>>
+<<if $passage isnot 'Lost Lamb Sydney Talk'>><<exit>><</if>>
+<<if $nextPassageCheck or $nextPassage>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+<</if>>
+<<if !maplebirch.get('LostLamb') or !$LostLamb?.sydneyTalk>>
+  <<getouticon>><<lanLink ['Return', '返回'] 'Temple'>><</lanLink>><br><<exit>>
+<</if>>
+<<npc Sydney>><<person1>>
+<<language>>
+  <<option 'EN'>>
+    You tap your knuckles against the wooden surface: two quiet taps, a brief pause, then one final tap.
+    <br><br>
+    Sydney's hand freezes mid-movement. A book slides an inch across the surface before resting against <<nnpc_his 'Sydney'>> wrist. <<nnpc_He 'Sydney'>> slowly lifts <<nnpc_his 'Sydney'>> head, staring at your fingers, <<nnpc_his 'Sydney'>> eyes wide with disbelief and an ache long buried.
+    <br><br>
+    "That rhythm..." <<nnpc_his 'Sydney'>> voice is barely more than a whisper. "Where did you... That was our secret knock. Outside the garden door. Before the church told me I was never allowed to visit that house again."
+    <br><br>
+    <<nnpc_He 'Sydney'>> looks into your eyes, a tremor in <<nnpc_his 'Sydney'>> breath.
+    <br><br>
+    "You've been there, haven't you? In that manor. Kylar... is Kylar still in that big, quiet house all alone?"
+    <br><br>
+    You tell Sydney that you visit Kylar often, and that you stay there together now.
+    <br><br>
+    Sydney lets out a long, trembling breath, as though setting down a weight carried since childhood.
+    <br><br>
+    "I was so young when they told me not to go back. They said the house was dangerous, that darkness had settled in... but I always remembered leaving the drawings behind. I'm so glad... so glad Kylar isn't alone anymore."
+    <br><br>
+    <<nnpc_He 'Sydney'>> reaches out and gently covers your hand with <<nnpc_his 'Sydney'>> own, giving you a warm, grateful look.
+  <<option 'CN'>>
+    你的指节在木质桌面上轻轻叩响：两声轻叩，短暂的停顿，接着是一声利落的收尾。
+    <br><br>
+    悉尼手中的动作瞬间僵住了。书页在手腕旁滑开一寸，无声地停下。<<nnpc_He 'Sydney'>>缓缓抬起头，睁大眼睛注视着你的手指，神情里翻涌着难以置信的震动，以及埋藏已久的恍惚与酸楚。
+    <br><br>
+    “那个节律……”<<nnpc_his 'Sydney'>>的声音轻得几乎听不清，“你是在哪里……那是我们以前的暗号。在花园后门的木阶上。在神殿严厉告诫我绝不能再去那所房子之前。”
+    <br><br>
+    <<nnpc_He 'Sydney'>>怔怔地看着你的眼睛，呼吸带着一丝微颤。
+    <br><br>
+    “你去过那里，对不对？那座庄园。凯拉尔……凯拉尔还在那座又大又安静的房子里吗？一直一个人？”
+    <br><br>
+    你告诉悉尼，你经常去庄园看望凯拉尔，你们如今就在那里相伴。
+    <br><br>
+    悉尼长长地呼出一口气，肩膀微微松弛下来，仿佛卸下了从孩童时起就一直悬在心头的一块重石。
+    <br><br>
+    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不详的东西落在了那里……可我总记挂着留在桌上的画纸。我真的很庆幸……庆幸凯拉尔身边终于有人陪伴了。”
+    <br><br>
+    <<nnpc_He 'Sydney'>>伸出手，轻轻覆在你的手背上，眼中满是温和与感激。
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Step back', '退回'] `$LostLamb_sydneyReturn || 'Temple Sydney'`>><<unset $LostLamb_sydneyReturn>><<endevent>><</lanLink>><br>
+
+:: Lost Lamb Gwylan Talk
+<<set $outside to 0>><<effects>>
+<<if $passage isnot 'Lost Lamb Gwylan Talk'>><<exit>><</if>>
+<<if $nextPassageCheck or $nextPassage>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+<</if>>
+<<if !maplebirch.get('LostLamb') or !$LostLamb?.gwylanTalk>>
+  <<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><</lanLink>><br><<exit>>
+<</if>>
+<<npc Gwylan>><<person1>>
+<<language>>
+  <<option 'EN'>>
+    Gwylan pauses what <<he>> is doing with the bundle of dried herbs. <<He>> looks past you into the mist of the forest for a quiet moment.
+    <br><br>
+    "Travellers?" <<he>> murmurs, the kettle boiling softly on the iron grate behind <<him>>. "I haven't forgotten them. It was years ago... two adults, their fine clothes torn and smeared with peat. They were crawling through the undergrowth, their eyes glassy and distant."
+    <br><br>
+    Gwylan pours steaming, golden liquid into two earthenware cups, pushing one toward you. The gentle fragrance of sweet leaf and honey immediately cuts through the chill.
+    <br><br>
+    "They were murmuring a child's name... Kylar, wasn't it? Begging whatever was shadowing them in the dark to look away from their home. Whatever had laid hold of them was far beyond anything my teas or poultices could draw out. By morning, they were gone deeper into the mire."
+    <br><br>
+    <<He>> sighs, a quiet sympathy softening <<his>> worn features.
+    <br><br>
+    "I heard a child was left behind in that old house on the outskirts. All alone with the shadows and the locked doors. I often wondered if anyone would ever help that child find their way out." Gwylan watches you wrap your fingers around the warm cup. "Drink up, little one. You carry too many heavy memories for such young shoulders."
+    <br><br>
+    You drink the warm tea. A deep, settling calm spreads through your chest.
+  <<option 'CN'>>
+    格威岚停下了手中正在整理的干草束。<<He>>转过头，透过薄雾望向森林深处，安静了片刻。
+    <br><br>
+    “行路人？”<<he>>低声自语，身后的铁炉上水壶正微微冒着白汽。“我没有忘记他们。那已经是多年前的事了……两个成年人，体面的衣裳被撕扯得破烂不堪，沾满了泥炭。他们在灌木丛里艰难地爬行，眼神空洞而涣散。”
+    <br><br>
+    格威岚把热气腾腾的金黄色茶水斟进两只陶杯里，将其中一只推到你面前。甘叶与野蜜的清香立刻驱散了林间的阴寒。
+    <br><br>
+    “他们嘴里一直在念叨一个孩子的名字……凯拉尔，对吧？他们哀求着黑暗里跟在他们身后的东西，求它别靠近他们的宅邸。缠上他们的东西，根本不是我的草药和药膏所能化解的。到了天亮，他们就彻底陷进了更深的沼泽荒野里。”
+    <br><br>
+    <<He>>轻轻叹了口气，沧桑的面容上流露出一丝温和的同情。
+    <br><br>
+    “后来我听说，镇郊那栋老房子里留下了一个孩子。一个人守着满屋的阴影和紧闭的门锁。我有时也会想，会不会有人能帮那个孩子找到走出来的路。”格威岚看着你双手捧住温热的茶杯。“喝吧，孩子。你这副年轻的肩膀上，背了太多沉重的旧事。”
+    <br><br>
+    你喝下温热的草药茶，一股踏实的温热缓缓在胸口化开。
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<endevent>><</lanLink>><br>
+
+:: Lost Lamb Bishop Talk
+<<set $outside to 0>><<effects>>
+<<if $passage isnot 'Lost Lamb Bishop Talk'>><<exit>><</if>>
+<<if $nextPassageCheck or $nextPassage>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+<</if>>
+<<if !maplebirch.get('LostLamb') or !$LostLamb?.bishopTalk>>
+  <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br><<exit>>
+<</if>>
+<<loadNPC 0 'bishop'>><<person1>>
+<<language>>
+  <<option 'EN'>>
+    Under the heavy cowl of the dark habit, the bishop's pale face tilts slightly toward you. A faint, knowing smile touches <<his>> lips, neither surprised nor perturbed by your question.
+    <br><br>
+    "The sealed house," <<he>> drawls in that low, measured cadence. "And the locks that were gnawed. So you've heard the echoes after all, child. Or perhaps you walked those very floorboards in a dream."
+    <br><br>
+    <<He>> laces <<his>> fingers together inside the wide sleeves, the silver wire coiled at <<his>> wrists giving a soft, metallic clink.
+    <br><br>
+    "Their parents invited something into their parlor that they could not put back into the bottle. They made a bargain under the red moon. When the corruption began to fester and gnaw at the very joists, they dropped to their knees before us and pleaded for their child to be spared."
+    <br><br>
+    The bishop's smile fades into a cold, flat pragmatism.
+    <br><br>
+    "We sealed the doors. We hammered iron nails through the frames and barred the cellar. We contained the infection where it stood so Jordan and <<nnpc_his 'Jordan'>> soft-hearted flock could sleep in peaceful ignorance. The child was left alive and fed. That was the bargain. That was our mercy."
+    <br><br>
+    <<He>> leans forward slightly, the shadow beneath the hood obscuring <<his>> eyes.
+    <br><br>
+    "The world is full of holes, child, and not all of them can be mended with prayers and honey. Do not pry at the seams of that house. Some locks were gnawed away for a reason, and you would do well to leave the dead where they were laid."
+  <<option 'CN'>>
+    深色长袍宽大的兜帽下，主教苍白的面孔微微转向你。<<His>>唇角掠过一丝了然的浅笑，对你的发问既不意外，也无慌乱。
+    <br><br>
+    “那所封死的房子，”<<he>>用那种低沉、从容的调子慢吞吞地说道，“还有那些被啃咬过的锁。看来你终究还是听到了那些回响，孩子。又或者，你是在梦里亲自走过了那段地板。”
+    <br><br>
+    <<He>>在宽大的袖管内十指相扣，手腕处缠绕的细银丝发出一阵极轻微的金属摩擦声。
+    <br><br>
+    “那对父母把不该招惹的东西引进了客厅，却再也没法把它收回去。他们在红月下达成了交易。当秽物开始溃烂、甚至啃咬房屋的大梁时，他们跪倒在我们面前，苦苦哀求放过他们的孩子。”
+    <br><br>
+    主教嘴角的笑意褪去，化作一种冰冷、务实的决断。
+    <br><br>
+    “我们封死了所有的门。我们用铁钉钉死了窗框，锁住了地窖。我们把秽病截断在它原本的位置，这样约旦和<<nnpc_his 'Jordan'>>那些心慈手软的信众才能在无知中安眠。那个孩子活了下来，也从未挨饿。这就是当时的交易，也是我们的仁慈。”
+    <br><br>
+    <<He>>微微前倾身子，兜帽的深暗阴影完全遮住了<<his>>双眼。
+    <br><br>
+    “这世上多的是漏洞，孩子，但绝非每一个洞都能靠祈祷和蜜糖来填补。别去撬动那座房子的缝隙。有些锁被啃咬掉自有它的道理，你最好让死者留在他们安歇的地方。”
+<</language>>
+<br><br>
+<<getouticon>><<lanLink ['Step back', '退回'] `['Temple Confessor Intro Ask', 'Revelation Temple Office', 'Revelation Temple Monstrance'].includes($LostLamb_bishopReturn) ? $LostLamb_bishopReturn : 'Temple Confessor Intro Ask'`>><<unset $LostLamb_bishopReturn>><<endevent>><</lanLink>><br>

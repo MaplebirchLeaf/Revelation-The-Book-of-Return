@@ -12,7 +12,11 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
   });
   if (!maplebirch.get('LostLamb')) return;
 
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'lost-lamb-entry', passage: 'Manor Kylar Room' });
+  maplebirch.tool.addTo(
+    'BeforeLinkZone',
+    { widget: 'lost-lamb-entry', passage: 'Manor Kylar Room' },
+    { widget: 'lost-lamb-bishop-link', passage: ['Temple Confessor Intro Ask', 'Revelation Temple Bishop', 'Revelation Temple Monstrance'] }
+  );
   maplebirch.tool.addTo('Journal', 'lost-lamb-record');
   maplebirch.tool.patch.traits.add({
     title: 'General Traits',
@@ -36,6 +40,20 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
       ]
     },
     widgetPassage: {
+      'Widgets Sydney': [
+        {
+          src: '<<widget "sydneyOptionsTalk">>',
+          applyafter: '\n<<lost-lamb-sydney-link>>',
+          expected: 1
+        }
+      ],
+      'Gwylan Widgets': [
+        {
+          src: '<<widget "gwylanOptionsSpecial">>',
+          applyafter: '\n<<lost-lamb-gwylan-link>>',
+          expected: 1
+        }
+      ],
       // 原版 journal 在 statFreeze 时提前退出，不能用尾部区域展示演绎日志。
       'Widgets Journal': [{ src: '<<widget "journal">>', applyafter: '\n<<if maplebirch.get("LostLamb")?.active>><<lost-lamb-journal>><<exit>><</if>>', expected: 1 }],
       // 只替换每小时噩梦压力的参数，保留其它睡眠事件与原版提示。

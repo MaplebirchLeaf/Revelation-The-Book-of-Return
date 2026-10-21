@@ -21,6 +21,9 @@ export interface LostLambState {
   talk: LostLambTalk | '';
   talkVow: 'offered' | 'refused' | 'sealed' | 'broken' | '';
   known: { bishop: boolean; gwylan: boolean; auriga: boolean };
+  sydneyTalk?: boolean;
+  gwylanTalk?: boolean;
+  bishopTalk?: boolean;
 }
 
 // 跨梦保留的约定。重走同一条路线时，只留下这次选择的结果。
@@ -45,7 +48,10 @@ export const DEFAULT_LOST_LAMB_STATE: LostLambState = {
   date: 0,
   talk: '',
   talkVow: '',
-  known: { bishop: false, gwylan: false, auriga: false }
+  known: { bishop: false, gwylan: false, auriga: false },
+  sydneyTalk: false,
+  gwylanTalk: false,
+  bishopTalk: false
 };
 
 // 首次共有的下午很短。结束一条路线后，直接回到门口选择另一种梦。
