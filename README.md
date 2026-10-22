@@ -11,7 +11,7 @@
 [![Stars](https://img.shields.io/github/stars/MaplebirchLeaf/Revelation-The-Book-of-Return?label=stars)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/stargazers)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**《默示录：归途之书》**是基于秋枫白桦框架的 **Degrees of Lewdity** 剧情模组，围绕神殿生活、人物关系与旧日谜团展开，支持中文与英文。
+**《默示录：归途之书》**是基于[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework)的 **Degrees of Lewdity** 剧情模组，围绕神殿生活、人物关系与旧日谜团展开，支持中文与英文。
 
 ---
 
@@ -37,7 +37,7 @@
 
 ## 安装与依赖
 
-当前版本 **1.3.9**，面向中英文原版 **DoL 0.5.12.13**。需要 **ModLoader 2.0.0+** 和[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.2+**，其余前置按加载器提示安装。
+面向中英文原版 **DoL 0.5.12.13**。需要 **ModLoader 2.0.0+** 和[秋枫白桦框架](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.3+**，其余前置按加载器提示安装。
 
 1. 从 [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest) 下载 `.modpack`，导入 ModLoader。
 2. 安装所需依赖，在框架模块管理中启用归途之书及所需内容，按提示重载。
@@ -50,8 +50,12 @@
 
 ## 反馈与更新
 
-- [问题反馈](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)：请附游戏与模组版本、复现步骤，报错时附截图或日志。
-- [更新记录](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases)
+- [Discord 讨论与反馈](https://discord.com/channels/1103864219620884560/1197809298902896731/threads/1555334989657149490)
+- [反馈交流群：1087715891](https://qm.qq.com/q/B4p8vaj1yo)（maplebirchFrameworks）
+- [问题反馈与建议](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
+- [版本发布与更新记录](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases)
+
+反馈问题时，请附游戏、框架和模组版本、复现步骤，以及相关截图或报错日志。
 
 ## 致谢
 

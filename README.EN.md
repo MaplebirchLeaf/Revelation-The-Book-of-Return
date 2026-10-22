@@ -11,7 +11,7 @@
 [![Stars](https://img.shields.io/github/stars/MaplebirchLeaf/Revelation-The-Book-of-Return?label=stars)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/stargazers)
 [![Issues](https://img.shields.io/github/issues-raw/MaplebirchLeaf/Revelation-The-Book-of-Return?label=issues)](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
 
-**Revelation: The Book of Return** is a **Degrees of Lewdity** story mod built on Maplebirch Framework, exploring temple life, character relationships and mysteries from the past. It supports English and Chinese.
+**Revelation: The Book of Return** is a **Degrees of Lewdity** story mod built on [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework), exploring temple life, character relationships and mysteries from the past. It supports English and Chinese.
 
 ---
 
@@ -37,7 +37,7 @@
 
 ## Installation
 
-Version **1.3.9**, built for English and Chinese vanilla **DoL 0.5.12.13**. Requires **ModLoader 2.0.0+** and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.2+**. Install any other dependencies requested by the loader.
+Built for English and Chinese vanilla **DoL 0.5.12.13**. Requires **ModLoader 2.0.0+** and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.3+**. Install any other dependencies requested by the loader.
 
 1. Download the `.modpack` from [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest) and import it into ModLoader.
 2. Install the required dependencies, enable Revelation and your chosen content in the framework's module manager, and reload as prompted.
@@ -50,8 +50,11 @@ See the [English guides](src/assets/hint/EN) for entry points and requirements, 
 
 ## Feedback and updates
 
-- [Report an issue](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues): include the game and mod versions, steps to reproduce, and a screenshot or log for errors.
-- [Release notes](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases)
+- [Discord discussion and feedback](https://discord.com/channels/675158131688603721/1555334904328364072)
+- [Issues and suggestions](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/issues)
+- [Releases and update history](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases)
+
+When reporting a problem, include the game, framework, and mod versions, steps to reproduce, and relevant screenshots or error logs.
 
 ## Acknowledgements
 

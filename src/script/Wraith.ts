@@ -29,8 +29,8 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Lake Ruin Ivory': [
         {
-          src: 'This will fetch a high price.',
-          to: '<<if $RBR?.necklace?.reclaimed>><<lanSwitch "The museum will not pay for the necklace twice." "博物馆不会再为这条项链付一次钱。">><<else>>This will fetch a high price.<</if>>',
+          srcmatch: /<<else>>(?=[^<]*<<\/if>>\s*<br><br>\s*<<link)/,
+          to: '<<elseif $RBR?.necklace?.reclaimed>><<lanSwitch "You can see your reflection in the blue gemstones. The museum will not pay for the necklace twice." "你可以在蓝色宝石中看到自己的倒影。博物馆不会再为这条项链付一次钱。">><<else>>',
           expected: 1
         }
       ],
@@ -43,13 +43,6 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         { src: '<<effects>>', applyafter: '<<ivory-necklace-learn "quinn">>', expected: 1 }
-      ],
-      'Town Hall Wait': [
-        {
-          src: '<<socialiseicon "ask">><<link [[Ask about the mayor\'s office|Town Hall Ask]]>><</link>>',
-          applybefore: '<<ivory-necklace-recovery-link>>',
-          expected: 1
-        }
       ],
       'Town Hall Projects Diving Buy': [
         {
@@ -64,8 +57,9 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         {
-          src: '<<He>> looks to the ivory necklace displayed proudly next to <<him>>. "Imagine what other pieces of history could be submerged."',
-          to: '<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty>><<else>><<ivory-necklace-learn "quinn">><<He>> looks to the ivory necklace displayed proudly next to <<him>>. "Imagine what other pieces of history could be submerged."<</if>>',
+          // 仅包裹展示盒描述，保留原文和两种状态共用的离场出口。
+          srcmatch: /(<<else>>\s*)(<<He>>[^\r\n]*\s*<br><br>)/,
+          to: '$1<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty>><<else>><<ivory-necklace-learn "quinn">>$2<</if>>',
           expected: 1
         }
       ],
@@ -139,6 +133,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
   });
 
   maplebirch.tool.addTo('Journal', 'ivory-necklace-journal');
+  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'ivory-necklace-recovery-link', passage: 'Town Hall Wait' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'wraith-return-rest-link', passage: 'Bed' });
   maplebirch.tool.addTo('Header', 'ivory-necklace-history');
   maplebirch.tool.addTo('Header', 'wraith-return-dream-cleanup');
