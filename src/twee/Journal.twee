@@ -211,7 +211,7 @@
             </li>
           <</if>>
           <<if _templeExamDays is 0 and !$RobinTemple.punish>>
-            <li><<lanSwitch 'The examination is due. Go to the temple hall together; if Robin cannot attend, it will wait.' '检查已经到期。一起去神殿大厅；罗宾暂时无法参加时，检查会等候。'>></li>
+            <li><<lanSwitch 'The examination is due. Go to the temple hall together; if Robin cannot attend, it will wait.' '检查已经到期。一起去神殿大厅，罗宾暂时无法参加时，检查会等候。'>></li>
           <</if>>
       <</switch>>
       <<if !maplebirch.get('RobinTemple').available>>

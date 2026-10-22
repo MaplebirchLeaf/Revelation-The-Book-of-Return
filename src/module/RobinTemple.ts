@@ -62,6 +62,7 @@ class RobinTemple extends Module {
     this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple', before: 'robin-location' });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
+      cond: () => !V.statFreeze && !V.replayScene,
       action: () => this.dailyUpdate()
     });
   }

@@ -127,7 +127,7 @@
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
 <<elseif maplebirch.get('TempleChoir') and $TempleChoir.serviceDay is Time.days
     and $TempleChoir.shift?.round is 3 and (maplebirch.get('TempleChoir').active or $TempleChoir.shift.done)>>
-  <!-- 只结算一次；正文、领唱许可与同伴回应在重绘后仍可查看。 -->
+  <!-- 只结算一次，正文、领唱许可与同伴回应在重绘后仍可查看。 -->
   <<if maplebirch.get('TempleChoir').finish()>>
     <<purity 10>><<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>

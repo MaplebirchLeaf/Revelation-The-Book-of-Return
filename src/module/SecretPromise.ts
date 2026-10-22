@@ -254,12 +254,6 @@ export default class SecretPromise {
     return true;
   }
 
-  /** 同席阶段再走一轮。与祈祷室 loveDrunk 同构，台词与致幻随轮次加深。 */
-  public nextRound(): number {
-    this.state.rite_round += 1;
-    return this.state.rite_round;
-  }
-
   public closeRite(): boolean {
     if (!this.state.rite_active) return false;
     this.state.rite_active = false;

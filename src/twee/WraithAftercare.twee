@@ -24,7 +24,7 @@
 
 <<widget 'wraith-return-dream-wake'>>
   <<if $activeNightmare is 'revelationIvoryReturn' and !$replayScene>>
-    <!-- 原版恢复现实；仅把本场选择带回，不保留梦里的地点、物品或属性。 -->
+    <!-- 原版恢复现实，仅把本场选择带回，不保留梦里的地点、物品或属性。 -->
     <<set $_ivoryProgress to clone($RBR.necklace)>>
     <<set $_ivoryProgress.aftercare to _args[0] is 'abort' ? 'dream' : 'talk'>>
     <<nightmareEnd>>
@@ -219,7 +219,7 @@
 <</widget>>
 
 <<widget 'wraith-return-reunion'>>
-  <!-- 本场静坐完整结束后才调用；结局与一次性宽慰一并登记。 -->
+  <!-- 本场静坐完整结束后才调用，结局与一次性宽慰一并登记。 -->
   <<set $RBR.necklace.aftercare to 'complete'>>
   <<language>>
     <<option 'EN'>>

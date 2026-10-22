@@ -29,7 +29,7 @@
           <<if _robinWork and $passage is _cleaningSource
             and Time.days is _cleaningDay and $RobinTemple.work_day isnot Time.days
             and !pcAreArmsBound('both')>>
-            <!-- 原版每小时效率：3–9；同行期间不叠加罗宾自己的小时维护。 -->
+            <!-- 原版每小时效率：3–9，同行期间不叠加罗宾自己的小时维护。 -->
             <<set $_cleaningSkill to currentSkillValue($_robinWorkKind is 'garden' ? 'tending' : 'housekeeping')>>
             <<set State.variables[$_robinWorkField] to Math.min(100, State.variables[$_robinWorkField] + 3 + [200, 400, 600, 800, 1200, 1500].filter(value => value <= $_cleaningSkill).length)>>
             <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>

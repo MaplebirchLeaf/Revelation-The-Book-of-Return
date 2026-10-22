@@ -104,7 +104,7 @@
           <<set $RobinTemple.mass.replied to true>>
           <<robin-temple-mass-reply>>
           <<npcincr Robin love 1>>
-          <!-- 原版弥撒已由 sydneyMass 结算；唱诗路线不调用它，只补本次主动回应。 -->
+          <!-- 原版弥撒已由 sydneyMass 结算，唱诗路线不调用它，只补本次主动回应。 -->
           <<if $RobinTemple.mass.sydney and $passage is 'TempleChoir Mass'
             and $TempleChoir.serviceDay is Time.days and $TempleChoir.shift?.done>>
             <<npcincr Sydney love 1>>

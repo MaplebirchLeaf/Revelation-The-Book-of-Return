@@ -5,7 +5,7 @@
     <<set $RBR.necklace.stage to ''>>
   <</if>>
   <<if $RBR?.necklace and !$RBR.necklace.saleChecked and !$replayScene and !$statFreeze and !$frozenValues>>
-    <!-- 旧版直接出售给奎恩会扣款却留下 found；只修有实际出售收入证据、且未进入归还循环的旧档。 -->
+    <!-- 旧版直接出售给奎恩会扣款却留下 found，只修有实际出售收入证据、且未进入归还循环的旧档。 -->
     <<if !$RBR.necklace.reclaimed and !$RBR.necklace.returnedOnce
         and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
         and $necklaceThief is 'player' and $town_projects?.diving gte 3
@@ -27,7 +27,7 @@
 
 <<widget 'ivory-necklace-recovery-check'>>
   <<ivory-necklace-check>>
-  <!-- 这些结果由地点、入口和回调共用；局部检定过程则留在各自 widget 内。 -->
+  <!-- 这些结果由地点、入口和回调共用，局部检定过程则留在各自 widget 内。 -->
   <<set _ivoryQuinn to Boolean($RBR?.necklace) and !$RBR.necklace.returned
     and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
   <<set _ivoryRecovery to _ivorySafe and _ivoryQuinn and $RBR.necklace.known
@@ -232,7 +232,7 @@
 <<switch $RBR.necklace.stage>>
   <<case 'take' 'smash'>>
     <<set _ivorySmashed to $RBR.necklace.stage is 'smash'>>
-    <!-- 成功只转移唯一实物；不重发待售款、历史收入、馆藏或好感。原始盗取者保留作闪回用。 -->
+    <!-- 成功只转移唯一实物，不重发待售款、历史收入、馆藏或好感。原始盗取者保留作闪回用。 -->
     <<set $museumAntiques.antiques.antiqueivorynecklace to 'found'>>
     <<set $RBR.necklace.reclaimed to true>>
     <<set $RBR.necklace.stage to ''>>

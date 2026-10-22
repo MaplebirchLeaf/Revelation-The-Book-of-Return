@@ -1,7 +1,7 @@
 // ./src/module/LostLamb.ts
 
 import { DEFAULT_LOST_LAMB_STATE, LOST_LAMB_SCENES, LOST_LAMB_VOWS, type LostLambState } from './constants/lost-lamb';
-import type { LostLambChoice, LostLambStat, LostLambTalk } from './constants/lost-lamb-types';
+import type { LostLambChoice, LostLambStat } from './constants/lost-lamb-types';
 import Module from './Module';
 
 /** 模块关闭后仍能恢复梦中存档，与正常醒来共用同一条恢复路径。 */
@@ -83,31 +83,6 @@ export default class LostLamb extends Module {
 
   public get talkReady(): boolean {
     return this.reward && !this.state.talk && this.kylarHere && Time.hour >= 18;
-  }
-
-  /** 现实交谈只结算一次，重新演绎不重置这次选择。 */
-  public talk(kind: LostLambTalk): boolean {
-    if (!this.talkReady || !['company', 'night', 'space'].includes(kind)) return false;
-    this.state.talk = kind;
-    // 重走梦境可以改变约定，已经说出口的现实交谈仍保留当时的分歧。
-    const { marks } = this.state;
-    this.state.talkVow = '';
-    if (kind === 'company') {
-      this.state.talkVow = marks.includes('main-vow-offered') ? 'offered' : marks.includes('main-vow-refused') ? 'refused' : '';
-    } else if (kind === 'night') {
-      this.state.talkVow = marks.includes('verdict-vow-sealed') ? 'sealed' : marks.includes('verdict-vow-broken') ? 'broken' : '';
-    }
-    let effects: string;
-    if (kind === 'company') {
-      effects =
-        this.state.talkVow === 'offered' ? '<<pass 10>><<npcincr Kylar love 2>><<npcincr Kylar rage -3>><<stress -2>>' : '<<pass 10>><<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -2>>';
-    } else if (kind === 'night') {
-      effects = this.state.talkVow === 'sealed' ? '<<pass 10>><<npcincr Kylar love -1>><<npcincr Kylar rage 3>><<stress 2>>' : '<<pass 10>><<npcincr Kylar love 1>><<stress -2>>';
-    } else {
-      effects = `<<pass 5>><<stress -2>>${this.reaction === 'guarded' ? '<<npcincr Kylar rage 2>>' : ''}`;
-    }
-    new maplebirch.SugarCube.Wikifier(null, effects);
-    return true;
   }
 
   public get choices() {

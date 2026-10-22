@@ -70,7 +70,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         {
-          // 原版宏不接受 found -> museum；补齐交接步骤，只记一次首次馆藏。
+          // 原版宏不接受 found -> museum，补齐交接步骤，只记一次首次馆藏。
           src: '<<museumAntiqueStatus "antiqueivorynecklace" "museum">>',
           to: '<<museumAntiqueStatus "antiqueivorynecklace" "talk">><<museumAntiqueStatus "antiqueivorynecklace" "museum">><<ivory-necklace-learn "quinn">>',
           expected: 1

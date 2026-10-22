@@ -1,4 +1,30 @@
 :: Lost Lamb Widgets [widget]
+<<widget 'lost-lamb-talk-action'>>
+  <<if !maplebirch.get('LostLamb')?.talkReady or !['company', 'night', 'space'].includes(_args[0])>><<exit>><</if>>
+  <!-- 先保存一次性交谈与当时的誓言，重新演绎和正文重绘不重置现实选择。 -->
+  <<set $LostLamb.talk to _args[0]>><<set $LostLamb.talkVow to ''>>
+  <<switch $LostLamb.talk>>
+    <<case 'company'>>
+      <<set $LostLamb.talkVow to $LostLamb.marks.includes('main-vow-offered') ? 'offered' : $LostLamb.marks.includes('main-vow-refused') ? 'refused' : ''>>
+      <<if $LostLamb.talkVow is 'offered'>>
+        <<pass 10>><<npcincr Kylar love 2>><<npcincr Kylar rage -3>><<stress -2>>
+      <<else>>
+        <<pass 10>><<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -2>>
+      <</if>>
+    <<case 'night'>>
+      <<set $LostLamb.talkVow to $LostLamb.marks.includes('verdict-vow-sealed') ? 'sealed' : $LostLamb.marks.includes('verdict-vow-broken') ? 'broken' : ''>>
+      <<if $LostLamb.talkVow is 'sealed'>>
+        <<pass 10>><<npcincr Kylar love -1>><<npcincr Kylar rage 3>><<stress 2>>
+      <<else>>
+        <<pass 10>><<npcincr Kylar love 1>><<stress -2>>
+      <</if>>
+    <<case 'space'>>
+      <<set _lambTalkGuarded to maplebirch.get('LostLamb').reaction is 'guarded'>>
+      <<pass 5>><<stress -2>>
+      <<if _lambTalkGuarded>><<npcincr Kylar rage 2>><</if>>
+  <</switch>>
+<</widget>>
+
 <<widget 'lost-lamb-entry'>>
   <<if $LostLamb.endings.includes('main')>>
     <<language>>
@@ -86,7 +112,7 @@
         <<pass _lambMinutes>>
         <<lost-lamb-followup-check _lambName>>
         <<if _lambFollowupReady and $passage is _lambSource>>
-          <!-- 在入场链接登记并结算；正文重绘、读档和旧链接均不再重复发放。 -->
+          <!-- 在入场链接登记并结算，正文重绘、读档和旧链接均不再重复发放。 -->
           <<switch _lambName>>
             <<case 'Sydney'>>
               <<set $LostLamb.sydneyTalk to true>>
@@ -290,16 +316,16 @@
       <<if maplebirch.get('LostLamb').reaction is 'guarded'>>“你看到了什么？”<<nnpc_He 'Kylar'>>转过椅子，面对着你。“有人让你去看吗？”<<elseif maplebirch.get('LostLamb').reaction is 'close'>>“我在里面吗？”你还没回答，<<nnpc_he 'Kylar'>>便往这边靠近。“可以告诉我。你还不走，对吧？”<<else>>“哦。”<<nnpc_He 'Kylar'>>调低电脑的声音，又瞥向走廊。“梦见……什么了？”<</if>>
   <</language>><br><br>
   <<if $LostLamb.marks.includes('main-vow-offered')>>
-    <<couchicon>><<lanLink ['Promise that nobody will take you away (0:10)', '答应不会让别人带走你 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('company')>><</lanLink>><<gglove 'Kylar'>><<lksuspicion>><<lstress>><br>
+    <<couchicon>><<lanLink ['Promise that nobody will take you away (0:10)', '答应不会让别人带走你 (0:10)'] 'Lost Lamb Talk'>><<lost-lamb-talk-action 'company'>><</lanLink>><<gglove 'Kylar'>><<lksuspicion>><<lstress>><br>
   <<else>>
-    <<couchicon>><<lanLink ['Sit with Kylar for a while (0:10)', '陪凯拉尔坐一会儿 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('company')>><</lanLink>><<glove 'Kylar'>><<lksuspicion>><<lstress>><br>
+    <<couchicon>><<lanLink ['Sit with Kylar for a while (0:10)', '陪凯拉尔坐一会儿 (0:10)'] 'Lost Lamb Talk'>><<lost-lamb-talk-action 'company'>><</lanLink>><<glove 'Kylar'>><<lksuspicion>><<lstress>><br>
   <</if>>
   <<if $LostLamb.marks.includes('verdict-vow-sealed')>>
-    <<bedicon 'kylar'>><<lanLink ["Repeat the visitor's assurance (0:10)", '重复来客的保证 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<llove 'Kylar'>><<gksuspicion>><<gstress>><br>
+    <<bedicon 'kylar'>><<lanLink ["Repeat the visitor's assurance (0:10)", '重复来客的保证 (0:10)'] 'Lost Lamb Talk'>><<lost-lamb-talk-action 'night'>><</lanLink>><<llove 'Kylar'>><<gksuspicion>><<gstress>><br>
   <<else>>
-    <<bedicon 'kylar'>><<lanLink ['Ask about the night Kylar remembers (0:10)', '问起凯拉尔记得的那一夜 (0:10)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('night')>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
+    <<bedicon 'kylar'>><<lanLink ['Ask about the night Kylar remembers (0:10)', '问起凯拉尔记得的那一夜 (0:10)'] 'Lost Lamb Talk'>><<lost-lamb-talk-action 'night'>><</lanLink>><<glove 'Kylar'>><<lstress>><br>
   <</if>>
-  <<relaxicon>><<lanLink ['Ask for a little space (0:05)', '想独自待一会儿 (0:05)'] 'Lost Lamb Talk'>><<run maplebirch.get('LostLamb').talk('space')>><</lanLink>><<if maplebirch.get('LostLamb').reaction is 'guarded'>><<gksuspicion>><</if>><<lstress>><br>
+  <<relaxicon>><<lanLink ['Ask for a little space (0:05)', '想独自待一会儿 (0:05)'] 'Lost Lamb Talk'>><<lost-lamb-talk-action 'space'>><</lanLink>><<if maplebirch.get('LostLamb').reaction is 'guarded'>><<gksuspicion>><</if>><<lstress>><br>
 <<elseif $LostLamb.talk and maplebirch.get('LostLamb')?.kylarHere>>
   <<switch $LostLamb.talk>>
     <<case 'company'>>
