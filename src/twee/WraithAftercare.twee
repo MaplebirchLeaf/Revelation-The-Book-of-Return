@@ -34,7 +34,7 @@
 
 <<widget 'wraith-return-dream-cleanup'>>
   <<if $activeNightmare is 'revelationIvoryReturn'
-      and (!maplebirch.get('RBR') or !passage().startsWith('Revelation Ivory Dream '))>>
+      and (!maplebirch.get('RBR') or !$passage.startsWith('Revelation Ivory Dream '))>>
     <<wraith-return-dream-wake 'abort'>>
   <</if>>
 <</widget>>
