@@ -56,11 +56,11 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
       ],
       // 原版 journal 在 statFreeze 时提前退出，不能用尾部区域展示演绎日志。
       'Widgets Journal': [{ src: '<<widget "journal">>', applyafter: '\n<<if maplebirch.get("LostLamb")?.active>><<lost-lamb-journal>><<exit>><</if>>', expected: 1 }],
-      // 只替换每小时噩梦压力的参数，保留其它睡眠事件与原版提示。
+      // 按每小时结算后的钳位定位，兼容其它模组扩展噩梦条件；梦痕只减轻真实噩梦的压力。
       'Widgets Sleep': [
         {
-          srcmatch: /(?<=<<if \$nightmares gte 1 and \$controlled is 0>>\s*<<stress )6(?=>>)/,
-          to: "`maplebirch.get('LostLamb')?.nightmareStress ?? 6`",
+          srcmatch: /(?<=<<stress )6(?=>>\s*<<\/if>>\s*<<sleep_clamp>>)/,
+          to: "`$nightmares gte 1 and $controlled is 0 ? (maplebirch.get('LostLamb')?.nightmareStress ?? 6) : 6`",
           expected: 1
         }
       ]
