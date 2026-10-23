@@ -18,7 +18,7 @@ During an ordinary forest-shop visit when Gwylan is available to talk, you may a
 
 ### Recovering it from Quinn
 
-The recovered ivory necklace is added to the original wardrobe, where you can put it on. It is not granted twice. Returning or handing over the relic also removes the wearable necklace.
+Taking the necklace from the lake or recovering it from Quinn adds it to your vanilla wardrobe. Returning it or selling it to the museum or Quinn also removes that story item. Refreshing or loading does not grant another.
 
 After Winter explains where the necklace went, or you see it in Quinn's office, visit the mayor's waiting room during the day. Directly handing it to Quinn or seeing the diving team's recovery also provides the lead. The necklace must actually be in Quinn's custody.
 
@@ -42,3 +42,7 @@ Looking and leaving take no time. Spending **15 uninterrupted minutes** there re
 - Leave at least three days between shore visits. The next meeting provides a one-time moment of relief; later visits retain their usual rules. Your journal records the current lead and retires the finished thread.
 
 Taking the necklace again interrupts quiet contact until you return it. It does not reset completed scenes. Blood moons, pursuits, and grievances over the pale offspring retain their existing consequences.
+
+### The forest shop necklace
+
+Returning the necklace once permanently unlocks the matching neckwear at the forest shop, at its vanilla price of **£2,000**. A purchased necklace is separate clothing. It does not change the relic’s whereabouts and is kept when the relic is returned or sold.

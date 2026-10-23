@@ -10,7 +10,6 @@
 
 .revelation-card-title {
   padding: 0.35em 0.5em;
-  color: var(--gold);
   background: var(--800);
   border-bottom: 1px solid var(--700);
 }

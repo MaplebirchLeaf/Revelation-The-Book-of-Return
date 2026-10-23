@@ -7,28 +7,34 @@
     <<option 'CN'>>
       梦中是 <<= getFormattedDate(Time.date)>>，<<ampm Time.hour Time.minute>>。<i>你无法确定年份，这些日期属于梦境。</i>
   <</language>>
-  <h1 class='header gold bold'><<lanSwitch 'The manor' '庄园'>></h1>
-  <ul class='journal'>
-    <li>
-    <<language>>
-      <<option 'EN'>>
-        You are Kylar here. Day <span class='gold'><<= maplebirch.get('LostLamb').day>></span> in the dream.
-      <<option 'CN'>>
-        在这里，你是凯拉尔。梦中的第 <span class='gold'><<= maplebirch.get('LostLamb').day>></span> 天。
-    <</language>>
-    </li>
-    <<if maplebirch.get('LostLamb').note>>
-      <li><<print lanSwitch(...maplebirch.get('LostLamb').note)>></li>
-    <</if>>
-    <li>
-    <<language>>
-      <<option 'EN'>>
-        You may wake at any time. Rest at the manor to return to where you stopped.
-      <<option 'CN'>>
-        随时可以醒来，再到庄园休息便能从中断处继续。
-    <</language>>
-    </li>
-  </ul>
+  <<revelation-card 'The manor' '庄园'>>
+    <ul class='journal'>
+      <li>
+      <<language>>
+        <<option 'EN'>>
+          You are Kylar here. Day <span class='gold'><<= maplebirch.get('LostLamb').day>></span> in the dream.
+        <<option 'CN'>>
+          在这里，你是凯拉尔。梦中的第 <span class='gold'><<= maplebirch.get('LostLamb').day>></span> 天。
+      <</language>>
+      </li>
+      <<if maplebirch.get('LostLamb').note>>
+        <li><<print lanSwitch(...maplebirch.get('LostLamb').note)>></li>
+      <</if>>
+      <<if !$settings.blindStatsEnabled>>
+        <li><<lanSwitch 'Doubt: ' '疑心：'>><span class='lblue'><<= $LostLamb.doubt>>/100</span></li>
+        <li><<lanSwitch 'Unease: ' '不安：'>><span class='red'><<= $LostLamb.fear>>/100</span></li>
+        <li><<lanSwitch 'Attention drawn: ' '引起的注意：'>><span class='gold'><<= $LostLamb.notice>>/100</span></li>
+      <</if>>
+      <li>
+      <<language>>
+        <<option 'EN'>>
+          You may wake at any time. Rest at the manor to return to where you stopped.
+        <<option 'CN'>>
+          随时可以醒来，再到庄园休息便能从中断处继续。
+      <</language>>
+      </li>
+    </ul>
+  <</revelation-card>>
   <hr>
 <</widget>>
 
@@ -36,18 +42,19 @@
   <<if maplebirch.get('LostLamb') and !$statFreeze
       and ($LostLamb.scene or $LostLamb.endings.length)
       and (maplebirch.get('LostLamb').paused or !maplebirch.get('LostLamb').reward or !$LostLamb.talk)>>
-    <h1 class='header gold bold'><<lanSwitch 'Kylar\'s manor' '凯拉尔的庄园'>></h1>
-    <ul class='journal'>
-      <<if maplebirch.get('LostLamb').paused>>
-        <li><<lanSwitch 'The dream was interrupted. Rest in Kylar’s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
-      <<elseif maplebirch.get('LostLamb').reward>>
-        <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
-      <<elseif maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
-        <li><<lanSwitch 'You remember the same voice in both dreams. Rest in Kylar’s room to listen for it again.' '两场梦里都出现过那道声音。到凯拉尔的房间休息，可以再听一听。'>></li>
-      <<else>>
-        <li><<lanSwitch 'There are still parts of the dream you cannot piece together. Resting in Kylar’s room may bring back another fragment.' '梦里的事还没有拼凑完整。在凯拉尔的房间休息，或许能想起别的片段。'>></li>
-      <</if>>
-    </ul>
+    <<revelation-card 'Kylar\'s manor' '凯拉尔的庄园'>>
+      <ul class='journal'>
+        <<if maplebirch.get('LostLamb').paused>>
+          <li><<lanSwitch 'The dream was interrupted. Rest in Kylar’s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
+        <<elseif maplebirch.get('LostLamb').reward>>
+          <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
+        <<elseif maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
+          <li><<lanSwitch 'You remember the same voice in both dreams. Rest in Kylar’s room to listen for it again.' '两场梦里都出现过那道声音。到凯拉尔的房间休息，可以再听一听。'>></li>
+        <<else>>
+          <li><<lanSwitch 'There are still parts of the dream you cannot piece together. Resting in Kylar’s room may bring back another fragment.' '梦里的事还没有拼凑完整。在凯拉尔的房间休息，或许能想起别的片段。'>></li>
+        <</if>>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
 <</widget>>
@@ -62,151 +69,152 @@
 
 <<widget 'robin-temple-journal'>>
   <<if $RobinTemple?.stage and $RobinTemple.stage isnot 'none'>>
-    <h1 class='header gold bold'><<lanSwitch 'Robin and the temple' '罗宾与神殿'>></h1>
-    <ul class='journal'>
-      <<switch $RobinTemple.stage>>
-        <<case 'invited'>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin has questions about joining the temple. Find <<nnpc_him 'Robin'>>
-              <<if maplebirch.get('RobinTemple').residence>>
-                at your shared home
-              <<else>>
-                in <<nnpc_his 'Robin'>> room
-              <</if>>
-              when <<nnpc_he 'Robin'>> is free, and visit Jordan together during the day, outside the Sunday service.
-            <<option 'CN'>>
-              罗宾对加入神殿还有疑问。等<<nnpc_he 'Robin'>>有空时，去
-              <<if maplebirch.get('RobinTemple').residence>>
-                你们同住的自宅
-              <<else>>
-                罗宾房间
-              <</if>>
-              谈谈，再一起于白天、周日弥撒以外的时段拜访约旦。
-          <</language>>
-          </li>
-        <<case 'scheduled'>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin's purity trial is booked for <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>. If that date has passed, the appointment remains booked.
-            <<option 'CN'>>
-              罗宾的纯洁试炼预约在 <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>。日期已过时，预约仍会保留。
-          <</language>>
-          </li>
-          <<if Time.days lt $RobinTemple.exam_day and $RobinTemple.prepared_day isnot Time.days>>
+    <<revelation-card 'Robin and the temple' '罗宾与神殿'>>
+      <ul class='journal'>
+        <<switch $RobinTemple.stage>>
+          <<case 'invited'>>
             <li>
             <<language>>
               <<option 'EN'>>
-                Before the trial, find Robin at home from 17:00 to 19:15 and prepare together. Allow forty-five minutes before the next school, tutoring, shop or other commitment.
+                Robin has questions about joining the temple. Find <<nnpc_him 'Robin'>>
+                <<if maplebirch.get('RobinTemple').residence>>
+                  at your shared home
+                <<else>>
+                  in <<nnpc_his 'Robin'>> room
+                <</if>>
+                when <<nnpc_he 'Robin'>> is free, and visit Jordan together during the day, outside the Sunday service.
               <<option 'CN'>>
-                试炼日前，17:00 至 19:15 可在家中找有空的罗宾一起准备。下次上学、家教、看店或其他安排前须留足四十五分钟。
+                罗宾对加入神殿还有疑问。等<<nnpc_he 'Robin'>>有空时，去
+                <<if maplebirch.get('RobinTemple').residence>>
+                  你们同住的自宅
+                <<else>>
+                  罗宾房间
+                <</if>>
+                谈谈，再一起于白天、周日弥撒以外的时段拜访约旦。
             <</language>>
             </li>
-          <</if>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              If Robin cannot attend or Jordan is unavailable, the appointment will wait. Attend from 06:00 to before 08:00 on school days, or before 18:00 on days without school, outside the Sunday service.
-            <<option 'CN'>>
-              罗宾无法参加或约旦暂时不能接待时，预约会继续保留。上学日于 06:00 至 08:00 前参加，不上学的日子则可延至 18:00 前，周日弥撒期间需等候。
-          <</language>>
-          </li>
-        <<case 'failed'>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin needs time to decide freely. Ask again at home from <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span>.
-            <<option 'CN'>>
-              罗宾需要时间自己考虑。<span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span> 起，可以在家中再询问。
-          <</language>>
-          </li>
-        <<case 'member'>>
-          <li>
-          <<language>>
-            <<option 'EN'>>
-              Robin has joined the temple and helps with Sunday mass. When you are both free, you can arrange to go together from home or talk at the temple pews.
-            <<option 'CN'>>
-              罗宾已经加入神殿，也会协助周日弥撒。两人有空时，可以在家中商量同行，或在神殿长椅谈谈共同的工作。
-          <</language>>
-          </li>
-          <<if !$RobinTemple.punish and $robinromance is 1 and $RobinTemple.service gte 3 and !$templePromised>>
+          <<case 'scheduled'>>
             <li>
             <<language>>
               <<option 'EN'>>
-                Ask Robin about making a promise when <<nnpc_he 'Robin'>> is present at the temple during daylight. Jordan will weigh both your contributions, your shared work and Robin’s faith.
+                Robin's purity trial is booked for <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>. If that date has passed, the appointment remains booked.
               <<option 'CN'>>
-                罗宾白天在神殿时，可以谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信仰。
+                罗宾的纯洁试炼预约在 <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>。日期已过时，预约仍会保留。
             <</language>>
             </li>
-          <</if>>
-        <<case 'approved'>>
+            <<if Time.days lt $RobinTemple.exam_day and $RobinTemple.prepared_day isnot Time.days>>
+              <li>
+              <<language>>
+                <<option 'EN'>>
+                  Before the trial, find Robin at home from 17:00 to 19:15 and prepare together. Allow forty-five minutes before the next school, tutoring, shop or other commitment.
+                <<option 'CN'>>
+                  试炼日前，17:00 至 19:15 可在家中找有空的罗宾一起准备。下次上学、家教、看店或其他安排前须留足四十五分钟。
+              <</language>>
+              </li>
+            <</if>>
+            <li>
+            <<language>>
+              <<option 'EN'>>
+                If Robin cannot attend or Jordan is unavailable, the appointment will wait. Attend from 06:00 to before 08:00 on school days, or before 18:00 on days without school, outside the Sunday service.
+              <<option 'CN'>>
+                罗宾无法参加或约旦暂时不能接待时，预约会继续保留。上学日于 06:00 至 08:00 前参加，不上学的日子则可延至 18:00 前，周日弥撒期间需等候。
+            <</language>>
+            </li>
+          <<case 'failed'>>
+            <li>
+            <<language>>
+              <<option 'EN'>>
+                Robin needs time to decide freely. Ask again at home from <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span>.
+              <<option 'CN'>>
+                罗宾需要时间自己考虑。<span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span> 起，可以在家中再询问。
+            <</language>>
+            </li>
+          <<case 'member'>>
+            <li>
+            <<language>>
+              <<option 'EN'>>
+                Robin has joined the temple and helps with Sunday mass. When you are both free, you can arrange to go together from home or talk at the temple pews.
+              <<option 'CN'>>
+                罗宾已经加入神殿，也会协助周日弥撒。两人有空时，可以在家中商量同行，或在神殿长椅谈谈共同的工作。
+            <</language>>
+            </li>
+            <<if !$RobinTemple.punish and $robinromance is 1 and $RobinTemple.service gte 3 and !$templePromised>>
+              <li>
+              <<language>>
+                <<option 'EN'>>
+                  Ask Robin about making a promise when <<nnpc_he 'Robin'>> is present at the temple during daylight. Jordan will weigh both your contributions, your shared work and Robin’s faith.
+                <<option 'CN'>>
+                  罗宾白天在神殿时，可以谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信仰。
+              <</language>>
+              </li>
+            <</if>>
+          <<case 'approved'>>
+            <li>
+            <<language>>
+              <<option 'EN'>>
+                Meet Robin in the temple quarters to hold the approved promise rite.
+              <<option 'CN'>>
+                去神殿宿舍见罗宾，举行已获批准的承诺仪式。
+            <</language>>
+            </li>
+          <<case 'promised'>>
+            <<robin-temple-examination-days>>
+            <<if $RobinTemple.dual_promise>>
+              <li>
+              <<language>>
+                <<option 'EN'>>
+                  Jordan will summon you, Robin and Sydney together for the next examination.
+                <<option 'CN'>>
+                  下次检查时，约旦会将你、罗宾与悉尼一并召去。
+              <</language>>
+              </li>
+            <<else>>
+              <li>
+              <<language>>
+                <<option 'EN'>>
+                  Jordan will examine the vow you share with Robin.
+                <<option 'CN'>>
+                  约旦会一同检查你和罗宾的誓言。
+              <</language>>
+              </li>
+            <</if>>
+            <<if _templeExamDays is 0 and !$RobinTemple.punish>>
+              <li><<lanSwitch 'The examination is due. Go to the temple hall together; if Robin cannot attend, it will wait.' '检查已经到期。一起去神殿大厅，罗宾暂时无法参加时，检查会等候。'>></li>
+            <</if>>
+        <</switch>>
+        <<if !maplebirch.get('RobinTemple').available>>
+          <li><<lanSwitch 'Robin cannot visit the temple at present. Your plans will wait.' '罗宾暂时无法去神殿，你们的安排需要等候。'>></li>
+        <</if>>
+        <<if maplebirch.get('RobinTemple').member and $RobinTemple.punish>>
+          <li><<lanSwitch 'Your shared purification is unfinished. Return to the temple to continue.' '共同净化还没有结束。回神殿继续。'>></li>
+        <</if>>
+        <<if maplebirch.get('RobinTemple').member and $RobinTemple.faith_transition>>
+          <li><<lanSwitch 'Robin has something to say about the temple. Listen next time you pray together.' '罗宾有些关于神殿的想法想告诉你。下次一起祈祷时可以听听。'>></li>
+        <</if>>
+        <<if ['waiting', 'discharged', 'therapy', 'rescue', 'vanilla'].includes($RobinTemple.hospital_stage)>>
+          <li><<lanSwitch 'Your hospital visit with Robin is unfinished. You can continue it at the hospital entrance.' '罗宾陪同的这次就诊尚未结束。可以在医院门口继续。'>></li>
+        <</if>>
+        <<if maplebirch.get('RobinTemple').member and $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
           <li>
           <<language>>
             <<option 'EN'>>
-              Meet Robin in the temple quarters to hold the approved promise rite.
+              Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.
             <<option 'CN'>>
-              去神殿宿舍见罗宾，举行已获批准的承诺仪式。
+              罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。
           <</language>>
           </li>
-        <<case 'promised'>>
-          <<robin-temple-examination-days>>
-          <<if $RobinTemple.dual_promise>>
-            <li>
-            <<language>>
-              <<option 'EN'>>
-                Jordan will summon you, Robin and Sydney together for the next examination.
-              <<option 'CN'>>
-                下次检查时，约旦会将你、罗宾与悉尼一并召去。
-            <</language>>
-            </li>
-          <<else>>
-            <li>
-            <<language>>
-              <<option 'EN'>>
-                Jordan will examine the vow you share with Robin.
-              <<option 'CN'>>
-                约旦会一同检查你和罗宾的誓言。
-            <</language>>
-            </li>
-          <</if>>
-          <<if _templeExamDays is 0 and !$RobinTemple.punish>>
-            <li><<lanSwitch 'The examination is due. Go to the temple hall together; if Robin cannot attend, it will wait.' '检查已经到期。一起去神殿大厅，罗宾暂时无法参加时，检查会等候。'>></li>
-          <</if>>
-      <</switch>>
-      <<if !maplebirch.get('RobinTemple').available>>
-        <li><<lanSwitch 'Robin cannot visit the temple at present. Your plans will wait.' '罗宾暂时无法去神殿，你们的安排需要等候。'>></li>
-      <</if>>
-      <<if maplebirch.get('RobinTemple').member and $RobinTemple.punish>>
-        <li><<lanSwitch 'Your shared purification is unfinished. Return to the temple to continue.' '共同净化还没有结束。回神殿继续。'>></li>
-      <</if>>
-      <<if maplebirch.get('RobinTemple').member and $RobinTemple.faith_transition>>
-        <li><<lanSwitch 'Robin has something to say about the temple. Listen next time you pray together.' '罗宾有些关于神殿的想法想告诉你。下次一起祈祷时可以听听。'>></li>
-      <</if>>
-      <<if ['waiting', 'discharged', 'therapy', 'rescue', 'vanilla'].includes($RobinTemple.hospital_stage)>>
-        <li><<lanSwitch 'Your hospital visit with Robin is unfinished. You can continue it at the hospital entrance.' '罗宾陪同的这次就诊尚未结束。可以在医院门口继续。'>></li>
-      <</if>>
-      <<if maplebirch.get('RobinTemple').member and $temple_spear_mission is 1 and !$spear_vessel and !$RobinTemple.spear_seen and $robinromance is 1>>
-        <li>
-        <<language>>
-          <<option 'EN'>>
-            Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.
-          <<option 'CN'>>
-            罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。
-        <</language>>
-        </li>
-      <<elseif maplebirch.get('RobinTemple').member and $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
-        <li>
-        <<language>>
-          <<option 'EN'>>
-            You promised to tell Robin how the spear journey went. Find <<nnpc_him 'Robin'>> at the temple bench.
-          <<option 'CN'>>
-            你答应把取矛的经过告诉罗宾。去神殿长椅找<<nnpc_him 'Robin'>>。
-        <</language>>
-        </li>
-      <</if>>
-    </ul>
+        <<elseif maplebirch.get('RobinTemple').member and $temple_spear_mission gte 2 and $RobinTemple.spear_seen and !$RobinTemple.spear_return_seen>>
+          <li>
+          <<language>>
+            <<option 'EN'>>
+              You promised to tell Robin how the spear journey went. Find <<nnpc_him 'Robin'>> at the temple bench.
+            <<option 'CN'>>
+              你答应把取矛的经过告诉罗宾。去神殿长椅找<<nnpc_him 'Robin'>>。
+          <</language>>
+          </li>
+        <</if>>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
 <</widget>>
@@ -278,47 +286,49 @@
 <<widget 'secret-promise-journal'>>
   <<if $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'
       and ['none', 'meal', 'records'].includes($RobinTemple.secret.followup)>>
-    <h1 class='header gold bold'><<lanSwitch 'After the night at the lake' '湖边那晚之后'>></h1>
-    <ul class='journal'>
-        <<if $RobinTemple.secret.followup is 'none'>>
-          <li><<lanSwitch 'You promised to share a meal with Robin and Sydney after the night at the lake. Find a time when all three of you are free.' '你答应过与罗宾、悉尼一起吃饭，谈谈湖边那晚发生的事。找三人都有空的时候兑现约定。'>></li>
-        <<elseif $RobinTemple.secret.followup is 'meal'>>
-          <li><<lanSwitch 'The meal is over. Compare your accounts with both companions.' '一起吃过饭了。和两人核对各自的记录。'>></li>
-        <<else>>
-          <li><<lanSwitch 'You have compared your accounts and agreed to check with one another if a voice calls. When all three of you are free, you can investigate the sound together.' '你们已核对那晚的记录，也约好听见呼唤时先向彼此确认。三个人有空时，可以继续查看那道声音。'>></li>
-        <</if>>
-        <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions’ next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
-    </ul>
+    <<revelation-card 'After the night at the lake' '湖边那晚之后'>>
+      <ul class='journal'>
+          <<if $RobinTemple.secret.followup is 'none'>>
+            <li><<lanSwitch 'You promised to share a meal with Robin and Sydney after the night at the lake. Find a time when all three of you are free.' '你答应过与罗宾、悉尼一起吃饭，谈谈湖边那晚发生的事。找三人都有空的时候兑现约定。'>></li>
+          <<elseif $RobinTemple.secret.followup is 'meal'>>
+            <li><<lanSwitch 'The meal is over. Compare your accounts with both companions.' '一起吃过饭了。和两人核对各自的记录。'>></li>
+          <<else>>
+            <li><<lanSwitch 'You have compared your accounts and agreed to check with one another if a voice calls. When all three of you are free, you can investigate the sound together.' '你们已核对那晚的记录，也约好听见呼唤时先向彼此确认。三个人有空时，可以继续查看那道声音。'>></li>
+          <</if>>
+          <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions’ next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
   <<if !$RobinTemple.dual_promise and !$RobinTemple.secret.rite_done
       and $RobinTemple.secret.stage isnot 'complete'
       and $RobinTemple.secret.stage isnot 'none'>>
-    <h1 class='header gold bold'><<lanSwitch 'Confounded Vow' '混乱誓约'>></h1>
-    <ul class='journal'>
-      <<if ['travelling', 'decision', 'ritual'].includes($RobinTemple.secret.stage)
-          and !maplebirch.get('RobinTemple').secret.active>>
-        <li class='red'><<lanSwitch 'This journey has been interrupted. Return to the lake shore to call it off before making another plan.' '这次同行已经中断。回到湖畔取消这次同行，再安排新的计划。'>></li>
-      <<else>>
-      <<switch $RobinTemple.secret.stage>>
-        <<case 'research'>>
-          <li>
-            <<if $RobinTemple.secret.witness_day lt 0>>
-              <<lanSwitch 'The first journey is only to investigate the stone. After returning, each companion will decide whether to attempt the rite.' '第一次同行只调查石头。回来后，再由两人分别决定是否参与仪式。'>>
-            <<else>>
-              <<lanSwitch 'After examining the stone together, you are considering the rite. Each of you remains free to change your mind.' '你们已经一起查看过石头，接下来要商议是否举行仪式。每个人都可以改变主意。'>>
-            <</if>>
-          </li>
-          <li><<secret-promise-next-step>></li>
-        <<case 'decision'>>
-          <li><<lanSwitch 'You have examined the stone. Decide whether to attempt the rite tonight. Robin and Sydney must each give their own consent.' '你们已经查看过石头。现在要决定今晚是否举行仪式，罗宾和悉尼都需要各自明确同意。'>></li>
-        <<case 'travelling'>>
-          <li><<lanSwitch 'You have met Robin and Sydney at the lake. Visit the stone together or call off the journey.' '你和罗宾、悉尼已经在湖边会合。可以一起查看废墟里的石头，也可以结束这次同行。'>></li>
-        <<case 'ritual'>>
-          <li><<lanSwitch 'The rite is underway. Each of you must give your own answer; no one can decide for the other two.' '仪式正在进行。你们需要各自表明意愿，不能由一个人替另外两人作主。'>></li>
-      <</switch>>
-      <</if>>
-    </ul>
+    <<revelation-card 'Confounded Vow' '混乱誓约'>>
+      <ul class='journal'>
+        <<if ['travelling', 'decision', 'ritual'].includes($RobinTemple.secret.stage)
+            and !maplebirch.get('RobinTemple').secret.active>>
+          <li class='red'><<lanSwitch 'This journey has been interrupted. Return to the lake shore to call it off before making another plan.' '这次同行已经中断。回到湖畔取消这次同行，再安排新的计划。'>></li>
+        <<else>>
+        <<switch $RobinTemple.secret.stage>>
+          <<case 'research'>>
+            <li>
+              <<if $RobinTemple.secret.witness_day lt 0>>
+                <<lanSwitch 'The first journey is only to investigate the stone. After returning, each companion will decide whether to attempt the rite.' '第一次同行只调查石头。回来后，再由两人分别决定是否参与仪式。'>>
+              <<else>>
+                <<lanSwitch 'After examining the stone together, you are considering the rite. Each of you remains free to change your mind.' '你们已经一起查看过石头，接下来要商议是否举行仪式。每个人都可以改变主意。'>>
+              <</if>>
+            </li>
+            <li><<secret-promise-next-step>></li>
+          <<case 'decision'>>
+            <li><<lanSwitch 'You have examined the stone. Decide whether to attempt the rite tonight. Robin and Sydney must each give their own consent.' '你们已经查看过石头。现在要决定今晚是否举行仪式，罗宾和悉尼都需要各自明确同意。'>></li>
+          <<case 'travelling'>>
+            <li><<lanSwitch 'You have met Robin and Sydney at the lake. Visit the stone together or call off the journey.' '你和罗宾、悉尼已经在湖边会合。可以一起查看废墟里的石头，也可以结束这次同行。'>></li>
+          <<case 'ritual'>>
+            <li><<lanSwitch 'The rite is underway. Each of you must give your own answer; no one can decide for the other two.' '仪式正在进行。你们需要各自表明意愿，不能由一个人替另外两人作主。'>></li>
+        <</switch>>
+        <</if>>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
 <</widget>>
@@ -326,20 +336,21 @@
 <!-- 神殿唱诗班 -->
 <<widget 'temple-choir-journal'>>
   <<if $TempleChoir.joined>>
-    <h1 class='header gold bold'><<lanSwitch 'Temple choir' '神殿唱诗班'>></h1>
-    <ul class='journal'>
-      <li><<lanSwitch 'Practice: 09:00–18:00, once a day, except during Sunday mass (0:30). Service: Sunday, 11:00–13:00 (1:00).' '练习：每天 09:00–18:00 一次，周日弥撒期间暂停（0:30）。唱诗：周日 11:00–13:00（1:00）。'>></li>
-      <<if $TempleChoir.bonus gt 0>>
-        <li><<lanSwitch 'Uncollected choir earnings: ' '尚未领取的唱诗加款：'>><span class='gold'><<printmoney $TempleChoir.bonus>></span><<lanSwitch '. Collect them after passing a monthly examination when the temple allowance is paid.' '。月度检查通过且神殿津贴获发时领取。'>></li>
-      <</if>>
-      <li>
-      <<if $TempleChoir.lead>>
-        <<lanSwitch 'Jordan has allowed you to lead the responses.' '约旦已允许你领唱答唱。'>>
-      <<else>>
-        <<lanSwitch 'Regular practice, completed services and good singing help you qualify to lead the responses.' '坚持练习、完整参加唱诗并提高歌唱表现，可以争取领唱答唱的资格。'>>
-      <</if>>
-      </li>
-    </ul>
+    <<revelation-card 'Temple choir' '神殿唱诗班'>>
+      <ul class='journal'>
+        <li><<lanSwitch 'Practice: 09:00–18:00, once a day, except during Sunday mass (0:30). Service: Sunday, 11:00–13:00 (1:00).' '练习：每天 09:00–18:00 一次，周日弥撒期间暂停（0:30）。唱诗：周日 11:00–13:00（1:00）。'>></li>
+        <<if $TempleChoir.bonus gt 0>>
+          <li><<lanSwitch 'Uncollected choir earnings: ' '尚未领取的唱诗加款：'>><span class='gold'><<printmoney $TempleChoir.bonus>></span><<lanSwitch '. Collect them after passing a monthly examination when the temple allowance is paid.' '。月度检查通过且神殿津贴获发时领取。'>></li>
+        <</if>>
+        <li>
+        <<if $TempleChoir.lead>>
+          <<lanSwitch 'Jordan has allowed you to lead the responses.' '约旦已允许你领唱答唱。'>>
+        <<else>>
+          <<lanSwitch 'Regular practice, completed services and good singing help you qualify to lead the responses.' '坚持练习、完整参加唱诗并提高歌唱表现，可以争取领唱答唱的资格。'>>
+        <</if>>
+        </li>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
 <</widget>>
@@ -348,121 +359,128 @@
 <<widget 'temple-duties-journal'>>
   <<if maplebirch.get('TempleDuties') and $TempleDuties.enrolled>>
     <<temple-duty-check>>
-    <h1 class='header gold bold'><<lanSwitch 'Temple duties' '神殿职务'>></h1>
-    <ul class='journal'>
-      <li><<lanSwitch 'Duties desk: 09:00–18:00, outside Sunday mass. One paid shift daily; leave enough time to finish.' '职务桌：09:00–18:00，周日弥撒期间暂停。每天可完成一班有薪职务，接班前须留足时间。'>></li>
-      <<if $TempleDuties.duty_day is Math.floor(Time.days)>>
-        <li><<lanSwitch 'Today’s shift is complete.' '今日已完成值班。'>></li>
-      <</if>>
-      <<if $TempleDuties.archive.sorted gt 0 and $TempleDuties.archive.sorted lt 3>>
-        <li><<lanSwitch 'The loose folios are not all restored. Continue drying and sorting them in the old records room.' '散页尚未全部修复，可以去旧资料室继续晾干、整理。'>></li>
-      <</if>>
-      <<for _journalRepair range ['roof', 'shelves']>>
-        <<if $TempleDuties.archive[_journalRepair] gte 0 and Time.days lt $TempleDuties.archive[_journalRepair]>>
-          <li>
-          <<lanSwitch `_journalRepair is 'roof' ? 'Roof and drainage: ' : 'Shelves: '` `_journalRepair is 'roof' ? '屋顶与排水：' : '书架：'`>>
-          <<lanSwitch 'work underway; completion ' '施工中，竣工日期：'>>
-          <span class='gold'><<print getFormattedDate(new DateTime(Time.date).addDays($TempleDuties.archive[_journalRepair] - Math.floor(Time.days)))>></span>
-          </li>
+    <<revelation-card 'Temple duties' '神殿职务'>>
+      <ul class='journal'>
+        <li><<lanSwitch 'Duties desk: 09:00–18:00, outside Sunday mass. One paid shift daily; leave enough time to finish.' '职务桌：09:00–18:00，周日弥撒期间暂停。每天可完成一班有薪职务，接班前须留足时间。'>></li>
+        <<if $TempleDuties.duty_day is Math.floor(Time.days)>>
+          <li><<lanSwitch 'Today’s shift is complete.' '今日已完成值班。'>></li>
         <</if>>
-      <</for>>
-    </ul>
+        <<if $TempleDuties.archive.sorted gt 0 and $TempleDuties.archive.sorted lt 3>>
+          <li><<lanSwitch 'The loose folios are not all restored. Continue drying and sorting them in the old records room.' '散页尚未全部修复，可以去旧资料室继续晾干、整理。'>></li>
+        <</if>>
+        <<for _journalRepair range ['roof', 'shelves']>>
+          <<if $TempleDuties.archive[_journalRepair] gte 0 and Time.days lt $TempleDuties.archive[_journalRepair]>>
+            <li>
+            <<lanSwitch `_journalRepair is 'roof' ? 'Roof and drainage: ' : 'Shelves: '` `_journalRepair is 'roof' ? '屋顶与排水：' : '书架：'`>>
+            <<lanSwitch 'work underway; completion ' '施工中，竣工日期：'>>
+            <span class='gold'><<print getFormattedDate(new DateTime(Time.date).addDays($TempleDuties.archive[_journalRepair] - Math.floor(Time.days)))>></span>
+            </li>
+          <</if>>
+        <</for>>
+      </ul>
+    <</revelation-card>>
     <hr>
     <<if $TempleDuties.case>>
       <<set _caseHeading to $TempleDuties.case.id is 'echo' ? ['Knocking after lights-out', '熄灯后的敲击'] : $TempleDuties.case.id is 'roots' ? ['Roots beneath the records', '卷宗下的根须'] : ['The returned donation crate', '退回的捐赠箱']>>
-      <span class='gold bold'><<lanSwitch _caseHeading[0] _caseHeading[1]>></span><br>
-      <ul class='journal'>
-        <<if $TempleDuties.case.stage is 'report' or $TempleDuties.case.stage is 'combat' and !$combat>>
-          <li><<lanSwitch 'Return to Jordan’s duties desk during the day to give your report.' '白天回约旦的职务桌，汇报调查结果。'>></li>
-        <<elseif $TempleDuties.case.stage is 'combat'>>
-          <li class='red'><<lanSwitch 'An encounter is underway. Finish it or leave safely before filing a report.' '遭遇正在进行。结束或安全撤离后，才能提交报告。'>></li>
-        <<else>>
-          <li><<lanSwitch `$TempleDuties.case.id is 'crate' ? 'Inspect the returned crate at the docks.' : 'Inspect the assigned storeroom through the duties desk or old records room.'` `$TempleDuties.case.id is 'crate' ? '到码头检查退回的货箱。' : '从职务桌或旧资料室前往委托中的储藏室。'`>></li>
-          <<if !$TempleDuties.case.prepared>>
-            <li><<lanSwitch 'Before setting out, ask Jordan for a lamp, rope and gloves at the duties desk.' '出发前，可以到职务桌向约旦借灯、绳索与手套。'>></li>
+      <<revelation-card _caseHeading[0] _caseHeading[1]>>
+        <ul class='journal'>
+          <<if $TempleDuties.case.stage is 'report' or $TempleDuties.case.stage is 'combat' and !$combat>>
+            <li><<lanSwitch 'Return to Jordan’s duties desk during the day to give your report.' '白天回约旦的职务桌，汇报调查结果。'>></li>
+          <<elseif $TempleDuties.case.stage is 'combat'>>
+            <li class='red'><<lanSwitch 'An encounter is underway. Finish it or leave safely before filing a report.' '遭遇正在进行。结束或安全撤离后，才能提交报告。'>></li>
+          <<else>>
+            <li><<lanSwitch `$TempleDuties.case.id is 'crate' ? 'Inspect the returned crate at the docks.' : 'Inspect the assigned storeroom through the duties desk or old records room.'` `$TempleDuties.case.id is 'crate' ? '到码头检查退回的货箱。' : '从职务桌或旧资料室前往委托中的储藏室。'`>></li>
+            <<if !$TempleDuties.case.prepared>>
+              <li><<lanSwitch 'Before setting out, ask Jordan for a lamp, rope and gloves at the duties desk.' '出发前，可以到职务桌向约旦借灯、绳索与手套。'>></li>
+            <</if>>
           <</if>>
-        <</if>>
-      </ul>
+        </ul>
+      <</revelation-card>>
       <hr>
     <</if>>
     <<if $TempleDuties.watch and !['passed', 'failed'].includes($TempleDuties.watch.phase)>>
-      <span class='gold bold'><<lanSwitch 'The lower-door watch' '门前守望'>></span><br>
-      <ul class='journal'>
-        <<if ['roots', 'shadow'].includes($TempleDuties.watch.phase) and $combat>>
-          <li class='red'><<lanSwitch 'The fight is unfinished.' '战斗尚未结束。'>></li>
-        <<elseif Time.date.timeStamp gte $TempleDuties.watch.until>>
-          <li class='red'><<lanSwitch 'The watch has run out of time. Return through the duties desk to leave the passage and report to Jordan.' '守望的时限已经过去。从职务桌返回，退出通道后向约旦说明情况。'>></li>
-        <<else>>
-          <li><<lanSwitch 'Return through the duties desk to continue the watch.' '从职务桌返回下层，继续守望。'>></li>
-        <</if>>
-        <li><<lanSwitch 'Time remaining: ' '剩余时限：'>><span class='gold'><<print Math.max(0, Math.ceil(($TempleDuties.watch.until - Time.date.timeStamp) / 60))>></span><<lanSwitch ' minutes.' '分钟。'>></li>
-      </ul>
+      <<revelation-card 'The lower-door watch' '门前守望'>>
+        <ul class='journal'>
+          <<if ['roots', 'shadow'].includes($TempleDuties.watch.phase) and $combat>>
+            <li class='red'><<lanSwitch 'The fight is unfinished.' '战斗尚未结束。'>></li>
+          <<elseif Time.date.timeStamp gte $TempleDuties.watch.until>>
+            <li class='red'><<lanSwitch 'The watch has run out of time. Return through the duties desk to leave the passage and report to Jordan.' '守望的时限已经过去。从职务桌返回，退出通道后向约旦说明情况。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Return through the duties desk to continue the watch.' '从职务桌返回下层，继续守望。'>></li>
+          <</if>>
+          <li><<lanSwitch 'Time remaining: ' '剩余时限：'>><span class='gold'><<print Math.max(0, Math.ceil(($TempleDuties.watch.until - Time.date.timeStamp) / 60))>></span><<lanSwitch ' minutes.' '分钟。'>></li>
+        </ul>
+      <</revelation-card>>
       <hr>
     <</if>>
     <<if $temple_rank is 'monk' and $TempleDuties.ordained lt 0
         and ($TempleDuties.review or $TempleDuties.trial_day gte 0 or $TempleDuties.watch)
         and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
-      <span class='gold bold'><<lanSwitch 'Priest appointment' '司祭任命'>></span><br>
-      <ul class='journal'>
-        <<if $TempleDuties.review>>
-          <li><<lanSwitch 'Your appointment interview is unfinished. Return to Jordan before 17:00 to continue.' '任职面谈还没有结束。17:00 前回去找约旦，继续交谈。'>></li>
-        <<elseif $TempleDuties.trial_day gte 0>>
-          <li><<lanSwitch 'The lower-door watch is complete. Speak to Jordan before 17:00 about the appointment review.' '下层门前的守望已完成。17:00 前找约旦，商谈任职审查。'>></li>
-        <<elseif $TempleDuties.watch?.phase is 'failed'>>
-          <li><<lanSwitch 'The lower-door watch is unfinished. Return to the duties desk before 14:00 on another day to arrange another attempt.' '下层门前的守望还没有完成。另择一天，在 14:00 前回职务桌商量下一次守望。'>></li>
-        <<else>>
-          <li><<lanSwitch 'Ask Jordan about priest appointments before 17:00. You can review the work still required at the interview.' '17:00 前可以找约旦询问司祭任命，在面谈时核对尚未完成的职责。'>></li>
-        <</if>>
-      </ul>
+      <<revelation-card 'Priest appointment' '司祭任命'>>
+        <ul class='journal'>
+          <<if $TempleDuties.review>>
+            <li><<lanSwitch 'Your appointment interview is unfinished. Return to Jordan before 17:00 to continue.' '任职面谈还没有结束。17:00 前回去找约旦，继续交谈。'>></li>
+          <<elseif $TempleDuties.trial_day gte 0>>
+            <li><<lanSwitch 'The lower-door watch is complete. Speak to Jordan before 17:00 about the appointment review.' '下层门前的守望已完成。17:00 前找约旦，商谈任职审查。'>></li>
+          <<elseif $TempleDuties.watch?.phase is 'failed'>>
+            <li><<lanSwitch 'The lower-door watch is unfinished. Return to the duties desk before 14:00 on another day to arrange another attempt.' '下层门前的守望还没有完成。另择一天，在 14:00 前回职务桌商量下一次守望。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Ask Jordan about priest appointments before 17:00. You can review the work still required at the interview.' '17:00 前可以找约旦询问司祭任命，在面谈时核对尚未完成的职责。'>></li>
+          <</if>>
+        </ul>
+      <</revelation-card>>
       <hr>
     <</if>>
     <<for _journalCandidate range ['Robin', 'Sydney']>>
       <<set $_journalRank to _journalCandidate is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
       <<set _journalPreparation to $TempleDuties.candidates[_journalCandidate]>>
       <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and $_journalRank is 'monk'>>
-        <span class='gold bold'><<lanSwitch `maplebirch.auto(_journalCandidate) + ' · Ordination'` `maplebirch.auto(_journalCandidate) + ' · 司祭任职'`>></span><br>
-        <ul class='journal'>
-          <<if !_journalPreparation.lessons.includes('care')>>
-            <li><<lanSwitch 'Accompany prayers and a parish visit through the preparation book.' '通过任职准备名册，陪同参与祈祷与教区成员接待。'>></li>
-          <<elseif !_journalPreparation.lessons.includes('wards')>>
-            <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
-          <<elseif _journalPreparation.trial_day lt 0>>
-            <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文，两处都需要照应。'>></li>
-          <<elseif !_journalPreparation.reviewed>>
-            <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
-          <<else>>
-            <li><<lanSwitch 'Jordan has heard your companion’s answers. Return to the warm room together when you are both free.' '约旦已听过同伴的回答。两人有空时，一起到暖室接受任命。'>></li>
-          <</if>>
-        </ul>
+        <<revelation-card `maplebirch.auto(_journalCandidate) + ' · Ordination'` `maplebirch.auto(_journalCandidate) + ' · 司祭任职'`>>
+          <ul class='journal'>
+            <<if !_journalPreparation.lessons.includes('care')>>
+              <li><<lanSwitch 'Accompany prayers and a parish visit through the preparation book.' '通过任职准备名册，陪同参与祈祷与教区成员接待。'>></li>
+            <<elseif !_journalPreparation.lessons.includes('wards')>>
+              <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
+            <<elseif _journalPreparation.trial_day lt 0>>
+              <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文，两处都需要照应。'>></li>
+            <<elseif !_journalPreparation.reviewed>>
+              <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
+            <<else>>
+              <li><<lanSwitch 'Jordan has heard your companion’s answers. Return to the warm room together when you are both free.' '约旦已听过同伴的回答。两人有空时，一起到暖室接受任命。'>></li>
+            <</if>>
+          </ul>
+        <</revelation-card>>
         <hr>
       <</if>>
     <</for>>
     <<if $TempleDuties.bishop is 'accepted'>>
-      <span class='gold bold'><<lanSwitch 'The sealed comparison' '密封的比对记录'>></span><br>
-      <ul class='journal'>
-        <<if $TempleDuties.bishop_checked>>
-          <li><<lanSwitch 'Return to the duties desk and give the sealed copy to the bishop waiting there as a confessor.' '回职务桌，把密封副本交给以告解员身份等候的主教。'>></li>
-        <<elseif !$TempleDuties.archive.topics.includes('deliveries')>>
-          <li><<lanSwitch 'Read the old crate handover records in the records room.' '到旧资料室查阅旧货箱交接记录。'>></li>
-        <<elseif !$TempleDuties.reports.crate?.honest or $TempleDuties.reports.crate?.result isnot 'resolved'>>
-          <li><<lanSwitch 'Finish the returned-crate investigation and give Jordan a truthful report before making the private comparison.' '先完成退回货箱的调查，向约旦如实汇报，再做私下的比对。'>></li>
-        <<else>>
-          <li><<lanSwitch 'Your report and the old receipts are ready to compare. Return to the old records room to make the separate copy.' '调查报告与旧收据都已备好。回旧资料室比对，抄出单独的副本。'>></li>
-        <</if>>
-      </ul>
+      <<revelation-card 'The sealed comparison' '密封的比对记录'>>
+        <ul class='journal'>
+          <<if $TempleDuties.bishop_checked>>
+            <li><<lanSwitch 'Return to the duties desk and give the sealed copy to the bishop waiting there as a confessor.' '回职务桌，把密封副本交给以告解员身份等候的主教。'>></li>
+          <<elseif !$TempleDuties.archive.topics.includes('deliveries')>>
+            <li><<lanSwitch 'Read the old crate handover records in the records room.' '到旧资料室查阅旧货箱交接记录。'>></li>
+          <<elseif !$TempleDuties.reports.crate?.honest or $TempleDuties.reports.crate?.result isnot 'resolved'>>
+            <li><<lanSwitch 'Finish the returned-crate investigation and give Jordan a truthful report before making the private comparison.' '先完成退回货箱的调查，向约旦如实汇报，再做私下的比对。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Your report and the old receipts are ready to compare. Return to the old records room to make the separate copy.' '调查报告与旧收据都已备好。回旧资料室比对，抄出单独的副本。'>></li>
+          <</if>>
+        </ul>
+      <</revelation-card>>
       <hr>
     <</if>>
     <<if ['accepted', 'copied'].includes($TempleDuties.manor)>>
-      <span class='gold bold'><<lanSwitch 'The manor’s monstrance' '庄园中的圣体匣'>></span><br>
-      <ul class='journal'>
-        <<if !$TempleDuties.archive.topics.includes('monstrance')>>
-          <li><<lanSwitch 'Read the indexed description in the old records room.' '到旧资料室查阅索引中的描述。'>></li>
-        <<elseif $TempleDuties.manor is 'accepted'>>
-          <li><<lanSwitch 'Speak to Kylar at the manor during an evening visit.' '傍晚去庄园拜访凯拉尔，询问圣体匣。'>></li>
-        <<else>>
-          <li><<lanSwitch 'Take Kylar’s description back to the duties desk to collect the payment promised for the copy.' '把凯拉尔同意提供的描述带回职务桌，领取约好的抄录报酬。'>></li>
-        <</if>>
-      </ul>
+      <<revelation-card 'The manor’s monstrance' '庄园中的圣体匣'>>
+        <ul class='journal'>
+          <<if !$TempleDuties.archive.topics.includes('monstrance')>>
+            <li><<lanSwitch 'Read the indexed description in the old records room.' '到旧资料室查阅索引中的描述。'>></li>
+          <<elseif $TempleDuties.manor is 'accepted'>>
+            <li><<lanSwitch 'Speak to Kylar at the manor during an evening visit.' '傍晚去庄园拜访凯拉尔，询问圣体匣。'>></li>
+          <<else>>
+            <li><<lanSwitch 'Take Kylar’s description back to the duties desk to collect the payment promised for the copy.' '把凯拉尔同意提供的描述带回职务桌，领取约好的抄录报酬。'>></li>
+          <</if>>
+        </ul>
+      <</revelation-card>>
       <hr>
     <</if>>
   <</if>>

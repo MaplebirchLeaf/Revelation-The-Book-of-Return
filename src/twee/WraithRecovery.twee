@@ -1,52 +1,79 @@
 :: Revelation Ivory Recovery Widgets [widget]
 <<widget 'ivory-necklace-history'>>
   <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues>>
-    <<if $RBR.necklace.clothed and ($RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found')>>
+    <<if maplebirch.get('RBR') and Array.isArray($specialClothes)>>
+      <<set $_ivoryStock to $specialClothes.some(item => item.name is 'ivory necklace')>>
+      <<if !$_ivoryStock>><<run $specialClothes.push({ name: 'ivory necklace', unlocked: 0 })>><</if>>
+    <</if>>
+    <<if !$RBR.necklace.saleChecked>>
+      <!-- 先修正旧版奎恩已付款却仍为 found 的记录，再同步饰品，避免读档后暂时保留已售出的实物。 -->
+      <<if !$RBR.necklace.reclaimed and !$RBR.necklace.returnedOnce
+          and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
+          and $necklaceThief is 'player' and $town_projects?.diving gte 3
+          and $moneyStats?.townProject?.earned gte 600000>>
+        <<set $museumAntiques.antiques.antiqueivorynecklace to 'museum'>>
+        <<set $RBR.necklace.known to true>>
+      <</if>>
+      <<set $RBR.necklace.saleChecked to true>>
+    <</if>>
+    <<if !$RBR.necklace.clothesChecked>>
+      <!-- 只迁移有剧情交付记录的旧档，新购同名饰品不带遗物来源，之后不再追认。 -->
+      <<if $RBR.necklace.clothed or $RBR.necklace.reclaimed
+          or $necklaceThief is 'player' and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
+        <<for $_clothes range [$worn, $carried, $wardrobe, $store, $wardrobeRepair, $tryOn?.ownedStored, $tryOn?.tryingOn].concat(Object.values($wardrobes ?? {}))>>
+          <<set $_ivoryItems to Array.isArray($_clothes?.neck) ? $_clothes.neck : [$_clothes?.neck]>>
+          <<for $_item range $_ivoryItems>>
+            <<if ($_item?.name ?? setup.clothes.neck[$_item?.index]?.name) is 'ivory necklace' and $_item.ivorySource is undefined>>
+              <<set $_item.ivorySource to 'relic'>>
+              <<set $RBR.necklace.clothed to true>>
+            <</if>>
+          <</for>>
+        <</for>>
+      <</if>>
+      <<set $RBR.necklace.clothesChecked to true>>
+    <</if>>
+    <<if $RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'>>
       <<ivory-necklace-clothes 'clear'>>
-    <<elseif maplebirch.get('RBR') and $RBR.necklace.reclaimed and !$RBR.necklace.clothed
+    <<elseif maplebirch.get('RBR') and ($RBR.necklace.reclaimed or $necklaceThief is 'player') and !$RBR.necklace.clothed
         and !$RBR.necklace.returned and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
-      <!-- 旧档已盗回的实物补入原生衣柜一次，之后丢弃衣物也不重新发放。 -->
+      <!-- 旧档已取得的剧情实物补入原生衣柜一次，之后丢弃衣物也不重新发放。 -->
       <<ivory-necklace-clothes 'give'>>
     <</if>>
-  <</if>>
-  <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues
-      and $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
-    <<set $RBR.necklace.stage to ''>>
-  <</if>>
-  <<if $RBR?.necklace and !$RBR.necklace.saleChecked and !$replayScene and !$statFreeze and !$frozenValues>>
-    <!-- 旧版直接出售给奎恩会扣款却留下 found，只修有实际出售收入证据、且未进入归还循环的旧档。 -->
-    <<if !$RBR.necklace.reclaimed and !$RBR.necklace.returnedOnce
-        and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
-        and $necklaceThief is 'player' and $town_projects?.diving gte 3
-        and $moneyStats?.townProject?.earned gte 600000>>
-      <<set $museumAntiques.antiques.antiqueivorynecklace to 'museum'>>
-      <<set $RBR.necklace.known to true>>
+    <<if $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
+      <<set $RBR.necklace.stage to ''>>
     <</if>>
-    <<set $RBR.necklace.saleChecked to true>>
   <</if>>
 <</widget>>
 
 <<widget 'ivory-necklace-clothes'>>
   <<if !$RBR?.necklace or $replayScene or $statFreeze or $frozenValues>><<exit>><</if>>
   <<if _args[0] is 'clear'>>
-    <<if !$RBR.necklace.clothed>><<exit>><</if>>
-    <!-- 沿用原版衣物所在容器，只收回这一件遗物，不触碰其它颈饰或整个衣柜。 -->
+    <<set $_ivoryRemoved to false>>
+    <!-- 只收回剧情实物，森林商店购买的同名饰品不受影响。 -->
     <<for $_clothes range [$worn, $carried, $wardrobe, $store, $wardrobeRepair, $tryOn?.ownedStored, $tryOn?.tryingOn].concat(Object.values($wardrobes ?? {}))>>
       <<if Array.isArray($_clothes?.neck)>>
-        <<set $_clothes.neck to $_clothes.neck.filter(item => (item?.name ?? setup.clothes.neck[item?.index]?.name) isnot 'ivory necklace')>>
-      <<elseif $_clothes?.neck?.name is 'ivory necklace'>>
+        <<set $_ivoryItems to $_clothes.neck.filter(item => item?.ivorySource isnot 'relic'
+          or (item.name ?? setup.clothes.neck[item.index]?.name) isnot 'ivory necklace')>>
+        <<if $_ivoryItems.length isnot $_clothes.neck.length>>
+          <<set $_clothes.neck to $_ivoryItems>>
+          <<set $_ivoryRemoved to true>>
+        <</if>>
+      <<elseif $_clothes?.neck?.name is 'ivory necklace'
+          and $_clothes.neck.ivorySource is 'relic'>>
         <<set $_clothes.neck to clone(setup.clothes.neck[0])>>
+        <<set $_ivoryRemoved to true>>
       <</if>>
     <</for>>
     <<set $RBR.necklace.clothed to false>>
-    <<updateallure>><<updatesidebarimg>><<updatesidebardescription>>
+    <<if $_ivoryRemoved>><<updateallure>><<updatesidebarimg>><<updatesidebardescription>><</if>>
   <<elseif _args[0] is 'give' and maplebirch.get('RBR')>>
-    <<if !$RBR.necklace.reclaimed or $RBR.necklace.clothed
+    <<if (!$RBR.necklace.reclaimed and $necklaceThief isnot 'player') or $RBR.necklace.clothed
         or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'
         or $RBR.necklace.returned>><<exit>><</if>>
     <!-- 先记录交付，再由原生衣柜接管保存与穿戴，刷新或读档不再发一件。 -->
     <<set $RBR.necklace.clothed to true>>
     <<generalSend 'wardrobe' 'neck' 'ivory necklace'>>
+    <<set $wardrobe.neck.last().ivorySource to 'relic'>>
   <</if>>
 <</widget>>
 

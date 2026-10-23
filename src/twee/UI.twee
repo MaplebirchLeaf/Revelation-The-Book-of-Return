@@ -2,7 +2,7 @@
 
 <<widget 'revelation-card' 'container'>>
   <section class='revelation-card'>
-    <div class='revelation-card-title bold'>
+    <div class='revelation-card-title header gold bold'>
       <<lanSwitch _args[0] _args[1]>>
     </div>
     <div class='revelation-card-body'>

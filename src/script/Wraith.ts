@@ -22,7 +22,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 再次拿走后清除当前归还状态，随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
           src: '<<set $necklaceThief to "player">>',
-          applyafter: '<<wraith-necklace-retake>>',
+          applyafter: '<<wraith-necklace-retake>><<ivory-necklace-clothes "give">>',
           expected: 1
         },
         { src: '<<if _leave>>', applyafter: '<<ivory-necklace-link>>', expected: 1 }
@@ -90,6 +90,14 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         }
       ],
+      'Wardrobe Repair Crate Result': [
+        {
+          // 原版维修已保留白名单里的实例字段，补入来源即可区分遗物与商店饰品。
+          src: '...T.itemStatsIdentifierKeys,',
+          applyafter: '\n\t"ivorySource",',
+          expected: 1
+        }
+      ],
       'Town Hall Computer 2': [
         { src: '<<effects>>', applyafter: '<<ivory-necklace-learn "quinn">>', expected: 1 },
         {
@@ -106,6 +114,14 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ]
     },
     widgetPassage: {
+      MuseumAntiques: [
+        {
+          // 所有权实际变更后同步唯一实物，博物馆与奎恩出售、归还和失窃共用原版结算。
+          src: '<<set $museumAntiques.antiques[_args[0]] to _args[1]>>',
+          applyafter: '<<if _args[0] is "antiqueivorynecklace" and _args[1] isnot "found">><<ivory-necklace-clothes "clear">><</if>>',
+          expected: 1
+        }
+      ],
       'Widgets Museum': [
         {
           src: '<<museumAntiqueStatus "antiqueivorynecklace" "talk">>',
@@ -132,6 +148,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
     }
   });
 
+  maplebirch.tool.onInit('ivory-necklace-stock');
   maplebirch.tool.addTo('Journal', 'ivory-necklace-journal');
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'ivory-necklace-recovery-link', passage: 'Town Hall Wait' });
   maplebirch.tool.addTo('BeforeLinkZone', { widget: 'wraith-return-rest-link', passage: 'Bed' });

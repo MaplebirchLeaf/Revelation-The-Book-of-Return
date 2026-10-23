@@ -1,4 +1,22 @@
 :: Revelation Wraith Widgets [widget]
+<<widget 'ivory-necklace-stock'>>
+  <<silently>>
+    <<if maplebirch.get('RBR')>>
+      <<set $_necklace to setup.clothes.neck.find(item => item.name is 'ivory necklace')>>
+      <<run $_necklace.shop.pushUnique('forest')>>
+      <<if !setup.specialClothes.some(item => item.name is 'ivory necklace')>>
+        <!-- 复用原版独立特殊服装，归还过遗物后可购买，不把衣物副本当成湖底的真品。 -->
+        <<run setup.specialClothes.push({
+          name: 'ivory necklace',
+          sets: [],
+          requirements: () => Boolean(V.RBR?.necklace?.returnedOnce),
+          get hint() { return lanSwitch('return the ivory necklace', '归还象牙项链'); }
+        })>>
+      <</if>>
+    <</if>>
+  <</silently>>
+<</widget>>
+
 <<widget 'ivory-necklace-check'>>
   <<silently>>
     <<set _ivorySafe to Boolean(maplebirch.get('RBR')) and Boolean($RBR?.necklace)
@@ -105,32 +123,33 @@
           or ($RBR.necklace.aftercare isnot 'complete' and !['dead', 'sold'].includes($wraith?.offspring))
         : ($RBR.necklace.known and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace))
           or (($necklaceThief is 'player' or $RBR.necklace.reclaimed) and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'))>>
-    <h1 class='header gold bold'><<lanSwitch 'The ivory necklace' '象牙项链'>></h1>
-    <ul class='journal'>
-        <<if $RBR.necklace.returned>>
-          <<wraith-return-journal>>
-          <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
-            <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
-          <</if>>
-        <<elseif ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
-          <li><<lanSwitch 'The necklace was taken to the mayor’s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
-          <<if $RBR.necklace.prepared>>
-            <li><<lanSwitch 'You have studied the visitors and the stairway. Getting past reception will only be the beginning; the case is guarded by a camera.' '你已经留意过访客和楼梯。混过前台只是第一步，展示盒旁还有摄像头。'>></li>
-          <</if>>
-        <<else>>
-          <<if $RBR.necklace.advised>>
-            <li><<lanSwitch 'Gwylan suggested returning the necklace to its original plinth, away from the red moon. Take it back to the plinth beneath the lake if you decide to follow that advice.' '格威岚建议避开红月，把项链送回原来的基座。若决定照做，就带着它回湖底的基座。'>></li>
+    <<revelation-card 'The ivory necklace' '象牙项链'>>
+      <ul class='journal'>
+          <<if $RBR.necklace.returned>>
+            <<wraith-return-journal>>
+            <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
+              <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
+            <</if>>
+          <<elseif ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
+            <li><<lanSwitch 'The necklace was taken to the mayor’s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
+            <<if $RBR.necklace.prepared>>
+              <li><<lanSwitch 'You have studied the visitors and the stairway. Getting past reception will only be the beginning; the case is guarded by a camera.' '你已经留意过访客和楼梯。混过前台只是第一步，展示盒旁还有摄像头。'>></li>
+            <</if>>
           <<else>>
-            <li><<lanSwitch 'You still have the necklace taken from beneath the lake. If you decide to return it, you can take it back to the plinth.' '你仍拿着从湖底取走的项链。想归还的话，可以带回原来的基座。'>></li>
-            <<if C.npc.Gwylan?.init is 1>>
-              <li><<lanSwitch 'You could ask Gwylan about the necklace at the forest shop.' '也可以去森林商店，问问格威岚项链的事。'>></li>
+            <<if $RBR.necklace.advised>>
+              <li><<lanSwitch 'Gwylan suggested returning the necklace to its original plinth, away from the red moon. Take it back to the plinth beneath the lake if you decide to follow that advice.' '格威岚建议避开红月，把项链送回原来的基座。若决定照做，就带着它回湖底的基座。'>></li>
+            <<else>>
+              <li><<lanSwitch 'You still have the necklace taken from beneath the lake. If you decide to return it, you can take it back to the plinth.' '你仍拿着从湖底取走的项链。想归还的话，可以带回原来的基座。'>></li>
+              <<if C.npc.Gwylan?.init is 1>>
+                <li><<lanSwitch 'You could ask Gwylan about the necklace at the forest shop.' '也可以去森林商店，问问格威岚项链的事。'>></li>
+              <</if>>
+            <</if>>
+            <<if $RBR.necklace.retaken gt 0>>
+              <li class='red'><<lanSwitch 'You took the necklace again after returning it. The pale figure has not forgotten.' '你把已经归还的项链又拿走了。那苍白的身影没有忘记。'>></li>
             <</if>>
           <</if>>
-          <<if $RBR.necklace.retaken gt 0>>
-            <li class='red'><<lanSwitch 'You took the necklace again after returning it. The pale figure has not forgotten.' '你把已经归还的项链又拿走了。那苍白的身影没有忘记。'>></li>
-          <</if>>
-        <</if>>
-    </ul>
+      </ul>
+    <</revelation-card>>
     <hr>
   <</if>>
 <</widget>>
@@ -181,7 +200,6 @@
     <<if _ivoryFirstReturn>><<run maplebirch.get('Psyche')?.change(75, -250)>><</if>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
-    <<ivory-necklace-clothes 'clear'>>
     <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>
     <<if ['haunt', 'despair'].includes($wraith?.state)>><<set $wraith.state to 'active'>><</if>>
     <<if C.npc['Ivory Wraith']?.init is 1
@@ -237,6 +255,9 @@
   <</language>>
   <br><br>
 <</if>>
+<<if maplebirch.get('RBR') and !$replayScene and !$statFreeze and !$frozenValues>>
+  <<specialClothesUnlock 'item' 'ivory necklace'>>
+<</if>>
 <<swimicon 'back'>><<lanLink ['Leave', '离开'] 'Lake Ruin Deep'>><<set $phase to 0>><</lanLink>><br>
 
 :: Revelation Ivory Necklace Gwylan
@@ -276,7 +297,7 @@
       <<if $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
         You feel the weight of the necklace among your belongings. It is still your choice whether to take it back beneath the lake.
       <<else>>
-        You tell <<him>> the necklace is no longer in your possession. Gwylan sighs. "I can't give you something I don't have." <<He>> takes <<his>> hands off the counter. "You can't put it back if you haven't got it."
+        You tell <<him>> the necklace is no longer in your possession. Gwylan sighs. "I haven't got the one from the lake." <<He>> takes <<his>> hands off the counter. "You can't put it back if you haven't got it."
       <</if>>
     <<option 'CN'>>
       “你想把它还回去？”格威岚将双手搭在柜台上。“先回到它被拿走的地方。放下它，也做好离开的准备。”
@@ -286,7 +307,7 @@
       <<if $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
         你感觉到随身物品里那条项链的分量。要不要带它回到湖底，仍由你决定。
       <<else>>
-        你告诉<<him>>，项链已经不在你手里。格威岚叹了口气。“我手里没有，也拿不出来给你。”<<He>>将双手从柜台上移开。“东西不在手里，还怎么放回去？”
+        你告诉<<him>>，项链已经不在你手里。格威岚叹了口气。“湖底那一条不在我这里。”<<He>>将双手从柜台上移开。“东西不在手里，还怎么放回去？”
       <</if>>
   <</language>>
 <</if>>
