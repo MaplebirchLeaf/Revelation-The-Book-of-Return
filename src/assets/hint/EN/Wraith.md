@@ -18,6 +18,8 @@ During an ordinary forest-shop visit when Gwylan is available to talk, you may a
 
 ### Recovering it from Quinn
 
+After recovering it, you may wear the original ivory necklace or keep it in your wardrobe. The necklace's journal entry offers the same choice if you leave it for later. Both options use the same item and cannot be claimed twice. Returning or handing over the relic also removes the wearable necklace.
+
 After Winter explains where the necklace went, or you see it in Quinn's office, visit the mayor's waiting room during the day. Directly handing it to Quinn or seeing the diving team's recovery also provides the lead. The necklace must actually be in Quinn's custody.
 
 Watch the visitors for **15 minutes**. On a later or the same visit, look for an opportunity to pass reception while Quinn is downstairs. There are separate skulduggery checks for reception (**600**), the camera (**500**) and the reinforced case (**900**). At least half your maximum physique also allows you to break the case, at the cost of an alarm and theft/destruction crime. You can retreat at every stage. Only one attempt is possible each day. Nighttime shutters remain impassable.

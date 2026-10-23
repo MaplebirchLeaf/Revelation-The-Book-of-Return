@@ -12,6 +12,7 @@ export const DEFAULT_REVELATION_STATE = {
     advised: false,
     followedUp: false,
     reclaimed: false,
+    clothed: false,
     saleChecked: false,
     known: false,
     prepared: false,

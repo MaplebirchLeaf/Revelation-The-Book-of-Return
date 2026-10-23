@@ -131,6 +131,7 @@
           <</if>>
         <</if>>
       </ul>
+      <<ivory-necklace-clothes-options>>
     <</revelation-card>>
     <hr>
   <</if>>
@@ -182,6 +183,7 @@
     <<if _ivoryFirstReturn>><<run maplebirch.get('Psyche')?.change(75, -250)>><</if>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
+    <<ivory-necklace-clothes 'clear'>>
     <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>
     <<if ['haunt', 'despair'].includes($wraith?.state)>><<set $wraith.state to 'active'>><</if>>
     <<if C.npc['Ivory Wraith']?.init is 1

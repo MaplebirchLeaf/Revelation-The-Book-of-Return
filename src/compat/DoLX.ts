@@ -5,6 +5,26 @@ export default function DoLX(core: typeof window.maplebirch): void {
   const data = core.services.addonPlugin.SC2DataManager.getSC2DataInfoAfterPatch();
   if (!data.scriptFileItems.getByNameWithOrWithoutPath('xchange.js')) return;
   const zone = core.tool.zone;
+  if (data.passageDataItems.map.has('Museum Sell Ivory Necklace')) {
+    if (!data.passageDataItems.map.get('Widgets Museum')?.content.includes('<<museumAntiqueStatus "antiqueivorynecklace" "talk">>')) {
+      zone.widgetPassage['Widgets Museum'] = (zone.widgetPassage['Widgets Museum'] ?? []).filter(
+        rule => rule.src !== '<<museumAntiqueStatus "antiqueivorynecklace" "talk">>' || !rule.to?.includes('$RBR?.necklace?.reclaimed')
+      );
+    }
+    for (const title of ['Museum', 'Museum Sell']) {
+      core.tool.inject({
+        locationPassage: {
+          [title]: [
+            {
+              src: '$museumAntiques.antiques.antiqueivorynecklace is "found" ? 2000 : 0',
+              to: '$museumAntiques.antiques.antiqueivorynecklace is "found" and !$RBR?.necklace?.reclaimed ? 2000 : 0',
+              expected: 1
+            }
+          ]
+        }
+      });
+    }
+  }
   if (core.get('RobinTemple')) {
     // DoLX 增加了誓约检查分支，各处继续使用罗宾独立的誓约状态。
     for (const rule of zone.widgetPassage['Widgets Text'] ?? []) {
