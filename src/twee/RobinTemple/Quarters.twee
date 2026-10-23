@@ -33,6 +33,7 @@
             <<set $_cleaningSkill to currentSkillValue($_robinWorkKind is 'garden' ? 'tending' : 'housekeeping')>>
             <<set State.variables[$_robinWorkField] to Math.min(100, State.variables[$_robinWorkField] + 3 + [200, 400, 600, 800, 1200, 1500].filter(value => value <= $_cleaningSkill).length)>>
             <<set $RobinTemple.work_day to Time.days>><<set $RobinTemple.service += 1>>
+            <<run maplebirch.get('Psyche')?.rest(5, -80)>>
             <<set maplebirch.get('RobinTemple').faith += 3>>
             <<if $_robinWorkKind is 'garden'>>
               <<grace 1 monk>><<tiredness 6>><<tending 1>>

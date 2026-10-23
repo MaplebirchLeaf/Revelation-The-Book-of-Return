@@ -10,8 +10,10 @@ export function restoreLostLamb(): void {
   const progress = clone(V.LostLamb);
   // unfreeze 会还原包括本模块在内的全部变量，因此要在它之后放回演绎进度。
   new maplebirch.SugarCube.Wikifier(null, '<<unfreezePlayerStats>><<canvas-model-override "clear">>');
+  const first_ending = progress.ending && !V.LostLamb.endings.includes(progress.ending);
   V.LostLamb = progress;
   V.LostLamb.active = false;
+  if (first_ending) maplebirch.get('Psyche')?.change(40, 100);
 }
 
 /** 使用原版演绎冻结机制，进度在恢复真实存档后单独保留。 */

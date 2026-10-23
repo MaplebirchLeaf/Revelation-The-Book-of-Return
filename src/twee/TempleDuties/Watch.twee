@@ -230,6 +230,7 @@
       <<temple-watch-check>>
       <<if _watchSafe and _watch.phase is 'threshold'>>
         <<set _watch.phase to 'roots'>>
+        <<run maplebirch.get('Psyche')?.change(-15, 150)>>
         <<set $combat to 1>>
         <<set $enemytype to 'tentacles'>>
         <<molested>>
@@ -342,6 +343,7 @@
     <<temple-duty-action `['Use your copied pattern; count everyone before sealing the door (0:20)', '按纸上的图样封门，先确认所有人都在身后 (0:20)']` 20 'Revelation Temple Watch Passed' `_watch.party`>>
       <<temple-watch-check>>
       <<if _watchSafe and _watch.phase is 'seal'>>
+        <<set $_watchFirstPass to $TempleDuties.trial_day lt 0>>
         <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
         <<for _watchName range _watch.party>>
           <<if _watch.aids.includesAll(_watchName + ':lamp', _watchName + ':answer')>>
@@ -352,12 +354,16 @@
           <</if>>
         <</for>>
         <<set _watch.phase to 'passed'>>
+        <<if $_watchFirstPass>><<run maplebirch.get('Psyche')?.change(60, -200)>><<else>><<run maplebirch.get('Psyche')?.rest(10, -150)>><</if>>
       <</if>>
     <</temple-duty-action>>
     <br>
     <<mirroricon>>
     <<lanLink ['Copy the gap from reflection', '照倒影补齐图样'] 'Revelation Temple Watch Failed'>>
-      <<set _watch.phase to 'failed'>>
+      <<if _watch.phase is 'seal'>>
+        <<set _watch.phase to 'failed'>>
+        <<run maplebirch.get('Psyche')?.change(-30, 200)>>
+      <</if>>
     <</lanLink>>
     <br>
 <</switch>>

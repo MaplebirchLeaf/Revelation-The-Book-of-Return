@@ -91,9 +91,9 @@
 <<widget 'ivory-necklace-quinn-empty'>>
   <<language>>
     <<option 'EN'>>
-      The reinforced case beside the desk is empty. A camera in the corner slowly sweeps back and forth across the room.
+      <<if _args[0]>> looks at the empty reinforced case beside the desk.<<else>>The reinforced case beside the desk is empty.<</if>> A camera in the corner slowly sweeps back and forth across the room.
     <<option 'CN'>>
-      桌旁的加固展示盒空着。角落里的摄像头缓缓转动，来回扫视着房间。
+      <<if _args[0]>>看了看桌旁空着的加固展示盒。<<else>>桌旁的加固展示盒空着。<</if>>角落里的摄像头缓缓转动，来回扫视着房间。
   <</language>>
   <br><br>
 <</widget>>
@@ -179,6 +179,7 @@
     <!-- 先交还实物、扣除待售账目，再走原版水下行动，时间钩子重入也不会重复结算。 -->
     <<set $RBR.necklace.returned to true>>
     <<set $RBR.necklace.returnedOnce to true>>
+    <<if _ivoryFirstReturn>><<run maplebirch.get('Psyche')?.change(75, -250)>><</if>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
     <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>

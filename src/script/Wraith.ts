@@ -57,9 +57,9 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         {
-          // 仅包裹展示盒描述，保留原文和两种状态共用的离场出口。
-          srcmatch: /(<<else>>\s*)(<<He>>[^\r\n]*\s*<br><br>)/,
-          to: '$1<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty>><<else>><<ivory-necklace-learn "quinn">>$2<</if>>',
+          // 保留 else 与人物代词的连续锚点，只判断其后的展示盒描述，共用原版离场出口。
+          srcmatch: /(<<else>>\s*<<He>>)([^\r\n]*\s*<br><br>)/,
+          to: '$1<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty true>><<else>><<ivory-necklace-learn "quinn">>$2<</if>>',
           expected: 1
         }
       ],

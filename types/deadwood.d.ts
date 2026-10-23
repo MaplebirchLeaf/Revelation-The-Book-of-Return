@@ -7,6 +7,7 @@ interface DeadwoodResidence {
 
 declare global {
   interface MaplebirchExtensions {
+    Psyche: { change(sanity?: number, fear?: number): void; rest(sanity?: number, fear?: number): void };
     Finance: {
       donations: {
         sponsor(fund: 'orphanage' | 'hospital' | 'school' | 'temple', pounds: number, purpose: { EN: string; CN: string }): boolean;
