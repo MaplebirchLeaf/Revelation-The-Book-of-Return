@@ -69,7 +69,7 @@ A completed service records **£70 + £20 per performance point**: £70 at zero 
 
 Pass the monthly examination and receive an allowance to collect them. A failed examination or allowance withheld for insufficient grace leaves them pending. Examinations with Robin, or both promise partners, use the same balance. Robin's weekly income and Finance's relief fund remain separate.
 
-The Journal records the schedule, approval to lead and unpaid choir earnings. Practice and service counts are shown while you are working towards permission to lead.
+The Journal records the schedule, approval to lead and unpaid choir earnings. Completed practice and service counts are shown in Statistics.
 
 ### If an entry is missing
 

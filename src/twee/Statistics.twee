@@ -1,0 +1,18 @@
+:: Revelation Statistics Widgets [widget]
+
+<<widget 'revelation-statistics'>>
+  <<if maplebirch.get('RobinTemple')?.member or maplebirch.get('TempleChoir') and $TempleChoir.joined>>
+    <<foldout false '_revelationTempleFoldout'>>
+      <span class='gold'><<lanSwitch 'Temple work' '神殿工作'>></span>
+      <<if maplebirch.get('RobinTemple')?.member>>
+        <<lanSwitch 'Shared duties with Robin: ' '与罗宾共同值班：'>><<print $RobinTemple.service>><br>
+        <<lanSwitch 'Robin’s temple contribution: ' '罗宾的神殿贡献：'>><<print $RobinTemple.grace>>/100<br>
+      <</if>>
+      <<if maplebirch.get('TempleChoir') and $TempleChoir.joined>>
+        <<lanSwitch 'Choir practices: ' '唱诗班练习：'>><<print $TempleChoir.practices>><br>
+        <<lanSwitch 'Choir services: ' '弥撒唱诗：'>><<print $TempleChoir.services>><br>
+      <</if>>
+    <</foldout>>
+    <br>
+  <</if>>
+<</widget>>

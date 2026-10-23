@@ -82,21 +82,21 @@
   <<option 'EN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        A night-shift attendant heard knocking behind the lower storeroom wall after lights-out. Jordan hands you the building plan. "Listen along the drainpipe and inspect the shutter fastening. If wind is causing loose fittings to strike the masonry, fasten them and test the drain. Learn the actual physical cause before leaping to conclusions or drawing exorcism seals on the stone."
+        A night-shift attendant heard knocking behind the lower storeroom wall after lights-out. Jordan hands you the building plan. "Please check the drainpipe and the shutter fastening. They have both needed repairs before. Find out where the sound comes from, and tell me if there is anything you cannot explain."
       <<case 'roots'>>
-        "Abnormal roots have crept through the lower storeroom wall, tangling around the old delivery books," Jordan says, tapping the ledger. "They are not ordinary vines; the last attendant saw them lash out. Do not rush in recklessly. Borrow a lamp, rope and gloves from the equipment locker. Once inside, first mark a chalk retreat path and copy down the growth marks around the roots. Only then, with your retreat secured, move to sever the roots and retrieve the books. If they swarm you, hold the stone doorway where you cannot be flanked."
+        "Roots have grown through the lower storeroom wall and caught the old delivery books," Jordan says, tapping the ledger. "The attendant says they moved when approached. Take a lamp, rope and gloves. I would like the books back, but not at the cost of your safety. Make sure you can get out."
       <<case 'crate'>>
-        "A crate of relief supplies has been returned to the docks warehouse," Jordan says, pointing to the shipping note. "Its seal is unbroken, yet it weighs far more than recorded, and a porter heard cries for help near the collapsed bilge floorboards. Go there and secure a stable gangway over the dark water before anything else. Bring the trapped worker out to safety, and inspect the seals on the crate. If pale tendrils surge from the water, stand firm on the reinforced planks to drive them back. Ensure everyone is safely outside before you lock up."
+        "A crate of relief supplies has been returned to the docks warehouse," Jordan says, pointing to the shipping note. "The seal is intact, but its weight does not match the record. Part of the floor has collapsed, and a porter heard someone calling beneath it. Please find out whether anyone is trapped. Take care where you step, and check the crate if it is safe to do so."
     <</switch>>
     The report asks for what you saw, what you checked, and what remains uncertain.
   <<option 'CN'>>
     <<switch _briefId>>
       <<case 'echo'>>
-        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“沿排水管听听声音，再仔细检查百叶窗扣件。若是气流吹动器物松动撞击石壁，就固定好，再测试排水管。先查清原因，别急着在墙上画封印。”
+        夜班侍从熄灯后，听见下层储藏室的墙后传来敲击声。约旦把建筑图交给你。“请检查排水管和百叶窗扣件。以前都修过。先查清声音从哪里来，有什么拿不准的，就回来告诉我。”
       <<case 'roots'>>
-        “下层储藏室的墙缝里生出了一些异状根须，缠住了存放的旧交货簿，”约旦翻开记录交待道，“那些根须不仅在生长，而且有攻击活物的迹象。别单打独斗盲目硬闯。去后备房带上提灯、绳索与手套。到了储藏室，先用粉笔标好撤离路线，再抄录下根须周围的异变节理。稳住退路后，再斩断根须把账簿抢出来。万一被围攻，退到石门处扼守狭道。”
+        “下层储藏室的墙缝里长出了根须，缠住了旧交货簿，”约旦轻点账本，“侍从说，靠近时它们动了起来。带上提灯、绳索和手套。我希望能取回账簿，但你的安全更要紧。先看好退路。”
       <<case 'crate'>>
-        “一箱发往外地的救济物资被退回了码头仓库，”约旦指着运单批号说，“封条完好，但重量远超记录，有搬运工还听见箱子附近的黑水底板下传来呼救声。码头阴暗潮湿，容易滋生水生秽物。你过去后，先用木板在积水上架稳撤离通道，把受困的工人救出来，并核对货箱封印与单据。若水下有苍白触手阻拦，就立足在加固栈道上将它们逼退。务必确认所有人都安全脱困，再上锁回报。”
+        “一箱救济物资被退回了码头仓库，”约旦指着运单说，“封条还在，重量却对不上记录。那里的地板塌了一部分，有搬运工听见下面有人呼救。请去看看是不是有人被困。留意脚下，确认安全后再检查货箱。”
     <</switch>>
     报告上要写清你看见了什么、核对了什么，以及哪些事还不能确定。
 <</language>>

@@ -12,6 +12,7 @@ import Wraith from './Wraith';
   'use strict';
 
   if (maplebirch.get('RBR')) Tips(maplebirch);
+  maplebirch.tool.addTo('Statistics', 'revelation-statistics');
   // 原版再次取物、潜水队移交与办公室显示继续同步已保存的遗物状态。
   Wraith(maplebirch);
 

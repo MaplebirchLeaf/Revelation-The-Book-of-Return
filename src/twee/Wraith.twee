@@ -105,8 +105,8 @@
           or ($RBR.necklace.aftercare isnot 'complete' and !['dead', 'sold'].includes($wraith?.offspring))
         : ($RBR.necklace.known and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace))
           or (($necklaceThief is 'player' or $RBR.necklace.reclaimed) and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'))>>
-    <<revelation-card 'The ivory necklace' '象牙项链'>>
-      <ul class='journal'>
+    <h1 class='header gold bold'><<lanSwitch 'The ivory necklace' '象牙项链'>></h1>
+    <ul class='journal'>
         <<if $RBR.necklace.returned>>
           <<wraith-return-journal>>
           <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
@@ -130,9 +130,7 @@
             <li class='red'><<lanSwitch 'You took the necklace again after returning it. The pale figure has not forgotten.' '你把已经归还的项链又拿走了。那苍白的身影没有忘记。'>></li>
           <</if>>
         <</if>>
-      </ul>
-      <<ivory-necklace-clothes-options>>
-    <</revelation-card>>
+    </ul>
     <hr>
   <</if>>
 <</widget>>

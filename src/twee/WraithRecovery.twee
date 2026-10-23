@@ -1,8 +1,13 @@
 :: Revelation Ivory Recovery Widgets [widget]
 <<widget 'ivory-necklace-history'>>
-  <<if $RBR?.necklace?.clothed and !$replayScene and !$statFreeze and !$frozenValues
-      and ($RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found')>>
-    <<ivory-necklace-clothes 'clear'>>
+  <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues>>
+    <<if $RBR.necklace.clothed and ($RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found')>>
+      <<ivory-necklace-clothes 'clear'>>
+    <<elseif maplebirch.get('RBR') and $RBR.necklace.reclaimed and !$RBR.necklace.clothed
+        and !$RBR.necklace.returned and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
+      <!-- 旧档已盗回的实物补入原生衣柜一次，之后丢弃衣物也不重新发放。 -->
+      <<ivory-necklace-clothes 'give'>>
+    <</if>>
   <</if>>
   <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues
       and $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
@@ -22,7 +27,6 @@
 <</widget>>
 
 <<widget 'ivory-necklace-clothes'>>
-  <<set _ivoryClothesGiven to false>>
   <<if !$RBR?.necklace or $replayScene or $statFreeze or $frozenValues>><<exit>><</if>>
   <<if _args[0] is 'clear'>>
     <<if !$RBR.necklace.clothed>><<exit>><</if>>
@@ -36,39 +40,13 @@
     <</for>>
     <<set $RBR.necklace.clothed to false>>
     <<updateallure>><<updatesidebarimg>><<updatesidebardescription>>
-  <<else>>
-    <<ivory-necklace-check>>
-    <<if !_ivorySafe or !$RBR.necklace.reclaimed or $RBR.necklace.clothed
+  <<elseif _args[0] is 'give' and maplebirch.get('RBR')>>
+    <<if !$RBR.necklace.reclaimed or $RBR.necklace.clothed
         or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'
-        or $RBR.necklace.returned or !['wear', 'wardrobe'].includes(_args[0])>><<exit>><</if>>
-    <<if _args[0] is 'wear' and $worn.neck.cursed is 1>><<exit>><</if>>
-    <!-- 先消费领取状态，随后只调用原生穿衣或入柜宏，刷新与旧链接不会再发一件。 -->
+        or $RBR.necklace.returned>><<exit>><</if>>
+    <!-- 先记录交付，再由原生衣柜接管保存与穿戴，刷新或读档不再发一件。 -->
     <<set $RBR.necklace.clothed to true>>
-    <<if _args[0] is 'wear'>>
-      <<neckwear 'ivory necklace'>><<updateallure>><<updatesidebarimg>><<updatesidebardescription>>
-    <<else>>
-      <<generalSend 'wardrobe' 'neck' 'ivory necklace'>>
-    <</if>>
-    <<set _ivoryClothesGiven to true>>
-  <</if>>
-<</widget>>
-
-<<widget 'ivory-necklace-clothes-options'>>
-  <<ivory-necklace-check>>
-  <<if _ivorySafe and $RBR.necklace.reclaimed and !$RBR.necklace.clothed
-      and !$RBR.necklace.returned and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
-    <span class='ivory-necklace-clothes'>
-      <<if $worn.neck.cursed isnot 1>>
-        <<icon 'clothes/ivory-necklace.png'>><<lanLink ['Put on the ivory necklace', '戴上象牙项链']>>
-          <<ivory-necklace-clothes 'wear'>>
-          <<if _ivoryClothesGiven>><<replace '.ivory-necklace-clothes'>><<lanSwitch 'You fasten the necklace around your neck. The ivory rests cold against your skin.' '你将项链扣在颈间。象牙冰凉地贴着皮肤。'>><</replace>><</if>>
-        <</lanLink>><br>
-      <</if>>
-      <<icon 'clothes/ivory-necklace.png'>><<lanLink ['Keep the ivory necklace in your wardrobe', '将象牙项链收进衣柜']>>
-        <<ivory-necklace-clothes 'wardrobe'>>
-        <<if _ivoryClothesGiven>><<replace '.ivory-necklace-clothes'>><<lanSwitch 'You put the necklace away with your clothes.' '你将项链收进衣柜，放在衣物旁。'>><</replace>><</if>>
-      <</lanLink>><br>
-    </span>
+    <<generalSend 'wardrobe' 'neck' 'ivory necklace'>>
   <</if>>
 <</widget>>
 
@@ -290,6 +268,7 @@
     <!-- 成功只转移唯一实物，不重发待售款、历史收入、馆藏或好感。原始盗取者保留作闪回用。 -->
     <<set $museumAntiques.antiques.antiqueivorynecklace to 'found'>>
     <<set $RBR.necklace.reclaimed to true>>
+    <<ivory-necklace-clothes 'give'>>
     <<set $RBR.necklace.stage to ''>>
     <<set $outside to 1>><<set $location to 'town'>>
     <<if _ivorySmashed>><<crimeUp 400 'thievery'>><<crimeUp 200 'destruction'>><</if>>
@@ -319,8 +298,7 @@
         <br><br>
         项链冰凉地贴着掌心。从奎恩手里取回它，并不等于送回湖底。博物馆和奎恩都不会再为它付一次钱。
     <</language>>
-    <br><br><<icon 'clothes/ivory-necklace.png'>><span class='gold'><<lanSwitch 'You have the ivory necklace.' '你得到了象牙项链。'>></span><<if _ivorySmashed>><<crimes 'thievery' 'destruction'>><</if>>
-    <br><br><<ivory-necklace-clothes-options>>
+    <br><br><<icon 'clothes/ivory-necklace.png'>><span class='gold'><<lanSwitch 'The ivory necklace has been added to your wardrobe.' '象牙项链已加入衣柜。'>></span><<if _ivorySmashed>><<crimes 'thievery' 'destruction'>><</if>>
   <<case 'failed'>>
     <<set $RBR.necklace.stage to ''>><<set $outside to 1>><<set $location to 'town'>><<crimeUp 100 'trespassing'>>
     <<language>>

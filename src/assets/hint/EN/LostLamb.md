@@ -15,7 +15,7 @@ The introduction costs no time; **Sit up** returns to the room. Choosing **Close
 
 You play the younger Kylar. The dream then has its own clock, days and weather. Waking restores present clothing, belongings, money, weather and NPC states to their condition after you closed your eyes. Dream progress is retained separately; dream days do not advance present rent, work or NPC schedules.
 
-The Journal records your current clue, dream date and three feelings:
+The Journal records your current clue and dream date. Choices and their results show changes to three feelings:
 
 | Feeling         | What matters                                                                                               |
 | --------------- | ---------------------------------------------------------------------------------------------------------- |
