@@ -481,11 +481,11 @@
     <<robin-temple-confession-band>>
     <<if _robinBand is 'doubt'>>
       <<language>>
-        <<option 'EN'>>“Why? I don't... I haven't broken my vow. Neither of us has. I don't think there's anything to make amends for.”<<option 'CN'>>“为什么？我……我没有违背誓约，我们都没有。我不觉得有什么需要弥补的。”
+        <<option 'EN'>>"Why? I don't... I haven't broken my vow. Neither of us has. I don't think there's anything to make amends for."<<option 'CN'>>“为什么？我……我没有违背誓约，我们都没有。我不觉得有什么需要弥补的。”
       <</language>>
     <<else>>
       <<language>>
-        <<option 'EN'>>“I don't think...” <<He>> trails off. “I mean, no. I haven't broken my vow, and neither has the one I love. We don't need to be purified.”<<option 'CN'>>“我不这么认为……”<<He>>话音渐弱。“我的意思是，不。我没有违背誓约，我的爱人也没有。我们不需要净化。”
+        <<option 'EN'>>"I don't think..." <<He>> trails off. "I mean, no. I haven't broken my vow, and neither has the one I love. We don't need to be purified."<<option 'CN'>>“我不这么认为……”<<He>>话音渐弱。“我的意思是，不。我没有违背誓约，我的爱人也没有。我们不需要净化。”
       <</language>>
     <</if>>
     <<language>>
@@ -690,7 +690,7 @@
       <br><br>
       <<He>> sits next to you on the bench, and you lock the door.
       <<if $RobinTemple.stage is 'member'>>
-        "S-so... won't you help this poor initiate repent?"
+        "Um... sitting here with you like this makes my heart race. But as long as you're holding my hand... I'm not afraid."
       <<else>>
         "So, um... do you want to confess anything to me?"
       <</if>>
@@ -700,7 +700,7 @@
       <br><br>
       <<He>>在你旁边的长凳上坐下，你锁上了门。
       <<if $RobinTemple.stage is 'member'>>
-        “那、那个……你能不能帮帮这个可怜的见习教徒进行忏悔？”
+        “那个……和你待在这间告解室里，我的心跳得好快。只要有你在我身边……我就什么都不怕了。”
       <<else>>
         “那个……你有什么想对我忏悔的吗？”
       <</if>>
@@ -1318,15 +1318,15 @@
 <</if>>
 <<if _robinBand is 'doubt'>>
   <<language>>
-    <<option 'EN'>>Robin kisses you before <<he>> leaves, quickly, like <<he>>'s afraid of being seen. “See you soon.” <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前飞快地吻了你一下，像是怕被人看见。“我们很快会再见的。”<<He>>溜出了隔间。
+    <<option 'EN'>>Robin kisses you before <<he>> leaves, quickly, like <<he>>'s afraid of being seen. "See you soon." <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前飞快地吻了你一下，像是怕被人看见。“我们很快会再见的。”<<He>>溜出了隔间。
   <</language>>
 <<elseif _robinBand is 'belief'>>
   <<language>>
-    <<option 'EN'>>You kiss Robin on the forehead before <<he>> leaves. “S-see you soon,” <<he>> says, and <<he>>'s still smiling when the door closes.<<option 'CN'>>你亲吻了罗宾的额头，<<he>>准备离开。“再、再见。”<<he>>说着，门关上时脸上还带着笑。
+    <<option 'EN'>>You kiss Robin on the forehead before <<he>> leaves. "S-see you soon," <<he>> says, and <<he>>'s still smiling when the door closes.<<option 'CN'>>你亲吻了罗宾的额头，<<he>>准备离开。“再、再见。”<<he>>说着，门关上时脸上还带着笑。
   <</language>>
 <<else>>
   <<language>>
-    <<option 'EN'>>Robin squeezes your hand before <<he>> leaves. “See you soon.” <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前握了握你的手。“下次见。”<<He>>溜出了隔间。
+    <<option 'EN'>>Robin squeezes your hand before <<he>> leaves. "See you soon." <<He>> slips out of the booth.<<option 'CN'>>罗宾在离开前握了握你的手。“下次见。”<<He>>溜出了隔间。
   <</language>>
 <</if>>
 <br><br>

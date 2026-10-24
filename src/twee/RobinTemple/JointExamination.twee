@@ -36,7 +36,7 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        <span class='red'>It remains inert.</span> Jordan frowns. "I’m sorry. One of you has become impure."
+        <span class='red'>It remains inert.</span> Jordan frowns. "I'm sorry. One of you has become impure."
       <<option 'CN'>>
         <span class='red'>粉末毫无反应。</span>约旦皱起了眉头。“抱歉，你们中有人已经不再纯洁了。”
       <</language>>
@@ -66,21 +66,21 @@
   <<if $speech_attitude is 'meek'>>
     <<language>>
       <<option 'EN'>>
-        "I, I haven’t kept it," you say. "I’m sorry. I’m so sorry..."
+        "I, I haven't kept it," you say. "I'm sorry. I'm so sorry..."
       <<option 'CN'>>
         “我，我的誓约……我没能守住，”你说，“对不起，真的很对不起……”
     <</language>>
   <<elseif $speech_attitude is 'bratty'>>
     <<language>>
       <<option 'EN'>>
-        "No need," you say. "I haven’t been faithful."
+        "No need," you say. "I haven't been faithful."
       <<option 'CN'>>
         “没必要测了，”你说，“我没守住对他们的誓言。”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I’m sorry," you say. "I haven’t been faithful."
+        "I'm sorry," you say. "I haven't been faithful."
       <<option 'CN'>>
         “抱歉，”你说，“我没能保持对彼此的忠诚。”
     <</language>>

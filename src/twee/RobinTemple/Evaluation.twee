@@ -27,7 +27,7 @@
         <br><br>
         "I understand. You know the rules, Robin. A union of two of our members will be permitted if, and only if, the love between the two is deemed to be absolutely pure of heart, and they undergo a rite of promise or marriage. Now, you're both still in school, yes? I'd personally advise against marriage at this time."
         <br><br>
-        You can feel Robin's pulse through <<his>> hand. "Y-yes. We agree." <<He>> steps forward, and motions for you to do the same. "We'd like to be evaluated. For the rite."
+        You can feel Robin's pulse through <<his>> hand. "Y-yes. We agree." <<He>> steps forward, and motions for you to do the same. "We'd like to be evaluated for the rite of promise."
       <<else>>
         You tell Robin you're ready. The two of you approach Jordan again. "Welcome back," <<nnpc_he "Jordan">> says. "I take it you're here to be evaluated again?" You both nod.
       <</if>>
@@ -43,7 +43,7 @@
         <br><br>
         “我明白了。你也知道规矩，罗宾。两个人的结合，要神殿认定你们之间的爱纯洁无瑕，还要走过结为伴侣或成婚的仪式，才能得到许可。你们俩都还在上学，对吧？我个人建议不要在这个时候结婚。”
         <br><br>
-        你能感受到罗宾手掌下跳动的脉搏。“是、是的，我们想好了，”<<He>>拉着你一起向前一步，“我们想参加承诺仪式的评估。”
+        你能感受到罗宾手掌下跳动的脉搏。“是、是的，我们想好了，”<<He>>拉着你一起向前一步，“我们想进行承诺仪式的评估程序。”
       <<else>>
         你告诉罗宾你准备好了，于是你们再次走向约旦。“欢迎回来，”<<nnpc_he "Jordan">>说，“我想你们是来进行评估的吧？”你们点点头。
       <</if>>

@@ -459,21 +459,21 @@
   <<if $speech_attitude is 'meek'>>
     <<language>>
       <<option 'EN'>>
-        "I, I haven’t kept it," you say. "I’m sorry. I’m so sorry..."
+        "I, I haven't kept it," you say. "I'm sorry. I'm so sorry..."
       <<option 'CN'>>
         “我，我的誓约……我没能守住，”你说，“对不起，真的很对不起……”
     <</language>>
   <<elseif $speech_attitude is 'bratty'>>
     <<language>>
       <<option 'EN'>>
-        "No need," you say. "I haven’t been faithful."
+        "No need," you say. "I haven't been faithful."
       <<option 'CN'>>
         “没必要测了，”你说，“我没能保持忠诚。”
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "I’m sorry," you say. "I haven’t been faithful."
+        "I'm sorry," you say. "I haven't been faithful."
       <<option 'CN'>>
         “抱歉，”你说，“我没能保持忠诚。”
     <</language>>

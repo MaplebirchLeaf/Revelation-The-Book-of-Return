@@ -49,7 +49,7 @@
     <<case 'cow'>>
       <<language>>
         <<option 'EN'>>
-          You touch Robin’s shoulder with your head. <<He>> reaches toward your horn, then pauses. "Does it hurt if I touch it?" <<he>> asks before moving closer.
+          You touch Robin's shoulder with your head. <<He>> reaches toward your horn, then pauses. "Does it hurt if I touch it?" <<he>> asks before moving closer.
         <<option 'CN'>>
           你用头轻碰罗宾的肩。<<He>>伸手想摸你的角，又停住了。“碰它会疼吗？”<<he>>问过才靠近。
       <</language>>

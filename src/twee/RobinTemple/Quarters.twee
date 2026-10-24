@@ -387,7 +387,7 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      The service has already begun, or today’s work is finished.
+      The service has already begun, or today's work is finished.
     <<option 'CN'>>
       弥撒已经开始，或是今天的工作已经做完了。
   <</language>>

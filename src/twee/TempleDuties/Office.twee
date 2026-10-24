@@ -297,7 +297,7 @@
     <<revelation-card 'Duties book · priest' '职务簿 · 司祭'>>
       <<temple-duty-book-body>>
       <<if $TempleDuties.enrolled>>
-        <span class='teal'><<lanSwitch 'A list of wards needing attention lies beside the next shift’s report.' '需要检查的护符清单压在下一班的报告旁。'>></span><br>
+        <span class='teal'><<lanSwitch 'A list of wards needing attention lies beside the next shift\'s report.' '需要检查的护符清单压在下一班的报告旁。'>></span><br>
         <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
           <<socialiseicon>>
           <<temple-duty-action `['Supervise the next shift (0:45)', '指导下一班值班 (0:45)']` 45 'Revelation Temple Task Done'>>

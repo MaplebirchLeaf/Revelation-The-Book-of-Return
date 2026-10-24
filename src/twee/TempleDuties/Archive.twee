@@ -131,7 +131,7 @@
   <<option 'EN'>>
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
-        The plans show a drain running behind the lower storeroom wall, with a shutter above it. An old note says that knocking once travelled down this pipe and frightened the novices. The next clerk was told to check the shutter and drain before arranging another blessing.
+        The plans show a drain running behind the lower storeroom wall, with a shutter above it. An old note says that knocking once travelled down this pipe and frightened the initiates. The next clerk was told to check the shutter and drain before arranging another blessing.
         <<if $TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo.result is 'resolved'>>You put your own inspection beside it. The fastening and the drain are marked on the same plan, though your report leaves the unexplained sound in a separate note.<</if>>
         <<if $TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots.result is 'resolved'>>Your sketch of the route past the roots is filed behind the plan. The narrowest passage is easier to find on your newer drawing.<</if>>
       <<case 'deliveries'>>
@@ -139,7 +139,7 @@
         <<if $TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate.result is 'resolved'>>Your dock report is kept with the newer cargo list. You compare the workers' handover with the old collector's column; they are different entries, not a missing signature you can fill in.<</if>>
         <<if $TempleDuties.bishop is 'reported'>>The comparison you gave the bishop has a separate reference number. Your copy still marks the collector's signature as absent. No later name has been added to it.<</if>>
       <<case 'fieldwork'>>
-        The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
+        The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when an initiate sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
         <<if Object.values($TempleDuties.reports).some(report => report.honest && report.result === 'withdrawn')>>One of your own reports is filed among the withdrawals. The places you could not reach are left blank, ready for another visit rather than another clerk's guess.<<elseif $TempleDuties.rewards.length gt 0>>Your completed reports are filed after the older ones. Each still begins with the way in and the route back out.<</if>>
         <<if $TempleDuties.case?.stage is 'field'>>You lay the current assignment beside the sketch and check where you intend to leave your lamp.<</if>>
       <<case 'ward-notes'>>

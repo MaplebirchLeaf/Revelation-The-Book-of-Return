@@ -45,13 +45,13 @@
     <<revelation-card 'Kylar\'s manor' '凯拉尔的庄园'>>
       <ul class='journal'>
         <<if maplebirch.get('LostLamb').paused>>
-          <li><<lanSwitch 'The dream was interrupted. Rest in Kylar’s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
+          <li><<lanSwitch 'The dream was interrupted. Rest in Kylar\'s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
         <<elseif maplebirch.get('LostLamb').reward>>
           <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
         <<elseif maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
-          <li><<lanSwitch 'You remember the same voice in both dreams. Rest in Kylar’s room to listen for it again.' '两场梦里都出现过那道声音。到凯拉尔的房间休息，可以再听一听。'>></li>
+          <li><<lanSwitch 'You remember the same voice in both dreams. Rest in Kylar\'s room to listen for it again.' '两场梦里都出现过那道声音。到凯拉尔的房间休息，可以再听一听。'>></li>
         <<else>>
-          <li><<lanSwitch 'There are still parts of the dream you cannot piece together. Resting in Kylar’s room may bring back another fragment.' '梦里的事还没有拼凑完整。在凯拉尔的房间休息，或许能想起别的片段。'>></li>
+          <li><<lanSwitch 'There are still parts of the dream you cannot piece together. Resting in Kylar\'s room may bring back another fragment.' '梦里的事还没有拼凑完整。在凯拉尔的房间休息，或许能想起别的片段。'>></li>
         <</if>>
       </ul>
     <</revelation-card>>
@@ -142,7 +142,7 @@
               <li>
               <<language>>
                 <<option 'EN'>>
-                  Ask Robin about making a promise when <<nnpc_he 'Robin'>> is present at the temple during daylight. Jordan will weigh both your contributions, your shared work and Robin’s faith.
+                  Ask Robin about making a promise when <<nnpc_he 'Robin'>> is present at the temple during daylight. Jordan will weigh both your contributions, your shared work and Robin's faith.
                 <<option 'CN'>>
                   罗宾白天在神殿时，可以谈承诺仪式。约旦会分别考虑你们的神殿贡献、共同完成的工作，以及罗宾对誓言的信仰。
               <</language>>
@@ -198,7 +198,7 @@
           <li>
           <<language>>
             <<option 'EN'>>
-              Robin has heard about Jordan’s spear mission. Speak to Robin at the temple bench before setting out.
+              Robin has heard about Jordan's spear mission. Speak to Robin at the temple bench before setting out.
             <<option 'CN'>>
               罗宾听说了约旦交代的取矛任务。出发前，可以在神殿长椅与罗宾谈谈。
           <</language>>
@@ -237,9 +237,9 @@
     <<elseif $robinromance isnot 1 or $sydneyromance isnot 1 or C.npc.Robin.love lt 80 or C.npc.Sydney.love lt 125>>
       <<lanSwitch 'Your relationship with both companions needs to be closer before they will consider this plan.' '你与两人的关系还不够亲密，暂时无法一起商量这件事。'>>
     <<elseif C.npc.Robin.trauma lt 40>>
-      <<lanSwitch 'Robin’s distress has eased, and Robin no longer wants to pursue this investigation. The plan is on hold.' '罗宾的创伤已经缓和，不再愿意追查这件事。计划暂时搁下。'>>
+      <<lanSwitch 'Robin\'s distress has eased, and Robin no longer wants to pursue this investigation. The plan is on hold.' '罗宾的创伤已经缓和，不再愿意追查这件事。计划暂时搁下。'>>
     <<elseif C.npc.Sydney.purity gte 50 or C.npc.Sydney.corruption lt 10>>
-      <<lanSwitch 'Sydney’s faith still stands in the way of this rite. The plan must wait.' '悉尼的信仰仍不容许这场仪式，计划只能暂时搁下。'>>
+      <<lanSwitch 'Sydney\'s faith still stands in the way of this rite. The plan must wait.' '悉尼的信仰仍不容许这场仪式，计划只能暂时搁下。'>>
     <<elseif $RobinTemple.templePromised is 'Robin' and !$sydneySeen?.includes('corruptroom')>>
       <<lanSwitch 'Sydney has not yet completed the corrupt promise rite. Speak with Sydney about that before seeking a second promise.' '悉尼尚未完成堕落仪式。先与悉尼处理这件事，再寻求第二份承诺。'>>
     <<elseif !hasSexStat('promiscuity', 6)>>
@@ -271,7 +271,7 @@
   <<elseif $RobinTemple.secret.night is Time.days>>
     <<lanSwitch 'You have already set out together tonight. Choose another blood moon night.' '今晚已经一同出发过了，另选一个血月夜吧。'>>
   <<elseif $_secret.threatened>>
-    <<lanSwitch 'A pursuit or the wraith’s hostility makes the lake unsafe. Settle that danger before arranging a meeting.' '追猎或怨灵的敌意仍使湖边不安全。先处理眼前的危险，再安排会合。'>>
+    <<lanSwitch 'A pursuit or the wraith\'s hostility makes the lake unsafe. Settle that danger before arranging a meeting.' '追猎或怨灵的敌意仍使湖边不安全。先处理眼前的危险，再安排会合。'>>
   <<elseif Weather.isFrozen('lake') or Weather.precipitation is 'rain'>>
     <<lanSwitch 'Wait for a rainless night with an unfrozen lake.' '等湖面未结冰、没有下雨的夜晚再来。'>>
   <<elseif $laketeenspresent>>
@@ -295,7 +295,7 @@
           <<else>>
             <li><<lanSwitch 'You have compared your accounts and agreed to check with one another if a voice calls. When all three of you are free, you can investigate the sound together.' '你们已核对那晚的记录，也约好听见呼唤时先向彼此确认。三个人有空时，可以继续查看那道声音。'>></li>
           <</if>>
-          <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions’ next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
+          <li><<lanSwitch 'Meet in the temple hall after 13:00, with time before 17:00 and your companions\' next commitments.' '13:00 后到神殿大厅会合，在 17:00 与同伴下一项事务前留足时间。'>></li>
       </ul>
     <</revelation-card>>
     <hr>
@@ -363,7 +363,7 @@
       <ul class='journal'>
         <li><<lanSwitch 'Duties desk: 09:00–18:00, outside Sunday mass. One paid shift daily; leave enough time to finish.' '职务桌：09:00–18:00，周日弥撒期间暂停。每天可完成一班有薪职务，接班前须留足时间。'>></li>
         <<if $TempleDuties.duty_day is Math.floor(Time.days)>>
-          <li><<lanSwitch 'Today’s shift is complete.' '今日已完成值班。'>></li>
+          <li><<lanSwitch 'Today\'s shift is complete.' '今日已完成值班。'>></li>
         <</if>>
         <<if $TempleDuties.archive.sorted gt 0 and $TempleDuties.archive.sorted lt 3>>
           <li><<lanSwitch 'The loose folios are not all restored. Continue drying and sorting them in the old records room.' '散页尚未全部修复，可以去旧资料室继续晾干、整理。'>></li>
@@ -385,7 +385,7 @@
       <<revelation-card _caseHeading[0] _caseHeading[1]>>
         <ul class='journal'>
           <<if $TempleDuties.case.stage is 'report' or $TempleDuties.case.stage is 'combat' and !$combat>>
-            <li><<lanSwitch 'Return to Jordan’s duties desk during the day to give your report.' '白天回约旦的职务桌，汇报调查结果。'>></li>
+            <li><<lanSwitch 'Return to Jordan\'s duties desk during the day to give your report.' '白天回约旦的职务桌，汇报调查结果。'>></li>
           <<elseif $TempleDuties.case.stage is 'combat'>>
             <li class='red'><<lanSwitch 'An encounter is underway. Finish it or leave safely before filing a report.' '遭遇正在进行。结束或安全撤离后，才能提交报告。'>></li>
           <<else>>
@@ -446,7 +446,7 @@
             <<elseif !_journalPreparation.reviewed>>
               <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
             <<else>>
-              <li><<lanSwitch 'Jordan has heard your companion’s answers. Return to the warm room together when you are both free.' '约旦已听过同伴的回答。两人有空时，一起到暖室接受任命。'>></li>
+              <li><<lanSwitch 'Jordan has heard your companion\'s answers. Return to the warm room together when you are both free.' '约旦已听过同伴的回答。两人有空时，一起到暖室接受任命。'>></li>
             <</if>>
           </ul>
         <</revelation-card>>
@@ -477,7 +477,7 @@
           <<elseif $TempleDuties.manor is 'accepted'>>
             <li><<lanSwitch 'Speak to Kylar at the manor during an evening visit.' '傍晚去庄园拜访凯拉尔，询问圣体匣。'>></li>
           <<else>>
-            <li><<lanSwitch 'Take Kylar’s description back to the duties desk to collect the payment promised for the copy.' '把凯拉尔同意提供的描述带回职务桌，领取约好的抄录报酬。'>></li>
+            <li><<lanSwitch 'Take Kylar\'s description back to the duties desk to collect the payment promised for the copy.' '把凯拉尔同意提供的描述带回职务桌，领取约好的抄录报酬。'>></li>
           <</if>>
         </ul>
       <</revelation-card>>

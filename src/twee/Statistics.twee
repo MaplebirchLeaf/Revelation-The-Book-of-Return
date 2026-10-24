@@ -6,7 +6,7 @@
       <span class='gold'><<lanSwitch 'Temple work' '神殿工作'>></span>
       <<if maplebirch.get('RobinTemple')?.member>>
         <<lanSwitch 'Shared duties with Robin: ' '与罗宾共同值班：'>><<print $RobinTemple.service>><br>
-        <<lanSwitch 'Robin’s temple contribution: ' '罗宾的神殿贡献：'>><<print $RobinTemple.grace>>/100<br>
+        <<lanSwitch 'Robin\'s temple contribution: ' '罗宾的神殿贡献：'>><<print $RobinTemple.grace>>/100<br>
       <</if>>
       <<if maplebirch.get('TempleChoir') and $TempleChoir.joined>>
         <<lanSwitch 'Choir practices: ' '唱诗班练习：'>><<print $TempleChoir.practices>><br>

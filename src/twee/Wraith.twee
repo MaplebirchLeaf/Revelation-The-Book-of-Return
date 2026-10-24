@@ -5,13 +5,17 @@
       <<set $_necklace to setup.clothes.neck.find(item => item.name is 'ivory necklace')>>
       <<run $_necklace.shop.pushUnique('forest')>>
       <<if !setup.specialClothes.some(item => item.name is 'ivory necklace')>>
-        <!-- 复用原版独立特殊服装，归还过遗物后可购买，不把衣物副本当成湖底的真品。 -->
+        <!-- 归还后解锁服装组，展示对话沿用原版好感与每日次数。商品副本不当作遗物。 -->
         <<run setup.specialClothes.push({
           name: 'ivory necklace',
-          sets: [],
-          requirements: () => Boolean(V.RBR?.necklace?.returnedOnce),
-          get hint() { return lanSwitch('return the ivory necklace', '归还象牙项链'); }
+          sets: ['ivory_necklace']
         })>>
+        <<set setup.specialClothesSets.ivory_necklace to {
+          get text() { return lanSwitch('ivory necklace', '象牙项链'); },
+          requirements: () => Boolean(V.RBR?.necklace?.returnedOnce),
+          get hint() { return lanSwitch('return the ivory necklace', '归还象牙项链'); },
+          shop: ['forest'], feat: false, icon: 'clothes/ivory-necklace.png'
+        }>>
       <</if>>
     <</if>>
   <</silently>>
@@ -36,7 +40,7 @@
 <<widget 'ivory-necklace-link'>>
   <<ivory-necklace-check>>
   <<if _ivorySafe and $RBR.necklace.returned and _leave>>
-    <span class='red'><<lanSwitch 'The necklace is still on the plinth. Taking it again will bring back the wraith’s full obsession.' '项链仍在基座上。再次拿走它，会重新招来怨灵满额的痴迷。'>></span><br>
+    <span class='red'><<lanSwitch 'The necklace is still on the plinth. Taking it again will bring back the wraith\'s full obsession.' '项链仍在基座上。再次拿走它，会重新招来怨灵满额的痴迷。'>></span><br>
   <<elseif _ivoryReady and _leave>>
     <<icon 'clothes/ivory-necklace.png'>>
     <<lanLink ['Examine the plinth with the ivory necklace in hand', '拿着象牙项链，查看基座'] 'Revelation Ivory Necklace Return'>><</lanLink>>
@@ -131,7 +135,7 @@
               <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
             <</if>>
           <<elseif ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
-            <li><<lanSwitch 'The necklace was taken to the mayor’s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
+            <li><<lanSwitch 'The necklace was taken to the mayor\'s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
             <<if $RBR.necklace.prepared>>
               <li><<lanSwitch 'You have studied the visitors and the stairway. Getting past reception will only be the beginning; the case is guarded by a camera.' '你已经留意过访客和楼梯。混过前台只是第一步，展示盒旁还有摄像头。'>></li>
             <</if>>
@@ -186,7 +190,7 @@
 <</language>>
 <br><br>
 <<if $RBR.necklace.returnedOnce>>
-  <span class='lblue'><<lanSwitch 'You have put it back before. Without other grievances, doing so again only eases the wraith’s obsession by one point. Grievances over its offspring remain.' '你已经放回过一次。若没有其他怨恨，这次再放回只会使怨灵的痴迷稍缓 1 点，对苍白后代的怨恨仍然保留。'>></span><br><br>
+  <span class='lblue'><<lanSwitch 'You have put it back before. Without other grievances, doing so again only eases the wraith\'s obsession by one point. Grievances over its offspring remain.' '你已经放回过一次。若没有其他怨恨，这次再放回只会使怨灵的痴迷稍缓 1 点，对苍白后代的怨恨仍然保留。'>></span><br><br>
 <</if>>
 <<icon 'clothes/ivory-necklace.png'>>
 <<lanLink ['Set the necklace on the plinth and let go', '将项链放在基座上，松开手']>>
@@ -313,6 +317,47 @@
 <</if>>
 <br><br>
 <<getouticon>><<lanLink ['Return to the shop', '返回商店'] 'Forest Shop'>><</lanLink>><br>
+
+:: Gwylan Talk Clothes Ivory Necklace
+<<effects>><<run statusCheck('Gwylan')>>
+<<if !$gwylanTalked.includes('ivory_necklace')>>
+  <<set $daily.gwylan.clothesTalk++>><<run $gwylanTalked.pushUnique('ivory_necklace')>>
+<</if>>
+<<language>>
+  <<option 'CN'>>
+    你给格威岚看店里的象牙项链。<<He>>的目光在蓝色宝石上停了一会儿，却没有伸手。<br><br>
+    <<switch $speech_attitude>>
+      <<case 'meek'>>“这个……和湖底那条一样吗？”你问。
+      <<case 'bratty'>>“你不会把湖里那条拿来卖吧？”你问。
+      <<default>>“这里怎么也有一条？”你问。“湖底那条项链。”
+    <</switch>><br><br>
+    “这是仿制品。”格威岚瞥了眼门口。“你从湖里拿走的东西，可不能用这个来还。”<br><br>
+    <<if $gwylanRescue?.seen?.includesAny('Wraith', 'WraithFight')>>
+      你想起格威岚替你驱逐怨灵时的情形。“祂好像很讨厌你。”<br><br>
+      “祂也不怎么讨人喜欢。”<<He>>的笑意淡了些。“上次能帮到你，不代表每次都能。别为了试探祂，又把自己送回去。”
+    <<else>>
+      “你认识祂？”你问。<br><br>
+      格威岚用手指轻敲柜台。“我们在同一片森林里待了很久。就说到这里吧。名字有力量，不值得为了卖条项链，让祂听得更多。”
+    <</if>><br><br>
+    <<He>>重新看向你。“还要看看别的吗？”
+  <<option 'EN'>>
+    You show Gwylan the shop's ivory necklace. <<His>> eyes linger on the blue gemstones, but <<he>> doesn't reach for it.<br><br>
+    <<switch $speech_attitude>>
+      <<case 'meek'>>"Is this... the same as the one beneath the lake?" you ask.
+      <<case 'bratty'>>"You're not selling the one from the lake, are you?" you ask.
+      <<default>>"Why is there one here too?" you ask. "The necklace from the lake."
+    <</switch>><br><br>
+    "It's a replica." Gwylan glances towards the door. "This won't replace anything you took from the lake."<br><br>
+    <<if $gwylanRescue?.seen?.includesAny('Wraith', 'WraithFight')>>
+      You remember Gwylan driving the wraith away from you. "It seemed to hate you."<br><br>
+      "It's hardly pleasant company." <<His>> smile fades a little. "Helping you last time doesn't mean I can do it every time. Don't go back just to test it."
+    <<else>>
+      "Do you know it?" you ask.<br><br>
+      Gwylan taps the counter with a finger. "We've shared this forest a long time. Let's leave it there. Names have power, and selling a necklace isn't worth letting it hear any more."
+    <</if>><br><br>
+    <<He>> looks back at you. "Was there anything else you wanted to see?"
+<</language>><br><br>
+<<gwylanOptions>>
 
 :: Revelation Wraith Shore
 <<set $outside to 1>><<set $location to 'lake'>><<set $bus to 'lakeshore'>><<effects>>

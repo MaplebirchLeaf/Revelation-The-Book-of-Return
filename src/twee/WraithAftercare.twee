@@ -104,7 +104,7 @@
   <<else>>
     <<switch $RBR.necklace.aftercare>>
       <<case 'dream'>>
-        <li><<lanSwitch 'You keep remembering the figure at the water’s edge. You could try resting in your own bed at the orphanage.' '你总想起站在水边的身影。可以回孤儿院，在自己的床上试着休息。'>></li>
+        <li><<lanSwitch 'You keep remembering the figure at the water\'s edge. You could try resting in your own bed at the orphanage.' '你总想起站在水边的身影。可以回孤儿院，在自己的床上试着休息。'>></li>
       <<case 'talk'>>
         <li><<lanSwitch 'The dream has stayed with you. You could speak to someone you know, or decide for yourself whether to return to the shore.' '那个梦仍留在你脑海里。可以找熟悉的人说说，也可以自己想一想，再决定是否回湖边。'>></li>
       <<case 'shore'>>
@@ -200,7 +200,7 @@
           <br><br>
           "I don't know what it wanted," you say.
           <br><br>
-          "I wouldn’t pretend I knew either." Gwylan lets that hang for a moment. "You returned something. That doesn't oblige it to explain itself. Or you to go back."
+          "I wouldn't pretend I knew either." Gwylan lets that hang for a moment. "You returned something. That doesn't oblige it to explain itself. Or you to go back."
           <<if $gwylanSeen?.includes('bloodmoon')>><br><br>"You remember what I said about the blood moon? That still stands."<</if>>
           <br><br>
           You hold the warm cup between your hands. Gwylan leaves you time to finish it.

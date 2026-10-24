@@ -167,9 +167,9 @@
           <<lanSwitch 'Continue the preparation when your companion is at the temple and has time free from other duties.' '等同伴回到神殿，并且有空参加见习时，再继续准备。'>><br>
         <<elseif !_candidateStanding>>
           <<if _ordinand is 'Robin' and !$RobinTemple.punish and !maplebirch.get('RobinTemple').examinationDue>>
-            <span class='lblue'><<lanSwitch 'Robin’s temple vow is broken. Resolve this with the temple before applying for appointment.' '罗宾的神殿誓言已被打破。请先处理誓言问题，再来申请任职。'>></span><br>
+            <span class='lblue'><<lanSwitch 'Robin\'s temple vow is broken. Resolve this with the temple before applying for appointment.' '罗宾的神殿誓言已被打破。请先处理誓言问题，再来申请任职。'>></span><br>
           <<else>>
-            <span class='lblue'><<lanSwitch 'Complete your companion’s outstanding temple examination or purification before applying for appointment.' '请先完成同伴尚未处理的神殿检查或净化，再来申请任职。'>></span><br>
+            <span class='lblue'><<lanSwitch 'Complete your companion\'s outstanding temple examination or purification before applying for appointment.' '请先完成同伴尚未处理的神殿检查或净化，再来申请任职。'>></span><br>
           <</if>>
           <<if _ordinand is 'Robin' and $RobinTemple.punish>>
             <<templeicon 'altar'>><<lanLink ['Continue the purification', '继续净化'] `$RobinTemple.punish.started ? 'RobinTemple Penance Trial' : 'RobinTemple Penance'`>><</lanLink>><br>
@@ -228,7 +228,7 @@
             <</lanLink>>
             <br>
           <<elseif _candidate.reviewed>>
-            <span class='green'><<lanSwitch 'Your companion has passed Jordan’s appointment interview. When you are ready, go to the room by the fire for the appointment ceremony.' '同伴已通过约旦的任职面谈。准备好后，到炉边的房间参加任命仪式。'>></span><br>
+            <span class='green'><<lanSwitch 'Your companion has passed Jordan\'s appointment interview. When you are ready, go to the room by the fire for the appointment ceremony.' '同伴已通过约旦的任职面谈。准备好后，到炉边的房间参加任命仪式。'>></span><br>
           <</if>>
           <<if !_candidateFree>>
             <span class='lblue'><<lanSwitch 'Leave time before the next duty or service.' '为下一项职务或弥撒留足时间。'>></span><br>

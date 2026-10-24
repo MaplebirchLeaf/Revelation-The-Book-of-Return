@@ -34,7 +34,7 @@
   <<elseif Weather.isSnow>>
     <<language>>
       <<option 'EN'>>
-        Snow catches in Robin’s hair. <<He>> shakes it free and offers you the warmer side of the path.
+        Snow catches in Robin's hair. <<He>> shakes it free and offers you the warmer side of the path.
       <<option 'CN'>>
         雪落在罗宾的头发上。<<He>>摇掉雪花，把背风的一侧让给你。
     <</language>>
@@ -205,7 +205,7 @@
     <<takeHandholdingVirginity 'Robin' 'romantic'>>
     <<language>>
       <<option 'EN'>>
-        You take Robin’s hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the <<if Time.hour lt 18>>open<<else>>shuttered<</if>> shops without hurrying.
+        You take Robin's hand. <<He>> looks down at your fingers, then gives them a small squeeze. You walk past the <<if Time.hour lt 18>>open<<else>>shuttered<</if>> shops without hurrying.
       <<option 'CN'>>
         你牵住罗宾的手。<<He>>低头看了一眼交握的手指，轻轻握紧。你们不急不慢地走过<<if Time.hour lt 18>>开着门的<<else>>已经打烊的<</if>>店铺。
     <</language>>

@@ -18,7 +18,7 @@
   and Time.hour gte 13 and Time.hour lt 16>>
 <<language>>
   <<option 'EN'>>
-    Robin’s bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.
+    Robin's bunk stands near the end of a row. A folded blanket lies beneath a schoolbook, and a clean shirt hangs from the bedpost.
   <<option 'CN'>>
     罗宾的床铺靠近这一排的尽头。叠好的毯子上放着一本课本，床柱上挂着干净的衬衫。
 <</language>>
@@ -177,7 +177,7 @@
 <<else>>
   <<language>>
     <<option 'EN'>>
-      Robin’s side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
+      Robin's side of the bed is empty. You pull the blanket over yourself while the other initiates settle down.
     <<option 'CN'>>
       罗宾那侧空着。你盖上毯子，听着其他见习教徒渐渐安静下来。
   <</language>>
@@ -340,7 +340,7 @@
   <<elseif !_wakingEffect>>
     <<language>>
       <<option 'EN'>>
-        You sleep beneath the temple’s quiet roof.
+        You sleep beneath the temple's quiet roof.
       <<option 'CN'>>
         你在神殿安静的屋檐下睡了一觉。
     <</language>>

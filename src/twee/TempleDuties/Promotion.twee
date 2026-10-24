@@ -53,7 +53,7 @@
 <<language>>
   <<option 'EN'>>
     Jordan reads the account of the rescued member before the record of the returned spear. "One brought a person home. One brought back what we had entrusted to you. Neither was safe work. I'm thankful you returned too." <<He>> asks which parts you could not have managed alone.
-    A clerk comes to the door and reports that a novice is afraid to return to the lower storeroom. Jordan turns to you. "What would you say if they came to you for help?"
+    A clerk comes to the door and reports that an initiate is afraid to return to the lower storeroom. Jordan turns to you. "What would you say if they came to you for help?"
   <<option 'CN'>>
     约旦先读获救教徒的记录，再看交还长矛的那一页。“一件把人带回家，一件带回了我们交托给你的东西。都不是安全的工作。我也很庆幸你回来了。”<<He>>问起哪些事情是你独自做不到的。
     一名侍从来到门口，说有位见习教徒害怕再去下层储藏室。约旦转向你，问道：“要是对方向你求助，你会怎么回答？”
@@ -65,7 +65,7 @@
 <</temple-duty-action>>
 <br>
 <<socialiseicon>>
-<<temple-duty-action `['Say the novice should obey and return alone (0:05)', '回答：见习教徒应当服从，独自回去 (0:05)']` 5 'Revelation Temple Review Answer'>>
+<<temple-duty-action `['Say the initiate should obey and return alone (0:05)', '回答：见习教徒应当服从，独自回去 (0:05)']` 5 'Revelation Temple Review Answer'>>
   <<set $TempleDuties.oath to 'obedience'>>
 <</temple-duty-action>>
 <br>
@@ -83,7 +83,7 @@
 <<if $TempleDuties.oath is 'obedience'>>
   <<language>>
     <<option 'EN'>>
-      Jordan closes the book. "Obedience doesn't tell us whether the room is safe. You know more than that novice does; you must use it to help them." <<He>> leaves the interview unfinished. You may return after considering <<his>> answer.
+      Jordan closes the book. "Obedience doesn't tell us whether the room is safe. You know more than that initiate does; you must use it to help them." <<He>> leaves the interview unfinished. You may return after considering <<his>> answer.
     <<option 'CN'>>
       约旦合上书。“服从不能证明房间安全。你比那个见习教徒知道得更多，就应当用这些知识帮对方。”<<He>>没有继续面谈。想清楚这番话后，你可以再来。
   <</language>>

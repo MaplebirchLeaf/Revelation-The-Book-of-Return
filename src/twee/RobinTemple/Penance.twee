@@ -432,7 +432,7 @@
     <<language>>
       <<option 'EN'>>
         <<if $RobinTemple.punish.phase is 1>>
-          You hold on to Robin and Sydney, not daring to let go. Whatever’s coming, you know you can handle it together.
+          You hold on to Robin and Sydney, not daring to let go. Whatever's coming, you know you can handle it together.
           <br><br>
           The <<person3>><<priest>> nods in approval. "A good start."
         <<elseif $RobinTemple.punish.phase is 2 or $RobinTemple.punish.phase is 3>>
@@ -440,11 +440,11 @@
           <<set _punishHeld to $RobinTemple.punish.phase is 2 ? 'Sydney' : 'Robin'>>
           You hold on to <<= _punishHeld>> and push <<= _punishRejected>> away. Why should the both of you be punished for this? <<nnpc_He _punishRejected>> looks at you with tears in <<nnpc_his _punishRejected>> eyes, looking utterly betrayed.
           <br><br>
-          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can’t come sooner."
+          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can't come sooner."
         <<else>>
           You push Robin and Sydney away. Why should you be punished for this? They look at you with tears in their eyes, looking utterly betrayed.
           <br><br>
-          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can’t come sooner."
+          The <<person3>><<priest>> shakes <<his>> head. "Miserable. Refusing to take responsibility. Your punishment can't come sooner."
         <</if>>
         <<He>> pushes the gag into your mouth and ties it firm behind your head. <<He>> walks over to Robin and Sydney and does the same motion. Any sound you make will be muffled and unintelligible.
         <<if $worn.neck.name is "familiar collar" and $worn.neck.cursed is 1>>
@@ -596,13 +596,13 @@
     <<language>>
       <<option 'EN'>>
         <<if $RobinTemple.punish.phase is 1>>
-          You lock eyes with Robin and Sydney, silently asking them to focus on you. The tears don’t stop, but you think they’re trying to smile at you.
+          You lock eyes with Robin and Sydney, silently asking them to focus on you. The tears don't stop, but you think they're trying to smile at you.
         <<elseif $RobinTemple.punish.phase is 2 or $RobinTemple.punish.phase is 3>>
           <<set _punishHeld to $RobinTemple.punish.phase is 2 ? 'Sydney' : 'Robin'>>
           <<set _punishRejected to $RobinTemple.punish.phase is 2 ? 'Robin' : 'Sydney'>>
-          You lock eyes with <<= _punishHeld>>, silently asking <<nnpc_him _punishHeld>> to focus on you. You think <<nnpc_hes _punishHeld>> trying to smile, while you ignore <<= _punishRejected>>’s cries.
+          You lock eyes with <<= _punishHeld>>, silently asking <<nnpc_him _punishHeld>> to focus on you. You think <<nnpc_hes _punishHeld>> trying to smile, while you ignore <<= _punishRejected>>'s cries.
         <<else>>
-          You tightly shut your eyes, trying to ignore Robin and Sydney’s cries. After a few moments, you can’t help but peek.
+          You tightly shut your eyes, trying to ignore Robin and Sydney's cries. After a few moments, you can't help but peek.
         <</if>>
         <br><br>
         You see the <<person3>><<priest>> come into view. "Your bonds must be strong. Stronger than any desire and stronger than pain itself," <<he>> says in an instructive manner. Despite their sobs, you think the words have emboldened <<person1>>them. Robin and Sydney cling onto you tighter, and you do the same around them. <span class="blue">You'll only get through this together.</span>
@@ -664,7 +664,7 @@
 <<if $RobinTemple.punish>>
   <<language>>
     <<option 'EN'>>
-      <i>If your pain or arousal, or either companion’s pain or arousal, reaches the limit, your punishment will continue.</i>
+      <i>If your pain or arousal, or either companion's pain or arousal, reaches the limit, your punishment will continue.</i>
     <<option 'CN'>>
       <i>要是你或同伴的疼痛或情欲达到最大值，你们的惩罚都将会继续。</i>
   <</language>>
