@@ -256,9 +256,37 @@
   <<ggconviction 'Robin'>>
   <<language>>
     <<option 'EN'>>
-      You clear the bunks while Robin sweeps between them. <<He>> pauses to help a younger initiate find a missing blanket, then comes back to finish the last row with you.
+      <<if Weather.precipitation is 'rain'>>
+        Wet footprints lead in from the door. Robin rolls the blankets back while you wipe the floor, leaving the damp cloths by the washbasin. You spread the bedding on the empty bunks instead of putting it away still wet.
+      <<elseif $RobinTemple.service gte 10>>
+        Robin brings the spare sheets before you ask. You change the empty bunks while <<he>> checks the labels on the clean bundles. "Those go on the lower shelf," <<he>> says, catching a folded blanket before it slips from your pile.
+      <<else>>
+        You clear the bunks while Robin sweeps between them. <<He>> pauses to help an initiate find a missing blanket, then comes back to finish the last row with you.
+      <</if>>
+      <br><br>
+      <<if C.npc.Robin.trauma gte 40>>
+        You take the next row together. Robin keeps the door in sight, but <<his>> grip on the broom loosens as the room empties.
+      <<elseif C.npc.Robin.dom gte 50>>
+        Robin nudges the last bundle into place. "Next time, you take the broom. We'll see who finishes first."
+      <<else>>
+        Robin straightens the last blanket, then comes over to check your row. "I think that's all of them." <<He>> looks pleased when you agree.
+      <</if>>
     <<option 'CN'>>
-      你整理床铺，罗宾在床位之间扫地。<<He>>在一名年幼见习教徒面前停下，帮对方找回毯子，随后回来和你收拾完最后一排。
+      <<if Weather.precipitation is 'rain'>>
+        潮湿的脚印从门口一路延伸进来。罗宾卷起毯子，你擦净地板，把湿布留在洗手盆旁。你们将寝具摊在空床上，没有趁着潮湿就叠进架子。
+      <<elseif $RobinTemple.service gte 10>>
+        不用你开口，罗宾就拿来了备用床单。你更换空床的寝具，<<he>>核对干净捆包上的标签。“这些放下面。”一条叠好的毯子滑出你怀里，被<<he>>接住了。
+      <<else>>
+        你整理床铺，罗宾在床位之间扫地。<<He>>帮一名见习教徒找回毯子，随后回来和你收拾完最后一排。
+      <</if>>
+      <br><br>
+      <<if C.npc.Robin.trauma gte 40>>
+        下一排，你们一起收拾。罗宾始终留意着门口，不过屋里渐渐空下来时，<<he>>握着扫帚的手也松了些。
+      <<elseif C.npc.Robin.dom gte 50>>
+        罗宾把最后一捆毯子推好。“下次你扫地。看看谁先做完。”
+      <<else>>
+        罗宾抚平最后一条毯子，过来看看你这一排。“应该都好了。”你点点头，<<he>>露出满意的笑。
+      <</if>>
   <</language>>
   <br><br>
   <<language>>
@@ -279,7 +307,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 
 :: RobinTemple Supplies
 <<set $outside to 0>><<set $location to "temple">><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -313,7 +341,7 @@
   <</language>>
 <</if>>
 <br><br>
-<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
+<<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>
 
 :: RobinTemple Sunday Service
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>

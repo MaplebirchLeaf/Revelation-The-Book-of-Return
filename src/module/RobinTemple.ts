@@ -197,7 +197,22 @@ class RobinTemple extends Module {
     if (end > 21 * 60 || (Time.schoolDay && start < 16 * 60 && end >= 8 * 60)) return false;
     const robin = this.core.get('Robin');
     if (robin && V.RobinExpansion?.tutor && Time.schoolDay && robin.tutoring.lessonDays.includes(Time.weekDay) && start < 18 * 60 + 30 && end >= 17 * 60 + 30) return false;
-    if (robin && V.RobinExpansion?.shop && start < 21 * 60 && end >= 18 * 60 + 30) return false;
+    const shopStart = !Time.schoolDay && !Time.isWeekEnd() ? (this.member ? 16 : 9) * 60 : 18 * 60 + 30;
+    if (robin && V.RobinExpansion?.shop && start < 21 * 60 && end >= shopStart) return false;
+    const rainStall = robin && (Time.season === 'winter' ? V.RobinExpansion?.chocolate >= 1 : V.RobinExpansion?.lemonade >= 1);
+    if (Time.isWeekEnd() && start < 9 * 60 && end >= 9 * 60 && (Weather.precipitation !== 'rain' || rainStall)) return false;
+    if (start < 16 * 60 + 30 && end >= 16 * 60 + 30) {
+      const watering =
+        V.robin.autoWater &&
+        C.npc.Robin.trauma < 50 &&
+        Weather.precipitation !== 'rain' &&
+        (Weather.precipitation !== 'snow' || V.alex_greenhouse >= 3) &&
+        orphanagePlotsPlanted() &&
+        !orphanagePlotsWatered();
+      if (!V.daily.robin.bath || watering) return false;
+    }
+    if (V.englishPlay === 'ongoing' && V.englishPlayDays === 0 && start < 17 * 60 && end >= 17 * 60) return false;
+    if (V.halloween === 1 && Time.monthDay === 31 && start < 16 * 60 && end >= 16 * 60) return false;
     return true;
   }
 
@@ -210,24 +225,8 @@ class RobinTemple extends Module {
   public get canMeetJordan(): boolean {
     if (!this.free(20) || !this.jordanAvailable) return false;
     const end = new DateTime(Time.date).addMinutes(20);
-    const expansion = this.core.get('Robin');
     if (['night', 'dusk'].includes(end.dayState)) return false;
-    if (Time.schoolDay && Time.hour < 8 && end.hour >= 8) return false;
     if (Time.weekDay === 1 && Time.hour < 11 && end.hour >= 11) return false;
-    const rainStall = expansion && (Time.season === 'winter' ? V.RobinExpansion?.chocolate >= 1 : V.RobinExpansion?.lemonade >= 1);
-    if (Time.isWeekEnd() && Time.hour < 9 && end.hour >= 9 && (Weather.precipitation !== 'rain' || rainStall)) return false;
-    if (Time.hour === 16 && Time.minute < 30 && end.hour === 16 && end.minute >= 30) {
-      const watering =
-        V.robin.autoWater &&
-        C.npc.Robin.trauma < 50 &&
-        Weather.precipitation !== 'rain' &&
-        (Weather.precipitation !== 'snow' || V.alex_greenhouse >= 3) &&
-        orphanagePlotsPlanted() &&
-        !orphanagePlotsWatered();
-      if (!V.daily.robin.bath || watering) return false;
-    }
-    if (V.englishPlay === 'ongoing' && V.englishPlayDays === 0 && Time.hour < 17 && end.hour >= 17) return false;
-    if (V.halloween === 1 && Time.monthDay === 31 && Time.hour < 16 && end.hour >= 16) return false;
     return true;
   }
 
@@ -240,7 +239,7 @@ class RobinTemple extends Module {
       const during = Array.from({ length: endHour - Time.hour + 1 }, (_, hour) => Time.hour + hour);
       V.robinlocationoverride = { location: 'temple', during };
     } else if (state.visit_override) {
-      V.robinlocationoverride = state.visit_override;
+      if (V.robinlocationoverride?.location === 'temple') V.robinlocationoverride = state.visit_override;
       state.visit_override = null;
     }
   }
@@ -252,6 +251,8 @@ class RobinTemple extends Module {
       Time.days >= V.RobinTemple.exam_day &&
       this.playerReady &&
       this.available &&
+      window.getRobinLocation() !== 'deadwood_outing' &&
+      (!V.robinlocationoverride?.during?.includes(Time.hour) || V.robinlocationoverride.location === 'temple') &&
       this.jordanAvailable &&
       Time.hour >= 6 &&
       (Time.hour < 8 || (!Time.schoolDay && Time.hour < 18))
@@ -521,10 +522,7 @@ class RobinTemple extends Module {
     const sundayService = Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
     const freeWeekday = !Time.schoolDay && !Time.isWeekEnd() && Time.hour >= 9 && Time.hour < 16;
     const shopOpen = this.core.get('Robin') && V.RobinExpansion?.shop && (Time.hour > 18 || (Time.hour === 18 && Time.minute >= 30)) && Time.hour < 21;
-    const vigil =
-      V.RobinTemple.vigil_result !== 'passed' &&
-      (!shopOpen || (V.RobinTemple.vigil_attending && V.RobinTemple.vigil_with_robin)) &&
-      ((Time.weekDay === 1 && Time.hour >= 20) || (Time.weekDay === 2 && Time.hour < 7));
+    const vigil = V.RobinTemple.vigil_result !== 'passed' && (!shopOpen || V.RobinTemple.vigil_attending) && ((Time.weekDay === 1 && Time.hour >= 20) || (Time.weekDay === 2 && Time.hour < 7));
     return overnight || sundayService || freeWeekday || vigil;
   }
 }

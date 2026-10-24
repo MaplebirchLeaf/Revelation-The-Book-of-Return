@@ -1,17 +1,26 @@
 :: Temple Duties Monstrance Widgets [widget]
 <<widget 'temple-manor-link'>>
   <<temple-duty-check>>
-  <<if _dutySafe and $temple_rank is 'priest' and $TempleDuties.manor is 'accepted'
+  <<if _dutySafe and $temple_rank is 'priest' and ['accepted', 'complete'].includes($TempleDuties.manor)
       and $location is 'kylarmanor' and C.npc.Kylar.init is 1
       and ['active', 'rescued'].includes(C.npc.Kylar.state)
       and C.npc.Kylar.rage lt 30 and !$stalk and !$controlled
       and Time.hour gte 18 and Time.hour lt 23
       and Array.from(document.querySelectorAll('#passage-content .macro-link[data-passage]'))
         .some(link => link.dataset.passage === 'Kylar Chat')>>
-    <<socialiseicon 'ask'>>
-    <<lanLink ['Discuss the monstrance', '打听圣体匣'] 'Revelation Temple Kylar'>>
-    <</lanLink>>
-    <br>
+    <<if $TempleDuties.manor is 'complete'>>
+      <<language>>
+        <<option 'EN'>>
+          Kylar notices the corner of your notebook. "You only gave them what we wrote?" You confirm it. <<nnpc_He 'Kylar'>> glances at the copy beside <<nnpc_his 'Kylar'>> keyboard. "Good. Don't let them add anything."
+        <<option 'CN'>>
+          凯拉尔看见你笔记本的一角。“你只给了他们我们写的那些，对吧？”你点头。<<nnpc_He 'Kylar'>>瞥向键盘旁的副本。“那就好。别让他们添别的。”
+      <</language>><br><br>
+    <<else>>
+      <<socialiseicon 'ask'>>
+      <<lanLink ['Discuss the monstrance', '打听圣体匣'] 'Revelation Temple Kylar'>>
+      <</lanLink>>
+      <br>
+    <</if>>
   <</if>>
 <</widget>>
 

@@ -4,13 +4,37 @@
   <<unset $phase>>
   <<language>>
     <<option 'EN'>>
-      Robin hands you a pair of gloves, then kneels beside the flower bed. You loosen the soil while <<he>> gathers the weeds into a bucket. When it fills, <<he>> reaches for the handle at the same time as you.
+      <<if Weather.precipitation is 'rain'>>
+        Water has collected along the flower bed. You clear the channel while Robin lifts the trailing stems out of the mud. <<He>> holds them steady as you tie them to their supports. By the time you finish, water is running towards the drain instead of pooling around your shoes.
+      <<elseif $temple_garden gte 60>>
+        Robin carries the shears while you spread a cloth beneath the hedge. You trim the branches growing over the path, then gather the cuttings together. <<He>> steps back to check the line before you put the tools away.
+      <<else>>
+        Robin hands you a pair of gloves, then kneels beside the flower bed. You loosen the soil while <<he>> gathers the weeds into a bucket. When it fills, you carry it to the compost heap together.
+      <</if>>
       <br><br>
-      "I'll take it. Could you get the watering can?" <<He>> smiles at you before carrying the bucket to the compost heap. By the time you return, <<he>> has left a clear path between the beds.
+      <<if C.npc.Robin.trauma gte 40>>
+        A branch scrapes against the wall. Robin looks up sharply, then takes the tool you hold out. "Could we take these back together?" <<He>> waits while you gather the last of the tools.
+      <<elseif C.npc.Robin.dom gte 50>>
+        "That looks better." Robin brushes the soil from <<his>> gloves. "We should have done that side first." <<He>> grins when you point to the dirt on <<his>> face.
+      <<else>>
+        "Thanks for helping." Robin brushes the soil from <<his>> gloves. <<He>> smiles at you, then goes back for the bucket you nearly left behind.
+      <</if>>
     <<option 'CN'>>
-      罗宾递给你一副手套，随后在花坛旁蹲下。你松土，<<he>>把拔出的杂草拢进桶里。桶满了，你们同时伸手去提。
+      <<if Weather.precipitation is 'rain'>>
+        花坛边积了一洼水。你疏通水沟，罗宾把垂到泥里的枝茎扶起来，等你将它们绑回支架。收工时，水已经顺着沟往下流，不再淤在你们脚边。
+      <<elseif $temple_garden gte 60>>
+        罗宾拿来园艺剪，你在树篱下铺开布。你们剪去伸到小路上的枝条，再把碎枝拢在一起。收好工具前，<<he>>退后几步，检查有没有漏剪的地方。
+      <<else>>
+        罗宾递给你一副手套，随后在花坛旁蹲下。你松土，<<he>>把拔出的杂草拢进桶里。桶满了，你们一起提到堆肥处。
+      <</if>>
       <br><br>
-      “我来吧。能帮忙拿一下洒水壶吗？”<<He>>朝你笑笑，提着桶走向堆肥处。你回来时，<<he>>已经把花坛间的小路清了出来。
+      <<if C.npc.Robin.trauma gte 40>>
+        一根树枝刮过墙面。罗宾猛地抬头，接过你递来的工具。“能一起把这些送回去吗？”<<He>>留在原处，等你收好最后几件工具。
+      <<elseif C.npc.Robin.dom gte 50>>
+        “好多了。”罗宾拍掉手套上的土。“早知道就先弄那边了。”你指指<<his>>沾着泥的脸，<<he>>咧嘴笑了。
+      <<else>>
+        “谢谢你帮忙。”罗宾拍掉手套上的土，朝你笑笑，又折回去拿差点落下的桶。
+      <</if>>
   <</language>>
   <<gtending>><<ggrace monk>><<gtiredness>><<glove>><<ggconviction 'Robin'>>
 <<elseif $RobinTemple.work_day isnot Time.days>>
@@ -19,4 +43,4 @@
   <<lanSwitch 'The work is already done today.' '今天的工作已经做完了。'>>
 <</if>>
 <br><br>
-<<templeicon 'garden'>><<lanLink ['Return to the garden', '返回神殿花园'] 'Temple Garden'>><</lanLink>><br>
+<<templeicon 'garden'>><<lanLink ['Return to the garden', '返回神殿花园'] 'Temple Garden'>><<run maplebirch.get('RobinTemple').visit(0)>><</lanLink>><br>

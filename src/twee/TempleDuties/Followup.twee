@@ -314,6 +314,7 @@
 
 :: Revelation Temple Companion Shift
 <<temple-duty-place>>
+<<set _dutyAid to maplebirch.get('Finance')?.donations?.state.aid?.temple>>
 <<if $TempleDuties.duty_day isnot Math.floor(Time.days)
     or !['joint-Robin', 'joint-Sydney'].includes($TempleDuties.note)>>
   <<temple-duty-back>>
@@ -327,15 +328,15 @@
 <<language>>
   <<option 'EN'>>
     <<if $TempleDuties.speaker is 'Robin'>>
-      Robin unfolds the list before handing over the blankets. A visitor cannot remember the name on the request. <<if C.npc.Robin.trauma gte 40>><<He>> hesitates, then pulls a chair nearer. "You can sit while we find it."<<elseif C.npc.Robin.dom gte 50>>"One thing at a time," <<he>> says. "Tell us where you stayed last night."<<else>><<He>> checks the next name with you quietly before asking the visitor again.<</if>> You count the dry bundles while <<he>> listens. The missing name turns up on the back of the page. "I would have rushed past that," Robin admits. <<He>> checks the clock before you both leave the signed handover. Jordan has set your pay beside it.
+      Robin unfolds the list before handing over the blankets. A visitor cannot remember the name on the request. <<if C.npc.Robin.trauma gte 40>><<He>> hesitates, then pulls a chair nearer. "You can sit while we find it."<<elseif C.npc.Robin.dom gte 50>>"One thing at a time," <<he>> says. "Tell us where you stayed last night."<<else>><<He>> checks the next name with you quietly before asking the visitor again.<</if>> You count the dry bundles while <<he>> listens. <<if _dutyAid?.signed_at != null>>The relief fund's signed receipt stays beside the distribution list; you check the bundles against it before passing them over.<<elseif Weather.precipitation is 'rain'>>Robin keeps the damp returns away from the dry bundles you have counted.<</if>> The missing name turns up on the back of the page. <<if $RobinTemple.service gte 10>>Robin points it out before the visitor has finished. "Here. The next shift should know to check both sides."<<else>>"I would have rushed past that," Robin admits.<</if>> <<He>> checks the clock before you both leave the signed handover. Jordan has set your pay beside it.
     <<else>>
-      Sydney sets the old receipt beside the new entry and asks you to read the names back. <<if _sydneyStatus.includes('pure')>><<He>> apologises when a page sticks, then smooths it carefully before continuing. "They should be able to find their own name."<<else>>"A heroic account, three spelling mistakes," <<he>> murmurs. The smile fades when <<he>> finds the wrong collection date. "That part needs fixing."<</if>> You follow the ink through the copied pages, checking the sums together. Sydney puts the key away and glances towards the hall before the next duty. Jordan signs the corrected receipt and leaves your pay with the clerk.
+      Sydney sets the old receipt beside the new entry and asks you to read the names back. <<if _sydneyStatus.includes('pure')>><<He>> apologises when a page sticks, then smooths it carefully before continuing. "They should be able to find their own name."<<else>>"A heroic account, three spelling mistakes," <<he>> murmurs. The smile fades when <<he>> finds the wrong collection date. "That part needs fixing."<</if>> <<if _roofReady and _shelvesReady>>Sydney sends an initiate to the numbered shelf for the matching receipt. "Let them find it," <<he>> says quietly. You check the date while the initiate reads back the amount.<<else>>You hold the loose pages apart while Sydney compares the faint figures. <<He>> leaves a separate note where the damaged original cannot be read.<</if>> Sydney puts the key away and glances towards the hall before the next duty. Jordan signs the corrected receipt and leaves your pay with the clerk.
     <</if>>
   <<option 'CN'>>
     <<if $TempleDuties.speaker is 'Robin'>>
-      交出毯子前，罗宾先展开名单。一名访客想不起申请时写下的名字。<<if C.npc.Robin.trauma gte 40>><<He>>迟疑了一下，把椅子拉近。“找的时候，你可以先坐着。”<<elseif C.npc.Robin.dom gte 50>>“一件件来，”<<he>>说，“先告诉我们，昨晚住在哪里。”<<else>><<He>>低声与你核对下一个名字，再问访客一遍。<</if>>你清点干毯子，<<he>>听对方说。漏掉的名字就在纸背面。“我可能会急着翻过去。”罗宾承认。留下签好的交接记录前，<<he>>看了一眼钟。约旦已经把你的报酬放在旁边。
+      交出毯子前，罗宾先展开名单。一名访客想不起申请时写下的名字。<<if C.npc.Robin.trauma gte 40>><<He>>迟疑了一下，把椅子拉近。“找的时候，你可以先坐着。”<<elseif C.npc.Robin.dom gte 50>>“一件件来，”<<he>>说，“先告诉我们，昨晚住在哪里。”<<else>><<He>>低声与你核对下一个名字，再问访客一遍。<</if>>你清点干毯子，<<he>>听对方说。<<if _dutyAid?.signed_at != null>>救济基金的签收单就放在分发名单旁，你对照捆包核过一遍，才交出去。<<elseif Weather.precipitation is 'rain'>>罗宾把送回来的湿毯子分开放好，没有混进你数过的干毯子里。<</if>>漏掉的名字就在纸背面。<<if $RobinTemple.service gte 10>>没等访客说完，罗宾便指给对方看。“在这里。得告诉下一班，两面都要看。”<<else>>“我可能会急着翻过去。”罗宾承认。<</if>>留下签好的交接记录前，<<he>>看了一眼钟。约旦已经把你的报酬放在旁边。
     <<else>>
-      悉尼把旧收据放在新记录旁，请你读回名字。<<if _sydneyStatus.includes('pure')>>一页纸粘住了，<<he>>先道歉，再仔细展平。“他们也该找得到自己的名字。”<<else>>“一份英勇的记录，三个错字。”<<he>>低声说。发现收货日期不对时，笑容便收起来了。“这里得改。”<</if>>你沿着几页抄录的笔迹查下去，与<<him>>一起核对金额。悉尼收好钥匙，在下项事务前望了望大厅。约旦在更正的收据上签字，把你的报酬交给侍从。
+      悉尼把旧收据放在新记录旁，请你读回名字。<<if _sydneyStatus.includes('pure')>>一页纸粘住了，<<he>>先道歉，再仔细展平。“他们也该找得到自己的名字。”<<else>>“一份英勇的记录，三个错字。”<<he>>低声说。发现收货日期不对时，笑容便收起来了。“这里得改。”<</if>><<if _roofReady and _shelvesReady>>悉尼请一名见习教徒去编号书架找收据。“让对方找找看。”<<he>>低声说。见习教徒读回金额，你核对日期。<<else>>你分开散页，悉尼比对褪色的数字。原稿损坏到读不清的地方，<<he>>另外留了说明。<</if>>悉尼收好钥匙，在下项事务前望了望大厅。约旦在更正的收据上签字，把你的报酬交给侍从。
     <</if>>
 <</language>>
 <<ggrace>>

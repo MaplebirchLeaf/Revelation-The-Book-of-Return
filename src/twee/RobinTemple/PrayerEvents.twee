@@ -11,9 +11,9 @@
   <<case 1>>
     <<language>>
       <<option 'EN'>>
-        The visitor has come from Wolf Street. The soup kitchen needs clean bowls before evening. Robin offers to carry a box from the shelves.
+        <<if $soup_kitchen_known>>You recognise the address on the visitor's note: the kitchen on Wolf Street. Robin reads through the request.<<else>>The visitor has come from Wolf Street. The soup kitchen needs clean bowls before evening.<</if>> <<if $RobinTemple.service gte 10>>Robin checks how many bowls are needed before taking a box from the shelves.<<else>>Robin offers to carry a box from the shelves.<</if>>
       <<option 'CN'>>
-        那名访客从狼街来。施粥所在开门前缺一批干净的碗。罗宾提出从架上搬一箱过去。
+        <<if $soup_kitchen_known>>你认出访客便条上的地址，是狼街的厨房。罗宾读过物资请求。<<else>>那名访客从狼街来。施粥所在开门前缺一批干净的碗。<</if>><<if $RobinTemple.service gte 10>>罗宾先问清需要多少只碗，才从架上搬下一箱。<<else>>罗宾提出从架上搬一箱过去。<</if>>
     <</language>>
     <br><br>
     <<robin-temple-prayer-time 30>>
@@ -92,11 +92,13 @@
   <<set _robinWork to false>>
 <</if>>
 <<if _robinWork>>
+  <<set _prayerService to $RobinTemple.service>>
+  <<set _kitchenKnown to Boolean($soup_kitchen_known)>>
   <<language>>
     <<option 'EN'>>
-      You and Robin wrap the bowls in linen and carry them to the kitchen on Wolf Street. The cook counts them before setting a pot on the stove.
+      You and Robin wrap the bowls in linen and carry them to the kitchen on Wolf Street. <<if _kitchenKnown>>The cook clears an end of the table and checks the delivery against the request Robin has brought.<<else>>The cook shows you where to set the box, then counts the bowls before setting a pot on the stove.<</if>> <<if _prayerService gte 10>>Robin folds the empty wrapping while you wait for the receipt. "That's everything on the list?" <<he>> asks before you leave.<</if>>
     <<option 'CN'>>
-      你和罗宾用布巾包好碗，送到狼街的厨房。厨师数过碗，才把锅架上炉灶。
+      你和罗宾用布巾包好碗，送到狼街的厨房。<<if _kitchenKnown>>厨师腾出桌子的一角，对照罗宾带来的便条，清点这次送来的碗。<<else>>厨师告诉你把箱子放在哪里，数过碗，才把锅架上炉灶。<</if>><<if _prayerService gte 10>>你等收条时，罗宾叠好空布巾。“清单上的都齐了吧？”离开前，<<he>>又问了一遍。<</if>>
   <</language>>
   <<set $soup_kitchen_known to 1>><<set $RobinTemple.service += 1>>
   <<grace 2>><<npcincr Robin love 1>><<ggrace>><<glove>>
@@ -116,19 +118,30 @@
 <<robin-temple-work-check>>
 <<if _robinWork and $RobinTemple.prayer_event_day is Time.days and $RobinTemple.prayer_event is 1 and !$RobinTemple.prayer_event_resolved>>
   <<set $RobinTemple.prayer_event_resolved to true>>
+  <<set _kitchenKnown to Boolean($soup_kitchen_known)>>
   <<language>>
     <<option 'EN'>>
-      The visitor shows you the kitchen’s address and hours. Robin copies them into <<his>> schoolbook so neither of you has to rely on memory.
+      <<if _kitchenKnown>>
+        You confirm the kitchen's opening hours with the visitor. Robin writes down what is running short and the quantities needed.
+      <<else>>
+        The visitor shows you the kitchen's address and hours. Robin copies them into <<his>> schoolbook so neither of you has to rely on memory.
+      <</if>>
     <<option 'CN'>>
-      访客告诉你厨房的位置和开放时间。罗宾把它们抄进课本，免得你们全靠记忆。
+      <<if _kitchenKnown>>
+        你向访客核实厨房的开放时间。罗宾记下这次短缺的物品和所需数量。
+      <<else>>
+        访客告诉你厨房的位置和开放时间。罗宾把它们抄进课本，免得你们全靠记忆。
+      <</if>>
   <</language>>
   <<set $soup_kitchen_known to 1>>
-  <<language>>
-    <<option 'EN'>>
-      <span class='gold'>You learned where to find the soup kitchen.</span>
-    <<option 'CN'>>
-      <span class='gold'>你得知了施粥所的位置。</span>
-  <</language>><br><br>
+  <<if !_kitchenKnown>>
+    <<language>>
+      <<option 'EN'>>
+        <span class='gold'>You learned where to find the soup kitchen.</span>
+      <<option 'CN'>>
+        <span class='gold'>你得知了施粥所的位置。</span>
+    <</language>>
+  <</if>><br><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -151,11 +164,12 @@
   <<set _robinWork to false>>
 <</if>>
 <<if _robinWork>>
+  <<set _prayerService to $RobinTemple.service>>
   <<language>>
     <<option 'EN'>>
-      You count each bundle with Robin. The missing linen is on a shelf in the next room. The initiate corrects the entry while you hold the pages together.
+      <<if _prayerService gte 10>>Robin asks which shelf was counted last, then takes you to the next room. The missing bundle is where the previous shift left it. <<He>> waits while the initiate counts it, rather than giving them the number.<<else>>You count each bundle with Robin. The missing linen is on a shelf in the next room.<</if>> The initiate corrects the entry while you hold the pages together.
     <<option 'CN'>>
-      你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。你扶住纸页，让见习教徒把数字改好。
+      <<if _prayerService gte 10>>罗宾问清最后数到哪个架子，带你去隔壁看。漏记的捆包就放在上一班留下的位置。<<He>>等见习教徒自己数过，没有直接报出数量。<<else>>你和罗宾逐捆清点。漏记的布巾就放在隔壁的架子上。<</if>>你扶住纸页，让见习教徒把数字改好。
   <</language>>
   <<set $RobinTemple.service += 1>>
   <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
@@ -178,9 +192,9 @@
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      Robin sits with the initiate until the mistake can be explained. "We should check the shelves," Robin says. The two of you find the bundle and correct the list together.
+      <<if $RobinTemple.service gte 10 and C.npc.Robin.trauma lt 40>>Robin folds the list to the right column and sets it between them. "I used to lose my place here too." <<He>> waits until the initiate can point to the mistake.<<else>>Robin sits with the initiate until the mistake can be explained.<</if>> "We should check the shelves," Robin says. The two of you find the bundle and correct the list together.
     <<option 'CN'>>
-      罗宾陪见习教徒坐了一会儿，等对方说清错在哪里。“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
+      <<if $RobinTemple.service gte 10 and C.npc.Robin.trauma lt 40>>罗宾把清单折到相应的那一栏，摆在两人中间。“我以前也会看串行。”<<He>>等见习教徒指出写错的地方。<<else>>罗宾陪见习教徒坐了一会儿，等对方说清错在哪里。<</if>>“先看看架子吧，”罗宾说。你们找到那捆布巾，一起改好清单。
   <</language>>
   <<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
   <<npcincr Robin love 1>><<glove>>
@@ -206,11 +220,12 @@
   <<set _robinWork to false>>
 <</if>>
 <<if _robinWork and maplebirch.get('RobinTemple').jordanAvailable>>
+  <<set _prayerService to $RobinTemple.service>>
   <<language>>
     <<option 'EN'>>
-      Jordan listens to the visitor and offers a place to rest until morning. Robin fetches water and a clean blanket, then asks whether the visitor needs anything else.
+      Jordan listens to the visitor and offers a place to rest until morning. <<if _prayerService gte 10>>Robin checks which bunk is free with the attendant, then leaves water and a clean blanket at its foot. "I'll show you where to put your things."<<else>>Robin fetches water and a clean blanket, then asks whether the visitor needs anything else.<</if>>
     <<option 'CN'>>
-      约旦听完访客的情况，同意让对方留到天亮。罗宾端来水和干净的毯子，又问还有没有别的需要。
+      约旦听完访客的情况，同意让对方留到天亮。<<if _prayerService gte 10>>罗宾和侍从核过空床，在床脚放好水和干净的毯子。“我带你去放东西。”<<else>>罗宾端来水和干净的毯子，又问还有没有别的需要。<</if>>
   <</language>>
   <<set $RobinTemple.service += 1>>
   <<grace 2>><<npcincr Robin love 1>><<ggrace>><<glove>>
@@ -276,9 +291,9 @@
   <<else>>
     <<language>>
       <<option 'EN'>>
-        Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go.
+        Robin asks if <<he>> can bring the initiate some water. Jordan nods and tells <<him>> where to go. <<if $RobinTemple.service gte 10>>Robin repeats the room back to make sure, then takes a cup from the shelf.<</if>>
       <<option 'CN'>>
-        罗宾问能不能给那名见习教徒送些水。约旦点头，告诉<<him>>该去哪里。
+        罗宾问能不能给那名见习教徒送些水。约旦点头，告诉<<him>>该去哪里。<<if $RobinTemple.service gte 10>>罗宾重复一遍房间的位置，确认没有听错，才从架上拿杯子。<</if>>
     <</language>>
   <</if>>
   <<set maplebirch.get('RobinTemple').faith += 2>><<gconviction 'Robin'>>
@@ -301,9 +316,9 @@
   <<set $RobinTemple.prayer_event_resolved to true>>
   <<language>>
     <<option 'EN'>>
-      You leave the side room behind. Robin walks with you to the hall, then says <<he>> will ask Jordan tomorrow what happened.
+      You leave the side room behind. Robin walks with you to the hall. <<He>> glances back once before sitting beside you on the pew.
     <<option 'CN'>>
-      你离开侧室门前。罗宾陪你走到大厅，说<<he>>明天会向约旦问清楚。
+      你离开侧室门前。罗宾陪你走到大厅，回头看了一眼，才在长椅上挨着你坐下。
   <</language>>
 <<else>>
   <<language>>

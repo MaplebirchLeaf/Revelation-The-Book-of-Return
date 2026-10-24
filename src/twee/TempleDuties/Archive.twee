@@ -132,14 +132,27 @@
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
         The plans show a drain running behind the lower storeroom wall, with a shutter above it. An old note says that knocking once travelled down this pipe and frightened the novices. The next clerk was told to check the shutter and drain before arranging another blessing.
+        <<if $TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo.result is 'resolved'>>You put your own inspection beside it. The fastening and the drain are marked on the same plan, though your report leaves the unexplained sound in a separate note.<</if>>
+        <<if $TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots.result is 'resolved'>>Your sketch of the route past the roots is filed behind the plan. The narrowest passage is easier to find on your newer drawing.<</if>>
       <<case 'deliveries'>>
         The old delivery book lists each crate's sender, weight and collector. Several damaged crates were returned without anyone checking their contents. A note warns that a seal can be copied: the mark alone does not prove that a crate still holds its original shipment.
+        <<if $TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate.result is 'resolved'>>Your dock report is kept with the newer cargo list. You compare the workers' handover with the old collector's column; they are different entries, not a missing signature you can fill in.<</if>>
+        <<if $TempleDuties.bishop is 'reported'>>The comparison you gave the bishop has a separate reference number. Your copy still marks the collector's signature as absent. No later name has been added to it.<</if>>
       <<case 'fieldwork'>>
         The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when a novice sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
+        <<if Object.values($TempleDuties.reports).some(report => report.honest && report.result === 'withdrawn')>>One of your own reports is filed among the withdrawals. The places you could not reach are left blank, ready for another visit rather than another clerk's guess.<<elseif $TempleDuties.rewards.length gt 0>>Your completed reports are filed after the older ones. Each still begins with the way in and the route back out.<</if>>
+        <<if $TempleDuties.case?.stage is 'field'>>You lay the current assignment beside the sketch and check where you intend to leave your lamp.<</if>>
       <<case 'ward-notes'>>
         With the leaves dry and numbered, the strokes finally meet across the fold. You copy the pattern without filling the missing space. Beside it, an older hand has written: "Keep the gap turned towards the light." You tuck the sheet beside your lamp strap. It will help you set the light and hold the threshold on your next visit.
+        <<if $TempleDuties.rewards.includes('roots')>>The mark you copied near the roots is attached to the sleeve. You can compare the two without drawing either from memory.<</if>>
       <<case 'monstrance'>>
-        The old drawing shows sacramental bread at the centre of a metal sun. The ornament at the top is intact. The inventory lists silver and bronze, but says nothing about Kylar's parents. You copy the whole outline so that you can compare it with the damaged monstrance at the manor.
+        The old drawing shows sacramental bread at the centre of a metal sun. The ornament at the top is intact. The inventory lists silver and bronze, but says nothing about Kylar's parents. <<if $TempleDuties.manor is 'complete'>>
+          Your delivered description has been filed beside the drawing. The lines Kylar permitted you to copy are marked on a separate sheet. The crossed-out details remain absent from both copies.
+        <<elseif $TempleDuties.manor is 'copied'>>
+          You place the description Kylar permitted beside the old outline. The damaged parts do not line up exactly. You leave the difference visible instead of completing the shape for <<nnpc_him 'Kylar'>>.
+        <<else>>
+          You copy the whole outline so that you can compare it with the damaged monstrance at the manor.
+        <</if>>
     <</switch>>
     <<if $TempleDuties.archive.sorted gte 3>>
       The dried folios have made the page numbers legible again. You can cross-check the references without guessing which leaf has gone missing.
@@ -148,14 +161,27 @@
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
         图纸上，下层储藏室的墙后有一根排水管，上方是一扇百叶窗。页边的旧记录提到，敲击声曾沿管道传进来，吓坏了见习教徒。下一班因此被叮嘱：安排祝祷之前，先检查窗扇和排水管。
+        <<if $TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo.result is 'resolved'>>你将自己的检查记录放在旁边。扣件和排水管都标在同一张图上，无法解释的声音则另留了一条说明。<</if>>
+        <<if $TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots.result is 'resolved'>>你画过的根须间通路收在图纸后面。最狭窄的那段，在新图上更好找了。<</if>>
       <<case 'deliveries'>>
         旧交货簿逐项记着货箱的寄件人、重量和提货者。有几只破损货箱被退回时，没有人核对里面还剩什么。页边另有一句提醒：封印可以照样仿制，不能只看标记，就认定箱里的货物没有换过。
+        <<if $TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate.result is 'resolved'>>你的码头报告与新货单收在一起。你拿工人的交接记录对照旧簿上的提货人一栏，两份不是同一笔，不能拿来补上缺失的签名。<</if>>
+        <<if $TempleDuties.bishop is 'reported'>>交给主教的比对副本另有编号。你留下的那份仍注明提货者缺了签字，后来也没有添上名字。<</if>>
       <<case 'fieldwork'>>
         每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。你把出口草图折进笔记，需要赶紧离开时，可以照着走。
+        <<if Object.values($TempleDuties.reports).some(report => report.honest && report.result === 'withdrawn')>>撤离记录中也有你的一份。没走到的位置仍空着，留待再次查验，没有让别人的猜测填上。<<elseif $TempleDuties.rewards.length gt 0>>你办完的报告排在旧记录后面。每一份开头，仍先记着入口与退路。<</if>>
+        <<if $TempleDuties.case?.stage is 'field'>>你把眼下的委托放在草图旁，核对准备安置灯火的位置。<</if>>
       <<case 'ward-notes'>>
         纸页晾干、编好号后，跨过折痕的笔画终于接上了。你照着抄下图样，没有补上空缺。旁边一行旧笔迹写着：“让缺口朝向光。”你把纸夹在灯带旁。下次进去，它能帮你安置灯火，也能在撑住门槛时派上用场。
+        <<if $TempleDuties.rewards.includes('roots')>>你在根须附近抄下的标记就附在封套上。两张可以直接比对，不必凭记忆重画。<</if>>
       <<case 'monstrance'>>
-        旧图上的圣体匣像一轮金属太阳，中央放着圣餐面包，顶端的装饰还是完好的。清单列着银和青铜，没有提到凯拉尔的父母。你抄下完整的轮廓，留着与庄园里残损的圣体匣比对。
+        旧图上的圣体匣像一轮金属太阳，中央放着圣餐面包，顶端的装饰还是完好的。清单列着银和青铜，没有提到凯拉尔的父母。<<if $TempleDuties.manor is 'complete'>>
+          交付过的描述已经归在图旁。凯拉尔允许你抄下的线条另记一页，两份副本都没有补上<<nnpc_he 'Kylar'>>划去的细节。
+        <<elseif $TempleDuties.manor is 'copied'>>
+          你把凯拉尔允许留下的描述放在旧图旁。残损的部分不能完全对上。你保留了差别，没有替<<nnpc_him 'Kylar'>>把形状补齐。
+        <<else>>
+          你抄下完整的轮廓，留着与庄园里残损的圣体匣比对。
+        <</if>>
     <</switch>>
     <<if $TempleDuties.archive.sorted gte 3>>
       晾干的散页重新显出页码。你可以核对引用，不必再猜缺了哪一张。

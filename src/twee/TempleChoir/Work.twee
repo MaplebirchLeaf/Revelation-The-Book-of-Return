@@ -41,10 +41,10 @@
 <<if maplebirch.get('TempleChoir')?.practice>>
   <<language>>
     <<option 'EN'>>
-      The choir gathers around a row of pews. Someone opens the prayer book at Sunday's hymn, while another sounds the starting note. A senior singer asks what you need to work on.<br><br>
+      The choir gathers around a row of pews. Someone opens the prayer book at Sunday's hymn. <<if $TempleChoir.lead>>A singer waits for you to sound the starting note. You listen to the parts come in before choosing what to rehearse.<<else>>Another singer sounds the starting note. A senior singer asks what you need to work on.<</if>><br><br>
       <span class='teal'>Choose one exercise. Practice takes thirty minutes. Recent practice helps you keep your place during the service.</span>
     <<option 'CN'>>
-      唱诗班围在一排长椅旁。有人把祈祷书翻到周日要唱的赞美诗，另一人给出起音。一名资深歌者问你，今天想练哪一部分。<br><br>
+      唱诗班围在一排长椅旁。有人把祈祷书翻到周日要唱的赞美诗。<<if $TempleChoir.lead>>一名歌者等你给出起音。你听过各个声部，再决定先练哪一部分。<<else>>另一人给出起音。一名资深歌者问你，今天想练哪一部分。<</if>><br><br>
       <span class='teal'>选择一项练习，耗时三十分钟。最近两天的练习有助于你在弥撒中稳住旋律。</span>
   <</language>><br><br>
   <<icon 'temple/hymnbook.png'>>
@@ -85,6 +85,23 @@
         这次练习已经结束。可以在日志中查看下一次练习的时间。
     <</language>>
 <</switch>>
+<<if $TempleChoir.lead and ['breath', 'pitch', 'choir'].includes($TempleChoir.exercise)>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      <<switch $TempleChoir.exercise>>
+        <<case 'breath'>>A newcomer asks where to breathe. You tap the pause on the page and sing the line with them, leaving room for the response.
+        <<case 'pitch'>>You give the note again for a singer at the end of the pew. This time the answer comes back level with yours.
+        <<case 'choir'>>The others wait for your nod before beginning the response. You hold the opening steady until the quieter voices join you.
+      <</switch>>
+    <<option 'CN'>>
+      <<switch $TempleChoir.exercise>>
+        <<case 'breath'>>一名新人问该在哪里换气。你点出书页上的停顿，与对方唱了一遍，留出答唱的空隙。
+        <<case 'pitch'>>你为坐在长椅另一端的歌者再起一次音。这次，传回来的声音与你合上了。
+        <<case 'choir'>>其他人等你点头才开始答唱。你稳住开头，直到较轻的声音也跟了上来。
+      <</switch>>
+  <</language>>
+<</if>>
 <br><br>
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 
@@ -104,7 +121,7 @@
   <<switch $TempleChoir.shift.round>>
     <<case 0>>
       <<robin-temple-mass-presence 'opening'>>
-      <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. The singer beside you points to the first line.<<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。身旁的歌者指了指第一行。<</language>>
+      <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. <<if $TempleChoir.lead>>The singers turn towards you, waiting for the opening note.<<else>>The singer beside you points to the first line.<</if>><<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。<<if $TempleChoir.lead>>歌者们望向你，等你起音。<<else>>身旁的歌者指了指第一行。<</if>><</language>>
     <<case 1>>
       <<language>><<option 'EN'>>Jordan finishes the reading and turns towards the choir. The response begins softly, with a higher phrase halfway through. You have a moment to take your breath.<<option 'CN'>>约旦读完经文，转向唱诗班。答唱轻声起头，中段的音会抬高一些。你还有片刻可以换气。<</language>>
     <<case 2>>
@@ -129,6 +146,7 @@
 <<elseif maplebirch.get('TempleChoir') and $TempleChoir.serviceDay is Time.days
     and $TempleChoir.shift?.round is 3 and (maplebirch.get('TempleChoir').active or $TempleChoir.shift.done)>>
   <!-- 只结算一次，正文、领唱许可与同伴回应在重绘后仍可查看。 -->
+  <<set _choirWasLead to $TempleChoir.lead>>
   <<if maplebirch.get('TempleChoir').finish()>>
     <<purity 10>><<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>
@@ -178,9 +196,21 @@
     <br><br>
     <<language>>
       <<option 'EN'>>
-        <span class='green'>"You may lead a response,"</span> Jordan adds. "Watch for my signal. The others will answer you."
+        <<if !_choirWasLead>>
+          <span class='green'>"You may lead a response,"</span> Jordan adds. "Watch for my signal. The others will answer you."
+        <<elseif $TempleChoir.shift.score gte 5>>
+          "They were listening for you," Jordan says. "Leave them enough breath to answer." <<He>> hands you the opening hymn to put away with the others.
+        <<else>>
+          "Even when you lead, you need to listen," Jordan says. "Take the opening more slowly next time."
+        <</if>>
       <<option 'CN'>>
-        约旦又补了一句，<span class='green'>“你可以领唱答唱。”</span>“看我的示意，其他人会接你的声音。”
+        <<if !_choirWasLead>>
+          约旦又补了一句，<span class='green'>“你可以领唱答唱。”</span>“看我的示意，其他人会接你的声音。”
+        <<elseif $TempleChoir.shift.score gte 5>>
+          “他们都在听你的起音，”约旦说，“也要给他们留出答唱的气息。”<<He>>把开场赞美诗递给你，让你和其他书一起收好。
+        <<else>>
+          “领唱时也得听其他人的声音，”约旦说，“下次起头，再慢一些。”
+        <</if>>
     <</language>>
   <</if>>
   <br><br>

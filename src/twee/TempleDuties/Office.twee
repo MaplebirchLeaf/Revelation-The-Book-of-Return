@@ -402,21 +402,46 @@
 
 :: Revelation Temple Task Done
 <<temple-duty-place>>
+<<set _dutyAid to maplebirch.get('Finance')?.donations?.state.aid?.temple>>
 <<language>>
   <<option 'EN'>>
     <<switch $TempleDuties.note>>
       <<case 'joined'>>
         Jordan adds your name to the duties book. "Come when you're free. Keep school and your other commitments in order." <<He>> gives you the key to the old records room. You can now choose a shift from the handover or ask about an investigation.
       <<case 'accounts'>>
-        The missing bowls are still wrapped beside the kitchen door. You correct the receipt after counting them. Jordan initials your handover; your payment is placed beside it.
+        <<if _dutyAid?.signed_at != null>>
+          The signed relief receipt is clipped to the kitchen list. You keep the food and blanket entries separate from the kitchenware count, then check the bowls still wrapped beside the door. The delivery is complete; some of it has not been shelved.
+        <<elseif $TempleDuties.duties gte 6>>
+          You check the kitchen doorway before starting the count. The missing bowls are still wrapped there. You enter the delivered and stored amounts in separate columns so the next shift can find them.
+        <<else>>
+          The missing bowls are still wrapped beside the kitchen door. You count them twice before correcting the receipt. The clerk shows you where the handover is kept.
+        <</if>>
+        Jordan initials your handover; your payment is placed beside it.
       <<case 'blankets'>>
-        You spread the damp blankets apart and mark the shelf. The next clerk reads your note aloud, checking which bundles can be given out. Jordan leaves your payment with the completed list.
+        <<if Weather.precipitation is 'rain'>>
+          Rain keeps you from using the outside line. You spread the blankets over the empty bunks and leave space between them. The next clerk checks your note before setting aside the dry bundles for visitors.
+        <<else>>
+          You carry the damp blankets to the line, then mark the shelf so they will not be mixed with the dry bundles. By the time the next clerk arrives, the outer folds are already drying.
+        <</if>>
+        Jordan leaves your payment with the completed list.
       <<case 'supervised'>>
-        You let the clerk finish counting before explaining the discrepancy. Jordan reads both reports and adds your payment to the handover.
+        <<if _roofReady and _shelvesReady>>
+          You show the clerk where the numbered receipts are kept, then let them find the matching copy. The figures agree once the returned bundles are counted separately.
+        <<else>>
+          You hold the damaged receipt flat while the clerk reads the count back. You show them how to note the unclear figure without guessing what it says.
+        <</if>>
+        <<if $TempleDuties.duties gte 12>>The clerk handles the next entry without prompting. You check the finished line before passing on the book.<<else>>You wait while the clerk writes the handover, pointing out the date they nearly missed.<</if>> Jordan reads both reports and adds your payment to the handover.
       <<case 'wards'>>
-        You pull creeping stems away from the flower beds and clear the damp growth from the inscribed stones. An older priest holds the copied pattern while you mend the damaged lines. You leave the gate and its approach clear before returning the lamp. Jordan marks the inspection complete. Beyond the wall, branches still press against the stone.
+        You pull creeping stems away from the flower beds and clear the damp growth from the inscribed stones.
+        <<if $TempleDuties.archive.topics.includes('ward-notes')>>You spread your recovered pattern beside the stone. An initiate holds the lamp while you show them which gaps belong to the pattern and which have worn away.<<else>>An older priest holds the copied pattern while you mend the damaged lines. You compare each stroke before moving to the next stone.<</if>>
+        <<if Weather.precipitation is 'rain'>>Water is running across the approach. You clear the drain before carrying the lamp back inside.<<else>>You leave the gate and its approach clear before returning the lamp.<</if>> Jordan marks the inspection complete. Beyond the wall, branches still press against the stone.
       <<case 'sorted'>>
-        You lay this batch of loose pages between dry sheets and copy their numbers onto the sleeves. The damaged leaves are back in order, ready to be checked against the bound volumes.
+        <<switch $TempleDuties.archive.sorted>>
+          <<case 1>>You separate the first damp leaves with a thin knife. Their edges stay caught together until you ease them onto dry sheets. The page numbers are faint, but legible.
+          <<case 2>>This batch contains plans and folded delivery slips. You lay them flat and match the torn edges without filling any gaps in the writing.
+          <<default>>The last leaves are dry enough to handle. You number their sleeves and return the references to the bound volumes. A clerk finds the right page without having to empty the box.
+        <</switch>>
+        <<if $TempleDuties.reports.crate?.honest>>You leave a slip marking the receipts you checked in the crate investigation.<</if>>
       <<case 'funded'>>
         Your payment and its purpose are written on the receipt. Jordan files the contractor's copy separately from the kitchen accounts. The work has been arranged; the completion date is recorded with the estimate.
       <<case 'unpaid'>>
@@ -427,15 +452,39 @@
       <<case 'joined'>>
         约旦把你的名字添进职务簿。“有空时来。学校和其他事情，也要安排妥当。”<<He>>交给你旧资料室的钥匙。现在，你可以查看交接记录，挑一班职务，也可以询问需要调查的事。
       <<case 'accounts'>>
-        少的碗还包在厨房门边。数清后，你更正了收据。约旦在交接记录上签了字，把报酬放在旁边。
+        <<if _dutyAid?.signed_at != null>>
+          签过字的救济收据夹在厨房清单上。你把食物、毯子与餐具的数量分栏核对，再清点仍包在门边的碗。东西已经送齐，只是有一部分还没入架。
+        <<elseif $TempleDuties.duties gte 6>>
+          开始清点前，你先去看了厨房门边。少的碗果然还包在那里。你把送到的数量与入库的数量分栏写下，方便下一班查找。
+        <<else>>
+          少的碗还包在厨房门边。你数了两遍，才更正收据。侍从给你指出交接簿放在哪里。
+        <</if>>
+        约旦在交接记录上签字，把报酬放在旁边。
       <<case 'blankets'>>
-        你把潮湿的毯子铺开，标明货架。下一班读出便条，核对哪些捆包可以发放。约旦把报酬留在完成的清单旁。
+        <<if Weather.precipitation is 'rain'>>
+          外面还在下雨，没法用晾衣绳。你把毯子铺在空床上，彼此留出空隙。下一班先看过便条，再把干燥的捆包留给访客。
+        <<else>>
+          你把湿毯子搬到晾衣绳上，在货架做了标记，免得与干毯子混在一起。下一班来时，外面的几层已经开始干了。
+        <</if>>
+        约旦把报酬留在完成的清单旁。
       <<case 'supervised'>>
-        你等侍从数完，才解释数量不符的地方。约旦读过两份报告，把报酬记进交接单。
+        <<if _roofReady and _shelvesReady>>
+          你给侍从指出编号收据存放的位置，让对方找出相应的副本。把退回的捆包另外计数后，两笔账就对上了。
+        <<else>>
+          你压平受损的收据，听侍从读回数量，告诉对方该怎样注明辨认不清的数字，不必猜着填上。
+        <</if>>
+        <<if $TempleDuties.duties gte 12>>下一笔，侍从没等你开口便办好了。你核过写完的那行，把簿子传下去。<<else>>你等侍从写完交接记录，指出差点漏下的日期。<</if>>约旦读过两份报告，把报酬记进交接单。
       <<case 'wards'>>
-        你把蔓生的枝茎从花坛边拉开，清理符石上的湿苔。年长的司祭替你举着抄录的图样，你修补受损的线条。归还灯具前，门口与通路也已清理妥当。约旦在清单上标记巡查完成。墙外的枝条，仍紧贴着石头。
+        你把蔓生的枝茎从花坛边拉开，清理符石上的湿苔。
+        <<if $TempleDuties.archive.topics.includes('ward-notes')>>你在石旁铺开修复的图样。一名见习教徒替你举灯，你给对方指出哪些缺口原本就有，哪些是磨损留下的。<<else>>年长的司祭替你举着抄录的图样。你逐笔比对，修补受损的线条，再走到下一块石前。<</if>>
+        <<if Weather.precipitation is 'rain'>>雨水漫过门前的路。你先疏通排水口，才提灯回到屋里。<<else>>归还灯具前，门口与通路也已清理妥当。<</if>>约旦在清单上标记巡查完成。墙外的枝条，仍紧贴着石头。
       <<case 'sorted'>>
-        你把这一批散页夹进干纸，将编号抄在封套上。受损的纸页重新排好了顺序，可以拿来核对书中的内容。
+        <<switch $TempleDuties.archive.sorted>>
+          <<case 1>>你用薄刀一点点分开第一批湿纸，把粘连的边缘托到干纸上。页码很淡，还能辨认。
+          <<case 2>>这一批夹着图纸和折起的交货单。你将它们铺平，对好撕裂的边缘，留下字迹缺失的地方。
+          <<default>>最后一批纸页已经干到可以拿取。你给封套编号，把索引归回装订好的书里。侍从不用倒空整只箱子，便找到了要查的那页。
+        <</switch>>
+        <<if $TempleDuties.reports.crate?.honest>>你留下一张纸条，标出货箱调查中核对过的收据。<</if>>
       <<case 'funded'>>
         收据上写着你支付的款项和用途。约旦把承包商的副本与厨房账簿分开放好。施工已经安排，完工日期也记在报价单上。
       <<case 'unpaid'>>

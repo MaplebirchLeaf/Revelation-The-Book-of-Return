@@ -27,7 +27,7 @@ Enter through **Temple → Quarters → Robin**, or **Robin's bunk** after promo
 
 You can also invite Robin on a school-free weekday **09:00–15:45**, excluding the end time. Injury, disappearance, severe trauma or asylum admission pauses activities.
 
-With Deadwood Reblooms' Robin expansion, tutoring runs **Tuesday/Thursday 17:30–18:30 on school days**, adding Friday after six lessons. An opened shop occupies **18:30–21:00**; hiring staff does not cancel Robin's shift. Finance's outings and rides take priority. Cohabitation sends Robin home instead of the ordinary Saturday overnight stay, while retaining temple duties.
+With Deadwood Reblooms' Robin expansion, tutoring runs **Tuesday/Thursday 17:30–18:30 on school days**, adding Friday after six lessons. An opened shop occupies **18:30–21:00**, with daytime shifts on school-free weekdays. Temple duties still take priority **09:00–16:00** on those days; hiring staff does not cancel Robin's shop shift. Shared activities must leave time for work, bathing and existing arrangements, and restore the previous schedule when finished. Finance's outings and rides take priority. Cohabitation sends Robin home instead of the ordinary Saturday overnight stay, while retaining temple duties.
 
 When Robin is absent, **Ask the attendant where Robin went** in the quarters. The attendant and door notes distinguish school, stalls, tutoring, shop duty, vigils, home and travel.
 

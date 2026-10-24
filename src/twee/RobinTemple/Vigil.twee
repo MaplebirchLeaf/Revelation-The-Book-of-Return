@@ -1,10 +1,10 @@
 :: RobinTemple Vigil Widgets [widget]
 <<widget 'robin-temple-vigil-init'>>
-  <<set $RobinTemple.vigil_attending to C.npc.Robin.init is 1
+  <<set $RobinTemple.vigil_attending to maplebirch.get('RobinTemple').available
     and maplebirch.get('RobinTemple').member
     and $RobinTemple.vigil_result isnot 'passed'
-    and !$robinmissing and $robin.timer.hurt is 0
-    and C.npc.Robin.trauma lt 80 and getRobinLocation() isnot 'asylum'>>
+    and ['temple', 'shop', 'orphanage', 'sleep'].includes(getRobinLocation())
+    and (!$robinlocationoverride?.during?.includes(Time.hour) or $robinlocationoverride.location is 'temple')>>
   <<set $RobinTemple.vigil_with_robin to false>>
   <<if $RobinTemple.vigil_attending>>
     <<set $RobinTemple.vigil_result to ''>>

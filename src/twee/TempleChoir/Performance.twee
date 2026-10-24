@@ -211,25 +211,69 @@
   <<language>>
     <<option 'EN'>>
       <<if _performance.last is 'clear'>>
-        <<if _performance.venue is 'pub'>>The musician catches your last note and carries it into the next phrase. Someone taps a glass in time.
-        <<elseif _performance.venue is 'park'>>A walker stops beside the cloth. Another waits for the song to finish before putting down a coin.
-        <<else>>The table falls quiet for the final line. A guest begins clapping, and the others follow.<</if>>
+        <<switch _performance.venue>>
+          <<case 'pub'>>
+            <<if _performance.round is 1>>The musician picks up your ending and repeats it on the strings. A patron turns their chair to hear the next verse.
+            <<elseif _performance.round is 2>>You leave a pause for the instrument. The musician fills it, then nods you back in. Two patrons begin tapping their glasses in time.
+            <<else>>The musician slows with you for the last line. Someone calls for another as you bow, but the allotted half hour is over.<</if>>
+          <<case 'park'>>
+            <<if _performance.round is 1>>A walker slows beside the cloth. A second stops a little farther back, keeping the path clear.
+            <<elseif _performance.round is 2>>A listener hums the refrain as you return to it. Coins land on the cloth without interrupting the song.
+            <<else>>You hold the final note while a listener searches their pocket. They wait until you finish before setting down a coin and continuing along the path.<</if>>
+          <<case 'banquet'>>
+            <<if _performance.round is 1>>A guest lowers their glass to listen. The conversation at the far end of the table fades as you reach the refrain.
+            <<elseif _performance.round is 2>>A guest joins the familiar line, then laughs when another answers from across the table. You keep the beat beneath them.
+            <<else>>You bring the last line to a close. Applause travels around the table, and the guests raise their glasses to you.<</if>>
+        <</switch>>
         <span class='green'>You keep the song together.</span>
       <<elseif _performance.last is 'unsteady'>>
-        You lose a little air at the end of a phrase and shorten the next one. <span class='blue'>You find the melody again, though a few listeners have turned away.</span>
+        <<switch _performance.venue>>
+          <<case 'pub'>>Your breath runs short. The musician repeats a bar while you find the note, covering the gap with the strings.
+          <<case 'park'>>You shorten a phrase when your breath runs out. One of the walkers moves on, though the people nearest the cloth keep listening.
+          <<case 'banquet'>>You waver on the higher phrase. A guest's quiet attempt to join in helps you find the melody again.
+        <</switch>>
+        <<if _performance.round is 3>><span class='blue'>The ending is a little ragged, but you finish it.</span><<else>><span class='blue'>You recover in time for the next verse.</span><</if>>
       <<else>>
-        Your voice breaks before the line is finished. You stop, swallow, and begin with a shorter phrase. <span class='purple'>Conversations resume around you.</span>
+        <<switch _performance.venue>>
+          <<case 'pub'>>Your voice breaks. The musician takes over the melody while someone near the bar starts talking again.
+          <<case 'park'>>You lose the line halfway through. A listener looks at the cloth, then moves on without stopping.
+          <<case 'banquet'>>You miss the note and stop. A guest reaches for their glass as conversation resumes at the other end of the table.
+        <</switch>>
+        <<if _performance.round is 3>><span class='purple'>You bring the set to an awkward close.</span><<else>><span class='purple'>You swallow and take another breath before continuing.</span><</if>>
       <</if>>
+      <<if _performance.round is 2 and _performance.attention gte 70>>The listeners are still waiting when you begin again.<</if>>
     <<option 'CN'>>
       <<if _performance.last is 'clear'>>
-        <<if _performance.venue is 'pub'>>乐师接住你的尾音，把它带进下一句。有人跟着拍子轻敲酒杯。
-        <<elseif _performance.venue is 'park'>>一位路人在布旁停下。另一个人等你唱完，才放下一枚硬币。
-        <<else>>唱到最后一句，桌边安静了下来。有人先鼓起掌，其他人也跟着回应。<</if>>
+        <<switch _performance.venue>>
+          <<case 'pub'>>
+            <<if _performance.round is 1>>乐师接住你的尾音，在弦上重复了一遍。一位客人转过椅子，等你唱下一节。
+            <<elseif _performance.round is 2>>你停了一拍，给乐器留出空隙。乐师奏完，点头示意你接上。两位客人跟着拍子轻敲酒杯。
+            <<else>>乐师陪你放慢最后一句。你鞠躬时，有人喊着再来一首，不过说好的半小时已经到了。<</if>>
+          <<case 'park'>>
+            <<if _performance.round is 1>>一位路人在布旁放慢脚步，另一人停在稍远的位置，没有挡住小路。
+            <<elseif _performance.round is 2>>你再次唱到副歌，一名听众轻轻哼了起来。硬币落到布上，没有打断歌声。
+            <<else>>你唱着最后一个长音，一名听众在口袋里摸索。对方等你唱完，才放下一枚硬币，继续沿着小路往前走。<</if>>
+          <<case 'banquet'>>
+            <<if _performance.round is 1>>一位宾客放低杯子听你唱。到了副歌，桌子另一端的谈话声也轻了下去。
+            <<elseif _performance.round is 2>>一位宾客跟着唱起熟悉的那句，桌子对面有人应和，惹得对方笑了。你稳住下面的节拍。
+            <<else>>你收住最后一句。掌声沿着桌边响起，宾客们向你举杯。<</if>>
+        <</switch>>
         <span class='green'>这首歌唱得顺畅。</span>
       <<elseif _performance.last is 'unsteady'>>
-        唱到句尾时，你的气息短了些，便把下一句收得更短。<span class='blue'>旋律重新接上，不过有几位听众已经转开了身。</span>
+        <<switch _performance.venue>>
+          <<case 'pub'>>你的气息短了。乐师重复了一小节，用琴声填住空白，等你重新找准音。
+          <<case 'park'>>气息用尽，你把一句唱得短了些。一名路人继续往前走，布旁的几个人还在听。
+          <<case 'banquet'>>唱到较高的那句，你的声音晃了晃。一位宾客轻轻跟着唱，帮你重新接上旋律。
+        <</switch>>
+        <<if _performance.round is 3>><span class='blue'>收尾有些参差，你还是把它唱完了。</span><<else>><span class='blue'>你在下一节开始前跟上了旋律。</span><</if>>
       <<else>>
-        一句还没唱完，你的声音便断了。你停下来，咽了咽喉咙，换一句短些的开头。<span class='purple'>四周的谈话声又响起来。</span>
+        <<switch _performance.venue>>
+          <<case 'pub'>>你的声音断了。乐师接过旋律，吧台附近有人又说起话来。
+          <<case 'park'>>唱到一半，你忘了下一句。一名听众看了看布，没停步便走了。
+          <<case 'banquet'>>你没找准音，停了下来。一位宾客拿起杯子，桌子另一端又响起谈话声。
+        <</switch>>
+        <<if _performance.round is 3>><span class='purple'>你有些尴尬地结束了演唱。</span><<else>><span class='purple'>你咽了咽喉咙，再吸一口气，继续唱下去。</span><</if>>
       <</if>>
+      <<if _performance.round is 2 and _performance.attention gte 70>>你再次开口时，听众们还在等着。<</if>>
   <</language>>
 <</widget>>

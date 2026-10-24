@@ -691,8 +691,12 @@
 <<language>>
   <<option 'EN'>>
     <<switch $TempleDuties.note>>
-      <<case 'revisited-echo' 'revisited-roots' 'revisited-crate'>>
-        Jordan compares the two visits before signing the new entry. "You returned. You checked again." The clerk places your inspection pay beside the shift book. The old report stays beneath the new one; neither explains the knock that comes after the door is shut.
+      <<case 'revisited-echo'>>
+        Jordan compares the two visits before signing the new entry. "You returned. You checked again." The clerk sets your inspection pay beside the shift book. Your notes on the fastening and drain remain beside the old report. Neither explains the knock after the door is shut.
+      <<case 'revisited-roots'>>
+        Jordan traces the cleared route on your sketch. "Keep this with the next shift's instructions." The clerk sets your inspection pay beside it. The new growth and the places you could safely reach are recorded separately.
+      <<case 'revisited-crate'>>
+        Jordan compares the cargo list with your new account. "And the workers are clear of it now?" <<He>> records your answer before signing. The clerk files the handover and sets your inspection pay on the desk.
       <<case 'resolved'>>
         Jordan reads the evidence before signing. "You checked, and you brought back what mattered." <<He>> enters the work in the duties book.
       <<case 'withdrawn'>>
@@ -704,8 +708,12 @@
     <</switch>>
   <<option 'CN'>>
     <<switch $TempleDuties.note>>
-      <<case 'revisited-echo' 'revisited-roots' 'revisited-crate'>>
-        约旦比对过两次记录，才签下新的那一行。“你回去了。又核实了一遍。”侍从把检查报酬放在值班簿旁。旧报告仍压在新纸下面，两份都没有解释门合上之后传来的那声敲击。
+      <<case 'revisited-echo'>>
+        约旦比对过两次记录，才签下新的那一行。“你回去了。又核实了一遍。”侍从把检查报酬放在值班簿旁。扣件和排水管的检查记录附在旧报告边，两份都没解释关门后传来的敲击。
+      <<case 'revisited-roots'>>
+        约旦沿着草图上清出的路线看了一遍。“把这个留给下一班。”侍从把检查报酬放在图旁。新长出的根须，与能安全走到的位置，分别记在两处。
+      <<case 'revisited-crate'>>
+        约旦拿货单比对你这次的记录。“工人已经离开危险位置了？”<<He>>记下你的回答，随后签字。侍从收好交接单，把检查报酬放在桌上。
       <<case 'resolved'>>
         约旦先看证据，才签字。“你核对过，也把重要的东西带回来了。”<<He>>将这次工作记进职务簿。
       <<case 'withdrawn'>>

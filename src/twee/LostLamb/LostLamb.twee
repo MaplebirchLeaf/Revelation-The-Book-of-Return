@@ -407,11 +407,11 @@
     <br><br>
     "You've been there, haven't you? In that manor. Kylar... is Kylar still in that big, quiet house all alone?"
     <br><br>
-    You tell Sydney that you visit Kylar often, and that you stay there together now.
+    You tell Sydney that you have seen Kylar.
     <br><br>
     Sydney lets out a long, trembling breath, as though setting down a weight carried since childhood.
     <br><br>
-    "I was so young when they told me not to go back. They said the house was dangerous, that darkness had settled in... but I always remembered leaving the drawings behind. I'm so glad... so glad Kylar isn't alone anymore."
+    "I was so young when they told me not to go back. They said the house was dangerous, that darkness had settled in... but I always remembered leaving the drawings behind. I'm glad you told me. I kept wondering what had happened to <<nnpc_him 'Kylar'>>."
     <br><br>
     <<nnpc_He 'Sydney'>> reaches out and gently covers your hand with <<nnpc_his 'Sydney'>> own, giving you a warm, grateful look.
   <<option 'CN'>>
@@ -425,11 +425,11 @@
     <br><br>
     “你去过那里，对不对？那座庄园。凯拉尔……凯拉尔还在那座又大又安静的房子里吗？一直一个人？”
     <br><br>
-    你告诉悉尼，你经常去庄园看望凯拉尔，你们如今就在那里相伴。
+    你告诉悉尼，你见过凯拉尔。
     <br><br>
     悉尼长长地呼出一口气，肩膀微微松弛下来，仿佛卸下了从孩童时起就一直悬在心头的一块重石。
     <br><br>
-    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不祥的东西落在了那里……可我总记挂着留在桌上的画纸。我真的很庆幸……庆幸凯拉尔身边终于有人陪伴了。”
+    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不祥的东西落在了那里……可我总记挂着留在桌上的画纸。谢谢你告诉我。我一直不知道，<<nnpc_he 'Kylar'>>后来怎么样了。”
     <br><br>
     <<nnpc_He 'Sydney'>>伸出手，轻轻覆在你的手背上，眼中满是温和与感激。
 <</language>>
@@ -448,33 +448,33 @@
 <<npc Gwylan>><<person1>>
 <<language>>
   <<option 'EN'>>
-    Gwylan pauses what <<he>> is doing with the bundle of dried herbs. <<He>> looks past you into the mist of the forest for a quiet moment.
+    Gwylan puts down the herbs when you ask about the manor. <<He>> listens without interrupting, <<his>> arms folded.
     <br><br>
-    "Travellers?" <<he>> murmurs, the kettle boiling softly on the iron grate behind <<him>>. "I haven't forgotten them. It was years ago... two adults, their fine clothes torn and smeared with peat. They were crawling through the undergrowth, their eyes glassy and distant."
+    <<if $gwylanSeen.includes('kylar_parents')>>
+      "I remember what you told me. And I've seen them in the forest myself." <<He>> glances towards the trees. "That doesn't mean I can tell you what happened inside that house."
+    <<else>>
+      "I know the house you mean." <<He>> looks towards the forest. "And I've seen the things that wander out of it. Be careful where you go looking for answers."
+    <</if>>
     <br><br>
-    Gwylan pours steaming, golden liquid into two earthenware cups, pushing one toward you. The gentle fragrance of sweet leaf and honey immediately cuts through the chill.
+    You describe what you remember of the dream. Gwylan's fingers tighten around a stalk. "A dream isn't a witness. But don't let someone tell you cruelty becomes kindness because they call it a punishment."
     <br><br>
-    "They were murmuring a child's name... Kylar, wasn't it? Begging whatever was shadowing them in the dark to look away from their home. Whatever had laid hold of them was far beyond anything my teas or poultices could draw out. By morning, they were gone deeper into the mire."
+    <<He>> tears the dried leaves from the stalk, dropping them into a bowl. "You have seen Kylar, then?" You nod. Gwylan is quiet for a moment. "Then mind what you take back to <<nnpc_him 'Kylar'>>. Those are <<nnpc_his 'Kylar'>> parents, whatever anyone else calls them."
     <br><br>
-    <<He>> sighs, a quiet sympathy softening <<his>> worn features.
-    <br><br>
-    "I heard a child was left behind in that old house on the outskirts. All alone with the shadows and the locked doors. I often wondered if anyone would ever help that child find their way out." Gwylan watches you wrap your fingers around the warm cup. "Drink up, little one. You carry too many heavy memories for such young shoulders."
-    <br><br>
-    You drink the warm tea. A deep, settling calm spreads through your chest.
+    <<He>> resumes sorting the herbs. The snapped stalk remains beside the bowl.
   <<option 'CN'>>
-    格威岚停下了手中正在整理的干草束。<<He>>转过头，透过薄雾望向森林深处，安静了片刻。
+    你问起庄园时，格威岚放下草药，抱着双臂听你说完。
     <br><br>
-    “行路人？”<<he>>低声自语，身后的铁炉上水壶正微微冒着白汽。“我没有忘记他们。那已经是多年前的事了……两个成年人，体面的衣裳被撕扯得破烂不堪，沾满了泥炭。他们在灌木丛里艰难地爬行，眼神空洞而涣散。”
+    <<if $gwylanSeen.includes('kylar_parents')>>
+      “我记得你说过什么。我也在森林里见过它们。”<<He>>望向林间。“但我没看见那所房子里发生的事。”
+    <<else>>
+      “我知道你说的是哪所房子。”<<He>>望向森林。“也见过从里面出来的东西。想找答案，得留心自己会走到哪里。”
+    <</if>>
     <br><br>
-    格威岚把热气腾腾的金黄色茶水斟进两只陶杯里，将其中一只推到你面前。甘叶与野蜜的清香立刻驱散了林间的阴寒。
+    你说起梦里记得的情形。格威岚捏紧了一根草茎。“梦不能作证。但有人把残害叫作惩罚，你也不必因此相信他们是在行善。”
     <br><br>
-    “他们嘴里一直在念叨一个孩子的名字……凯拉尔，对吧？他们哀求着黑暗里跟在他们身后的东西，求它别靠近他们的宅邸。缠上他们的东西，根本不是我的草药和药膏所能化解的。到了天亮，他们就彻底陷进了更深的沼泽荒野里。”
+    <<He>>摘下草茎上的枯叶，放进碗里。“你见过凯拉尔？”你点点头。格威岚沉默了片刻。“那就想想，哪些话该带回去。无论别人怎么叫他们，那都是<<nnpc_his 'Kylar'>>的父母。”
     <br><br>
-    <<He>>轻轻叹了口气，沧桑的面容上流露出一丝温和的同情。
-    <br><br>
-    “后来我听说，镇郊那栋老房子里留下了一个孩子。一个人守着满屋的阴影和紧闭的门锁。我有时也会想，会不会有人能帮那个孩子找到走出来的路。”格威岚看着你双手捧住温热的茶杯。“喝吧，孩子。你这副年轻的肩膀上，背了太多沉重的旧事。”
-    <br><br>
-    你喝下温热的草药茶，一股踏实的温热缓缓在胸口化开。
+    <<He>>重新整理起草药。那根折断的草茎留在碗边。
 <</language>>
 <br><br>
 <<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<endevent>><</lanLink>><br>
@@ -491,37 +491,37 @@
 <<loadNPC 0 'bishop'>><<person1>>
 <<language>>
   <<option 'EN'>>
-    Under the heavy cowl of the dark habit, the bishop's pale face tilts slightly toward you. A faint, knowing smile touches <<his>> lips, neither surprised nor perturbed by your question.
+    The bishop listens from beneath <<his>> cowl. "A dream about the manor?" <<He>> folds <<his>> hands inside <<his>> sleeves. "And what would you have me do with a dream, child?"
     <br><br>
-    "The sealed house," <<he>> drawls in that low, measured cadence. "And the locks that were gnawed. So you've heard the echoes after all, child. Or perhaps you walked those very floorboards in a dream."
+    <<if $kylar_manor_secret gte 3>>
+      You ask about the punishment <<he>> described, and the parents who begged for their child. The bishop's smile thins. "You heard me the first time. They transgressed. Their child was spared."
+      <br><br>
+      <<He>> smooths a crease in <<his>> sleeve. A silver hook glints beneath it. "You may dislike the judgement. That does not make it yours to undo."
+    <<else>>
+      You ask what happened to the parents. "There are judgements you have not been called upon to make," <<he>> says. "I suggest you leave them to those who have."
+      <br><br>
+      A silver hook catches the light as <<he>> draws <<his>> sleeve over <<his>> wrist. <<He>> has not answered your question.
+    <</if>>
     <br><br>
-    <<He>> laces <<his>> fingers together inside the wide sleeves, the silver wire coiled at <<his>> wrists giving a soft, metallic clink.
+    You mention the child left in the house. The bishop looks at you for a moment. "Jordan has living people to care for here. Do not trouble <<nnpc_him 'Jordan'>> over what you heard in your sleep."
     <br><br>
-    "Their parents invited something into their parlor that they could not put back into the bottle. They made a bargain under the red moon. When the corruption began to fester and gnaw at the very joists, they dropped to their knees before us and pleaded for their child to be spared."
-    <br><br>
-    The bishop's smile fades into a cold, flat pragmatism.
-    <br><br>
-    "We sealed the doors. We hammered iron nails through the frames and barred the cellar. We contained the infection where it stood so Jordan and <<nnpc_his 'Jordan'>> soft-hearted flock could sleep in peaceful ignorance. The child was left alive and fed. That was the bargain. That was our mercy."
-    <br><br>
-    <<He>> leans forward slightly, the shadow beneath the hood obscuring <<his>> eyes.
-    <br><br>
-    "The world is full of holes, child, and not all of them can be mended with prayers and honey. Do not pry at the seams of that house. Some locks were gnawed away for a reason, and you would do well to leave the dead where they were laid."
+    <<He>> turns towards the side door, leaving you with the same questions.
   <<option 'CN'>>
-    深色长袍宽大的兜帽下，主教苍白的面孔微微转向你。<<His>>唇角掠过一丝了然的浅笑，对你的发问既不意外，也无慌乱。
+    主教在兜帽下听着。“梦见了那座庄园？”<<He>>把双手收进袖中。“孩子，你想让我拿一个梦怎么办？”
     <br><br>
-    “那所封死的房子，”<<he>>用那种低沉、从容的调子慢吞吞地说道，“还有那些被啃咬过的锁。看来你终究还是听到了那些回响，孩子。又或者，你是在梦里亲自走过了那段地板。”
+    <<if $kylar_manor_secret gte 3>>
+      你问起<<he>>说过的惩罚，还有那对请求放过孩子的父母。主教收起了些笑意。“我说过了。他们犯下罪行。他们的孩子得到了宽恕。”
+      <br><br>
+      <<He>>抚平袖口，一枚银钩在下面闪过。“你可以不喜欢这场审判。但这不表示，你有资格推翻它。”
+    <<else>>
+      你问那对父母到底遭遇了什么。“有些审判，轮不到你来做。”<<he>>说，“我劝你把它留给该做的人。”
+      <br><br>
+      <<He>>拉下袖口，遮住腕旁反光的银钩。<<He>>没有回答你的问题。
+    <</if>>
     <br><br>
-    <<He>>在宽大的袖管内十指相扣，手腕处缠绕的细银丝发出一阵极轻微的金属摩擦声。
+    你提起被留在屋里的孩子。主教看了你一会儿。“约旦还得照看这里的活人。别为了睡梦里听来的事情去烦<<nnpc_him 'Jordan'>>。”
     <br><br>
-    “那对父母把不该招惹的东西引进了客厅，却再也没法把它收回去。他们在红月下达成了交易。当秽物开始溃烂、甚至啃咬房屋的大梁时，他们跪倒在我们面前，苦苦哀求放过他们的孩子。”
-    <br><br>
-    主教嘴角的笑意褪去，化作一种冰冷、务实的决断。
-    <br><br>
-    “我们封死了所有的门。我们用铁钉钉死了窗框，锁住了地窖。我们把秽病截断在它原本的位置，这样约旦和<<nnpc_his 'Jordan'>>那些心慈手软的信众才能在无知中安眠。那个孩子活了下来，也从未挨饿。这就是当时的交易，也是我们的仁慈。”
-    <br><br>
-    <<He>>微微前倾身子，兜帽的深暗阴影完全遮住了<<his>>双眼。
-    <br><br>
-    “这世上多的是漏洞，孩子，但绝非每一个洞都能靠祈祷和蜜糖来填补。别去撬动那座房子的缝隙。有些锁被啃咬掉自有它的道理，你最好让死者留在他们安歇的地方。”
+    <<He>>转向侧门。你的疑问仍没有解开。
 <</language>>
 <br><br>
 <<getouticon>><<lanLink ['Step back', '退回'] `['Temple Confessor Intro Ask', 'Revelation Temple Office', 'Revelation Temple Monstrance'].includes($LostLamb_bishopReturn) ? $LostLamb_bishopReturn : 'Temple Confessor Intro Ask'`>><<unset $LostLamb_bishopReturn>><<endevent>><</lanLink>><br>
