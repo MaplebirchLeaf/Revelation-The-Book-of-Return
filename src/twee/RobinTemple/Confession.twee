@@ -341,7 +341,7 @@
         <<else>>
           “人之常情，”<<he>>轻声重复。“确实，我只是一个<<personsimple>>。我曾以为我应该超脱这些俗事。谢谢你提醒我，告诉我其实不需要。”
         <</if>>
-        <<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很平静。 <<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很平静。<<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
     <</language>>
   <<case 'robin_things'>>
     <<language>>
@@ -442,7 +442,7 @@
         <<else>>
           “你说得对，”<<he>>轻声说道。“谢谢你，<<sister>>。真的。”
         <</if>>
-        <<He>>离开了忏悔室。 <<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>>离开了忏悔室。<<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
     <</language>>
   <<case 'robin_things'>>
     <<language>>
@@ -496,7 +496,7 @@
       <<option 'CN'>>
         你听见<<him>>起身产生的沙沙声响。
         <br><br>
-        “我和我的爱人能经受住任何考验，我们的信念将淹没一切疑虑。感谢你成为了神殿一切教义的反面教材，<<sister>>。”<<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很生气。 <<grace -4>><<stress 3>><<llgrace>><<gstress>>
+        “我和我的爱人能经受住任何考验，我们的信念将淹没一切疑虑。感谢你成为了神殿一切教义的反面教材，<<sister>>。”<<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很生气。<<grace -4>><<stress 3>><<llgrace>><<gstress>>
     <</language>>
   <<case 'robin_things'>>
     <<language>>

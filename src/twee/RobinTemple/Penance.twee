@@ -60,7 +60,7 @@
         <<case 2>><span class="lblue">aroused.</span>
         <<case 3>><span class="blue">horny.</span>
         <<case 4>><span class="purple"><<nnpc_his _args[0]>> face is flushed with arousal.</span>
-        <<case 5>><span class="pink">like <<nnpc_hes _args[0]>> on the edge of climax.</span>
+        <<case 5>><span @class="'pink ' + basicJitterCss()">like <<nnpc_hes _args[0]>> on the edge of climax.</span>
       <</switch>>
 
     <<option 'CN'>>
@@ -80,7 +80,7 @@
         <<case 2>><span class="lblue">很兴奋。</span>
         <<case 3>><span class="blue">十分兴奋。</span>
         <<case 4>><span class="purple">脸因兴奋而涨得通红。</span>
-        <<case 5>><span class="pink">正处于高潮的边缘。</span>
+        <<case 5>><span @class="'pink ' + basicJitterCss()">正处于高潮的边缘。</span>
       <</switch>>
 
   <</language>>
@@ -222,9 +222,9 @@
       <<language>>
         <<option 'EN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">The pain is too much.</span> You buckle and collapse, tumbling over with <<if $RobinTemple.punish.joint>>Robin and Sydney<<else>>Robin<</if>>.
-          <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">It's too much.</span>
+          <<elseif $RobinTemple.punish.cause is 'arousal'>><span @class="'red ' + basicJitterCss()">It's too much.</span>
           <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print _punishCauseName>> lets out a blood-curdling cry through <<nnpc_his _punishCauseName>> gag.</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print _punishCauseName>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span @class="'red ' + basicJitterCss()"><<print _punishCauseName>> moans and shudders against you as <<nnpc_hes _punishCauseName>> forced to climax.</span>
           <</if>>
           <br><br>
           The <<priest>> holds up <<his>> hand. "Cease." The <<monks>> stop, and snuff the incense burners. "Your bodies betray you. You will be given time to recover, and then we will begin again." <<gggstress>>
@@ -244,9 +244,9 @@
           <</if>>
         <<option 'CN'>>
           <<person3>><<if $RobinTemple.punish.cause is 'pain'>><span class="red">疼痛已经无法承受。</span>你弯下腰，和罗宾<<if $RobinTemple.punish.joint>>、悉尼<</if>>一起瘫倒在地。
-          <<elseif $RobinTemple.punish.cause is 'arousal'>><span class="red">已经到了极限。</span>
+          <<elseif $RobinTemple.punish.cause is 'arousal'>><span @class="'red ' + basicJitterCss()">已经到了极限。</span>
           <<elseif $RobinTemple.punish.cause is 'partnerPain'>><span class="red"><<print _punishCauseName is 'Robin' ? '罗宾' : '悉尼'>>隔着口球发出一声撕心裂肺的叫喊。</span>
-          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span class="red"><<print _punishCauseName is 'Robin' ? '罗宾' : '悉尼'>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
+          <<elseif $RobinTemple.punish.cause is 'partnerArousal'>><span @class="'red ' + basicJitterCss()"><<print _punishCauseName is 'Robin' ? '罗宾' : '悉尼'>>强行达到了高潮，靠在你的身上呻吟颤抖。</span>
           <</if>>
           <br><br>
           <<priest>>抬起手。“可以了。”<<monks>>纷纷停下，熄灭了燃香盏。“你们的身体背叛了你。给你们点时间恢复，然后我们重新开始。”<<gggstress>>

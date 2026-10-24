@@ -235,7 +235,7 @@
   <<option 'EN'>>
     The necklace settles on the stone. You take your hands away.
     <br><br>
-    A pale hand rests over it. You never saw anyone approach. For a moment, a face hangs beyond the plinth, its eyes fixed on the chain. The fingers close around it, then slowly withdraw.
+    <span @class="'wraith ' + basicHypnoCss()">A pale hand rests over it. You never saw anyone approach. For a moment, a face hangs beyond the plinth, its eyes fixed on the chain. The fingers close around it, then slowly withdraw.</span>
     <br><br>
     When you blink, the figure is gone. The necklace remains on the stone, its blue gemstones barely visible in the dark.
     <br><br>
@@ -243,7 +243,7 @@
   <<option 'CN'>>
     项链落在石面上。你把双手移开。
     <br><br>
-    一只苍白的手搭在它上方。你没有看见有谁游过来。一张脸悬在基座后方，双眼紧盯着链子。那几根手指握住它，又慢慢收了回去。
+    <span @class="'wraith ' + basicHypnoCss()">一只苍白的手搭在它上方。你没有看见有谁游过来。一张脸悬在基座后方，双眼紧盯着链子。那几根手指握住它，又慢慢收了回去。</span>
     <br><br>
     你眨了一下眼，那身影已经不见了。项链仍留在石面上，蓝色宝石在黑暗中隐约可见。
     <br><br>
@@ -409,17 +409,17 @@
               <<language>>
                 <<option 'EN'>>
                   <<if C.npc['Ivory Wraith'].lust gte 10>>
-                    A pale shape stands near the water. You did not see it arrive. Its hands are clenched, and its eyes stay on you. You keep your hands on your knees. After a while, its fingers loosen.
+                    <span @class="'wraith ' + basicHypnoCss()">A pale shape stands near the water. You did not see it arrive. Its hands are clenched, and its eyes stay on you.</span> You keep your hands on your knees. After a while, its fingers loosen.
                   <<else>>
-                    Something pale moves at the edge of your vision. You turn your head. The figure stands by the water, its pale clothes briefly catching the light. It looks from your empty hands to your face, and stays where it is.
+                    <span @class="'wraith ' + basicHypnoCss()">Something pale moves at the edge of your vision. You turn your head. The figure stands by the water, its pale clothes briefly catching the light.</span> It looks from your empty hands to your face, and stays where it is.
                   <</if>>
                   <br><br>
                   <<if $wraithPrison?.vision>>You remember the loss you felt in its dream. You leave that memory unspoken. <</if>>Neither of you comes any closer. When you look up again, the figure has gone. You let out the breath you were holding, and stand.
                 <<option 'CN'>>
                   <<if C.npc['Ivory Wraith'].lust gte 10>>
-                    一道苍白的身影站在水边。你没有看见它过来。它紧攥着双手，双眼始终盯着你。你把手留在膝上。过了一会儿，那几根手指松开了些。
+                    <span @class="'wraith ' + basicHypnoCss()">一道苍白的身影站在水边。你没有看见它过来。它紧攥着双手，双眼始终盯着你。</span>你把手留在膝上。过了一会儿，那几根手指松开了些。
                   <<else>>
-                    眼角有什么苍白的东西动了一下。你转过头，那身影站在水边，苍白的衣袍映过一点微光。它看看你空着的双手，又看看你的脸，仍留在原地。
+                    <span @class="'wraith ' + basicHypnoCss()">眼角有什么苍白的东西动了一下。你转过头，那身影站在水边，苍白的衣袍映过一点微光。</span>它看看你空着的双手，又看看你的脸，仍留在原地。
                   <</if>>
                   <br><br>
                   <<if $wraithPrison?.vision>>你想起曾在它的梦里感到的失落，没有将这段记忆说出口。<</if>>你们谁也没有靠近。再次抬头时，那身影已经不见了。你松开一直憋着的那口气，站起身来。

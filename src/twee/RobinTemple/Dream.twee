@@ -41,7 +41,7 @@
         <br><br>
         Robin is sitting on the edge of the bed with the blanket pulled up to <<nnpc_his 'Robin'>> chin, and does not look like someone who was asleep a moment ago. "You told us about this one," <<nnpc_he 'Robin'>> says. "You said there was a mirror."
         <br><br>
-        <span class='wraith'>Nothing is reflected in it. Not the room, not the four of you.</span>
+        <span @class="'wraith ' + basicHypnoCss()">Nothing is reflected in it. Not the room, not the four of you.</span>
       <<option 'CN'>>
         敲门声响起时你已经睡着了。不是门。是门上方，在灰泥里，像一所没人撑着的房子在往下沉。
         <br><br>
@@ -49,7 +49,7 @@
         <br><br>
         罗宾坐在床边，毯子一直拉到下巴，看上去一点也不像刚才还睡着的人。“这个你跟我们讲过，”<<nnpc_he 'Robin'>>说，“你说过有一面镜子。”
         <br><br>
-        <span class='wraith'>镜子里什么都没有映出来。没有房间，没有你们四个人。</span>
+        <span @class="'wraith ' + basicHypnoCss()">镜子里什么都没有映出来。没有房间，没有你们四个人。</span>
     <</language>>
     <br><br>
     <<investigateicon>><<lanLink ['Look into it', '朝镜子里看'] 'RobinTemple Dream Mirror'>><</lanLink>><br>
@@ -171,7 +171,7 @@
           <br><br>
           Robin stops moving. <<nnpc_He 'Robin'>> says your name and it arrives from the wall. Kylar has <<nnpc_his 'Kylar'>> face pressed into your shoulder and is laughing in a way that has nothing in it.
           <br><br>
-          "It is not counting us," Sydney says, and he is very close to your ear and very level. "<span class="lustful">It is counting two, and calling the rest of us the same person.</span>"
+          "It is not counting us," Sydney says, and <<nnpc_he 'Sydney'>> is very close to your ear and very level. "<span class="lustful">It is counting two, and calling the rest of us the same person.</span>"
         <<option 'CN'>>
           沟槽里是温的，屋子用一个不属于他们三个中任何人的声音回答。
           <br>

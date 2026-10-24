@@ -263,13 +263,13 @@
     <br><br>
     You stand in the room beneath the lake. The necklace lies on its plinth. You look down at your hands. They are empty.
     <br><br>
-    Something moves beyond the doorway. The pale figure stands there, one hand at its throat. You cannot see its eyes.
+    <span @class="'wraith ' + basicHypnoCss()">Something moves beyond the doorway. The pale figure stands there, one hand at its throat. You cannot see its eyes.</span>
   <<option 'CN'>>
     你闭上眼睛。起初，指间还能摸到床单。随后，手掌滑过冰冷的石面。
     <br><br>
     你站在湖底的石室里。项链放在基座上。你低头看看自己的双手，手里什么也没有。
     <br><br>
-    门外有什么动了一下。那道苍白的身影站在那里，一只手按在喉间。你看不清它的眼睛。
+    <span @class="'wraith ' + basicHypnoCss()">门外有什么动了一下。那道苍白的身影站在那里，一只手按在喉间。你看不清它的眼睛。</span>
 <</language>>
 <br><br>
 <<if $wraithPrison?.vision>>
@@ -294,14 +294,14 @@
       <<case 'call'>>
         "I put it back," you say. Your voice sounds muffled, as though you spoke through water.
         <br><br>
-        The figure turns its head. Its mouth moves. You cannot hear a reply. You do not know whether it heard you either.
+        The figure turns its head. Its mouth moves. <span @class="'wraith ' + basicHypnoCss()">You cannot hear a reply. You do not know whether it heard you either.</span>
       <<default>>
         You stay where you are. The figure looks towards the necklace, then back at you. You wait for it to come closer. It does not.
         <br><br>
         Water trickles down the wall behind you. You look over your shoulder. There is no way to tell how long you have been standing here.
     <</switch>>
     <br><br>
-    A blue glimmer catches on the chain. You blink, trying to keep the room in sight, but the stone beneath your hand has softened into cloth.
+    <span @class="'lblue ' + basicHypnoCss()">A blue glimmer catches on the chain.</span> You blink, trying to keep the room in sight, but the stone beneath your hand has softened into cloth.
   <<option 'CN'>>
     <<switch $RBR.necklace.dreamChoice>>
       <<case 'approach'>>
@@ -311,14 +311,14 @@
       <<case 'call'>>
         “我把它放回去了，”你说。声音闷闷的，像是隔着一层水。
         <br><br>
-        那身影转过头。它的嘴唇动了动，你听不见回答。你也不知道，它是否听见了你的话。
+        那身影转过头。它的嘴唇动了动，<span @class="'wraith ' + basicHypnoCss()">你听不见回答。你也不知道，它是否听见了你的话。</span>
       <<default>>
         你留在原地。那身影看看项链，又看看你。你等着它走近，它却没有动。
         <br><br>
         水沿着身后的石墙往下流。你回头望去，不知道自己已经站了多久。
     <</switch>>
     <br><br>
-    链子上闪过一点蓝光。你眨着眼，想再看清这间屋子，手掌下的石面却变成了柔软的布料。
+    <span @class="'lblue ' + basicHypnoCss()">链子上闪过一点蓝光。</span>你眨着眼，想再看清这间屋子，手掌下的石面却变成了柔软的布料。
 <</language>>
 <br><br>
 <<getouticon>><<lanLink ['Open your eyes', '睁开眼睛'] 'Revelation Ivory Dream Wake'>><</lanLink>><br>

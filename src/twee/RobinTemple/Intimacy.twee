@@ -210,7 +210,7 @@
       <br><br>
       <span class="lewd">The screen is thin and the row is not empty; two bunks over, someone turns over in their sleep. Robin clamps a hand over <<his>> own mouth the first time you move, then cannot keep it there — <<he>> ends up gripping your forearm with both hands instead, hips stuttering up to meet you in small, badly-hidden jerks, the blanket bunched to one side and neither of you willing to stop long enough to pull it back. Every creak of the frame goes straight through <<him>>; <<he>> gets tighter each time, and when <<he>> finally does make a sound it is your name, bitten off against your shoulder.</span>
     <<option 'CN'>>
-      <<He>>先伸手到毯子下面来找你——动作生疏，却很认真，一直盯着你的脸看自己有没有做对。你把他按到床垫上时<<he>>顺着你的力道躺下，脸转向枕头之后，两边膝盖也还是给你留着。
+      <<He>>先伸手到毯子下面来找你——动作生疏，却很认真，一直盯着你的脸看自己有没有做对。你把<<him>>按到床垫上时<<he>>顺着你的力道躺下，脸转向枕头之后，两边膝盖也还是给你留着。
       <br><br>
       <span class="lewd">屏风很薄，这一排也不是空的。隔两张床的地方有人翻了个身。你第一次动的时候，罗宾用手捂住自己的嘴，可那只手没撑多久——最后<<he>>改成用两只手死死攥住你的小臂，胯一下一下地往上迎，动作又短又急，藏都藏不住。毯子滑到一边，谁也没空去拉。床架每吱一声都从<<him>>身上过一遍，<<he>>就绞得更紧一分。等到<<he>>终于出声的时候，叫的是你的名字，出口就咬回在你肩上。</span>
   <</language>>
@@ -254,9 +254,9 @@
     <<if $enemyarousal gte $enemyarousalmax>>
       <<language>>
         <<option 'EN'>>
-          Robin shudders against you, holding on until it passes. "That was... a lot," <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
+          Robin shudders against you, holding on until it passes. <span @class="'pink ' + basicJitterCss()">"That was... a lot,"</span> <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
         <<option 'CN'>>
-          罗宾贴着你发抖，一直抱到你停下才松开手。“这也……太过了，”<<he>>喘着气说，随后不好意思地笑了一声，“我大概是需要这个。”
+          罗宾贴着你发抖，一直抱到你停下才松开手。<span @class="'pink ' + basicJitterCss()">“这也……太过了，”</span><<he>>喘着气说，随后不好意思地笑了一声，“我大概是需要这个。”
       <</language>>
     <<elseif $enemyhealth lte 0>>
       <<language>>
