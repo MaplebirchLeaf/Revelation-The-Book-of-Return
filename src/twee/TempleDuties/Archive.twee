@@ -248,7 +248,7 @@
         <span class='green'><<lanSwitch 'Completed.' '已竣工。'>></span><br>
       <<else>>
         <span class='teal'><<lanSwitch 'Work underway. Completion: ' '施工中，竣工日期：'>>
-        <<print getFormattedDate(new DateTime(Time.date).addDays($TempleDuties.archive[_repair] - Math.floor(Time.days)))>></span><br>
+        <<print getFormattedDate(new DateTime(Time.startDate).addDays($TempleDuties.archive[_repair]))>></span><br>
       <</if>>
     <</revelation-card>>
   <</capture>>

@@ -105,6 +105,8 @@
     <li><<lanSwitch 'The necklace is back, but there are other grievances between you. Waiting at the shore will not settle them.' '项链已经归还，但你们之间还有其他旧怨。在岸边等待，并不能解决这些事。'>></li>
   <<elseif Time.isBloodMoon() and $RBR.necklace.aftercare isnot 'complete'>>
     <li><<lanSwitch 'The blood moon has risen. Returning the necklace did not make tonight safe. Wait until it has passed before seeking another quiet meeting.' '血月已经升起。归还项链并不能保你今晚平安。等血月过去，再找机会平静地见它。'>></li>
+  <<elseif ['none', 'shore'].includes($RBR.necklace.aftercare) and Math.floor(Time.days) lt $RBR.wraithVisitDay + 3>>
+    <li><<lanSwitch 'Give the shore a few quiet days. You can return from ' '让湖边安静几天，最早可在'>><span class='gold'><<= getFormattedDate(new DateTime(Time.startDate).addDays($RBR.wraithVisitDay + 3))>></span><<lanSwitch ', away from the blood moon and any pursuit.' '再去，避开血月与追猎。'>></li>
   <<else>>
     <<switch $RBR.necklace.aftercare>>
       <<case 'dream'>>

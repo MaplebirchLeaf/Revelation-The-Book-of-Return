@@ -51,7 +51,7 @@
           <li><<lanSwitch 'The dream was interrupted. Rest in Kylar\'s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
         <<elseif maplebirch.get('LostLamb').reward>>
           <<if !$LostLamb.talk>>
-            <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
+            <li><<lanSwitch 'The dream has ended. If it is still on your mind, visit the manor in the evening and speak to Kylar in private.' '那个梦已经结束。若还惦记，傍晚可以回庄园，私下找凯拉尔谈谈。'>></li>
           <</if>>
           <<if C.npc.Sydney.init is 1 and !$LostLamb.sydneyTalk>>
             <li><<lanSwitch 'You remember Sydney\'s knock in the dream. You could ask about it when Sydney is free at the library, shop or temple pews.' '你还记得梦里悉尼敲门的暗号。悉尼在图书馆、商店或神殿长椅有空时，可以问一问。'>></li>
@@ -111,9 +111,9 @@
             <li>
             <<language>>
               <<option 'EN'>>
-                Robin's purity trial is booked for <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>. If that date has passed, the appointment remains booked.
+                Robin's purity trial is booked for <span class='gold'><<= getFormattedDate(new DateTime(Time.startDate).addDays($RobinTemple.exam_day))>></span>. If that date has passed, the appointment remains booked.
               <<option 'CN'>>
-                罗宾的纯洁试炼预约在 <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day - Time.days))>></span>。日期已过时，预约仍会保留。
+                罗宾的纯洁试炼预约在 <span class='gold'><<= getFormattedDate(new DateTime(Time.startDate).addDays($RobinTemple.exam_day))>></span>。日期已过时，预约仍会保留。
             <</language>>
             </li>
             <<if Time.days lt $RobinTemple.exam_day and $RobinTemple.prepared_day isnot Time.days>>
@@ -138,9 +138,9 @@
             <li>
             <<language>>
               <<option 'EN'>>
-                Robin needs time to decide freely. Ask again at home from <span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span>.
+                Robin needs time to decide freely. Ask again at home from <span class='gold'><<= getFormattedDate(new DateTime(Time.startDate).addDays($RobinTemple.exam_day + 7))>></span>.
               <<option 'CN'>>
-                罗宾需要时间自己考虑。<span class='gold'><<= getFormattedDate(new DateTime(Time.date).addDays($RobinTemple.exam_day + 7 - Time.days))>></span> 起，可以在家中再询问。
+                罗宾需要时间自己考虑。<span class='gold'><<= getFormattedDate(new DateTime(Time.startDate).addDays($RobinTemple.exam_day + 7))>></span> 起，可以在家中再询问。
             <</language>>
             </li>
           <<case 'member'>>
@@ -349,7 +349,7 @@
 
 <!-- 神殿唱诗班 -->
 <<widget 'temple-choir-journal'>>
-  <<if $TempleChoir.joined>>
+  <<if $TempleChoir.joined and (!$TempleChoir.lead or $TempleChoir.bonus gt 0 or maplebirch.get('TempleChoir').active)>>
     <<revelation-card 'Temple choir' '神殿唱诗班'>>
       <ul class='journal'>
         <li><<lanSwitch 'Practice: 09:00–18:00, once a day, except during Sunday mass (0:30). Service: Sunday, 11:00–13:00 (1:00).' '练习：每天 09:00–18:00 一次，周日弥撒期间暂停（0:30）。唱诗：周日 11:00–13:00（1:00）。'>></li>
@@ -371,9 +371,14 @@
 
 <!-- 神殿职务、旧资料室与当前委托 -->
 <<widget 'temple-duties-journal'>>
+  <<if maplebirch.get('TempleDuties') and $TempleDuties.quarters_ready and !$TempleDuties.enrolled>>
+    <<revelation-card 'Helping at the temple' '神殿的帮手'>>
+      <ul class='journal'><li><<lanSwitch 'The attendant mentioned Jordan needs help. Ask at the duties book in the hall, 09:00–18:00 before dusk, outside Sunday mass.' '侍从提过约旦需要帮手。09:00–18:00、天色未暗时，可以去大厅职务簿旁询问，避开周日弥撒。'>></li></ul>
+    <</revelation-card>><hr>
+  <</if>>
   <<if maplebirch.get('TempleDuties') and $TempleDuties.enrolled>>
     <<temple-duty-check>>
-    <<revelation-card 'Temple duties' '神殿职务'>>
+    <<revelation-card 'Rota and records room' '轮值与资料室'>>
       <ul class='journal'>
         <li><<lanSwitch 'Duties desk: 09:00–18:00, outside Sunday mass. One paid shift daily; leave enough time to finish.' '职务桌：09:00–18:00，周日弥撒期间暂停。每天可完成一班有薪职务，接班前须留足时间。'>></li>
         <<if $TempleDuties.duty_day is Math.floor(Time.days)>>
@@ -404,7 +409,7 @@
             <li>
             <<lanSwitch `_journalRepair is 'roof' ? 'Roof and drainage: ' : 'Shelves: '` `_journalRepair is 'roof' ? '屋顶与排水：' : '书架：'`>>
             <<lanSwitch 'work underway; completion ' '施工中，竣工日期：'>>
-            <span class='gold'><<print getFormattedDate(new DateTime(Time.date).addDays($TempleDuties.archive[_journalRepair] - Math.floor(Time.days)))>></span>
+            <span class='gold'><<print getFormattedDate(new DateTime(Time.startDate).addDays($TempleDuties.archive[_journalRepair]))>></span>
             </li>
           <</if>>
         <</for>>
