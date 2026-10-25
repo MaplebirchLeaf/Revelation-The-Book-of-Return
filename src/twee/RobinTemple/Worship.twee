@@ -135,6 +135,7 @@
       罗宾坐在长椅尽头，膝上放着合起的课本。你坐下时，<<he>>把书挪到一旁。
   <</language>>
   <br><br>
+  <<secret-day-robin-echo>>
   <<if $RobinTemple.faith_transition isnot ''>>
     <<socialiseicon 'ask'>><<lanLink ['Listen to Robin talk about their recent thoughts', '听罗宾说说最近的想法'] 'RobinTemple Faith Transition'>><</lanLink>><br><br>
   <</if>>

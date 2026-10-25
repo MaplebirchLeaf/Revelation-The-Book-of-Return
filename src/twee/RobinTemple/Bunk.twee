@@ -150,6 +150,8 @@
     <<option 'CN'>>
       “我告诉对方，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
   <</language>>
+  <br><br>
+  <<secret-day-robin-echo>>
   <<lstress>><<glove 'Robin'>>
 <<else>>
   <<language>>

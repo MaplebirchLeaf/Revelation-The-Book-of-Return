@@ -58,6 +58,8 @@ export interface SecretPromiseState {
   /** 完成誓约后，由岸上的后日谈消费此标记以免重复结算。 */
   rite_done: boolean;
   followup: 'none' | 'meal' | 'records' | 'complete' | 'declined';
+  /** 只记录门后异声的实际应对；旧完成记录留空，不推断玩家选择。 */
+  followup_choice: '' | 'listen' | 'hold' | 'leave';
   dream: { active: boolean; day: number; stage: number; round: number; seen: boolean };
 }
 
@@ -180,6 +182,7 @@ export const DEFAULT_ROBIN_TEMPLE_STATE: RobinTempleState = {
     rite_round: 0,
     rite_done: false,
     followup: 'none',
+    followup_choice: '',
     dream: { active: false, day: -1, stage: 0, round: 0, seen: false }
   },
   punish: null,

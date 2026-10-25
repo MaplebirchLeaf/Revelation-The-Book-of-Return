@@ -73,6 +73,44 @@
   <br>
 <</widget>>
 
+<<widget 'secret-day-robin-echo'>>
+  <<if !$RobinTemple.dual_promise or $RobinTemple.secret.stage isnot 'complete'
+      or $RobinTemple.secret.followup isnot 'complete'
+      or !['listen', 'hold', 'leave'].includes($RobinTemple.secret.followup_choice)
+      or !maplebirch.get('RobinTemple').available or getRobinLocation() isnot 'temple'
+      or $location isnot 'temple'>>
+    <<exit>>
+  <</if>>
+  <!-- 回想的是共同经历，不重新触发异象，也不把悉尼带到罗宾的床铺。 -->
+  <<language>>
+    <<option 'EN'>>
+      <<switch $RobinTemple.secret.followup_choice>>
+        <<case 'listen'>>Robin remembers the voice repeating the crossed-out word. "If it calls again, we check with each other first. Like we wrote down."
+        <<case 'hold'>>Robin glances towards the aisle, keeping the way back to the hall clear. "Next time, don't wait until we're all the way down the passage before you follow."
+        <<case 'leave'>>"We didn't have to open that door," Robin says. "I've been thinking about that. We can leave a thing alone."
+      <</switch>>
+      <<if C.npc.Robin.trauma gte 40>> <<nnpc_He 'Robin'>> keeps <<nnpc_his 'Robin'>> voice low and watches the people passing nearby. You let the subject rest.
+      <<elseif maplebirch.get('RobinTemple').faith gte 20>> <<nnpc_He 'Robin'>> smooths the prayer-book page. "I still come here to pray. I just won't follow something because it knows my name."
+      <<elseif maplebirch.get('RobinTemple').faith lte -20>> "I can help people without believing everything I hear here," <<nnpc_he 'Robin'>> adds.
+      <<elseif C.npc.Robin.dom gte 50>> "And if I say we should go, I want you to listen," <<nnpc_he 'Robin'>> adds, meeting your eyes.
+      <<else>> <<nnpc_He 'Robin'>> gives you time to answer, then turns back to the schoolbook.<</if>>
+      <<if $robinromance is 1 and C.npc.Robin.love gte 60>> <<nnpc_He 'Robin'>> leaves <<nnpc_his 'Robin'>> hand beside yours.<</if>>
+    <<option 'CN'>>
+      <<switch $RobinTemple.secret.followup_choice>>
+        <<case 'listen'>>罗宾还记得，那道声音重复了被划掉的词。“下次再叫，就先问问彼此。我们写下来过的。”
+        <<case 'hold'>>罗宾朝过道看了一眼，没有挡住回大厅的路。“下次，不用等我们都走那么远了，你才跟上。”
+        <<case 'leave'>>“那扇门，我们也没必要打开。”罗宾说，“有些东西，放着不管也可以。”
+      <</switch>>
+      <<if C.npc.Robin.trauma gte 40>><<nnpc_He 'Robin'>>声音很低，仍留意着附近经过的人。你没有接着往下问。
+      <<elseif maplebirch.get('RobinTemple').faith gte 20>><<nnpc_He 'Robin'>>抚平祈祷书的纸页。“我还是会来祈祷。可也不能因为谁叫得出我的名字，就跟着走。”
+      <<elseif maplebirch.get('RobinTemple').faith lte -20>>“我能帮别人，也不用把这里听到的每句话都当真。”<<nnpc_he 'Robin'>>又说。
+      <<elseif C.npc.Robin.dom gte 50>>“还有，我说该走了的时候，你也得听进去。”<<nnpc_he 'Robin'>>望着你的眼睛说。
+      <<else>><<nnpc_He 'Robin'>>等你说完，才重新看向课本。<</if>>
+      <<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>>把手留在你的手边。<</if>>
+  <</language>>
+  <br><br>
+<</widget>>
+
 :: RobinTemple Daylight
 <<secret-day-place>>
 <<secret-day-check 0>>
@@ -138,7 +176,10 @@
 <</if>>
 <<refuseicon>>
 <<lanLink ['Stop investigating that night', '放弃调查异象'] 'Temple'>>
-  <<set $RobinTemple.secret.followup to 'declined'>>
+  <<secret-day-check 0>>
+  <<if _secretDayReady>>
+    <<set $RobinTemple.secret.followup to 'declined'>>
+  <</if>>
 <</lanLink>>
 <br><br>
 <<secret-day-back>>
@@ -214,7 +255,7 @@
 <<if _dayLong and _dayListen>>
   <<historyicon>>
   <<secret-day-action `['Compare the voice with the written account (0:10)', '对照记录，辨认声音 (0:10)']` 10 'RobinTemple Daylight End'>>
-    <<set $RobinTemple.secret.followup to 'complete'>>
+    <<set $RobinTemple.secret.followup to 'complete', $RobinTemple.secret.followup_choice to 'listen'>>
     <<historyskill 1>>
     <<stress -6>>
     <<willpower 2>>
@@ -225,7 +266,7 @@
 <<if _dayLong and _dayHold>>
   <<icon 'physique.png'>>
   <<secret-day-action `['Hold the door shut while Robin and Sydney return to the hall (0:10)', '抵住门，让罗宾和悉尼先退回大厅 (0:10)']` 10 'RobinTemple Daylight End'>>
-    <<set $RobinTemple.secret.followup to 'complete'>>
+    <<set $RobinTemple.secret.followup to 'complete', $RobinTemple.secret.followup_choice to 'hold'>>
     <<tiredness 5>>
     <<willpower 2>>
     <<stress -4>>
@@ -237,7 +278,7 @@
 <<if _secretDayReady>>
 <<getouticon>>
 <<secret-day-action `['Follow Robin and Sydney back to the busy hall (0:05)', '跟罗宾、悉尼回到热闹的大厅 (0:05)']` 5 'RobinTemple Daylight End'>>
-  <<set $RobinTemple.secret.followup to 'complete'>>
+  <<set $RobinTemple.secret.followup to 'complete', $RobinTemple.secret.followup_choice to 'leave'>>
   <<stress 2>>
 <</secret-day-action>>
 <<gstress>>
@@ -248,13 +289,90 @@
 
 :: RobinTemple Daylight End
 <<secret-day-place>>
+<<if $RobinTemple.secret.followup isnot 'complete'
+    or !['listen', 'hold', 'leave'].includes($RobinTemple.secret.followup_choice)>>
+  <<secret-day-back>>
+  <<exit>>
+<</if>>
+<<run statusCheck('Sydney')>>
 <<language>>
   <<option 'EN'>>
-    All three of you return to the warm, busy hall. Robin looks from you to Sydney, then lets out a breath. Sydney counts the pages and puts the copy away.
-    "I don't know what that was," Sydney says. "I know neither of us asked you to follow it." Robin keeps a seat beside <<nnpc_him 'Robin'>> until the next bell.
+    <<switch $RobinTemple.secret.followup_choice>>
+      <<case 'listen'>>
+        You lay the copy beside the closed door. The voice repeats the same line, including the word Sydney crossed out. You read the correction aloud. For a moment, nothing answers. Then the voice begins the old line again. You leave the door shut and take the notes back to the hall.
+        <br><br>
+        "It isn't answering us," Sydney says, underlining the correction. "That's something we can check if we hear it again. It doesn't tell us who is speaking."
+      <<case 'hold'>>
+        You plant your feet and keep the door shut while Robin and Sydney move towards the hall. The voice calls again, now from close to the wood. You wait until you can see both companions among the visitors, then let go and follow them. No one comes through behind you.
+        <br><br>
+        Robin waits where you can see <<nnpc_him 'Robin'>>. Sydney still has all the notes, though one corner is crumpled. "We can look at them somewhere else," <<nnpc_he 'Sydney'>> says.
+      <<case 'leave'>>
+        You turn away from the door. Robin walks on one side of you, Sydney on the other. The voice calls once more, but the sounds of the hall swallow the rest. None of you goes back to ask it to repeat itself.
+        <br><br>
+        The notes remain folded on the table. You haven't found out what made the sound. For now, all three of you are here to discuss it.
+    <</switch>>
   <<option 'CN'>>
-    你们三个都回到了大厅。这里暖和，也有人在说话。罗宾看看你，又看看悉尼，终于松了口气。悉尼数清纸页，收好副本。
-    “我不知道，那是什么。”悉尼说，“可我们谁都没有叫你跟过去。”下一阵钟声响起前，罗宾一直留着身旁的座位。
+    <<switch $RobinTemple.secret.followup_choice>>
+      <<case 'listen'>>
+        你把副本摊在关着的门旁。声音重复着同一句话，连悉尼划掉的那个词也没有变。你念出改正后的句子。片刻间，门后没有回应。随后，旧句子又响了起来。你们没有开门，拿着记录回到大厅。
+        <br><br>
+        “它没有在回答我们。”悉尼在改正的地方划了一道线。“下次再听见，可以核对这一处。但这还说明不了，究竟是谁在说话。”
+      <<case 'hold'>>
+        你站稳脚步，抵住门，让罗宾和悉尼先往大厅走。那道声音又响了起来，这次就贴在门板后。直到看见两人走到信众中间，你才松手，跟了过去。身后没有人出来。
+        <br><br>
+        罗宾留在你能看见的地方等你。悉尼仍拿着所有记录，只是纸角被攥皱了。“换个地方，也能看这些。”<<nnpc_he 'Sydney'>>说。
+      <<case 'leave'>>
+        你转身离开了那扇门。罗宾走在你一侧，悉尼在另一侧。声音又叫了一遍，后面的话很快被大厅的人声盖住。谁也没有折回去，请它再说一次。
+        <br><br>
+        记录仍折好放在桌上。你们没能查清，是什么发出了声音。不过眼下，三个人都还在这里，可以慢慢商量。
+    <</switch>>
+<</language>>
+<br><br>
+<<language>>
+  <<option 'EN'>>
+    <<if C.npc.Robin.trauma gte 40>>
+      Robin sits facing the busy hall. <<nnpc_He 'Robin'>> startles when a chair scrapes nearby. "Could we stay here a little longer?" <<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>> reaches for your hand.<</if>>
+    <<elseif maplebirch.get('RobinTemple').faith gte 20>>
+      Robin listens to a prayer from the next pew. "I want to stay where we can hear the others." <<nnpc_He 'Robin'>> leaves the notes closed until you are ready to talk.
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      "Being in the temple doesn't mean we should trust every voice," Robin says. <<nnpc_He 'Robin'>> looks at the notes, then back at the people around you.
+    <<elseif C.npc.Robin.dom gte 50>>
+      "Next time we leave together," Robin says. "Nobody goes back on their own." <<nnpc_He 'Robin'>> waits for your answer.
+    <<else>>
+      "I'm glad we all came back," Robin says quietly. <<nnpc_He 'Robin'>> waits while you find somewhere to put the notes.
+    <</if>>
+    <br><br>
+    <<if _sydneyStatus.includes('pure')>>
+      Sydney murmurs a short prayer, then puts the copy beneath the prayer book. "If it calls again, we speak to one another face to face before we go anywhere."
+    <<elseif _sydneyStatus.includes('corrupt')>>
+      Sydney glances towards the passage. "I still want to know what it is. That doesn't mean I'm going in there alone." <<nnpc_He 'Sydney'>> puts the copy away before looking at you again.
+    <<else>>
+      Sydney counts the pages. "Let's keep what we heard separate from what we think it means." <<nnpc_He 'Sydney'>> folds the copy carefully, without adding a name for the voice.
+    <</if>>
+    <<if $sydneyromance is 1 and C.npc.Sydney.love gte 60>> Sydney takes the seat beside you.<<else>> Sydney stays across the table, leaving room for the notes between you.<</if>>
+    <<if maplebirch.get('RobinTemple').secret.cornered>><br><br>Robin glances at you. "What I said over the meal still stands." Sydney nods. The way you brought them to the lake has not been forgotten.<</if>>
+  <<option 'CN'>>
+    <<if C.npc.Robin.trauma gte 40>>
+      罗宾面向热闹的大厅坐下。附近有人拖动椅子，<<nnpc_he 'Robin'>>还是惊了一下。“能在这里多待会儿吗？”<<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>>伸手握住你的手。<</if>>
+    <<elseif maplebirch.get('RobinTemple').faith gte 20>>
+      罗宾听着隔壁长椅传来的祈祷声。“我想待在能听见大家的地方。”<<nnpc_He 'Robin'>>没有急着翻开记录，等你准备好再谈。
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      “就算在神殿里，也不能听见谁叫，就信了。”罗宾说。<<nnpc_He 'Robin'>>看看记录，又看向周围的人。
+    <<elseif C.npc.Robin.dom gte 50>>
+      “下次也一起走。”罗宾说，“谁都不许自己折回去。”<<nnpc_He 'Robin'>>等着你答复。
+    <<else>>
+      “还好，大家都回来了。”罗宾小声说，等你找地方放好记录。
+    <</if>>
+    <br><br>
+    <<if _sydneyStatus.includes('pure')>>
+      悉尼低声念了一句祷词，将副本压在祈祷书下。“下次再听见，我们先当面说清楚，再决定去哪儿。”
+    <<elseif _sydneyStatus.includes('corrupt')>>
+      悉尼朝短廊看了一眼。“我还是想知道那是什么。可这不代表，我要自己进去找。”<<nnpc_He 'Sydney'>>收好副本，才重新看向你。
+    <<else>>
+      悉尼数清纸页。“听见的，和猜到的，先分开记。”<<nnpc_He 'Sydney'>>仔细折好副本，没有替那道声音添上名字。
+    <</if>>
+    <<if $sydneyromance is 1 and C.npc.Sydney.love gte 60>>悉尼在你身旁坐下。<<else>>悉尼留在桌子对面，在你们中间空出放笔记的位置。<</if>>
+    <<if maplebirch.get('RobinTemple').secret.cornered>><br><br>罗宾看了你一眼。“吃饭时说的那些话，还是算数的。”悉尼也点点头。你那晚是怎样把两人带到湖边的，谁都没有忘记。<</if>>
 <</language>>
 <br><br>
 <<secret-day-back>>

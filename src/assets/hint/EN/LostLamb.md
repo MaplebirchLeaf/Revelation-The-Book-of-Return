@@ -64,6 +64,12 @@ After the main ending, visit Kylar's room **from 18:00** while Kylar is present 
 | The remembered night | Ten minutes; love rises and PC stress falls. If you still keep the kitchen's promise of silence, this instead repeats the visitor's assurance, reducing love and increasing jealousy and stress. |
 | A little space       | Five minutes; PC stress falls. A highly jealous Kylar may become more suspicious that you want to leave.                                                                                         |
 
-The conversation resolves **once** after you choose a topic. You may leave before choosing and return later. Replaying dreams does not reset a completed conversation. Later room descriptions reflect the choice and Kylar's current relationship; high jealousy takes priority.
+The conversation resolves **once**, after its time passes and Kylar is still available. A sudden interruption leaves the topic available for another visit. You may leave before choosing and return later. Loading, redrawing the result or replaying dreams does not grant the conversation's rewards again. Later room descriptions reflect the choice and Kylar's current relationship; high jealousy takes priority.
 
-After completing the main ending, dedicated follow-up conversations also become available with Sydney ("Tap the secret rhythm"), Gwylan at the forest shop ("Ask Gwylan about the past"), and the bishop in the confessional or during duties ("Ask about the sealed manor").
+After completing the main ending, three separate follow-up conversations also become available. They do not require choosing Kylar's topic first or selecting a new love interest:
+
+- **Sydney — Tap the secret rhythm:** speak while Sydney is free at the school library, adult shop or praying in the temple. If you have already walked Kylar home together in the original story, Sydney remembers that visit.
+- **Gwylan — Ask Gwylan about the past:** visit while Gwylan is at the forest shop. The reply depends on whether you have already discussed Kylar's parents.
+- **The bishop — Ask about the sealed manor:** after hearing the bishop's original account of the manor, ask during the relevant confessional conversation or temple duties.
+
+These conversations compare the dream with what people remember or claim. They do not turn the dream into evidence, promise a cure for Kylar's parents or automatically reconcile Sydney and Kylar.

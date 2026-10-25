@@ -28,7 +28,7 @@ The recovered necklace has **no resale value**. Neither Winter nor Quinn pays ag
 
 ### Visits to the shore
 
-**Three days after the return**, when original pursuits, random encounters and Winter's visits have finished and the shore shows its ordinary activities, you may sit by the lake and wait. You must have met the wraith. Pending story visits remain available even at zero obsession; after the story, ordinary visits require some remaining obsession. Blood moons, combat, possession, a pursuit or a grievance over its pale offspring prevent a visit.
+**Three days after the return**, when original pursuits, random encounters and Winter's visits have finished and the shore shows its ordinary activities, you may sit by the lake and wait. You must have met the wraith in an original event; taking and returning the necklace alone does not provide that introduction. Pending story visits remain available even at zero obsession; after the story, ordinary visits require some remaining obsession. Blood moons, combat, possession, a pursuit or a grievance over its pale offspring prevent a visit.
 
 Looking and leaving take no time. Spending **15 uninterrupted minutes** there reduces obsession by **1**. Wait at least **three days** before another visit. These visits gradually ease the tension without ending an existing pursuit, erasing other grievances or changing a romance.
 

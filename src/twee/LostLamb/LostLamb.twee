@@ -1,26 +1,38 @@
 :: Lost Lamb Widgets [widget]
 <<widget 'lost-lamb-talk-action'>>
-  <<if !maplebirch.get('LostLamb')?.talkReady or !['company', 'night', 'space'].includes(_args[0])>><<exit>><</if>>
-  <!-- 先保存一次性交谈与当时的誓言，重新演绎和正文重绘不重置现实选择。 -->
-  <<set $LostLamb.talk to _args[0]>><<set $LostLamb.talkVow to ''>>
-  <<switch $LostLamb.talk>>
+  <<if !maplebirch.get('LostLamb')?.talkReady or !['company', 'night', 'space'].includes(_args[0])
+      or $possessed or $nextPassage or $nextPassageCheck or $eventforced
+      or $stress gte $stressmax or isPregnancyEnding()>><<exit>><</if>>
+  <<set _lambTalkState to $LostLamb, _lambTalkSource to $passage, _lambTalkLocation to $location,
+    _lambTalkTopic to _args[0], _lambTalkVow to '', _lambTalkGuarded to maplebirch.get('LostLamb').reaction is 'guarded'>>
+  <<if _lambTalkTopic is 'company'>>
+    <<set _lambTalkVow to $LostLamb.marks.includes('main-vow-offered') ? 'offered' : $LostLamb.marks.includes('main-vow-refused') ? 'refused' : ''>>
+  <<elseif _lambTalkTopic is 'night'>>
+    <<set _lambTalkVow to $LostLamb.marks.includes('verdict-vow-sealed') ? 'sealed' : $LostLamb.marks.includes('verdict-vow-broken') ? 'broken' : ''>>
+  <</if>>
+  <<pass `_lambTalkTopic is 'space' ? 5 : 10`>>
+  <!-- 午夜后仍可讲完已经开始的交谈；时间事件打断时，不消耗话题或结算收益。 -->
+  <<if $LostLamb isnot _lambTalkState or $passage isnot _lambTalkSource or $location isnot _lambTalkLocation
+      or !maplebirch.get('LostLamb')?.reward or !maplebirch.get('LostLamb')?.kylarHere or $LostLamb.talk
+      or $possessed or $nextPassage or $nextPassageCheck or $eventforced
+      or $stress gte $stressmax or isPregnancyEnding()>><<exit>><</if>>
+  <!-- 成功讲完后才登记一次性选择；正文重绘、读档和重新入梦均不重复结算。 -->
+  <<set $LostLamb.talk to _lambTalkTopic, $LostLamb.talkVow to _lambTalkVow>>
+  <<switch _lambTalkTopic>>
     <<case 'company'>>
-      <<set $LostLamb.talkVow to $LostLamb.marks.includes('main-vow-offered') ? 'offered' : $LostLamb.marks.includes('main-vow-refused') ? 'refused' : ''>>
       <<if $LostLamb.talkVow is 'offered'>>
-        <<pass 10>><<npcincr Kylar love 2>><<npcincr Kylar rage -3>><<stress -2>>
+        <<npcincr Kylar love 2>><<npcincr Kylar rage -3>><<stress -2>>
       <<else>>
-        <<pass 10>><<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -2>>
+        <<npcincr Kylar love 1>><<npcincr Kylar rage -1>><<stress -2>>
       <</if>>
     <<case 'night'>>
-      <<set $LostLamb.talkVow to $LostLamb.marks.includes('verdict-vow-sealed') ? 'sealed' : $LostLamb.marks.includes('verdict-vow-broken') ? 'broken' : ''>>
       <<if $LostLamb.talkVow is 'sealed'>>
-        <<pass 10>><<npcincr Kylar love -1>><<npcincr Kylar rage 3>><<stress 2>>
+        <<npcincr Kylar love -1>><<npcincr Kylar rage 3>><<stress 2>>
       <<else>>
-        <<pass 10>><<npcincr Kylar love 1>><<stress -2>>
+        <<npcincr Kylar love 1>><<stress -2>>
       <</if>>
     <<case 'space'>>
-      <<set _lambTalkGuarded to maplebirch.get('LostLamb').reaction is 'guarded'>>
-      <<pass 5>><<stress -2>>
+      <<stress -2>>
       <<if _lambTalkGuarded>><<npcincr Kylar rage 2>><</if>>
   <</switch>>
 <</widget>>
@@ -120,7 +132,6 @@
               <<npcincr Sydney love 2>><<stress -5>>
             <<case 'Gwylan'>>
               <<set $LostLamb.gwylanTalk to true>>
-              <<run $gwylanSeen ??= []>><<run $gwylanSeen.pushUnique('kylar_parents')>>
               <<stress -10>><<trauma -5>><<npcincr Gwylan love 1>>
             <<case 'bishop'>>
               <<set $LostLamb.bishopTalk to true>>
@@ -399,39 +410,47 @@
   <<option 'EN'>>
     You tap your knuckles against the wooden surface: two quiet taps, a brief pause, then one final tap.
     <br><br>
-    Sydney's hand freezes mid-movement. A book slides an inch across the surface before resting against <<nnpc_his 'Sydney'>> wrist. <<nnpc_He 'Sydney'>> slowly lifts <<nnpc_his 'Sydney'>> head, staring at your fingers, <<nnpc_his 'Sydney'>> eyes wide with disbelief and an ache long buried.
+    Sydney stops moving the book. <<nnpc_He 'Sydney'>> looks at your fingers, then taps once beside them.
     <br><br>
-    "That rhythm..." <<nnpc_His 'Sydney'>> voice is barely more than a whisper. "Where did you... That was our secret knock. Outside the garden door. Before the church told me I was never allowed to visit that house again."
+    "That was our knock. At the garden door." <<nnpc_He 'Sydney'>> lowers <<nnpc_his 'Sydney'>> voice. "Where did you hear it?"
     <br><br>
-    <<nnpc_He 'Sydney'>> looks into your eyes, a tremor in <<nnpc_his 'Sydney'>> breath.
+    You tell Sydney about the knocking in your dream. You cannot say how much of it belongs to the house, or to things you heard after visiting it.
     <br><br>
-    "You've been there, haven't you? In that manor. Kylar... is Kylar still in that big, quiet house all alone?"
+    <<if $sydneySeen.includes('Kylar manor')>>
+      "When we walked Kylar home, I didn't know what to say." Sydney looks down at the book. "I kept thinking about that door. Does <<nnpc_he 'Kylar'>> still let you visit?"
+    <<else>>
+      "You've been there, then? Kylar still lives in that manor?" You tell Sydney that you have seen Kylar there.
+    <</if>>
     <br><br>
-    You tell Sydney that you have seen Kylar.
+    You describe one of your visits, keeping it apart from what you dreamed. Sydney listens without interrupting.
     <br><br>
-    Sydney lets out a long, trembling breath, as though setting down a weight carried since childhood.
+    "Our parents knew each other. I used to go over a lot." Sydney runs a finger along the edge of the book. "Then I wasn't allowed to come anymore."
     <br><br>
-    "I was so young when they told me not to go back. They said the house was dangerous, that darkness had settled in... but I always remembered leaving the drawings behind. I'm glad you told me. I kept wondering what had happened to <<nnpc_him 'Kylar'>>."
+    "I remember playing there. I don't know what happened to the house." <<nnpc_He 'Sydney'>> looks up. "Thank you for telling me how <<nnpc_he 'Kylar'>> is."
     <br><br>
-    <<nnpc_He 'Sydney'>> reaches out and gently covers your hand with <<nnpc_his 'Sydney'>> own, giving you a warm, grateful look.
+    Sydney taps twice, pauses, then taps once more. <<if isLoveInterest('Sydney')>>You rest your hand beside <<nnpc_his 'Sydney'>>.<<else>>You leave <<nnpc_him 'Sydney'>> a moment before stepping back.<</if>>
   <<option 'CN'>>
     你的指节在木质桌面上轻轻叩响：两声轻叩，短暂的停顿，接着是一声利落的收尾。
     <br><br>
-    悉尼手中的动作瞬间僵住了。书页在手腕旁滑开一寸，无声地停下。<<nnpc_He 'Sydney'>>缓缓抬起头，睁大眼睛注视着你的手指，神情里翻涌着难以置信的震动，以及埋藏已久的恍惚与酸楚。
+    悉尼停下整理书本的手。<<nnpc_He 'Sydney'>>看看你的手指，在旁边轻叩了一下。
     <br><br>
-    “那个节律……”<<nnpc_his 'Sydney'>>的声音轻得几乎听不清，“你是在哪里……那是我们以前的暗号。在花园后门的木阶上。在神殿严厉告诫我绝不能再去那所房子之前。”
+    “这是我们以前的暗号。在花园门口用的。”<<nnpc_He 'Sydney'>>压低了声音。“你在哪里听到的？”
     <br><br>
-    <<nnpc_He 'Sydney'>>怔怔地看着你的眼睛，呼吸带着一丝微颤。
+    你告诉悉尼，自己在梦里听见过叩门声。你说不清，哪些来自那所房子，哪些来自探访后听到的话。
     <br><br>
-    “你去过那里，对不对？那座庄园。凯拉尔……凯拉尔还在那座又大又安静的房子里吗？一直一个人？”
+    <<if $sydneySeen.includes('Kylar manor')>>
+      “那天一起送凯拉尔回去，我都不知道该说什么。”悉尼低头看着书。“我一直想着那扇门。<<nnpc_he 'Kylar'>>现在还让你去看<<nnpc_him 'Kylar'>>吗？”
+    <<else>>
+      “所以，你去过那里？凯拉尔还住在那座庄园里？”你告诉悉尼，你在那里见过凯拉尔。
+    <</if>>
     <br><br>
-    你告诉悉尼，你见过凯拉尔。
+    你讲起一次探访，把它与梦里的事分开。悉尼没有打断你。
     <br><br>
-    悉尼长长地呼出一口气，肩膀微微松弛下来，仿佛卸下了从孩童时起就一直悬在心头的一块重石。
+    “我们的父母很熟。我以前经常过去。”悉尼的手指沿着书边挪动。“后来，就不让我再来了。”
     <br><br>
-    “当年他们叫我别再去时，我年纪还太小。他们说那所房子很危险，有什么不祥的东西落在了那里……可我总记挂着留在桌上的画纸。谢谢你告诉我。我一直不知道，<<nnpc_he 'Kylar'>>后来怎么样了。”
+    “我还记得在那里玩过。但我不知道，那所房子后来发生了什么。”<<nnpc_He 'Sydney'>>抬起头。“谢谢你告诉我，<<nnpc_he 'Kylar'>>现在怎么样了。”
     <br><br>
-    <<nnpc_He 'Sydney'>>伸出手，轻轻覆在你的手背上，眼中满是温和与感激。
+    悉尼轻叩两下，停了一会儿，又叩了一下。<<if isLoveInterest('Sydney')>>你把手放在<<nnpc_his 'Sydney'>>手边。<<else>>你等了一会儿，才退开一步。<</if>>
 <</language>>
 <br><br>
 <<getouticon>><<lanLink ['Step back', '退回'] `$LostLamb_sydneyReturn || 'Temple Sydney'`>><<unset $LostLamb_sydneyReturn>><<endevent>><</lanLink>><br>
@@ -477,7 +496,8 @@
     <<He>>重新整理起草药。那根折断的草茎留在碗边。
 <</language>>
 <br><br>
-<<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<endevent>><</lanLink>><br>
+<!-- 只有读到本页正文才会生成此链接；退场后登记，首次交谈的存档与重绘仍使用原有认知。 -->
+<<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<run $gwylanSeen ??= []>><<run $gwylanSeen.pushUnique('kylar_parents')>><<endevent>><</lanLink>><br>
 
 :: Lost Lamb Bishop Talk
 <<set $outside to 0>><<effects>>

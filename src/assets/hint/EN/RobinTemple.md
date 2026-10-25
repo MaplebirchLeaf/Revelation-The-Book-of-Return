@@ -77,6 +77,8 @@ After joining, Robin may accompany the **Sunday-night Trial of Anguish**. Enter 
 
 Shared success gives Robin monk/nun rank and **Robin's bunk**, with the wardrobe and mirror. Your own bunk follows your rank. After failure, talk in the quarters, offer comfort and retry at the next permitted vigil.
 
+With **Temple duties** enabled, a willing monk/nun Robin can prepare for priesthood through the duties desk: receive parishioners, inspect the wards, then join a warehouse or shore commission. Robin must actually help on site, followed by successful resolution and an honest report, before the interview and appointment. You may be appointed together or prepare separately; an already appointed PC can still accompany Robin.
+
 During a Saturday overnight stay, a romantic PC may sit nearby, kiss or sleep together. Longer sleep can include memories, weather or ledger scenes alongside the usual dreams. These are not guaranteed nightly. After a promise, a present and available Robin can join you at the bunk on school-free weekdays **13:00–15:45**, excluding the end time. Conversation and a hug remain alternatives to intimacy.
 
 ### Confession
@@ -170,3 +172,5 @@ Finance's **temple relief fund at the town hall** orders food and blankets after
 - **No confession:** you need five previous confessions, Robin at the temple and a suitable topic; visitor selection remains random.
 - **No promise or examination:** check existing promises, daylight, Faith, purification, required companions and the thirty-day waiting period after evaluation failure.
 - **No Confounded Vow or lake journey:** check all three discoveries in this save, promise order, relationships, trauma, Sydney's outlook, actual fittings, both conversations, survey, preparation, waiting periods, weather, pursuit and the PC's condition.
+
+The daylight aftermath remembers how you last responded: comparing the voice, holding the door, or withdrawing together. Its ending and later pew or bedside conversations reflect that choice alongside Robin’s faith, trauma and outlook. Completed experiences appear in statistics, while the journal keeps unfinished next steps.

@@ -97,7 +97,11 @@
 <</widget>>
 
 <<widget 'wraith-return-journal'>>
-  <<if ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
+  <<if !$wraith?.init or C.npc['Ivory Wraith']?.init isnot 1>>
+    <li><<lanSwitch 'The necklace is back on its plinth. You have not yet met its owner in the lake.' '项链已经放回基座。你还没有见过湖中的主人。'>></li>
+  <<elseif $wraith.state isnot 'active'>>
+    <li><<lanSwitch 'The necklace is back. The pale figure has not returned to the shore.' '项链已经归还，那道苍白的身影暂时还未回到岸边。'>></li>
+  <<elseif ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
     <li><<lanSwitch 'The necklace is back, but there are other grievances between you. Waiting at the shore will not settle them.' '项链已经归还，但你们之间还有其他旧怨。在岸边等待，并不能解决这些事。'>></li>
   <<elseif Time.isBloodMoon() and $RBR.necklace.aftercare isnot 'complete'>>
     <li><<lanSwitch 'The blood moon has risen. Returning the necklace did not make tonight safe. Wait until it has passed before seeking another quiet meeting.' '血月已经升起。归还项链并不能保你今晚平安。等血月过去，再找机会平静地见它。'>></li>
@@ -130,9 +134,9 @@
 <<widget 'wraith-return-support'>>
   <<language>>
     <<option 'EN'>>
-      You describe the necklace, the figure on the shore, and the dream. You stop before trying to explain what it all meant.
+      You describe the necklace, the figure on the shore, and the dream. <<if $innocencestate is 1>>You cannot understand why returning it did not put everything right.<<else>>You stop before trying to explain what it all meant.<</if>>
     <<option 'CN'>>
-      你说起项链、站在岸边的身影，还有那个梦。说完这些，你停了下来，没有替那身影解释什么。
+      你说起项链、站在岸边的身影，还有那个梦。<<if $innocencestate is 1>>你想不明白，明明已经还回去了，为什么事情还没结束。<<else>>说完这些，你停了下来，没有替那身影解释什么。<</if>>
   <</language>>
   <br><br>
   <<switch _args[0]>>
@@ -215,6 +219,19 @@
           你用双手捧住温热的杯子。格威岚没有催你喝完。
       <</language>>
   <</switch>>
+  <<if $controlled is 0 and ($nightmares gte 1 or $sleeptrouble is 1 and !$hypnosis_traits.slumber or $anxiety gte 1)>>
+    <br><br>
+    <<language>>
+      <<option 'EN'>>
+        <<if $nightmares gte 1>>The thought of another dream still makes you reluctant to sleep. For now, you can keep your eyes open and listen to the person beside you.
+        <<elseif $sleeptrouble is 1 and !$hypnosis_traits.slumber>>You do not feel ready to sleep. You stay seated a little longer, without trying to force it.
+        <<else>>You still listen for footsteps when the conversation pauses. Hearing a familiar voice again makes it a little easier to stay where you are.<</if>>
+      <<option 'CN'>>
+        <<if $nightmares gte 1>>想到还可能做梦，你仍不太愿意睡下。至少现在，你可以睁着眼睛，听身旁的人说话。
+        <<elseif $sleeptrouble is 1 and !$hypnosis_traits.slumber>>你还不想躺下睡觉。你没有勉强自己，只是又坐了一会儿。
+        <<else>>交谈停顿时，你仍会留意附近的脚步声。熟悉的声音再次响起，你才又坐稳了些。<</if>>
+    <</language>>
+  <</if>>
   <<stress -3>><<lstress>>
 <</widget>>
 

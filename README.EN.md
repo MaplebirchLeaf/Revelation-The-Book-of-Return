@@ -37,7 +37,7 @@
 
 ## Installation
 
-Built for English and Chinese vanilla **DoL 0.5.12.13**. Requires **ModLoader 2.0.0+** and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.3+**. Install any other dependencies requested by the loader.
+Built for English and Chinese vanilla **DoL 0.5.12.13**. Requires **ModLoader 2.0.0+** and [Maplebirch Framework](https://github.com/MaplebirchLeaf/SCML-DOL-maplebirchFramework) **5.5.6+**. Install any other dependencies requested by the loader.
 
 1. Download the `.modpack` from [Releases](https://github.com/MaplebirchLeaf/Revelation-The-Book-of-Return/releases/latest) and import it into ModLoader.
 2. Install the required dependencies, enable Revelation and your chosen content in the framework's module manager, and reload as prompted.
