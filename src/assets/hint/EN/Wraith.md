@@ -1,48 +1,44 @@
-# The Ivory Wraith
+# The Ivory Wraith · The ivory necklace
 
-### Returning the ivory necklace
+After taking the necklace from beneath the lake, you can return it to the plinth to ease the wraith's hostility over the theft.
 
-After taking the necklace from the plinth beneath the lake, you may give it back. You must possess the **unsold necklace**, or recover the actual necklace from Quinn first. It cannot be returned remotely.
+### Returning the necklace
 
-Visit the plinth room in the lake ruin **outside a blood moon**, then choose “Examine the plinth with the ivory necklace in hand.” Returning it requires no combat, possession or forced event, at least one free arm, stress below maximum and some air remaining. Examining it and cancelling take no time. Setting it down uses the original underwater action, spending time and air according to swimming skill.
+Take the **unsold necklace**, or the actual necklace recovered from Quinn, to the plinth room beneath the lake **outside a blood moon**. Examine the plinth, then choose **Set the necklace on the plinth**.
 
-The confirmation explains that putting it back removes its **£2,000** value from the antiques awaiting sale, without charging cash. The necklace remains on the plinth. You may take it again, and the original diving team may also acquire it.
+You need at least one free arm, stress below maximum and some air remaining. Putting it down costs time and air according to Swimming. You lose the necklace. If it can still be sold, you also give up its **£2,000** sale price.
 
-### Consequences and follow-up
+- **First return:** removes the obsession floor caused by the theft. If no pale offspring have died or been sold and the related anger has settled, obsession also falls by **10**.
+- **Taking it again:** an introduced wraith returns to **20 obsession**. A later return reduces it by at most **1**.
+- Grievances over pale offspring, pursuits and possession still need to be dealt with separately.
 
-The **first return** removes the obsession floor caused by the theft. If no pale offspring have died or been sold, and no related anger cooldown remains, the wraith's obsession also falls by **10**. When those grievances remain, its existing obsession is preserved. Returning the necklace does not clear a pursuit, possession, timer or offspring state. The wraith can still appear in original events.
-
-**Taking it again** restores the original theft state. An already introduced wraith returns to **20 obsession**, as in the original game. Putting it back afterwards reduces obsession by at most **1** and does not remove grievances over its offspring. Taking and returning it repeatedly cannot grant the first reward again.
-
-During an ordinary forest-shop visit when Gwylan is available to talk, you may ask for advice or report what happened after the return. Each conversation takes ten minutes. Advice is optional.
+Ask Gwylan for advice during shop hours, or report back after the return. Each conversation takes **ten minutes**.
 
 ### Recovering it from Quinn
 
-Taking the necklace from the lake or recovering it from Quinn adds it to your vanilla wardrobe. Returning it or selling it to the museum or Quinn also removes that story item. Refreshing or loading does not grant another.
+After Winter explains its whereabouts, you see it in Quinn's office, hand it to Quinn yourself or witness the diving team's recovery, visit the **mayor's waiting room** during the day. The necklace must be in Quinn's custody.
 
-After Winter explains where the necklace went, or you see it in Quinn's office, visit the mayor's waiting room during the day. Directly handing it to Quinn or seeing the diving team's recovery also provides the lead. The necklace must actually be in Quinn's custody.
+Watch the visitors for **fifteen minutes**, then act while Quinn receives visitors downstairs. Reception, the camera and the display case require **600 / 500 / 900 Skulduggery** respectively. At half maximum Physique, you can also break the case, triggering an alarm and theft and destruction crime.
 
-Watch the visitors for **15 minutes**. On a later or the same visit, look for an opportunity to pass reception while Quinn is downstairs. There are separate skulduggery checks for reception (**600**), the camera (**500**) and the reinforced case (**900**). At least half your maximum physique also allows you to break the case, at the cost of an alarm and theft/destruction crime. You can retreat at every stage. Only one attempt is possible each day. Nighttime shutters remain impassable.
+You can try once daily and retreat at each stage. The recovered necklace cannot be sold again. Return it beneath the lake to continue the story.
 
-The recovered necklace has **no resale value**. Neither Winter nor Quinn pays again; returning and taking it from the plinth does not restore its value or award museum credit again. It adds no money to the antiques awaiting sale, so returning it deducts none. Recovering it alone does not reduce the wraith's obsession. Take it beneath the lake to use the existing return and follow-up.
+### Shore visits
 
-### Visits to the shore
+**Three days after the first return**, choose **Sit by the lake and wait** at the shore. You must have met the wraith and wait for the shore's ordinary activities to return. Blood moons, pursuit, possession and grievances over pale offspring prevent a meeting.
 
-**Three days after the return**, when original pursuits, random encounters and Winter's visits have finished and the shore shows its ordinary activities, you may sit by the lake and wait. You must have met the wraith in an original event; taking and returning the necklace alone does not provide that introduction. Pending story visits remain available even at zero obsession; after the story, ordinary visits require some remaining obsession. Blood moons, combat, possession, a pursuit or a grievance over its pale offspring prevent a visit.
+Sit for **fifteen uninterrupted minutes** to reduce obsession by **1**. Leave at least **three days** between visits. Unfinished story meetings remain available at zero obsession. Later ordinary visits need some obsession remaining.
 
-Looking and leaving take no time. Spending **15 uninterrupted minutes** there reduces obsession by **1**. Wait at least **three days** before another visit. These visits gradually ease the tension without ending an existing pursuit, erasing other grievances or changing a romance.
+### After the return
 
----
+1. Complete one quiet shore visit, then choose **Close your eyes and rest for an hour** in your own orphanage bed. Sleeping there can also bring the dream.
+2. In the dream, watch, approach, speak or try to wake. Experiencing **Schism** brings back that meeting.
+3. Afterwards, talk to an available Robin, Sydney praying at the temple, or Gwylan during shop hours. One conversation is enough. You can also keep it private and think it over at the shore.
+4. Return to the lake at least three days after the last visit. Completing this meeting brings a moment of relief.
 
-### After returning it
+Taking the necklace again interrupts quiet contact until you return it.
 
-- Complete one quiet shore visit, then return to your own bed at the orphanage and choose **Close your eyes and rest for an hour**. The dream also joins that bed’s normal nightmare pool, without replacing other dreams.
-- Watch, approach, speak, or try to wake up. Having experienced the original **Schism** adds remembered details; this dream does not complete Schism for you.
-- Afterwards, talk to Robin when free in the orphanage room, Sydney while praying at the temple pews, or Gwylan during normal shop hours. **One conversation is enough**. You may also keep it private and think it over at the shore.
-- Leave at least three days between shore visits. The next meeting provides a one-time moment of relief; later visits retain their usual rules. Your journal records the current lead and retires the finished thread.
+### Wearing the necklace
 
-Taking the necklace again interrupts quiet contact until you return it. It does not reset completed scenes. Blood moons, pursuits, and grievances over the pale offspring retain their existing consequences.
+Taking the necklace from the lake or recovering it from Quinn gives you wearable neckwear. Returning it or selling it to the museum or Quinn also removes it.
 
-### The forest shop necklace
-
-Returning the necklace once permanently unlocks the matching neckwear at the forest shop, at its vanilla price of **£2,000**. A purchased necklace is separate clothing. It does not change the relic’s whereabouts and is kept when the relic is returned or sold.
+The first return unlocks matching replica neckwear at the forest shop for **£2,000**, available to buy and wear as clothing.

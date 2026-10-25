@@ -10,10 +10,7 @@ export default function Tips(core: typeof maplebirch): void {
 
   if (core.get('RobinTemple'))
     add(
-      [
-        'Temple members can discuss it in Robin’s room when Robin is free and well. Chastity fittings only change the opening conversation.',
-        '加入神殿后，罗宾有空且能够正常活动时，可以在房间里谈起神殿。贞操器具只影响开场对话。'
-      ],
+      ['After joining the temple, you can talk about it in Robin’s room when Robin is free.', '加入神殿后，可以趁罗宾有空时，在房间里聊聊神殿。'],
       [
         'Robin’s trial needs an appointment with Jordan. Check your journal for the date before returning to the temple quarters.',
         '罗宾的试炼需要先向约旦预约。前往神殿宿舍前，可以在日志里确认日期。'

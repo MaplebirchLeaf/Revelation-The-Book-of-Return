@@ -5,39 +5,8 @@
       <<set $_ivoryStock to $specialClothes.some(item => item.name is 'ivory necklace')>>
       <<if !$_ivoryStock>><<run $specialClothes.push({ name: 'ivory necklace', unlocked: 0 })>><</if>>
     <</if>>
-    <<if !$RBR.necklace.saleChecked>>
-      <!-- 先修正旧版奎恩已付款却仍为 found 的记录，再同步饰品，避免读档后暂时保留已售出的实物。 -->
-      <<if !$RBR.necklace.reclaimed and !$RBR.necklace.returnedOnce
-          and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
-          and $necklaceThief is 'player' and $town_projects?.diving gte 3
-          and $moneyStats?.townProject?.earned gte 600000>>
-        <<set $museumAntiques.antiques.antiqueivorynecklace to 'museum'>>
-        <<set $RBR.necklace.known to true>>
-      <</if>>
-      <<set $RBR.necklace.saleChecked to true>>
-    <</if>>
-    <<if !$RBR.necklace.clothesChecked>>
-      <!-- 只迁移有剧情交付记录的旧档，新购同名饰品不带遗物来源，之后不再追认。 -->
-      <<if $RBR.necklace.clothed or $RBR.necklace.reclaimed
-          or $necklaceThief is 'player' and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
-        <<for $_clothes range [$worn, $carried, $wardrobe, $store, $wardrobeRepair, $tryOn?.ownedStored, $tryOn?.tryingOn].concat(Object.values($wardrobes ?? {}))>>
-          <<set $_ivoryItems to Array.isArray($_clothes?.neck) ? $_clothes.neck : [$_clothes?.neck]>>
-          <<for $_item range $_ivoryItems>>
-            <<if ($_item?.name ?? setup.clothes.neck[$_item?.index]?.name) is 'ivory necklace' and $_item.ivorySource is undefined>>
-              <<set $_item.ivorySource to 'relic'>>
-              <<set $RBR.necklace.clothed to true>>
-            <</if>>
-          <</for>>
-        <</for>>
-      <</if>>
-      <<set $RBR.necklace.clothesChecked to true>>
-    <</if>>
     <<if $RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'>>
       <<ivory-necklace-clothes 'clear'>>
-    <<elseif maplebirch.get('RBR') and ($RBR.necklace.reclaimed or $necklaceThief is 'player') and !$RBR.necklace.clothed
-        and !$RBR.necklace.returned and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'>>
-      <!-- 旧档已取得的剧情实物补入原生衣柜一次，之后丢弃衣物也不重新发放。 -->
-      <<ivory-necklace-clothes 'give'>>
     <</if>>
     <<if $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
       <<set $RBR.necklace.stage to ''>>

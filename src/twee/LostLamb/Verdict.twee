@@ -544,7 +544,7 @@
           <br><br>
           After supper sounds like a place rather than a time. A place you have been trying to reach since Sydney stopped coming. You look at the clock, which is working. You watch the hand make one small movement to be sure. If you do the tasks quietly, perhaps the conversation will happen without the adults deciding to stop it. If you listen closely, you might learn enough not to need their permission.
           <br><br>
-          The stove is not ready. You can work slowly there and let your breathing settle. Cups have been left beside the sink, near enough to the passage that water would not quite cover the voices. A bowl is on the top pantry shelf, and the stool needs moving to reach it. None of these is a secret object. They are things a child has been told to help with. <span class='blue'>Preparing one part of supper is enough to carry it through. Extra tasks can change your fear and the attention on you, but the evening keeps moving.</span> You push your sleeves back and choose where to begin.
+          The stove is not ready. You can work slowly there and let your breathing settle. Cups have been left beside the sink, near enough to the passage that water would not quite cover the voices. A bowl is on the top pantry shelf, and the stool needs moving to reach it. <span class='blue'>Preparing one part of supper is enough to carry it through. Extra tasks can change your fear and the attention on you, but the evening keeps moving.</span> You push your sleeves back and choose where to begin.
         <<option 'CN'>>
           <<if $LostLamb.marks.includes('kitchen') or $LostLamb.marks.includes('helped')>>这间厨房你熟。有人教过你杯子该放哪里，你把买来的东西也放在对的位置，不必人提醒。<<elseif $LostLamb.marks.includes('tasted')>>你曾在没人看的时候从柜台上拿过吃的。今晚你等着被交代。<<else>>你把购物放上桌。<</if>>肥皂让面包带着一点本该从手上洗掉的味道，于是把它们分开。父母说，商店里就该这样做。抱怨熟悉得让你差点笑出来，最后却很小心地把肥皂挪到水槽，仿佛声音弄错，熟悉的嗓音就会消失。
           <br><br>
@@ -552,7 +552,7 @@
           <br><br>
           晚饭后更像地方，不像时间。悉尼不再来以后，你就一直在试着抵达。你看钟，它还在走，盯着指针挪一小下，好确认。要是把活做得安静，谈话也许能发生，不被大人决定停止。要是听得够仔细，也许就能知道得足够多，不再需要允许。
           <br><br>
-          炉子还没准备好。你可以在那里慢慢做，让呼吸平稳。水槽边有杯子，离过道够近，流水不至于盖住全部声音。储藏架最高处有碗，得挪凳子才够得到。都不是秘密道具，只是孩子被交代帮忙的事。<span class='blue'>准备好晚饭的一部分，就可以端过去。额外的活会改变不安与受到的注意，但晚上一直在往前走。</span>你推起袖子，选择从哪里开始。
+          炉子还没准备好。你可以在那里慢慢做，让呼吸平稳。水槽边有杯子，离过道够近，流水不至于盖住全部声音。储藏架最高处有碗，得挪凳子才够得到。<span class='blue'>准备好晚饭的一部分，就可以端过去。额外的活会改变不安与受到的注意，但晚上一直在往前走。</span>你推起袖子，选择从哪里开始。
       <</language>>
     <<case 'verdict-kitchen'>>
       <<language>>

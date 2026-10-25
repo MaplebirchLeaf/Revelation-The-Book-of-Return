@@ -180,13 +180,13 @@
     <br><br>
     <<if $RBR.necklace.reclaimed>>This is the plinth the necklace was taken from. You could leave it here.<<else>>It was here when you found it. You could put it back.<</if>> You curl your fingers around it once, then loosen your grip.
     <br><br>
-    <span class='gold'><<if $RBR.necklace.reclaimed>>Giving it back means leaving the recovered necklace here. No money will change hands.<<else>>Giving it back means giving up the necklace and the £2,000 the museum would pay for it.<</if>></span> It will not settle every grievance the pale figure has against you.
+    <span class='gold'><<if $RBR.necklace.reclaimed>>Giving it back means leaving the recovered necklace here.<<else>>Giving it back means giving up the necklace and the £2,000 the museum would pay for it.<</if>></span>
   <<option 'CN'>>
     你将项链托在空着的基座上方。房间里仅有的一点光落进蓝色宝石中。链子从指间滑动，即使浸在水里，仍有些沉。
     <br><br>
     <<if $RBR.necklace.reclaimed>>这里就是项链原本所在的基座。现在，你可以把它留在这里。<<else>>你就是在这里找到它的。现在，你可以把它放回去。<</if>>你收紧手指握了一下，又慢慢松开。
     <br><br>
-    <span class='gold'><<if $RBR.necklace.reclaimed>>归还后，取回的项链会留在这里，不涉及金钱。<<else>>归还后，你会失去项链，也放弃博物馆愿意为它支付的 £2,000。<</if>></span>这不能一笔勾销那苍白身影对你的所有怨恨。
+    <span class='gold'><<if $RBR.necklace.reclaimed>>归还后，取回的项链会留在这里。<<else>>归还后，你会失去项链，也放弃博物馆愿意为它支付的 £2,000。<</if>></span>
 <</language>>
 <br><br>
 <<if $RBR.necklace.returnedOnce>>

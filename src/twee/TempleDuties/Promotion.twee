@@ -226,7 +226,7 @@
     <<if $templetest is 'failed' or !$player.virginity.temple>>
       <li class='red'><<lanSwitch 'Your temple standing has not been restored. Complete the examination or purification in the hall first.' '你尚未恢复神殿资格。先到大厅处理检查或净化。'>></li>
     <<elseif $temple_chastity_timer lte 0>>
-      <li><<lanSwitch 'Your monthly examination is due. Return to the hall for it; an expired examination date does not itself mean you broke your vows.' '月度检查已经到期，先回大厅接受检查。到期本身不代表违誓。'>></li>
+      <li><<lanSwitch 'Your monthly examination is due. Return to the hall for it.' '月度检查已经到期，先回大厅接受检查。'>></li>
     <</if>>
   </ul>
 <</widget>>

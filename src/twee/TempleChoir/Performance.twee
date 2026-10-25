@@ -15,7 +15,8 @@
     <<set _performance to $TempleChoir.performance>>
     <<set _performanceVenue to _args[0] ?? _performance?.venue>>
     <<set _performanceSafe to Boolean(maplebirch.get('TempleChoir')) and !$combat and !$possessed
-      and !$nextPassage and !$nextPassageCheck and !$replayScene and !$statFreeze and !$gag and !$controlled
+      and !$nextPassage and !$nextPassageCheck and !$replayScene and !$statFreeze
+      and !$worn.face.type.includes('gag') and !$controlled
       and $stress lt $stressmax and $exposed lte 0 and !isPregnancyEnding()>>
     <<switch _performanceVenue>>
       <<case 'pub'>>

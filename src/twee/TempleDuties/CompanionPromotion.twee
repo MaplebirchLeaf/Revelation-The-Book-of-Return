@@ -112,7 +112,7 @@
     <</lanLink>>
     <br>
   <<else>>
-    <span class='lblue'><<lanSwitch 'Invite a companion who has completed the interview. Allow six to seven hours before their next duty; the ordination cannot replace school or mass.' '先邀请已完成面谈的同伴。授职需要六至七小时，应避开上课、弥撒和对方的下一项职务。'>></span><br>
+    <span class='lblue'><<lanSwitch 'Invite a companion who has completed the interview. Allow six to seven hours, clear of school, mass and their next duty.' '先邀请已完成面谈的同伴。授职需要六至七小时，应避开上课、弥撒和对方的下一项职务。'>></span><br>
   <</if>>
 <</widget>>
 
