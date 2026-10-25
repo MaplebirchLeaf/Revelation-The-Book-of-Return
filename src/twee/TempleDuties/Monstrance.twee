@@ -2,7 +2,7 @@
 <<widget 'temple-manor-link'>>
   <<temple-duty-check>>
   <<if _dutySafe and $temple_rank is 'priest' and ['accepted', 'complete'].includes($TempleDuties.manor)
-      and $location is 'kylarmanor' and C.npc.Kylar.init is 1
+      and $location is 'kylar_manor' and C.npc.Kylar.init is 1
       and ['active', 'rescued'].includes(C.npc.Kylar.state)
       and C.npc.Kylar.rage lt 30 and !$stalk and !$controlled
       and Time.hour gte 18 and Time.hour lt 23

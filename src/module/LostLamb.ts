@@ -30,7 +30,7 @@ export default class LostLamb extends Module {
     return (
       C.npc.Kylar.init === 1 &&
       C.npc.Kylar.state === 'active' &&
-      V.location === 'kylarmanor' &&
+      V.location === 'kylar_manor' &&
       (V.kylar_manor_secret ?? 0) >= 1 &&
       this.state.recalled &&
       V.kylar_sleep_abduction !== undefined &&
@@ -69,7 +69,7 @@ export default class LostLamb extends Module {
     return (
       C.npc.Kylar.init === 1 &&
       C.npc.Kylar.state === 'active' &&
-      V.location === 'kylarmanor' &&
+      V.location === 'kylar_manor' &&
       (Time.hour >= 18 || Time.hour <= 6) &&
       V.combat !== 1 &&
       !this.state.active &&
@@ -274,7 +274,7 @@ export default class LostLamb extends Module {
 
   private sync(): void {
     Time.setDate(new DateTime(this.state.date));
-    V.location = 'kylarmanor';
+    V.location = 'kylar_manor';
     V.outside = this.scene?.outside ? 1 : 0;
     // 重新生成梦中天气，既不沿用现实雾，也不触发框架的现实时间跳转事件。
     V.weatherObj.keypointsArr = [];
