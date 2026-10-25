@@ -7,3 +7,8 @@
 - fileName: 'time.js'
   from: 'if (V.wolfpatrolsent >= 1) V.wolfpatrolsent++;'
   after: "\n\t\tmaplebirch.get('RobinTemple')?.maintain();"
+
+# 悉尼参加受职仪式的这段耗时不再同时计入花园或宿舍劳动，原版日程照常更新。
+- fileName: 'time.js'
+  from: 'if (T.sydney_location === "temple" && V.temple_rank !== undefined && V.temple_rank !== "prospective") {'
+  before: "if (!T.temple_ordination_party?.includes('Sydney')) "

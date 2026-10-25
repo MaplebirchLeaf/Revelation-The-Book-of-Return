@@ -378,6 +378,12 @@
   <</if>>
   <<if maplebirch.get('TempleDuties') and $TempleDuties.enrolled>>
     <<temple-duty-check>>
+    <<set _journal_ceremony to $TempleDuties.ordination and !['complete', 'withdrawn'].includes($TempleDuties.ordination.stage)>>
+    <<if _journal_ceremony>>
+      <<revelation-card 'The appointment ceremony' '受职仪式'>>
+        <ul class='journal'><li><<lanSwitch 'The ceremony is unfinished. Return to the temple hall to continue with Jordan. The work you have already completed will be remembered.' '受职仪式尚未结束。回到神殿大厅，与约旦继续。已经做完的事情会保留下来。'>></li></ul>
+      <</revelation-card>><hr>
+    <</if>>
     <<revelation-card 'Rota and records room' '轮值与资料室'>>
       <ul class='journal'>
         <li><<lanSwitch 'Duties desk: 09:00–18:00, outside Sunday mass. One paid shift daily; leave enough time to finish.' '职务桌：09:00–18:00，周日弥撒期间暂停。每天可完成一班有薪职务，接班前须留足时间。'>></li>
@@ -425,12 +431,14 @@
           <<elseif $TempleDuties.case.stage is 'combat'>>
             <li class='red'><<lanSwitch 'An encounter is underway. Finish it or leave safely before filing a report.' '遭遇正在进行。结束或安全撤离后，才能提交报告。'>></li>
             <<if $TempleDuties.case.id is 'ritual'>>
-              <<if $enemytype is 'man'>>
+              <<if $TempleDuties.case.clues.includes('den-found')>>
+                <li><<lanSwitch 'An encounter is underway inside the gathering place. Deal with the attackers or use the prepared retreat before returning to the investigation.' '据点内的遭遇仍在进行。应对眼前的袭击，或沿准备好的退路撤离后，再继续调查。'>></li>
+              <<elseif $enemytype is 'man'>>
                 <li><<lanSwitch 'The cultists are blocking your way to the stone. The captive has not been freed.' '邪教徒挡在通向石台的路上，受困者尚未获救。'>></li>
               <<elseif $TempleDuties.case.clues.includes('evacuated')>>
                 <li><<lanSwitch 'The person you rescued is being cared for. Clear the remaining danger from the path to the shore.' '获救者已经有人照料。处理小径上剩余的危险，让通往湖岸的道路恢复安全。'>></li>
               <<else>>
-                <li><<lanSwitch 'The ritual has been interrupted. Keep the way out clear while bringing the trapped adult to safety.' '仪式已被打断。护住退路，将受困的成年人带到安全处。'>></li>
+                <li><<lanSwitch 'The ritual has been interrupted. Keep the way out clear while bringing the captive to safety.' '仪式已被打断。护住退路，将受困者带到安全处。'>></li>
               <</if>>
             <</if>>
           <<else>>
@@ -442,6 +450,21 @@
                 <li><<lanSwitch 'Before going to the site, invite any companions through the assignment instructions. Leave time for their other duties.' '前往现场前，可以在委托说明中邀请同伴，并为各自的其他职务留足时间。'>></li>
               <</if>>
             <<elseif $TempleDuties.case.id is 'ritual'>>
+              <<if $TempleDuties.case.clues.includes('den-followup')>>
+                <li><<lanSwitch 'The old gathering place is empty. Arrange companions at the duties book, then return by Lake Shore to help with the remaining witness accounts and records.' '旧据点已经空了。先在职务簿安排同行者，再经湖岸回去，协助整理证词与记录。'>></li>
+              <<elseif $TempleDuties.case.clues.includes('den-cleared')>>
+                <li><<lanSwitch 'The gathering place has been cleared. Take your account and the recovered records back to Jordan.' '据点已经清理完毕。带上调查记录，回去向约旦说明经过。'>></li>
+              <<elseif $TempleDuties.case.clues.includes('den-lead')>>
+                <<if !$TempleDuties.case.clues.includes('den-found')>>
+                  <li><<lanSwitch 'The lakeside gathering was not their only meeting place. Follow the new lead from Lake Shore in daylight, with time to return.' '湖边并非他们唯一的聚集处。白天从湖岸循新线索查找，给返程留足时间。'>></li>
+                <<elseif !$TempleDuties.case.clues.includes('den-humans-cleared')>>
+                  <li><<lanSwitch 'Study the gathering place and open a way back before approaching the people guarding it. Prepared companions can take on their own tasks.' '接近守卫前，先侦察据点，留好退路。准备妥当的同伴可以各自承担现场的工作。'>></li>
+                <<elseif !$TempleDuties.case.clues.includes('den-evacuated')>>
+                  <li><<lanSwitch 'The guards have fallen back. Bring the people held inside to safety and interrupt the ritual. Check who can help with each task.' '守卫已经退开。接出里面受困的人，打断仪式，看看各项工作能由谁来协助。'>></li>
+                <<else>>
+                  <li><<lanSwitch 'The rescued people are clear. Check the ritual site, take the records and deal with the remaining danger before reporting.' '获救的人已经撤离。汇报前，检查仪式现场，取走记录，处理剩余的危险。'>></li>
+                <</if>>
+              <<else>>
               <<if $TempleDuties.case.clues.includes('help') and !$TempleDuties.case.clues.includes('departed')>>
                 <li><<lanSwitch 'Jordan has arranged help. Meet the older monk at Lake Shore before returning to the hollow.' '约旦已经安排接应。返回低地前，先到湖岸与资深修士会合。'>></li>
               <</if>>
@@ -465,9 +488,10 @@
                   <li><<lanSwitch 'Observe the gathering and mark a retreat before interrupting the ritual. You may be able to slip in and loosen the knots first.' '先观察聚集的人群，标记退路，再打断仪式。也许可以先潜入松开绳结。'>></li>
                 <</if>>
               <<elseif $settings.tentaclesEnabled>>
-                <li><<lanSwitch 'The adult is free. Repel the purple tentacles and escort them out of the woods.' '受困者已获自由。击退紫色触手，护送对方离开树林。'>></li>
+                <li><<lanSwitch 'The captive is free. Repel the purple tentacles and escort them out of the woods.' '受困者已获自由。击退紫色触手，护送对方离开树林。'>></li>
               <<else>>
-                <li><<lanSwitch 'The adult is free. Escort them along the marked retreat and out of the woods.' '受困者已获自由。沿着标记的退路，护送对方离开树林。'>></li>
+                <li><<lanSwitch 'The captive is free. Escort them along the marked retreat and out of the woods.' '受困者已获自由。沿着标记的退路，护送对方离开树林。'>></li>
+              <</if>>
               <</if>>
             <<else>>
               <li><<lanSwitch 'Inspect the assigned storeroom through the duties desk or old records room.' '从职务桌或旧资料室前往委托中的储藏室。'>></li>
@@ -480,11 +504,13 @@
       <</revelation-card>>
       <hr>
     <</if>>
-    <<if $temple_rank is 'monk' and $TempleDuties.ordained lt 0
+    <<if $temple_rank is 'monk' and $TempleDuties.ordained lt 0 and !_journal_ceremony
         and ($TempleDuties.review or _dutyReady or _dutyTrained)>>
       <<revelation-card 'Priest appointment' '司祭任命'>>
         <ul class='journal'>
-          <<if $TempleDuties.review>>
+          <<if $TempleDuties.review and ['care', 'obedience'].includes($TempleDuties.oath)>>
+            <li><<lanSwitch 'When you are ready, meet Jordan at the altar for the appointment ceremony. Leave most of the day free, and arrange any companions before starting.' '准备好后，到祭坛前找约旦参加受职仪式。请预留大半天，并事先与同行者约好。'>></li>
+          <<elseif $TempleDuties.review>>
             <li><<lanSwitch 'Your appointment interview is unfinished. Return to Jordan before 17:00 to continue.' '任职面谈还没有结束。17:00 前回去找约旦，继续交谈。'>></li>
           <<elseif _dutyReady>>
             <li><<lanSwitch 'Your service and vows are approved. Speak to Jordan before 17:00 about the appointment review.' '你的职责与誓约已符合要求。17:00 前找约旦，商谈司祭任命。'>></li>
@@ -498,7 +524,8 @@
     <<for _journalCandidate range ['Robin', 'Sydney']>>
       <<set $_journalRank to _journalCandidate is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank>>
       <<set _journalPreparation to $TempleDuties.candidates[_journalCandidate]>>
-      <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and $_journalRank is 'monk'>>
+      <<if C.npc[_journalCandidate]?.init is 1 and _journalPreparation.agreed and $_journalRank is 'monk'
+          and !(_journal_ceremony and $TempleDuties.ordination.party.includes(_journalCandidate))>>
         <<revelation-card `maplebirch.auto(_journalCandidate) + ' · Ordination'` `maplebirch.auto(_journalCandidate) + ' · 司祭任职'`>>
           <ul class='journal'>
             <<if !_journalPreparation.lessons.includes('care')>>
@@ -506,11 +533,13 @@
             <<elseif !_journalPreparation.lessons.includes('wards')>>
               <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
             <<elseif !_journalPreparation.reviewed and _journalPreparation.trial_day lt 0>>
-              <li><<lanSwitch 'Invite your companion on the warehouse or lakeside assignment and work with them at the site. Report the outcome to Jordan. A priest can also bring companions on an available return inspection.' '接下仓库或湖岸委托时，邀请同伴并在现场一起做事，再向约旦汇报。已经受封为司祭时，也可以在旧委托开放回访后带同伴前往。'>></li>
+              <li><<lanSwitch 'Invite your companion on an assignment. Bringing someone to safety, recovering key records or disrupting a dangerous ritual gives them an account of their own to bring to Jordan. You can also arrange a return inspection if the earlier work is finished.' '接下委托时邀请同伴。实际接出受困者、带回关键记录，或破坏危险仪式后，再让对方向约旦说明自己做过的事。先前委托已结束时，也可以安排回访。'>></li>
             <<elseif !_journalPreparation.reviewed>>
               <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
+            <<elseif _journalCandidate is 'Robin'>>
+              <li><<lanSwitch 'Jordan has heard Robin\'s answers. Meet Robin at the temple at 09:00 on a weekday during the school holidays, leaving most of the day free for ordination.' '约旦已听过罗宾的回答。放假后的工作日，上午九点到神殿与罗宾会合，为授职留出大半天。'>></li>
             <<else>>
-              <li><<lanSwitch 'Jordan has heard your companion\'s answers. When you are both ready, go to the hall altar for the appointment ceremony.' '约旦已听过同伴的回答。两人有空时，到大厅祭坛前参加司祭任命仪式。'>></li>
+              <li><<lanSwitch 'Jordan has heard Sydney\'s answers. When you can both leave most of the day free, go to the hall altar for ordination.' '约旦已听过悉尼的回答。两人能留出大半天空闲时，到大厅祭坛前参加授职。'>></li>
             <</if>>
           </ul>
         <</revelation-card>>

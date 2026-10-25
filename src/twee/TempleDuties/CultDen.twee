@@ -1,0 +1,447 @@
+:: Temple Cult Den Widgets [widget]
+<<widget 'temple-den-priority'>>
+  <<set _denTickBlocked to Boolean($nextPassage or $nextPassageCheck or $eventforced or $replayScene or $statFreeze or $frozenValues or isPregnancyEnding())>>
+  <<set _denForced to _denTickBlocked or Boolean($possessed)>>
+<</widget>>
+
+<<widget 'temple-den-place'>>
+  <<temple-ritual-place>><<temple-den-priority>>
+  <<set _denReady to !_denForced and _dutySafe and !$foresthunt
+    and $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field'
+    and $TempleDuties.case.clues.includes('den-lead')>>
+<</widget>>
+
+<<widget 'temple-den-deed'>>
+  <<temple-field-companion-check _args[0] 0>>
+  <<if _field_companion and $TempleDuties.case?.id is 'ritual'>>
+    <<run $TempleDuties.case.clues.pushUnique('deed:' + _args[0] + ':' + _args[1])>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-den-fight-start'>>
+  <<temple-duty-check>><<temple-den-priority>>
+  <<if !_denForced and _dutySafe and $TempleDuties.case?.id is 'ritual'
+      and $TempleDuties.case.stage is 'field' and !$combat
+      and $TempleDuties.case.clues.includesAll('den-scout', 'den-exit')
+      and !$TempleDuties.case.clues.includes('den-humans-cleared')>>
+    <<set $TempleDuties.case.clues to $TempleDuties.case.clues.filter(clue => !['den-human-won', 'den-human-spent', 'den-retreat'].includes(clue))>>
+    <<set $TempleDuties.case.result to ''>>
+    <<endevent>>
+    <<generateCultist 1>><<generateCultist 2>>
+    <<if !$TempleDuties.case.clues.includes('den-guards')>><<generateCultist 3>><</if>>
+    <!-- 敌人表只保存交战的邪教徒；同伴与搬运工留在撤离通道。 -->
+    <<for _denEnemy to 0; _denEnemy lt $enemyno; _denEnemy++>>
+      <<set $NPCList[_denEnemy].health to _denEnemy is 0 ? 180 : 140>>
+      <<set $NPCList[_denEnemy].healthmax to $NPCList[_denEnemy].health>>
+    <</for>>
+    <<neutral 1>><<maninit>><<npcidlegenitals>>
+    <<set $enemytrust to -100, $enemyanger to 200>>
+    <<set $TempleDuties.case.stage to 'combat'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-human-combat')>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-den-retreat-link'>>
+  <<temple-den-priority>>
+  <<set _denRetreatReady to !_denForced and $combat is 1 and $TempleDuties.case?.id is 'ritual'
+    and $TempleDuties.case.clues.includes('den-exit') and !pcAreArmsBound('both')
+    and (currentSkillValue('athletics') gte 300 or currentSkillValue('skulduggery') gte 400 or currentSkillValue('physique') gte 6000)>>
+  <<if _denRetreatReady>>
+    <<set _denRetreatMinutes to currentSkillValue('athletics') gte 500 ? 1 : 3>>
+    <<capture _denRetreatMinutes>>
+      <<getouticon>><<lanLink `['Break away towards the rear door (0:0' + _denRetreatMinutes + ')', '摆脱纠缠，退向后门 (0:0' + _denRetreatMinutes + ')']` 'Revelation Temple Cult Den Extraction'>>
+        <<temple-den-priority>>
+        <<if !_denForced and $combat is 1 and $TempleDuties.case?.id is 'ritual'
+            and $TempleDuties.case.clues.includes('den-exit') and !pcAreArmsBound('both')
+            and (currentSkillValue('athletics') gte 300 or currentSkillValue('skulduggery') gte 400 or currentSkillValue('physique') gte 6000)>>
+          <<pass _denRetreatMinutes>><<temple-den-priority>>
+          <<if !_denForced and $combat is 1>>
+            <<run $TempleDuties.case.clues.pushUnique('den-retreat')>>
+            <<set $TempleDuties.case.result to 'withdrawn'>>
+          <</if>>
+        <</if>>
+      <</lanLink>><br>
+    <</capture>>
+  <</if>>
+<</widget>>
+
+:: Revelation Temple Cult Den Approach
+<<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'combat'>>
+  <<include `$enemytype is 'man' ? 'Revelation Temple Cult Den Fight' : 'Revelation Temple Cult Den Tentacles'`>><<exit>>
+<</if>>
+<<temple-den-place>>
+<<if !_denReady>><<temple-case-return>><<exit>><</if>>
+<<if $TempleDuties.case.clues.includes('den-followup')>><<include 'Revelation Temple Cult Den Followup'>><<exit>><</if>>
+<<if $TempleDuties.case.clues.includes('den-found')>><<include 'Revelation Temple Cult Den Exterior'>><<exit>><</if>>
+<<language>><<option 'EN'>>
+  The person rescued by the lake described a cart track beyond the fork. You find wheel marks beneath the fallen leaves. The porter from the warehouse has brought rope and a handcart. They wait within calling distance of the shore. "I'll stay out of their way. If you need to come back, call."
+  <br><br>You have a direction, not a clear view of what waits inside. You can still return to Jordan.
+<<option 'CN'>>
+  湖边获救的人说，岔口之后有一条车道。你拨开落叶，找到车轮压过的痕迹。仓库的搬运工带来了绳索与手推车，留在呼喊能传到湖岸的地方。“我不往他们面前去。你要回来，就喊一声。”
+  <br><br>你知道了方向，还看不清里面有什么。现在仍可以回去找约旦。
+<</language>><br><br>
+<<set _denTrackTime to currentSkillValue('athletics') gte 300 or currentSkillValue('skulduggery') gte 300 ? 10 : 20>>
+<<temple-duty-action `['Follow the wheel marks', '沿车辙查找']` `_denTrackTime` 'Revelation Temple Cult Den Exterior'>>
+  <<run $TempleDuties.case.clues.pushUnique('den-found')>>
+<</temple-duty-action>> (<<print '0:' + _denTrackTime>>)<br><br>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den Exterior
+<<temple-den-place>>
+<<if !_denReady or !$TempleDuties.case.clues.includes('den-found')>><<temple-case-return>><<exit>><</if>>
+<<if $TempleDuties.case.clues.includes('den-followup')>><<include 'Revelation Temple Cult Den Followup'>><<exit>><</if>>
+<<if $TempleDuties.case.clues.includes('den-humans-cleared')>><<include 'Revelation Temple Cult Den Inner'>><<exit>><</if>>
+<<language>><<option 'EN'>>
+  An old lime kiln stands between the trees. The lower doorway has been boarded over; voices come from behind it. Through a gap you see someone held against a barred partition. Another answers from further inside. A black-robed figure raises a prayer book beside a smoking basin. Two others watch the doors.
+  <br><br>These people are being kept here. The person holding the book speaks over them whenever they try to call out. Purple light moves along a crack beneath the basin.
+<<option 'CN'>>
+  树木间立着一座废弃的石灰窑。下层门口钉了木板，里面仍传出人声。透过缝隙，你看见有人被押在带栅栏的隔间旁。更深处还有人应声。身穿黑袍的领祷者站在冒烟的盆边，举起祷书，另外两人守着门。
+  <br><br>这里的人被关着，想出声时，拿祷书的人便提高声音，盖过他们。盆底的裂缝里，有紫光缓慢游动。
+<</language>><br><br>
+<<if !$TempleDuties.case.clues.includes('den-scout')>>
+  <<set _denScoutTime to currentSkillValue('skulduggery') gte 400 ? 5 : 10>>
+  <<temple-duty-action `['Watch the doors and count the guards', '观察门口并确认看守人数']` `_denScoutTime` 'Revelation Temple Cult Den Exterior'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-scout')>>
+  <</temple-duty-action>> (<<print '0:' + String(_denScoutTime).padStart(2, '0')>>)<br>
+<<else>>
+  <span class='lblue'><<lanSwitch 'You have counted the leader and two guards. A low rear door opens onto the cart track.' '你确认了领祷者与两名看守的位置。后方还有一扇低门，通向车道。'>></span><br>
+<</if>>
+<<if $TempleDuties.case.clues.includes('den-scout') and !$TempleDuties.case.clues.includes('den-exit')>>
+  <<set _denExitTime to $TempleDuties.case.prepared or currentSkillValue('physique') gte 5000 ? 5 : 15>>
+  <<temple-duty-action `['Free the rear door and arrange the withdrawal rope', '松开后门，布好接应的绳索']` `_denExitTime` 'Revelation Temple Cult Den Exterior'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-exit')>>
+  <</temple-duty-action>> (<<print '0:' + String(_denExitTime).padStart(2, '0')>>)<br>
+<<elseif $TempleDuties.case.clues.includes('den-exit')>>
+  <<lanSwitch 'The rear door swings freely. The porter holds the line beyond the wall; its other end is secured around your waist. You have agreed to call and pull twice if you cannot get back unaided.' '后门已经能推开。搬运工在墙外握着绳索，另一端系在你的腰间。你们约好：若不能自己退回来，就喊一声，拉两下绳。'>><br>
+<</if>>
+<<if $TempleDuties.case.clues.includes('den-scout') and !$TempleDuties.case.clues.includes('den-guards')
+    and (currentSkillValue('skulduggery') gte 400 or currentSkillValue('english') gte 400)>>
+  <<temple-duty-action `['Use the overheard call to draw one guard towards the track (0:05)', '利用听到的口令，把一名看守引向车道 (0:05)']` 5 'Revelation Temple Cult Den Exterior'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-guards')>>
+  <</temple-duty-action>><br>
+<</if>>
+<<if !$TempleDuties.case.clues.includes('den-pattern')>>
+  <<set _denPatternTime to currentSkillValue('history') gte 300 or $TempleDuties.archive.topics.includes('ward-notes') ? 5 : 10>>
+  <<temple-duty-action `['Sketch the basin and the lines beneath it', '画下烟盆与下方的线条']` `_denPatternTime` 'Revelation Temple Cult Den Exterior'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-pattern')>>
+    <<historyskill 1>>
+  <</temple-duty-action>> (<<print '0:' + String(_denPatternTime).padStart(2, '0')>>)<br>
+<</if>>
+<<if !$TempleDuties.case.clues.includes('den-supplies') and $TempleDuties.case.prepared and currentSkillValue('science') gte 300>>
+  <<temple-duty-action `['Pack wet earth and a cover for the basin (0:05)', '备好湿土与盖住烟盆的器具 (0:05)']` 5 'Revelation Temple Cult Den Exterior'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-supplies')>>
+  <</temple-duty-action>><br>
+<</if>>
+<<if $TempleDuties.case.clues.includesAll('den-scout', 'den-exit')>>
+  <br><<lanSwitch 'The chanting grows louder. You can enter through the rear door. The porter and anyone accompanying you will keep the withdrawal path open for the people inside.' '祷声越来越响。你可以从后门进去。搬运工与同行的人留在撤离路线上，准备接应从屋里出来的人。'>><br><br>
+  <<temple-duty-action `['Go in and stop the people holding them (0:01)', '进去，阻止拘禁他们的人 (0:01)']` 1 'Revelation Temple Cult Den Fight'>>
+    <<temple-den-fight-start>>
+  <</temple-duty-action>><br>
+<<else>>
+  <span class='lblue'><<lanSwitch 'Count the guards and open a way back before entering.' '进去之前，先确认看守，打通退路。'>></span><br>
+<</if>><br>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den Fight
+<<temple-den-priority>>
+<<if _denTickBlocked>>
+  <<lanLink ['Continue', '继续'] 'Revelation Temple Cult Den Fight'>><</lanLink>><<exit>>
+<</if>>
+<<if $TempleDuties.case?.id isnot 'ritual' or $TempleDuties.case.stage isnot 'combat' or !$combat or $enemytype isnot 'man'>>
+  <<temple-case-return>><<exit>>
+<</if>>
+<<lanSwitch 'The leader lowers the book. <<if $enemyno gte 3>>Both guards close in.<<else>>The remaining guard steps across the doorway.<</if>> They reach for you before you can get to the barred partition. The withdrawal rope lies behind your heel.' '领祷者放下书。<<if $enemyno gte 3>>两名看守一起逼近。<<else>>留下的看守横身挡住了门口。<</if>>你还没到栅栏边，他们便伸手抓来。撤离绳索就在你的脚后。'>><br><br>
+<<effects>><<effectsman>><<man>><<stateman>><<actionsman>>
+<<temple-den-priority>>
+<<if !_denForced>>
+  <<if $enemyarousalmax gt 0 and $enemyarousal gte $enemyarousalmax>>
+    <<run $TempleDuties.case.clues.pushUnique('den-human-spent')>>
+  <<elseif $enemyhealth lte 0>>
+    <<run $TempleDuties.case.clues.pushUnique('den-human-won')>>
+  <<elseif _combatend or $stress gte $stressmax or ($pain gte 100 and $willpowerpain is 0 and !$possessed)>>
+    <<run $TempleDuties.case.clues.pushUnique('den-retreat')>>
+    <<set $TempleDuties.case.result to 'withdrawn'>>
+  <</if>>
+<</if>>
+<<temple-den-retreat-link>>
+<span id='next'><<lanLink ['Next', '继续'] `!_denForced and $TempleDuties.case.clues.some(clue => ['den-human-won', 'den-human-spent', 'den-retreat'].includes(clue)) ? 'Revelation Temple Cult Den Fight End' : 'Revelation Temple Cult Den Fight'`>><</lanLink>></span><<nexttext>>
+
+:: Revelation Temple Cult Den Fight End
+<<temple-den-priority>>
+<<if _denForced>>
+  <<lanLink ['Continue', '继续'] 'Revelation Temple Cult Den Fight'>><</lanLink>><<exit>>
+<</if>>
+<<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'combat' and $combat is 1 and $enemytype is 'man'
+    and $TempleDuties.case.clues.some(clue => ['den-human-won', 'den-human-spent', 'den-retreat'].includes(clue))>>
+  <<if $TempleDuties.case.clues.includes('den-retreat')>>
+    <<include 'Revelation Temple Cult Den Extraction'>><<exit>>
+  <<else>>
+    <<if $TempleDuties.case.clues.includes('den-human-spent')>><<ejaculation>><</if>>
+    <<run $TempleDuties.case.clues.pushUnique('den-humans-cleared')>>
+    <<set $TempleDuties.case.stage to 'field', $TempleDuties.case.result to ''>>
+    <<clotheson>><<endcombat>>
+  <</if>>
+<</if>>
+<<if $combat>><<lanLink ['Continue the encounter', '继续应对'] 'Revelation Temple Cult Den Fight'>><</lanLink>><<exit>><</if>>
+<<if $TempleDuties.case?.clues.includes('den-humans-cleared')>>
+  <<lanSwitch 'The hands holding you fall away. You keep the rear door at your back as the robed adults give ground. The porter calls that the way out is still open. The basin continues to smoke behind them.' '抓住你的手松开了。你背靠后门，逼近的人一步步退开。搬运工从外面喊，退路还通着。里面的烟盆却仍在冒烟。'>><br><br>
+  <<lanLink ['Go to the barred partition', '走向关人的隔间'] 'Revelation Temple Cult Den Inner'>><</lanLink>><br>
+<<else>><<temple-case-return>><</if>>
+
+:: Revelation Temple Cult Den Inner
+<<temple-den-place>>
+<<if !_denReady or !$TempleDuties.case.clues.includes('den-humans-cleared')>><<temple-case-return>><<exit>><</if>>
+<<if $TempleDuties.case.clues.includes('den-tentacles-cleared')>><<include 'Revelation Temple Cult Den Release'>><<exit>><</if>>
+<<language>><<option 'EN'>>
+  The people behind the partition are adults. They shield their faces when the basin flares. One points at the hook holding the barred door shut. The chant has stopped, but something beneath the floor keeps answering it. <<if $settings.tentaclesEnabled>>A purple coil reaches through the crack towards the nearest ankle.<<else>>Smoke gathers in the crack beneath the basin.<</if>>
+  <br><br>The rear door remains open. The porter keeps the line taut outside. You need to stop the basin before you can work at the bars.
+<<option 'CN'>>
+  隔间里关着的都是成年人。烟盆忽然亮起时，他们抬手护住脸。其中一人指向扣住栅门的铁钩。祷声已经停了，地板下面却仍有什么东西在回应。<<if $settings.tentaclesEnabled>>一截紫色的触手从裂缝里伸出，探向最近的一只脚踝。<<else>>烟气聚在盆下的裂缝里。<</if>>
+  <br><br>后门仍然敞着，搬运工在外面收紧绳索。得先让烟盆停下来，才能靠近栅门。
+<</language>><br><br>
+<<if !$TempleDuties.case.clues.includes('den-node')>>
+  <<temple-field-companion-check 'Sydney' 5>>
+  <<if _field_companion>>
+    <<temple-duty-action `['Keep watch while Sydney breaks the line beneath the basin (0:05)', '留意四周，让悉尼破坏烟盆下的线条 (0:05)']` 5 'Revelation Temple Cult Den Inner' 'Sydney'>>
+      <<temple-field-companion-check 'Sydney' 0>>
+      <<if _field_companion>>
+        <<run $TempleDuties.case.clues.pushUnique('den-node')>>
+        <<temple-den-deed 'Sydney' 'ward'>>
+      <</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+  <<if $TempleDuties.case.clues.includes('den-pattern') or currentSkillValue('history') gte 300>>
+    <<temple-duty-action `['Use the sketch to pry the marked stone out of line (0:05)', '对照草图，撬开刻着线条的石块 (0:05)']` 5 'Revelation Temple Cult Den Inner'>>
+      <<run $TempleDuties.case.clues.pushUnique('den-node')>>
+    <</temple-duty-action>><br>
+  <</if>>
+<<else>>
+  <<language>><<option 'EN'>>
+    The marked stone lies on its side. The line around the basin is broken. <<temple-field-companion-check 'Sydney' 0>><<if _field_companion and $TempleDuties.case.clues.includes('deed:Sydney:ward')>><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>Sydney sets the tongs down with shaking hands. "They used a prayer for this."<<else>>Sydney pushes the stone further from the crack with the tongs. "That part won't join up again."<</if>><</if>> The movement beneath the basin has slowed.
+  <<option 'CN'>>
+    刻着线条的石块翻在一旁，烟盆周围的图样断开了。<<temple-field-companion-check 'Sydney' 0>><<if _field_companion and $TempleDuties.case.clues.includes('deed:Sydney:ward')>><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>悉尼放下铁钳，手仍在发抖。“他们把祷文用来做这种事。”<<else>>悉尼用铁钳把石块推得离裂缝更远。“至少，这一段接不回去了。”<</if>><</if>>烟盆下面的动静慢了一些。
+  <</language>><br><br>
+<</if>>
+<<temple-duty-action `[$TempleDuties.case.clues.includes('den-supplies') ? 'Cover the basin and pull it away from the crack (0:03)' : 'Tip the basin onto the bare stone and block its mouth (0:05)', $TempleDuties.case.clues.includes('den-supplies') ? '闷住烟盆，将它拖离裂缝 (0:03)' : '把烟盆推倒在空石地上，堵住盆口 (0:05)']` `$TempleDuties.case.clues.includes('den-supplies') ? 3 : 5` 'Revelation Temple Cult Den Tentacles'>>
+  <<run $TempleDuties.case.clues.pushUnique('den-interrupted')>>
+  <<if $settings.tentaclesEnabled>>
+    <<set $TempleDuties.case.clues to $TempleDuties.case.clues.filter(clue => clue isnot 'den-retreat')>>
+    <<set $TempleDuties.case.result to ''>>
+    <<endevent>><<set $enemytype to 'tentacles', $combat to 1>><<molested>><<controlloss>>
+    <<set _denCount to Math.max(3, 10 - ($TempleDuties.case.prepared ? 2 : 0)
+      - ($TempleDuties.case.clues.includes('den-node') ? 2 : 0)
+      - ($TempleDuties.case.clues.includes('den-pattern') ? 1 : 0)
+      - ($TempleDuties.case.clues.includes('den-supplies') ? 1 : 0)
+      - ($TempleDuties.case.clues.includes('help') ? 1 : 0))>>
+    <<tentaclestart _denCount `$TempleDuties.case.clues.includes('den-supplies') ? 12 : 15`>>
+    <<set $TempleDuties.case.stage to 'combat'>>
+  <</if>>
+<</temple-duty-action>><br><br>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den Tentacles
+<<temple-den-priority>>
+<<if _denTickBlocked>><<lanLink ['Continue', '继续'] 'Revelation Temple Cult Den Tentacles'>><</lanLink>><<exit>><</if>>
+<<if $TempleDuties.case?.id isnot 'ritual' or !$TempleDuties.case.clues.includes('den-interrupted')>>
+  <<temple-case-return>><<exit>>
+<</if>>
+<<if !$combat and $TempleDuties.case.stage is 'field'>>
+  <<if !$settings.tentaclesEnabled and !$TempleDuties.case.clues.includes('den-tentacles-cleared')>>
+    <<temple-den-place>>
+    <<lanSwitch 'The smoke thins. You and the porter lever a fallen slab across the drain, then wedge it in place. The rear passage can now be used to reach the barred door.' '烟渐渐散开。你与搬运工用木梁撬动倒下的石板，挡住排水沟，再将它撑稳。现在可以沿后方通道靠近栅门。'>><br><br>
+    <<temple-duty-action `['Brace the slab and open the way to the captives (0:10)', '撑稳石板，打通接近受困者的路 (0:10)']` 10 'Revelation Temple Cult Den Release'>>
+      <<if !$settings.tentaclesEnabled>><<run $TempleDuties.case.clues.pushUnique('den-tentacles-cleared')>><</if>>
+    <</temple-duty-action>><br>
+  <<elseif $TempleDuties.case.clues.includes('den-tentacles-cleared')>>
+    <<include 'Revelation Temple Cult Den Release'>>
+  <<else>>
+    <<lanLink ['Return to the basin', '回到烟盆旁'] 'Revelation Temple Cult Den Inner'>><</lanLink>>
+  <</if>>
+  <<exit>>
+<</if>>
+<<if $TempleDuties.case.stage isnot 'combat' or $enemytype isnot 'tentacles' or !$combat>><<temple-case-return>><<exit>><</if>>
+<<lanSwitch 'Purple coils spread over the broken line. You keep your feet between them and the rear passage. The people behind the bars draw back from the floor.' '紫色的触手越过断开的线条。你站在它们与后方通道之间，栅栏里的人纷纷退开，避开地板。'>><br><br>
+<<statetentacles>><<effects>><<effectstentacles>><<tentacles>><<actionstentacles>>
+<<temple-den-priority>><<temple-tentacle-outcome>>
+<<if !_denForced and _templeTentacleOutcome is 'withdrawn'>>
+  <<run $TempleDuties.case.clues.pushUnique('den-retreat')>>
+  <<set $TempleDuties.case.result to 'withdrawn'>>
+<</if>>
+<<temple-den-retreat-link>>
+<span id='next'><<lanLink ['Next', '继续'] `_denForced or _templeTentacleOutcome is 'active' ? 'Revelation Temple Cult Den Tentacles' : 'Revelation Temple Cult Den Tentacles End'`>><</lanLink>></span><<nexttext>>
+
+:: Revelation Temple Cult Den Tentacles End
+<<temple-den-priority>>
+<<if _denForced>><<lanLink ['Continue', '继续'] 'Revelation Temple Cult Den Tentacles'>><</lanLink>><<exit>><</if>>
+<<temple-tentacle-outcome>>
+<<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'combat' and $combat is 1
+    and $enemytype is 'tentacles' and _templeTentacleOutcome isnot 'active'>>
+  <<if _templeTentacleOutcome is 'withdrawn'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-retreat')>>
+    <<set $TempleDuties.case.result to 'withdrawn'>>
+    <<include 'Revelation Temple Cult Den Extraction'>><<exit>>
+  <<else>>
+    <<run $TempleDuties.case.clues.pushUnique('den-tentacles-cleared')>>
+    <<set $TempleDuties.case.stage to 'field', $TempleDuties.case.result to ''>>
+    <<clotheson>><<endcombat>>
+  <</if>>
+<</if>>
+<<if $combat>><<lanLink ['Continue fighting', '继续战斗'] 'Revelation Temple Cult Den Tentacles'>><</lanLink>><<exit>><</if>>
+<<include 'Revelation Temple Cult Den Release'>>
+
+:: Revelation Temple Cult Den Extraction
+<<temple-den-priority>>
+<<if _denForced>>
+  <<lanLink ['Continue', '继续'] `$enemytype is 'man' ? 'Revelation Temple Cult Den Fight' : 'Revelation Temple Cult Den Tentacles'`>><</lanLink>><<exit>>
+<</if>>
+<<if $TempleDuties.case?.id isnot 'ritual' or !$TempleDuties.case.clues.includesAll('den-exit', 'den-retreat')>>
+  <<if $combat>><<lanLink ['Continue the encounter', '继续应对'] `$enemytype is 'man' ? 'Revelation Temple Cult Den Fight' : 'Revelation Temple Cult Den Tentacles'`>><</lanLink>><<else>><<temple-case-return>><</if>><<exit>>
+<</if>>
+<<if $combat>>
+  <<language>><<option 'EN'>>
+    <<if pcAreArmsBound('both')>>The line jerks as you fall. The porter, watching the rear doorway, sees you go down.<<else>>You get one hand to the line and pull twice. The porter sees you drop below the rear doorway.<</if>> They haul on the rope secured around your waist. You scrape over the low threshold. They drag the loosened door across the opening and drop the beam into its brackets. It shudders against the wood.<br><br>
+    Your hands are checked and the loose ropes untied on this side of the door. The porter has to support you on the way back. You have not cleared the kiln. Anyone still behind the partition remains there; you must bring help back.
+  <<option 'CN'>>
+    <<if pcAreArmsBound('both')>>你倒下时，绳索猛地一动。守着后门的搬运工看见了。<<else>>你摸到绳索，用力拉了两下。搬运工看见你倒在后门下方。<</if>>对方抓紧系在你腰间的绳子往外拖。你擦着低矮的门槛退了出去。搬运工将事先松开的门板拖回来，把木梁压进两边的托架。门板在梁下震动。<br><br>
+    到了门的这一侧，对方查看你的手，解开仍缠着的绳索。回去时，你得扶着搬运工才能走稳。石灰窑没有清理完，仍在隔间里的人也没有获救。必须带人回来帮忙。
+  <</language>><br><br>
+  <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'withdrawn'>>
+  <!-- 接应者只解开普通战斗绳缚，衣物束缚与脚镣保持原状。 -->
+  <<if !$worn.upper.type.includes('binding')>>
+    <<if $leftarm is 'bound'>><<set $leftarm to 0, $leftboundcarry to 0>><</if>>
+    <<if $rightarm is 'bound'>><<set $rightarm to 0, $rightboundcarry to 0>><</if>>
+  <</if>>
+  <<if !$worn.feet.type.includes('shackle')>>
+    <<if $leftleg is 'bound'>><<set $leftleg to 0>><</if>>
+    <<if $rightleg is 'bound'>><<set $rightleg to 0>><</if>>
+    <<if $feetuse is 'bound'>><<set $feetuse to 0>><</if>>
+  <</if>>
+  <<if $head is 'bound'>><<set $head to 0>><</if>>
+  <<clotheson>><<endcombat>>
+<</if>>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den Release
+<<temple-den-place>>
+<<if !_denReady or !$TempleDuties.case.clues.includes('den-tentacles-cleared')>><<temple-case-return>><<exit>><</if>>
+<<lanSwitch '<<if $settings.tentaclesEnabled>>The coils withdraw beneath the broken floor.<<else>>The slab is braced across the drain.<</if>> You can reach the barred partition from the rear passage without crossing the drain. The porter keeps the door open.' '<<if $settings.tentaclesEnabled>>触手缩回破损的地板下面。<<else>>石板已经撑稳，挡住了排水沟。<</if>>沿后方通道走，不用跨过排水沟，就能靠近栅栏。搬运工仍撑着后门，等里面的人出来。'>><br><br>
+<<if !$TempleDuties.case.clues.includes('den-people-freed')>>
+  <<set _denFreeTime to $TempleDuties.case.prepared or currentSkillValue('skulduggery') gte 300 or currentSkillValue('physique') gte 5000 ? 5 : 10>>
+  <<if !pcAreArmsBound('both')>>
+    <<temple-duty-action `['Lift the bar and release the captives', '抬开门闩，解开受困者的束缚']` `_denFreeTime` 'Revelation Temple Cult Den Release'>>
+      <<if !pcAreArmsBound('both')>><<run $TempleDuties.case.clues.pushUnique('den-people-freed')>><</if>>
+    <</temple-duty-action>> (<<print '0:' + String(_denFreeTime).padStart(2, '0')>>)<br>
+  <</if>>
+  <<temple-field-companion-check 'Robin' 10>>
+  <<if _field_companion>>
+    <<temple-duty-action `['Hold the door while Robin brings the captives out (0:10)', '撑住门，让罗宾接出受困者 (0:10)']` 10 'Revelation Temple Cult Den Release' 'Robin'>>
+      <<temple-field-companion-check 'Robin' 0>>
+      <<if _field_companion>>
+        <<run $TempleDuties.case.clues.pushUnique('den-people-freed', 'den-evacuated')>>
+        <<temple-den-deed 'Robin' 'rescue'>>
+      <</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+<<elseif !$TempleDuties.case.clues.includes('den-evacuated')>>
+  <<lanSwitch 'The barred door is open. The people you freed shelter by the rear wall; one cannot put weight on a foot. They still need help down the track.' '栅门已经打开。脱困的人贴着后墙躲避，其中一人不敢让脚落地。还得有人扶着他们沿车道走出去。'>><br><br>
+  <<set _denCarryTime to $TempleDuties.case.prepared or currentSkillValue('physique') gte 5000 ? 10 : 20>>
+  <<temple-duty-action `['Help the porter bring everyone to the shore', '帮搬运工将所有人带到湖岸']` `_denCarryTime` 'Revelation Temple Cult Den Release'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-evacuated')>>
+  <</temple-duty-action>> (<<print '0:' + _denCarryTime>>)<br>
+  <<temple-field-companion-check 'Robin' 10>>
+  <<if _field_companion>>
+    <<temple-duty-action `['Help Robin escort them down the track (0:10)', '与罗宾扶着他们沿车道撤离 (0:10)']` 10 'Revelation Temple Cult Den Release' 'Robin'>>
+      <<temple-field-companion-check 'Robin' 0>>
+      <<if _field_companion>><<run $TempleDuties.case.clues.pushUnique('den-evacuated')>><<temple-den-deed 'Robin' 'rescue'>><</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+<<else>>
+  <<lanSwitch 'Everyone from the partition is at the shore. The worker has gone to fetch more help. You have not yet heard where everyone was brought from. Nobody remains behind the bars.' '隔间里的人已经全部到了湖岸，工人去叫更多人来帮忙。这些人分别是从哪里被带来的，你还没有问清。栅栏后面没有留下任何人。'>><br><br>
+  <<temple-field-companion-check 'Robin' 0>>
+  <<if _field_companion and $TempleDuties.case.clues.includes('deed:Robin:rescue')>>
+    <<language>><<option 'EN'>>
+      Robin returns along the track. <<if C.npc.Robin.trauma gte 40>><<nnpc_He 'Robin'>> checks the doorway before coming closer. "They're out. They're all out."<<elseif C.npc.Robin.dom gte 60>>"They need blankets," <<nnpc_he 'Robin'>> says. "I've told the porter. Don't stay in there alone."<<else>>"One of them kept asking whether we'd leave them," <<nnpc_he 'Robin'>> says. <<nnpc_He 'Robin'>> holds the empty rope a little longer.<</if>>
+    <<option 'CN'>>
+      罗宾沿车道回来。<<if C.npc.Robin.trauma gte 40>><<nnpc_He 'Robin'>>先看看门口，才靠近。“出来了。都出来了。”<<elseif C.npc.Robin.dom gte 60>>“他们需要毯子，”<<nnpc_he 'Robin'>>说，“我告诉搬运工了。别一个人留在里面。”<<else>>“有个人一直问，我们会不会把对方留下。”罗宾说，仍握着已经空下来的绳子。<</if>>
+    <</language>><br><br>
+  <</if>>
+  <<if !$TempleDuties.case.clues.includes('den-evidence')>>
+    <<temple-duty-action `['Take the holding list and the marked prayer book (0:05)', '取走拘禁名册与做过标记的祷书 (0:05)']` 5 'Revelation Temple Cult Den Release'>>
+      <<run $TempleDuties.case.clues.pushUnique('den-evidence')>>
+    <</temple-duty-action>><br>
+    <<temple-field-companion-check 'Sydney' 5>>
+    <<if _field_companion>>
+      <<temple-duty-action `['Keep the passage clear while Sydney collects the original records (0:05)', '留意通道，让悉尼收好原始记录 (0:05)']` 5 'Revelation Temple Cult Den Release' 'Sydney'>>
+        <<temple-field-companion-check 'Sydney' 0>>
+        <<if _field_companion>><<run $TempleDuties.case.clues.pushUnique('den-evidence')>><<temple-den-deed 'Sydney' 'evidence'>><</if>>
+      <</temple-duty-action>><br>
+    <</if>>
+  <</if>>
+  <<if !$TempleDuties.case.clues.includes('den-contained')>>
+    <<set _denSealTime to $TempleDuties.case.clues.includes('den-supplies') or currentSkillValue('science') gte 350 ? 10 : 20>>
+    <<temple-duty-action `['Douse the basin and brace the broken floor from outside', '浇熄烟盆，从外侧封住破损地板']` `_denSealTime` 'Revelation Temple Cult Den Release'>>
+      <<run $TempleDuties.case.clues.pushUnique('den-contained')>>
+    <</temple-duty-action>> (<<print '0:' + _denSealTime>>)<br>
+  <</if>>
+  <<if $TempleDuties.case.clues.includesAll('den-evidence', 'den-contained')>>
+    <<temple-duty-action `['Check the empty rooms and take your account back (0:05)', '清点空屋，带着经过回去汇报 (0:05)']` 5 'Revelation Temple Cult Den End'>>
+      <<if $TempleDuties.case.clues.includesAll('den-people-freed', 'den-evacuated', 'den-evidence', 'den-contained')>>
+        <<run $TempleDuties.case.clues.pushUnique('den-cleared')>>
+        <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'resolved'>>
+      <</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+<</if>><br>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den End
+<<temple-ritual-place>>
+<<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('den-cleared')>>
+  <<if $TempleDuties.case.clues.includes('den-followup')>>
+    <<lanSwitch 'The witness has reached the shore and their account is with you. The kiln remains empty. You can tell Jordan what was identified and who helped.' '证人已经到了湖岸，陈述由你收好。石灰窑仍然空着。可以向约旦说明辨认出了什么，以及谁实际帮过忙。'>><br><br>
+  <<else>>
+    <<lanSwitch 'The rooms behind the partition are empty. The basin is cold, its line broken, and the rear passage is closed against the drain. The records are with you. You leave with the porter and the people who want to speak to Jordan.' '隔间后的屋子已经空了。烟盆冷了下来，周围的线条已经破坏，后方通道也与排水沟隔开。记录在你手里。你和搬运工、愿意向约旦说明经过的人一起离开。'>><br><br>
+  <</if>>
+<</if>>
+<<temple-case-return>>
+
+:: Revelation Temple Cult Den Followup
+<<temple-den-place>>
+<<if !_denReady or !$TempleDuties.case.clues.includesAll('den-cleared', 'den-followup')>><<temple-case-return>><<exit>><</if>>
+<<language>><<option 'EN'>>
+  The kiln remains empty. One of the people rescued from the kiln has agreed to return with you to identify a page copied from the holding book. They stop at the fork and ask whether someone can walk beside them. They have brought their own notes and will decide how much to tell you.
+  <br><br>The porter waits at the shore. You can help the witness reach them and take their account back to the temple.
+<<option 'CN'>>
+  石灰窑仍然空着。一名从窑里获救的人答应回来，辨认拘禁名册中抄出的一页。走到岔口，对方停了下来，问能不能有人陪着走。对方带着自己写下的便条，愿意说多少，由对方自己决定。
+  <br><br>搬运工在湖岸等候。可以先陪证人回到那里，再将对方的陈述带回神殿。
+<</language>><br><br>
+<<if !$TempleDuties.case.clues.includes('den-followup-escort')>>
+  <<temple-field-companion-check 'Robin' 10>>
+  <<if _field_companion>>
+    <<temple-duty-action `['Walk beside Robin as Robin escorts the witness to the shore (0:10)', '陪罗宾一起，将证人护送到湖岸 (0:10)']` 10 'Revelation Temple Cult Den Followup' 'Robin'>>
+      <<temple-field-companion-check 'Robin' 0>>
+      <<if _field_companion>><<run $TempleDuties.case.clues.pushUnique('den-followup-escort')>><<temple-den-deed 'Robin' 'rescue'>><</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+  <<temple-duty-action `['Accompany the witness to the porter (0:15)', '陪证人走到搬运工等候的地方 (0:15)']` 15 'Revelation Temple Cult Den Followup'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-followup-escort')>>
+  <</temple-duty-action>><br>
+<</if>>
+<<if !$TempleDuties.case.clues.includes('den-followup-evidence')>>
+  <<temple-field-companion-check 'Sydney' 10>>
+  <<if _field_companion>>
+    <<temple-duty-action `['Help Sydney identify the entry with the witness and take their signed account (0:10)', '与悉尼请证人辨认条目，收下署名陈述 (0:10)']` 10 'Revelation Temple Cult Den Followup' 'Sydney'>>
+      <<temple-field-companion-check 'Sydney' 0>>
+      <<if _field_companion>><<run $TempleDuties.case.clues.pushUnique('den-followup-evidence')>><<temple-den-deed 'Sydney' 'evidence'>><</if>>
+    <</temple-duty-action>><br>
+  <</if>>
+  <<temple-duty-action `['Ask the witness what may be recorded (0:15)', '问清证人同意留下哪些记录 (0:15)']` 15 'Revelation Temple Cult Den Followup'>>
+    <<run $TempleDuties.case.clues.pushUnique('den-followup-evidence')>>
+  <</temple-duty-action>><br>
+<</if>>
+<<if $TempleDuties.case.clues.includesAll('den-followup-escort', 'den-followup-evidence')>>
+  <<temple-duty-action `['Bring the follow-up account to Jordan (0:05)', '带复查经过回去向约旦说明 (0:05)']` 5 'Revelation Temple Cult Den End'>>
+    <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'resolved'>>
+  <</temple-duty-action>><br>
+<</if>><br>
+<<temple-case-return>>

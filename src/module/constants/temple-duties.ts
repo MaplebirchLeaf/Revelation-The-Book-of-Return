@@ -37,9 +37,15 @@ export interface TempleDutiesState {
   manor: 'none' | 'accepted' | 'declined' | 'copied' | 'complete';
   speaker: 'Robin' | 'Sydney' | '';
   companion_day: number;
-  candidates: Record<Ordinand, { agreed: boolean; lessons: string[]; reviewed: boolean; trial_day: number }>;
+  candidates: Record<Ordinand, { agreed: boolean; lessons: string[]; reviewed: boolean; trial_day: number; deeds: string[] }>;
+  ordination: {
+    stage: string;
+    party: string[];
+    choices: Record<string, string>;
+    completed: string[];
+    start: number;
+  } | null;
   party: Ordinand[];
-  ceremony: string[];
   exercise: 'care' | 'wards' | '';
 }
 
@@ -67,10 +73,10 @@ export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
   speaker: '',
   companion_day: -1,
   candidates: {
-    Robin: { agreed: false, lessons: [], reviewed: false, trial_day: -1 },
-    Sydney: { agreed: false, lessons: [], reviewed: false, trial_day: -1 }
+    Robin: { agreed: false, lessons: [], reviewed: false, trial_day: -1, deeds: [] },
+    Sydney: { agreed: false, lessons: [], reviewed: false, trial_day: -1, deeds: [] }
   },
+  ordination: null,
   party: [],
-  ceremony: [],
   exercise: ''
 };

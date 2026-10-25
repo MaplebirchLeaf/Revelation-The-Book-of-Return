@@ -10,12 +10,19 @@
     <<if (!_args[1] and _dutyNext is _args[0])
         or (_args[1] and $_oldReport
         and (!($_oldReport.honest and $_oldReport.result is 'resolved')
-        or (_args[0] isnot 'ritual' and $temple_rank is 'priest' and Time.days gte $_oldReport.day + 7)))>>
-      <<run delete $TempleDuties.reports[_args[0]]>>
+        or (_args[0] isnot 'ritual' and $temple_rank is 'priest' and Time.days gte $_oldReport.day + 7)
+        or (_args[0] is 'ritual' and ['Robin', 'Sydney'].some(name => $TempleDuties.candidates[name].agreed
+          and $TempleDuties.candidates[name].trial_day lt 0))))>>
+      <<if !(_args[1] and _args[0] is 'ritual' and $_oldReport?.honest and $_oldReport.result is 'resolved')>>
+        <<run delete $TempleDuties.reports[_args[0]]>>
+      <</if>>
       <<set $TempleDuties.case to {
         id: _args[0], stage: 'field', clues: [],
         prepared: false, advised: false, result: ''
         }>>
+      <<if _args[1] and _args[0] is 'ritual' and $_oldReport?.honest and $_oldReport.result is 'resolved'>>
+        <<run $TempleDuties.case.clues.pushUnique('den-lead', 'den-found', 'den-cleared', 'den-followup')>>
+      <</if>>
       <<if _args[1] and _args[0] isnot 'ritual' and $temple_rank is 'priest'
           and $TempleDuties.rewards.includesAll('echo', 'roots', 'crate')>>
         <<if $TempleDuties.followups[_args[0]] is undefined>>
@@ -30,17 +37,20 @@
 <<widget 'temple-case-return'>>
   <<getouticon>>
   <<if $TempleDuties.case?.id is 'ritual'>>
-    <<lanLink ['Return along the path to the shore (0:10)', '沿小径返回湖岸 (0:10)'] 'Lake Shore'>>
+    <<set _ritual_return_minutes to $TempleDuties.case.clues.includes('den-people-freed') and !$TempleDuties.case.clues.includes('den-evacuated') and !$TempleDuties.case.prepared and currentSkillValue('physique') lt 5000 ? 20 : 10>>
+    <<capture _ritual_return_minutes>>
+    <<lanLink `[$TempleDuties.case.clues.includes('den-people-freed') and !$TempleDuties.case.clues.includes('den-evacuated') ? 'Bring the freed people back to the shore (0:' + _ritual_return_minutes + ')' : 'Return along the path to the shore (0:10)', $TempleDuties.case.clues.includes('den-people-freed') and !$TempleDuties.case.clues.includes('den-evacuated') ? '扶着已经脱困的人返回湖岸 (0:' + _ritual_return_minutes + ')' : '沿小径返回湖岸 (0:10)']` 'Lake Shore'>>
       <<set _ritual_return_passage to $passage, _ritual_return_location to $location>>
-      <<pass 10>>
+      <<pass _ritual_return_minutes>>
       <!-- 战后衣物损坏等情况仍可撤离求援，保留实际战果；优先事件与回放不改变调查。 -->
       <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field'
           and $passage is _ritual_return_passage and $location is _ritual_return_location
           and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
-          and !$replayScene and !$statFreeze and !isPregnancyEnding()>>
+          and !$replayScene and !$statFreeze and !$frozenValues and !isPregnancyEnding()>>
+        <<if $TempleDuties.case.clues.includes('den-people-freed')>><<run $TempleDuties.case.clues.pushUnique('den-evacuated')>><</if>>
         <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'withdrawn'>>
       <</if>>
-    <</lanLink>><br>
+    <</lanLink>><</capture>><br>
     <span class='lblue'><<lanSwitch 'Tell Jordan what happened when you return to the temple.' '回到神殿后，把经过告诉约旦。'>></span>
   <<elseif ['roots', 'crate'].includes($TempleDuties.case?.id)>>
     <<lanLink ['Return to the docks (0:02)', '返回码头 (0:02)'] 'Docks'>>
@@ -108,7 +118,7 @@
       <<case 'crate'>>
         Jordan sets a shipping note beside the books you recovered. "A porter heard someone calling beneath the warehouse floor. You know the place, child. Would you go and see?" <<He>> puts a hand on the note before you take it. "The porter is waiting outside. If you find the same creatures, don't go in alone. Come back and tell us." There are boards by the entrance, and the porter can help lay them. You may also ask a prepared companion to come.
       <<case 'ritual'>>
-        The worker you brought out returns with a relative. A friend went to a prayer meeting in the woods by the lake, and has not come home. The relative has marked the path. Jordan reads the invitation twice. "I haven't arranged any prayers there." <<He>> looks troubled. "If you go to the lake, please ask whether anyone has seen them. Be careful, child. If there is danger, come and tell me. I'm not asking you to face it alone."
+        The worker you brought out returns to the temple. They grew up at the orphanage and still keep in touch with some of the others. One of their friends from the orphanage, now an adult, has not been seen since going to a prayer meeting in the woods by the lake. They bring an invitation the friend left behind and a sketch made while searching along the shore. They describe who you should look for. Jordan reads the invitation twice. "I haven't arranged any prayers there." <<He>> looks troubled. "If you go to the lake, please ask whether anyone has seen them. Be careful, child. If there is danger, come and tell me. I'm not asking you to face it alone."
     <</switch>>
     Jordan asks you to write down what you find, even if you have to leave before the work is finished.
   <<option 'CN'>>
@@ -120,7 +130,7 @@
       <<case 'crate'>>
         约旦把运单放在你取回的账簿旁。“搬运工在仓库地板下面听见有人呼救。孩子，你认得那里，愿意去看看吗？”你伸手拿运单时，<<he>>按住了纸角。“搬运工会在外面等。要是又看见那些生物，别独自进去，回来告诉我们。”入口边备有木板，搬运工可以帮忙铺设。你也可以问问准备妥当的同伴是否愿意同行。
       <<case 'ritual'>>
-        你接出的工人带着一名亲属回来求助。有个朋友去参加湖边林子里的祈祷聚会，之后一直没有回家。亲属在纸上画出了小径。约旦把请帖读了两遍。“我没有在那里安排祈祷。”<<His>>面露忧色。“要是你去湖边，请问问有没有人见过对方。务必小心，孩子。有危险就回来告诉我，我不是让你独自去冒险。”
+        你从仓库接出的工人又来到神殿。对方在孤儿院长大，至今还与院里的一些人来往。对方在孤儿院的一位朋友已经成年，前几天去参加湖边林中的祈祷聚会，之后一直没再出现。对方带来了朋友留下的请帖，还有自己沿湖寻人时画的草图，并仔细描述了朋友的长相。约旦把请帖读了两遍。“我没有在那里安排祈祷。”<<His>>面露忧色。“要是你去湖边，请问问有没有人见过对方。务必小心，孩子。有危险就回来告诉我，我不是让你独自去冒险。”
     <</switch>>
     约旦让你记下发现。就算没能处理完，也要带回来。
 <</language>>
@@ -572,27 +582,21 @@
 
 :: Temple Tentacle Turn Widgets [widget]
 <<widget 'temple-tentacle-turn'>>
-  <<statetentacles>>
-  <<effects>>
-  <<effectstentacles>>
-  <<tentacles>>
-  <<actionstentacles>>
-  <!-- 临时战败标记不跨 passage，沿用委托结果把撤离带到收尾页。 -->
-  <<if _combatend>><<set $TempleDuties.case.result to 'withdrawn'>><</if>>
-  <<if $tentacles.active lte $tentacles.max / 2 or _combatend>>
-    <span id='next'>
-    <<lanLink ['Next', '继续'] `_args[1]`>>
-    <</lanLink>>
-    </span><<nexttext>>
-  <<else>>
-    <span id='next'>
-    <<lanLink ['Next', '继续'] `_args[0]`>>
-    <</lanLink>>
-    </span><<nexttext>>
+  <<temple-den-priority>>
+  <<if !_denTickBlocked>>
+    <<statetentacles>><<effects>><<effectstentacles>><<tentacles>><<actionstentacles>>
   <</if>>
+  <<temple-den-priority>><<temple-tentacle-outcome>>
+  <!-- 附身仍交给原版回合处理；自定义收尾不得解除附身或抢占强制事件。 -->
+  <<if !_denForced and _templeTentacleOutcome is 'withdrawn'>><<set $TempleDuties.case.result to 'withdrawn'>><</if>>
+  <span id='next'>
+  <<lanLink ['Next', '继续'] `!_denForced and _templeTentacleOutcome isnot 'active' ? _args[1] : _args[0]`>><</lanLink>>
+  </span><<nexttext>>
 <</widget>>
 
 :: Revelation Temple Combat End
+<<temple-den-priority>>
+<<if _denForced>><<lanLink ['Continue', '继续'] 'Revelation Temple Combat'>><</lanLink>><<exit>><</if>>
 <<if $TempleDuties.case?.id is 'ritual'>><<include 'Revelation Temple Ritual Combat End'>><<exit>><</if>>
 <<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles' and ($tentacles.active lte $tentacles.max / 2 or $TempleDuties.case.result is 'withdrawn')>>
   <<set _caseWon to $TempleDuties.case.result isnot 'withdrawn' and $tentacles.active lte $tentacles.max / 2 and $stress lt $stressmax and !$possessed>>
@@ -680,7 +684,7 @@
   <<exit>>
 <</if>>
 <<socialiseicon>>
-<<temple-duty-action `['Give a factual report, including the gaps (0:10)', '如实汇报，也说清尚未查明的事 (0:10)']` 10 'Revelation Temple Report Done'>>
+<<temple-duty-action `['Give a factual report including the gaps (0:10)', '如实汇报并说清尚未查明的事 (0:10)']` 10 'Revelation Temple Report Done'>>
   <<if $TempleDuties.case?.stage is 'combat' and !$combat>>
     <<set $TempleDuties.case.stage to 'report'>>
     <<set $TempleDuties.case.result to 'withdrawn'>>
@@ -695,7 +699,7 @@
     <<set $TempleDuties.case.result to 'withdrawn'>>
   <</if>>
   <<temple-case-file false>>
-<</temple-duty-action>>
+<</temple-duty-action>><<llove 'Jordan'>>
 <br>
 <br>
 <<temple-duty-back>>
@@ -705,6 +709,8 @@
   <<temple-duty-check>>
   <<if _dutySafe and $TempleDuties.enrolled and $TempleDuties.case?.stage is 'report'>>
     <<set _file to $TempleDuties.case>>
+    <<set _fileFollowup to _file.id is 'ritual' and _file.clues.includes('den-followup')>>
+    <<if _file.id is 'ritual' and !_file.clues.includes('den-cleared') and _file.result is 'resolved'>><<set _file.result to 'withdrawn'>><</if>>
     <<set _paidVisit to _args[0] and _file.result is 'resolved'
       and _file.clues.some(clue => clue.startsWith('visit-'))
       and $temple_rank is 'priest' and $TempleDuties.rewards.includesAll('echo', 'roots', 'crate')
@@ -713,8 +719,10 @@
       <<exit>>
     <</if>>
     <<set $TempleDuties.note to _args[0] ? _file.result : 'inflated'>>
-    <<set $TempleDuties.reports[_file.id] to { result: _file.result || 'withdrawn', honest: _args[0], day: Math.floor(Time.days) }>>
-    <<if _args[0] and _file.result is 'resolved' and !$TempleDuties.rewards.includes(_file.id)>>
+    <<if !_fileFollowup>>
+      <<set $TempleDuties.reports[_file.id] to { result: _file.result || 'withdrawn', honest: _args[0], day: Math.floor(Time.days) }>>
+    <</if>>
+    <<if !_fileFollowup and _args[0] and _file.result is 'resolved' and !$TempleDuties.rewards.includes(_file.id)>>
       <<run $TempleDuties.rewards.push(_file.id)>>
       <<set $TempleDuties.followups[_file.id] to Math.floor(Time.days)>>
       <<grace 3>>
@@ -731,13 +739,17 @@
       <<npcincr Jordan love -2>>
     <</if>>
     <<temple-field-file _args[0]>>
-    <<if _file.id is 'ritual' and _file.result isnot 'resolved'
-        and (_file.clues.includes('interrupt') or _args[0] and (_file.clues.includes('marks') or _file.clues.includes('confronted')))>>
+    <<if _fileFollowup and _args[0] and _file.result is 'resolved'>>
+      <<set $TempleDuties.note to $TempleDuties.note.replace('field-ritual', 'field-ritual-followup')>>
+    <</if>>
+    <<if _file.id is 'ritual' and (!_file.clues.includes('den-cleared') or (_fileFollowup and _file.result isnot 'resolved'))>>
       <<set _file.clues to _file.clues.filter(clue => clue isnot 'departed' and !clue.startsWith('party-day:'))>>
+      <<if _args[0]>><<run _file.clues.pushUnique('help')>><</if>>
       <<if _file.clues.includes('rescued')>><<run _file.clues.pushUnique('evacuated')>><</if>>
-      <<run _file.clues.pushUnique('help')>>
       <<set _file.stage to 'field', _file.result to ''>>
-      <<set $TempleDuties.note to _file.clues.includes('evacuated') ? 'ritual-withdrawn' : 'ritual-help'>>
+      <<if _args[0]>>
+        <<set $TempleDuties.note to _fileFollowup ? 'ritual-followup-progress' : _file.clues.includes('den-lead') ? 'ritual-den-progress' : _file.clues.includes('evacuated') ? 'ritual-withdrawn' : 'ritual-help'>>
+      <</if>>
     <<elseif !(_file.id is 'ritual' and !_args[0] and _file.result is 'resolved')>>
       <!-- 已完成的救援若谎报，只需重新提交报告，不重演受困者被绑。 -->
       <<set $TempleDuties.case to null>>
@@ -765,8 +777,12 @@
         Jordan compares the cargo list with your new account. "And the workers are clear of it now?" <<He>> records your answer before signing. The clerk files the handover and sets your inspection pay on the desk.
       <<case 'resolved'>>
         Jordan reads the evidence before signing. "You checked, and you brought back what mattered." <<He>> enters the work in the duties book.
+      <<case 'ritual-followup-progress'>>
+        Jordan keeps the earlier report beside your new notes. "Thank you for telling me where you stopped. We can arrange another visit when they are ready." <<He>> asks what the witness has agreed to record, and leaves the unfinished questions open.
+      <<case 'ritual-den-progress'>>
+        Jordan reads the new route, then asks how many people are still inside. <<He>> calls an attendant to the desk. "Mark where the porter is waiting. They must have blankets and somewhere to bring anyone who comes out." <<He>> turns back to you. "Rest first. Tell us what you know, and what you have not managed to do."
       <<case 'ritual-withdrawn'>>
-        Jordan calls a monk to look after the rescued visitor, then takes your hands. "Are you hurt, child?" <<He>> listens to your answer before turning to the others. "We must keep people away from that path." An older monk takes the sketch. If you return to show the way, you will have company.
+        Jordan calls a monk to look after the person you rescued, then takes your hands. "Are you hurt, child?" <<He>> listens to your answer before turning to the others. "We must keep people away from that path." An older monk takes the sketch. If you return to show the way, you will have company.
       <<case 'ritual-help'>>
         Jordan rises as you describe the stone and the bound person. "Thank you for coming back. We must hurry." <<He>> calls over two members and gives them your sketch. One takes a whip from beneath their habit. "Meet me at the shore," the monk tells you. "I'll go with you."
       <<case 'withdrawn'>>
@@ -786,8 +802,12 @@
         约旦拿货单比对你这次的记录。“工人已经离开危险位置了？”<<He>>记下你的回答，随后签字。侍从收好交接单，把检查报酬放在桌上。
       <<case 'resolved'>>
         约旦先看证据，才签字。“你核对过，也把重要的东西带回来了。”<<He>>将这次工作记进职务簿。
+      <<case 'ritual-followup-progress'>>
+        约旦把旧报告留在新笔记旁。“谢谢你说明做到哪里了。等对方愿意，我们可以再约一次。”<<He>>问清证人同意记下哪些事，将尚未核实的问题留着。
+      <<case 'ritual-den-progress'>>
+        约旦看过新画的路线，先问还有多少人留在里面。<<He>>叫来侍从。"把搬运工等候的位置标出来。备好毯子，也安排好接人回来歇息的地方。"<<He>>再转向你。"先歇歇。把知道的告诉我们，没能做到的，也要说清。"
       <<case 'ritual-withdrawn'>>
-        约旦叫来修士照看获救的访客，又握住你的双手。“孩子，你受伤了吗？”<<He>>听你回答，才转向其他人。“不能再让人走上那条小径。”一名资深修士接过草图。等你回去指路时，会有人陪同。
+        约旦叫来修士照看获救的人，又握住你的双手。“孩子，你受伤了吗？”<<He>>听你回答，才转向其他人。“不能再让人走上那条小径。”一名资深修士接过草图。等你回去指路时，会有人陪同。
       <<case 'ritual-help'>>
         你说起石台上被绑住的人，约旦立刻站了起来。“谢谢你回来告诉我。我们得快些。”<<He>>叫来两名成员，把草图交给他们。其中一人从袍下取出长鞭。“到湖岸找我，”修士对你说，“我和你一起去。”
       <<case 'withdrawn'>>

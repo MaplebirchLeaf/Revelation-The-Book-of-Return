@@ -1,0 +1,701 @@
+:: Temple Ordination Widgets [widget]
+<<widget 'temple-ordination-check'>>
+  <!-- 开始后不再按职务桌营业时间或日常排班退场，原版强制事件仍优先。 -->
+  <<set _ordinationSafe to Boolean(maplebirch.get('TempleDuties')) and Boolean($TempleDuties.ordination)
+    and $location is 'temple' and ['monk', 'priest'].includes($temple_rank)
+    and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
+    and !$replayScene and !$statFreeze and !isPregnancyEnding()>>
+<</widget>>
+
+<<widget 'temple-ordination-start'>>
+  <<temple-duty-check>>
+  <<if $TempleDuties.ordination?.stage is 'complete'>><<set $TempleDuties.ordination to null>><</if>>
+  <<if $TempleDuties.ordination or !_dutyOffice>><<exit>><</if>>
+  <<set _ordination_party to clone(_args[0]), _ordination_ready to _ordination_party.length gt 0>>
+  <<for _ordination_name range _ordination_party>>
+    <<if _ordination_name is 'Player'>>
+      <<if !_dutyReady or !$TempleDuties.review or !['care', 'obedience'].includes($TempleDuties.oath)>><<set _ordination_ready to false>><</if>>
+    <<elseif ['Robin', 'Sydney'].includes(_ordination_name)>>
+      <<temple-candidate-check _ordination_name `340 + 20 * _ordination_party.length`>>
+      <<if !_candidateReady>><<set _ordination_ready to false>><</if>>
+    <<else>>
+      <<set _ordination_ready to false>>
+    <</if>>
+  <</for>>
+  <<if _ordination_ready>>
+    <<set $TempleDuties.ordination to { stage: 'prepare', party: _ordination_party, choices: {}, completed: [], start: Time.date.timeStamp }>>
+    <<set $TempleDuties.party to []>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-ordination-resume-check'>>
+  <<set _ordination_resume_ready to Boolean($TempleDuties.ordination), _ordination_resume_name to '', _ordination_remaining to 0>>
+  <<if $TempleDuties.ordination and $TempleDuties.ordination.stage isnot 'complete'>>
+    <!-- 只预约尚未完成的仪程，不把已经授职者再当候选修士检查。 -->
+    <<set _ordination_remaining to { prepare: 320, chant: 295, whispers: 255, care: 220, burden: 185,
+      aid: 140, rest: 105, return: 75, testimony: 35 }[$TempleDuties.ordination.stage] ?? 0>>
+    <<if ['prepare', 'chant', 'whispers', 'care', 'burden', 'aid', 'rest', 'return', 'testimony', 'answer'].includes($TempleDuties.ordination.stage)>>
+      <<set _ordination_remaining += 10 * $TempleDuties.ordination.party.filter(name => !$TempleDuties.ordination.choices['answer:' + name] and !$TempleDuties.ordination.completed.includes(name)).length>>
+    <</if>>
+    <<if $TempleDuties.ordination.stage isnot 'aftercare'>>
+      <<set _ordination_remaining += 10 * $TempleDuties.ordination.party.filter(name => $TempleDuties.ordination.choices['answer:' + name] isnot 'wait' and !$TempleDuties.ordination.completed.includes(name)).length>>
+    <</if>>
+    <<set _ordination_remaining += 20>>
+    <<temple-duty-check>>
+    <<for _ordination_guest range ['Robin', 'Sydney']>>
+      <<if $TempleDuties.ordination.party.includes(_ordination_guest)
+          and !$TempleDuties.ordination.completed.includes(_ordination_guest)
+          and $TempleDuties.ordination.choices['answer:' + _ordination_guest] isnot 'wait'>>
+        <<temple-ordination-standing _ordination_guest>>
+        <!-- 资格变化留到本人宣誓前处理，不能把其余人锁在恢复入口外。 -->
+        <<if _ordination_standing>>
+          <<temple-candidate-check _ordination_guest _ordination_remaining>>
+          <<if _candidateRank isnot 'priest' and !_candidateFree>>
+            <<set _ordination_resume_ready to false, _ordination_resume_name to _ordination_guest>>
+          <</if>>
+        <</if>>
+      <</if>>
+    <</for>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-ordination-action' 'container'>>
+  <<set $_ordination_body to _contents, $_ordination_minutes to _args[1], $_ordination_next to _args[2],
+    $_ordination_record to $TempleDuties.ordination, $_ordination_stage to $TempleDuties.ordination.stage, $_ordination_used to false>>
+  <<capture $_ordination_body $_ordination_minutes $_ordination_next $_ordination_record $_ordination_stage $_ordination_used>>
+    <<lanLink _args[0]>>
+      <<temple-ordination-check>>
+      <<if _ordinationSafe and !$_ordination_used and $TempleDuties.ordination is $_ordination_record and $_ordination_record.stage is $_ordination_stage>>
+        <<set $_ordination_used to true, $_ordination_passage to $passage>>
+        <<set $_ordination_old_robin_work to _robinTempleWork, $_ordination_old_party to _temple_ordination_party>>
+        <<if $_ordination_record.party.includes('Robin')>><<set _robinTempleWork to true>><</if>>
+        <<set _temple_ordination_party to $_ordination_record.party>>
+        <<pass $_ordination_minutes>>
+        <<set _robinTempleWork to $_ordination_old_robin_work, _temple_ordination_party to $_ordination_old_party>>
+        <<temple-ordination-check>>
+        <<if _ordinationSafe and $passage is $_ordination_passage and $TempleDuties.ordination is $_ordination_record and $_ordination_record.stage is $_ordination_stage>>
+          <<print $_ordination_body>>
+          <<set $_ordination_record.stage to $_ordination_next>>
+          <<set setup.temple_ordination_internal to $_ordination_record.start>>
+          <<goto 'Revelation Temple Ordination'>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
+<</widget>>
+
+<<widget 'temple-ordination-standing'>>
+  <!-- 日程已为仪式留出，守誓、净化与本人状态仍在正式授职时复核。 -->
+  <<set _ordination_standing to false>>
+  <<if _args[0] is 'Player'>>
+    <<set _ordination_standing to $temple_rank is 'priest' or $temple_rank is 'monk'
+      and $player.virginity.temple is true and $templetest isnot 'failed' and $temple_chastity_timer gt 0>>
+  <<elseif _args[0] is 'Robin'>>
+    <<set _ordination_standing to maplebirch.get('RobinTemple')?.rank is 'priest'
+      or maplebirch.get('RobinTemple')?.available and maplebirch.get('RobinTemple').member
+        and !maplebirch.get('RobinTemple').examinationDue and !$RobinTemple.punish
+        and C.npc.Robin.virginity.temple is true and maplebirch.get('RobinTemple').faith gte 20
+        and C.npc.Robin.trauma lt 60>>
+  <<elseif _args[0] is 'Sydney'>>
+    <<set _ordination_standing to $sydney.rank is 'priest' or C.npc.Sydney.init is 1
+      and C.npc.Sydney.state is 'active' and C.npc.Sydney.virginity.temple is true and $daily.sydney.punish isnot 1>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-ordination-award'>>
+  <<set _ordination_name to _args[0], _ordination_record to $TempleDuties.ordination>>
+  <<if _ordination_record?.stage is 'vows' and _ordination_record.party.includes(_ordination_name)
+      and !_ordination_record.completed.includes(_ordination_name)
+      and _ordination_record.choices['answer:' + _ordination_name]
+      and _ordination_record.choices['answer:' + _ordination_name] isnot 'wait'>>
+    <<temple-ordination-standing _ordination_name>>
+    <<if _ordination_standing>>
+      <!-- 每个人在自己的宣誓动作里改变身份，读结果页不会再次发放报酬。 -->
+      <<if _ordination_name is 'Player'>>
+        <<temple-ordain-player>>
+      <<elseif _ordination_name is 'Robin' and maplebirch.get('RobinTemple')?.rank is 'monk' and C.npc.Robin.virginity.temple is true>>
+        <<set $RobinTemple.ordination_day to Math.floor(Time.days)>>
+        <<npcincr Robin love 12>><<npcincr Robin trauma -10>><<stress -30>><<pain -20>>
+      <<elseif _ordination_name is 'Sydney' and $sydney.rank is 'monk' and C.npc.Sydney.virginity.temple is true>>
+        <<set $sydney.rank to 'priest'>><<run $sydneySeen.pushUnique('priest')>>
+        <<npcincr Sydney love 2>><<run statusCheck('Sydney')>>
+        <<if _sydneyStatus.includes('corrupt')>><<npcincr Sydney love 10>><<npcincr Sydney lust 5>><<arousal 20>><<else>><<npcincr Sydney love 15>><<npcincr Sydney purity 5>><<stress -30>><</if>>
+      <</if>>
+      <<if (_ordination_name is 'Player' and $temple_rank is 'priest')
+          or (_ordination_name is 'Robin' and maplebirch.get('RobinTemple')?.rank is 'priest')
+          or (_ordination_name is 'Sydney' and $sydney.rank is 'priest')>>
+        <<run _ordination_record.completed.pushUnique(_ordination_name)>>
+      <<else>>
+        <<set _ordination_record.choices['answer:' + _ordination_name] to 'wait'>>
+      <</if>>
+    <<else>>
+      <<set _ordination_record.choices['answer:' + _ordination_name] to 'wait'>>
+    <</if>>
+    <<set $TempleDuties.companion_day to -1>>
+  <</if>>
+<</widget>>
+
+:: Revelation Temple Ordination
+<<set $outside to 0, $location to 'temple'>>
+<<temple_effects>><<effects>><<temple-ordination-check>>
+<<if !_ordinationSafe>>
+  <<lanSwitch 'The ordination waits. Return when you are able to continue.' '授职考验暂且停下。等你能够继续时，再回来。'>><br><br>
+  <<temple-duty-hall-back>><<exit>>
+<</if>>
+<!-- 仅本仪式自己的跳转免重约，读档与重绘没有这个一次性标记。 -->
+<<set _ordination_internal to setup.temple_ordination_internal is $TempleDuties.ordination.start and ['Revelation Temple Ordination', 'Revelation Temple Ordination Stop'].includes(previous())>>
+<<run delete setup.temple_ordination_internal>>
+<<if !_ordination_internal>>
+  <<temple-ordination-resume-check>>
+  <<if !_ordination_resume_ready>>
+    <<language>>
+      <<option 'EN'>>
+        Jordan keeps the marker in your prayer book. "We still need time for the rest. <<print maplebirch.auto(_ordination_resume_name)>> has other duties before we could finish. Come back together when there is time." The unfinished entries remain where you left them.
+      <<option 'CN'>>
+        约旦没有取走祷书里的布条。“剩下的仪程，还得留些时间。<<print maplebirch.auto(_ordination_resume_name)>>还有别的职务，来不及一起做完。等大家都有空了，再回来吧。”尚未签完的几行，仍留在你离开时的位置。
+    <</language>><br><br>
+    <<temple-duty-hall-back>><<exit>>
+  <</if>>
+<</if>>
+<<npc Jordan>><<person1>>
+<<set _ordination_record to $TempleDuties.ordination>>
+<<switch _ordination_record.stage>>
+  <<case 'prepare'>><<include 'Revelation Temple Ordination Prepare'>>
+  <<case 'chant'>><<include 'Revelation Temple Ordination Chant'>>
+  <<case 'whispers'>><<include 'Revelation Temple Ordination Whispers'>>
+  <<case 'care'>><<include 'Revelation Temple Ordination Care'>>
+  <<case 'burden'>><<include 'Revelation Temple Ordination Burden'>>
+  <<case 'aid'>><<include 'Revelation Temple Ordination Aid'>>
+  <<case 'rest'>><<include 'Revelation Temple Ordination Rest'>>
+  <<case 'return'>><<include 'Revelation Temple Ordination Return'>>
+  <<case 'testimony'>><<include 'Revelation Temple Ordination Testimony'>>
+  <<case 'answer'>><<include 'Revelation Temple Ordination Answer'>>
+  <<case 'vows'>><<include 'Revelation Temple Ordination Vows'>>
+  <<case 'aftercare'>><<include 'Revelation Temple Ordination Aftercare'>>
+  <<case 'complete'>><<include 'Revelation Temple Ordination Complete'>>
+<</switch>>
+<<if _ordination_record.stage isnot 'complete'>>
+  <br><br><<getouticon>>
+  <<lanLink ['Ask to stop and return another day', '请求停下，改日再来'] 'Revelation Temple Ordination Stop'>><</lanLink>><br>
+<</if>>
+
+:: Revelation Temple Ordination Prepare
+<<language>>
+  <<option 'EN'>>
+    Jordan leads you into a side chapel. Prayer books, a basin and clean cloths have been laid beside the altar. A monk places a jug of water within reach, then closes the outer door. The sounds of the hall grow faint.
+    <br><br>
+    "This trial will take much of the day," Jordan says. "It will not be easy. You may withdraw before taking the vow." <<He>> checks the names once more. "The candidates must give their own answers. Those accompanying them may assist, but cannot take the trial for them."
+    <<if $temple_burden gte 1>><br><br><<His>> gaze rests on you. "You already carry something. Don't hide it if it becomes too much."<</if>>
+    <<if $TempleDuties.declaration is 'scar' and $auriga_scar gt 0>><br><br>Jordan remembers what you told <<him>> about the mark. "If it troubles you, say so. You needn't explain it to everyone here."<</if>>
+  <<option 'CN'>>
+    约旦领你走进侧面的祈祷室。祭坛旁放着祷书、水盆和干净的布。一名修士把水壶放到伸手够得着的地方，随后关上外门。大厅里的声音远了些。
+    <br><br>
+    “这场考验要占去大半天，”约旦说，“不会轻松。宣誓之前，仍可退出。”<<He>>再次核对名册。“受试者须自己作答。陪同的人可以相助，不能代受考验。”
+    <<if $temple_burden gte 1>><br><br><<His>>目光停在你身上。“你已经担着一些东西。承受不住时，别瞒着。”<</if>>
+    <<if $TempleDuties.declaration is 'scar' and $auriga_scar gt 0>><br><br>约旦还记得你说过的印记。“它要是让你难受，就开口。不必当着所有人的面再解释一次。”<</if>>
+<</language>><br><br>
+<<temple-ordination-company 'prepare'>>
+<br><br>
+<<temple-ordination-action `['Wash your hands and prepare the prayers (0:25)', '洗净双手，准备祷文 (0:25)']` 25 'chant'>>
+  <<set $TempleDuties.ordination.choices.prepare to 'ready'>>
+<</temple-ordination-action>><br>
+
+:: Revelation Temple Ordination Chant
+<<language>>
+  <<option 'EN'>>
+    The pages have been marked with strips of cloth. Jordan begins the first prayer, and the attendants answer. When <<he>> falls silent, they turn towards you. You are to lead the next response. The others bow their heads and wait for you to begin.
+    <br><br>
+    Some lines are familiar. Others run across the turn of a page, where an old hand has added a note. You can study the wording before beginning, or ask the attendant to keep a finger beside the line. Jordan waits with the book open.
+  <<option 'CN'>>
+    布条夹在祷书的几页之间。约旦念出第一段祷文，侍从们随之答唱。<<He>>停下时，众人转向你。下一段由你领诵。其他人垂着头，等候你开口。
+    <br><br>
+    有些句子很熟悉。有些却延续到翻页之后，旁边还添着旧笔迹。你可以先弄清词句，也可以请侍从用手指替你指着。约旦摊开祷书，等你准备好。
+<</language>><br><br>
+<<if currentSkillValue('english') gte 400 or currentSkillValue('history') gte 400>>
+  <<temple-ordination-action `['Follow the wording and lead the response (0:40)', '理清词句，领诵答词 (0:40)']` 40 'whispers'>>
+    <<set $TempleDuties.ordination.choices.chant to 'read'>><<stress -5>>
+  <</temple-ordination-action>><<lstress>><br>
+<</if>>
+<<if maplebirch.get('TempleChoir') and $TempleChoir.joined and maplebirch.get('TempleChoir').singing gte 300>>
+  <<temple-ordination-action `['Use the measured breathing from choir practice (0:40)', '按唱诗时练习的呼吸领唱 (0:40)']` 40 'whispers'>>
+    <<set $TempleDuties.ordination.choices.chant to 'choir'>><<tiredness 2>>
+  <</temple-ordination-action>><<gtiredness>><br>
+<</if>>
+<<temple-ordination-action `['Ask the attendant to guide you through each response (0:40)', '请侍从逐句指引，完成答唱 (0:40)']` 40 'whispers'>>
+  <<set $TempleDuties.ordination.choices.chant to 'help'>><<tiredness 4>><<stress 3>>
+<</temple-ordination-action>><<gtiredness>><<gstress>><br>
+
+:: Revelation Temple Ordination Whispers
+<<language>>
+  <<option 'EN'>>
+    <<if _ordination_record.choices.chant is 'help'>>The attendant quietly repeats a line when you lose your place. You find it again and carry on.<<elseif _ordination_record.choices.chant is 'choir'>>The breath you take between lines keeps the response steady.<<else>>You catch the change in the old wording before turning the page. The response follows without a break.<</if>>
+    <br><br>
+    The prayer continues after the candles have burned low. A whisper seems to come from behind your shoulder. You glance back. Nobody stands there. Under the angel's carved wings, the shadows appear to move a moment after the flame.
+    <br><br>
+    "Keep reading," Jordan says. "Listen to the voices answering you." <<He>> holds the book in place while the attendant marks your line. You can follow the words, or tell <<him>> about the whisper and ask for a steadier light.
+  <<option 'CN'>>
+    <<if _ordination_record.choices.chant is 'help'>>你念乱一行时，侍从轻声重复了一遍。你重新找到那一处，继续念下去。<<elseif _ordination_record.choices.chant is 'choir'>>句子之间换过的那口气，让答唱仍保持着平稳。<<else>>你在翻页前认出了旧词句中的变化。后面的答词没有断开。<</if>>
+    <br><br>
+    蜡烛燃短之后，祷告仍在继续。你肩后仿佛传来低语。回头看时，那里没有人。天使石翼下的阴影，似乎比火苗晚动了一瞬。
+    <br><br>
+    “继续念，”约旦说，“听回答的人声。”<<He>>扶稳祷书，侍从替你指着正在念的那一行。你可以跟紧词句，也可以说出听见的低语，请<<him>>把灯拿近一些。
+<</language>><br><br>
+<<if currentSkillValue('willpower') gte 500>>
+  <<temple-ordination-action `['Keep your attention on the words and the people answering (0:35)', '把注意力留在祷文与答词的人声上 (0:35)']` 35 'care'>>
+    <<set $TempleDuties.ordination.choices.whispers to 'steady'>><<stress 4>>
+  <</temple-ordination-action>><<gstress>><br>
+<</if>>
+<<temple-ordination-action `['Ask for someone to hold the lamp (0:35)', '请人持灯陪同 (0:35)']` 35 'care'>>
+  <<set $TempleDuties.ordination.choices.whispers to 'help'>><<stress 8>>
+<</temple-ordination-action>><<gstress>><br>
+<<temple-ordination-support 'whispers'>>
+
+:: Temple Ordination Company Widgets [widget]
+<<widget 'temple-ordination-company'>>
+  <<for _ordination_name range $TempleDuties.ordination.party>>
+    <<if _ordination_name is 'Player' or $TempleDuties.ordination.choices['answer:' + _ordination_name] is 'wait'>><<continue>><</if>>
+    <<set _ordination_support_echo to $TempleDuties.ordination.choices['support:' + _ordination_name]>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _args[0] is 'care' and _ordination_support_echo is 'voice'>>
+          <<if _ordination_name is 'Robin'>>Robin follows the slower response you led, taking a breath only when the line ends.<<else>>Sydney picks up the response you led and finishes the next few lines clearly.<</if>>
+        <<elseif _args[0] is 'care' and _ordination_support_echo is 'guided'>>
+          <<if _ordination_name is 'Robin'>>Robin finds the next line with you and the attendant beside <<nnpc_him 'Robin'>>, <<nnpc_his 'Robin'>> voice a little steadier.<<else>>Sydney listens to the beginning you and the attendant give, then carries on without another prompt.<</if>>
+        <<elseif _args[0] is 'rest' and _ordination_support_echo is 'weight'>>
+          <<if _ordination_name is 'Robin'>>Robin rubs <<nnpc_his 'Robin'>> wrists. When you took part of the weight, <<nnpc_he 'Robin'>> could finally loosen <<nnpc_his 'Robin'>> stiff fingers.<<else>>Sydney spreads the cloth that padded <<nnpc_his 'Sydney'>> hands. "That helped," <<nnpc_he 'Sydney'>> says, looking at the marks left by the chain.<</if>>
+        <<elseif _args[0] is 'rest' and _ordination_support_echo is 'shared'>>
+          <<if _ordination_name is 'Robin'>>Robin sets the folded cloth beside the cup. "I'm glad you called someone over. I didn't know how to put it down."<<else>>Sydney looks towards the attendant who helped you take the chain. "Thank you. Both of you."<</if>>
+        <</if>>
+        <<if _ordination_name is 'Robin'>>
+          <<if _args[0] is 'prepare'>>
+            <<if C.npc.Robin.trauma gte 40>>Robin looks towards the door before taking a place beside the cushions. "We can leave if we need to?" Jordan nods. Robin tests the edge of the cushion, then sits.<<elseif C.npc.Robin.dom gte 60>>Robin puts the jug where everyone can reach it. "Before we start. Who needs some?"<<elseif maplebirch.get('RobinTemple').faith gte 60>>Robin smooths a page of the prayer book. "I've been thinking about this all morning."<<else>>Robin turns the closed book over in <<nnpc_his 'Robin'>> hands. "I hope I remember what to say."<</if>>
+          <<elseif _args[0] is 'care'>>
+            <<if C.npc.Robin.trauma gte 40>>Robin's hand shakes against the cup. <<nnpc_He 'Robin'>> rests it on <<nnpc_his 'Robin'>> knee before offering it to the initiate.<<elseif C.npc.Robin.dom gte 60>>Robin moves a cushion beneath the initiate's elbow. "Lean on this. It'll hold."<<else>>Robin shifts closer to hear the initiate's quiet answer, then passes over the cup.<</if>>
+          <<else>>
+            <<if C.npc.Robin.trauma gte 40>>Robin keeps looking towards the lamp. "I can still hear you," <<nnpc_he 'Robin'>> says when Jordan calls <<nnpc_his 'Robin'>> name.<<elseif C.npc.Robin.dom gte 60>>Robin pushes a cup of water towards you. "Drink first. The rest can wait."<<else>>Robin lets out a breath, then asks the attendant to move the cushion.<</if>>
+            <<if isLoveInterest('Robin')>>When you look across, <<nnpc_he 'Robin'>> meets your eyes and stays close.<<else>>Robin makes room for you beside the bench.<</if>>
+          <</if>>
+        <<else>>
+          <<run statusCheck('Sydney')>>
+          <<if _args[0] is 'prepare'>>
+            <<if _sydneyStatus.includes('pure')>>Sydney kneels with the prayer book held close. "I used to watch this door and wonder what happened inside."<<elseif _sydneyStatus.includes('corrupt')>>"No new robe, then?" Sydney asks. Jordan only raises an eyebrow. Sydney sets the book down carefully. "All right. I'm ready."<<else>>Sydney checks the marked pages, then leaves the book open for the person beside <<nnpc_him 'Sydney'>>.<</if>>
+          <<elseif _args[0] is 'care'>>
+            <<if _sydneyStatus.includes('pure')>>Sydney starts a familiar prayer, then stops when the initiate tries to speak. "I'm listening."<<elseif _sydneyStatus.includes('corrupt')>>Sydney glances at the initiate's white knuckles. "Let go of that a moment. The bench isn't going anywhere." <<nnpc_His 'Sydney'>> voice softens as the grip eases.<<else>>Sydney holds the cup until the initiate can take it with both hands.<</if>>
+          <<else>>
+            <<if _sydneyStatus.includes('pure')>>Sydney tries to keep <<nnpc_his 'Sydney'>> hands folded, but unfolds them when Jordan asks whether they hurt.<<elseif _sydneyStatus.includes('corrupt')>>Sydney looks as if <<nnpc_he 'Sydney'>> might make a joke, then takes another breath. "I'll need a moment."<<else>>Sydney rolls a stiff shoulder, then slowly rests both hands on <<nnpc_his 'Sydney'>> knees.<</if>>
+            <<if isLoveInterest('Sydney')>><<nnpc_He 'Sydney'>> looks towards you before sitting, leaving a place at <<nnpc_his 'Sydney'>> side.<<else>><<nnpc_He 'Sydney'>> moves the jug between you, within reach of both.<</if>>
+          <</if>>
+        <</if>>
+      <<option 'CN'>>
+        <<if _args[0] is 'care' and _ordination_support_echo is 'voice'>>
+          <<if _ordination_name is 'Robin'>>罗宾跟着你放慢的答词，念到句末，才换过一口气。<<else>>悉尼接过你领出的答词，清楚地念完了后面几行。<</if>>
+        <<elseif _args[0] is 'care' and _ordination_support_echo is 'guided'>>
+          <<if _ordination_name is 'Robin'>>罗宾在你与侍从的引导下找准了下一句，声音比方才稳了些。<<else>>悉尼听过你与侍从提示的开头，便自己继续念了下去。<</if>>
+        <<elseif _args[0] is 'rest' and _ordination_support_echo is 'weight'>>
+          <<if _ordination_name is 'Robin'>>罗宾揉着手腕。你方才分担重量时，<<nnpc_he 'Robin'>>终于能松开僵硬的手指。<<else>>悉尼展开方才垫在手上的布。“刚才，多亏你了。”<<nnpc_He 'Sydney'>>看着链子留下的印子说。<</if>>
+        <<elseif _args[0] is 'rest' and _ordination_support_echo is 'shared'>>
+          <<if _ordination_name is 'Robin'>>罗宾把叠好的布放到水杯旁。“还好你叫人过来了。我都不知道该怎样放下。”<<else>>悉尼看向方才与你一起接住链子的侍从。“谢谢。你们两个都是。”<</if>>
+        <</if>>
+        <<if _ordination_name is 'Robin'>>
+          <<if _args[0] is 'prepare'>>
+            <<if C.npc.Robin.trauma gte 40>>罗宾先看了眼门口，才在软垫旁停下。“需要的时候，我们可以出去，对吧？”约旦点头。罗宾按了按软垫的边缘，坐了下来。<<elseif C.npc.Robin.dom gte 60>>罗宾把水壶挪到大家都够得着的位置。“开始之前，谁要喝点？”<<elseif maplebirch.get('RobinTemple').faith gte 60>>罗宾抚平祷书的一页。“我一早上都在想这件事。”<<else>>罗宾把合着的祷书在手里翻了一面。“希望我能记得该说些什么。”<</if>>
+          <<elseif _args[0] is 'care'>>
+            <<if C.npc.Robin.trauma gte 40>>罗宾拿杯子的手有些抖。<<nnpc_He 'Robin'>>先将手腕抵在膝上，才把杯子递给见习教徒。<<elseif C.npc.Robin.dom gte 60>>罗宾把软垫挪到见习教徒的胳膊下。“靠在这里。能撑住。”<<else>>罗宾挪近些，听清见习教徒小声的回答，才把水杯递过去。<</if>>
+          <<else>>
+            <<if C.npc.Robin.trauma gte 40>>罗宾一直望着灯。约旦叫到<<nnpc_his 'Robin'>>名字时，<<nnpc_he 'Robin'>>说：“我还能听见你。”<<elseif C.npc.Robin.dom gte 60>>罗宾把水杯推到你手边。“先喝点。其他的，等会儿再做。”<<else>>罗宾呼出一口气，请侍从挪动软垫。<</if>>
+            <<if isLoveInterest('Robin')>>你望过去时，<<nnpc_he 'Robin'>>迎上你的目光，仍靠在近处。<<else>>罗宾在长椅旁给你让出一点地方。<</if>>
+          <</if>>
+        <<else>>
+          <<run statusCheck('Sydney')>>
+          <<if _args[0] is 'prepare'>>
+            <<if _sydneyStatus.includes('pure')>>悉尼抱着祷书跪下。“以前我总望着这扇门，猜里面在做什么。”<<elseif _sydneyStatus.includes('corrupt')>>“所以，没有新袍子？”悉尼问。约旦只是扬起眉毛。悉尼小心地放下祷书。“好吧。我准备好了。”<<else>>悉尼核对了夹着布条的几页，把祷书摊开，留给身旁的人看。<</if>>
+          <<elseif _args[0] is 'care'>>
+            <<if _sydneyStatus.includes('pure')>>悉尼念起熟悉的祷文，见习教徒想开口时，便停了下来。“我在听。”<<elseif _sydneyStatus.includes('corrupt')>>悉尼看了眼见习教徒攥得发白的指节。“先松开一会儿。长椅又不会跑。”对方松开手时，<<nnpc_his 'Sydney'>>语气也柔和了些。<<else>>悉尼一直拿着杯子，等见习教徒能用双手接稳，才松开手。<</if>>
+          <<else>>
+            <<if _sydneyStatus.includes('pure')>>悉尼想把双手继续交握着。约旦问起疼不疼时，<<nnpc_he 'Sydney'>>才将手指松开。<<elseif _sydneyStatus.includes('corrupt')>>悉尼像是想开个玩笑，最后只吸了一口气。“我需要缓一会儿。”<<else>>悉尼转了转僵硬的肩，慢慢把两只手放到膝上。<</if>>
+            <<if isLoveInterest('Sydney')>><<nnpc_He 'Sydney'>>坐下前看向你，在身旁留了一点位置。<<else>><<nnpc_He 'Sydney'>>把水壶挪到你们中间，让两人都够得着。<</if>>
+          <</if>>
+        <</if>>
+    <</language>><br><br>
+  <</for>>
+<</widget>>
+
+<<widget 'temple-ordination-support'>>
+  <<set _ordination_support_phase to _args[0], _ordination_support_names to [], _ordination_support_targets to []>>
+  <<for _ordination_support_name range ['Robin', 'Sydney']>>
+    <<if $TempleDuties.ordination.party.includes(_ordination_support_name)
+        and !$TempleDuties.ordination.completed.includes(_ordination_support_name)
+        and $TempleDuties.ordination.choices['answer:' + _ordination_support_name] isnot 'wait'>>
+      <<temple-ordination-standing _ordination_support_name>>
+      <<if _ordination_standing>>
+        <<run _ordination_support_names.push(_ordination_support_name)>>
+        <<run _ordination_support_targets.push([_ordination_support_name])>>
+      <</if>>
+    <</if>>
+  <</for>>
+  <<if _ordination_support_names.length is 2>><<run _ordination_support_targets.push(_ordination_support_names)>><</if>>
+  <<for _ordination_support_group range _ordination_support_targets>>
+    <<capture _ordination_support_group _ordination_support_phase>>
+      <<set _ordination_support_both to _ordination_support_group.length is 2>>
+      <<set _ordination_support_label to _ordination_support_both ? lanSwitch('both companions', '两人') : maplebirch.auto(_ordination_support_group[0])>>
+      <<set _ordination_support_direct to _ordination_support_phase is 'whispers'
+        ? currentSkillValue('english') gte (_ordination_support_both ? 600 : 400) and currentSkillValue('willpower') gte (_ordination_support_both ? 700 : 500)
+        : currentSkillValue('physique') gte (_ordination_support_both ? 15000 : 10000)>>
+      <<capture _ordination_support_direct>>
+        <<if _ordination_support_phase is 'whispers'>>
+          <<temple-ordination-action `[_ordination_support_direct ? 'Lead the response so ' + _ordination_support_label + ' can follow you (0:35)' : 'Stay with ' + _ordination_support_label + ' and ask the attendant to guide the response (0:35)', _ordination_support_direct ? '领稳答词，帮' + _ordination_support_label + '跟上祷告 (0:35)' : '陪在' + _ordination_support_label + '身旁，请侍从一起引导答词 (0:35)']` 35 'care'>>
+            <<for _ordination_helped range _ordination_support_group>>
+              <<set $TempleDuties.ordination.choices['support:' + _ordination_helped] to _ordination_support_direct ? 'voice' : 'guided'>>
+            <</for>>
+            <<set $TempleDuties.ordination.choices.whispers to 'support'>>
+            <<stress `_ordination_support_group.length is 2 ? 12 : 8`>><<tiredness `_ordination_support_direct ? 3 : 5`>>
+          <</temple-ordination-action>><<gstress>><<gtiredness>><br>
+        <<else>>
+          <<temple-ordination-action `[_ordination_support_direct ? 'Take part of the weight from ' + _ordination_support_label + ' (0:45)' : 'Help the attendant share the weight with ' + _ordination_support_label + ' (0:45)', _ordination_support_direct ? '帮' + _ordination_support_label + '分担香炉的重量 (0:45)' : '叫来侍从，一起帮' + _ordination_support_label + '分担重量 (0:45)']` 45 'aid'>>
+            <<for _ordination_helped range _ordination_support_group>>
+              <<set $TempleDuties.ordination.choices['support:' + _ordination_helped] to _ordination_support_direct ? 'weight' : 'shared'>>
+            <</for>>
+            <<set $TempleDuties.ordination.choices.burden to 'support'>>
+            <<pain `_ordination_support_direct ? (_ordination_support_group.length is 2 ? 12 : 8) : 4`>>
+            <<tiredness `_ordination_support_group.length is 2 ? 12 : 10`>>
+          <</temple-ordination-action>><<gpain>><<gtiredness>><br>
+        <</if>>
+      <</capture>>
+    <</capture>>
+  <</for>>
+<</widget>>
+
+:: Revelation Temple Ordination Care
+<<language>>
+  <<option 'EN'>>
+    <<if _ordination_record.choices.whispers is 'support'>>You keep the response slow enough for the people beside you to follow. When they find the next line themselves, you let their voices carry it. Jordan waits until you have all finished.<<elseif _ordination_record.choices.whispers is 'help'>>Jordan brings the lamp close enough for you to see the marks on the page. The whisper fades beneath the next response. "You did right to tell me."<<else>>You hold to the words until the whisper can no longer be picked out from the voices around you. Jordan waits for you to look up before continuing.<</if>>
+    <br><br>
+    An initiate near the wall misses a response. Their hands grip the bench, and their breath comes too quickly. Jordan lowers the book. "Go and sit with them." The attendant holds out a cup. You have heard the words often enough to repeat them. Now someone needs you to listen.
+    <br><br>
+    The initiate says they thought they saw somebody standing behind the altar. They do not want to turn around. You can repeat the response slowly for them to follow, or wait beside them until they can speak without gasping.
+  <<option 'CN'>>
+    <<if _ordination_record.choices.whispers is 'support'>>你放慢答词，让身旁的人能够跟上。等对方自己找到了下一句，你便让那声音继续念下去。约旦等你们都念完了，才继续。<<elseif _ordination_record.choices.whispers is 'help'>>约旦把灯举近，让你看清纸页上的笔画。下一段答词响起时，低语渐渐听不清了。“告诉我，是对的。”<<else>>你紧跟着祷文，直到那阵低语再也无法从四周的人声中分辨出来。约旦等你抬起头，才继续。<</if>>
+    <br><br>
+    墙边的一名见习教徒漏过了答词。对方攥着长椅，呼吸越来越急。约旦放低祷书。“去陪对方坐一会儿。”侍从递来一只水杯。那些词句，你已经听得足够多，能够一一重复。眼前的人却需要你先听一听。
+    <br><br>
+    见习教徒说，刚才像是看见有人站在祭坛后面。对方不敢回头。你可以慢慢重复答词，让对方跟着念，也可以守在身旁，等对方能够开口，不必每说一词便喘一口气。
+<</language>><br><br>
+<<temple-ordination-company 'care'>>
+<<if currentSkillValue('english') gte 400>>
+  <<temple-ordination-action `['Speak clearly and help them follow your breathing (0:35)', '慢慢说明眼前的事，带对方调整呼吸 (0:35)']` 35 'burden'>>
+    <<set $TempleDuties.ordination.choices.care to 'words'>><<stress 3>>
+  <</temple-ordination-action>><<gstress>><br>
+<</if>>
+<<temple-ordination-action `['Sit with them and let the attendant bring water (0:35)', '留在身旁，请侍从添水，耐心等对方开口 (0:35)']` 35 'burden'>>
+  <<set $TempleDuties.ordination.choices.care to 'listen'>><<tiredness 3>><<stress 5>>
+<</temple-ordination-action>><<gtiredness>><<gstress>><br>
+
+:: Revelation Temple Ordination Burden
+<<language>>
+  <<option 'EN'>>
+    <<if _ordination_record.choices.care is 'words'>>The initiate follows your voice until they can answer a simple question. You set the cup between their hands.<<else>>You wait through a long silence. At last the initiate takes a drink and tells you their name. You ask the attendant to stay before returning to Jordan.<</if>>
+    <br><br>
+    The next prayer is said standing. The attendant lays the wrapped chain of a brass censer across your hands. It is heavier than it looked beside the altar. Jordan takes another, and the other candidates receive their own. "Keep it clear of your skin. Say when your grip begins to fail."
+    <br><br>
+    Warm metal hangs below your fingers. Your shoulders begin to ache before the prayer is half done. The attendant waits beside a stone stand. You can bear the weight with a steady stance, or ask them to take part of it while you continue the response.
+    <<if $pain gte 50 or $tiredness gte 1000>><br><br>Jordan notices how you are holding yourself. "You came here already hurting. Don't pretend otherwise."<</if>>
+  <<option 'CN'>>
+    <<if _ordination_record.choices.care is 'words'>>见习教徒跟着你的声音，直到能够回答一个简单的问题。你将水杯放进对方手里。<<else>>你陪对方坐过一段长长的沉默。终于，见习教徒喝下一口水，告诉了你自己的名字。你请侍从留下，才回到约旦身旁。<</if>>
+    <br><br>
+    下一段祷文要站着念。侍从把黄铜香炉裹着布的链子放到你手中。它比摆在祭坛旁时看起来沉得多。约旦也提起一只，其他受试者各自接过自己的。“别让它碰到皮肤。握不住时，就开口。”
+    <br><br>
+    温热的金属悬在指下。祷告还没过半，你的肩膀便开始酸痛。侍从守在一座石台旁。你可以站稳承住重量，也可以请对方分担一部分，自己继续答词。
+    <<if $pain gte 50 or $tiredness gte 1000>><br><br>约旦留意到你的姿势。“你来的时候，已经不舒服了。别装作没有。”<</if>>
+<</language>><br><br>
+<<if currentSkillValue('physique') gte 5000>>
+  <<temple-ordination-action `['Balance the censer and keep the response steady (0:45)', '稳住香炉，继续答词 (0:45)']` 45 'aid'>>
+    <<set $TempleDuties.ordination.choices.burden to 'carry'>><<pain 6>><<tiredness 6>>
+  <</temple-ordination-action>><<gpain>><<gtiredness>><br>
+<</if>>
+<<temple-ordination-action `['Ask the attendant to share the weight (0:45)', '请侍从分担重量，继续祷告 (0:45)']` 45 'aid'>>
+  <<set $TempleDuties.ordination.choices.burden to 'shared'>><<pain 3>><<tiredness 8>>
+<</temple-ordination-action>><<gpain>><<gtiredness>><br>
+<<temple-ordination-support 'burden'>>
+
+:: Revelation Temple Ordination Aid
+<<language>>
+  <<option 'EN'>>
+    <<if _ordination_record.choices.burden is 'support'>>Your arms ache under the added pull. When the response ends, the attendant steadies the chains while you lower your end. The person beside you keeps the final line going until the brass settles on the stand.<<elseif _ordination_record.choices.burden is 'shared'>>The attendant takes the lower loop. The pull on your hands eases, though you still have to hold your end. Jordan hears your next response without asking anyone to release the chain.<<else>>You change your stance before your shoulders lock. When the prayer ends, the attendant helps you lower the censer onto the stand.<</if>>
+    <br><br>
+    On the other side of the room, a chain scrapes against stone. The initiate you sat with has lost their grip. They are still trying to finish the line. Jordan stops speaking. "Set it down." The initiate hesitates, then obeys. Tears run down their face.
+    <br><br>
+    "Watch those in your care," Jordan tells you. "Do not wait for them to fall before lending a hand." <<He>> asks you to help the initiate to the bench. You must take care with your own tired arms, too.
+  <<option 'CN'>>
+    <<if _ordination_record.choices.burden is 'support'>>额外的重量扯得双臂酸痛。答词结束，侍从扶稳链子，你才慢慢放下自己这一头。身旁的人仍念着最后一句，直到黄铜香炉稳稳落在石台上。<<elseif _ordination_record.choices.burden is 'shared'>>侍从接住下面一圈链子。双手的拉扯轻了些，你仍要握好自己这一头。约旦听见你的下一句答词，没有让任何人松手。<<else>>肩膀僵住之前，你换了一次站姿。祷告结束，侍从帮你把香炉放回石台。<</if>>
+    <br><br>
+    房间另一头，链子刮过石面。你方才陪过的见习教徒已经握不住，却仍试着念完那一句。约旦停下来。“放下。”对方犹豫片刻，照做了。眼泪沿脸颊淌下。
+    <br><br>
+    “留意受你照料的人，”约旦对你说，“别等到倒下，才想起伸手。”<<He>>请你帮见习教徒坐到长椅上。你也得留意自己已经疲惫的双臂。
+<</language>><br><br>
+<<if currentSkillValue('physique') gte 5000 and $pain lt 70>>
+  <<temple-ordination-action `['Support them while the attendant clears the bench (0:35)', '扶稳对方，让侍从清出长椅 (0:35)']` 35 'rest'>>
+    <<set $TempleDuties.ordination.choices.aid to 'support'>><<tiredness 4>><<pain 2>>
+  <</temple-ordination-action>><<gtiredness>><<gpain>><br>
+<</if>>
+<<temple-ordination-action `['Call the attendant and help them sit together (0:35)', '叫来侍从，一起扶对方坐下 (0:35)']` 35 'rest'>>
+  <<set $TempleDuties.ordination.choices.aid to 'help'>><<tiredness 2>>
+<</temple-ordination-action>><<gtiredness>><br>
+
+:: Revelation Temple Ordination Rest
+<<language>>
+  <<option 'EN'>>
+    <<if _ordination_record.choices.aid is 'support'>>You take the initiate's weight slowly, waiting for the bench to be cleared before moving.<<else>>The attendant takes one arm, and you take the other. You move only when the initiate is ready.<</if>> Jordan takes the cup from you and kneels in front of them. "Rest here. The attendant will stay with you."
+    <br><br>
+    There is bread beside the water now. The outer door opens while an attendant brings fresh candles. You hear ordinary conversation in the hall, then the latch settles back into place. Your knees still ache. Jordan sits as well, resting <<his>> hands on the closed book.
+    <br><br>
+    "Eat," <<he>> says when you reach for the book again. "The next prayer can wait until you've swallowed."
+  <<option 'CN'>>
+    <<if _ordination_record.choices.aid is 'support'>>你慢慢接过见习教徒的重量，等长椅清出来，才扶对方挪过去。<<else>>侍从扶住一边，你扶住另一边。等见习教徒准备好了，你们才一起挪动。<</if>>约旦从你手里接过杯子，在对方面前跪下。“在这里歇着。侍从会留下陪你。”
+    <br><br>
+    水壶旁添了面包。侍从送来新蜡烛时，外门打开了一会儿。你听见大厅里寻常的交谈声，随后门闩重新落下。你的膝盖仍有些疼。约旦也坐了下来，双手搁在合起的祷书上。
+    <br><br>
+    见你又伸手去拿书，<<he>>说：“先吃。下一段祷告，可以等你咽下去再开始。”
+<</language>><br><br>
+<<temple-ordination-company 'rest'>>
+<<temple-ordination-action `['Eat, drink and rest your hands (0:30)', '吃点面包，喝水，让双手歇一会儿 (0:30)']` 30 'return'>>
+  <<pain -5>><<stress -8>><<tiredness -5>>
+<</temple-ordination-action>><<lpain>><<lstress>><<ltiredness>><br>
+
+:: Revelation Temple Ordination Return
+<<language>>
+  <<option 'EN'>>
+    The initiate stays on the bench while the others return to their places. This time, the censer rests on the stone stand. Nobody asks you to lift it again. The ache in your shoulders remains when you fold your hands.
+    <br><br>
+    The next response is quieter. In the pause before it, you hear the whisper again. For a moment it sounds like somebody you left behind. You can remember where you have heard these prayers before, or ask Jordan to say the first words with you.
+    <<if $temple_burden gte 1>><br><br>The corruption you took into yourself has not vanished with the lowered censer. You falter over the next line. Jordan taps the page. "The prayer continues, child."<</if>>
+  <<option 'CN'>>
+    见习教徒留在长椅上，其他人回到原处。这一次，香炉放在石台上。没有人再让你提起它。你交握双手时，肩膀的酸痛仍在。
+    <br><br>
+    下一段答词很轻。开口前的停顿中，你又听见那阵低语。有一瞬间，它像是某个被你留在身后的人。你可以回想自己曾在哪里听过这些祷文，也可以请约旦陪你念出开头。
+    <<if $temple_burden gte 1>><br><br>你接入体内的腐化，没有随着放下香炉而消失。下一句祷文在舌尖打了结。约旦点点纸页。“祈祷还没结束，孩子。”<</if>>
+<</language>><br><br>
+<<if currentSkillValue('history') gte 400 or currentSkillValue('willpower') gte 500>>
+  <<temple-ordination-action `['Follow the remembered prayer through the silence (0:40)', '循着记得的祷文，念过那些停顿 (0:40)']` 40 'testimony'>>
+    <<set $TempleDuties.ordination.choices.return to 'remember'>><<stress 5>>
+  <</temple-ordination-action>><<gstress>><br>
+<</if>>
+<<temple-ordination-action `['Ask Jordan to begin each response with you (0:40)', '请约旦陪你念出每段答词的开头 (0:40)']` 40 'testimony'>>
+  <<set $TempleDuties.ordination.choices.return to 'help'>><<stress 8>><<tiredness 2>>
+<</temple-ordination-action>><<gstress>><<gtiredness>><br>
+
+:: Revelation Temple Ordination Testimony
+<<language>>
+  <<option 'EN'>>
+    When the last response ends, Jordan sets the prayer book beside the duties book. <<His>> finger rests on the names of the people who asked the temple for help. "A vow won't tell you everything you need to do. You have already found that out."
+    <br><br>
+    <<if _ordination_record.party.includes('Player')>>Jordan asks you about the warehouse, then the people in the woods. You can describe the evidence that changed your decision, or admit where you needed help. <<He>> does not ask you to make the account sound braver.<</if>>
+    <<if !_ordination_record.party.includes('Player')>>You sit beside the candidates while Jordan opens their accounts. <<He>> asks you to let them tell it first.<</if>>
+  <<option 'CN'>>
+    最后一句答词结束，约旦把祷书放到职务簿旁。<<His>>手指停在向神殿求助者的名字上。“誓言不会告诉你，遇到每件事该怎样做。这一点，你已经见过了。”
+    <br><br>
+    <<if _ordination_record.party.includes('Player')>>约旦先问起仓库，又问起林子里的人。你可以说清哪些发现让自己改变了主意，也可以承认何时需要帮助。<<He>>没有让你把经过说得更勇敢。<</if>>
+    <<if !_ordination_record.party.includes('Player')>>你在受试者身旁坐下。约旦翻开他们各自的记录，请你先让对方自己讲。<</if>>
+<</language>><br><br>
+<<for _ordination_name range _ordination_record.party>>
+  <<if _ordination_name isnot 'Player'>>
+    <span class='gold'><<print maplebirch.auto(_ordination_name)>></span><br>
+    <<temple-personal-deeds _ordination_name>>
+  <</if>>
+<</for>>
+<<if currentSkillValue('history') gte 400 or currentSkillValue('english') gte 400>>
+  <<temple-ordination-action `['Explain what you found and where your judgment changed (0:35)', '说清发现的事，以及自己改变判断的地方 (0:35)']` 35 'answer'>>
+    <<set $TempleDuties.ordination.choices.testimony to 'account'>>
+  <</temple-ordination-action>><br>
+<</if>>
+<<temple-ordination-action `['Tell the events in order and answer Jordan’s questions (0:35)', '按先后说出经过，回答约旦的追问 (0:35)']` 35 'answer'>>
+  <<set $TempleDuties.ordination.choices.testimony to 'questions'>><<tiredness 2>>
+<</temple-ordination-action>><<gtiredness>><br>
+
+:: Revelation Temple Ordination Answer
+<<set _ordination_answer to _ordination_record.party.find(name => !_ordination_record.choices['answer:' + name])>>
+<<if !_ordination_answer>>
+  <<language>>
+    <<option 'EN'>>
+      Jordan closes the accounts. Each answer has been heard without the others speaking over it. "What you have told me will stay in this book. Remember it when somebody asks you for help." <<He>> turns to the altar. "Those who wish to continue, come forward."
+    <<option 'CN'>>
+      约旦合上记录。每个人都说完了自己的回答，没有被旁人抢过话头。“这些话会记在这里。往后有人向你求助时，也记着。”<<He>>转向祭坛。“愿意继续的人，上前来。”
+  <</language>><br><br>
+  <<temple-ordination-action `['Approach the altar', '走向祭坛']` 0 'vows'>><</temple-ordination-action>><br>
+<<elseif _ordination_answer is 'Player'>>
+  <<language>>
+    <<option 'EN'>>
+      "You have listened, prayed, and carried what was given to you," Jordan says. "Sometimes you needed another pair of hands. Sometimes somebody else needed yours." <<He>> watches you over the book. "When there is no one beside you to give the next instruction, what will you do?"
+      <br><br>
+      You can promise to hear those who come to you, or admit that you will still have questions. You do not have to claim certainty. You can also say that you are not ready to make another vow.
+    <<option 'CN'>>
+      “你听过、祈祷过，也担过交到手里的东西，”约旦说，“有时，你需要别人搭把手。有时，别人需要你。”<<He>>从书后望着你。“当身旁没有人告诉你，接下来该怎样做时，你会怎么做？”
+      <br><br>
+      你可以答应听取来访者的诉说，也可以承认，自己往后仍会有疑问。不必声称已经什么都明白。你也可以说，自己还没准备好再立下一个誓言。
+  <</language>><br><br>
+  <<temple-ordination-action `['Promise to hear those who seek help, and call for help when needed (0:10)', '答应倾听求助者，需要时也会求援 (0:10)']` 10 'answer'>>
+    <<set $TempleDuties.ordination.choices['answer:Player'] to 'care'>>
+  <</temple-ordination-action>><br>
+  <<temple-ordination-action `['Admit your doubts and promise to ask before pretending to know (0:10)', '承认仍有疑问，答应不会不懂装懂 (0:10)']` 10 'answer'>>
+    <<set $TempleDuties.ordination.choices['answer:Player'] to 'questions'>>
+  <</temple-ordination-action>><br>
+  <<temple-ordination-action `['Say you need more time before taking the vow (0:10)', '说自己还需要一些时间，暂不宣誓 (0:10)']` 10 'answer'>>
+    <<set $TempleDuties.ordination.choices['answer:Player'] to 'wait'>>
+  <</temple-ordination-action>><br>
+<<else>>
+  <<capture _ordination_answer>>
+    <<language>>
+      <<option 'EN'>>
+        <<if _ordination_answer is 'Robin'>>
+          Jordan calls Robin by name. "And you?" Robin looks down at <<nnpc_his 'Robin'>> hands before answering.
+          <<if C.npc.Robin.trauma gte 60 or maplebirch.get('RobinTemple').faith lt 20 or C.npc.Robin.virginity.temple isnot true>>"I thought I could do it today." <<nnpc_He 'Robin'>> swallows. "I need to stop." Jordan turns the book away. "Then we stop here for you. Stay with us, if you wish. You needn't answer again today."<<elseif C.npc.Robin.trauma gte 40>>"I was frightened. I might be frightened again." Robin raises <<nnpc_his 'Robin'>> eyes. "But I could still help someone. I'd like to keep doing that."<<elseif C.npc.Robin.dom gte 60>>"I'll do what I can. And if I can't, I'll get someone who can."<<elseif maplebirch.get('RobinTemple').faith gte 60>>"I want to serve here. Even when I don't know the prayer, I can still listen."<<else>>"I still don't understand everything. I'd like to stay and learn."<</if>>
+          <<if isLoveInterest('Robin')>>Robin glances towards you after giving <<nnpc_his 'Robin'>> answer. You let <<nnpc_him 'Robin'>> finish before reaching for <<nnpc_his 'Robin'>> hand.<</if>>
+        <<else>>
+          <<run statusCheck('Sydney')>>
+          Jordan turns to Sydney. <<if C.npc.Sydney.virginity.temple isnot true>>Sydney looks at the open book, then shakes <<nnpc_his 'Sydney'>> head. "There's something I need to put right first." Jordan leaves the entry unfinished. "We will speak about it after this."<<elseif _sydneyStatus.includes('pure')>>Sydney's answer comes clearly. "I want to serve the temple. When somebody comes through our doors, I don't want them to think they're alone." <<nnpc_He 'Sydney'>> looks up at the angel, then back at Jordan.<<elseif _sydneyStatus.includes('corrupt')>>"I want to know why the prayers matter," Sydney says. "And what happens to the people who say them. I won't find that out by shutting the door on them." Jordan holds <<nnpc_his 'Sydney'>> gaze a moment before nodding.<<else>>Sydney takes a breath. "I've been here so long. There are still things I haven't noticed. I'd like to do better."<</if>>
+          <<if isLoveInterest('Sydney')>>Sydney finds your eyes after speaking, then turns back to Jordan to hear the reply.<</if>>
+        <</if>>
+      <<option 'CN'>>
+        <<if _ordination_answer is 'Robin'>>
+          约旦叫到罗宾的名字。“你呢？”罗宾低头看了眼自己的双手，才开口。
+          <<if C.npc.Robin.trauma gte 60 or maplebirch.get('RobinTemple').faith lt 20 or C.npc.Robin.virginity.temple isnot true>>“我以为今天能做到。”<<nnpc_He 'Robin'>>咽了一下。“我需要停下。”约旦把书转开。“那你今天就到这里。愿意的话，可以留下陪着。不必今天再答一次。”<<elseif C.npc.Robin.trauma gte 40>>“我刚才很害怕。以后，可能还是会怕。”罗宾抬起眼。“可是，我仍能帮到人。我想继续做下去。”<<elseif C.npc.Robin.dom gte 60>>“能做的，我会去做。做不到，就找能帮上忙的人。”<<elseif maplebirch.get('RobinTemple').faith gte 60>>“我想留在这里侍奉。就算有些祷文还不会念，我也能先听别人说。”<<else>>“还有很多事，我都不明白。我想留下来，继续学。”<</if>>
+          <<if isLoveInterest('Robin')>>说完自己的回答，罗宾朝你望来。你等<<nnpc_him 'Robin'>>说完，才伸手握住<<nnpc_his 'Robin'>>手。<</if>>
+        <<else>>
+          <<run statusCheck('Sydney')>>
+          约旦转向悉尼。<<if C.npc.Sydney.virginity.temple isnot true>>悉尼看了眼摊开的名册，摇摇头。“我有件事，需要先处理好。”约旦没有写完那一行。“结束后，我们再谈。”<<elseif _sydneyStatus.includes('pure')>>悉尼回答得很清楚。“我想在神殿侍奉。有人走进这扇门时，我不想让对方觉得，自己仍是孤身一人。”<<nnpc_He 'Sydney'>>先望向天使，又看回约旦。<<elseif _sydneyStatus.includes('corrupt')>>“我想知道，这些祷文为什么重要，”悉尼说，“还有，念它们的人后来会怎样。把人关在门外，可弄不清这些。”约旦注视<<nnpc_him 'Sydney'>>片刻，才点了头。<<else>>悉尼吸了一口气。“我在这里待了那么久，还是有没留意的事。我想做得好一些。”<</if>>
+          <<if isLoveInterest('Sydney')>>悉尼说完，与你对视一眼，随后转回约旦身前，等候答复。<</if>>
+        <</if>>
+    <</language>><br><br>
+    <<temple-ordination-action `['Hear ' + maplebirch.auto(_ordination_answer) + ' give their own answer (0:10)', '听' + maplebirch.auto(_ordination_answer) + '自己作答 (0:10)']` 10 'answer'>>
+      <<set $TempleDuties.ordination.choices['answer:' + _ordination_answer] to (_ordination_answer is 'Robin' and (C.npc.Robin.trauma gte 60 or maplebirch.get('RobinTemple').faith lt 20) or C.npc[_ordination_answer].virginity.temple isnot true) ? 'wait' : 'serve'>>
+    <</temple-ordination-action>><br>
+  <</capture>>
+<</if>>
+
+:: Revelation Temple Ordination Vows
+<<set _ordination_vow to _ordination_record.party.find(name => _ordination_record.choices['answer:' + name] isnot 'wait' and !_ordination_record.completed.includes(name))>>
+<<if !_ordination_vow>>
+  <<lanSwitch 'Jordan lays the pen beside the book. There are no names left to call. The attendants lower their heads for the last prayer.' '约旦把笔搁在名册旁。该念的名字已经念过。侍从们低下头，准备最后一段祷告。'>><br><br>
+  <<temple-ordination-action `['Remain for the closing prayer', '留下完成最后的祷告']` 0 'aftercare'>><</temple-ordination-action>><br>
+<<else>>
+  <<capture _ordination_vow>>
+    <<temple-ordination-standing _ordination_vow>>
+    <<if !_ordination_standing>>
+      <<lanSwitch `['Jordan leaves ' + (_ordination_vow is 'Player' ? 'your' : maplebirch.auto(_ordination_vow) + '’s') + ' entry unfinished. An examination, purification or time to recover is needed before appointment. The others may continue.', '约旦暂且留空了' + (_ordination_vow is 'Player' ? '你' : maplebirch.auto(_ordination_vow)) + '的任命。先处理检查、净化或休养的事，其他人仍可继续。']`>><br><br>
+      <<temple-ordination-action `['Leave this appointment for another day', '暂缓这次任命']` 0 'vows'>>
+        <<set $TempleDuties.ordination.choices['answer:' + _ordination_vow] to 'wait'>>
+      <</temple-ordination-action>><br>
+    <<else>>
+      <<language>>
+        <<option 'EN'>>
+          <<if _ordination_vow is 'Player'>>
+            Jordan turns the book towards you. "Will you keep the vows you have taken, hear those who come to you, and help protect this temple and the people who seek its care?"
+            <<if _ordination_record.choices['answer:Player'] is 'questions'>>"You may still have questions," <<he>> adds. "Bring them with you. Don't use a ready answer to silence somebody else's."<</if>>
+          <<else>>
+            Jordan calls <<print maplebirch.auto(_ordination_vow)>> forward. The book is held for <<nnpc_him _ordination_vow>> to read. "These are your vows. Nobody beside you can make them for you. Do you wish to continue?"
+            <<if _ordination_vow is 'Robin'>>Robin reads the line slowly, then gives a quiet, clear answer. "I do."<<else>><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>Sydney kneels before answering, eyes lifted towards the angel.<<elseif _sydneyStatus.includes('corrupt')>>Sydney reads the whole line, including the words near the binding. Then <<nnpc_he 'Sydney'>> answers.<<else>>Sydney places a hand beside the open page and answers in <<nnpc_his 'Sydney'>> own voice.<</if>><</if>>
+          <</if>>
+        <<option 'CN'>>
+          <<if _ordination_vow is 'Player'>>
+            约旦把名册转向你。“你愿意继续守持已经立下的誓言，倾听来访者，帮助保护神殿与前来寻求照料的人吗？”
+            <<if _ordination_record.choices['answer:Player'] is 'questions'>>“你往后仍可以有疑问，”<<he>>补上一句，“带着它来问。别拿一句现成的话，堵住别人的嘴。”<</if>>
+          <<else>>
+            约旦叫<<print maplebirch.auto(_ordination_vow)>>上前，将名册托在<<nnpc_him _ordination_vow>>面前。“这是你自己的誓言。身旁的人，不能替你立下。你愿意继续吗？”
+            <<if _ordination_vow is 'Robin'>>罗宾慢慢读完那一行，随后轻声、清楚地回答：“我愿意。”<<else>><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>悉尼跪下，仰望天使，才给出答复。<<elseif _sydneyStatus.includes('corrupt')>>悉尼把整行都读完了，包括靠近书脊的几个字。随后，<<nnpc_he 'Sydney'>>开口作答。<<else>>悉尼把手放在摊开的纸页旁，用自己的声音给出了回答。<</if>><</if>>
+          <</if>>
+      <</language>><br><br>
+      <<temple-ordination-action `[_ordination_vow is 'Player' ? 'Take the vow and sign your name (0:10)' : 'Stay while ' + maplebirch.auto(_ordination_vow) + ' takes the vow (0:10)', _ordination_vow is 'Player' ? '宣誓，在名册上签字 (0:10)' : '陪' + maplebirch.auto(_ordination_vow) + '宣誓签字 (0:10)']` 10 'vows'>>
+        <<temple-ordination-award _ordination_vow>>
+      <</temple-ordination-action>>
+      <<if _ordination_vow is 'Player' and $temple_rank is 'monk' and $TempleDuties.ordained lt 0>>
+        <<gglove 'Jordan'>><<ggggrace>><<lltrauma>><<lllstress>>
+      <<elseif _ordination_vow is 'Robin' and maplebirch.get('RobinTemple')?.rank is 'monk'>>
+        <<ggglove 'Robin'>><<lrtrauma>><<lllstress>><<llpain>>
+      <<elseif _ordination_vow is 'Sydney' and $sydney.rank is 'monk'>>
+        <<ggglove 'Sydney'>><<if _sydneyStatus.includes('corrupt')>><<gglust 'Sydney'>><<garousal>><<else>><<ggspurity>><<lllstress>><</if>>
+      <</if>><br>
+    <</if>>
+  <</capture>>
+<</if>>
+
+:: Revelation Temple Ordination Aftercare
+<<language>>
+  <<option 'EN'>>
+    The last candle is replaced before the closing prayer. Jordan leads it from beside you. Your hands are empty now, and the ache in them has begun to fade. Outside the door, somebody drops a book and apologises. A few people in the chapel lift their heads at the sound.
+    <br><br>
+    "You will have work to do," Jordan says. "First, eat. Let the attendant look at those hands before you leave." <<He>> shuts the book only after each newly appointed priest has checked their name.
+    <<if _ordination_record.party.some(name => _ordination_record.choices['answer:' + name] is 'wait')>><br><br>There is space beside the unfinished entries. "Your appointment will wait," Jordan says to those who chose to wait. "Speak to me before your next attempt."<</if>>
+  <<option 'CN'>>
+    最后的祷告开始前，侍从换过一支蜡烛。约旦在你身旁领诵。双手已经空了，酸痛也开始慢慢退去。门外有人掉了一本书，低声道歉。祈祷室里，有几个人循声抬起头。
+    <br><br>
+    “往后，你会有事要做，”约旦说，“先吃点东西。离开前，也让侍从看看你的手。”等新任司祭各自确认过名字，<<he>>才合上名册。
+    <<if _ordination_record.party.some(name => _ordination_record.choices['answer:' + name] is 'wait')>><br><br>没有写完的几行旁边，仍留着空处。约旦对暂缓的人说：“任命暂且搁下。下次接受考验前，先来见我。”<</if>>
+<</language>><br><br>
+<<temple-ordination-action `['Finish the prayer and have your hands tended (0:20)', '完成祷告，让侍从照料双手 (0:20)']` 20 'complete'>>
+  <<pain -5>><<stress -10>>
+<</temple-ordination-action>><<lpain>><<lstress>><br>
+
+:: Revelation Temple Ordination Stop
+<<set $outside to 0, $location to 'temple'>><<temple_effects>><<effects>>
+<<temple-ordination-check>>
+<<if !_ordinationSafe>>
+  <<temple-duty-hall-back>><<exit>>
+<</if>>
+<<set _ordination_stop to $TempleDuties.ordination>>
+<<npc Jordan>><<person1>>
+<<language>>
+  <<option 'EN'>>
+    Jordan gives the attendant a brief nod. The censer is lowered onto its stand, and the door is opened. "Rest first," <<he>> says. "We can continue from here another day. Tell me if you would rather begin again."
+    <br><br>
+    The accounts and any completed appointments remain in the book. Jordan places a marker between the pages that have not been signed.
+  <<option 'CN'>>
+    约旦朝侍从点了下头。香炉放回石台，门也打开了。“先歇歇。”<<he>>说。“改日可以从这里继续。若想重新开始，也告诉我。”
+    <br><br>
+    说过的经历、已经完成的任命，仍记在簿子上。约旦将布条夹进尚未签字的纸页之间。
+<</language>><br><br>
+<<getouticon>>
+<<capture _ordination_stop>>
+  <<lanLink ['Leave and continue another day', '先离开，改日继续']>>
+    <<temple-ordination-check>>
+    <<if _ordinationSafe and $TempleDuties.ordination is _ordination_stop>>
+      <<goto 'Temple'>>
+    <</if>>
+  <</lanLink>><br>
+  <<lanLink ['End this attempt', '结束本次考验']>>
+    <<temple-ordination-check>>
+    <<if _ordinationSafe and $TempleDuties.ordination is _ordination_stop>>
+      <<set $TempleDuties.ordination to null, $TempleDuties.party to []>>
+      <<goto 'Temple'>>
+    <</if>>
+  <</lanLink>><br>
+<</capture>>
+<<lanLink ['Stay and continue', '留下继续']>>
+  <<temple-ordination-check>>
+  <<if _ordinationSafe>>
+    <<set setup.temple_ordination_internal to $TempleDuties.ordination.start>>
+    <<goto 'Revelation Temple Ordination'>>
+  <</if>>
+<</lanLink>><br>
+
+:: Revelation Temple Ordination Complete
+<<language>>
+  <<option 'EN'>>
+    The attendant unwinds the cloth from your hands. The outer door is open again. The chapel has grown dark around the candles, but the hall is full of familiar sounds.
+    <<if _ordination_record.completed.includes('Player')>><br><br>Jordan turns the signed entry towards you one last time. "Welcome, <<temple_title>>." <<He>> touches the edge of the page. "You know where to find me. Don't wait until you're too tired to ask."<</if>>
+    <<if _ordination_record.completed.includes('Robin')>><br><br>Robin reads the new entry slowly. <<if C.npc.Robin.trauma gte 40>>"I was sure I'd have to stop." Jordan closes the book. "You said when you needed help."<<elseif C.npc.Robin.dom gte 60>>"I suppose I'll have to learn where everything is kept." Jordan glances towards the full shelves. "A good place to start."<<else>>"I'll still have questions." "So will I," Jordan says.<</if>> <<if isLoveInterest('Robin')>>Robin reaches for your hand after leaving the altar.<<else>>Robin waits beside the door so you can leave together.<</if>><</if>>
+    <<if _ordination_record.completed.includes('Sydney')>><br><br><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>Sydney remains facing the angel for a final, silent prayer. When <<nnpc_he 'Sydney'>> rises, <<nnpc_his 'Sydney'>> smile is small and bright.<<elseif _sydneyStatus.includes('corrupt')>>Sydney looks back at the book. "Will you show me that older response sometime?" Jordan nods. "After you've eaten."<<else>>"Priest Sydney," <<nnpc_he 'Sydney'>> says quietly, then looks towards Jordan to make sure it is right. Jordan smiles.<</if>> <<if isLoveInterest('Sydney')>>Sydney catches your sleeve as you reach the door, staying close.<<else>>Sydney takes an extra piece of bread for the initiate still resting on the bench.<</if>><</if>>
+    <<if !_ordination_record.completed.length>><br><br>There are no new appointments in the book today. Jordan puts it away without crossing out the names. "Rest first. We can speak again."<</if>>
+    <br><br>
+    The initiate is being helped into the hall. There will be another service, more visitors and more work. Before you leave, the attendants find you a place beside the food.
+  <<option 'CN'>>
+    侍从解开你手上裹着的布。外门重新开着。烛光外的祈祷室暗了下来，大厅里却仍传来熟悉的声音。
+    <<if _ordination_record.completed.includes('Player')>><br><br>约旦最后一次把签过字的那一行转向你。“欢迎你，<<temple_title>>。”<<He>>碰了碰纸页边缘。“你知道去哪里找我。别等到累得开不了口，才想起来问。”<</if>>
+    <<if _ordination_record.completed.includes('Robin')>><br><br>罗宾慢慢读完新写下的一行。<<if C.npc.Robin.trauma gte 40>>“我还以为，自己肯定得停下。”约旦合上名册。“需要帮忙的时候，你开口了。”<<elseif C.npc.Robin.dom gte 60>>“看来，我得记清东西都放在哪里了。”约旦看向摆满东西的架子。“可以先从这件事做起。”<<else>>“我还是会有很多问题。”“我也会有。”约旦说。<</if>><<if isLoveInterest('Robin')>>离开祭坛后，罗宾伸手握住了你。<<else>>罗宾在门边等着，准备与你一起出去。<</if>><</if>>
+    <<if _ordination_record.completed.includes('Sydney')>><br><br><<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>悉尼仍面向天使，默默完成最后一次祷告。起身时，<<nnpc_his 'Sydney'>>笑容轻浅而明亮。<<elseif _sydneyStatus.includes('corrupt')>>悉尼回头看了眼祷书。“那段旧答词，以后能让我看看吗？”约旦点头。“先吃过东西。”<<else>>“悉尼司祭。”<<nnpc_he 'Sydney'>>轻声念着，又望向约旦，想确认自己没有念错。约旦笑了笑。<</if>><<if isLoveInterest('Sydney')>>走到门口时，悉尼轻轻拉住你的袖口，靠了过来。<<else>>悉尼多拿了一块面包，准备留给仍在长椅上歇着的见习教徒。<</if>><</if>>
+    <<if !_ordination_record.completed.length>><br><br>今天，名册上没有新任命。约旦收起它，没有划掉留下的名字。“先休息。我们还可以再谈。”<</if>>
+    <br><br>
+    见习教徒正被扶到大厅里。往后还会有弥撒、访客和职务。离开之前，侍从先在食物旁给你留了一个位置。
+<</language>><br><br>
+<<getouticon>>
+<<lanLink ['Return to the hall', '返回大厅'] 'Temple'>>
+  <<set $TempleDuties.ordination to null>>
+<</lanLink>><br>

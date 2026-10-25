@@ -66,11 +66,11 @@
 <<language>>
   <<option 'EN'>>
     The bishop meets you beside the shadowed doorway. "A priest now," <<he>> says, smiling. "Jordan has good reason to trust you. And you have not forgotten what I told you about that house."
-    You recall the hacked metal at the top of the monstrance, and Kylar asking why <<his>> parents had shown it to you. You unfold the sketch you made of it.
+    You recall the hacked metal at the top of the monstrance, and Kylar asking why <<nnpc_his 'Kylar'>> parents had shown it to you. You sketch what you can remember.
     "The old records room has a drawing of it before the damage," <<he>> says. "Compare the two. Ask the child what you may write down. People tell those closest to them things they would never tell us." <<His>> smile lingers. <<He>> taps the index. "Bring back the description and your comparison. The records office will pay sixty pounds for the copy."
   <<option 'CN'>>
     主教在阴影中的门边接待你。“如今是司祭了，”<<he>>笑着说，“约旦有理由相信你。你也没有忘记我说过那所宅邸的事。”
-    你想起圣体匣顶端被砍坏的金属，以及凯拉尔问父母为什么让你们看见它。你摊开那时画下的草图。
+    你想起圣体匣顶端被砍坏的金属，以及凯拉尔问父母为什么让你们看见它。你凭着记忆，画下大致的模样。
     “旧资料室里有它受损前的图样，”<<he>>说，“把两者比一比，再问问那孩子，哪些可以写下来。有些话，亲近的人才能问得到。”<<He>>脸上仍带着笑，手指点着索引。“把描述和比对结果带回来。资料室会付六十英镑，作为抄录的报酬。”
 <</language>>
 <br><br>
@@ -146,7 +146,7 @@
     <<set $TempleDuties.manor to 'copied'>>
     <<npcincr Kylar love 1>>
   <</if>>
-<</temple-duty-action>>
+<</temple-duty-action>><<glove 'Kylar'>>
 <br>
 <<refuseicon>>
 <<temple-duty-action `['Put the notebook away and end the investigation (0:05)', '收起笔记，结束这项调查 (0:05)']` 5 'Revelation Temple Kylar Answer'>>

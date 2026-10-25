@@ -7,6 +7,20 @@
   <</silently>>
 <</widget>>
 
+<!-- 原版普通触手动作不设置结束标记；调用方另行保留强制事件优先级与实际撤离过程。 -->
+<<widget 'temple-tentacle-outcome'>>
+  <<silently>>
+    <<set _templeTentacleOutcome to 'active'>>
+    <<if $combat is 1 and $enemytype is 'tentacles' and $tentacles?.max gt 0>>
+      <<if $stress gte $stressmax or $possessed or ($pain gte 100 and $willpowerpain is 0) or _combatend>>
+        <<set _templeTentacleOutcome to 'withdrawn'>>
+      <<elseif $tentacles.active lte $tentacles.max / 2>>
+        <<set _templeTentacleOutcome to 'resolved'>>
+      <</if>>
+    <</if>>
+  <</silently>>
+<</widget>>
+
 <!-- 使用实际目标的物种，机器与伪装成人形的普通人不由 enemytype 推断。 -->
 <<widget 'temple-watch-target'>>
   <<silently>>
@@ -16,7 +30,7 @@
     <<if _watchReady and _watchFoe>>
       <<if typeof _watchFoe.tentaclehealth is 'number'>>
         <<set _watchTarget to ['tentacle', 'vine', 'root', 'shoot', 'tendril'].includes(_watchFoe.type) and !_watchFoe.fullDesc?.includes('metal')>>
-      <<elseif $enemytype is 'struggle' and $struggle?.enemy?.includes(_watchFoe)>>
+      <<elseif $enemytype is 'struggle' and Object.values($struggle.enemy).includes(_watchFoe)>>
         <<set _watchTarget to true>>
       <<elseif ['man', 'beast', 'plant'].includes($enemytype)>>
         <<set $_watchSpecies to String(_watchFoe.type ?? '').replace(/(boy|girl)$/, '')>>

@@ -92,11 +92,22 @@
 
 <<widget 'temple-duty-link'>>
   <<temple-duty-check>>
+  <<if _revelationTempleLinks is 'pray'>><<temple-ordination-link>><</if>>
   <<if _revelationTempleLinks is 'pray' and _dutyOffice>>
     <<icon 'temple/duties-book.png'>>
     <<lanLink ['Check the temple duties book', '查看神殿职务簿'] 'Revelation Temple Office'>>
     <</lanLink>>
     <br>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-ordination-link'>>
+  <<if $TempleDuties.ordination and !['complete', 'withdrawn'].includes($TempleDuties.ordination.stage)>>
+    <<temple-ordination-check>>
+    <<if _ordinationSafe>>
+      <<templeicon 'altar'>>
+      <<lanLink ['Return to the appointment ceremony', '回到受职仪式'] 'Revelation Temple Ordination'>><</lanLink>><br>
+    <</if>>
   <</if>>
 <</widget>>
 
@@ -183,7 +194,8 @@
     <</if>>
     <<for _retryId range ['echo', 'roots', 'crate', 'ritual']>>
       <<if $TempleDuties.reports[_retryId] and !$TempleDuties.case
-          and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or (_retryId isnot 'ritual' and $temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7))>>
+          and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or (_retryId isnot 'ritual' and $temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7)
+            or _retryId is 'ritual' and Object.values($TempleDuties.candidates).some(candidate => candidate.agreed and candidate.trial_day lt 0))>>
         <<capture _retryId>>
           <<socialiseicon>>
           <<temple-duty-action `['Accept a return inspection (0:05)', '接下回访检查 (0:05)']` 5 'Revelation Temple Case Accepted'>>
@@ -257,6 +269,7 @@
 
 :: Revelation Temple Office
 <<temple-duty-place>>
+<<temple-ordination-link>>
 <<if !_dutyOffice>>
   <<if !_dutyAccess>>
     <<lanSwitch 'The duties book is closed to you for now. There is still work to finish in the quarters upstairs.' '你暂时还不能接下这里的职务。楼上的宿舍还有活没干完。'>>

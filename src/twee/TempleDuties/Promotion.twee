@@ -18,11 +18,11 @@
       "The storehouse books are drying," Jordan says. "The monk told me how you did. There is another request from the docks. This time, I would like you to decide what needs doing. You can ask someone to help."
     <<elseif !_dutyRitual>>
       <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('evacuated')>>
-        "The visitor is being looked after," Jordan says. "The monk has your sketch. Rest before you go back with them."
+        "The person you brought back is being looked after," Jordan says. "The monk has your sketch. Rest before you go back with them."
       <<elseif $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('help')>>
         "Thank you for telling me what you saw. The monk is waiting at the shore," Jordan says. "You won't be going alone."
       <<else>>
-        Jordan places a note from the lake beside your warehouse report. "Someone is inviting people into the woods to pray in our name. One visitor has not come back." <<He>> checks that you have read the place described. "If you go that way, please ask whether anyone has seen them. If something is wrong, come and tell me."
+        Jordan places the worker's invitation and sketch beside your warehouse report. "The person you helped at the docks is looking for an old friend from the orphanage. They went into the woods to pray, and haven't come back." <<He>> points to the place on the sketch. "Ask what happened. If there is trouble, tell me."
       <</if>>
     <<else>>
       Jordan opens your account of the lakeside rescue beside the warehouse report. "The person you brought back has somewhere to rest. I'll speak with them when they're ready." <<He>> puts a finger on the appointment book. "I'd like to hear how you decided what to do. We should speak about your duties here, too."
@@ -37,11 +37,11 @@
       “仓房的账簿已经摊开晾着了，”约旦说，“修士跟我讲了你的表现。码头还有一件求助。这次，我想让你自己判断该做什么。可以找人帮忙。”
     <<elseif !_dutyRitual>>
       <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('evacuated')>>
-        “访客已经有人照料了。”约旦说。“修士拿着你的草图。等你休息好了，再一起回去。”
+        “获救的人已经有人照料了。”约旦说。“修士拿着你的草图。等你休息好了，再一起回去。”
       <<elseif $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('help')>>
         “谢谢你回来告诉我。修士会在岸边等候，”约旦说，“这次有人陪你。”
       <<else>>
-        约旦把湖边送来的便条放在仓库报告旁。“有人借我们的名义，邀请路人进林子祈祷。一名访客进去后，一直没有回来。”<<He>>确认你看清了便条上描述的地点。“要是你去那边，请问问有没有人见过对方。有哪里不对，就回来告诉我。”
+        约旦把工人带来的请帖与草图放在仓库报告旁。“码头上获救的人，正在找孤儿院的一位旧友。对方进林子祈祷后，一直没有回来。”<<He>>指向草图上的位置。“去问问发生了什么。碰上麻烦，就回来告诉我。”
       <</if>>
     <<else>>
       约旦把湖边救援的经过翻开，放在仓库报告旁。“你带回来的人已经有地方休息了。等对方愿意开口，我会去听。”<<He>>用手指按住任职名册。“我想听听，你当时怎样决定该做什么。还有往后在这里的职责，我们也该谈谈。”
@@ -137,6 +137,11 @@
 
 :: Revelation Temple Oath
 <<temple-duty-place>>
+<<if $TempleDuties.ordination and $TempleDuties.ordination.stage isnot 'complete'>>
+  <<lanSwitch 'Jordan has kept your place in the ordination. The book is still open at the unfinished prayer.' '约旦留着你在授职考验中的位置。祷书仍摊在尚未完成的那一段。'>><br><br>
+  <<templeicon 'altar'>><<lanLink ['Continue the ordination', '继续授职考验'] 'Revelation Temple Ordination'>><</lanLink>><br><br>
+  <<temple-duty-hall-back>><<exit>>
+<</if>>
 <<npc Jordan>>
 <<person1>>
 <<if !_dutyReady or !$TempleDuties.review or !['care', 'obedience'].includes($TempleDuties.oath)>>
@@ -161,12 +166,11 @@
 <</language>>
 <br><br>
 <<templeicon 'altar'>>
-<<temple-duty-action `['Take vows and accept appointment (0:20)', '宣誓接受司祭任命 (0:20)']` 20 'Revelation Temple Ordained'>>
-  <<temple-duty-check>>
-  <<if _dutyReady and $TempleDuties.review and ['care', 'obedience'].includes($TempleDuties.oath)>>
-    <<temple-ordain-player>>
-  <</if>>
-<</temple-duty-action>>
+<<lanSwitch 'Allow about six hours for the ordination. You can ask to stop if you cannot continue.' '授职考验需要留出约六小时。无法继续时，可以请求停下。'>><br>
+<<lanLink ['Prepare for ordination', '准备接受授职考验']>>
+  <<temple-ordination-start `['Player']`>>
+  <<if $TempleDuties.ordination>><<goto 'Revelation Temple Ordination'>><</if>>
+<</lanLink>>
 <br>
 <<templeicon 'altar'>>
 <<lanLink ['Invite companion to ceremony', '邀请同伴共赴任命仪式'] 'Revelation Temple Shared Oath'>>
@@ -178,43 +182,7 @@
 <</lanLink>>
 <br>
 
-:: Revelation Temple Ordained
-<<temple-duty-place>>
-<<npc Jordan>>
-<<person1>>
-<<if $TempleDuties.ordained lt 0 or $temple_rank isnot 'priest'>>
-  <<temple-duty-hall-back>>
-  <<exit>>
-<</if>>
-<<language>>
-  <<option 'EN'>>
-    <<temple-ordination-answer>> Jordan bows <<his>> head, and the people nearby fall quiet for the prayer.
-    <<if maplebirch.get('TempleChoir') and $TempleChoir.joined and $TempleChoir.practices gt 0>>You recognise the response from choir practice. This time, the others wait for you to begin.<<else>>A nun beside the altar quietly gives you the first line of the response.<</if>>
-    <br><br>
-    Jordan writes your name in the book and turns it for you to sign. "Welcome, <<temple_title>>." <<He>> smiles. "You'll still find me in the same place if you need anything."
-    <br><br>
-    In the cloister, a monk is showing a new initiate how to hold the baton. Jordan watches a moment before looking back at you. "When you've rested, perhaps you could help with that." The sounds of the temple carry on around you.
-  <<option 'CN'>>
-    <<temple-ordination-answer>>约旦低下头，周围的人安静下来，一同祈祷。
-    <<if maplebirch.get('TempleChoir') and $TempleChoir.joined and $TempleChoir.practices gt 0>>答词是你在唱诗班排练过的。这一次，其他人等着你先开口。<<else>>祭坛旁的一名修女轻声提醒了你答词的开头。<</if>>
-    <br><br>
-    约旦在名册上写下你的名字，转过来让你签字。“欢迎你，<<temple_title>>。”<<He>>笑了笑。“有事情，还是到原来的地方找我。”
-    <br><br>
-    回廊里，一名修士正教新来的见习教徒怎样握住长棍。约旦看了一会儿，回头望向你。“休息好了，或许你也能去帮帮忙。”神殿里熟悉的声音仍在四周继续。
-<</language>>
-<br><br>
-<<temple-duty-hall-back>>
-
 :: Temple Duties Review Widgets [widget]
-<<widget 'temple-ordination-answer'>>
-  <<language>>
-    <<option 'EN'>>
-      <<if $submissive gte 1150>>You nod, then find your voice. "I will."<<elseif $submissive lte 850>>You meet Jordan's eyes. "I will. And I'll ask for help when I need it."<<else>>You give your answer.<</if>>
-    <<option 'CN'>>
-      <<if $submissive gte 1150>>你点点头，随后鼓起勇气开口。“我愿意。”<<elseif $submissive lte 850>>你迎上约旦的目光。“我愿意。需要帮忙时，我也会来找你。”<<else>>你给出了回答。<</if>>
-  <</language>>
-<</widget>>
-
 <<widget 'temple-duty-requirements'>>
   <ul class='journal'>
     <li>
@@ -247,9 +215,9 @@
     </li>
     <li>
       <<if _dutyRitual>>
-        <span class='teal'><<lanSwitch 'You interrupted the prayer held in the temple’s name by the lake, brought the trapped adult to safety and gave a factual report.' '已打断湖边假借神殿名义的祈祷仪式，将受困的成人带到安全处，并如实汇报。'>></span>
+        <span class='teal'><<lanSwitch 'You investigated the prayers held in the temple’s name, brought the captive to safety, cleared the woodland hideout and gave a factual report.' '已追查假借神殿名义的祈祷，将受困者带到安全处，清理林中据点，并如实汇报。'>></span>
       <<else>>
-        <<lanSwitch 'After the warehouse rescue, investigate the prayer held in the temple’s name by the lake. Bring the trapped person to safety and report what happened.' '仓库救援之后，调查湖边假借神殿名义举行的祈祷。把受困的人带到安全处，再回来说明经过。'>>
+        <<lanSwitch 'After the warehouse rescue, investigate the prayers held in the temple’s name by the lake. Bring the captive to safety, follow the evidence to the woodland hideout and report the outcome.' '仓库救援之后，调查湖边假借神殿名义举行的祈祷。将受困者带到安全处，循线处理林中据点，再回来说明经过。'>>
       <</if>>
     </li>
     <<if !$TempleDuties.enrolled>>
@@ -265,7 +233,12 @@
 
 
 <<widget 'temple-ordain-player'>>
-  <<if $temple_rank is 'monk' and _dutyReady>>
+  <<if $temple_rank is 'monk' and $player.virginity.temple is true
+      and $templetest isnot 'failed' and $temple_chastity_timer gt 0
+      and $TempleDuties.ordination?.stage is 'vows'
+      and $TempleDuties.ordination.party.includes('Player')
+      and $TempleDuties.ordination.choices['answer:Player']
+      and $TempleDuties.ordination.choices['answer:Player'] isnot 'wait'>>
     <<set $temple_rank to 'priest'>>
     <<set $TempleDuties.companion_day to -1>>
     <<if $TempleDuties.ordained lt 0>>

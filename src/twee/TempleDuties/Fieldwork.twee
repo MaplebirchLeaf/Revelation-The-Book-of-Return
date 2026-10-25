@@ -92,7 +92,7 @@
     <<if _field_companion and !_field_case.clues.includes('worked:' + _field_name)>>
       <<capture _field_name _field_case>>
         <<socialiseicon>>
-        <<temple-duty-action `[_field_name is 'Robin' ? 'Help Robin secure the rope and bring the worker out (0:10)' : 'Compare the marks with Sydney while the porter braces the boards (0:10)', _field_name is 'Robin' ? '帮罗宾固定绳索，一起接出受困工人 (0:10)' : '与悉尼比对标记，让搬运工撑稳木板 (0:10)']` 10 'Revelation Temple Field Assistance' `_field_name`>>
+        <<temple-duty-action `[_field_name is 'Robin' ? 'Help Robin secure the rope and bring the worker out (0:10)' : 'Compare the marks with Sydney (0:10)', _field_name is 'Robin' ? '帮罗宾固定绳索并一起接出受困工人 (0:10)' : '与悉尼比对标记 (0:10)']` 10 'Revelation Temple Field Assistance' `_field_name`>>
           <<temple-field-companion-check _field_name 0>>
           <<if _field_companion and $TempleDuties.case is _field_case and _field_case.stage is 'field'
               and !_field_case.clues.includes('worked:' + _field_name)>>
@@ -107,26 +107,47 @@
 <</widget>>
 
 <<widget 'temple-field-file'>>
-  <!-- 与报告共用一次结算；只把实际做过的事记给同行者。 -->
-  <<if !_args[0] or _file.result isnot 'resolved' or !['roots', 'crate', 'ritual'].includes(_file.id)>><<exit>><</if>>
-  <<if !_paidVisit>><<set $TempleDuties.note to 'field-' + _file.id>><</if>>
+  <!-- 诚实报告保存各自真正做过的事，准备标记不等于完成救援。 -->
+  <<if !_args[0] or !['roots', 'crate', 'ritual'].includes(_file.id)>><<exit>><</if>>
+  <<if _file.result is 'resolved' and !_paidVisit>><<set $TempleDuties.note to 'field-' + _file.id>><</if>>
   <<if ['crate', 'ritual'].includes(_file.id)>>
-    <<if $TempleDuties.trial_day lt 0>>
-      <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
-      <<run maplebirch.get('Psyche')?.change(60, -200)>>
-    <<else>>
-      <<run maplebirch.get('Psyche')?.rest(10, -150)>>
+    <<if _file.result is 'resolved'>>
+      <<if $TempleDuties.trial_day lt 0>>
+        <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
+        <<run maplebirch.get('Psyche')?.change(60, -200)>>
+      <<else>>
+        <<run maplebirch.get('Psyche')?.rest(10, -150)>>
+      <</if>>
     <</if>>
     <<for _field_name range ['Robin', 'Sydney']>>
-      <<if _file.clues.includesAll('party:' + _field_name, 'worked:' + _field_name)>>
-        <<if $TempleDuties.candidates[_field_name].trial_day lt 0>>
-          <<set $TempleDuties.candidates[_field_name].trial_day to Math.floor(Time.days)>>
+      <<set _field_candidate to $TempleDuties.candidates[_field_name]>>
+      <<set _field_candidate.deeds to _field_candidate.deeds ?? []>>
+      <<set _field_deeds to _file.clues.filter(clue => clue.startsWith('deed:' + _field_name + ':')).map(clue => clue.split(':')[2])>>
+      <<if _file.id is 'crate' and _file.clues.includesAll('party:' + _field_name, 'worked:' + _field_name)>>
+        <<run _field_deeds.pushUnique(_field_name is 'Robin' ? 'rescue' : 'evidence')>>
+      <</if>>
+      <<for _field_deed range _field_deeds>>
+        <<if ['rescue', 'evidence', 'ward'].includes(_field_deed)>><<run _field_candidate.deeds.pushUnique(_field_deed)>><</if>>
+      <</for>>
+      <<if _file.result is 'resolved' and _field_deeds.length>>
+        <<if _field_candidate.trial_day lt 0>>
+          <<set _field_candidate.trial_day to Math.floor(Time.days)>>
           <<if _field_name is 'Robin'>><<npcincr Robin trauma 2>><</if>>
         <</if>>
-        <<if !_paidVisit>><<set $TempleDuties.note += '-' + _field_name>><</if>>
+        <<if !_paidVisit and _field_deeds.length>><<set $TempleDuties.note += '-' + _field_name>><</if>>
       <</if>>
     <</for>>
   <</if>>
+<</widget>>
+
+<<widget 'temple-personal-deeds'>>
+  <<for _personal_deed range $TempleDuties.candidates[_args[0]]?.deeds ?? []>>
+    <<switch _personal_deed>>
+      <<case 'rescue'>><<lanSwitch 'Brought a person in danger to safety.' '将受困的人接到安全处。'>><br>
+      <<case 'evidence'>><<lanSwitch 'Brought back the records needed for the investigation.' '带回调查所需的关键记录。'>><br>
+      <<case 'ward'>><<lanSwitch 'Disrupted the working of a dangerous ritual.' '破坏了危险仪式的关键布置。'>><br>
+    <</switch>>
+  <</for>>
 <</widget>>
 
 <<widget 'temple-field-debrief'>>

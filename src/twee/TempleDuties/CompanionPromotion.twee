@@ -95,7 +95,7 @@
         and (_dutyReady and $TempleDuties.review and ['care', 'obedience'].includes($TempleDuties.oath)
     or $temple_rank is 'priest' and $temple_chastity_timer gt 0 and $player.virginity.temple is true)>>
   <<for _ordinand range $TempleDuties.party>>
-    <<temple-candidate-check _ordinand 25>>
+    <<temple-candidate-check _ordinand `340 + 20 * ($TempleDuties.party.length + ($temple_rank is 'monk' ? 1 : 0))`>>
     <<if !_candidateReady>>
       <<set _ordinationReady to false>>
     <</if>>
@@ -103,48 +103,16 @@
   <<if _ordinationReady>>
     <br>
     <<templeicon 'altar'>>
-    <<temple-duty-action `['Confirm the vows and complete the appointment ceremony (0:25)', '确认誓言，完成任命仪式 (0:25)']` 25 'Revelation Temple Shared Ordained' `$TempleDuties.party`>>
-      <<set _ordinationReady to _dutyOffice and (_dutyReady and $TempleDuties.review and ['care', 'obedience'].includes($TempleDuties.oath)
-        or $temple_rank is 'priest' and $temple_chastity_timer gt 0 and $player.virginity.temple is true)>>
-      <<for _ordinand range $TempleDuties.party>>
-        <<temple-candidate-check _ordinand 0>>
-        <<if !_candidateReady>>
-          <<set _ordinationReady to false>>
-        <</if>>
-      <</for>>
-      <<if _ordinationReady and $TempleDuties.party.length gt 0>>
-        <<set $TempleDuties.ceremony to clone($TempleDuties.party)>>
-        <<if $temple_rank is 'monk'>>
-          <<run $TempleDuties.ceremony.unshift('Player')>>
-          <<temple-ordain-player>>
-        <</if>>
-        <<for _ordinand range $TempleDuties.party>>
-          <<if _ordinand is 'Robin'>>
-            <<set $RobinTemple.ordination_day to Math.floor(Time.days)>>
-          <<else>>
-            <<set $sydney.rank to 'priest'>>
-            <<run $sydneySeen.pushUnique('priest')>>
-          <</if>>
-          <<npcincr `_ordinand` love 2>>
-          <!-- 授职收益只在身份实际变化时发放，结果页重读不再结算。 -->
-          <<if _ordinand is 'Robin'>>
-            <<npcincr Robin love 10>><<npcincr Robin trauma -10>><<stress -30>><<pain -20>>
-          <<else>>
-            <<run statusCheck('Sydney')>>
-            <<if _sydneyStatus.includes('corrupt')>>
-              <<npcincr Sydney love 10>><<npcincr Sydney lust 5>><<arousal 20>>
-            <<else>>
-              <<npcincr Sydney love 15>><<npcincr Sydney purity 5>><<stress -30>>
-            <</if>>
-          <</if>>
-        <</for>>
-        <<set $TempleDuties.party to []>>
-        <<set $TempleDuties.companion_day to -1>>
-      <</if>>
-    <</temple-duty-action>>
+    <<lanSwitch 'Allow six to seven hours together. Jordan has checked that no school, service or other duty is due during that time.' '请一起留出六至七小时。约旦已经核对过，这段时间不会赶上上课、弥撒或别的职务。'>><br>
+    <<lanLink ['Prepare for ordination together', '一起准备接受授职考验']>>
+      <<set _ordination_party to clone($TempleDuties.party)>>
+      <<if $temple_rank is 'monk'>><<run _ordination_party.unshift('Player')>><</if>>
+      <<temple-ordination-start _ordination_party>>
+      <<if $TempleDuties.ordination>><<goto 'Revelation Temple Ordination'>><</if>>
+    <</lanLink>>
     <br>
   <<else>>
-    <span class='lblue'><<lanSwitch 'Invite a companion who has completed the interview and has time to attend the appointment ceremony.' '请先邀请一位已完成面谈、有空参加任命仪式的同伴。'>></span><br>
+    <span class='lblue'><<lanSwitch 'Invite a companion who has completed the interview. Allow six to seven hours before their next duty; the ordination cannot replace school or mass.' '先邀请已完成面谈的同伴。授职需要六至七小时，应避开上课、弥撒和对方的下一项职务。'>></span><br>
   <</if>>
 <</widget>>
 
@@ -234,7 +202,7 @@
             <</temple-duty-action>>
             <br>
           <<elseif _candidate.lessons.includesAll('care', 'wards') and _candidate.trial_day lt 0 and !_candidate.reviewed>>
-            <span class='lblue'><<lanSwitch 'Invite your companion on the warehouse or lakeside rescue. Ask them to help with the rope or check the markings, then report what they did to Jordan.' '接下仓库或湖边救援时，可以邀请同伴同行。一起处理绳索或核对标记，再向约旦说明同伴实际做过的事。'>></span><br>
+            <span class='lblue'><<lanSwitch 'Invite your companion on the warehouse or woodland assignment. Give them the chance to help with a rescue, bring back evidence or break a dangerous ritual arrangement, then tell Jordan what they actually did.' '接下仓库或林中的委托时，可以邀请同伴同行。遇到救助、取证或处理危险仪式布置的事，让对方实际参与，再向约旦说明各自做过什么。'>></span><br>
           <<elseif _candidate.reviewed>>
             <span class='green'><<lanSwitch 'Your companion has passed Jordan\'s appointment interview. When you are ready, go to the hall altar for the appointment ceremony.' '同伴已通过约旦的任职面谈。准备好后，到大厅祭坛前参加任命仪式。'>></span><br>
           <</if>>
@@ -403,19 +371,19 @@
   <<option 'EN'>>
     Jordan asks you to let your companion answer. "What did you do when you went out to help?"
     <<if $TempleDuties.speaker is 'Robin'>>
-      Robin tells Jordan where you put the rope and how you checked the way back together. <<if C.npc.Robin.trauma gte 40>>"I was glad we could still see the way out."<<elseif C.npc.Robin.dom gte 60>>"Someone had to keep that way clear. I could do that much."<<else>>"We checked it together. I didn't want either of us getting lost."<</if>> Jordan listens, then asks Robin if <<nnpc_he 'Robin'>> wishes to continue serving here.
+      <<if _candidate.deeds?.includes('rescue')>>Robin describes helping the rescued person out and making sure somebody stayed with them.<<elseif _candidate.deeds?.includes('ward')>>Robin describes the dangerous arrangement you found and the part <<nnpc_he 'Robin'>> helped dismantle.<<elseif _candidate.deeds?.includes('evidence')>>Robin tells Jordan about the records <<nnpc_he 'Robin'>> brought back.<<else>>Robin gives <<nnpc_his 'Robin'>> own account of the duties <<nnpc_he 'Robin'>> has carried out.<</if>> <<if C.npc.Robin.trauma gte 40>>"I was glad there was something I could do."<<elseif C.npc.Robin.dom gte 60>>"Somebody had to do it. I could do that much."<<else>>"I didn't want to leave it all to somebody else."<</if>> Jordan listens, then asks Robin if <<nnpc_he 'Robin'>> wishes to continue serving here.
     <<else>>
       <<run statusCheck('Sydney')>>
-      Sydney describes what you checked together and what did not match. <<if _sydneyStatus.includes('pure')>>"It wasn't right. I wanted you to know."<<elseif _sydneyStatus.includes('corrupt')>>"I wasn't going to take their word for it."<<else>>"We both noticed it. I thought we should tell you."<</if>> Jordan asks a few questions, and Sydney answers in <<nnpc_his 'Sydney'>> own words.
+      <<if _candidate.deeds?.includes('evidence')>>Sydney opens the records <<nnpc_he 'Sydney'>> brought back and points out what did not match.<<elseif _candidate.deeds?.includes('ward')>>Sydney describes the ritual arrangement <<nnpc_he 'Sydney'>> helped break, following its lines on a scrap of paper.<<elseif _candidate.deeds?.includes('rescue')>>Sydney tells Jordan how the rescued person reached safety and who stayed with them.<<else>>Sydney gives <<nnpc_his 'Sydney'>> own account of the duties <<nnpc_he 'Sydney'>> has carried out.<</if>> <<if _sydneyStatus.includes('pure')>>"It wasn't right. I wanted you to know."<<elseif _sydneyStatus.includes('corrupt')>>"I wasn't going to take their word for it."<<else>>"We both noticed it. I thought we should tell you."<</if>> Jordan asks a few questions, and Sydney answers in <<nnpc_his 'Sydney'>> own words.
     <</if>>
     When the questions turn to keeping the vows, your companion answers without looking to you.
   <<option 'CN'>>
     约旦示意你让同伴自己回答。“出去帮忙时，你做了什么？”
     <<if $TempleDuties.speaker is 'Robin'>>
-      罗宾告诉约旦，你们把绳索放在哪里，又怎样一起核对回去的路。<<if C.npc.Robin.trauma gte 40>>“还能看见出口，我就放心些了。”<<elseif C.npc.Robin.dom gte 60>>“总得有人把那条路留出来。这个我能做。”<<else>>“我们一起看过。我不想让谁走丢。”<</if>>约旦听完，问罗宾是否愿意继续在这里侍奉。
+      <<if _candidate.deeds?.includes('rescue')>>罗宾讲起怎样将获救者接出来，又怎样确认对方有人照料。<<elseif _candidate.deeds?.includes('ward')>>罗宾说起当时危险的布置，以及自己帮忙拆开的那一处。<<elseif _candidate.deeds?.includes('evidence')>>罗宾说明自己带回了哪些记录。<<else>>罗宾亲口说明自己做过的职务。<</if>><<if C.npc.Robin.trauma gte 40>>“知道自己还能做点什么，我就放心些了。”<<elseif C.npc.Robin.dom gte 60>>“总得有人做这件事。这个我能做。”<<else>>“我不想把事情全留给别人。”<</if>>约旦听完，问罗宾是否愿意继续在这里侍奉。
     <<else>>
       <<run statusCheck('Sydney')>>
-      悉尼讲起你们一起核对的东西，以及其中不符的地方。<<if _sydneyStatus.includes('pure')>>“那是不对的。我想，应该让你知道。”<<elseif _sydneyStatus.includes('corrupt')>>“我可不会照单全信。”<<else>>“我们都发现了。我想，应该回来告诉你。”<</if>>约旦又问了几句，悉尼自己一一回答。
+      <<if _candidate.deeds?.includes('evidence')>>悉尼展开带回的记录，指出其中不符的地方。<<elseif _candidate.deeds?.includes('ward')>>悉尼在一小片纸上比画，说明自己怎样帮忙破坏了仪式的布置。<<elseif _candidate.deeds?.includes('rescue')>>悉尼讲起获救者怎样到了安全处，又由谁留下照料。<<else>>悉尼亲口说明自己做过的职务。<</if>><<if _sydneyStatus.includes('pure')>>“那是不对的。我想，应该让你知道。”<<elseif _sydneyStatus.includes('corrupt')>>“我可不会照单全信。”<<else>>“我们都发现了。我想，应该回来告诉你。”<</if>>约旦又问了几句，悉尼自己一一回答。
     <</if>>
     问到是否愿意继续守誓时，同伴没有再看向你，便给出了回答。
 <</language>>
@@ -424,6 +392,11 @@
 
 :: Revelation Temple Shared Oath
 <<temple-duty-place>>
+<<if $TempleDuties.ordination and $TempleDuties.ordination.stage isnot 'complete'>>
+  <<lanSwitch 'Jordan has kept your place in the ordination. The book is still open at the unfinished prayer.' '约旦留着你在授职考验中的位置。祷书仍摊在尚未完成的那一段。'>><br><br>
+  <<templeicon 'altar'>><<lanLink ['Continue the ordination', '继续授职考验'] 'Revelation Temple Ordination'>><</lanLink>><br><br>
+  <<temple-duty-hall-back>><<exit>>
+<</if>>
 <<if !_dutyOffice or !$TempleDuties.enrolled or !($temple_rank is 'priest' or _dutyReady and $TempleDuties.review and ['care', 'obedience'].includes($TempleDuties.oath))>>
   <<temple-duty-hall-back>>
   <<exit>>
@@ -444,47 +417,6 @@
 </div>
 <br>
 <<temple-candidates-back>>
-
-:: Revelation Temple Shared Ordained
-<<temple-duty-place>>
-<<if !$TempleDuties.ceremony.length>>
-  <<temple-duty-hall-back>>
-  <<exit>>
-<</if>>
-<<npc Jordan>>
-<<person1>>
-<<language>>
-  <<option 'EN'>>
-    The hall grows quiet for the prayer. Jordan calls each name and waits for an answer before entering it in the book.
-    <<if $TempleDuties.ceremony.includes('Player')>><<temple-ordination-answer>> You sign beside your name. "Welcome, <<temple_title>>," Jordan says. "You can help one another learn the rest."<</if>>
-    <br><br>
-    <<if $TempleDuties.ceremony.includes('Robin')>>
-      Robin looks at the signed entry twice. "I'll still have questions." "So will I," Jordan says. Robin laughs a little. <<if isLoveInterest('Robin')>><<nnpc_He 'Robin'>> looks across at you, smiling.<</if>>
-    <</if>>
-    <<if $TempleDuties.ceremony.includes('Sydney')>>
-      <<run statusCheck('Sydney')>>
-      <<if _sydneyStatus.includes('pure')>>Sydney gives the final response clearly, eyes fixed on the angel above the altar. <<nnpc_He 'Sydney'>> only looks down when Jordan calls <<nnpc_his 'Sydney'>> name again, smiling.<<elseif _sydneyStatus.includes('corrupt')>>Sydney runs a finger beneath the new entry. "Is there a different robe?" Jordan shakes <<his>> head, amused. "Yours will do." Sydney grins.<<else>>Sydney reads the entry once more before signing. "Priest Sydney," <<nnpc_he 'Sydney'>> says under <<nnpc_his 'Sydney'>> breath, smiling.<</if>>
-      <<if isLoveInterest('Sydney')>>Sydney catches your eye as the book is closed.<</if>>
-    <</if>>
-    <br><br>
-    Someone asks who is taking the next confession. Jordan glances towards the pews. "There will be plenty to do. But have something to eat first."
-  <<option 'CN'>>
-    祈祷时，大厅安静下来。约旦逐一叫到名字，听过回答，才在名册上记下。
-    <<if $TempleDuties.ceremony.includes('Player')>><<temple-ordination-answer>>你在名字旁签下字。“欢迎你，<<temple_title>>，”约旦说，“往后需要学的，还可以互相帮忙。”<</if>>
-    <br><br>
-    <<if $TempleDuties.ceremony.includes('Robin')>>
-      罗宾把签好的那一行看了两遍。“我还是会有很多问题。”“我也会有。”约旦说。罗宾轻轻笑了。<<if isLoveInterest('Robin')>><<nnpc_He 'Robin'>>朝你望过来，脸上仍带着笑。<</if>>
-    <</if>>
-    <<if $TempleDuties.ceremony.includes('Sydney')>>
-      <<run statusCheck('Sydney')>>
-      <<if _sydneyStatus.includes('pure')>>悉尼望着祭坛上方的天使，清晰地念出最后一句答词。直到约旦含笑又叫了一声<<nnpc_his 'Sydney'>>名字，<<nnpc_he 'Sydney'>>才低下头。<<elseif _sydneyStatus.includes('corrupt')>>悉尼的手指沿着新写下的一行字划过。“会换一件袍子吗？”约旦觉得好笑，摇了摇头。“你这件就很好。”悉尼咧嘴笑了。<<else>>悉尼又读了一遍，才签下名字。“悉尼司祭。”<<nnpc_he 'Sydney'>>低声念着，脸上带着笑。<</if>>
-      <<if isLoveInterest('Sydney')>>名册合上时，悉尼与你对视了一眼。<</if>>
-    <</if>>
-    <br><br>
-    有人来问，下一位告解者该由谁接待。约旦看向长椅。“往后还有许多事要做。不过，先去吃点东西吧。”
-<</language>>
-<br><br>
-<<temple-duty-hall-back>>
 
 :: Temple Candidate Return Widgets [widget]
 <<widget 'temple-candidates-back'>>

@@ -46,7 +46,9 @@ export default function DoLX(core: typeof window.maplebirch): void {
         /<<if !Number\.isFinite\(_thedamage\) or _thedamage lt 0>>\s*<<set _thedamage to Math\.max\(0, 2 \* \(Number\.isFinite\(_defiance\) \? _defiance : Number\(_args\[0\]\) \|\| 1\)\)>>\s*<<\/if>>/;
     }
     for (const rule of zone.widgetPassage['Widgets Struggle'] ?? []) {
-      if (rule.to?.includes('<<temple-watch-damage')) rule.srcmatch = /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<set _struggleDefenseResult to "guard">>)/;
+      // 只调整 DoLX 防守分支的锚点，主动清除的独立规则仍匹配原生扣血处。
+      if (rule.to === '<<temple-watch-damage $struggle.enemy[_i] 1>><<set $struggle.enemy[_i].health -= _watchDamage>>')
+        rule.srcmatch = /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<set _struggleDefenseResult to "guard">>)/;
     }
   }
   if (core.get('TempleChoir')) {

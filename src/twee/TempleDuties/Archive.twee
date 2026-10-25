@@ -225,7 +225,7 @@
       <span class='gold'><<printmoney _repairCost>></span><br>
       <<if $TempleDuties.archive[_repair] lt 0>>
         <<icon `_repair is 'roof' ? 'temple/roof-repair.png' : 'temple/dry-shelves.png'`>>
-        <<temple-duty-action `['Pay for the repairs and arrange the work (0:05)', '支付修缮款，安排施工 (0:05)']` 5 'Revelation Temple Task Done'>>
+        <<temple-duty-action `['Pay for the repairs (0:05)', '支付修缮款 (0:05)']` 5 'Revelation Temple Task Done'>>
           <<if $TempleDuties.archive[_repair] lt 0>>
             <<set _repairPaid to false>>
             <<if typeof maplebirch.get('Finance')?.donations?.sponsor is 'function'>>

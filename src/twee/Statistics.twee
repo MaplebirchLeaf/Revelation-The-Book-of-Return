@@ -22,12 +22,25 @@
       <span class='gold'><<lanSwitch 'Temple duties and appointments' '神殿职务与任命'>></span>
       <<lanSwitch 'Completed duty shifts: ' '已完成神殿职务：'>><<print $TempleDuties.duties>><br>
       <<lanSwitch 'Truthfully resolved investigations: ' '已如实完成的调查：'>><<print $TempleDuties.rewards.length>>/4<br>
+      <<if $TempleDuties.case?.id is 'ritual' or $TempleDuties.reports.ritual>>
+        <span @class="$TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved' ? 'green' : 'red'"><<print $TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved' ? '✓ ' : '○ '>><<lanSwitch 'Completed the investigation beyond the shore and reported the findings' '完成湖岸外祷声的调查并如实汇报'>></span><br>
+      <</if>>
       <span @class="$temple_rank is 'priest' ? 'green' : 'red'"><<print $temple_rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Appointed as a priest' '受任神殿司祭'>></span><br>
       <<if $TempleDuties.candidates.Robin.agreed or maplebirch.get('RobinTemple')?.rank is 'priest'>>
         <span @class="maplebirch.get('RobinTemple')?.rank is 'priest' ? 'green' : 'red'"><<print maplebirch.get('RobinTemple')?.rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Robin\'s priest appointment' '罗宾的司祭任命'>></span><br>
       <</if>>
       <<if $TempleDuties.candidates.Sydney.agreed or $sydney?.rank is 'priest'>>
         <span @class="$sydney?.rank is 'priest' ? 'green' : 'red'"><<print $sydney?.rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Sydney\'s priest appointment' '悉尼的司祭任命'>></span><br>
+      <</if>>
+      <<for _stat_ordinand range ['Robin', 'Sydney']>>
+        <<if $TempleDuties.candidates[_stat_ordinand].deeds?.length>>
+          <span class='teal'><<print maplebirch.auto(_stat_ordinand)>><<lanSwitch ' · Fieldwork record' ' · 外勤记录'>></span><br>
+          <<temple-personal-deeds _stat_ordinand>>
+        <</if>>
+      <</for>>
+      <<if $TempleDuties.ordination?.completed.length>>
+        <span class='teal'><<lanSwitch 'Completed the appointment ceremony: ' '已完成本次受职仪式：'>></span>
+        <<print $TempleDuties.ordination.completed.map(name => name is 'Player' ? lanSwitch('You', '你') : maplebirch.auto(name)).join(lanSwitch(', ', '、'))>><br>
       <</if>>
       <span @class="$TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof ? 'green' : 'red'"><<print $TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof ? '✓ ' : '○ '>><<lanSwitch 'Records-room roof and drainage repaired' '资料室屋顶与排水修缮完成'>></span><br>
       <span @class="$TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves ? 'green' : 'red'"><<print $TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves ? '✓ ' : '○ '>><<lanSwitch 'Dry shelving installed' '防潮书架安装完成'>></span><br>

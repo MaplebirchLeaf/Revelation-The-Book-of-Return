@@ -4,7 +4,7 @@
   <<if _dutySafe and $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field'
       and !$foresthunt and Time.hour gte 9 and Time.hour lt 16 and Time.dayState is 'day'>>
     <<foresticon>>
-    <<temple-duty-action `['Follow the path on the visitor’s sketch (0:10)', '沿访客画出的小径入林 (0:10)']` 10 'Revelation Temple Ritual Site'>>
+    <<temple-duty-action `[$TempleDuties.case.clues.includes('den-lead') ? 'Follow the route towards the cult’s hideout (0:10)' : 'Follow the path on the worker’s sketch (0:10)', $TempleDuties.case.clues.includes('den-lead') ? '沿线索前往林中巢穴 (0:10)' : '沿工人画出的小径入林 (0:10)']` 10 `$TempleDuties.case.clues.includes('den-lead') ? 'Revelation Temple Cult Den Approach' : 'Revelation Temple Ritual Site'`>>
       <<if !$TempleDuties.case.clues.includes('departed')>>
         <<for _field_name range ['Robin', 'Sydney']>>
           <<temple-candidate-check _field_name 90>>
@@ -40,7 +40,8 @@
 
 :: Temple Ritual Combat Widgets [widget]
 <<widget 'temple-ritual-fight-start'>>
-  <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field' and !$combat>>
+  <<temple-duty-check>><<temple-den-priority>>
+  <<if !_denForced and _dutySafe and $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field' and !$combat and $TempleDuties.case.clues.includes('route')>>
     <<if !$TempleDuties.case.clues.includes('confronted')>>
       <<stress `currentSkillValue('willpower') gte 500 ? 2 : 4`>>
       <<run maplebirch.get('Psyche')?.change(currentSkillValue('willpower') gte 500 ? -10 : -20, currentSkillValue('willpower') gte 500 ? 75 : 150)>>
@@ -85,24 +86,31 @@
 <</if>>
 
 :: Revelation Temple Ritual Fight
+<<temple-den-priority>>
+<<if _denTickBlocked>><<lanLink ['Continue', '继续'] 'Revelation Temple Ritual Fight'>><</lanLink>><<exit>><</if>>
 <<if $TempleDuties.case?.id isnot 'ritual' or $TempleDuties.case.stage isnot 'combat' or $combat isnot 1 or $enemytype isnot 'man'>>
   <<temple-case-return>><<exit>>
 <</if>>
 <<lanSwitch 'A black-robed adult blocks your way to the stone and lunges for you. <<if $enemyno gte 2>>Another moves in from the side.<</if>> The captive is still bound. You need to get past the people in front of you.' '一名身穿黑袍的成年人挡在通向石台的路上，伸手扑向你。<<if $enemyno gte 2>>另一人从侧面围了过来。<</if>>受困者仍被绑着。你得先摆脱眼前的人。'>><br><br>
 <<effects>><<effectsman>><<man>><<stateman>><<actionsman>>
 <!-- 原版临时结束标记不跨页，只保存实际胜败；人类战不等于已经救人。 -->
+<<temple-den-priority>>
+<<if !_denForced>>
 <<if $enemyarousal gte $enemyarousalmax and $enemyarousalmax gt 0>>
   <<run $TempleDuties.case.clues.pushUnique('cultist-spent')>>
 <<elseif $enemyhealth lte 0>>
   <<run $TempleDuties.case.clues.pushUnique('cultist-defeated')>>
-<<elseif _combatend or ($pain gte 100 and $willpowerpain is 0)>>
+<<elseif _combatend or $stress gte $stressmax or ($pain gte 100 and $willpowerpain is 0 and !$possessed)>>
   <<set $TempleDuties.case.result to 'withdrawn'>>
 <</if>>
+<</if>>
 <span id='next'>
-<<lanLink ['Next', '继续'] `($TempleDuties.case.clues.includes('cultist-defeated') or $TempleDuties.case.clues.includes('cultist-spent') or $TempleDuties.case.result is 'withdrawn') ? 'Revelation Temple Ritual Fight End' : 'Revelation Temple Ritual Fight'`>><</lanLink>>
+<<lanLink ['Next', '继续'] `!_denForced and ($TempleDuties.case.clues.includes('cultist-defeated') or $TempleDuties.case.clues.includes('cultist-spent') or $TempleDuties.case.result is 'withdrawn') ? 'Revelation Temple Ritual Fight End' : 'Revelation Temple Ritual Fight'`>><</lanLink>>
 </span><<nexttext>>
 
 :: Revelation Temple Ritual Fight End
+<<temple-den-priority>>
+<<if _denForced>><<lanLink ['Continue', '继续'] 'Revelation Temple Ritual Fight'>><</lanLink>><<exit>><</if>>
 <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'combat' and $combat is 1 and $enemytype is 'man'
     and !$nextPassage and !$nextPassageCheck and !$eventforced and !$replayScene and !$statFreeze
     and ($TempleDuties.case.clues.includes('cultist-defeated') or $TempleDuties.case.clues.includes('cultist-spent') or $TempleDuties.case.result is 'withdrawn')>>
@@ -164,6 +172,7 @@
 <</temple-duty-action>><br>
 
 :: Revelation Temple Ritual Site
+<<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.clues.includes('den-lead')>><<include 'Revelation Temple Cult Den Approach'>><<exit>><</if>>
 <<temple-ritual-place>>
 <<if !_dutySafe or $TempleDuties.case?.id isnot 'ritual' or $TempleDuties.case.stage isnot 'field'>>
   <<temple-case-return>><<exit>>
@@ -173,20 +182,22 @@
   <<include 'Revelation Temple Ritual Rescue'>><<exit>>
 <</if>>
 <span class='gold bold'><<temple-case-title 'ritual'>></span><br><br>
+<<lanSwitch 'The worker who came to Jordan waits where the shore is still visible. You agree on a call for help before approaching the hollow.' '来找约旦求助的工人留在还能望见湖岸的位置。靠近低地前，你们先约好了求援的呼喊。'>><br><br>
+
 <<if $TempleDuties.case.clues.includes('help')>>
   <<lanSwitch 'The older monk stays beside you, watching the hollow. A hand rests on the whip beneath their habit.' '资深修士留在你身旁，注视着低地，一只手握着袍下的长鞭。'>><br><br>
 <</if>>
 <<if !$TempleDuties.case.clues.includes('interrupt')>>
   <<language>>
     <<option 'EN'>>
-      The path ends at a hollow between the trees. Robed figures stand around a flat stone. Someone lies on it, wrists tied above their head. When they lift their face, you see an adult, awake and trying not to move.
+      The path ends at a hollow between the trees. Robed figures stand around a flat stone. Someone lies on it, wrists tied above their head. When they lift their face, you recognise the features the worker described. This is the missing friend. They are awake and trying not to move.
       <br><br>
       A familiar prayer carries through the trees. At the end of each line, the figures turn towards a crack in the stone. The person on it turns away.
       <<if $TempleDuties.case.clues.includes('marks')>>You recognise the beginning of a prayer, but the words that follow are unfamiliar. The figures pause. Something scrapes beneath the stone.<</if>>
       <<if $TempleDuties.case.clues.includes('loosened')>><br><br>The knots are loose now. The captive has seen you. You point towards the trees and wait for them to nod.<</if>>
       <<if $auriga_scar gt 0>><br><br>Your scar aches. The sound is familiar enough to make you stop breathing for a moment. You swallow and look for the way back.<</if>>
     <<option 'CN'>>
-      小径尽头是树木间的一片低地。身穿长袍的人围着一块平石，有个人躺在上面，双手被绑在头顶。对方抬起脸，你看清那是个成年人，醒着，正竭力不动。
+      小径尽头是树木间的一片低地。身穿长袍的人围着一块平石，有个人躺在上面，双手被绑在头顶。对方抬起脸，长相与工人描述的一样。正是那个失联的朋友。对方醒着，正竭力不动。
       <br><br>
       熟悉的祷文穿过树林。每念完一句，那些人便转向石头上的裂缝。躺在石上的人却把脸别了过去。
       <<if $TempleDuties.case.clues.includes('marks')>>你认出了开头的祷文，接下来的词句却很陌生。人影们停了下来，石下随即传出刮擦声。<</if>>
@@ -241,6 +252,7 @@
       <<temple-ritual-free>>
     <</temple-duty-action>><br>
   <</if>>
+  <<if $TempleDuties.case.clues.includes('route')>>
   <<temple-duty-action `['Step forward and stop them (0:01)', '上前阻止他们 (0:01)']` 1 'Revelation Temple Ritual Fight'>>
     <<temple-ritual-fight-start>>
   <</temple-duty-action>><br>
@@ -251,6 +263,7 @@
       <<temple-ritual-fight-start>>
     <</if>>
   <</temple-duty-action>><br>
+  <<else>><span class='lblue'><<lanSwitch 'Mark an escape route before confronting them.' '先标好退路，再决定是否上前阻止。'>></span><br><</if>>
 <<else>>
   <<include 'Revelation Temple Ritual Break Body'>>
 <</if>>
@@ -279,7 +292,7 @@
       <<case 'ritual-marks'>>
         You wait for the figures to turn. A gap opens behind the stone at the end of every prayer. The captive looks towards it, then towards the trees where you are hiding. You raise a finger to your lips.
       <<case 'ritual-route'>>
-        You clear fallen branches from a narrow track. It reaches the shore without crossing the hollow. You place a pale stick at the fork, pointing towards the water.
+        You clear fallen branches from a narrow track. It reaches the shore without crossing the hollow. You place a pale stick at the fork, pointing towards the water, and run the borrowed rope back to the worker waiting there.
       <<case 'ritual-ward'>>
         You recognise part of a pattern you have seen in the records. Here, the line has been drawn across a crack in the stone. You note the loose edge beside it. You could kick it over without reaching across the slab.
       <<case 'ritual-smother'>>
@@ -299,7 +312,7 @@
       <<case 'ritual-marks'>>
         你等那些人转身。每段祷文结束，石头后方都会留出空隙。受困者望向那里，又望向你藏身的树林。你把一根手指竖在唇前。
       <<case 'ritual-route'>>
-        你清开窄路上的枯枝。它不用穿过低地，便能通向湖岸。你在岔口放下一根颜色发白的树枝，指向水边。
+        你清开窄路上的枯枝。它不用穿过低地，便能通向湖岸。你在岔口放下一根颜色发白的树枝，指向水边，将借来的绳索一直拉到等候的工人手边。
       <<case 'ritual-ward'>>
         其中一部分图样，你在记录中见过。这里的线条却横过了石上的裂缝。旁边有一块翘起的碎石，不用探过石台，就能踢过去。你记下它的位置。
       <<case 'ritual-smother'>>
@@ -366,16 +379,23 @@
     <<lanSwitch 'The stone tilts, throwing hot ash over the grass. You guide the freed captive around it, keeping between them and the people fleeing through the trees.' '石头歪斜，热灰撒在草上。你领着获救者绕开，挡在对方与奔逃的人影之间。'>>
   <</if>><br><br>
   <<temple-duty-action `[$TempleDuties.case.clues.includes('evacuated') ? 'Finish checking the path (0:05)' : 'Smother the embers and lead the captive away (0:05)', $TempleDuties.case.clues.includes('evacuated') ? '完成小径检查 (0:05)' : '踩灭余火，带获救者离开 (0:05)']` 5 'Revelation Temple Ritual End'>>
-    <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'resolved'>>
+    <<run $TempleDuties.case.clues.pushUnique('lakeside-secured', 'den-lead', 'evacuated')>>
+    <<set $TempleDuties.case.stage to 'report', $TempleDuties.case.result to 'withdrawn'>>
   <</temple-duty-action>><br>
 <</if>>
 
 :: Revelation Temple Ritual Combat End
-<<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles'
-    and ($tentacles.active lte $tentacles.max / 2 or $TempleDuties.case.result is 'withdrawn')>>
-  <<set $TempleDuties.case.result to $TempleDuties.case.result isnot 'withdrawn'
-    and $tentacles.active lte $tentacles.max / 2 and $stress lt $stressmax and !$possessed ? 'resolved' : 'withdrawn'>>
-  <<set $TempleDuties.case.stage to 'report'>>
+<<if $TempleDuties.case?.clues.includes('den-interrupted')>><<include 'Revelation Temple Cult Den Tentacles End'>><<exit>><</if>>
+<<temple-den-priority>>
+<<if _denForced>>
+  <<lanLink ['Continue', '继续'] 'Revelation Temple Combat'>><</lanLink>><<exit>>
+<</if>>
+<<temple-tentacle-outcome>>
+<<if $TempleDuties.case?.stage is 'combat' and $combat is 1 and $enemytype is 'tentacles' and _templeTentacleOutcome isnot 'active'>>
+  <<if _templeTentacleOutcome is 'resolved' and !$possessed>>
+    <<run $TempleDuties.case.clues.pushUnique('lakeside-secured', 'den-lead')>>
+  <</if>>
+  <<set $TempleDuties.case.result to 'withdrawn', $TempleDuties.case.stage to 'report'>>
   <<clotheson>><<endcombat>>
 <</if>>
 <<if $combat>>
@@ -385,43 +405,61 @@
 
 :: Revelation Temple Ritual End
 <<set $outside to 1>><<set $location to 'forest'>><<effects>>
+<<temple-den-priority>>
+<<if _denForced>>
+  <<temple-case-return>><<exit>>
+<</if>>
 <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'report'>>
-  <<language>>
-    <<option 'EN'>>
-      <<if $TempleDuties.case.result is 'resolved'>>The way opens. <<if $TempleDuties.case.clues.includes('evacuated')>>You check the way to the shore once more.<<else>>You take the captive's weight against your shoulder and move towards the water.<</if>> <<if !$TempleDuties.case.clues.includes('evacuated')>>You do not follow the robes disappearing deeper into the forest.<</if>> <<if !$TempleDuties.case.clues.includes('evacuated')>>The water comes into view between the trees. The captive asks you to stop a moment, until they can stand.<</if>><</if>>
-      <<if $TempleDuties.case.result is 'withdrawn'>>You stumble back between the trees. <<if !$TempleDuties.case.clues.includes('evacuated')>>You pull the captive with you, calling to the people on the shore for help.<</if>> Something tears at the undergrowth behind you. You cannot tell whether the crack is still open.<</if>>
+  <<if $TempleDuties.case.clues.includes('rescued') and !$TempleDuties.case.clues.includes('evacuated')>>
+    <<run $TempleDuties.case.clues.pushUnique('evacuated')>>
+  <</if>>
+  <<if $TempleDuties.case.clues.includes('lakeside-secured')>>
+    <<language>><<option 'EN'>>
+      You bring the rescued person to the people waiting at the shore. The worker wraps a blanket around their friend’s shoulders. They catch your sleeve before you leave. "There are others. They kept us in an old lime kiln, further in. I saw the cart tracks when they brought me here." They show you a fork missing from the worker's sketch. You mark it without promising to go alone.<br><br>
+      The hollow is quiet for now. You have not found where the others are being held. Jordan needs to hear what happened before anyone follows that path.
     <<option 'CN'>>
-      <<if $TempleDuties.case.result is 'resolved'>>小径空了出来。<<if $TempleDuties.case.clues.includes('evacuated')>>你又检查了一遍通向水边的路<<else>>你把获救者的一条胳膊搭上肩膀，朝水边挪去<</if>>。<<if !$TempleDuties.case.clues.includes('evacuated')>>你没有追赶消失在密林里的长袍。<</if>><<if !$TempleDuties.case.clues.includes('evacuated')>>湖面从树间露了出来。对方请你停一会儿，等自己能站稳。<</if>><</if>>
-      <<if $TempleDuties.case.result is 'withdrawn'>>你跌跌撞撞地退入树林。<<if !$TempleDuties.case.clues.includes('evacuated')>>你把获救者拉在身边，朝岸边出声求助。<</if>>身后有什么撕扯着灌木，你没能看清那道裂缝是否仍敞开。<</if>>
-  <</language>><br><br>
+      你把获救的人交给岸边等候的工人。对方用毯子裹住朋友的肩膀。你要走时，对方拉住了你的袖子。“还有别人。他们把我们关在更里面的一座旧石灰窑。我被带来时，看见了车辙。”对方指出工人草图上没有的一处分岔。你将它记下，没有答应独自进去。<br><br>
+      低地暂时安静下来，但你还没有找到关押其他人的地方。得先把这件事告诉约旦，再决定怎么沿小径找下去。
+    <</language>>
+  <<else>>
+    <<language>><<option 'EN'>>
+      The worker waiting at the shore hears your call and pulls on the rope you laid along the path. You follow it back, keeping the freed person ahead of you. Hands reach from the trees to steady you both. You have brought someone out, but have not made the hollow safe. You must tell Jordan that.
+    <<option 'CN'>>
+      留在岸边的工人听见呼喊，收紧了你沿小径布下的绳索。你顺着绳子后退，让获救者走在前面。有人从树间伸手，扶住了你们。人已经带出来，低地却还没有安全。这一点，必须向约旦说清。
+    <</language>>
+  <</if>><br><br>
 <</if>>
 <<temple-case-return>>
 
 :: Revelation Temple Ritual Withdrawal
 <<language>>
   <<option 'EN'>>
-    <<if $TempleDuties.case?.clues.includes('evacuated')>>You leave the hollow along the path you marked. The person you rescued is safe, but the place still needs checking.<<elseif $TempleDuties.case?.clues.includes('rescued')>>You bring the captive back along the path and call to the people on the shore for help. You have not checked what remains in the hollow. Jordan will need to hear that.<<elseif $TempleDuties.case?.clues.some(clue => ['cultist-defeated', 'cultist-spent', 'cultist-retreated'].includes(clue))>>You back away from the stone and retreat between the trees. The robed figures keep their distance. The captive is still bound. You mark the path so you can bring help back.<<elseif $TempleDuties.case?.clues.includes('confronted')>>You get clear of the hands reaching for you and retreat between the trees. The person on the stone is still bound. You mark the path so you can bring help back.<<else>>You slip away before the figures notice you. Within sight of the shore, you mark the path on the visitor's sketch. You need more help before you can get the captive out.<</if>>
+    <<if $TempleDuties.case?.clues.includes('evacuated')>>You leave the hollow along the path you marked. The person you rescued is safe, but the place still needs checking.<<elseif $TempleDuties.case?.clues.includes('rescued')>>You bring the captive back along the path and call to the people on the shore for help. You have not checked what remains in the hollow. Jordan will need to hear that.<<elseif $TempleDuties.case?.clues.some(clue => ['cultist-defeated', 'cultist-spent', 'cultist-retreated'].includes(clue))>>You back away from the stone and retreat between the trees. The robed figures keep their distance. The captive is still bound. You mark the path so you can bring help back.<<elseif $TempleDuties.case?.clues.includes('confronted')>>The worker hears your call and pulls on the line leading out of the hollow. You struggle back along it; they catch you at the trees and work the remaining knots loose. The person on the stone is still bound. You have to bring more help back.<<else>>You slip away before the figures notice you. Within sight of the shore, you mark the path on the worker's sketch. You need more help before you can get the captive out.<</if>>
   <<option 'CN'>>
-    <<if $TempleDuties.case?.clues.includes('evacuated')>>你沿标记的小径离开低地。获救者已经安全，现场仍需检查。<<elseif $TempleDuties.case?.clues.includes('rescued')>>你沿小径把获救者带回去，朝岸边的人出声求助。低地里剩下什么，你还没能确认。这件事也得告诉约旦。<<elseif $TempleDuties.case?.clues.some(clue => ['cultist-defeated', 'cultist-spent', 'cultist-retreated'].includes(clue))>>你离开石台边，朝树林退去。那些长袍人没有追上来。受困者仍被绑着。你记下小径的位置，准备带人回来接应。<<elseif $TempleDuties.case?.clues.includes('confronted')>>你甩开伸来的手，退入树间。石台上的人仍被绑着。你记下小径的位置，准备带人回来接应。<<else>>你趁那些人没有察觉，悄悄离开。能看见湖岸后，你在访客的草图上标出了小径。想把人救出来，你需要更多帮助。<</if>>
+    <<if $TempleDuties.case?.clues.includes('evacuated')>>你沿标记的小径离开低地。获救者已经安全，现场仍需检查。<<elseif $TempleDuties.case?.clues.includes('rescued')>>你沿小径把获救者带回去，朝岸边的人出声求助。低地里剩下什么，你还没能确认。这件事也得告诉约旦。<<elseif $TempleDuties.case?.clues.some(clue => ['cultist-defeated', 'cultist-spent', 'cultist-retreated'].includes(clue))>>你离开石台边，朝树林退去。那些长袍人没有追上来。受困者仍被绑着。你记下小径的位置，准备带人回来接应。<<elseif $TempleDuties.case?.clues.includes('confronted')>>工人听见呼喊，收紧了通出低地的绳索。你沿绳子挣扎着退回去，对方在树间接住你，解开仍缠着的绳结。石台上的人还被绑着，得再带人回来帮忙。<<else>>你趁那些人没有察觉，悄悄离开。能看见湖岸后，你在工人的草图上标出了小径。想把人救出来，你需要更多帮助。<</if>>
 <</language>><br><br>
 <<temple-case-return>>
 
 :: Temple Ritual Debrief Widgets [widget]
 <<widget 'temple-ritual-debrief'>>
+  <<if $TempleDuties.note.includes('followup')>>
+    <<lanSwitch 'Jordan sets the witness’s account beside the holding list. "Did they agree to leave this with us?" <<He>> checks your answer, then asks whether they reached the shore safely. "Thank you. We will keep their words as they gave them."' '约旦把证人的陈述放在拘禁名册旁。“对方同意把这份留下吗？”<<He>>听清你的回答，再问证人是否平安到了湖岸。“谢谢。对方怎么讲的，我们就怎么记。”'>><br><br>
+  <<else>>
   <<language>>
     <<option 'EN'>>
-      Jordan meets you before you reach the desk. A monk has brought the rescued visitor inside. "Let me see your hands," <<he>> says to them. "You can tell us the rest later." <<He>> waits until they have gone with the monk before asking you about the clearing.
+      Jordan asks the people who have come to give their account to sit near the fire. "Let someone look at your hands first," <<he>> says. "The rest can wait a little." <<He>> makes sure an attendant stays with them before opening your notes.
       <br><br>
-      At the mention of the crack, Jordan reaches beneath <<his>> habit, then calls two members over. <<He>> speaks quietly to them, following the path on your sketch. The clerk gathers the papers out of their way.
+      Jordan compares the holding list with your sketch of the kiln. <<He>> asks which rooms you checked and whether anyone is missing. Then <<he>> calls two members over to arrange care and keep people away from the damaged floor.
       <br><br>
-      "I didn't ask you to put yourself in danger," Jordan says, turning back to you. "But thank you. You brought someone back to us." <<He>> rests a hand on your shoulder. "Please stay a while. We can talk when you've rested."
+      "Do not make a habit of putting yourself in their hands," Jordan says, turning back to you. "But thank you for bringing these people back. We will listen to what they want to tell us." <<He>> rests a hand on your shoulder. "Please stay a while. We can talk when you've rested."
     <<option 'CN'>>
-      还没走到桌边，约旦便迎了过来。修士已经把获救的访客领进屋。“让我看看你的手，”<<he>>对访客说，“其他的，晚些再讲也可以。”等修士陪对方离开后，<<he>>才问起那片低地。
+      约旦先请来说明经过的人到炉火旁坐下。“先让人看看你的手，”<<he>>说，“其他的，稍后再讲也可以。”确认侍从留在他们身边后，<<he>>才打开你的笔记。
       <br><br>
-      听到裂缝的事，约旦把手伸进袍下，随即叫来两名成员。<<He>>沿着草图上的小径，低声向两人说了几句。侍从收起桌上的纸张，给他们腾开地方。
+      约旦拿拘禁名册对照石灰窑的草图，问清你查过哪些屋子，还有没有人失踪。随后，<<he>>叫来两名成员，安排照护，也让人守住那片破损的地板。
       <br><br>
-      “我不是让你去冒险的。”约旦转回身。“不过，谢谢你。你为我们带回了一个人。”<<He>>把手放在你肩上。“先留下来歇歇。别的事，晚些再说。”
+      “别以为，每次都能从他们手里脱身。”约旦转回身。“不过，谢谢你把人带回来。他们愿意说的，我们会仔细听。”<<He>>把手放在你肩上。“先留下来歇歇。别的事，晚些再说。”
   <</language>><br><br>
+  <</if>>
   <<for _field_name range ['Robin', 'Sydney']>>
     <<if $TempleDuties.note.includes('-' + _field_name)>>
       <<temple-candidate-check _field_name 0>>
@@ -430,9 +468,9 @@
       <<else>>
         <<language>>
           <<option 'EN'>>
-            <<if _field_name is 'Robin'>>Robin asks if the visitor has somewhere to sleep. "I'll find out," Jordan says. Robin follows the monk to the warm room.<<else>>Sydney repeats the words <<nnpc_he 'Sydney'>> heard in the hollow. <<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>"They used our prayer for that." <<nnpc_His 'Sydney'>> lips press together. "I don't understand." Jordan bows <<his>> head a moment. "You've done a good thing today, child. Rest a while."<<else>>"They knew which words would make someone follow them," Sydney says. Jordan nods. "We will have to listen when they tell us."<</if>><</if>>
+            <<if _field_name is 'Robin'>>Robin asks whether someone will stay with the witness. "I'll ask them," Jordan says. Robin waits by the doorway while the attendant goes over.<<else>>Sydney points out the repeated marks in the records brought back. <<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>"They used our prayer for that." <<nnpc_His 'Sydney'>> lips press together. "I don't understand." Jordan bows <<his>> head a moment. "You've done a good thing today, child. Rest a while."<<else>>"They knew which words would make someone follow them," Sydney says. Jordan nods. "We will have to listen when they tell us."<</if>><</if>>
           <<option 'CN'>>
-            <<if _field_name is 'Robin'>>罗宾问起访客有没有地方睡。“我会问清楚。”约旦说。罗宾跟着修士去了暖室。<<else>>悉尼复述了在低地里听见的那句祷文。<<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>“他们拿我们的祷文做那样的事。”<<nnpc_He 'Sydney'>>紧紧抿起嘴。“我不明白。”约旦低头片刻。“你今天做了一件善事，孩子。先歇歇吧。”<<else>>“他们知道说些什么，能让人跟着走。”悉尼说。约旦点头。“所以对方开口时，我们得仔细听。”<</if>><</if>>
+            <<if _field_name is 'Robin'>>罗宾问起有没有人陪着证人。“我会问问对方。”约旦说。罗宾留在门边，等侍从走过去。<<else>>悉尼指着带回的记录，说明反复出现的那几个标记。<<run statusCheck('Sydney')>><<if _sydneyStatus.includes('pure')>>“他们拿我们的祷文做那样的事。”<<nnpc_He 'Sydney'>>紧紧抿起嘴。“我不明白。”约旦低头片刻。“你今天做了一件善事，孩子。先歇歇吧。”<<else>>“他们知道说些什么，能让人跟着走。”悉尼说。约旦点头。“所以对方开口时，我们得仔细听。”<</if>><</if>>
         <</language>>
       <</if>><br><br>
     <</if>>
