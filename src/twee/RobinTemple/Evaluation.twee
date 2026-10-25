@@ -108,11 +108,14 @@
     Jordan produces a small bell from <<his>> robes, and rings it four times. <<person3>>An older <<monk>> enters the room, and nods to Jordan. "Please stand," the <<monk>> says.
     <<He>> examines Robin very closely, although <<person1>><<he>> shows no discomfort.<<person3>>
     <br>
+    The <<monk>> asks Robin about <<nnpc_his 'Robin'>> prayers, listening to <<nnpc_his 'Robin'>> answer before speaking again.
     <<if maplebirch.get('RobinTemple').faith gte 20>>
-      "<span class="green">You are as pure as the day you joined us,</span> <<nnpc_brother "Robin">> Robin. May you stay this way forevermore," the <<monk>> says through a hearty smile.
+      "<span class="green">Your faith is strong,</span> <<nnpc_brother "Robin">> Robin. Hold fast to it," the <<monk>> says with a smile.
       <<set $RobinTemple.evaluation_marks += 10>>
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      "<span class="blue">You still have doubts,</span> <<nnpc_brother "Robin">> Robin. Do not hide them. Bring them to us, and we will pray with you."
     <<else>>
-      "<span class="blue">I sense your purity has begun to slip,</span> <<nnpc_brother "Robin">> Robin. Take care that your love for this <<temple_title>> does not corrupt you." Robin flinches at <<his>> words.
+      "<span class="blue">You still have much to learn,</span> <<nnpc_brother "Robin">> Robin. Keep praying. Ask when there is something you do not understand."
     <</if>>
     <br><br>
     The <<monk>> approaches you.
@@ -166,43 +169,44 @@
     约旦从长袍中取出一枚小铃铛，摇了四下。<<person3>>一个年长的<<monk>>推门而入，向约旦颔首。“请起立。”<<monk>>说道。
     <<He>>仔细打量着罗宾，而<<person1>><<he>>神色坦然，未显丝毫不适。<<person3>>
     <br>
+    <<monk>>问起罗宾平日的祈祷，听完<<nnpc_his 'Robin'>>的回答才再次开口。
     <<if maplebirch.get('RobinTemple').faith gte 20>>
-      “<span class="green">你还是和刚来那天一样纯洁，</span><<nnpc_brother "Robin">>罗宾。愿你永远保持这般纯净，”<<monk>>露出宽厚的微笑。
+      “<span class="green">你的信仰很坚定，</span><<nnpc_brother "Robin">>罗宾。愿你始终坚守。”<<monk>>微笑着说。
       <<set $RobinTemple.evaluation_marks += 10>>
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      “<span class="blue">你心里还有疑虑，</span><<nnpc_brother "Robin">>罗宾。不必隐瞒。说出来，我们会陪你祈祷。”
     <<else>>
-      “<span class="blue">我感到你的纯洁正在动摇，</span><<nnpc_brother "Robin">>罗宾。千万小心，莫让你对这位<<temple_title>>的爱慕将你引向堕落。”罗宾被<<his>>话刺痛，畏缩了一下。
+      “<span class="blue">你要学的还有很多，</span><<nnpc_brother "Robin">>罗宾。继续祈祷，有不明白的就来问。”
     <</if>>
     <br><br>
     修士转而朝你走来。
 <</language>>
 <br><br>
-<<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><</lanLink>>
+<<lanLink ['Next', '继续'] 'RobinTemple Evaluation Belief'>><<set $RobinTemple.evaluation_phase to 0>><</lanLink>>
 <br>
 
 :: RobinTemple Evaluation Belief
+<!-- 0 等待信念评分；1/2/3 保留原等候对话，11/12 保存本轮偷听结果。 -->
 <<language>>
   <<option 'EN'>>
     <<effects>>
     <<He>> begins to look you over.
     <<if $angel gte 6>>
-      <<His>> eyes slowly widen, and after a moment, <<he>> steps back and regards you with awe. "<span class="gold">This one is... radiant.</span> A true beacon of purity." <<He>> turns to Jordan. "I have faith that this one will take the vow seriously." <<set $RobinTemple.evaluation_marks += 20>>
+      <<His>> eyes slowly widen, and after a moment, <<he>> steps back and regards you with awe. "<span class="gold">This one is... radiant.</span> A true beacon of purity." <<He>> turns to Jordan. "I have faith that this one will take the vow seriously."
     <<elseif $fallenangel gte 2 or $demon gte 6>>
       <<He>> slowly frowns. "<span class="red">This one is... dirty.</span> Tragic."
       <<if $fallenangel gte 2 and $forgiveintro is 1>>
         <br><br>
         Jordan smiles faintly. "<<pShe>> has already confessed to me <<pher>> soil, and seeks to improve <<pherself>>. If anything, <span class="green"><<pher>> willingness to admit <<pher>> sin and desire to improve <<pherself>> is something to admire</span>."
-        <<set $RobinTemple.evaluation_marks += 5>>
-      <<else>>
-        <<set $RobinTemple.evaluation_marks -= 10>>
       <</if>>
     <<elseif $purity gte 999>>
-      <<His>> face brightens up as <<he>> examines you head to toe. <span class="green">"Your dedication to purity is impressive."</span> <<set $RobinTemple.evaluation_marks += 15>>
+      <<His>> face brightens up as <<he>> examines you head to toe. <span class="green">"Your dedication to purity is impressive."</span>
     <<elseif $purity gte 900>>
-      <<He>> smiles as <<he>> examines you head to toe. <span class="lblue">"Your dedication to purity is commendable."</span> <<set $RobinTemple.evaluation_marks += 10>>
+      <<He>> smiles as <<he>> examines you head to toe. <span class="lblue">"Your dedication to purity is commendable."</span>
     <<elseif $purity gte 500>>
       <<His>> expression remains stern as <<he>> examines you head to toe. "<span class="purple">Your dedication to purity is... sub-par.</span> You should strive to improve yourself."
     <<else>>
-      <<He>> frowns as <<he>> regards you. <span class="red">"A pity. Your purity has faded."</span> <<He>> turns to Jordan. "This one should be made to atone before any such rite is permitted, but the decision is not mine." <<set $RobinTemple.evaluation_marks -= 5>>
+      <<He>> frowns as <<he>> regards you. <span class="red">"A pity. Your purity has faded."</span> <<He>> turns to Jordan. "This one should be made to atone before any such rite is permitted, but the decision is not mine."
     <</if>>
     <br><br>
     Jordan nods to the <<monk>>, who bows and leaves the room. "The next section of the examination will require you two to be separated. Please come with me." Jordan leads you into a separate, adjacent room with an identical ornate table. "Please wait here while I administer Robin's part of the exam."
@@ -210,34 +214,53 @@
     <<effects>>
     <<he>>仔细地把你打量了一番。
     <<if $angel gte 6>>
-      <<His>>眼睛缓缓睁大，片刻后不由自主地后退半步，敬畏地注视着你。“<span class="gold">这孩子……圣光萦绕。</span>简直就是纯洁的灯塔。”<<He>>转向约旦，“我相信这孩子必会郑重对待这份誓约。”<<set $RobinTemple.evaluation_marks += 20>>
+      <<His>>眼睛缓缓睁大，片刻后不由自主地后退半步，敬畏地注视着你。“<span class="gold">这孩子……圣光萦绕。</span>简直就是纯洁的灯塔。”<<He>>转向约旦，“我相信这孩子必会郑重对待这份誓约。”
     <<elseif $fallenangel gte 2 or $demon gte 6>>
       <<His>>眉头缓缓拧紧。“<span class="red">这孩子……污秽不堪。</span>真是可悲。”
       <<if $fallenangel gte 2 and $forgiveintro is 1>>
         <br><br>
         约旦微微一笑。“<<pShe>>已向我忏悔过过失，且一直在努力向善。硬要说的话，<span class="green"><<pher>>直面己罪、渴望向善的诚心实属难能可贵</span>。”
-        <<set $RobinTemple.evaluation_marks += 5>>
-      <<else>>
-        <<set $RobinTemple.evaluation_marks -= 10>>
       <</if>>
     <<elseif $purity gte 999>>
-      <<He>>从头到脚打量了你一番，脸上浮现出宽慰的微笑。<span class="green">“你对纯洁的坚守着实令人钦佩。”</span><<set $RobinTemple.evaluation_marks += 15>>
+      <<He>>从头到脚打量了你一番，脸上浮现出宽慰的微笑。<span class="green">“你对纯洁的坚守着实令人钦佩。”</span>
     <<elseif $purity gte 900>>
-      <<He>>从头到脚打量了你一番，对你赞许地微微一笑。<span class="lblue">“你对纯洁的坚守值得称道。”</span><<set $RobinTemple.evaluation_marks += 10>>
+      <<He>>从头到脚打量了你一番，对你赞许地微微一笑。<span class="lblue">“你对纯洁的坚守值得称道。”</span>
     <<elseif $purity gte 500>>
       <<He>>从头到脚打量了你一番，神情始终严肃。“<span class="purple">你对纯洁的坚守……还远远不够。</span>你该好好反省反省自己。”
     <<else>>
-      <<He>>皱着眉头审视着你。<span class="red">“真可惜。你的纯洁已经褪色了。”</span><<He>>转向约旦，“在准许参加这种仪式之前，这孩子应该先去赎罪。不过，这事由您来定夺。”<<set $RobinTemple.evaluation_marks -= 5>>
+      <<He>>皱着眉头审视着你。<span class="red">“真可惜。你的纯洁已经褪色了。”</span><<He>>转向约旦，“在准许参加这种仪式之前，这孩子应该先去赎罪。不过，这事由您来定夺。”
     <</if>>
     <br><br>
     约旦向<<monk>>微微颔首，对方行了一礼退下。“接下来的考查需要你们两个人分开进行，请随我来。”约旦领着你来到隔壁的房间，里面摆着一张同样样式的雕花木桌。“请在此稍候，我先为罗宾进行测试。”
 <</language>>
 <br><br>
 <<endevent>><<npc "Robin" 1>><<person1>><<npc "Jordan" 2>><<person2>>
-<<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>><<set $RobinTemple.evaluation_phase to 1>><<pass 15>><</lanLink>>
-<br>
-<<set $skulduggerydifficulty to 700>>
-<<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>><</lanLink>><<skulduggerydifficulty>><br>
+<<set _evaluationBeliefMarks to $angel gte 6 ? 20 : ($fallenangel gte 2 or $demon gte 6) ? ($fallenangel gte 2 and $forgiveintro is 1 ? 5 : -10) : $purity gte 999 ? 15 : $purity gte 900 ? 10 : $purity gte 500 ? 0 : -5>>
+<<set _evaluationState to $RobinTemple, _evaluationUsed to false>>
+<<capture _evaluationState _evaluationUsed _evaluationBeliefMarks>>
+  <<lanLink ['Wait (0:15)', '等待 (0:15)'] 'RobinTemple Evaluation Questions'>>
+    <<if !_evaluationUsed and $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Belief'
+        and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+      <<set _evaluationUsed to true, _evaluationPending to $RobinTemple.evaluation_phase is 0>>
+      <<pass 15>>
+      <<if $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Belief'
+          and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+        <<if _evaluationPending>><<set $RobinTemple.evaluation_marks += _evaluationBeliefMarks>><</if>>
+        <<set $RobinTemple.evaluation_phase to 1>>
+      <</if>>
+    <</if>>
+  <</lanLink>><br>
+  <<set $skulduggerydifficulty to 700>>
+  <<sneakicon>><<lanLink ['Eavesdrop on Jordan and Robin', '偷听约旦与罗宾的谈话'] 'RobinTemple Evaluation Eavesdrop'>>
+    <<if !_evaluationUsed and $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Belief'
+        and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+      <<set _evaluationUsed to true>>
+      <<if $RobinTemple.evaluation_phase is 0>><<set $RobinTemple.evaluation_marks += _evaluationBeliefMarks>><</if>>
+      <<set $skulduggerydifficulty to 700>><<skulduggerycheck 'silent'>><<skulduggeryuse>>
+      <<set $RobinTemple.evaluation_phase to $skulduggerysuccess is 1 ? 11 : 12>>
+    <</if>>
+  <</lanLink>><<skulduggerydifficulty>><br>
+<</capture>>
 
 :: RobinTemple Evaluation Questions
 <<language>>
@@ -270,18 +293,18 @@
 <</language>>
 <br><br>
 
-<<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage'>><</lanLink>><br>
-<<lanLink ['At school', '在学校'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'school'>><</lanLink>><br>
-<<lanLink ["Say you don't remember", '说你不记得了'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'forgot'>><</lanLink>><br>
+<<lanLink ['At the orphanage', '在孤儿院'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'orphanage', $RobinTemple.evaluation_phase to 4>><</lanLink>><br>
+<<lanLink ['At school', '在学校'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'school', $RobinTemple.evaluation_phase to 4>><</lanLink>><br>
+<<lanLink ["Say you don't remember", '说你不记得了'] 'RobinTemple Evaluation Answer'>><<set $RobinTemple.evaluation_answer to 'forgot', $RobinTemple.evaluation_phase to 4>><</lanLink>><br>
 
 :: RobinTemple Evaluation Answer
 <<language>>
   <<option 'EN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_answer is "orphanage">>
-      Jordan nods, writing in <<his>> notebook. "Your memory serves well." <<set $RobinTemple.evaluation_marks += 10>>
+      Jordan nods, writing in <<his>> notebook. "Your memory serves well."
     <<elseif $RobinTemple.evaluation_answer is "forgot">>
-      Jordan pauses and frowns. "That seems important to remember." <<set $RobinTemple.evaluation_marks -= 5>>
+      Jordan pauses and frowns. "That seems important to remember."
     <<else>>
       Jordan pauses and frowns. "Robin told me something different."
     <</if>>
@@ -295,9 +318,9 @@
   <<option 'CN'>>
     <<effects>>
     <<if $RobinTemple.evaluation_answer is "orphanage">>
-      约旦微微颔首，在册子上记下一笔。“记得很清楚。”<<set $RobinTemple.evaluation_marks += 10>>
+      约旦微微颔首，在册子上记下一笔。“记得很清楚。”
     <<elseif $RobinTemple.evaluation_answer is "forgot">>
-      约旦笔尖微顿，轻轻皱眉。“这理应记在心上。”<<set $RobinTemple.evaluation_marks -= 5>>
+      约旦笔尖微顿，轻轻皱眉。“这理应记在心上。”
     <<else>>
       约旦笔尖微顿，轻轻皱起眉头。“罗宾跟我说的可不是这个。”
     <</if>>
@@ -310,10 +333,24 @@
     约旦的神情变得严肃起来。“告诉我，我的孩子。你确定驱使你立下此誓的是爱意，而非肉欲吗？”
 <</language>>
 <br><br>
-<<lanLink ['Yes', '是的'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 1>><</lanLink>>
-<br>
-<<lanLink ['No', '不是'] 'RobinTemple Evaluation Contact'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-<br>
+<!-- 4 为尚未结算的回答，5/6 等待最后承诺；最后的7/8仅供结果页显示。 -->
+<<set _evaluationState to $RobinTemple, _evaluationUsed to false, _evaluationAnswer to $RobinTemple.evaluation_answer>>
+<<capture _evaluationState _evaluationUsed _evaluationAnswer>>
+  <<for _evaluationAnswerPhase, _evaluationAnswerLabel range { 5: ['Yes', '是的'], 6: ['No', '不是'] }>>
+    <<capture _evaluationAnswerPhase _evaluationAnswerLabel>>
+      <<lanLink `_evaluationAnswerLabel` 'RobinTemple Evaluation Contact'>>
+        <<if !_evaluationUsed and $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Answer'
+            and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+          <<set _evaluationUsed to true>>
+          <<if $RobinTemple.evaluation_phase is 4>>
+            <<set $RobinTemple.evaluation_marks += _evaluationAnswer is 'orphanage' ? 10 : _evaluationAnswer is 'forgot' ? -5 : 0>>
+          <</if>>
+          <<set $RobinTemple.evaluation_phase to Number(_evaluationAnswerPhase)>>
+        <</if>>
+      <</lanLink>><br>
+    <</capture>>
+  <</for>>
+<</capture>>
 
 :: RobinTemple Evaluation Result
 <<effects>>
@@ -323,19 +360,19 @@
   <<option 'CN'>>
     约旦从桌旁站起身。
 <</language>>
-<<if $RobinTemple.evaluation_phase is 1>>
+<<if $RobinTemple.evaluation_phase is 7 or $RobinTemple.evaluation_phase is 1>>
   <<language>>
     <<option 'EN'>>
-      "Very well. Until the rite is complete, neither of you is released from your current vows." <<set $RobinTemple.evaluation_marks += 10>>
+      "Very well. Until the rite is complete, neither of you is released from your current vows."
     <<option 'CN'>>
-      “很好。在仪式彻底礼成之前，你们二人仍须严守现有的贞洁誓约。”<<set $RobinTemple.evaluation_marks += 10>>
+      “很好。在仪式彻底礼成之前，你们二人仍须严守现有的贞洁誓约。”
   <</language>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      "Then you still have doubts. You may ask for more time, but I must take those doubts into account." <<set $RobinTemple.evaluation_marks -= 10>>
+      "Then you still have doubts. You may ask for more time, but I must take those doubts into account."
     <<option 'CN'>>
-      “那么，你心底还有疑虑。你可以要求更多时间考虑，但我必须把这份犹豫考量在内。”<<set $RobinTemple.evaluation_marks -= 10>>
+      “那么，你心底还有疑虑。你可以要求更多时间考虑，但我必须把这份犹豫考量在内。”
   <</language>>
 <</if>>
 <br><br>
@@ -375,7 +412,7 @@
   <<lanLink ['Next', '继续'] 'RobinTemple Evaluation Fail'>><</lanLink>>
   <br>
 <</if>>
-<<unset $RobinTemple.evaluation_marks>><<unset $RobinTemple.evaluation_answer>>
+<!-- 结果页保留本轮分数，下一次真正开始评估时由 Records 重算。 -->
 
 :: RobinTemple Evaluation Fail
 <<language>>
@@ -448,7 +485,7 @@
 <<language>>
   <<option 'EN'>>
     <<effects>>
-    <<if $RobinTemple.evaluation_phase is 1>>
+    <<if $RobinTemple.evaluation_phase is 5 or $RobinTemple.evaluation_phase is 1>>
       Jordan nods. "I trust your words."
     <<else>>
       Jordan nods. "I appreciate your honesty."
@@ -458,7 +495,7 @@
     "One final question. Are you willing to keep your current vows until the rite is complete?"
   <<option 'CN'>>
     <<effects>>
-    <<if $RobinTemple.evaluation_phase is 1>>
+    <<if $RobinTemple.evaluation_phase is 5 or $RobinTemple.evaluation_phase is 1>>
       约旦微微颔首。“我相信你的话。”
     <<else>>
       约旦微微颔首。“我赞赏你的诚实。”
@@ -468,14 +505,26 @@
     “最后一个问题。在仪式彻底完成之前，你愿意继续恪守现有的誓约吗？”
 <</language>>
 <br><br>
-<<lanLink ['Yes', '愿意'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 1>><<stress 12>><</lanLink>><<ggstress>>
-<br>
-<<lanLink ["I'm not sure", '还没想好'] 'RobinTemple Evaluation Result'>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>>
-<br>
+<<set _evaluationState to $RobinTemple, _evaluationUsed to false>>
+<<capture _evaluationState _evaluationUsed>>
+  <<for _evaluationFinalPhase, _evaluationFinalLabel range { 7: ['Yes', '愿意'], 8: ["I'm not sure", '还没想好'] }>>
+    <<capture _evaluationFinalPhase _evaluationFinalLabel>>
+      <<lanLink `_evaluationFinalLabel` 'RobinTemple Evaluation Result'>>
+        <<if !_evaluationUsed and $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Contact'
+            and [1, 2, 5, 6].includes($RobinTemple.evaluation_phase)
+            and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+          <<set _evaluationUsed to true, $RobinTemple.evaluation_phase to Number(_evaluationFinalPhase)>>
+          <<set $RobinTemple.evaluation_marks += $RobinTemple.evaluation_phase is 7 ? 10 : -10>>
+          <<if $RobinTemple.evaluation_phase is 7>><<stress 12>><</if>>
+        <</if>>
+      <</lanLink>><<if Number(_evaluationFinalPhase) is 7>><<ggstress>><</if>><br>
+    <</capture>>
+  <</for>>
+<</capture>>
 
 :: RobinTemple Evaluation Eavesdrop
-<<effects>><<skulduggerycheck>><<skulduggeryuse>>
-<<if $skulduggerysuccess is 1>>
+<<effects>>
+<<if $RobinTemple.evaluation_phase is 11>>
   <<language>>
     <<option 'EN'>>
       You press your ear to the door. Jordan asks where you grew up together. "At the orphanage," Robin answers.
@@ -491,8 +540,21 @@
     <<option 'CN'>>
       你的动静不够轻。约旦拉开门，平静地看着你。“请耐心稍候，我很快就回来。”
   <</language>>
-  <<set $RobinTemple.evaluation_marks -= 10>><br><br>
-  <<lanLink ['Next (0:15)', '继续 (0:15)'] 'RobinTemple Evaluation Questions'>><<pass 15>><<set $RobinTemple.evaluation_phase to 2>><</lanLink>><br>
+  <br><br>
+  <<set _evaluationState to $RobinTemple>>
+  <<capture _evaluationState>>
+    <<lanLink ['Next (0:15)', '继续 (0:15)'] 'RobinTemple Evaluation Questions'>>
+      <<if $RobinTemple is _evaluationState and $RobinTemple.evaluation_phase is 12
+          and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+        <<pass 15>>
+        <<if $RobinTemple.evaluation_phase is 12 and $RobinTemple is _evaluationState and $passage is 'RobinTemple Evaluation Eavesdrop'
+            and !$combat and !$possessed and !$eventforced and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
+          <<set $RobinTemple.evaluation_marks -= 10, $RobinTemple.evaluation_phase to 2>>
+        <</if>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
+
 <</if>>
 
 :: RobinTemple Evaluation Examination

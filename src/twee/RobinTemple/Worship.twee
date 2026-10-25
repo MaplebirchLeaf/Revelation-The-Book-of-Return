@@ -1,4 +1,21 @@
 :: RobinTemple Worship Widgets [widget]
+<!-- 接应预约保留关系判定，但不能使失踪或被囚的同伴到场。 -->
+<<widget 'robin-temple-hospital-check'>>
+  <<set _robinHospitalAlone to C.npc.Robin.init isnot 1 or C.npc.Robin.state isnot 'active' or $robinmissing
+    or (maplebirch.get('Robin') and $RobinExpansion?.asylum?.status is 'admitted')>>
+  <<if $RobinTemple.hospital_support and (C.npc.Sydney.init isnot 1 or C.npc.Sydney.state isnot 'active'
+    or C.npc.Sirris.init isnot 1 or C.npc.Sirris.state isnot 'active')>>
+    <<set $RobinTemple.hospital_support to false>>
+  <</if>>
+  <<if _robinHospitalAlone>>
+    <<lanSwitch 'Robin is no longer here to accompany you.' '罗宾已经不在这里陪你了。'>><br><br>
+    <<getouticon>><<lanLink ['Continue alone', '独自继续'] `['waiting', 'rescue', 'vanilla'].includes($RobinTemple.hospital_stage) ? 'Hospital Bed Examination' : 'Hospital front'`>>
+      <<set $RobinTemple.hospital_stage to ''>><<set $RobinTemple.hospital_support to false>>
+      <<npc Harper 1>><<person1>>
+    <</lanLink>><br>
+  <</if>>
+<</widget>>
+
 <<widget 'robin-temple-hospital-followup'>>
   <<if $stress lt $stressmax and $exposed lte 0
     and !$robinmissing and $robin.timer.hurt is 0
@@ -33,9 +50,9 @@
     <br>
     <<language>>
       <<option 'EN'>>
-        Robin sits on a pew, head bowed in prayer, with a closed schoolbook on <<nnpc_his 'Robin'>> lap.
+        Robin sits on a pew with a closed schoolbook on <<nnpc_his 'Robin'>> lap. <<if maplebirch.get('RobinTemple').faith gte 20>><<nnpc_He 'Robin'>> bows <<nnpc_his 'Robin'>> head in prayer.<<elseif maplebirch.get('RobinTemple').faith lte -20>><<nnpc_He 'Robin'>> watches the worshippers pass without joining their prayers.<<else>><<nnpc_He 'Robin'>> listens as the worshippers recite a prayer.<</if>>
       <<option 'CN'>>
-        罗宾坐在长椅上，膝头放着合起的课本，正低着头祈祷。
+        罗宾坐在长椅上，膝头放着合起的课本。<<if maplebirch.get('RobinTemple').faith gte 20>><<nnpc_He 'Robin'>>正低着头祈祷。<<elseif maplebirch.get('RobinTemple').faith lte -20>><<nnpc_He 'Robin'>>望着来往的信众，没有跟着念祷文。<<else>><<nnpc_He 'Robin'>>听着信众念诵祷文。<</if>>
     <</language>>
     <br>
     <<templeicon 'pew'>><<lanLink ['Approach Robin', '走近罗宾'] 'RobinTemple Prayer'>><</lanLink>><br>
@@ -149,9 +166,9 @@
         <</language>>
       <<case 2>><<language>>
           <<option 'EN'>>
-            A younger initiate lingers in the aisle with a torn work list.
+            A new initiate lingers in the aisle with a torn work list.
           <<option 'CN'>>
-            一名年幼的见习教徒拿着撕破的工作表，在过道里迟迟不走。
+            一名新来的见习教徒拿着撕破的工作表，在过道里迟迟不走。
         <</language>>
       <<case 3>><<language>>
           <<option 'EN'>>
@@ -383,9 +400,9 @@
     <br><br>
     <<language>>
       <<option 'EN'>>
-        Robin brings water and stays nearby while you rest. "I thought you were going to fall," <<he>> says. "Tell me sooner next time. I can leave the work list for a while."
+        Robin brings water and stays nearby while you rest. <<if C.npc.Robin.trauma gte 40>><<He>> takes a while to answer when you thank <<him>>. "Are you feeling any better?" <<He>> glances at the door, then back at you.<<elseif C.npc.Robin.dom gte 60>>"I thought you were going to fall," <<he>> says. "Tell me sooner next time. The work can wait."<<else>>"I thought you were going to fall," <<he>> says quietly. "I can stay a little. If you want."<</if>>
       <<option 'CN'>>
-        罗宾端来水，守在旁边等你缓过来。“我以为你要倒下了，”<<he>>说，“下次早点告诉我。工作表可以暂时放着。”
+        罗宾端来水，守在旁边等你缓过来。<<if C.npc.Robin.trauma gte 40>>你向<<him>>道谢，过了一会儿，<<he>>才应声。“好些了吗？”<<He>>望了一眼门口，又转回头看你。<<elseif C.npc.Robin.dom gte 60>>“我以为你要倒下了，”<<he>>说，“下次早点告诉我。那些活可以等等。”<<else>>“我以为你要倒下了，”<<he>>小声说，“我可以再陪你一会儿。要是你愿意的话。”<</if>>
     <</language>>
 
     <<run $robinSeen.pushUnique('templeRescue')>>
@@ -505,7 +522,9 @@
 
 :: RobinTemple Faith Transition
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
-<<if $RobinTemple.faith_transition isnot '' and getRobinLocation() is 'temple'
+<<if $RobinTemple.faith_transition isnot ''
+  and $RobinTemple.faith_transition is (maplebirch.get('RobinTemple').faith gte 20 ? 'belief' : maplebirch.get('RobinTemple').faith lte -20 ? 'doubt' : '')
+  and maplebirch.get('RobinTemple').member and maplebirch.get('RobinTemple').available and getRobinLocation() is 'temple'
   and !$robinmissing and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
   <<if C.npc.Robin.trauma gte 40>>
     <<if $RobinTemple.faith_transition is 'belief'>>
@@ -526,9 +545,9 @@
   <<elseif $RobinTemple.faith_transition is 'belief'>>
     <<language>>
       <<option 'EN'>>
-        Robin rests <<his>> hands on the closed prayer book. "I kept thinking about why I came here," <<he>> says. "At first it was because you asked. But the people I've helped... I don't want to stop helping them." <<He>> looks toward the hall. "I think I'd come back even if you couldn't come with me."
+        Robin rests <<his>> hands on the closed prayer book. "I kept thinking about why I came here," <<he>> says. "At first it was because you asked. But now... I think there's someone listening when I pray." <<He>> looks toward the hall. "I'd like to keep coming. Even when you can't come with me."
       <<option 'CN'>>
-        罗宾把双手放在合起的祈祷书上。“我一直在想，自己为什么来这里，”<<he>>说，“起初是因为你邀请我。可是那些我帮过的人……我不想就这样不管了。”<<He>>望向大厅。“我想，就算你有事不能陪我，我也会回来。”
+        罗宾把双手放在合起的祈祷书上。“我一直在想，自己为什么来这里，”<<he>>说，“起初是因为你邀请我。可现在……我觉得祈祷的时候，有谁在听。”<<He>>望向大厅。“我还想来。就算你有事不能陪我。”
     <</language>>
   <<else>>
     <<language>>
@@ -542,45 +561,48 @@
   <<if C.npc.Robin.trauma gte 40>>
     <<language>>
       <<option 'EN'>>
-        Robin falls quiet. You give <<him>> time rather than asking for another answer. When <<he>> is ready, you walk back to the bench together.
+        Robin falls quiet, still rubbing the edge of the page. You sit beside <<him>> until <<he>> closes the book.
       <<option 'CN'>>
-        罗宾安静下来。你没有继续追问，而是给<<him>>一些时间。等<<he>>准备好，你们再一起回到长椅旁。
+        罗宾安静下来，手指仍揉着书页边缘。你坐在<<him>>身旁，直到<<he>>合上书。
     <</language>>
   <<elseif C.npc.Robin.dom lte 50>>
     <<language>>
       <<option 'EN'>>
-        "I'm glad I told you," Robin says quietly. You thank <<him>> for speaking honestly, without asking <<him>> to agree with you.
+        "I'm glad I told you," Robin says quietly. <<He>> watches your face for a moment, then moves the book aside to make more room for you.
       <<option 'CN'>>
-        “能告诉你，我很高兴。”罗宾小声说。你谢谢<<him>>愿意说实话，没有要求<<him>>与你想得一样。
+        “能告诉你，我很高兴。”罗宾小声说。<<He>>看了看你的表情，把书往旁边挪了挪，给你多腾出些地方。
     <</language>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        Robin asks what you think too. You each have time to answer before returning to the bench.
+        "What about you?" Robin asks, turning towards you. <<He>> listens until you finish before opening the prayer book again.
       <<option 'CN'>>
-        罗宾也问起你的想法。你们各自把话说完，才回到长椅旁。
+        “你呢？”罗宾转过身来问你。<<He>>等你说完，才重新翻开祈祷书。
     <</language>>
   <</if>>
   <<set $RobinTemple.faith_transition to ''>>
 <<else>>
   <<language>>
     <<option 'EN'>>
-      There is no unfinished conversation to return to now.
+      Robin has nothing more to say about it just now.
     <<option 'CN'>>
-      现在没有尚未说完的这次谈话。
+      罗宾现在不想再谈这件事。
   <</language>>
 <</if>>
 <br><br>
 <<templeicon 'pew'>><<lanLink ['Return to the bench', '回到长椅'] 'RobinTemple Prayer'>><</lanLink>><br>
 
 :: RobinTemple Hospital Arrival
-<<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<set $location to 'hospital'>><<effects>>
+<<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
+<<npc Robin>><<person1>>
 <<if $RobinTemple.rest_day is Time.days and $RobinTemple.hospital_day isnot Time.days
   and $RobinTemple.hospital_stage is ''>>
   <<set $RobinTemple.hospital_day to Time.days>>
   <<set $RobinTemple.hospital_stage to 'waiting'>>
-  <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1
-    and C.npc.Sirris.init is 1 and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
+  <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
+    and $daily.sydney?.punish isnot 1 and C.npc.Sirris.init is 1 and C.npc.Sirris.state is 'active'
+    and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
   <<pass 30>>
 <</if>>
 <<if $RobinTemple.hospital_stage is 'waiting'>>
@@ -612,11 +634,10 @@
 <</if>>
 
 :: RobinTemple Hospital Bed
+<<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
 <<language>>
   <<option 'EN'>>
     <<set $outside to 0>><<set $location to "hospital">><<effects>>
-    <<set $hunger to 0>><<set $thirst to 0>><<set $tiredness to 0>><<set $hygiene to 0>>
-    <<set $stress -= 2000>>
 
     You awaken in a bed at the civic hospital. You see Robin on the same bed, asleep. You're still holding each other.
     <<generate1>><<person1>>
@@ -648,8 +669,6 @@
     <br><br>
   <<option 'CN'>>
     <<set $outside to 0>><<set $location to "hospital">><<effects>>
-    <<set $hunger to 0>><<set $thirst to 0>><<set $tiredness to 0>><<set $hygiene to 0>>
-    <<set $stress -= 2000>>
 
     你在医院的床上醒来。罗宾就在你的身旁，你们还紧紧相拥着。
     <<generate1>><<person1>>
@@ -684,7 +703,9 @@
 <br>
 
 :: RobinTemple Hospital Examination
-<<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<set $location to 'hospital'>><<effects>>
+<<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
+<<npc Robin>><<person1>>
 <<if $RobinTemple.hospital_stage is 'waiting'>>
   <<set $hospitalintro to 1>>
   <<run $harperSeen.pushUnique('hospital')>>
@@ -747,9 +768,18 @@
 <</if>>
 
 :: RobinTemple Hospital Rescue
-<<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<set $location to 'hospital'>><<effects>>
+<<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
 <<if $RobinTemple.hospital_stage is 'rescue' and $RobinTemple.hospital_support>>
-  <<set $RobinTemple.hospital_stage to 'discharged'>><<pass 60>>
+  <<pass 60>>
+  <<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
+<</if>>
+<<npc Robin>><<person1>>
+<<if $RobinTemple.hospital_stage is 'rescue' and !$RobinTemple.hospital_support>>
+  <<set $RobinTemple.hospital_stage to 'vanilla'>>
+<</if>>
+<<if $RobinTemple.hospital_stage is 'rescue' and $RobinTemple.hospital_support>>
+  <<set $RobinTemple.hospital_stage to 'discharged'>>
   <<language>>
     <<option 'EN'>>
       You become aware of Robin beside you, then Sydney's voice. Sirris has brought the car round. They have dealt with the hospital staff while Robin stayed with you. "We're leaving together," Robin says, checking that you can stand before helping you to the door.
@@ -767,12 +797,16 @@
 <</if>>
 <<if $RobinTemple.hospital_stage is 'discharged'>>
   <<getouticon>><<lanLink ['Leave together', '一起离开'] 'RobinTemple Hospital Home'>><</lanLink>><br>
+<<elseif $RobinTemple.hospital_stage is 'vanilla'>>
+  <<socialiseicon 'ask'>><<lanLink ['Continue the examination', '继续检查'] 'RobinTemple Hospital Examination'>><</lanLink>><br>
 <<else>>
   <<getouticon>><<lanLink ['Return to the hospital entrance', '返回医院前厅'] 'Hospital front'>><</lanLink>><br>
 <</if>>
 
 :: RobinTemple Hospital Home
-<<set $outside to 0>><<set $location to 'hospital'>><<effects>><<npc Robin>><<person1>>
+<<set $outside to 0>><<set $location to 'hospital'>><<effects>>
+<<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
+<<npc Robin>><<person1>>
 <<if ['discharged', 'therapy'].includes($RobinTemple.hospital_stage)>>
   <<if $RobinTemple.hospital_support>>
     <<run $sydneySeen.pushUnique('ride')>>

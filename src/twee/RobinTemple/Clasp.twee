@@ -116,10 +116,24 @@
     <br><br>
   <</if>>
 <</if>>
-<<if maplebirch.get('RobinTemple').publicPromise is ''>>
-  <<socialiseicon 'ask'>><<lanLink ['Ask Robin to speak to Jordan directly', '请罗宾亲自向约旦询问'] 'RobinTemple Clasp Jordan'>><</lanLink>><br>
-<</if>>
-<<loveicon 'hug'>><<lanLink ['Let Robin finish', '先听罗宾说完'] 'RobinTemple Clasp Listen'>><</lanLink>><br>
+<!-- 交谈的变化只在选择时结算，结果页重绘不会再改变关系。 -->
+<<set _claspTalkUsed to false, _claspTalkRecord to $RobinTemple>>
+<<capture _claspTalkUsed _claspTalkRecord>>
+  <<if maplebirch.get('RobinTemple').publicPromise is ''>>
+    <<socialiseicon 'ask'>><<lanLink ['Ask Robin to speak to Jordan directly', '请罗宾亲自向约旦询问'] 'RobinTemple Clasp Jordan'>>
+      <<if !_claspTalkUsed and $passage is 'RobinTemple Clasp' and $RobinTemple is _claspTalkRecord and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$replayScene and !$statFreeze>>
+        <<set _claspTalkUsed to true>>
+        <<set maplebirch.get('RobinTemple').faith += 3>><<npcincr Robin dom 1>>
+      <</if>>
+    <</lanLink>><br>
+  <</if>>
+  <<loveicon 'hug'>><<lanLink ['Let Robin finish', '先听罗宾说完'] 'RobinTemple Clasp Listen'>>
+    <<if !_claspTalkUsed and $passage is 'RobinTemple Clasp' and $RobinTemple is _claspTalkRecord and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$replayScene and !$statFreeze>>
+      <<set _claspTalkUsed to true>>
+      <<npcincr Robin love 2>><<npcincr Robin trauma -2>>
+    <</if>>
+  <</lanLink>><br>
+<</capture>>
 
 :: RobinTemple Clasp Request
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<npc Robin>><<person1>>
@@ -277,8 +291,7 @@
       “如果我们共同立誓呢？”罗宾问。约旦想先看你们的工作记录，再作回答。罗宾点点头，随后望向你，想知道你的意思。
   <</language>>
 <</if>>
-<<set maplebirch.get('RobinTemple').faith += 3>><<ggconviction 'Robin'>>
-<<npcincr Robin dom 1>><<gdom>><br><br>
+<<ggconviction 'Robin'>><<gdom>><br><br>
 <<templeicon 'altar'>><<lanLink ['Talk about a shared vow', '谈谈共同立誓'] 'RobinTemple Evaluation'>><</lanLink>><br>
 <<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>
 
@@ -306,5 +319,5 @@
       “我能自己去问约旦，”<<he>>最后说，“只是想先告诉你。”
   <</language>>
 <</if>>
-<<npcincr Robin love 2>><<npcincr Robin trauma -2>><<glove 'Robin'>><<lltrauma 'Robin'>><br><br>
+<<glove 'Robin'>><<lrtrauma>><br><br>
 <<icon 'temple/robin-quarters.png'>><<lanLink ['Return', '返回'] 'RobinTemple Corner'>><</lanLink>><br>

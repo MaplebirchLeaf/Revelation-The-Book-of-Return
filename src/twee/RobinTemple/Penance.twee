@@ -411,12 +411,12 @@
     <</language>>
   <</if>>
   <br><br>
-  <<lanLink ['Hold on to Robin', '抓紧罗宾'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<glove 'Robin'>><br>
+  <<lanLink ['Hold on to Robin', '抓紧罗宾'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<glove 'Robin'>><<if $RobinTemple.punish.joint>><<lllove 'Sydney'>><</if>><br>
   <<if $RobinTemple.punish.joint>>
     <<lanLink ['Hold on to Robin and Sydney', '抓紧罗宾和悉尼'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<pass 20>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
     <<lanLink ['Hold on to Sydney', '抓紧悉尼'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to 2>><<npcincr Robin love -5>><<npcincr Sydney love 1>><<pass 20>><</lanLink>><<lllove 'Robin'>><<glove 'Sydney'>><br>
   <</if>>
-  <<lanLink ['Push them away', '推开身旁的人'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 4 : 2)>><<npcincr Robin love -5>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<lllove 'Robin'>><br>
+  <<lanLink ['Push them away', '推开身旁的人'] 'RobinTemple Penance Intro 2'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 4 : 2)>><<npcincr Robin love -5>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -5>><</if>><<pass 20>><</lanLink>><<lllove 'Robin'>><<if $RobinTemple.punish.joint>><<lllove 'Sydney'>><</if>><br>
 <<else>>
   <<getouticon>><<lanLink ['Return to the temple', '返回神殿'] 'Temple'>><</lanLink>><br>
 <</if>>
@@ -578,7 +578,7 @@
     <</language>>
   <</if>>
   <br><br>
-  <<lanLink ['Reassure Robin', '安抚罗宾'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -1>><</if>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.robinComfort to Math.min(6, ($RobinTemple.punish.robinComfort ?? 0) + 2)>><</lanLink>><<glove 'Robin'>><br>
+  <<lanLink ['Reassure Robin', '安抚罗宾'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to ($RobinTemple.punish.joint ? 3 : 1)>><<npcincr Robin love 1>><<if $RobinTemple.punish.joint>><<npcincr Sydney love -1>><</if>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.robinComfort to Math.min(6, ($RobinTemple.punish.robinComfort ?? 0) + 2)>><</lanLink>><<glove 'Robin'>><<if $RobinTemple.punish.joint>><<llove 'Sydney'>><</if>><br>
   <<if $RobinTemple.punish.joint>>
     <<lanLink ['Reassure Robin and Sydney', '安抚罗宾和悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 1>><<npcincr Robin love 1>><<npcincr Sydney love 1>><<set $RobinTemple.punish.partners.Robin.pain -= 1>><<set $RobinTemple.punish.robinComfort to Math.min(6, ($RobinTemple.punish.robinComfort ?? 0) + 2)>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Robin'>><<glove 'Sydney'>><br>
     <<lanLink ['Reassure Sydney', '安抚悉尼'] 'RobinTemple Penance Intro 4'>><<set $RobinTemple.punish.phase to 2>><<npcincr Sydney love 1>><<npcincr Robin love -1>><<set $RobinTemple.punish.partners.Sydney.pain -= 1>><</lanLink>><<glove 'Sydney'>><<llove 'Robin'>><br>
@@ -907,13 +907,20 @@
 
 :: RobinTemple Penance Hospital
 <<set $outside to 0>><<set $location to 'hospital'>><<effects>>
-<<if $RobinTemple.punish?.result is 'hospital'>>
+<<if $RobinTemple.punish?.result is 'hospital' and !$combat and !$possessed
+    and !$replayScene and !$statFreeze and !$frozenValues and !$nextPassage and !$nextPassageCheck>>
   <<set _punishJoint to $RobinTemple.punish.joint>>
   <<robin-temple-punishment-cleanup>>
-  <<run maplebirch.get('RobinTemple').finishPunishment()>>
+  <<if maplebirch.get('RobinTemple').finishPunishment()>>
+    <!-- 本次入院只恢复一次，床位重绘或继续检查不再重复治疗。 -->
+    <<set $hunger to 0, $thirst to 0, $tiredness to 0, $hygiene to 0>>
+    <<set $stress to Math.max(0, $stress - 2000)>>
+  <</if>>
   <<set $RobinTemple.hospital_day to Time.days>><<set $RobinTemple.hospital_stage to 'waiting'>>
-  <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1
-    and C.npc.Sirris.init is 1
+  <!-- 共同净化后的悉尼已在医院，不因当天的受罚标记取消同场接应。 -->
+  <<set $RobinTemple.hospital_support to C.npc.Sydney.init is 1 and C.npc.Sydney.state is 'active'
+    and (_punishJoint or $daily.sydney?.punish isnot 1)
+    and C.npc.Sirris.init is 1 and C.npc.Sirris.state is 'active'
     and ($sydneyromance is 1 or C.npc.Sydney.love gte 40)>>
   <<language>>
     <<option 'EN'>>
