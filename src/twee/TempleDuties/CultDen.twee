@@ -29,7 +29,7 @@
     <<endevent>>
     <<generateCultist 1>><<generateCultist 2>>
     <<if !$TempleDuties.case.clues.includes('den-guards')>><<generateCultist 3>><</if>>
-    <!-- 敌人表只保存交战的邪教徒；同伴与搬运工留在撤离通道。 -->
+    <!-- 敌人表只保存交战的邪教徒。同伴与搬运工留在撤离通道。 -->
     <<for _denEnemy to 0; _denEnemy lt $enemyno; _denEnemy++>>
       <<set $NPCList[_denEnemy].health to _denEnemy is 0 ? 180 : 140>>
       <<set $NPCList[_denEnemy].healthmax to $NPCList[_denEnemy].health>>

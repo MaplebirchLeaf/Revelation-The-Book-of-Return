@@ -186,7 +186,7 @@
 <br>
 
 :: RobinTemple Evaluation Belief
-<!-- 0 等待信念评分；1/2/3 保留原等候对话，11/12 保存本轮偷听结果。 -->
+<!-- 0 等待信念评分。1/2/3 保留原等候对话，11/12 保存本轮偷听结果。 -->
 <<language>>
   <<option 'EN'>>
     <<effects>>
@@ -333,7 +333,7 @@
     约旦的神情变得严肃起来。“告诉我，我的孩子。你确定驱使你立下此誓的是爱意，而非肉欲吗？”
 <</language>>
 <br><br>
-<!-- 4 为尚未结算的回答，5/6 等待最后承诺；最后的7/8仅供结果页显示。 -->
+<!-- 4 为尚未结算的回答，5/6 等待最后承诺。最后的7/8仅供结果页显示。 -->
 <<set _evaluationState to $RobinTemple, _evaluationUsed to false, _evaluationAnswer to $RobinTemple.evaluation_answer>>
 <<capture _evaluationState _evaluationUsed _evaluationAnswer>>
   <<for _evaluationAnswerPhase, _evaluationAnswerLabel range { 5: ['Yes', '是的'], 6: ['No', '不是'] }>>

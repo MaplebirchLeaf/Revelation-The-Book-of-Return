@@ -89,15 +89,15 @@
   <<language>>
     <<option 'EN'>>
       <<if maplebirch.get('RobinTemple').rank is 'priest'>>
-        A small key lies on Robin's folded cloak. <<He>> reads the next name on the duties list twice before carrying the clean linen to the hall.
+        A small key lies on Robin's folded cloak. The duties list rests beside it.
       <<else>>
-        Robin's new cloak hangs by the bunk. <<He>> still asks the older monks what to do first, and still glances at Jordan before <<he>> carries a task into the hall.
+        Robin's new cloak hangs by the bunk.
       <</if>>
     <<option 'CN'>>
       <<if maplebirch.get('RobinTemple').rank is 'priest'>>
-        一把小钥匙放在罗宾叠好的斗篷上。<<He>>把值班单上的下一个名字看了两遍，才抱起要带去大厅的干净布巾。
+        一把小钥匙放在罗宾叠好的斗篷上，旁边留着值班单。
       <<else>>
-        罗宾的新斗篷挂在床铺旁。领工作时，<<he>>仍会先问年长的修士，把东西搬进大厅前也还是会看约旦一眼。
+        罗宾的新斗篷挂在床铺旁。
       <</if>>
   <</language>>
   <br><br>

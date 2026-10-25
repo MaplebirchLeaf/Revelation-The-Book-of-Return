@@ -42,7 +42,7 @@
     <<lanLink `[$TempleDuties.case.clues.includes('den-people-freed') and !$TempleDuties.case.clues.includes('den-evacuated') ? 'Bring the freed people back to the shore (0:' + _ritual_return_minutes + ')' : 'Return along the path to the shore (0:10)', $TempleDuties.case.clues.includes('den-people-freed') and !$TempleDuties.case.clues.includes('den-evacuated') ? '扶着已经脱困的人返回湖岸 (0:' + _ritual_return_minutes + ')' : '沿小径返回湖岸 (0:10)']` 'Lake Shore'>>
       <<set _ritual_return_passage to $passage, _ritual_return_location to $location>>
       <<pass _ritual_return_minutes>>
-      <!-- 战后衣物损坏等情况仍可撤离求援，保留实际战果；优先事件与回放不改变调查。 -->
+      <!-- 战后衣物损坏等情况仍可撤离求援，保留实际战果。优先事件与回放不改变调查。 -->
       <<if $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field'
           and $passage is _ritual_return_passage and $location is _ritual_return_location
           and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
@@ -587,7 +587,7 @@
     <<statetentacles>><<effects>><<effectstentacles>><<tentacles>><<actionstentacles>>
   <</if>>
   <<temple-den-priority>><<temple-tentacle-outcome>>
-  <!-- 附身仍交给原版回合处理；自定义收尾不得解除附身或抢占强制事件。 -->
+  <!-- 附身仍交给原版回合处理。自定义收尾不得解除附身或抢占强制事件。 -->
   <<if !_denForced and _templeTentacleOutcome is 'withdrawn'>><<set $TempleDuties.case.result to 'withdrawn'>><</if>>
   <span id='next'>
   <<lanLink ['Next', '继续'] `!_denForced and _templeTentacleOutcome isnot 'active' ? _args[1] : _args[0]`>><</lanLink>>

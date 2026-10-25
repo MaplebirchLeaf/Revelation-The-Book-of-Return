@@ -46,7 +46,7 @@ export default function Combat(core: typeof maplebirch): void {
         { src: '<<pain -8>><<llpain>><<defiance 5 _n>>', to: '<<pain -8>><<llpain>><<defiance 5 _n "passive">>', expected: 1 }
       ],
       'Widgets Struggle': [
-        // 只给主动咬退、甩脱和喷雾标记；装备反伤与满足离开仍沿原版结算。
+        // 只给主动咬退、甩脱和喷雾标记。装备反伤与满足离开仍沿原版结算。
         { src: '<<struggle_part_init "mouth">>', to: '<<struggle_part_init "mouth" "active">>', expected: 1 },
         { srcmatch: /<<struggle_part_init _actionpart>>/g, to: '<<struggle_part_init _actionpart "active">>', expected: 2 },
         {

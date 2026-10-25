@@ -296,22 +296,22 @@
       <<option 'EN'>>
         "So long as you remain true and faithful, and keep your vow, you have done little wrong."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
+        You hear Robin catch <<his>> breath. "Thank you, <<sister>>..." The cubicle falls quiet for a moment before <<he>> leaves. <<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
       <<option 'CN'>>
-        “你已经保持了真诚和信仰如此长的时间，还信守了自己的承诺，你并没有太大的罪过。”
+        “只要你保持真诚与信仰，信守誓言，就没有太大的罪过。”
         <br><br>
-        你听见另一个人松了口气。“谢谢你，<<sister>>。”<<He>>走出了忏悔室。<<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
+        罗宾轻轻吸了口气。“谢谢你，<<sister>>……”隔间里安静了片刻，随后传来离开的脚步声。<<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
     <</language>>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
         "If your feelings are pure, you will remain free of sin."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
+        You hear a sigh of relief. "Thank you, <<sister>>. That puts my mind at ease." Robin stays by the partition a little longer before leaving the confessional. <<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
       <<option 'CN'>>
         “如果你的感情是纯洁的，那你就是无罪的。”
         <br><br>
-        你听见一声释然的叹息。“谢谢你，<<sister>>。”<<He>>离开了忏悔室。<<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
+        你听见一声释然的叹息。“谢谢你，<<sister>>。听你这么说，我就放心了。”罗宾在隔板前又站了一会儿，才离开忏悔室。<<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
     <</language>>
   <<case 'robin_doubt'>>
     <<robin-temple-confession-band>>

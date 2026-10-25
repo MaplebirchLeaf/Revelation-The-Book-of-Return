@@ -445,7 +445,7 @@
             <<if $TempleDuties.case.id is 'roots'>>
               <li><<lanSwitch 'Meet the monk at the old storehouse by the docks. Mark a way back before dealing with the moving roots.' '到码头旁的旧仓房与修士会合。处理会动的根须前，先留好退路。'>></li>
             <<elseif $TempleDuties.case.id is 'crate'>>
-              <li><<lanSwitch 'Go to the docks warehouse. Bring the worker out and repel the purple tentacles; prepared companions can help.' '前往码头仓库，接出受困工人并击退紫色触手；已完成见习的同伴可以帮忙。'>></li>
+              <li><<lanSwitch 'Go to the docks warehouse. Bring the worker out and repel the purple tentacles; prepared companions can help.' '前往码头仓库，接出受困工人并击退紫色触手。已完成见习的同伴可以帮忙。'>></li>
               <<if !$TempleDuties.case.clues.includes('departed') and !$TempleDuties.case.clues.includes('visit-quiet')>>
                 <li><<lanSwitch 'Before going to the site, invite any companions through the assignment instructions. Leave time for their other duties.' '前往现场前，可以在委托说明中邀请同伴，并为各自的其他职务留足时间。'>></li>
               <</if>>

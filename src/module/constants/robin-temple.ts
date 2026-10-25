@@ -58,7 +58,7 @@ export interface SecretPromiseState {
   /** 完成誓约后，由岸上的后日谈消费此标记以免重复结算。 */
   rite_done: boolean;
   followup: 'none' | 'meal' | 'records' | 'complete' | 'declined';
-  /** 只记录门后异声的实际应对；旧完成记录留空，不推断玩家选择。 */
+  /** 只记录门后异声的实际应对。旧完成记录留空，不推断玩家选择。 */
   followup_choice: '' | 'listen' | 'hold' | 'leave';
   dream: { active: boolean; day: number; stage: number; round: number; seen: boolean };
 }

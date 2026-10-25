@@ -11,12 +11,12 @@
     <<set _lambTalkVow to $LostLamb.marks.includes('verdict-vow-sealed') ? 'sealed' : $LostLamb.marks.includes('verdict-vow-broken') ? 'broken' : ''>>
   <</if>>
   <<pass `_lambTalkTopic is 'space' ? 5 : 10`>>
-  <!-- 午夜后仍可讲完已经开始的交谈；时间事件打断时，不消耗话题或结算收益。 -->
+  <!-- 午夜后仍可讲完已经开始的交谈。时间事件打断时，不消耗话题或结算收益。 -->
   <<if $LostLamb isnot _lambTalkState or $passage isnot _lambTalkSource or $location isnot _lambTalkLocation
       or !maplebirch.get('LostLamb')?.reward or !maplebirch.get('LostLamb')?.kylarHere or $LostLamb.talk
       or $possessed or $nextPassage or $nextPassageCheck or $eventforced
       or $stress gte $stressmax or isPregnancyEnding()>><<exit>><</if>>
-  <!-- 成功讲完后才登记一次性选择；正文重绘、读档和重新入梦均不重复结算。 -->
+  <!-- 成功讲完后才登记一次性选择。正文重绘、读档和重新入梦均不重复结算。 -->
   <<set $LostLamb.talk to _lambTalkTopic, $LostLamb.talkVow to _lambTalkVow>>
   <<switch _lambTalkTopic>>
     <<case 'company'>>
@@ -498,7 +498,7 @@
 <</language>>
 <<glove 'Gwylan'>><<lstress>><<ltrauma>>
 <br><br>
-<!-- 只有读到本页正文才会生成此链接；退场后登记，首次交谈的存档与重绘仍使用原有认知。 -->
+<!-- 只有读到本页正文才会生成此链接。退场后登记，首次交谈的存档与重绘仍使用原有认知。 -->
 <<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<run $gwylanSeen ??= []>><<run $gwylanSeen.pushUnique('kylar_parents')>><<endevent>><</lanLink>><br>
 
 :: Lost Lamb Bishop Talk

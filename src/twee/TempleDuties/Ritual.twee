@@ -93,7 +93,7 @@
 <</if>>
 <<lanSwitch 'A black-robed adult blocks your way to the stone and lunges for you. <<if $enemyno gte 2>>Another moves in from the side.<</if>> The captive is still bound. You need to get past the people in front of you.' '一名身穿黑袍的成年人挡在通向石台的路上，伸手扑向你。<<if $enemyno gte 2>>另一人从侧面围了过来。<</if>>受困者仍被绑着。你得先摆脱眼前的人。'>><br><br>
 <<effects>><<effectsman>><<man>><<stateman>><<actionsman>>
-<!-- 原版临时结束标记不跨页，只保存实际胜败；人类战不等于已经救人。 -->
+<!-- 原版临时结束标记不跨页，只保存实际胜败。人类战不等于已经救人。 -->
 <<temple-den-priority>>
 <<if !_denForced>>
 <<if $enemyarousal gte $enemyarousalmax and $enemyarousalmax gt 0>>

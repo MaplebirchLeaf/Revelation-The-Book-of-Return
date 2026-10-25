@@ -37,7 +37,7 @@
 <</widget>>
 
 <<widget 'temple-choir-mass-effects'>>
-  <!-- 仅在 begin 成功的入场点击中调用，沿用原版优先级；退出与重绘不撤销或重发。 -->
+  <!-- 仅在 begin 成功的入场点击中调用，沿用原版优先级。退出与重绘不撤销或重发。 -->
   <<if $angel gte 6>>
     <<purity 10>><<trauma -18>><<stress -18>>
   <<elseif $fallenangel gte 2>>

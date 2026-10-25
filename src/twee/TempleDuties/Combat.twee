@@ -7,7 +7,7 @@
   <</silently>>
 <</widget>>
 
-<!-- 原版普通触手动作不设置结束标记；调用方另行保留强制事件优先级与实际撤离过程。 -->
+<!-- 原版普通触手动作不设置结束标记。调用方另行保留强制事件优先级与实际撤离过程。 -->
 <<widget 'temple-tentacle-outcome'>>
   <<silently>>
     <<set _templeTentacleOutcome to 'active'>>
