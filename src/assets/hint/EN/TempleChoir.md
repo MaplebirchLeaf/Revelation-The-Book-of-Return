@@ -50,7 +50,9 @@ On **Sunday, 11:00–13:00**, choose **Sing with the choir (1:00)** in the hall.
 
 Following is easiest; harmony and leading demand more skill. A clear verse earns two points, or three when leading. An unsteady verse earns one; a lost verse earns none. Recent practice, effective singing and a small random variation affect the result. Each round adds tiredness. Keeping up eases some stress; losing your part adds stress.
 
-Complete all three rounds and hear Jordan's assessment to record attendance and earnings. Finishing also gives purity and grace; good performance improves Jordan's affection.
+Entry applies the original mass's purity and transformation effects once, checking angel first, then fallen angel, then demon. A full angel receives trauma and stress relief; fallen angels and full demons gain trauma, stress and pain. The fallen angel's greater purity gain is retained. Leaving early does not undo these effects.
+
+Complete all three rounds and hear Jordan's assessment to record attendance and earnings. Finishing gives grace; good performance improves Jordan's affection.
 
 **Starting uses today's mass opportunity.** Ordinary mass attended earlier prevents choir service. Leaving early gives no bonus and you cannot restart that day. Previously recorded earnings remain.
 

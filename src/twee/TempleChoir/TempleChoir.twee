@@ -11,7 +11,12 @@
 
 <<widget "temple-choir-mass-link">>
   <<if _revelationTempleLinks is 'mass' and maplebirch.get('TempleChoir').service>>
-    <<icon 'temple/choir.png'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>><<robin-temple-mass-record 'choir'>><<run maplebirch.get('TempleChoir').begin()>><</lanLink>><br>
+    <<icon 'temple/choir.png'>><<lanLink ['Sing with the choir (1:00)', '随唱诗班参与弥撒 (1:00)'] 'TempleChoir Mass'>>
+      <<if maplebirch.get('TempleChoir').begin()>>
+        <<temple-choir-mass-effects>>
+        <<robin-temple-mass-record 'choir'>>
+      <</if>>
+    <</lanLink>><br>
   <</if>>
 <</widget>>
 

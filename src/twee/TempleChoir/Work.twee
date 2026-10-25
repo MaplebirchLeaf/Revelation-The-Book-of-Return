@@ -36,6 +36,19 @@
   <</if>>
 <</widget>>
 
+<<widget 'temple-choir-mass-effects'>>
+  <!-- 仅在 begin 成功的入场点击中调用，沿用原版优先级；退出与重绘不撤销或重发。 -->
+  <<if $angel gte 6>>
+    <<purity 10>><<trauma -18>><<stress -18>>
+  <<elseif $fallenangel gte 2>>
+    <<purity 70>><<trauma 6>><<stress 6>><<pain 6>>
+  <<elseif $demon gte 6>>
+    <<purity 10>><<trauma 6>><<stress 6>><<pain 6>>
+  <<else>>
+    <<purity 10>>
+  <</if>>
+<</widget>>
+
 :: TempleChoir Practice
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<if maplebirch.get('TempleChoir')?.practice>>
@@ -122,6 +135,13 @@
     <<case 0>>
       <<robin-temple-mass-presence 'opening'>>
       <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. <<if $TempleChoir.lead>>The singers turn towards you, waiting for the opening note.<<else>>The singer beside you points to the first line.<</if>><<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。<<if $TempleChoir.lead>>歌者们望向你，等你起音。<<else>>身旁的歌者指了指第一行。<</if>><</language>>
+      <<if $angel gte 6>>
+        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> melodic voice calms you. You feel serene.<<option 'CN'>>约旦开始读圣典。<<His>>悠扬的声音使你平静。你感到很宁静。<</language>><<gpurity>><<lltrauma>><<llstress>>
+      <<elseif $fallenangel gte 2 or $demon gte 6>>
+        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> words are violent and accusing.<<option 'CN'>>约旦开始读圣典。<<His>>话语仿佛充满暴力和指责。<</language>><<gggpurity>><<gtrauma>><<gstress>><<gpain>>
+      <<else>>
+        <<gpurity>>
+      <</if>>
     <<case 1>>
       <<language>><<option 'EN'>>Jordan finishes the reading and turns towards the choir. The response begins softly, with a higher phrase halfway through. You have a moment to take your breath.<<option 'CN'>>约旦读完经文，转向唱诗班。答唱轻声起头，中段的音会抬高一些。你还有片刻可以换气。<</language>>
     <<case 2>>
@@ -148,7 +168,7 @@
   <!-- 只结算一次，正文、领唱许可与同伴回应在重绘后仍可查看。 -->
   <<set _choirWasLead to $TempleChoir.lead>>
   <<if maplebirch.get('TempleChoir').finish()>>
-    <<purity 10>><<grace 2>>
+    <<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>
   <</if>>
   <<language>>
@@ -191,7 +211,7 @@
       This service adds <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> to your monthly allowance. <span class='teal'>Collect it with your temple allowance after a successful monthly examination. If your allowance is withheld, the choir earnings remain on the ledger.</span>
     <<option 'CN'>>
       本次唱诗为月度津贴增加 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span>。<span class='teal'>月度检查通过后，随神殿津贴一并领取。若津贴被扣发，唱诗加款仍留在账册上。</span>
-  <</language>><<gpurity>><<ggrace>>
+  <</language>><<ggrace>>
   <<if $TempleChoir.lead>>
     <br><br>
     <<language>>
