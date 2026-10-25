@@ -89,7 +89,7 @@
       and ((!$RBR.necklace.returned and !$RBR.necklace.advised)
       or ($RBR.necklace.returned and !$RBR.necklace.followedUp))>>
     <<socialiseicon 'ask'>>
-    <<lanLink `[$RBR.necklace.returned ? 'Tell Gwylan you returned the necklace (0:10)' : 'Ask Gwylan about returning the ivory necklace (0:10)', $RBR.necklace.returned ? '告诉格威岚，你归还了项链 (0:10)' : '询问格威岚，能否归还象牙项链 (0:10)']`>>
+    <<lanLink `[$RBR.necklace.returned ? 'Tell Gwylan you returned the necklace (0:10)' : 'Ask Gwylan about returning the ivory necklace (0:10)', $RBR.necklace.returned ? '告诉格威岚你归还了项链 (0:10)' : '询问格威岚能否归还象牙项链 (0:10)']`>>
       <<ivory-necklace-check>>
       <<if _ivorySafe and $location is 'forest_shop' and _gwylanLocation is 'shop'>>
         <<set _ivoryFollowup to $RBR.necklace.returned>>
@@ -193,7 +193,7 @@
   <span class='lblue'><<lanSwitch 'You have put it back before. Without other grievances, doing so again only eases the wraith\'s obsession by one point. Grievances over its offspring remain.' '你已经放回过一次。若没有其他怨恨，这次再放回只会使怨灵的痴迷稍缓 1 点，对苍白后代的怨恨仍然保留。'>></span><br><br>
 <</if>>
 <<icon 'clothes/ivory-necklace.png'>>
-<<lanLink ['Set the necklace on the plinth and let go', '将项链放在基座上，松开手']>>
+<<lanLink ['Set the necklace on the plinth', '将项链放在基座上']>>
   <<ivory-necklace-check>>
   <<if _ivoryReady>>
     <<set _ivorySource to $passage>>
@@ -390,7 +390,7 @@
   <</if>>
   <br><br>
   <<lakeicon>>
-  <<lanLink `[$RBR.necklace.aftercare is 'talk' ? 'Think it over by yourself and stay a quarter-hour (0:15)' : 'Stay quietly for a quarter-hour (0:15)', $RBR.necklace.aftercare is 'talk' ? '自己想一想，坐上一刻钟 (0:15)' : '安静地坐上一刻钟 (0:15)']`>>
+  <<lanLink `[$RBR.necklace.aftercare is 'talk' ? 'Think it over by yourself (0:15)' : 'Stay quietly for a quarter-hour (0:15)', $RBR.necklace.aftercare is 'talk' ? '自己想一想 (0:15)' : '安静地坐上一刻钟 (0:15)']`>>
     <<revelation-wraith-visit-check>>
     <<if _wraithVisitReady>>
       <<set _wraithVisitSource to $passage>>

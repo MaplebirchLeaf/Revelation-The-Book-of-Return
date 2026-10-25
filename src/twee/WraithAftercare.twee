@@ -369,5 +369,5 @@
 <br><br>
 <<getouticon>><<lanLink ['Get up; perhaps talk about it later', '先起床，之后找人谈谈'] 'Bedroom'>><<unset $nightmareExit>><</lanLink>><br>
 <<if $RBR.necklace.aftercare is 'talk'>>
-  <<investigateicon>><<lanLink ['Keep it to yourself and think it over', '暂时不告诉别人，自己想一想'] 'Bedroom'>><<set $RBR.necklace.aftercare to 'shore'>><<unset $nightmareExit>><</lanLink>><br>
+  <<investigateicon>><<lanLink ['Keep it to yourself', '暂时不告诉别人'] 'Bedroom'>><<set $RBR.necklace.aftercare to 'shore'>><<unset $nightmareExit>><</lanLink>><br>
 <</if>>

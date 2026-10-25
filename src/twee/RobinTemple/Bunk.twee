@@ -139,16 +139,16 @@
 <<if _robinBunkReady>>
   <<language>>
     <<option 'EN'>>
-      Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.
+      <<if C.npc.Robin.trauma gte 40>>Robin holds the schoolbook for a while before closing it and moving closer. When you ask about the day's work, <<he>> only says a little.<<else>>Robin closes the schoolbook and rests against you. <<He>> talks about the day's work, then about a younger initiate who kept asking when morning would come.<</if>>
     <<option 'CN'>>
-      罗宾合上课本，靠在你身边。<<He>>先说起今天的工作，又说起一名总问天什么时候亮的年幼见习教徒。
+      <<if C.npc.Robin.trauma gte 40>>罗宾捧着课本，过了一会儿才合上，往你身边挪了挪。你问起今天的工作，<<he>>只说了几句。<<else>>罗宾合上课本，靠在你身边。<<He>>先说起今天的工作，又说起一名总问天什么时候亮的年幼见习教徒。<</if>>
   <</language>>
   <br><br>
   <<language>>
     <<option 'EN'>>
-      "I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.
+      <<if C.npc.Robin.trauma gte 40>>"Can we just sit here?" <<he>> asks. You stay beside <<him>>.<<else>>"I told them it always does," <<he>> says. <<He>> stays close after the conversation ends.<</if>>
     <<option 'CN'>>
-      “我告诉对方，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。
+      <<if C.npc.Robin.trauma gte 40>>“就这样坐会儿，可以吗？”<<he>>问。你留在<<him>>身边。<<else>>“我告诉对方，天总会亮的。”<<he>>说。话说完后，<<he>>依旧靠着你。<</if>>
   <</language>>
   <br><br>
   <<secret-day-robin-echo>>
@@ -192,7 +192,7 @@
     <<robin-temple-bunk-ready>>
     <<if _robinBunkReady>><<takeKissVirginity 'Robin' 'loveInterest'>><<npcincr Robin love 1>><<npcincr Robin lust 1>><</if>>
   <</lanLink>><<kissvirginitywarning>><<NPCvirginitywarning 'Robin' 'kiss'>><br>
-  <<loveicon 'hug'>><<lanLink ['Ask Robin if you can stay', '问罗宾要不要你留下'] 'RobinTemple Bed Invite'>><</lanLink>><br>
+  <<loveicon 'hug'>><<lanLink ['Ask Robin to hold you', '请罗宾抱着你'] 'RobinTemple Bed Invite'>><</lanLink>><br>
 <</if>>
 <br>
 <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Get up', '起床'] 'RobinTemple Bunk'>><<storeon 'RobinTemple Bed'>><<loadTempHairStyle>><</lanLink>><br>
@@ -203,9 +203,23 @@
 <<if _robinBunkReady>>
   <<language>>
     <<option 'EN'>>
-      You kiss Robin beneath the blanket. <<He>> returns it softly, one hand closing around yours when the bunk creaks.
+      You lean in close beneath the rough wool blanket, pressing your lips against Robin's in the dark. The cold air of the temple dormitory fades as <<his>> breath hitches, warm and sweet against your mouth.
+      <<if C.npc.Robin.trauma gte 40>>
+        Robin returns it with a desperate, trembling softness. When a nearby bunk creaks, <<he>> gasps and freezes, clutching your fingers in a white-knuckled grip, <<his>> racing heart thumping visibly through <<his>> thin tunic until <<he>> realizes nobody woke up.
+      <<elseif C.npc.Robin.dom gte 60>>
+        Robin pulls you flush against <<his>> chest with a quiet gasp, deepening the kiss as heat pools between your bodies. When a bunk creaks, <<he>> pauses with a low, breathless chuckle, trailing <<his>> lips to your jaw before slowly moving again.
+      <<else>>
+        Robin returns it softly, melting into your warmth as <<his>> cheeks flush bright red beneath the covers. <<His>> fingers slide into yours, squeezing tightly, shivering with sweet excitement every time your lips part and touch again.
+      <</if>>
     <<option 'CN'>>
-      你在毯子下吻了罗宾。<<He>>轻轻回吻。床铺一响，<<he>>便握住你的手。
+      你在粗糙的羊毛毯下悄悄凑近，在黑暗中吻上罗宾柔软的双唇。神殿通铺冰冷的空气仿佛瞬间消散，<<his>>呼吸一滞，温热而清甜的气息喷洒在你的唇角。
+      <<if C.npc.Robin.trauma gte 40>>
+        罗宾带着一丝颤抖而依恋的回应轻轻回吻。旁边的床铺木板突然发出一声微响，<<he>>猛然惊得屏住呼吸僵住，指节泛白地死死攥住你的手，胸腔里剧烈撞击的心跳透过单薄的见习袍清晰可辨，直到确认没有人醒来，才长长地吐出一口热气。
+      <<elseif C.npc.Robin.dom gte 60>>
+        罗宾发出一声压抑的轻哼，揽住你的后腰将你紧紧按向<<his>>胸膛，反客为主地加深了这个吻，彼此相贴的体温在被窝里迅速升腾。床铺一响，<<he>>才带着低低的喘笑稍稍放缓，唇瓣轻蹭过你的下颌，温热的气息灼烫得令人心尖发颤。
+      <<else>>
+        罗宾顺从地轻轻回吻，整个人在你的怀抱里融化开来，棉被下的脸颊红得发烫。<<His>>手指慢慢扣进你的指缝，指尖激动得有些轻微发颤，每一次唇瓣的轻触与微启都让彼此的呼吸更乱了几分。
+      <</if>>
   <</language>>
   <br><br>
   <<language>>
@@ -232,16 +246,16 @@
 <<if _robinBunkReady>>
   <<language>>
     <<option 'EN'>>
-      Robin lifts the edge of the blanket, <<his>> cheeks turning pink. "You could stay here," <<he>> whispers. "If you want to." <<He>> moves over to make room for you.
+      <<if C.npc.Robin.trauma gte 40>>Robin looks at you, then nods. <<He>> takes your hand beneath the blanket. "Just for a while?"<<elseif C.npc.Robin.dom gte 60>>Robin lifts <<his>> arm. "Come here," <<he>> whispers, smiling at you.<<else>>Robin's cheeks turn pink. "I'd like that," <<he>> whispers, lifting <<his>> arm a little.<</if>>
     <<option 'CN'>>
-      罗宾红着脸掀开毯子一角。“你可以睡这里，”<<he>>轻声说，“如果你愿意的话。”<<He>>往旁边挪了挪，给你腾出位置。
+      <<if C.npc.Robin.trauma gte 40>>罗宾看看你，点了点头，在毯子下握住你的手。“就抱一会儿，好吗？”<<elseif C.npc.Robin.dom gte 60>>罗宾抬起手臂，朝你笑了笑。“过来。”<<he>>轻声说。<<else>>罗宾红了脸。“好啊。”<<he>>轻声说，稍稍抬起手臂。<</if>>
   <</language>>
   <br><br>
-  <<loveicon 'hug'>><<lanLink ['Sleep beside Robin', '靠着罗宾睡'] 'RobinTemple Bed Close'>>
+  <<loveicon 'hug'>><<lanLink ['Cuddle up to Robin', '偎进罗宾怀里'] 'RobinTemple Bed Close'>>
     <<robin-temple-bunk-ready>>
     <<if _robinBunkReady>><<stress -2>><<npcincr Robin love 1>><</if>>
   <</lanLink>><<lstress>><<glove 'Robin'>><br>
-  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Let Robin sleep first', '让罗宾先睡'] 'RobinTemple Bed'>><</lanLink>><br>
+  <<icon 'temple/robin-temple-bed.png'>><<lanLink ['Stay where you are', '还是这样躺着'] 'RobinTemple Bed'>><</lanLink>><br>
 <<else>>
   <<language>>
     <<option 'EN'>>
@@ -259,9 +273,19 @@
 <<if _robinBunkReady>>
   <<language>>
     <<option 'EN'>>
-      You make room for Robin beneath the blanket. After a while <<his>> breathing slows. You can still hear the other initiates turning in their bunks.
+      You slide closer beneath the heavy blanket, tucking your head securely against the crook of Robin's neck. The scent of clean soap and temple incense clings to <<his>> skin.
+      <<if C.npc.Robin.trauma gte 40>>
+        Robin wraps both arms tightly around you, burying <<his>> nose into your hair as another initiate stirs in the dark. As the minutes tick by in quiet safety, you feel the defensive stiffness gradually drain from <<his>> shoulders, <<his>> rapid heartbeat steadying into a slow, soothing rhythm.
+      <<else>>
+        Robin pulls the wool blanket up over your ears, wrapping <<his>> arms around your back and drawing you into <<his>> warmth. Surrounded by the quiet breathing of the dormitory, the lingering weight in your chest dissolves, and your shoulders fully relax against <<his>> steady heartbeat.
+      <</if>>
     <<option 'CN'>>
-      你在毯子下给罗宾挪出位置。过了一会儿，<<his>>呼吸渐渐平稳。你仍能听见别的见习教徒在床上翻身。
+      你在沉重的毯子下紧紧依偎过去，把头埋进罗宾温暖的颈窝。<<His>>发间散发着神殿熏香与干净皂角的清淡香气。
+      <<if C.npc.Robin.trauma gte 40>>
+        有其他见习教徒在暗中翻身时，罗宾下意识将双臂收得更紧，把鼻尖埋在你的发丝间。随着时间在静谧与安全中流逝，你清晰地感受到<<he>>肩背处戒备僵硬的肌肉一点点松弛下来，剧烈的心跳也转为平稳舒缓的律动。
+      <<else>>
+        罗宾将羊毛毯往上拉了拉，严严实实地护住你的耳颈，手臂温柔地环过你的背，将你整个纳入<<his>>融融的暖意里。听着通铺里周围此起彼伏的均匀呼吸声，你胸口压抑的沉闷感缓缓消散，整个人在<<his>>沉稳的心跳声中彻底放松了下来。
+      <</if>>
   <</language>>
   <<lstress>><<glove 'Robin'>><br><br>
 <<else>>

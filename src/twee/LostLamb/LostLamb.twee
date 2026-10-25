@@ -452,6 +452,7 @@
     <br><br>
     悉尼轻叩两下，停了一会儿，又叩了一下。<<if isLoveInterest('Sydney')>>你把手放在<<nnpc_his 'Sydney'>>手边。<<else>>你等了一会儿，才退开一步。<</if>>
 <</language>>
+<<glove 'Sydney'>><<lstress>>
 <br><br>
 <<getouticon>><<lanLink ['Step back', '退回'] `$LostLamb_sydneyReturn || 'Temple Sydney'`>><<unset $LostLamb_sydneyReturn>><<endevent>><</lanLink>><br>
 
@@ -495,6 +496,7 @@
     <br><br>
     <<He>>重新整理起草药。那根折断的草茎留在碗边。
 <</language>>
+<<glove 'Gwylan'>><<lstress>><<ltrauma>>
 <br><br>
 <!-- 只有读到本页正文才会生成此链接；退场后登记，首次交谈的存档与重绘仍使用原有认知。 -->
 <<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><<run $gwylanSeen ??= []>><<run $gwylanSeen.pushUnique('kylar_parents')>><<endevent>><</lanLink>><br>
@@ -543,5 +545,6 @@
     <br><br>
     <<He>>转向侧门。你的疑问仍没有解开。
 <</language>>
+<<gawareness>><<gstress>>
 <br><br>
 <<getouticon>><<lanLink ['Step back', '退回'] `['Temple Confessor Intro Ask', 'Revelation Temple Office', 'Revelation Temple Monstrance'].includes($LostLamb_bishopReturn) ? $LostLamb_bishopReturn : 'Temple Confessor Intro Ask'`>><<unset $LostLamb_bishopReturn>><<endevent>><</lanLink>><br>

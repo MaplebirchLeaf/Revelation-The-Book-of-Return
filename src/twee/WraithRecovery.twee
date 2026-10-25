@@ -221,7 +221,7 @@
   <</language>>
   <br><br>
   <<set $skulduggerydifficulty to 500>>
-  <<sneakicon>><<lanLink ['Wait for the camera to turn away, then slip inside (0:05)', '等摄像头转开，再溜进去 (0:05)'] 'Revelation Ivory Necklace Case'>>
+  <<sneakicon>><<lanLink ['Wait for the camera to turn away before slipping inside (0:05)', '等摄像头转开后溜进去 (0:05)'] 'Revelation Ivory Necklace Case'>>
     <<ivory-necklace-recovery-check>>
     <<if _ivoryRecovery and $RBR.necklace.stage is 'camera'>>
       <<set $RBR.necklace.stage to 'failed'>>

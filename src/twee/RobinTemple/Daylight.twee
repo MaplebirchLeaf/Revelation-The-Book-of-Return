@@ -89,10 +89,11 @@
         <<case 'hold'>>Robin glances towards the aisle, keeping the way back to the hall clear. "Next time, don't wait until we're all the way down the passage before you follow."
         <<case 'leave'>>"We didn't have to open that door," Robin says. "I've been thinking about that. We can leave a thing alone."
       <</switch>>
-      <<if C.npc.Robin.trauma gte 40>> <<nnpc_He 'Robin'>> keeps <<nnpc_his 'Robin'>> voice low and watches the people passing nearby. You let the subject rest.
-      <<elseif maplebirch.get('RobinTemple').faith gte 20>> <<nnpc_He 'Robin'>> smooths the prayer-book page. "I still come here to pray. I just won't follow something because it knows my name."
+      <<if maplebirch.get('RobinTemple').faith gte 20>> "I still come here to pray," <<nnpc_he 'Robin'>> adds. "I just won't follow something because it knows my name."
       <<elseif maplebirch.get('RobinTemple').faith lte -20>> "I can help people without believing everything I hear here," <<nnpc_he 'Robin'>> adds.
-      <<elseif C.npc.Robin.dom gte 50>> "And if I say we should go, I want you to listen," <<nnpc_he 'Robin'>> adds, meeting your eyes.
+      <</if>>
+      <<if C.npc.Robin.trauma gte 40>> <<nnpc_He 'Robin'>> keeps <<nnpc_his 'Robin'>> voice low and watches the people passing nearby. You let the subject rest.
+      <<elseif C.npc.Robin.dom gte 50>> "And if I say we should go, I want you to listen," <<nnpc_he 'Robin'>> says, meeting your eyes.
       <<else>> <<nnpc_He 'Robin'>> gives you time to answer, then turns back to the schoolbook.<</if>>
       <<if $robinromance is 1 and C.npc.Robin.love gte 60>> <<nnpc_He 'Robin'>> leaves <<nnpc_his 'Robin'>> hand beside yours.<</if>>
     <<option 'CN'>>
@@ -101,9 +102,10 @@
         <<case 'hold'>>罗宾朝过道看了一眼，没有挡住回大厅的路。“下次，不用等我们都走那么远了，你才跟上。”
         <<case 'leave'>>“那扇门，我们也没必要打开。”罗宾说，“有些东西，放着不管也可以。”
       <</switch>>
-      <<if C.npc.Robin.trauma gte 40>><<nnpc_He 'Robin'>>声音很低，仍留意着附近经过的人。你没有接着往下问。
-      <<elseif maplebirch.get('RobinTemple').faith gte 20>><<nnpc_He 'Robin'>>抚平祈祷书的纸页。“我还是会来祈祷。可也不能因为谁叫得出我的名字，就跟着走。”
+      <<if maplebirch.get('RobinTemple').faith gte 20>>“我还是会来祈祷，”<<nnpc_he 'Robin'>>又说，“可也不能因为谁叫得出我的名字，就跟着走。”
       <<elseif maplebirch.get('RobinTemple').faith lte -20>>“我能帮别人，也不用把这里听到的每句话都当真。”<<nnpc_he 'Robin'>>又说。
+      <</if>>
+      <<if C.npc.Robin.trauma gte 40>><<nnpc_He 'Robin'>>声音很低，仍留意着附近经过的人。你没有接着往下问。
       <<elseif C.npc.Robin.dom gte 50>>“还有，我说该走了的时候，你也得听进去。”<<nnpc_he 'Robin'>>望着你的眼睛说。
       <<else>><<nnpc_He 'Robin'>>等你说完，才重新看向课本。<</if>>
       <<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>>把手留在你的手边。<</if>>
@@ -154,7 +156,7 @@
     <<npcincr Robin love 1>>
     <<npcincr Sydney love 1>>
   <</secret-day-action>>
-  <<lstress>><<ltiredness>>
+  <<lstress>><<ltiredness>><<glove 'Robin'>><<glove 'Sydney'>>
   <br>
   <</if>>
 <<elseif $RobinTemple.secret.followup is 'meal'>>
@@ -330,12 +332,13 @@
 <br><br>
 <<language>>
   <<option 'EN'>>
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
+      Robin looks towards the altar. "I'd like to pray before we go."
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      Robin looks back at the notes. "Being in the temple doesn't mean we should trust every voice."
+    <</if>>
     <<if C.npc.Robin.trauma gte 40>>
       Robin sits facing the busy hall. <<nnpc_He 'Robin'>> startles when a chair scrapes nearby. "Could we stay here a little longer?" <<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>> reaches for your hand.<</if>>
-    <<elseif maplebirch.get('RobinTemple').faith gte 20>>
-      Robin listens to a prayer from the next pew. "I want to stay where we can hear the others." <<nnpc_He 'Robin'>> leaves the notes closed until you are ready to talk.
-    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
-      "Being in the temple doesn't mean we should trust every voice," Robin says. <<nnpc_He 'Robin'>> looks at the notes, then back at the people around you.
     <<elseif C.npc.Robin.dom gte 50>>
       "Next time we leave together," Robin says. "Nobody goes back on their own." <<nnpc_He 'Robin'>> waits for your answer.
     <<else>>
@@ -352,12 +355,13 @@
     <<if $sydneyromance is 1 and C.npc.Sydney.love gte 60>> Sydney takes the seat beside you.<<else>> Sydney stays across the table, leaving room for the notes between you.<</if>>
     <<if maplebirch.get('RobinTemple').secret.cornered>><br><br>Robin glances at you. "What I said over the meal still stands." Sydney nods. The way you brought them to the lake has not been forgotten.<</if>>
   <<option 'CN'>>
+    <<if maplebirch.get('RobinTemple').faith gte 20>>
+      罗宾望向祭坛。“走之前，我想再祈祷一会儿。”
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+      罗宾又看向记录。“就算在神殿里，也不能听见谁叫，就信了。”
+    <</if>>
     <<if C.npc.Robin.trauma gte 40>>
       罗宾面向热闹的大厅坐下。附近有人拖动椅子，<<nnpc_he 'Robin'>>还是惊了一下。“能在这里多待会儿吗？”<<if $robinromance is 1 and C.npc.Robin.love gte 60>><<nnpc_He 'Robin'>>伸手握住你的手。<</if>>
-    <<elseif maplebirch.get('RobinTemple').faith gte 20>>
-      罗宾听着隔壁长椅传来的祈祷声。“我想待在能听见大家的地方。”<<nnpc_He 'Robin'>>没有急着翻开记录，等你准备好再谈。
-    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
-      “就算在神殿里，也不能听见谁叫，就信了。”罗宾说。<<nnpc_He 'Robin'>>看看记录，又看向周围的人。
     <<elseif C.npc.Robin.dom gte 50>>
       “下次也一起走。”罗宾说，“谁都不许自己折回去。”<<nnpc_He 'Robin'>>等着你答复。
     <<else>>

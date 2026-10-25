@@ -185,7 +185,7 @@
           <</if>>
         <</if>>
       <</if>>
-    <</lanLink>>
+    <</lanLink>><<gtiredness>>
   <</capture>>
 <</widget>>
 
@@ -276,4 +276,5 @@
       <</if>>
       <<if _performance.round is 2 and _performance.attention gte 70>>你再次开口时，听众们还在等着。<</if>>
   <</language>>
+  <<if _performance.last is 'clear'>><<lstress>><<elseif _performance.last is 'lost'>><<gstress>><</if>>
 <</widget>>

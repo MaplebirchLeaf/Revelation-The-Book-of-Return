@@ -80,26 +80,26 @@
       <<if C.npc.Robin.trauma gte 40>>
         <<language>>
           <<option 'EN'>>
-            "I still want to help here," Robin says quietly. "Some days it's hard to talk to people. I can at least put the blankets away."
+            "Praying helps," Robin says quietly. "Some days it's hard to talk to people. I can still put the blankets away."
           <<option 'CN'>>
-            “我还是想在这里帮忙，”罗宾低声说，“有时很难和别人说话。不过，我至少能把毯子收好。”
+            “祈祷还是有用的，”罗宾低声说，“有时很难和别人说话。不过，我还是能把毯子收好。”
         <</language>>
       <<elseif C.npc.Robin.dom lte 50>>
         <<language>>
           <<option 'EN'>>
-            "I used to come here because you were here," Robin says. "But I think I can help too. Even when you're busy." <<He>> looks at you, then gives a small smile.
+            "I used to come here because you were here," Robin says. "But now I want to pray too. Even when you're busy." <<He>> looks at you, then gives a small smile.
           <<option 'CN'>>
-            “以前我来这里，是因为你也在，”罗宾说，“不过，我想自己也能帮上忙。就算你忙，也没关系。”<<He>>看向你，露出一个小小的笑容。
+            “以前我来这里，是因为你也在，”罗宾说，“不过，现在我也想来祈祷。就算你忙，也没关系。”<<He>>看向你，露出一个小小的笑容。
         <</language>>
       <<else>>
         <<language>>
           <<option 'EN'>>
-            "I used to come here because you were here," Robin says. "Now I want to stay even when you're busy. I can help the ones who are newer than me." <<He>> smiles. "I know how they feel."
+            "I used to come here because you were here," Robin says. "Now I want to keep praying here, even when you're busy. I can help the ones who are newer than me too." <<He>> smiles. "I know how they feel."
           <<option 'CN'>>
-            “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想留下来。比我晚来的，我也能帮上一点。”<<He>>笑了笑，“我知道他们是什么心情。”
+            “以前我来这里，是因为你也在，”罗宾说，“现在就算你忙，我也想继续来祈祷。比我晚来的，我也能帮上一点。”<<He>>笑了笑，“我知道他们是什么心情。”
         <</language>>
       <</if>>
-    <<elseif maplebirch.get('RobinTemple').faith lt -20>>
+    <<elseif maplebirch.get('RobinTemple').faith lte -20>>
       <<language>>
         <<option 'EN'>>
           "I like helping," Robin says, looking back toward the temple. "But sometimes I say the prayers and wonder if I mean them. Did you ever feel like that?"
