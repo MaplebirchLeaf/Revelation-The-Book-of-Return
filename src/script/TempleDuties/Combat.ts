@@ -1,13 +1,13 @@
 export default function Combat(core: typeof maplebirch): void {
   core.tool.patch.traits.add({
     title: 'General Traits',
-    name: () => lanSwitch('Watchkeeper', '守望者'),
+    name: () => lanSwitch('Exorcism', '驱邪之术'),
     colour: 'gold',
-    has: () => Boolean(core.get('TempleDuties') && V.TempleDuties?.trial_day >= 0),
+    has: () => Boolean(core.get('TempleDuties') && (V.TempleDuties?.ordained >= 0 || V.TempleDuties?.trial_day >= 0 || V.temple_rank === 'priest')),
     text: () =>
       lanSwitch(
-        'You kept the lower door and brought the lamp back. Your attacks and banishment deal 20% more damage to nonhuman creatures.',
-        '你守住了下方的门，将灯带了回来。你对非人生物的攻击与放逐伤害提高 20%。'
+        'You have learnt to drive back the creatures that slip through the cracks. Your active attacks and banishment deal 20% more damage to nonhuman creatures.',
+        '你已学会抵御从裂隙中钻出的异物。你对非人生物的主动攻击与放逐伤害提高 20%。'
       )
   });
 

@@ -14,6 +14,7 @@ export default function TempleDuties(maplebirch: typeof window.maplebirch): void
 
   maplebirch.tool.inject({
     locationPassage: {
+      'Lake Shore': [{ src: '<<foresticon>>', applybefore: '<<temple-ritual-lake-link>>', expected: 1 }],
       'Temple Library': [{ src: '<<effects>>', applyafter: '<<temple-duty-library>>', expected: 1 }],
       'Temple Prayer Entrance': [
         {

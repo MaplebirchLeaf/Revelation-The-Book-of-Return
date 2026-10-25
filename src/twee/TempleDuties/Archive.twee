@@ -111,11 +111,13 @@
     <</temple-duty-action>>
     <br>
   <</if>>
-  <<if $TempleDuties.case?.stage is 'field' and ['echo', 'roots'].includes($TempleDuties.case.id)>>
+  <<if $TempleDuties.case?.stage is 'field' and $TempleDuties.case.id is 'echo'>>
     <<icon 'temple/records-room.png'>>
     <<lanLink ['Go to the assigned storeroom', '前往委托中的储藏室'] 'Revelation Temple Field'>>
     <</lanLink>>
     <br>
+  <<elseif $TempleDuties.case?.stage is 'field' and $TempleDuties.case.id is 'roots'>>
+    <span class='lblue'><<lanSwitch 'Meet the monk at the old storehouse by the docks when you are ready to leave.' '准备好出发后，到码头旁的旧仓房与修士会合。'>></span><br>
   <</if>>
   <br>
   <<temple-duty-back>>

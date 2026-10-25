@@ -39,15 +39,29 @@
 <</widget>>
 
 <<widget 'lost-lamb-record'>>
-  <<if maplebirch.get('LostLamb') and !$statFreeze
-      and ($LostLamb.scene or $LostLamb.endings.length)
-      and (maplebirch.get('LostLamb').paused or !maplebirch.get('LostLamb').reward or !$LostLamb.talk)>>
+  <<if !maplebirch.get('LostLamb') or $statFreeze>><<exit>><</if>>
+  <<set _lamb_bishop_known to $kylar_manor_secret gte 3 and Boolean($per_npc?.bishop)>>
+  <<set _lamb_remaining to !$LostLamb.talk or C.npc.Sydney.init is 1 and !$LostLamb.sydneyTalk
+    or C.npc.Gwylan.init is 1 and !$LostLamb.gwylanTalk or _lamb_bishop_known and !$LostLamb.bishopTalk>>
+  <<if ($LostLamb.scene or $LostLamb.endings.length)
+      and (maplebirch.get('LostLamb').paused or !maplebirch.get('LostLamb').reward or _lamb_remaining)>>
     <<revelation-card 'Kylar\'s manor' '凯拉尔的庄园'>>
       <ul class='journal'>
         <<if maplebirch.get('LostLamb').paused>>
           <li><<lanSwitch 'The dream was interrupted. Rest in Kylar\'s room to continue.' '那个梦还没有结束。到凯拉尔的房间休息，可以从中断的地方继续。'>></li>
         <<elseif maplebirch.get('LostLamb').reward>>
-          <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
+          <<if !$LostLamb.talk>>
+            <li><<lanSwitch 'You still remember the dream. You can visit the manor in the evening to speak to Kylar in private.' '你还记得梦里的事。傍晚可以回庄园，与凯拉尔私下谈谈。'>></li>
+          <</if>>
+          <<if C.npc.Sydney.init is 1 and !$LostLamb.sydneyTalk>>
+            <li><<lanSwitch 'You remember Sydney\'s knock in the dream. You could ask about it when Sydney is free at the library, shop or temple pews.' '你还记得梦里悉尼敲门的暗号。悉尼在图书馆、商店或神殿长椅有空时，可以问一问。'>></li>
+          <</if>>
+          <<if C.npc.Gwylan.init is 1 and !$LostLamb.gwylanTalk>>
+            <li><<lanSwitch 'Gwylan knows the woods around the manor. You could ask about the house during a visit to the forest shop.' '格威岚熟悉庄园附近的树林。到森林商店时，也可以问问那所宅邸。'>></li>
+          <</if>>
+          <<if _lamb_bishop_known and !$LostLamb.bishopTalk>>
+            <li><<lanSwitch 'The bishop has spoken of the manor before. You could ask about it again when you next meet in the temple.' '主教曾谈过庄园的事。下次在神殿见面时，可以再问一问。'>></li>
+          <</if>>
         <<elseif maplebirch.get('LostLamb').mainReady and !$LostLamb.endings.includes('main')>>
           <li><<lanSwitch 'You remember the same voice in both dreams. Rest in Kylar\'s room to listen for it again.' '两场梦里都出现过那道声音。到凯拉尔的房间休息，可以再听一听。'>></li>
         <<else>>
@@ -365,6 +379,23 @@
         <<if $TempleDuties.duty_day is Math.floor(Time.days)>>
           <li><<lanSwitch 'Today\'s shift is complete.' '今日已完成值班。'>></li>
         <</if>>
+        <<if $temple_rank is 'priest' and $TempleDuties.duty_day isnot Math.floor(Time.days)>>
+          <li><<lanSwitch 'People seeking help wait by the duties desk. You can take a half-hour reception before 17:00, outside mass, in place of today\'s paid shift.' '职务桌旁有人等候求助。17:00 前、弥撒以外的时段，可以接下一班半小时的接待，计作今日有薪职务。'>></li>
+        <</if>>
+        <<if !$TempleDuties.case>>
+          <<if $TempleDuties.duties is 0 and !Object.keys($TempleDuties.reports).length and $temple_rank isnot 'priest'>>
+            <li><<lanSwitch 'Take your first handover through the duties book. The attendant will show you the work.' '先在职务簿接下一班工作，跟侍从完成首次交接。'>></li>
+          <<elseif _dutyNext>>
+            <li>
+              <<if $TempleDuties.reports[_dutyNext]>>
+                <<lanSwitch 'The last assignment is unfinished. Ask Jordan to investigate again: ' '上次委托尚未办妥，可以向约旦重新接取：'>>
+              <<else>>
+                <<lanSwitch 'Ask Jordan about the next assignment: ' '可以向约旦询问下一件委托：'>>
+              <</if>>
+              <<temple-case-title _dutyNext>>
+            </li>
+          <</if>>
+        <</if>>
         <<if $TempleDuties.archive.sorted gt 0 and $TempleDuties.archive.sorted lt 3>>
           <li><<lanSwitch 'The loose folios are not all restored. Continue drying and sorting them in the old records room.' '散页尚未全部修复，可以去旧资料室继续晾干、整理。'>></li>
         <</if>>
@@ -381,16 +412,62 @@
     <</revelation-card>>
     <hr>
     <<if $TempleDuties.case>>
-      <<set _caseHeading to $TempleDuties.case.id is 'echo' ? ['Knocking after lights-out', '熄灯后的敲击'] : $TempleDuties.case.id is 'roots' ? ['Roots beneath the records', '卷宗下的根须'] : ['The returned donation crate', '退回的捐赠箱']>>
+      <<set _caseHeading to $TempleDuties.case.id is 'echo' ? ['Knocking after lights-out', '熄灯后的敲击'] : $TempleDuties.case.id is 'roots' ? ['Roots beneath the records', '卷宗下的根须'] : $TempleDuties.case.id is 'ritual' ? ['Chanting beyond the shore', '湖岸外的祷声'] : ['The returned donation crate', '退回的捐赠箱']>>
       <<revelation-card _caseHeading[0] _caseHeading[1]>>
         <ul class='journal'>
           <<if $TempleDuties.case.stage is 'report' or $TempleDuties.case.stage is 'combat' and !$combat>>
             <li><<lanSwitch 'Return to Jordan\'s duties desk during the day to give your report.' '白天回约旦的职务桌，汇报调查结果。'>></li>
           <<elseif $TempleDuties.case.stage is 'combat'>>
             <li class='red'><<lanSwitch 'An encounter is underway. Finish it or leave safely before filing a report.' '遭遇正在进行。结束或安全撤离后，才能提交报告。'>></li>
+            <<if $TempleDuties.case.id is 'ritual'>>
+              <<if $enemytype is 'man'>>
+                <li><<lanSwitch 'The cultists are blocking your way to the stone. The captive has not been freed.' '邪教徒挡在通向石台的路上，受困者尚未获救。'>></li>
+              <<elseif $TempleDuties.case.clues.includes('evacuated')>>
+                <li><<lanSwitch 'The person you rescued is being cared for. Clear the remaining danger from the path to the shore.' '获救者已经有人照料。处理小径上剩余的危险，让通往湖岸的道路恢复安全。'>></li>
+              <<else>>
+                <li><<lanSwitch 'The ritual has been interrupted. Keep the way out clear while bringing the trapped adult to safety.' '仪式已被打断。护住退路，将受困的成年人带到安全处。'>></li>
+              <</if>>
+            <</if>>
           <<else>>
-            <li><<lanSwitch `$TempleDuties.case.id is 'crate' ? 'Inspect the returned crate at the docks.' : 'Inspect the assigned storeroom through the duties desk or old records room.'` `$TempleDuties.case.id is 'crate' ? '到码头检查退回的货箱。' : '从职务桌或旧资料室前往委托中的储藏室。'`>></li>
-            <<if !$TempleDuties.case.prepared>>
+            <<if $TempleDuties.case.id is 'roots'>>
+              <li><<lanSwitch 'Meet the monk at the old storehouse by the docks. Mark a way back before dealing with the moving roots.' '到码头旁的旧仓房与修士会合。处理会动的根须前，先留好退路。'>></li>
+            <<elseif $TempleDuties.case.id is 'crate'>>
+              <li><<lanSwitch 'Go to the docks warehouse. Bring the worker out and repel the purple tentacles; prepared companions can help.' '前往码头仓库，接出受困工人并击退紫色触手；已完成见习的同伴可以帮忙。'>></li>
+              <<if !$TempleDuties.case.clues.includes('departed') and !$TempleDuties.case.clues.includes('visit-quiet')>>
+                <li><<lanSwitch 'Before going to the site, invite any companions through the assignment instructions. Leave time for their other duties.' '前往现场前，可以在委托说明中邀请同伴，并为各自的其他职务留足时间。'>></li>
+              <</if>>
+            <<elseif $TempleDuties.case.id is 'ritual'>>
+              <<if $TempleDuties.case.clues.includes('help') and !$TempleDuties.case.clues.includes('departed')>>
+                <li><<lanSwitch 'Jordan has arranged help. Meet the older monk at Lake Shore before returning to the hollow.' '约旦已经安排接应。返回低地前，先到湖岸与资深修士会合。'>></li>
+              <</if>>
+              <<if !$TempleDuties.case.clues.includes('rescued') and ($TempleDuties.case.clues.includes('cultist-defeated') or $TempleDuties.case.clues.includes('cultist-spent') or $TempleDuties.case.clues.includes('cultist-retreated'))>>
+                <li><<lanSwitch 'The way to the stone is clear. Free the captive, then escort them towards the shore.' '通向石台的阻拦已经解除。解开受困者的束缚，再护送对方向湖岸撤离。'>></li>
+              <<elseif $TempleDuties.case.clues.includesAll('interrupt', 'evacuated')>>
+                <li><<lanSwitch 'The person you rescued is being cared for. Return through Lake Shore to check the clearing and deal with the remaining danger.' '获救者已经有人照料。从湖岸返回低地，复查现场并处理剩余的危险。'>></li>
+                <<if !$TempleDuties.case.clues.includes('departed')>>
+                  <li><<lanSwitch 'Return in daylight between 09:00 and 16:00. You can arrange companions again through the assignment instructions before leaving.' '在 09:00 后、16:00 前的白天再去。出发前，可以在委托说明中重新安排同伴。'>></li>
+                <</if>>
+              <<elseif !$TempleDuties.case.clues.includes('departed')>>
+                <li><<lanSwitch 'Visit Lake Shore in daylight between 09:00 and 16:00 and follow the chanting into the woods.' '在 09:00 后、16:00 前的白天前往湖岸，循着祷声进入树林。'>></li>
+                <li><<lanSwitch 'Before leaving, you can invite prepared companions through the assignment instructions.' '出发前，可以在委托说明中邀请已完成见习的同伴。'>></li>
+              <<elseif !$TempleDuties.case.clues.includes('interrupt')>>
+                <<if $TempleDuties.case.clues.includes('marks') and !$TempleDuties.case.clues.includes('help')>>
+                  <li><<lanSwitch 'You have seen enough to report. You can withdraw and ask Jordan to send help before intervening.' '你已看清现场。可以先撤离，向约旦说明所见，请求接应后再行动。'>></li>
+                <</if>>
+                <<if $TempleDuties.case.clues.includes('loosened')>>
+                  <li><<lanSwitch 'The knots are loose. Use the opening to lead the captive away, or confront the cultists directly.' '绳结已经松开。可以趁机带开受困者，也可以正面阻止邪教徒。'>></li>
+                <<else>>
+                  <li><<lanSwitch 'Observe the gathering and mark a retreat before interrupting the ritual. You may be able to slip in and loosen the knots first.' '先观察聚集的人群，标记退路，再打断仪式。也许可以先潜入松开绳结。'>></li>
+                <</if>>
+              <<elseif $settings.tentaclesEnabled>>
+                <li><<lanSwitch 'The adult is free. Repel the purple tentacles and escort them out of the woods.' '受困者已获自由。击退紫色触手，护送对方离开树林。'>></li>
+              <<else>>
+                <li><<lanSwitch 'The adult is free. Escort them along the marked retreat and out of the woods.' '受困者已获自由。沿着标记的退路，护送对方离开树林。'>></li>
+              <</if>>
+            <<else>>
+              <li><<lanSwitch 'Inspect the assigned storeroom through the duties desk or old records room.' '从职务桌或旧资料室前往委托中的储藏室。'>></li>
+            <</if>>
+            <<if !$TempleDuties.case.prepared and ($TempleDuties.case.id isnot 'ritual' or !$TempleDuties.case.clues.includes('departed'))>>
               <li><<lanSwitch 'Before setting out, ask Jordan for a lamp, rope and gloves at the duties desk.' '出发前，可以到职务桌向约旦借灯、绳索与手套。'>></li>
             <</if>>
           <</if>>
@@ -398,32 +475,14 @@
       <</revelation-card>>
       <hr>
     <</if>>
-    <<if $TempleDuties.watch and !['passed', 'failed'].includes($TempleDuties.watch.phase)>>
-      <<revelation-card 'The lower-door watch' '门前守望'>>
-        <ul class='journal'>
-          <<if ['roots', 'shadow'].includes($TempleDuties.watch.phase) and $combat>>
-            <li class='red'><<lanSwitch 'The fight is unfinished.' '战斗尚未结束。'>></li>
-          <<elseif Time.date.timeStamp gte $TempleDuties.watch.until>>
-            <li class='red'><<lanSwitch 'The watch has run out of time. Return through the duties desk to leave the passage and report to Jordan.' '守望的时限已经过去。从职务桌返回，退出通道后向约旦说明情况。'>></li>
-          <<else>>
-            <li><<lanSwitch 'Return through the duties desk to continue the watch.' '从职务桌返回下层，继续守望。'>></li>
-          <</if>>
-          <li><<lanSwitch 'Time remaining: ' '剩余时限：'>><span class='gold'><<print Math.max(0, Math.ceil(($TempleDuties.watch.until - Time.date.timeStamp) / 60))>></span><<lanSwitch ' minutes.' '分钟。'>></li>
-        </ul>
-      <</revelation-card>>
-      <hr>
-    <</if>>
     <<if $temple_rank is 'monk' and $TempleDuties.ordained lt 0
-        and ($TempleDuties.review or $TempleDuties.trial_day gte 0 or $TempleDuties.watch)
-        and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
+        and ($TempleDuties.review or _dutyReady or _dutyTrained)>>
       <<revelation-card 'Priest appointment' '司祭任命'>>
         <ul class='journal'>
           <<if $TempleDuties.review>>
             <li><<lanSwitch 'Your appointment interview is unfinished. Return to Jordan before 17:00 to continue.' '任职面谈还没有结束。17:00 前回去找约旦，继续交谈。'>></li>
-          <<elseif $TempleDuties.trial_day gte 0>>
-            <li><<lanSwitch 'The lower-door watch is complete. Speak to Jordan before 17:00 about the appointment review.' '下层门前的守望已完成。17:00 前找约旦，商谈任职审查。'>></li>
-          <<elseif $TempleDuties.watch?.phase is 'failed'>>
-            <li><<lanSwitch 'The lower-door watch is unfinished. Return to the duties desk before 14:00 on another day to arrange another attempt.' '下层门前的守望还没有完成。另择一天，在 14:00 前回职务桌商量下一次守望。'>></li>
+          <<elseif _dutyReady>>
+            <li><<lanSwitch 'Your service and vows are approved. Speak to Jordan before 17:00 about the appointment review.' '你的职责与誓约已符合要求。17:00 前找约旦，商谈司祭任命。'>></li>
           <<else>>
             <li><<lanSwitch 'Ask Jordan about priest appointments before 17:00. You can review the work still required at the interview.' '17:00 前可以找约旦询问司祭任命，在面谈时核对尚未完成的职责。'>></li>
           <</if>>
@@ -441,12 +500,12 @@
               <li><<lanSwitch 'Accompany prayers and a parish visit through the preparation book.' '通过任职准备名册，陪同参与祈祷与教区成员接待。'>></li>
             <<elseif !_journalPreparation.lessons.includes('wards')>>
               <li><<lanSwitch 'Accompany a ward inspection with the older priest.' '陪同资深司祭检查护符。'>></li>
-            <<elseif _journalPreparation.trial_day lt 0>>
-              <li><<lanSwitch 'Take the lower-door watch together. Help your companion keep the lamp steady, then join their prayers when the voice calls. They need your support at both points.' '共同参加下层门前的守望。在门口陪同伴稳住灯火，听见门后呼唤时，再陪同伴念祷文，两处都需要照应。'>></li>
+            <<elseif !_journalPreparation.reviewed and _journalPreparation.trial_day lt 0>>
+              <li><<lanSwitch 'Invite your companion on the warehouse or lakeside assignment and work with them at the site. Report the outcome to Jordan. A priest can also bring companions on an available return inspection.' '接下仓库或湖岸委托时，邀请同伴并在现场一起做事，再向约旦汇报。已经受封为司祭时，也可以在旧委托开放回访后带同伴前往。'>></li>
             <<elseif !_journalPreparation.reviewed>>
               <li><<lanSwitch 'Accompany the appointment interview with Jordan.' '陪同参加约旦的任职面谈。'>></li>
             <<else>>
-              <li><<lanSwitch 'Jordan has heard your companion\'s answers. Return to the warm room together when you are both free.' '约旦已听过同伴的回答。两人有空时，一起到暖室接受任命。'>></li>
+              <li><<lanSwitch 'Jordan has heard your companion\'s answers. When you are both ready, go to the hall altar for the appointment ceremony.' '约旦已听过同伴的回答。两人有空时，到大厅祭坛前参加司祭任命仪式。'>></li>
             <</if>>
           </ul>
         <</revelation-card>>

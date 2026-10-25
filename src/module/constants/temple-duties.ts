@@ -1,4 +1,4 @@
-export type TempleCase = 'echo' | 'roots' | 'crate';
+export type TempleCase = 'echo' | 'roots' | 'crate' | 'ritual';
 export type Ordinand = 'Robin' | 'Sydney';
 
 export interface TempleDutiesState {
@@ -41,14 +41,6 @@ export interface TempleDutiesState {
   party: Ordinand[];
   ceremony: string[];
   exercise: 'care' | 'wards' | '';
-  watch: {
-    day: number;
-    until: number;
-    party: Ordinand[];
-    phase: 'threshold' | 'roots' | 'voices' | 'shadow' | 'seal' | 'passed' | 'failed';
-    aids: string[];
-    route: boolean;
-  } | null;
 }
 
 export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
@@ -80,6 +72,5 @@ export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
   },
   party: [],
   ceremony: [],
-  exercise: '',
-  watch: null
+  exercise: ''
 };

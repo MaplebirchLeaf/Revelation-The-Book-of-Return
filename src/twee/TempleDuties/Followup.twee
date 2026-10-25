@@ -21,7 +21,7 @@
   <<if !_pewReady>><<exit>><</if>>
   <<capture _pewName>>
     <<temple-candidate-check _pewName 0>>
-    <!-- 只问一次。答应之后，见习与守望都回职务桌办理。 -->
+    <!-- 只问一次。答应之后，见习与外勤准备都回职务桌办理。 -->
     <<if _candidateRank is 'monk' and _candidateStanding and !_candidate.agreed>>
       <<socialiseicon 'ask'>>
       <<lanLink `['Ask ' + maplebirch.auto(_pewName) + ' about becoming a priest', '问' + maplebirch.auto(_pewName) + '愿不愿意当司祭']` 'Revelation Temple Candidate Talk'>>
@@ -235,30 +235,30 @@
     <<option 'EN'>>
       Robin rests a bundle of blankets against the pew.
       <<if C.npc.Robin.trauma gte 40>>
-        "Please don't stay down there if it feels wrong," <<he>> says. "Even if they expect you to."
+        "If something feels wrong, come back," <<he>> says. "Promise you won't push yourself."
       <<elseif C.npc.Robin.dom gte 50>>
-        "Check your lamp before you go," <<he>> says, tugging the rope loose to look at its end. "And come back with a story I can understand."
+        "Check your lamp before you go," <<he>> says, tugging the rope loose to look at its end. "Come back and tell me how it went."
       <<else>>
-        "I can check the list with you," <<he>> offers. "I'm no good at the other part, but I can count."
+        "I can check the list with you," <<he>> offers. "It'll be quicker with two of us."
       <</if>>
       <<if maplebirch.get('RobinTemple').rank is 'priest'>>
-        Robin opens the prayer book at a folded corner. "Someone asked for me today," <<he>> says. "I kept looking behind me for Jordan." <<He>> glances at the lower door. "Then I remembered where you stood."
+        Robin opens the prayer book at a folded corner. "Someone asked for me today." <<if C.npc.Robin.dom gte 50>> <<He>> smiles. "I thought they'd mistaken me for someone else. But they stayed, so I stayed too."<<else>> <<He>> rubs the edge of the page. "I didn't know what to say at first. They mostly wanted someone to sit with them."<</if>>
       <<elseif $temple_rank is 'priest'>>
-        "A priest," Robin repeats, smiling uncertainly. "Does that mean you'll be even busier?" You explain the shifts are still yours to accept. <<He>> looks relieved.
+        "A priest," Robin repeats, smiling at you. <<if isLoveInterest('Robin')>>"Will you be much busier?" <<He>> moves the blankets aside to make room for you.<<else>>"Will you be leading the prayers? I'll listen out for you."<</if>>
       <</if>>
     <<option 'CN'>>
       罗宾把一捆毯子靠在长椅边。
       <<if C.npc.Robin.trauma gte 40>>
-        “感觉不对就别留在下面，”<<he>>说，“就算他们希望你留下也一样。”
+        “感觉不对就回来吧，”<<he>>说，“别硬撑着，好吗？”
       <<elseif C.npc.Robin.dom gte 50>>
-        “出发前检查灯，”<<he>>说，把绳子松开，查看末端。“回来时，讲个我能听明白的经过。”
+        “出发前检查灯，”<<he>>说，把绳子松开，查看末端。“回来告诉我，事情怎么样了。”
       <<else>>
-        “我可以和你核对清单，”<<he>>提议，“另一部分我不擅长，但数数总可以。”
+        “我可以和你核对清单，”<<he>>提议，“两个人总会快一点。”
       <</if>>
       <<if maplebirch.get('RobinTemple').rank is 'priest'>>
-        罗宾翻到祷书折角的那一页。“今天有人找我，”<<he>>说，“我一直回头，想找约旦。”<<He>>望向下层的门。“后来，我想起了你站过的地方。”
+        罗宾翻到祷书折角的那一页。“今天有人找我。”<<if C.npc.Robin.dom gte 50>><<He>>笑了笑。“我还以为认错了人。可对方一直坐着，我也就留下来了。”<<else>><<He>>摩挲着书页边缘。“起初，我还不知道说什么。其实，对方只是想找人陪着坐一会儿。”<</if>>
       <<elseif $temple_rank is 'priest'>>
-        “司祭啊。”罗宾重复了一遍，带着些不确定的笑。“你以后会更忙吗？”你解释，是否接班仍由自己决定。<<He>>松了口气。
+        “司祭啊。”罗宾望着你笑了。<<if isLoveInterest('Robin')>>“以后会忙很多吗？”<<He>>把毯子挪开，给你留出位置。<<else>>“以后会由你领着祈祷吗？我会留意的。”<</if>>
       <</if>>
   <</language>>
 <<else>>
@@ -267,29 +267,34 @@
     <<option 'EN'>>
       Sydney puts a bookmark between the pages.
       <<if _sydneyStatus.includes('pure')>>
-        "Jordan always checks the names first," <<he>> says. "I used to think that was just the paperwork. It isn't, is it?"
+        "You can hear the prayers from here," <<he>> says. <<He>> pauses until the voices in the hall reach the end of the verse, then adds the response under <<his>> breath.
+      <<elseif _sydneyStatus.includes('corrupt')>>
+        "If Jordan asks, we've been working very hard." <<He>> slides a neat stack of receipts towards you. "Which is true. I'd still like to finish before the next prayers."
       <<else>>
-        "People like a brave story," <<he>> says, lowering <<his>> voice. "It doesn't have to be what you put in the report." <<He>> smiles, then checks the list seriously.
+        "I found the missing receipt," <<he>> says, showing you the page. "It was tucked into a hymnbook. Will you help me put these in order?"
       <</if>>
       <<if $sydney.rank is 'priest'>>
-        Sydney sets a small key beside the bookmark. "Jordan gave me this after the prayers. I know which door it fits." <<He>> pauses, listening to something beyond the wall. "I'll wait until <<nnpc_he 'Jordan'>> comes with me."
+        "Jordan asked me to lead the prayers." <<He>> smooths the marked page, though <<he>> has not needed to read it. "I've known the words for years. It feels different when everyone waits for me to begin."
       <<elseif $temple_rank is 'priest'>>
-        "Congratulations," <<he>> says. "I'll try not to make you start by correcting my handwriting." <<He>> straightens the books.
+        "Congratulations." <<He>> smiles. <<if isLoveInterest('Sydney')>>"Should I be more respectful now?" <<He>> brushes your hand beneath the books.<<else>>"I'll see you at prayers, then."<</if>>
       <</if>>
     <<option 'CN'>>
       悉尼把书签夹进页间。
       <<if _sydneyStatus.includes('pure')>>
-        “约旦总先核对名字，”<<he>>说，“以前我以为只是文书工作。其实不是，对吧？”
+        “坐在这里，也能听见祈祷。”<<he>>停了一会儿，等大厅里的声音念完这一节，便轻声接上答词。
+      <<elseif _sydneyStatus.includes('corrupt')>>
+        “约旦要是问起，我们一直在认真干活。”<<He>>把整齐的一叠收据推给你。“本来就是。我还是想在下一次祈祷前弄完。”
       <<else>>
-        “大家都爱听英勇的故事，”<<he>>压低声音，“但报告不必那样写。”<<He>>笑了笑，又认真核对清单。
+        “找到那张漏下的收据了。”<<he>>指给你看。“夹在赞美诗集里。能帮我把这些排好吗？”
       <</if>>
       <<if $sydney.rank is 'priest'>>
-        悉尼在书签旁放下一把小钥匙。“祈祷后，约旦把它交给我。我知道它能开哪扇门。”<<He>>停了一会儿，像是在听墙后的动静。“等<<nnpc_he 'Jordan'>>陪我去。”
+        “约旦让我领着祈祷。”<<He>>抚平做了标记的那页，却没有低头去读。“那些话，我早就背熟了。可是，所有人都等我先开口时，感觉不太一样。”
       <<elseif $temple_rank is 'priest'>>
-        “恭喜，”<<he>>说，“我会尽量不让你上任第一件事就是纠正我的字。”<<He>>把书摆正。
+        “恭喜。”<<He>>笑了。<<if isLoveInterest('Sydney')>>“以后是不是得对你恭敬一点？”<<He>>藏在书下的手轻轻碰过你的手。<<else>>“那么，祈祷时见。”<</if>>
       <</if>>
   <</language>>
 <</if>>
+<<temple-pastoral-recollection $TempleDuties.speaker>>
 <br><br>
 <<temple-companion-check $TempleDuties.speaker 30>>
 <<if _companionFree>>
@@ -330,13 +335,13 @@
     <<if $TempleDuties.speaker is 'Robin'>>
       Robin unfolds the list before handing over the blankets. A visitor cannot remember the name on the request. <<if C.npc.Robin.trauma gte 40>><<He>> hesitates, then pulls a chair nearer. "You can sit while we find it."<<elseif C.npc.Robin.dom gte 50>>"One thing at a time," <<he>> says. "Tell us where you stayed last night."<<else>><<He>> checks the next name with you quietly before asking the visitor again.<</if>> You count the dry bundles while <<he>> listens. <<if _dutyAid?.signed_at != null>>The relief fund's signed receipt stays beside the distribution list; you check the bundles against it before passing them over.<<elseif Weather.precipitation is 'rain'>>Robin keeps the damp returns away from the dry bundles you have counted.<</if>> The missing name turns up on the back of the page. <<if $RobinTemple.service gte 10>>Robin points it out before the visitor has finished. "Here. The next shift should know to check both sides."<<else>>"I would have rushed past that," Robin admits.<</if>> <<He>> checks the clock before you both leave the signed handover. Jordan has set your pay beside it.
     <<else>>
-      Sydney sets the old receipt beside the new entry and asks you to read the names back. <<if _sydneyStatus.includes('pure')>><<He>> apologises when a page sticks, then smooths it carefully before continuing. "They should be able to find their own name."<<else>>"A heroic account, three spelling mistakes," <<he>> murmurs. The smile fades when <<he>> finds the wrong collection date. "That part needs fixing."<</if>> <<if _roofReady and _shelvesReady>>Sydney sends an initiate to the numbered shelf for the matching receipt. "Let them find it," <<he>> says quietly. You check the date while the initiate reads back the amount.<<else>>You hold the loose pages apart while Sydney compares the faint figures. <<He>> leaves a separate note where the damaged original cannot be read.<</if>> Sydney puts the key away and glances towards the hall before the next duty. Jordan signs the corrected receipt and leaves your pay with the clerk.
+      Sydney sets the old receipt beside the new entry and asks you to read the names back. <<if _sydneyStatus.includes('pure')>><<He>> apologises when a page sticks, then smooths it carefully before continuing. "They should be able to find their own name."<<elseif _sydneyStatus.includes('corrupt')>>"A heroic account, three spelling mistakes," <<he>> murmurs. The smile fades when <<he>> finds the wrong collection date. "That part needs fixing."<<else>><<He>> traces the collection date with a finger, then checks it against the other receipt. "These are a day apart."<</if>> <<if _roofReady and _shelvesReady>>Sydney sends an initiate to the numbered shelf for the matching receipt. "Let them find it," <<he>> says quietly. You check the date while the initiate reads back the amount.<<else>>You hold the loose pages apart while Sydney compares the faint figures. <<He>> leaves a separate note where the damaged original cannot be read.<</if>> Sydney closes the book and glances towards the hall before the next duty. Jordan signs the corrected receipt and leaves your pay with the clerk.
     <</if>>
   <<option 'CN'>>
     <<if $TempleDuties.speaker is 'Robin'>>
       交出毯子前，罗宾先展开名单。一名访客想不起申请时写下的名字。<<if C.npc.Robin.trauma gte 40>><<He>>迟疑了一下，把椅子拉近。“找的时候，你可以先坐着。”<<elseif C.npc.Robin.dom gte 50>>“一件件来，”<<he>>说，“先告诉我们，昨晚住在哪里。”<<else>><<He>>低声与你核对下一个名字，再问访客一遍。<</if>>你清点干毯子，<<he>>听对方说。<<if _dutyAid?.signed_at != null>>救济基金的签收单就放在分发名单旁，你对照捆包核过一遍，才交出去。<<elseif Weather.precipitation is 'rain'>>罗宾把送回来的湿毯子分开放好，没有混进你数过的干毯子里。<</if>>漏掉的名字就在纸背面。<<if $RobinTemple.service gte 10>>没等访客说完，罗宾便指给对方看。“在这里。得告诉下一班，两面都要看。”<<else>>“我可能会急着翻过去。”罗宾承认。<</if>>留下签好的交接记录前，<<he>>看了一眼钟。约旦已经把你的报酬放在旁边。
     <<else>>
-      悉尼把旧收据放在新记录旁，请你读回名字。<<if _sydneyStatus.includes('pure')>>一页纸粘住了，<<he>>先道歉，再仔细展平。“他们也该找得到自己的名字。”<<else>>“一份英勇的记录，三个错字。”<<he>>低声说。发现收货日期不对时，笑容便收起来了。“这里得改。”<</if>><<if _roofReady and _shelvesReady>>悉尼请一名见习教徒去编号书架找收据。“让对方找找看。”<<he>>低声说。见习教徒读回金额，你核对日期。<<else>>你分开散页，悉尼比对褪色的数字。原稿损坏到读不清的地方，<<he>>另外留了说明。<</if>>悉尼收好钥匙，在下项事务前望了望大厅。约旦在更正的收据上签字，把你的报酬交给侍从。
+      悉尼把旧收据放在新记录旁，请你读回名字。<<if _sydneyStatus.includes('pure')>>一页纸粘住了，<<he>>先道歉，再仔细展平。“他们也该找得到自己的名字。”<<elseif _sydneyStatus.includes('corrupt')>>“一份英勇的记录，三个错字。”<<he>>低声说。发现收货日期不对时，笑容便收起来了。“这里得改。”<<else>><<He>>用手指划过收货日期，又看向另一张收据。“差了一天。”<</if>><<if _roofReady and _shelvesReady>>悉尼请一名见习教徒去编号书架找收据。“让对方找找看。”<<he>>低声说。见习教徒读回金额，你核对日期。<<else>>你分开散页，悉尼比对褪色的数字。原稿损坏到读不清的地方，<<he>>另外留了说明。<</if>>悉尼合上簿子，在下项事务前望了望大厅。约旦在更正的收据上签字，把你的报酬交给侍从。
     <</if>>
 <</language>>
 <<ggrace>>

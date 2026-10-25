@@ -1,0 +1,198 @@
+:: Temple Fieldwork Widgets [widget]
+<<widget 'temple-field-roster'>>
+  <<lanSwitch `[$TempleDuties.case.id is 'ritual' ? 'You can go alone, or ask a prepared companion to meet you at the lake shore.' : 'You can go alone, or ask a prepared companion to meet you at the docks.', $TempleDuties.case.id is 'ritual' ? '你可以独自前往，也可以邀请已完成见习的同伴到湖岸会合。' : '你可以独自前往，也可以邀请已完成见习的同伴到码头会合。']`>><br>
+  <<for _field_name range ['Robin', 'Sydney']>>
+    <<temple-candidate-check _field_name 90>>
+    <<if $TempleDuties.case.clues.includes('party:' + _field_name) or _candidateFree and _candidate.agreed and _candidate.lessons.includesAll('care', 'wards')>>
+      <<capture _field_name>>
+        <<socialiseicon>>
+        <<lanLink `[$TempleDuties.case.clues.includes('party:' + _field_name) ? 'Cancel invitation: ' + maplebirch.auto(_field_name) : 'Invite ' + maplebirch.auto(_field_name) + ' on the assignment', $TempleDuties.case.clues.includes('party:' + _field_name) ? '取消对' + maplebirch.auto(_field_name) + '的邀请' : '邀请' + maplebirch.auto(_field_name) + '一起出勤']`>>
+          <<temple-candidate-check _field_name 90>>
+          <<if ['crate', 'ritual'].includes($TempleDuties.case?.id) and $TempleDuties.case.stage is 'field' and !$TempleDuties.case.clues.includes('departed')>>
+            <<if $TempleDuties.case.clues.includes('party:' + _field_name)>>
+              <<run $TempleDuties.case.clues.delete('party:' + _field_name)>>
+            <<elseif _candidateFree and _candidate.agreed and _candidate.lessons.includesAll('care', 'wards')>>
+              <<run $TempleDuties.case.clues.pushUnique('party:' + _field_name)>>
+            <</if>>
+          <</if>>
+          <<goto 'Revelation Temple Case Brief'>>
+        <</lanLink>>
+        <<if $TempleDuties.case.clues.includes('party:' + _field_name)>> <span class='teal'><<lanSwitch ' · Invited' ' · 已邀请'>></span><</if>><br>
+      <</capture>>
+    <</if>>
+  <</for>>
+<</widget>>
+
+<<widget 'temple-field-companion-check'>>
+  <<temple-candidate-check _args[0] `_args[1] ?? 0`>>
+  <<set _field_companion to _candidateFree and _candidate.agreed
+    and _candidate.lessons.includesAll('care', 'wards')
+    and ['crate', 'ritual'].includes($TempleDuties.case?.id)
+    and $TempleDuties.case.clues.includes('party:' + _args[0])
+    and $TempleDuties.case.clues.includes('party-day:' + Math.floor(Time.days))>>
+<</widget>>
+
+<<widget 'temple-field-company'>>
+  <<if $TempleDuties.case.id is 'echo' or _quietVisit>><<exit>><</if>>
+  <br><br>
+  <<if $TempleDuties.case.id is 'roots'>>
+    <<language>>
+      <<option 'EN'>>
+        The monk catches your sleeve before you step onto the wet stone. "Here. Keep your weight on this side." A root unfolds from the wall, feeling towards the light. The monk draws a whip. "I'll keep the ones by the stairs off you. When you strike, leave yourself room to pull back."
+      <<option 'CN'>>
+        你正要踏上湿石头，修士拉住了你的袖子。“这里。重心放在这一边。”一截根须从墙上舒展开，探向灯光。修士抽出长鞭。“台阶旁的交给我。出手时，给自己留些收回来的地方。”
+    <</language>>
+  <<else>>
+    <<language>>
+      <<option 'EN'>>
+        The porter looks past you towards the door, then back at the water. "They sent you this time?" There is no monk beside you to answer. A purple tentacle presses against the underside of a board. The nail rises with a quiet scrape.
+        <<if Time.isBloodMoon() and ['night', 'dusk'].includes(Time.dayState)>>The red light through the warehouse windows does not reach the water. Behind the wall, something knocks back when the porter calls.<</if>>
+        <<if $auriga_scar gt 0>>The Elk's mark prickles. You keep your eyes on the boards.<</if>>
+        <<if $feats?.currentSave?.Schism != null>>You remember purple mist, and something pulling itself through it. This time there is room behind you to move. You glance back at the open door.<</if>>
+        <<if $hcEndings?.length>>The scrape of wood brings back the sound of chains in the painting's cell. Then the worker calls again. You turn towards the voice.<</if>>
+      <<option 'CN'>>
+        搬运工越过你看向门口，又回头看看积水。“这次是你来？”身旁没有修士替你回答。木板下面，一团紫色的触手顶了上来。钉子随着轻轻的刮擦声，抬高了一点。
+        <<if Time.isBloodMoon() and ['night', 'dusk'].includes(Time.dayState)>>窗外的红光照不到水里。搬运工朝里面喊了一声，墙后随即响起敲击。<</if>>
+        <<if $auriga_scar gt 0>>麋鹿留下的印记隐隐刺痛。你仍盯着那些木板。<</if>>
+        <<if $feats?.currentSave?.Schism != null>>你想起紫色的雾，还有从雾里挤进来的东西。这一次，身后仍有能退开的地方。你回头看了一眼敞开的门。<</if>>
+        <<if $hcEndings?.length>>木头的刮擦声，让你想起画中牢房里的铁链。工人又喊了一声。你转向声音传来的地方。<</if>>
+    <</language>>
+    <<for _field_name range ['Robin', 'Sydney']>>
+      <<temple-field-companion-check _field_name 0>>
+      <<if _field_companion>>
+        <br><br>
+        <<language>>
+          <<option 'EN'>>
+            <<if _field_name is 'Robin'>>
+              <<if C.npc.Robin.trauma gte 40>>Robin stays close, watching the water beneath the boards. "I'll hold this end. Don't go too far, okay?"<<elseif C.npc.Robin.dom gte 60>>Robin pulls the rope taut and plants <<nnpc_his 'Robin'>> feet. "I've got this side. Shout if you need me."<<else>>Robin takes the other end of the rope and looks across at you. "Together?"<</if>>
+            <<else>>
+              <<run statusCheck('Sydney')>>
+              <<if _sydneyStatus.includes('pure')>>Sydney finishes a quiet prayer, then turns towards the worker's voice. "We're here. Keep calling." <<nnpc_He 'Sydney'>> looks back to make sure you heard.<<elseif _sydneyStatus.includes('corrupt')>>Sydney catches your sleeve as a board shifts. "Not that one." <<nnpc_He 'Sydney'>> peers down at the water. "I'd rather we all left with dry feet."<<else>>Sydney looks from the crate to the gap in the boards. "I heard someone. There." <<nnpc_He 'Sydney'>> draws closer so you can hear <<nnpc_him 'Sydney'>> over the water.<</if>>
+              <<if isLoveInterest('Sydney')>>"And you stay where I can see you," <<nnpc_he 'Sydney'>> adds quietly.<</if>>
+            <</if>>
+          <<option 'CN'>>
+            <<if _field_name is 'Robin'>>
+              <<if C.npc.Robin.trauma gte 40>>罗宾紧挨着你，望着木板下面的积水。“这一头我拿着。别走太远，好吗？”<<elseif C.npc.Robin.dom gte 60>>罗宾把绳索拉紧，站稳双脚。“这边有我。需要帮忙就喊。”<<else>>罗宾拿起绳索的另一头，朝你望过来。“一起？”<</if>>
+            <<else>>
+              <<run statusCheck('Sydney')>>
+              <<if _sydneyStatus.includes('pure')>>悉尼低声念完祷文，转向工人呼救的方向。“我们在这里。继续喊。”<<nnpc_He 'Sydney'>>回头看你，确认你也听见了。<<elseif _sydneyStatus.includes('corrupt')>>一块木板动了动，悉尼抓住你的袖子。“别踩那块。”<<nnpc_He 'Sydney'>>低头看了眼积水。“我可希望大家都能干着脚出去。”<<else>>悉尼看看货箱，又望向木板间的缺口。“我听见了。那边。”水声有些响，<<nnpc_he 'Sydney'>>凑近些，让你听清。<</if>>
+              <<if isLoveInterest('Sydney')>>“还有你，别离开我的视线。”<<nnpc_he 'Sydney'>>轻声补上一句。<</if>>
+            <</if>>
+        <</language>>
+      <</if>>
+    <</for>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-field-companion-actions'>>
+  <<if $TempleDuties.case?.id isnot 'crate' or _quietVisit>><<exit>><</if>>
+  <<set _field_case to $TempleDuties.case>>
+  <<for _field_name range ['Robin', 'Sydney']>>
+    <<temple-field-companion-check _field_name 10>>
+    <<if _field_companion and !_field_case.clues.includes('worked:' + _field_name)>>
+      <<capture _field_name _field_case>>
+        <<socialiseicon>>
+        <<temple-duty-action `[_field_name is 'Robin' ? 'Help Robin secure the rope and bring the worker out (0:10)' : 'Compare the marks with Sydney while the porter braces the boards (0:10)', _field_name is 'Robin' ? '帮罗宾固定绳索，一起接出受困工人 (0:10)' : '与悉尼比对标记，让搬运工撑稳木板 (0:10)']` 10 'Revelation Temple Field Assistance' `_field_name`>>
+          <<temple-field-companion-check _field_name 0>>
+          <<if _field_companion and $TempleDuties.case is _field_case and _field_case.stage is 'field'
+              and !_field_case.clues.includes('worked:' + _field_name)>>
+            <<run _field_case.clues.pushUnique('worked:' + _field_name)>>
+            <<if _field_name is 'Robin'>><<run _field_case.clues.pushUnique('route', 'rescued')>><<else>><<run _field_case.clues.pushUnique('marks')>><</if>>
+            <<set $TempleDuties.speaker to _field_name>>
+          <</if>>
+        <</temple-duty-action>><br>
+      <</capture>>
+    <</if>>
+  <</for>>
+<</widget>>
+
+<<widget 'temple-field-file'>>
+  <!-- 与报告共用一次结算；只把实际做过的事记给同行者。 -->
+  <<if !_args[0] or _file.result isnot 'resolved' or !['roots', 'crate', 'ritual'].includes(_file.id)>><<exit>><</if>>
+  <<if !_paidVisit>><<set $TempleDuties.note to 'field-' + _file.id>><</if>>
+  <<if ['crate', 'ritual'].includes(_file.id)>>
+    <<if $TempleDuties.trial_day lt 0>>
+      <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
+      <<run maplebirch.get('Psyche')?.change(60, -200)>>
+    <<else>>
+      <<run maplebirch.get('Psyche')?.rest(10, -150)>>
+    <</if>>
+    <<for _field_name range ['Robin', 'Sydney']>>
+      <<if _file.clues.includesAll('party:' + _field_name, 'worked:' + _field_name)>>
+        <<if $TempleDuties.candidates[_field_name].trial_day lt 0>>
+          <<set $TempleDuties.candidates[_field_name].trial_day to Math.floor(Time.days)>>
+          <<if _field_name is 'Robin'>><<npcincr Robin trauma 2>><</if>>
+        <</if>>
+        <<if !_paidVisit>><<set $TempleDuties.note += '-' + _field_name>><</if>>
+      <</if>>
+    <</for>>
+  <</if>>
+<</widget>>
+
+<<widget 'temple-field-debrief'>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $TempleDuties.note is 'field-roots'>>
+        The monk lays the damp books on Jordan's desk. "We have them. The doorway is clear." Jordan looks up from the torn cover. "And you? Were either of you hurt?" <<He>> waits for your answers before asking about the roots. "Thank you, both of you." The monk spreads the books beside the fire.
+      <<else>>
+        Jordan listens to your account without interrupting. At the mention of the worker, <<he>> asks where they are now. "Outside the warehouse, with the porter," you answer. <<He>> lets out a breath and reaches for the receipt. "Good. The supplies can wait." <<He>> glances from your clothes to your hands. "Sit by the fire a while. I'll have someone bring them here."
+      <</if>>
+      <<if $temple_burden gte 1>><br><br>The burden you took from the statue is still with you. You rest your hands on the desk a moment before reaching for the book. Jordan waits. "There are others here who can help. You needn't carry everything yourself."<</if>>
+    <<option 'CN'>>
+      <<if $TempleDuties.note is 'field-roots'>>
+        修士把湿漉漉的账簿放在约旦桌上。“拿回来了。门口也清出来了。”约旦从破损的封面上抬起头。“你们呢？有没有受伤？”<<He>>等你们回答，才问起根须的事。“辛苦你们了。”修士将账簿摊到炉火旁。
+      <<else>>
+        约旦没有打断你的叙述。听到受困工人的事，<<he>>问起对方如今在哪里。“在仓库外，搬运工陪着。”你回答。<<He>>松了口气，伸手拿过收据。“那就好。物资可以再等一等。”<<He>>看过你的衣服，又看了看双手。“先去炉边坐一会儿。我让人去接他们。”
+      <</if>>
+      <<if $temple_burden gte 1>><br><br>从雕像那里接过的负担，仍压在你身上。你把手放在桌上，歇了一会儿，才伸手去拿簿子。约旦耐心地等着。“这里还有能帮忙的人。不必什么都自己担着。”<</if>>
+  <</language>>
+  <<for _field_name range ['Robin', 'Sydney']>>
+    <<if $TempleDuties.note.includes('-' + _field_name)>>
+      <br><br>
+      <<temple-candidate-check _field_name 0>>
+      <<if !_candidatePresent>>
+        <<lanSwitch `['You describe what ' + maplebirch.auto(_field_name) + ' did. Jordan leaves a space to hear their own account when they return.', '你说明了' + maplebirch.auto(_field_name) + '做过的事。约旦留下一处空白，等对方回来后，亲口说说经过。']`>>
+      <<else>>
+        <<language>>
+          <<option 'EN'>>
+            <<if _field_name is 'Robin'>>
+              Robin describes pulling the worker over the boards with you. <<if C.npc.Robin.trauma gte 40>>"I don't want to see that water again," <<nnpc_he 'Robin'>> says, keeping <<nnpc_his 'Robin'>> hands in <<nnpc_his 'Robin'>> lap.<<elseif C.npc.Robin.dom gte 60>>"We got them out. They can stay here, can't they?"<<else>>"They could barely stand. I didn't know whether we could pull them up."<</if>> "They can rest here," Jordan says. "So can you."
+            <<else>>
+              <<run statusCheck('Sydney')>>
+              Sydney unfolds the copied marks. <<if _sydneyStatus.includes('pure')>>"These weren't on the receipt. I thought you should see them."<<elseif _sydneyStatus.includes('corrupt')>>"Someone went to some trouble over this box. I'd like to know why."<<else>>"I copied them before the paper got any wetter. Can you read them?"<</if>> Jordan takes the page. "I'll look. Thank you, Sydney."
+            <</if>>
+          <<option 'CN'>>
+            <<if _field_name is 'Robin'>>
+              罗宾讲起与你一起将工人拉过木板的事。<<if C.npc.Robin.trauma gte 40>>“我不想再看见那些水了。”<<nnpc_he 'Robin'>>说，双手仍放在膝上。<<elseif C.npc.Robin.dom gte 60>>“人接出来了。能让对方留在这里，对吧？”<<else>>“对方几乎站不住。我还担心，我们会拉不动。”<</if>>约旦说：“可以在这里歇歇。你也一样。”
+            <<else>>
+              <<run statusCheck('Sydney')>>
+              悉尼展开抄下的标记。<<if _sydneyStatus.includes('pure')>>“收据上没有这些。我想，应该给你看看。”<<elseif _sydneyStatus.includes('corrupt')>>“有人在这只箱子上费了不少工夫。我倒想知道为什么。”<<else>>“纸还没湿透时抄下来的。你看得懂吗？”<</if>>约旦接过纸。“我看看。谢谢你，悉尼。”
+            <</if>>
+        <</language>>
+      <</if>>
+    <</if>>
+  <</for>>
+<</widget>>
+
+:: Revelation Temple Field Assistance
+<<set $outside to 1>><<set $location to 'docks'>><<effects>><<temple-duty-check>>
+<<if _dutySafe and $TempleDuties.case?.stage is 'field'
+    and $TempleDuties.case.clues.includes('worked:' + $TempleDuties.speaker)>>
+  <<language>>
+    <<option 'EN'>>
+      <<if $TempleDuties.speaker is 'Robin'>>
+        <<if C.npc.Robin.trauma gte 40>>Robin checks where you are standing before setting <<nnpc_his 'Robin'>> feet beside yours.<<elseif C.npc.Robin.dom gte 60>>Robin braces a foot against the dry beam and takes up the slack. "Ready?"<<else>>You and Robin brace your feet against the dry beam. "Now?" <<nnpc_he 'Robin'>> asks.<</if>> The rope tightens between you. Together you pull the worker onto the boards, and Robin helps the porter lead them outside. Something catches the loose end of the rope as you draw it back. You cut that length away.
+      <<else>>
+        Sydney holds your copy beside the mark on the crate. The last stroke has been scratched through. You check the delivery note together while the porter holds the boards in place. Under the floor, a purple coil slides against the wood. Sydney moves the papers clear. "We have what we need from here."
+      <</if>>
+    <<option 'CN'>>
+      <<if $TempleDuties.speaker is 'Robin'>>
+        <<if C.npc.Robin.trauma gte 40>>罗宾看看你站的位置，才在你身旁站稳。<<elseif C.npc.Robin.dom gte 60>>罗宾将一只脚抵住干燥的横梁，收紧绳索。“准备好了吗？”<<else>>你和罗宾将脚抵住干燥的横梁。“现在？”<<nnpc_he 'Robin'>>问。<</if>>绳索在你们手中绷紧。你们一起将工人拉上木板，罗宾帮搬运工把人扶到外面。收回绳索时，松垂的末端被什么抓住了。你割掉了那一截。
+      <<else>>
+        悉尼把你抄下的图样放在货箱标记旁。最后一道笔画被划断了。搬运工撑稳木板，你们一起核对运单。地板下面，紫色的触手贴着木头滑过。悉尼把纸挪开。“这里需要记的，已经记下了。”
+      <</if>>
+  <</language>><br><br>
+  <<lanLink ['Continue the assignment', '继续处理委托'] 'Revelation Temple Field'>><</lanLink>><br>
+<<else>>
+  <<temple-case-return>>
+<</if>>

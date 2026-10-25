@@ -1,9 +1,9 @@
 :: Temple Duties Combat Widgets [widget]
 
-<!-- 守望试炼的记录赋予奖励，身份、回放与梦中冻结均不代替这一记录。 -->
+<!-- 保留已有任职与试炼收益，回放和梦中冻结不结算战斗加成。 -->
 <<widget 'temple-watch-ready'>>
   <<silently>>
-    <<set _watchReady to Boolean(maplebirch.get('TempleDuties') and $TempleDuties?.trial_day gte 0 and $combat is 1 and !$possessed and !$statFreeze and !$replayScene)>>
+    <<set _watchReady to Boolean(maplebirch.get('TempleDuties') and ($TempleDuties?.ordained gte 0 or $TempleDuties?.trial_day gte 0 or $temple_rank is 'priest') and $combat is 1 and !$possessed and !$statFreeze and !$replayScene)>>
   <</silently>>
 <</widget>>
 

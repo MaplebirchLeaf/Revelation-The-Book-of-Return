@@ -1,9 +1,12 @@
 :: Revelation Statistics Widgets [widget]
 
 <<widget 'revelation-statistics'>>
-  <<if maplebirch.get('RobinTemple')?.member or maplebirch.get('TempleChoir') and $TempleChoir.joined>>
+  <<if $statFreeze or $replayScene>><<exit>><</if>>
+  <<if maplebirch.get('RobinTemple')?.member or maplebirch.get('TempleChoir') and $TempleChoir.joined
+      or maplebirch.get('TempleDuties') and $TempleDuties.enrolled
+      or maplebirch.get('RobinTemple') and $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'>>
     <<foldout false '_revelationTempleFoldout'>>
-      <span class='gold'><<lanSwitch 'Temple work' '神殿工作'>></span>
+      <span class='gold'><<lanSwitch 'Temple life' '神殿生活'>></span>
       <<if maplebirch.get('RobinTemple')?.member>>
         <<lanSwitch 'Shared duties with Robin: ' '与罗宾共同值班：'>><<print $RobinTemple.service>><br>
         <<lanSwitch 'Robin\'s temple contribution: ' '罗宾的神殿贡献：'>><<print $RobinTemple.grace>>/100<br>
@@ -11,8 +14,56 @@
       <<if maplebirch.get('TempleChoir') and $TempleChoir.joined>>
         <<lanSwitch 'Choir practices: ' '唱诗班练习：'>><<print $TempleChoir.practices>><br>
         <<lanSwitch 'Choir services: ' '弥撒唱诗：'>><<print $TempleChoir.services>><br>
+        <span @class="$TempleChoir.lead ? 'green' : 'red'"><<print $TempleChoir.lead ? '✓ ' : '○ '>><<lanSwitch 'Permission to lead the choir' '唱诗班领唱资格'>></span><br>
       <</if>>
-    <</foldout>>
-    <br>
+      <<if maplebirch.get('TempleDuties') and $TempleDuties.enrolled>>
+        <<lanSwitch 'Completed duty shifts: ' '已完成神殿职务：'>><<print $TempleDuties.duties>><br>
+        <<lanSwitch 'Truthfully resolved investigations: ' '已如实完成的调查：'>><<print $TempleDuties.rewards.length>>/4<br>
+        <span @class="$temple_rank is 'priest' ? 'green' : 'red'"><<print $temple_rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Appointed as a priest' '受任神殿司祭'>></span><br>
+        <<if $TempleDuties.candidates.Robin.agreed or maplebirch.get('RobinTemple')?.rank is 'priest'>>
+          <span @class="maplebirch.get('RobinTemple')?.rank is 'priest' ? 'green' : 'red'"><<print maplebirch.get('RobinTemple')?.rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Robin\'s priest appointment' '罗宾的司祭任命'>></span><br>
+        <</if>>
+        <<if $TempleDuties.candidates.Sydney.agreed or $sydney?.rank is 'priest'>>
+          <span @class="$sydney?.rank is 'priest' ? 'green' : 'red'"><<print $sydney?.rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Sydney\'s priest appointment' '悉尼的司祭任命'>></span><br>
+        <</if>>
+        <span @class="$TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof ? 'green' : 'red'"><<print $TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof ? '✓ ' : '○ '>><<lanSwitch 'Records-room roof and drainage repaired' '资料室屋顶与排水修缮完成'>></span><br>
+        <span @class="$TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves ? 'green' : 'red'"><<print $TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves ? '✓ ' : '○ '>><<lanSwitch 'Dry shelving installed' '防潮书架安装完成'>></span><br>
+        <<lanSwitch 'Loose folios restored: ' '已修复散页：'>><<print $TempleDuties.archive.sorted>>/3<br>
+      <</if>>
+      <<if maplebirch.get('RobinTemple') and $RobinTemple.dual_promise and $RobinTemple.secret.stage is 'complete'>>
+        <span class='green'>✓ <<lanSwitch 'Confounded Vow' '混乱誓约'>></span><br>
+        <<if $RobinTemple.secret.followup is 'complete'>>
+          <span class='green'>✓ <<lanSwitch 'The days after the lake' '湖边那晚之后'>></span><br>
+          <<switch $RobinTemple.secret.followup_choice>>
+            <<case 'listen'>><<lanSwitch 'You listened together before leaving the sound behind.' '你们一起听清异声，再离开那里。'>><br>
+            <<case 'hold'>><<lanSwitch 'You held the doorway while your companions withdrew.' '你守住门口，让同伴先退开。'>><br>
+            <<case 'leave'>><<lanSwitch 'You chose to withdraw together.' '你选择与同伴一同撤离。'>><br>
+          <</switch>>
+        <</if>>
+      <</if>>
+    <</foldout>><br>
+  <</if>>
+  <<if maplebirch.get('LostLamb') and $LostLamb.endings.length>>
+    <<foldout false '_revelationLambFoldout'>>
+      <span class='gold'><<lanSwitch 'The manor dream' '庄园的梦'>></span>
+      <<lanSwitch 'Completed dream fragments: ' '已完成的梦境片段：'>><<print $LostLamb.endings.length>>/3<br>
+      <<if maplebirch.get('LostLamb').reward>>
+        <span class='green'>✓ <<lanSwitch 'Dream Scar' '梦痕'>></span><br>
+        <<if $LostLamb.talk>><span class='green'>✓ <<lanSwitch 'Spoken to Kylar about the dream' '已与凯拉尔谈过那个梦'>></span><br><</if>>
+        <<if $LostLamb.sydneyTalk>><span class='green'>✓ <<lanSwitch 'Asked Sydney about the knock' '已向悉尼问过敲门的暗号'>></span><br><</if>>
+        <<if $LostLamb.gwylanTalk>><span class='green'>✓ <<lanSwitch 'Spoken to Gwylan about the manor' '已与格威岚谈过庄园'>></span><br><</if>>
+        <<if $LostLamb.bishopTalk>><span class='green'>✓ <<lanSwitch 'Asked the bishop about the manor' '已向主教问过庄园的事'>></span><br><</if>>
+      <</if>>
+    <</foldout>><br>
+  <</if>>
+  <<if maplebirch.get('RBR') and $RBR.necklace.returnedOnce>>
+    <<foldout false '_revelationIvoryFoldout'>>
+      <span class='gold'><<lanSwitch 'The ivory necklace' '象牙项链'>></span>
+      <span class='green'>✓ <<lanSwitch 'Returned the necklace to the plinth' '曾将项链归还基座'>></span><br>
+      <<lanSwitch 'Times taken again after returning: ' '归还后再次取走：'>><<print $RBR.necklace.retaken>><br>
+      <<if $RBR.necklace.aftercare is 'complete'>>
+        <span class='green'>✓ <<lanSwitch 'Met again at the shore' '湖岸重逢'>></span><br>
+      <</if>>
+    <</foldout>><br>
   <</if>>
 <</widget>>

@@ -11,7 +11,7 @@
     <!-- 日常变脏不撤回资格，已有职务、调查和任命进度照常保留。此处只检查，不消耗首次清扫后的交谈。 -->
     <<set _dutyAccess to $TempleDuties.quarters_ready or $TempleDuties.enrolled or $temple_rank is 'priest'
       or $TempleDuties.duties gt 0 or $TempleDuties.case or Object.keys($TempleDuties.reports).length
-      or $TempleDuties.watch or $TempleDuties.review or $TempleDuties.ordained gte 0 or $TempleDuties.trial_day gte 0>>
+      or $TempleDuties.review or $TempleDuties.ordained gte 0>>
     <<set _dutySafe to Boolean(maplebirch.get('TempleDuties'))
       and ['initiate', 'monk', 'priest'].includes($temple_rank)
       and _dutyAccess
@@ -28,11 +28,14 @@
       and ($TempleDuties.case.stage is 'report'
       or ($TempleDuties.case.stage is 'combat' and !$combat))>>
     <<set _dutyNext to ''>>
-    <<for _caseId range ['echo', 'roots', 'crate']>>
-      <<if !_dutyNext and !$TempleDuties.reports[_caseId]>>
+    <<for _caseId range ['echo', 'roots', 'crate', 'ritual']>>
+      <<if !_dutyNext and !($TempleDuties.reports[_caseId]?.honest and $TempleDuties.reports[_caseId]?.result is 'resolved')>>
         <<set _dutyNext to _caseId>>
       <</if>>
     <</for>>
+    <<if $TempleDuties.duties is 0 and !Object.keys($TempleDuties.reports).length and !$TempleDuties.rewards.length and $temple_rank isnot 'priest'>>
+      <<set _dutyNext to ''>>
+    <</if>>
     <<set _roofReady to $TempleDuties.archive.roof gte 0 and Time.days gte $TempleDuties.archive.roof>>
     <<set _shelvesReady to $TempleDuties.archive.shelves gte 0 and Time.days gte $TempleDuties.archive.shelves>>
     <<set _studyMinutes to (_roofReady and _shelvesReady ? 20 : 30) - ($TempleDuties.archive.sorted gte 3 ? 5 : 0)>>
@@ -43,7 +46,10 @@
       and $templetest isnot 'failed' and $temple_chastity_timer gt 0
       and $player.virginity.temple is true
       and $TempleDuties.enrolled>>
-    <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and $TempleDuties.trial_day gte 0>>
+    <<set _dutyTrained to Boolean($TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots?.result is 'resolved')>>
+    <<set _dutyFieldwork to Boolean($TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate?.result is 'resolved')>>
+    <<set _dutyRitual to Boolean($TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved')>>
+    <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and _dutyTrained and _dutyFieldwork and _dutyRitual>>
     <<set _bishopKnown to Boolean($per_npc.bishop) and ($temple_confessor_intro or $kylar_manor_secret is 3)>>
   <</silently>>
 <</widget>>
@@ -168,18 +174,16 @@
         — <<temple-case-title $TempleDuties.case.id>>
       <</if>>
       <br>
-    <<elseif !$TempleDuties.case and _dutyNext
-        and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
+    <<elseif !$TempleDuties.case and _dutyNext and !$TempleDuties.reports[_dutyNext]>>
       <<socialiseicon 'ask'>>
       <<lanLink ['Ask what needs investigating', '询问需要调查的事情'] 'Revelation Temple Case Brief'>>
       <</lanLink>>
       — <<temple-case-title _dutyNext>>
       <br>
     <</if>>
-    <<for _retryId range ['echo', 'roots', 'crate']>>
+    <<for _retryId range ['echo', 'roots', 'crate', 'ritual']>>
       <<if $TempleDuties.reports[_retryId] and !$TempleDuties.case
-          and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))
-          and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or ($temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7))>>
+          and (!($TempleDuties.reports[_retryId].honest and $TempleDuties.reports[_retryId].result is 'resolved') or (_retryId isnot 'ritual' and $temple_rank is 'priest' and Time.days gte $TempleDuties.reports[_retryId].day + 7))>>
         <<capture _retryId>>
           <<socialiseicon>>
           <<temple-duty-action `['Accept a return inspection (0:05)', '接下回访检查 (0:05)']` 5 'Revelation Temple Case Accepted'>>
@@ -190,13 +194,6 @@
       <</if>>
     <</for>>
   <</if>>
-<</widget>>
-
-<<widget 'temple-duty-companion-links'>>
-  <<icon 'temple/watch-door.png'>>
-  <<lanLink ['Ask about the watch at the lower door', '询问下层门前的守望'] 'Revelation Temple Watch Brief'>>
-  <</lanLink>>
-  <br>
 <</widget>>
 
 <<widget 'temple-duty-jordan-links'>>
@@ -228,12 +225,7 @@
   <<temple-duty-check>>
   <<if _dutySafe and $TempleDuties.enrolled and $location is 'temple'
       and $TempleDuties.rest_day isnot Math.floor(Time.days)
-      and ($pain gt 0 or $tiredness gt 0 or $stress gt 0)
-      and ($temple_rank is 'priest'
-      or $TempleDuties.watch?.day is Math.floor(Time.days)
-        and ['passed', 'failed'].includes($TempleDuties.watch.phase)
-      or Object.values($TempleDuties.reports).some(report => report.day === Math.floor(Time.days)))
-      and (!$TempleDuties.watch or ['passed', 'failed'].includes($TempleDuties.watch.phase))>>
+      and ($pain gt 0 or $tiredness gt 0 or $stress gt 0)>>
     <<bedicon>>
     <<temple-duty-action `['Warm up and have your cuts dressed (0:30)', '暖一暖身子，包扎伤口 (0:30)']` 30 'Revelation Temple Rest'>>
       <<if $TempleDuties.rest_day isnot Math.floor(Time.days)>>
@@ -258,6 +250,8 @@
       <<lanSwitch 'Roots beneath the records' '卷宗下的根须'>>
     <<case 'crate'>>
       <<lanSwitch 'The returned donation crate' '退回的捐赠箱'>>
+    <<case 'ritual'>>
+      <<lanSwitch 'Chanting beyond the shore' '湖岸外的祷声'>>
   <</switch>>
 <</widget>>
 
@@ -291,13 +285,17 @@
 <<elseif $temple_rank is 'monk'>>
     <<revelation-card 'Duties book · monk' '职务簿 · 修士／修女'>>
       <<temple-duty-book-body>>
-      <<temple-duty-companion-links>>
     <</revelation-card>>
 <<else>>
     <<revelation-card 'Duties book · priest' '职务簿 · 司祭'>>
       <<temple-duty-book-body>>
       <<if $TempleDuties.enrolled>>
         <span class='teal'><<lanSwitch 'A list of wards needing attention lies beside the next shift\'s report.' '需要检查的护符清单压在下一班的报告旁。'>></span><br>
+        <<temple-pastoral-check>>
+        <<if _pastoral_ready>>
+          <<socialiseicon>>
+          <<lanLink ['Receive people seeking help', '接待前来求助的教徒'] 'Revelation Temple Pastoral'>><<temple-pastoral-start>><</lanLink>><br>
+        <</if>>
         <<if _dutyToday and Time.hour * 60 + Time.minute lte 17 * 60>>
           <<socialiseicon>>
           <<temple-duty-action `['Supervise the next shift (0:45)', '指导下一班值班 (0:45)']` 45 'Revelation Temple Task Done'>>
@@ -339,7 +337,6 @@
           <<gtiredness>><br>
         <</if>>
         <<temple-manor-offer>>
-        <<temple-duty-companion-links>>
       <</if>>
     <</revelation-card>>
 <</if>>
@@ -357,7 +354,7 @@
 <<temple-duty-place>>
 <<npc Jordan>>
 <<person1>>
-<<if !_dutyToday>>
+<<if !_dutyToday or Time.hour * 60 + Time.minute gt 17 * 60>>
   <<temple-duty-back>>
   <<exit>>
 <</if>>
@@ -407,7 +404,7 @@
   <<option 'EN'>>
     <<switch $TempleDuties.note>>
       <<case 'joined'>>
-        Jordan adds your name to the duties book. "Come when you're free. Keep school and your other commitments in order." <<He>> gives you the key to the old records room. You can now choose a shift from the handover or ask about an investigation.
+        Jordan adds your name to the duties book. "Come when you're free. Keep school and your other commitments in order." <<He>> gives you the key to the old records room. "Take a handover with the attendant first. They'll show you what needs doing."
       <<case 'accounts'>>
         <<if _dutyAid?.signed_at != null>>
           The signed relief receipt is clipped to the kitchen list. You keep the food and blanket entries separate from the kitchenware count, then check the bowls still wrapped beside the door. The delivery is complete; some of it has not been shelved.
@@ -450,7 +447,7 @@
   <<option 'CN'>>
     <<switch $TempleDuties.note>>
       <<case 'joined'>>
-        约旦把你的名字添进职务簿。“有空时来。学校和其他事情，也要安排妥当。”<<He>>交给你旧资料室的钥匙。现在，你可以查看交接记录，挑一班职务，也可以询问需要调查的事。
+        约旦把你的名字添进职务簿。“有空时来。学校和其他事情，也要安排妥当。”<<He>>交给你旧资料室的钥匙。“先跟侍从接一班活吧。让对方告诉你，要做些什么。”
       <<case 'accounts'>>
         <<if _dutyAid?.signed_at != null>>
           签过字的救济收据夹在厨房清单上。你把食物、毯子与餐具的数量分栏核对，再清点仍包在门边的碗。东西已经送齐，只是有一部分还没入架。
@@ -491,6 +488,15 @@
         付款未能完成。侍从把协议留着，没有签字。
     <</switch>>
 <</language>>
+<<if ['accounts', 'blankets'].includes($TempleDuties.note) and $TempleDuties.duties is 1 and !$TempleDuties.reports.echo>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      As you hand over the book, the attendant points to a note in the margin. "The night shift keeps hearing knocking downstairs. Could you have a look?" Jordan puts the note aside for you. "Rest first. Come back to the desk when you're ready."
+    <<option 'CN'>>
+      交回簿子时，侍从指给你看页边的便条。“夜班总听见楼下有敲击声。你能去看看吗？”约旦把便条留在一旁。“先歇一歇。准备好了，再到桌边来。”
+  <</language>>
+<</if>>
 <br><br>
 <<temple-duty-back>>
 

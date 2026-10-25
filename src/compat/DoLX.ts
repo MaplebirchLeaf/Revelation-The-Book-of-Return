@@ -38,7 +38,7 @@ export default function DoLX(core: typeof window.maplebirch): void {
     }
   }
   if (core.get('TempleDuties')) {
-    // 保留 DoLX 已计算的挑衅伤害，只在结果之后结算守望者加成。
+    // 保留 DoLX 已计算的挑衅伤害，只在结果之后结算驱邪之术加成。
     for (const rule of zone.widgetPassage.Widgets ?? []) {
       if (!rule.applyafter?.includes('<<temple-watch-defiance')) continue;
       delete rule.src;
