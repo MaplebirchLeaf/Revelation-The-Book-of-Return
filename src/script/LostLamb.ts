@@ -66,18 +66,4 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
       ]
     }
   });
-
-  maplebirch.tool.onInit(() => {
-    setup.feats['Lost Lamb'] ??= {
-      get title() {
-        return lanSwitch('Lost Lamb', '迷途羔羊');
-      },
-      get desc() {
-        return lanSwitch('Follow Kylar’s childhood through the night that changed the manor, and find your way back.', '经历凯拉尔与悉尼来往的旧日生活，以及庄园改变的那一夜，并回到现在。');
-      },
-      difficulty: 3,
-      series: '',
-      filter: ['All', 'General']
-    };
-  });
 }

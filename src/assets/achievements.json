@@ -1,0 +1,34 @@
+[
+  {
+    "module": "TempleDuties",
+    "id": "Revelation Ordination",
+    "title": "revelation-the-book-of-return:feats:ordination:title",
+    "description": "revelation-the-book-of-return:feats:ordination:description",
+    "difficulty": 3,
+    "filter": ["All", "General"]
+  },
+  {
+    "module": "TempleChoir",
+    "id": "Revelation Choir Lead",
+    "title": "revelation-the-book-of-return:feats:choir_lead:title",
+    "description": "revelation-the-book-of-return:feats:choir_lead:description",
+    "difficulty": 2,
+    "filter": ["All", "General"]
+  },
+  {
+    "module": "RBR",
+    "id": "Revelation Ivory Return",
+    "title": "revelation-the-book-of-return:feats:ivory_return:title",
+    "description": "revelation-the-book-of-return:feats:ivory_return:description",
+    "difficulty": 2,
+    "filter": ["All", "General"]
+  },
+  {
+    "module": "LostLamb",
+    "id": "Lost Lamb",
+    "title": "revelation-the-book-of-return:feats:lost_lamb:title",
+    "description": "revelation-the-book-of-return:feats:lost_lamb:description",
+    "difficulty": 3,
+    "filter": ["All", "General"]
+  }
+]

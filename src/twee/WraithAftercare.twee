@@ -116,6 +116,7 @@
       <<case 'shore'>>
         <li><<lanSwitch 'If you want to see the figure again, return to the lake shore after a few days. Avoid the blood moon.' '想再看看那道身影的话，隔几天可以回到湖畔。记得避开血月。'>></li>
       <<case 'complete'>>
+        <li><<lanSwitch 'You met the pale figure at the shore again. For that night, it let you leave.' '你已在湖岸再次见过那道苍白的身影。至少那一晚，它让你离开了。'>></li>
       <<default>>
         <li><<lanSwitch 'You returned the necklace. After a few days, you could sit at the lake shore and see whether anything has changed. Avoid the blood moon.' '你已归还项链。隔几天，可以到湖畔坐一会儿，看看是否有什么变化。记得避开血月。'>></li>
     <</switch>>
@@ -178,8 +179,10 @@
           <br><br>
           <<if _sydneyStatus.includes('corrupt')>>
             "Well, I'm glad you gave it back," <<nnpc_he 'Sydney'>> says. "But don't go jumping into the lake because something in a dream looked at you. It can wait."
-          <<else>>
+          <<elseif _sydneyStatus.includes('pure')>>
             "Returning it was the right thing to do," <<nnpc_he 'Sydney'>> says. "I could pray with you. But I can't promise that would keep it away. I don't know what it is."
+          <<else>>
+            Sydney looks down at the place held between the pages. "I keep trying to find a prayer for everything," <<nnpc_he 'Sydney'>> says. "I don't know one for this. But you don't have to go back tonight. We can sit here."
           <</if>>
           <br><br>
           <<if $sydneyromance is 1>>Sydney rests <<nnpc_his 'Sydney'>> hand over yours. "I'm glad you told me."<<else>>Sydney closes the book. "Would you like to sit here for a bit?"<</if>>
@@ -190,8 +193,10 @@
           <br><br>
           <<if _sydneyStatus.includes('corrupt')>>
             “好吧，至少你把东西还回去了，”<<nnpc_he 'Sydney'>>说，“不过，别因为梦里的东西看了你一眼，就又往湖里跳。让它等着。”
-          <<else>>
+          <<elseif _sydneyStatus.includes('pure')>>
             “还回去是对的，”<<nnpc_he 'Sydney'>>说，“我可以陪你祈祷。不过，我不能保证这样就能让它远离你。我不知道那究竟是什么。”
+          <<else>>
+            悉尼低头看看手指夹住的那一页。“我总想给什么事都找一段祷文，”<<nnpc_he 'Sydney'>>说，“这次，我也不知道该念哪段。不过，你今晚不必回去。我们可以在这里坐会儿。”
           <</if>>
           <br><br>
           <<if $sydneyromance is 1>>悉尼把手覆在你的手上。“谢谢你愿意告诉我。”<<else>>悉尼合上书。“想在这里坐一会儿吗？”<</if>>
@@ -240,6 +245,7 @@
 <<widget 'wraith-return-reunion'>>
   <!-- 本场静坐完整结束后才调用，结局与一次性宽慰一并登记。 -->
   <<set $RBR.necklace.aftercare to 'complete'>>
+  <<earnFeat 'Revelation Ivory Return'>>
   <<language>>
     <<option 'EN'>>
       You sit where you sat before. A pale shape appears at the edge of the water. It looks down at your hands.
@@ -248,7 +254,11 @@
       <br><br>
       <<if $RBR.necklace.retaken gt 0>>Its fingers tighten. You remember taking the necklace again. Neither of you has forgotten.<<else>>Its hand rises towards its throat, then falls to its side. You wait. It does not reach for you.<</if>>
       <br><br>
-      <<if $RBR.necklace.confidants.includes('Robin')>>You remember sitting beside Robin in the familiar room. <<elseif $RBR.necklace.confidants.includes('Sydney')>>You remember Sydney leaving the prayer book closed while you sat together. <<elseif $RBR.necklace.confidants.includes('Gwylan')>>You remember the warmth of Gwylan's cup. <<else>>You feel the ground under your palms, and listen to the water against the shore. <</if>>You do not move closer.
+      <<if $RBR.necklace.confidants.length>>
+        <<if $RBR.necklace.confidants.includes('Robin')>>You remember sitting beside Robin in the familiar room. <</if>>
+        <<if $RBR.necklace.confidants.includes('Sydney')>>You remember Sydney listening on the pew, a finger still between the pages. <</if>>
+        <<if $RBR.necklace.confidants.includes('Gwylan')>>You remember the warmth of Gwylan's cup, and the time <<nnpc_he 'Gwylan'>> gave you to finish it. <</if>>
+      <<else>>You feel the ground under your palms, and listen to the water against the shore. <</if>>You do not move closer.
       <br><br>
       When you next look up, the shore is empty. You stand and move further from the water. Nothing follows. You cannot know what another night will bring, but for now, you can leave.
     <<option 'CN'>>
@@ -258,7 +268,11 @@
       <br><br>
       <<if $RBR.necklace.retaken gt 0>>它收紧手指。你想起自己曾把项链再次拿走。你们谁也没有忘记。<<else>>它抬手碰了碰喉间，又把手放回身侧。你等着，它没有朝你伸手。<</if>>
       <br><br>
-      <<if $RBR.necklace.confidants.includes('Robin')>>你想起和罗宾一起坐在那间熟悉的房间里。<<elseif $RBR.necklace.confidants.includes('Sydney')>>你想起悉尼陪着你时，一直没有翻开的祈祷书。<<elseif $RBR.necklace.confidants.includes('Gwylan')>>你想起格威岚递来的那只温热的杯子。<<else>>你用手掌感受身下的泥土，听着湖水拍打岸边。<</if>>你没有靠近。
+      <<if $RBR.necklace.confidants.length>>
+        <<if $RBR.necklace.confidants.includes('Robin')>>你想起和罗宾一起坐在那间熟悉的房间里。<</if>>
+        <<if $RBR.necklace.confidants.includes('Sydney')>>你想起悉尼坐在长椅上听你说话，手指还夹在祈祷书的页间。<</if>>
+        <<if $RBR.necklace.confidants.includes('Gwylan')>>你想起格威岚递来的那只温热的杯子，以及<<nnpc_he 'Gwylan'>>留给你慢慢喝完的时间。<</if>>
+      <<else>>你用手掌感受身下的泥土，听着湖水拍打岸边。<</if>>你没有靠近。
       <br><br>
       再抬起头时，岸边已经空了。你站起来，往离水更远的地方退了几步。没有什么跟上来。你不知道下次入夜会怎样。不过现在，你可以离开。
   <</language>>

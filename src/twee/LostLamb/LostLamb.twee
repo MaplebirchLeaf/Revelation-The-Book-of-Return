@@ -406,6 +406,7 @@
   <<getouticon>><<lanLink ['Return', '返回'] 'Temple'>><</lanLink>><br><<exit>>
 <</if>>
 <<npc Sydney>><<person1>>
+<<run statusCheck('Sydney')>>
 <<language>>
   <<option 'EN'>>
     You tap your knuckles against the wooden surface: two quiet taps, a brief pause, then one final tap.
@@ -428,6 +429,14 @@
     <br><br>
     "I remember playing there. I don't know what happened to the house." <<nnpc_He 'Sydney'>> looks up. "Thank you for telling me how <<nnpc_he 'Kylar'>> is."
     <br><br>
+    <<if _sydneyStatus.includes('pure')>>
+      "I still pray for <<nnpc_him 'Kylar'>>." Sydney turns the book so its cover lies beneath <<nnpc_his 'Sydney'>> hand. "But I should ask how <<nnpc_he 'Kylar'>> is, too. Not just remember how things used to be."
+    <<elseif _sydneyStatus.includes('corrupt')>>
+      "I'd like to hear what <<nnpc_he 'Kylar'>> remembers," Sydney says. "Not what somebody else thinks happened. What <<nnpc_he 'Kylar'>> wants to tell me." <<nnpc_He 'Sydney'>> catches your eye. "If <<nnpc_he 'Kylar'>> wants to."
+    <<else>>
+      "I wouldn't know how to begin," Sydney admits. <<nnpc_He 'Sydney'>> taps the edge of the book. "We used to knock and wait for an answer. I suppose I can still wait."
+    <</if>>
+    <br><br>
     Sydney taps twice, pauses, then taps once more. <<if isLoveInterest('Sydney')>>You rest your hand beside <<nnpc_his 'Sydney'>>.<<else>>You leave <<nnpc_him 'Sydney'>> a moment before stepping back.<</if>>
   <<option 'CN'>>
     你的指节在木质桌面上轻轻叩响：两声轻叩，短暂的停顿，接着是一声利落的收尾。
@@ -449,6 +458,14 @@
     “我们的父母很熟。我以前经常过去。”悉尼的手指沿着书边挪动。“后来，就不让我再来了。”
     <br><br>
     “我还记得在那里玩过。但我不知道，那所房子后来发生了什么。”<<nnpc_He 'Sydney'>>抬起头。“谢谢你告诉我，<<nnpc_he 'Kylar'>>现在怎么样了。”
+    <br><br>
+    <<if _sydneyStatus.includes('pure')>>
+      “我仍会为<<nnpc_him 'Kylar'>>祈祷。”悉尼把书转了转，手搭在封皮上。“可是，我也该问问<<nnpc_he 'Kylar'>>现在过得怎样，不能只是想着从前的事。”
+    <<elseif _sydneyStatus.includes('corrupt')>>
+      “我想听听，<<nnpc_he 'Kylar'>>还记得什么。”悉尼说。“不是别人觉得发生过什么，是<<nnpc_he 'Kylar'>>自己想告诉我的。”<<nnpc_He 'Sydney'>>与你对视了一眼。“如果<<nnpc_he 'Kylar'>>愿意的话。”
+    <<else>>
+      “我都不知道，该从哪里说起。”悉尼承认，轻敲了一下书边。“以前，我们会敲门，等里面的人答应。我想，现在也可以等一等。”
+    <</if>>
     <br><br>
     悉尼轻叩两下，停了一会儿，又叩了一下。<<if isLoveInterest('Sydney')>>你把手放在<<nnpc_his 'Sydney'>>手边。<<else>>你等了一会儿，才退开一步。<</if>>
 <</language>>

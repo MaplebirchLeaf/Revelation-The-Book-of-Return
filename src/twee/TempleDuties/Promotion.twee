@@ -10,7 +10,7 @@
 <<language>>
   <<option 'EN'>>
     Jordan clears a place beside the duties book. A repaired whip lies across the chair behind the desk.
-    <<if !($TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo?.result is 'resolved')>>
+    <<if !$TempleDuties.rewards.includes('echo')>>
       "Take a handover with the attendant first. There has been knocking downstairs." <<He>> leaves the note beside the book. "See what is making it. If you find something you cannot deal with, come back and tell me."
     <<elseif !_dutyTrained>>
       "You remember what I showed you beneath the cloister? Some of those things reach places where people work." <<He>> calls the older monk over. "Go together the first time. There is an old storehouse by the docks that needs checking."
@@ -29,7 +29,7 @@
     <</if>>
   <<option 'CN'>>
     约旦在职务簿旁清出一块地方。桌后的椅子上横放着一条修补过的长鞭。
-    <<if !($TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo?.result is 'resolved')>>
+    <<if !$TempleDuties.rewards.includes('echo')>>
       “先跟侍从接一班活吧。楼下有敲击声。”<<He>>把便条放在簿子旁。“看看是什么弄出来的。碰上处理不了的东西，就回来告诉我。”
     <<elseif !_dutyTrained>>
       “还记得我在回廊下面给你看的东西吗？有些会钻到人们工作的地方去。”<<He>>叫来那名资深修士。“第一次先一起去。码头旁有间旧仓房，需要看看。”
@@ -243,6 +243,7 @@
     <<set $TempleDuties.companion_day to -1>>
     <<if $TempleDuties.ordained lt 0>>
       <<set $TempleDuties.ordained to Math.floor(Time.days)>>
+      <<earnFeat 'Revelation Ordination'>>
       <<npcincr Jordan love 5>>
       <<famegood 30 null true>>
       <<grace 15>>

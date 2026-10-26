@@ -167,12 +167,12 @@
           <<option 'CN'>>
             你听到一个<<personssimple>>的声音。“请宽恕我，<<sister>>，我犯下了罪过。我渴求着身边很近的一个人，
             <<if $temple_rank isnot undefined and $temple_rank isnot 'initiate'>>
-              <<he>>在神殿里也持有<<temple_title>>的位阶。”
+              <<pshe>>在神殿里也持有<<temple_title>>的位阶。”
             <<else>>
               也是和我一起长大的。”
             <</if>>
             <br><br>
-            “<<Sister>>……<<he>>根本不知道。这份感情怎么也挥之不去。我……我感觉它正撕裂我的内心。”
+            “<<Sister>>……<<pshe>>根本不知道。这份感情怎么也挥之不去。我……我感觉它正撕裂我的内心。”
         <</language>>
         <<robin-temple-confession-options>>
       <</addinlineevent>>

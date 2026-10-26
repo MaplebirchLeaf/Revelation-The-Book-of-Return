@@ -553,7 +553,7 @@
             <li><<lanSwitch 'Return to the duties desk and give the sealed copy to the bishop waiting there as a confessor.' '回职务桌，把密封副本交给以告解员身份等候的主教。'>></li>
           <<elseif !$TempleDuties.archive.topics.includes('deliveries')>>
             <li><<lanSwitch 'Read the old crate handover records in the records room.' '到旧资料室查阅旧货箱交接记录。'>></li>
-          <<elseif !$TempleDuties.reports.crate?.honest or $TempleDuties.reports.crate?.result isnot 'resolved'>>
+          <<elseif !$TempleDuties.rewards.includes('crate')>>
             <li><<lanSwitch 'Finish the returned-crate investigation and give Jordan a truthful report before making the private comparison.' '先完成退回货箱的调查，向约旦如实汇报，再做私下的比对。'>></li>
           <<else>>
             <li><<lanSwitch 'Your report and the old receipts are ready to compare. Return to the old records room to make the separate copy.' '调查报告与旧收据都已备好。回旧资料室比对，抄出单独的副本。'>></li>

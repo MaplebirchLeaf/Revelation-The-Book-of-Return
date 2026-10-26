@@ -137,7 +137,7 @@
           <<elseif ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
             <li><<lanSwitch 'The necklace was taken to the mayor\'s office. You could watch the waiting room during the day.' '项链被送到了市长办公室。你可以白天去候见室观察一下。'>></li>
             <<if $RBR.necklace.prepared>>
-              <li><<lanSwitch 'You have studied the visitors and the stairway. Getting past reception will only be the beginning; the case is guarded by a camera.' '你已经留意过访客和楼梯。混过前台只是第一步，展示盒旁还有摄像头。'>></li>
+              <li><<lanSwitch 'You have watched the visitors and the stairway. You could try to pass the front desk while the receptionist is occupied.' '你已经留意过访客和楼梯。可以趁前台忙碌时，试着混过去。'>></li>
             <</if>>
           <<else>>
             <<if $RBR.necklace.advised>>

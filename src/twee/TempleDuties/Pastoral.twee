@@ -6,6 +6,22 @@
       and !(Time.weekDay is 1 and Time.hour lt 11 and Time.hour * 60 + Time.minute + 30 gte 11 * 60))>>
 <</widget>>
 
+<!-- 近况只依据已经如实交代的救援、修缮和日期，不另记一套来访任务。 -->
+<<widget 'temple-pastoral-context'>>
+  <<set _pastoral_return to ''>>
+  <<if _pastoral_scene is 'comfort' and $TempleDuties.reports.ritual?.honest
+      and $TempleDuties.reports.ritual.result is 'resolved'
+      and Time.days gte $TempleDuties.reports.ritual.day + 3
+      and Time.days lt $TempleDuties.reports.ritual.day + 10>>
+    <<set _pastoral_return to 'shore'>>
+  <<elseif _pastoral_scene is 'prayer' and $TempleDuties.archive.sorted gte 3
+      and _roofReady and _shelvesReady and $TempleDuties.archive.sort_day gte 0
+      and Time.days gte $TempleDuties.archive.sort_day + 3
+      and Time.days lt $TempleDuties.archive.sort_day + 10>>
+    <<set _pastoral_return to 'reader'>>
+  <</if>>
+<</widget>>
+
 <<widget 'temple-pastoral-start'>>
   <<temple-pastoral-check>>
   <<if _pastoral_ready>>
@@ -77,16 +93,21 @@
   <<temple-duty-back>><<exit>>
 <</if>>
 <<set _pastoral_scene to $TempleDuties.note.split('-')[1]>>
+<<temple-pastoral-context>>
 <<language>>
   <<option 'EN'>>
     The attendant shows you to a bench away from the doors. A prayer book rests on its end. Jordan sees you take the seat beside it and nods before returning to the altar.
     <br><br>
     <<switch _pastoral_scene>>
       <<case 'comfort'>>
-        An adult sits with their hands pressed between their knees. They keep looking towards the doors. "I heard something in the trees," they say. "I ran. I thought it would stop once I got home, but I still keep listening for it."
+        <<if _pastoral_return is 'shore'>>
+          The person brought back from the lake sits near the end of the bench. They recognise you before the attendant can make an introduction. "I've been sleeping," they say. "A little. It's the footsteps outside that wake me." They look towards the doors, then back at you. "I wanted to come while it was still light."
+        <<else>>An adult sits with their hands pressed between their knees. They keep looking towards the doors. "I heard something in the trees," they say. "I ran. I thought it would stop once I got home, but I still keep listening for it."<</if>>
         They look at your habit. "Could I stay here a while?"
       <<case 'prayer'>>
-        A new initiate has a finger on the first line of the prayer. They begin, stop, then turn back a page. "Everyone else knows when to answer," they say. "By the time I find it, they've moved on."
+        <<if _pastoral_return is 'reader'>>
+          An initiate brings over a booklet from the repaired records room. Its dry pages lie flat now. "I could find it on the shelf," they say, showing you the number inside the cover. "But I still lose my place when everyone starts together." A finger rests on the first response.
+        <<else>>A new initiate has a finger on the first line of the prayer. They begin, stop, then turn back a page. "Everyone else knows when to answer," they say. "By the time I find it, they've moved on."<</if>>
         They shift along the bench to make room for you.
       <<case 'amends'>>
         An adult waits until the bench beside you is empty before speaking. "I broke something that wasn't mine. I let someone else take the blame." Their eyes stay on the floor. "I've prayed. I still can't go back and tell them."
@@ -97,10 +118,14 @@
     <br><br>
     <<switch _pastoral_scene>>
       <<case 'comfort'>>
-        一名成年人坐在长椅上，双手夹在膝间，不时望向大门。“我在树林里听见什么东西，”对方说，“我跑了。我以为到家就好了，可现在还是总想听外面的动静。”
+        <<if _pastoral_return is 'shore'>>
+          从湖边接回来的人坐在长椅一端。侍从还没介绍，对方便认出了你。“能睡着了，”对方说，“睡一小会儿。外面有脚步声，还是会醒。”那双眼睛望向大门，又看回你。“我想趁天还亮着，过来看看。”
+        <<else>>一名成年人坐在长椅上，双手夹在膝间，不时望向大门。“我在树林里听见什么东西，”对方说，“我跑了。我以为到家就好了，可现在还是总想听外面的动静。”<</if>>
         对方看了看你的长袍。“我能在这里待一会儿吗？”
       <<case 'prayer'>>
-        一名新来的见习教徒指着祷文的第一行，刚开口又停住，往前翻了一页。“别人都知道什么时候答，”对方说，“等我找着，他们已经念完了。”
+        <<if _pastoral_return is 'reader'>>
+          一名见习教徒从修好的资料室拿来一本薄册。书页干燥，已经能平整地摊开。“在架子上找着了，”对方把封皮里的编号指给你看，“可大家一起念的时候，我还是会跟丢。”手指停在第一句答词旁。
+        <<else>>一名新来的见习教徒指着祷文的第一行，刚开口又停住，往前翻了一页。“别人都知道什么时候答，”对方说，“等我找着，他们已经念完了。”<</if>>
         对方往长椅另一端挪了挪，给你空出位置。
       <<case 'amends'>>
         一名成年人等到你身旁空下来，才开了口。“我弄坏了别人的东西，让另一个人挨了骂。”对方一直看着地面。“我祈祷过了。可我还是不敢回去告诉他们。”
@@ -128,6 +153,7 @@
 <</if>>
 <<set _pastoral_scene to $TempleDuties.note.split('-')[1], _pastoral_choice to $TempleDuties.note.split('-')[2]
   , _pastoral_steady to $TempleDuties.note.endsWith('-steady')>>
+<<temple-pastoral-context>>
 <<language>>
   <<option 'EN'>>
     <<switch _pastoral_scene>>
@@ -142,8 +168,13 @@
         <<else>>You pray together. "I name you forgiven by word. You must still forgive yourself by act." You wait for them to look up before asking who needs to hear what they have told you. There is a long silence. At last, they give you a name. They say it again before they leave.<</if>>
     <</switch>>
     <br><br>
+    <<if _pastoral_return is 'shore'>>They ask which attendant will be here when you leave. You find the name in the shift book and ask the attendant to come over. This time, the person beside you speaks first.
+    <<elseif _pastoral_return is 'reader'>>Before leaving, the initiate marks the response on a scrap kept inside the booklet. They can find the shelf themselves now. Next time, they will have the line ready too.<</if>>
+    <<if _pastoral_return>><br><br><</if>>
     <<if _pastoral_steady>>You find the words without having to hurry. When the next member arrives to take over, you close the book and let your shoulders relax.<<else>>Keeping your voice steady takes effort. You are still turning over parts of the conversation when the next member comes to take your place.<</if>>
     The attendant leaves forty pounds with the shift book. Jordan catches your eye across the hall. "Thank you. Did they have someone to sit with?" You tell <<nnpc_him 'Jordan'>> how the visit went.
+    <<if $TempleDuties.oath is 'care'>><br><br>You remember telling Jordan that you wanted to help the people who came here. <<nnpc_He 'Jordan'>> waits while you add the next attendant's name to the handover. "Good. They'll know who to ask."
+    <<elseif $TempleDuties.oath is 'obedience'>><br><br>"I still think about what happened by the lake," you admit. Jordan looks towards the bench you have just left. "We can speak of that again. Today, you didn't leave them waiting."<</if>>
   <<option 'CN'>>
     <<switch _pastoral_scene>>
       <<case 'comfort'>>
@@ -157,8 +188,13 @@
         <<else>>你陪对方祈祷。“我以言辞宽恕你，但你也必须用实际行动宽恕自己。”你等对方抬起头，才问，还有谁需要听见刚才那些话。沉默持续了很久。最后，对方说出一个名字，离开前，又念了一遍。<</if>>
     <</switch>>
     <br><br>
+    <<if _pastoral_return is 'shore'>>对方问起你离开以后，谁还会留在这里。你从交接簿里找到名字，请那名侍从过来。这回，坐在身旁的人先开了口。
+    <<elseif _pastoral_return is 'reader'>>离开前，见习教徒在夹进薄册的小纸上标好答词。现在，对方已经能自己找到书架。下次，也能先把要念的那一行备好。<</if>>
+    <<if _pastoral_return>><br><br><</if>>
     <<if _pastoral_steady>>你慢慢找到合适的话，不必急着开口。下一班来接替时，你合上祷书，松了松肩膀。<<else>>想要稳住声音，仍得费些力气。下一班来接替时，你还在反复想着刚才的几句话。<</if>>
     侍从把四十英镑放在交接簿旁。约旦从大厅另一头望过来。“谢谢。有人陪着坐一会儿了？”你向<<nnpc_him 'Jordan'>>讲了讲经过。
+    <<if $TempleDuties.oath is 'care'>><br><br>你想起曾向约旦表示，愿意照看来到这里的人。<<nnpc_He 'Jordan'>>等你把下一班的名字添进交接记录，才点头。“好。这样，对方就知道该找谁了。”
+    <<elseif $TempleDuties.oath is 'obedience'>><br><br>“我仍会想起湖边的事。”你承认。约旦望向你刚刚离开的长椅。“我们还能再谈。今天，你没有让来的人空等。”<</if>>
 <</language>>
 <<ggrace>><<if _pastoral_choice is 'explain'>><<ghistory>><<else>><<genglish>><</if>>
 <<if _pastoral_steady>><<lstress>><<else>><<gstress>><</if>><br><br>

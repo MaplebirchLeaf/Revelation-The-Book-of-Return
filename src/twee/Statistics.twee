@@ -23,7 +23,7 @@
       <<lanSwitch 'Completed duty shifts: ' '已完成神殿职务：'>><<print $TempleDuties.duties>><br>
       <<lanSwitch 'Truthfully resolved investigations: ' '已如实完成的调查：'>><<print $TempleDuties.rewards.length>>/4<br>
       <<if $TempleDuties.case?.id is 'ritual' or $TempleDuties.reports.ritual>>
-        <span @class="$TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved' ? 'green' : 'red'"><<print $TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved' ? '✓ ' : '○ '>><<lanSwitch 'Completed the investigation beyond the shore and reported the findings' '完成湖岸外祷声的调查并如实汇报'>></span><br>
+        <span @class="$TempleDuties.rewards.includes('ritual') ? 'green' : 'red'"><<print $TempleDuties.rewards.includes('ritual') ? '✓ ' : '○ '>><<lanSwitch 'Completed the investigation beyond the shore and reported the findings' '完成湖岸外祷声的调查并如实汇报'>></span><br>
       <</if>>
       <span @class="$temple_rank is 'priest' ? 'green' : 'red'"><<print $temple_rank is 'priest' ? '✓ ' : '○ '>><<lanSwitch 'Appointed as a priest' '受任神殿司祭'>></span><br>
       <<if $TempleDuties.candidates.Robin.agreed or maplebirch.get('RobinTemple')?.rank is 'priest'>>

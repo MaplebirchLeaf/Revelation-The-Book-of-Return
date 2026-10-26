@@ -117,6 +117,87 @@
   <</capture>>
 <</widget>>
 
+<<widget 'temple-priest-recollection'>>
+  <!-- 只回想本人亲自完成并报过的事，不让同伴知道未参与的面谈或仪式。 -->
+  <<set _priest_name to _args[0]>>
+  <<set _priest_deeds to $TempleDuties.candidates[_priest_name]?.deeds ?? []>>
+  <<if !_priest_deeds.length or (_priest_name is 'Robin' ? maplebirch.get('RobinTemple')?.rank : $sydney?.rank) isnot 'priest'>><<exit>><</if>>
+  <<set _priest_deed to _priest_deeds[Math.floor(Time.days) % _priest_deeds.length]>>
+  <br><br>
+  <<language>>
+    <<option 'EN'>>
+      <<if _priest_name is 'Robin'>>
+        <<switch _priest_deed>>
+          <<case 'rescue'>>
+            Robin runs a hand over the folded blanket. "It was different, helping someone get out. I kept thinking about where we could take them."
+          <<case 'evidence'>>
+            "I went over the records I brought back," Robin says. "I was afraid I'd missed something. It's easier to find things now they're written down here."
+          <<case 'ward'>>
+            Robin looks towards the altar. "I still think about the part we took apart. I was glad when we could leave it behind."
+        <</switch>>
+        <<if C.npc.Robin.trauma gte 40>>
+          <<nnpc_He 'Robin'>> rubs <<nnpc_his 'Robin'>> palms against the cloth. "I don't want to go back there today. These need doing too."
+        <<elseif maplebirch.get('RobinTemple').faith gte 20>>
+          "I prayed afterwards," <<nnpc_he 'Robin'>> says. "I didn't know what else to say. Just, thank you."
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+          "I don't know what the prayers changed. But I know we did something."
+        <<elseif C.npc.Robin.dom gte 50>>
+          "I'd check who was taking over first, next time. It doesn't have to be the same person doing everything."
+        <<else>>
+          "I used to think I'd only be in the way. I don't think that so much now."
+        <</if>>
+        <<if isLoveInterest('Robin')>>You sit close enough for <<nnpc_his 'Robin'>> shoulder to rest against yours.<<else>>You stay beside <<nnpc_him 'Robin'>> while <<nnpc_he 'Robin'>> finishes the fold.<</if>>
+      <<else>>
+        <<run statusCheck('Sydney')>>
+        <<switch _priest_deed>>
+          <<case 'rescue'>>
+            Sydney pauses over the receipts. "At the time, all I could think about was getting that person out of danger. There was still so much to do once we had."
+          <<case 'evidence'>>
+            Sydney sets a finger beside the date in the book. "I still have my copy of the records we brought back. I know where to look if something doesn't match."
+          <<case 'ward'>>
+            Sydney looks up from the book. "I can still remember the part of the ritual we stopped. I don't think I'll mistake it if I see it again."
+        <</switch>>
+        <<if _sydneyStatus.includes('pure')>>"I'm glad Jordan trusted us to help. I want to be worthy of that."<<elseif _sydneyStatus.includes('corrupt')>>"A prayer wouldn't have put those things right by itself." <<nnpc_He 'Sydney'>> smooths the page. "Neither will sitting here admiring the title."<<else>>"I still have questions. At least now I know what to ask about."<</if>>
+        <<if isLoveInterest('Sydney')>><<nnpc_His 'Sydney'>> fingers find yours beside the book before returning to the page.<<else>><<nnpc_He 'Sydney'>> turns the book so you can read the entry together.<</if>>
+      <</if>>
+    <<option 'CN'>>
+      <<if _priest_name is 'Robin'>>
+        <<switch _priest_deed>>
+          <<case 'rescue'>>
+            罗宾抚过叠好的毯子。“帮人脱离危险，感觉不太一样。我当时一直想着，接下来能把对方带到哪里。”
+          <<case 'evidence'>>
+            “带回来的记录，我又看了一遍。”罗宾说。“总怕漏了什么。现在记在这里，想找就方便些了。”
+          <<case 'ward'>>
+            罗宾望向祭坛。“我还会想起被拆掉的那一处。能离开那里时，真是松了口气。”
+        <</switch>>
+        <<if C.npc.Robin.trauma gte 40>>
+          <<nnpc_He 'Robin'>>隔着毯子搓了搓掌心。“今天，我不想再去那里了。这里也还有事要做。”
+        <<elseif maplebirch.get('RobinTemple').faith gte 20>>
+          “后来，我祈祷了一会儿。”<<nnpc_he 'Robin'>>说。“也不知道说什么好。就说了，谢谢。”
+        <<elseif maplebirch.get('RobinTemple').faith lte -20>>
+          “我不知道祈祷改变了什么。不过，我知道，我们做了些事。”
+        <<elseif C.npc.Robin.dom gte 50>>
+          “下次，我会先问清谁来接班。总不能什么事，都让同一个人做。”
+        <<else>>
+          “以前，我总觉得自己只会碍手碍脚。现在，不太会那么想了。”
+        <</if>>
+        <<if isLoveInterest('Robin')>>你挪近些，让<<nnpc_his 'Robin'>>肩膀靠着你。<<else>>你留在身旁，等<<nnpc_he 'Robin'>>叠好手中的毯子。<</if>>
+      <<else>>
+        <<run statusCheck('Sydney')>>
+        <<switch _priest_deed>>
+          <<case 'rescue'>>
+            悉尼在收据前停住。“当时，我只想着先让那人离开危险。接出来以后，才发现还有那么多事要做。”
+          <<case 'evidence'>>
+            悉尼把手指放在簿中的日期旁。“带回来的记录，我还留着副本。以后有对不上的地方，就知道该去哪里找了。”
+          <<case 'ward'>>
+            悉尼从书上抬起头。“我们阻止的那一处，我还记得。再看见的话，应该不会认错了。”
+        <</switch>>
+        <<if _sydneyStatus.includes('pure')>>“还好，约旦相信我们能帮上忙。我想对得起这份信任。”<<elseif _sydneyStatus.includes('corrupt')>>“光是祈祷，可不能把那些事弄妥。”<<nnpc_He 'Sydney'>>抚平书页。“坐在这里，想着司祭的头衔，也一样。”<<else>>“我还有些问题没弄明白。不过，至少知道，该问些什么了。”<</if>>
+        <<if isLoveInterest('Sydney')>>书旁的手指轻轻碰过你的手，才回到页间。<<else>><<nnpc_He 'Sydney'>>转过簿子，方便你一起看。<</if>>
+      <</if>>
+  <</language>>
+<</widget>>
+
 :: Revelation Temple Sealed Note
 <<temple-duty-place>>
 <<if !_dutyOffice or !_bishopKnown or !$TempleDuties.enrolled
@@ -294,6 +375,7 @@
       <</if>>
   <</language>>
 <</if>>
+<<temple-priest-recollection $TempleDuties.speaker>>
 <<temple-pastoral-recollection $TempleDuties.speaker>>
 <br><br>
 <<temple-companion-check $TempleDuties.speaker 30>>

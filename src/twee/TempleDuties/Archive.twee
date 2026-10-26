@@ -100,8 +100,7 @@
   <</if>>
   <<if $TempleDuties.bishop is 'accepted' and !$TempleDuties.bishop_checked
       and $TempleDuties.archive.topics.includes('deliveries')
-      and $TempleDuties.reports.crate?.honest
-      and $TempleDuties.reports.crate?.result is 'resolved'>>
+      and $TempleDuties.rewards.includes('crate')>>
     <<icon 'temple/delivery-records.png'>>
     <<temple-duty-action `['Compare your crate report with the old receipts (0:20)', '比对货箱调查报告与旧收据 (0:20)']` 20 'Revelation Temple Sealed Answer'>>
       <<if !$TempleDuties.bishop_checked>>
@@ -134,11 +133,11 @@
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
         The plans show a drain running behind the lower storeroom wall, with a shutter above it. An old note says that knocking once travelled down this pipe and frightened the initiates. The next clerk was told to check the shutter and drain before arranging another blessing.
-        <<if $TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo.result is 'resolved'>>You put your own inspection beside it. The fastening and the drain are marked on the same plan, though your report leaves the unexplained sound in a separate note.<</if>>
-        <<if $TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots.result is 'resolved'>>Your sketch of the route past the roots is filed behind the plan. The narrowest passage is easier to find on your newer drawing.<</if>>
+        <<if $TempleDuties.rewards.includes('echo')>>You put your own inspection beside it. The fastening and the drain are marked on the same plan, though your report leaves the unexplained sound in a separate note.<</if>>
+        <<if $TempleDuties.rewards.includes('roots')>>Your sketch of the route past the roots is filed behind the plan. The narrowest passage is easier to find on your newer drawing.<</if>>
       <<case 'deliveries'>>
         The old delivery book lists each crate's sender, weight and collector. Several damaged crates were returned without anyone checking their contents. A note warns that a seal can be copied: the mark alone does not prove that a crate still holds its original shipment.
-        <<if $TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate.result is 'resolved'>>Your dock report is kept with the newer cargo list. You compare the workers' handover with the old collector's column; they are different entries, not a missing signature you can fill in.<</if>>
+        <<if $TempleDuties.rewards.includes('crate')>>Your dock report is kept with the newer cargo list. You compare the workers' handover with the old collector's column; they are different entries, not a missing signature you can fill in.<</if>>
         <<if $TempleDuties.bishop is 'reported'>>The comparison you gave the bishop has a separate reference number. Your copy still marks the collector's signature as absent. No later name has been added to it.<</if>>
       <<case 'fieldwork'>>
         The field notes put the same instruction before every rite: count everyone, leave a clear exit, and summon help when you cannot keep both. A scratched-out page records what happened when an initiate sealed a door too soon. You fold the exit sketch into your notes, ready to follow it when you need to leave in a hurry.
@@ -163,11 +162,11 @@
     <<switch $TempleDuties.topic>>
       <<case 'buildings'>>
         图纸上，下层储藏室的墙后有一根排水管，上方是一扇百叶窗。页边的旧记录提到，敲击声曾沿管道传进来，吓坏了见习教徒。下一班因此被叮嘱：安排祝祷之前，先检查窗扇和排水管。
-        <<if $TempleDuties.reports.echo?.honest and $TempleDuties.reports.echo.result is 'resolved'>>你将自己的检查记录放在旁边。扣件和排水管都标在同一张图上，无法解释的声音则另留了一条说明。<</if>>
-        <<if $TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots.result is 'resolved'>>你画过的根须间通路收在图纸后面。最狭窄的那段，在新图上更好找了。<</if>>
+        <<if $TempleDuties.rewards.includes('echo')>>你将自己的检查记录放在旁边。扣件和排水管都标在同一张图上，无法解释的声音则另留了一条说明。<</if>>
+        <<if $TempleDuties.rewards.includes('roots')>>你画过的根须间通路收在图纸后面。最狭窄的那段，在新图上更好找了。<</if>>
       <<case 'deliveries'>>
         旧交货簿逐项记着货箱的寄件人、重量和提货者。有几只破损货箱被退回时，没有人核对里面还剩什么。页边另有一句提醒：封印可以照样仿制，不能只看标记，就认定箱里的货物没有换过。
-        <<if $TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate.result is 'resolved'>>你的码头报告与新货单收在一起。你拿工人的交接记录对照旧簿上的提货人一栏，两份不是同一笔，不能拿来补上缺失的签名。<</if>>
+        <<if $TempleDuties.rewards.includes('crate')>>你的码头报告与新货单收在一起。你拿工人的交接记录对照旧簿上的提货人一栏，两份不是同一笔，不能拿来补上缺失的签名。<</if>>
         <<if $TempleDuties.bishop is 'reported'>>交给主教的比对副本另有编号。你留下的那份仍注明提货者缺了签字，后来也没有添上名字。<</if>>
       <<case 'fieldwork'>>
         每次仪式前，外勤记录都写着同一句话：数清所有人，留出出口。无法兼顾时，就求援。一页被划掉的记录，留下了见习教徒过早封门的后果。你把出口草图折进笔记，需要赶紧离开时，可以照着走。

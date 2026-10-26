@@ -168,6 +168,7 @@
   <!-- 只结算一次，正文、领唱许可与同伴回应在重绘后仍可查看。 -->
   <<set _choirWasLead to $TempleChoir.lead>>
   <<if maplebirch.get('TempleChoir').finish()>>
+    <<if $TempleChoir.lead>><<earnFeat 'Revelation Choir Lead'>><</if>>
     <<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>
   <</if>>

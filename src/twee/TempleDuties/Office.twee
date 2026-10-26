@@ -29,7 +29,7 @@
       or ($TempleDuties.case.stage is 'combat' and !$combat))>>
     <<set _dutyNext to ''>>
     <<for _caseId range ['echo', 'roots', 'crate', 'ritual']>>
-      <<if !_dutyNext and !($TempleDuties.reports[_caseId]?.honest and $TempleDuties.reports[_caseId]?.result is 'resolved')>>
+      <<if !_dutyNext and !$TempleDuties.rewards.includes(_caseId)>>
         <<set _dutyNext to _caseId>>
       <</if>>
     <</for>>
@@ -46,9 +46,10 @@
       and $templetest isnot 'failed' and $temple_chastity_timer gt 0
       and $player.virginity.temple is true
       and $TempleDuties.enrolled>>
-    <<set _dutyTrained to Boolean($TempleDuties.reports.roots?.honest and $TempleDuties.reports.roots?.result is 'resolved')>>
-    <<set _dutyFieldwork to Boolean($TempleDuties.reports.crate?.honest and $TempleDuties.reports.crate?.result is 'resolved')>>
-    <<set _dutyRitual to Boolean($TempleDuties.reports.ritual?.honest and $TempleDuties.reports.ritual?.result is 'resolved')>>
+    <!-- 首次如实完成后保留资历，后续回访的退出与失败不撤销。 -->
+    <<set _dutyTrained to $TempleDuties.rewards.includes('roots')>>
+    <<set _dutyFieldwork to $TempleDuties.rewards.includes('crate')>>
+    <<set _dutyRitual to $TempleDuties.rewards.includes('ritual')>>
     <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and _dutyTrained and _dutyFieldwork and _dutyRitual>>
     <<set _bishopKnown to Boolean($per_npc.bishop) and ($temple_confessor_intro or $kylar_manor_secret is 3)>>
   <</silently>>
@@ -451,7 +452,7 @@
           <<case 2>>This batch contains plans and folded delivery slips. You lay them flat and match the torn edges without filling any gaps in the writing.
           <<default>>The last leaves are dry enough to handle. You number their sleeves and return the references to the bound volumes. A clerk finds the right page without having to empty the box.
         <</switch>>
-        <<if $TempleDuties.reports.crate?.honest>>You leave a slip marking the receipts you checked in the crate investigation.<</if>>
+        <<if $TempleDuties.rewards.includes('crate')>>You leave a slip marking the receipts you checked in the crate investigation.<</if>>
       <<case 'funded'>>
         Your payment and its purpose are written on the receipt. Jordan files the contractor's copy separately from the kitchen accounts. The work has been arranged; the completion date is recorded with the estimate.
       <<case 'unpaid'>>
@@ -494,7 +495,7 @@
           <<case 2>>这一批夹着图纸和折起的交货单。你将它们铺平，对好撕裂的边缘，留下字迹缺失的地方。
           <<default>>最后一批纸页已经干到可以拿取。你给封套编号，把索引归回装订好的书里。侍从不用倒空整只箱子，便找到了要查的那页。
         <</switch>>
-        <<if $TempleDuties.reports.crate?.honest>>你留下一张纸条，标出货箱调查中核对过的收据。<</if>>
+        <<if $TempleDuties.rewards.includes('crate')>>你留下一张纸条，标出货箱调查中核对过的收据。<</if>>
       <<case 'funded'>>
         收据上写着你支付的款项和用途。约旦把承包商的副本与厨房账簿分开放好。施工已经安排，完工日期也记在报价单上。
       <<case 'unpaid'>>
