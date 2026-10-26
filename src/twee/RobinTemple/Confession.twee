@@ -1145,6 +1145,9 @@
   <<else>>
     <<npcincr Robin lust -20>><<llllust 'Robin'>>
   <</if>>
+  <<npcincr Robin love 1>><<glove 'Robin'>>
+  <<if C.npc.Robin.trauma gt 0>><<npcincr Robin trauma -1>><<lrtrauma>><</if>>
+  <<stress -6>><<lstress>>
   <br>
   <<tearful>><<language>>
     <<option 'EN'>> you clean up and get ready for the next penitent. Though reluctant, Robin separates from you.<<option 'CN'>>你们清理干净自己，准备接待下一个忏悔者。虽然很不情愿，罗宾还是跟你分开了。

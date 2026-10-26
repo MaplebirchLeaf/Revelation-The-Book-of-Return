@@ -301,7 +301,9 @@
         罗宾抱住你，眼里含着泪，脸上却带着笑。“要是没有你，我肯定做不到的。”
     <</language>>
   <</if>>
-  <<npcincr Robin love 10>><<gglove 'Robin'>><br><br>
+  <<npcincr Robin love 10>><<gglove 'Robin'>>
+  <<if C.npc.Robin.trauma gt 0>><<npcincr Robin trauma -10>><<llrtrauma>><</if>>
+  <<npcincr Robin dom 5>><<gdom 'Robin'>><<stress -20>><<lstress>><br><br>
   <<set $RobinTemple.vigil_result to 'passed'>>
   <<set $RobinTemple.vigil_attempt_day to Time.days>>
   <<set $RobinTemple.vigil_followup to false>>
