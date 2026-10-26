@@ -2,32 +2,32 @@
   {
     "module": "TempleDuties",
     "id": "Revelation Ordination",
-    "title": "revelation-the-book-of-return:feats:ordination:title",
-    "description": "revelation-the-book-of-return:feats:ordination:description",
+    "title": ["A Higher Calling", "领受圣职"],
+    "description": ["Become a priest of the temple.", "成为神殿的司祭。"],
     "difficulty": 3,
     "filter": ["All", "General"]
   },
   {
     "module": "TempleChoir",
     "id": "Revelation Choir Lead",
-    "title": "revelation-the-book-of-return:feats:choir_lead:title",
-    "description": "revelation-the-book-of-return:feats:choir_lead:description",
+    "title": ["Raise Your Voice", "放声高歌"],
+    "description": ["Earn permission to lead the temple choir.", "获得神殿唱诗班的领唱许可。"],
     "difficulty": 2,
     "filter": ["All", "General"]
   },
   {
     "module": "RBR",
     "id": "Revelation Ivory Return",
-    "title": "revelation-the-book-of-return:feats:ivory_return:title",
-    "description": "revelation-the-book-of-return:feats:ivory_return:description",
+    "title": ["Back Where It Belongs", "物归原主"],
+    "description": ["Return the ivory necklace, dream of its owner, and meet again at the shore.", "归还象牙项链，梦见它的主人，并在湖岸再次相遇。"],
     "difficulty": 2,
     "filter": ["All", "General"]
   },
   {
     "module": "LostLamb",
     "id": "Lost Lamb",
-    "title": "revelation-the-book-of-return:feats:lost_lamb:title",
-    "description": "revelation-the-book-of-return:feats:lost_lamb:description",
+    "title": ["Lost Lamb", "迷途羔羊"],
+    "description": ["Follow Kylar’s childhood through the night that changed the manor, and find your way back.", "经历凯拉尔与悉尼来往的旧日生活，以及庄园改变的那一夜，并回到现在。"],
     "difficulty": 3,
     "filter": ["All", "General"]
   }
