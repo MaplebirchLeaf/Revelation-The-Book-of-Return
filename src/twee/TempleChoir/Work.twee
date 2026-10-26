@@ -37,15 +37,15 @@
 <</widget>>
 
 <<widget 'temple-choir-mass-effects'>>
-  <!-- 仅在 begin 成功的入场点击中调用，沿用原版优先级。退出与重绘不撤销或重发。 -->
+  <!-- 仅在 finish 成功时结算完整弥撒效果，沿用原版优先级，重绘不重发。 -->
   <<if $angel gte 6>>
-    <<purity 10>><<trauma -18>><<stress -18>>
+    <<purity 10>><<trauma -18>><<stress -18>><<gpurity>><<lltrauma>><<llstress>>
   <<elseif $fallenangel gte 2>>
-    <<purity 70>><<trauma 6>><<stress 6>><<pain 6>>
+    <<purity 70>><<trauma 6>><<stress 6>><<pain 6>><<gggpurity>><<gtrauma>><<gstress>><<gpain>>
   <<elseif $demon gte 6>>
-    <<purity 10>><<trauma 6>><<stress 6>><<pain 6>>
+    <<purity 10>><<trauma 6>><<stress 6>><<pain 6>><<gpurity>><<gtrauma>><<gstress>><<gpain>>
   <<else>>
-    <<purity 10>>
+    <<purity 10>><<gpurity>>
   <</if>>
 <</widget>>
 
@@ -54,12 +54,29 @@
 <<if maplebirch.get('TempleChoir')?.practice>>
   <<language>>
     <<option 'EN'>>
-      The choir gathers around a row of pews. Someone opens the prayer book at Sunday's hymn. <<if $TempleChoir.lead>>A singer waits for you to sound the starting note. You listen to the parts come in before choosing what to rehearse.<<else>>Another singer sounds the starting note. A senior singer asks what you need to work on.<</if>><br><br>
-      <span class='teal'>Choose one exercise. Practice takes thirty minutes. Recent practice helps you keep your place during the service.</span>
+      The choir gathers by the pews. Someone opens the prayer book at Sunday's hymn.
+      <<if $TempleChoir.lead>>
+        A singer waits for you to sound the starting note. You listen to the parts come in before choosing what to rehearse.
+      <<elseif $TempleChoir.practices gte 3>>
+        You take a book and sit in your usual place. The singer beside you waits for you to find the page before sounding the starting note.
+      <<elseif $TempleChoir.practices gt 0>>
+        A singer moves a stack of books to make room for you. You open yours as the others sound the opening note.
+      <<else>>
+        A senior singer shows you where to sit and points out the opening line. You listen to the starting note before choosing an exercise.
+      <</if>>
     <<option 'CN'>>
-      唱诗班围在一排长椅旁。有人把祈祷书翻到周日要唱的赞美诗。<<if $TempleChoir.lead>>一名歌者等你给出起音。你听过各个声部，再决定先练哪一部分。<<else>>另一人给出起音。一名资深歌者问你，今天想练哪一部分。<</if>><br><br>
-      <span class='teal'>选择一项练习，耗时三十分钟。最近两天的练习有助于你在弥撒中稳住旋律。</span>
-  <</language>><br><br>
+      唱诗班聚在长椅旁。有人把祈祷书翻到周日要唱的赞美诗。
+      <<if $TempleChoir.lead>>
+        一名歌者等你给出起音。你听过各个声部，再决定先练哪一部分。
+      <<elseif $TempleChoir.practices gte 3>>
+        你拿过一本祈祷书，坐到惯常的位置上。身旁的歌者等你翻好书，才给出起音。
+      <<elseif $TempleChoir.practices gt 0>>
+        一名歌者挪开一摞书，给你空出位置。你打开祈祷书，听其他人起音。
+      <<else>>
+        一名资深歌者指给你看该坐在哪里，又点了点开头的一行。你先听过起音，再选要练习的部分。
+      <</if>>
+  <</language>>
+  <<note `lanSwitch('Practice from the last two days helps during mass.', '近两日的练习有助于弥撒唱诗。')` 'teal'>><br><br>
   <<icon 'temple/hymnbook.png'>>
   <<temple-choir-practice-action `['Practise breathing (0:30)', '练习换气 (0:30)']` 'breath'>>
     <<singingskill 12>><<tiredness 1>><<stress -3>>
@@ -85,11 +102,43 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<switch $TempleChoir.exercise>>
   <<case 'breath'>>
-    <<language>><<option 'EN'>>You mark the breathing points with a finger. At first you run out of air before the final word. The singer beside you taps the page, and you try again, taking a smaller breath without lifting your shoulders. By the last repetition you reach the ending together.<<option 'CN'>>你用手指记下换气的位置。起初还没唱到最后一个词，气就用尽了。身旁的歌者点了点书页，你再试一次，收住肩膀，轻些吸气。最后一遍，你们终于一起唱到了句尾。<</language>><<gtiredness>><<lstress>><<gsingingskill>>
+    <<language>><<option 'EN'>>You mark the breathing points with a finger.
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        You reach the end of the phrase without forcing the last word. The singer beside you closes the book for another attempt. You keep the same pauses, listening for the others to finish before breathing in.
+      <<else>>
+        At first you run out of air before the final word. The singer beside you taps the page, and you try again, taking a smaller breath without lifting your shoulders. By the last repetition you reach the ending together.
+      <</if>><<option 'CN'>>你用手指记下换气的位置。
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        唱到句尾时，你的气息仍然平稳，没有硬挤出最后一个词。身旁的歌者合上书，再试一遍。你记着同样的停顿，听其他人唱完，才重新吸气。
+      <<else>>
+        起初还没唱到最后一个词，气就用尽了。身旁的歌者点了点书页，你再试一次，收住肩膀，轻些吸气。最后一遍，你们终于一起唱到了句尾。
+      <</if>><</language>><<gtiredness>><<lstress>><<gsingingskill>>
   <<case 'pitch'>>
-    <<language>><<option 'EN'>>The starting note hangs in the empty hall. You sing it back, listen to the difference and adjust. The higher phrase takes several attempts. Your throat is tired when you close the book, but you can hear where you went wrong.<<option 'CN'>>起音在空荡的大厅里回响。你跟着唱，听出差别，再一点点调整。较高的那句反复试了好几遍。合上书时，喉咙已有些疲倦，但你能听出自己刚才偏在哪里。<</language>><<gtiredness>><<gsingingskill>>
+    <<language>><<option 'EN'>>The starting note hangs in the empty hall.
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        You match it, then hold the higher phrase while the singer beside you takes the lower part. Where the voices meet, the sound settles. You repeat the phrase more softly, keeping the higher notes steady. Your throat is tired when you close the book.
+      <<else>>
+        You sing it back, listen to the difference and adjust. The higher phrase takes several attempts. Your throat is tired when you close the book, but you can hear where you went wrong.
+      <</if>><<option 'CN'>>起音在空荡的大厅里回响。
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        你跟上那个音，再稳住较高的乐句，让身旁的歌者唱低声部。两道声音合在一起，渐渐稳了下来。你放轻声音，再唱一遍，仍稳住了较高的那几个音。合上书时，喉咙已有些疲倦。
+      <<else>>
+        你跟着唱，听出差别，再一点点调整。较高的那句反复试了好几遍。合上书时，喉咙已有些疲倦，但你能听出自己刚才偏在哪里。
+      <</if>><</language>><<gtiredness>><<gsingingskill>>
   <<case 'choir'>>
-    <<language>><<option 'EN'>>You listen to the singers beside you and practise coming in at the right moment. Someone is absent from the lower part, so you help the others sing it through to the end. After rehearsal, you pass the books along the pew.<<option 'CN'>>你听着身旁歌者的节拍，练习在合适的时候开口。低声部有一人缺席，你便帮着其他人唱完这一声部。排练结束，你把祈祷书沿长椅传回去。<</language>><<gtiredness>><<ggrace>><<gsingingskill>>
+    <<language>><<option 'EN'>>You listen to the singers beside you and practise coming in at the right moment.
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        Someone in the lower part loses the line. You keep it going while they find their place, then soften your voice as theirs joins yours. The response carries through to the end.
+      <<else>>
+        You watch a neighbouring singer for the entrance, then follow the lower part through to the end.
+      <</if>>
+      After rehearsal, you pass the books along the pew.<<option 'CN'>>你听着身旁歌者的节拍，练习在合适的时候开口。
+      <<if maplebirch.get('TempleChoir').singing gte 600>>
+        低声部有一人没能跟上，你继续唱着，等对方找到那一行。对方的声音跟进来后，你才放轻自己的声音。答唱顺利地唱到了结尾。
+      <<else>>
+        你留意身旁歌者开口的时机，随后跟着低声部，一起唱到结尾。
+      <</if>>
+      排练结束，你把祈祷书沿长椅传回去。<</language>><<gtiredness>><<ggrace>><<gsingingskill>>
   <<default>>
     <<language>>
       <<option 'EN'>>
@@ -136,11 +185,9 @@
       <<robin-temple-mass-presence 'opening'>>
       <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. <<if $TempleChoir.lead>>The singers turn towards you, waiting for the opening note.<<else>>The singer beside you points to the first line.<</if>><<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。<<if $TempleChoir.lead>>歌者们望向你，等你起音。<<else>>身旁的歌者指了指第一行。<</if>><</language>>
       <<if $angel gte 6>>
-        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> melodic voice calms you. You feel serene.<<option 'CN'>>约旦开始读圣典。<<His>>悠扬的声音使你平静。你感到很宁静。<</language>><<gpurity>><<lltrauma>><<llstress>>
+        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> melodic voice calms you. You feel serene.<<option 'CN'>>约旦开始读圣典。<<His>>悠扬的声音使你平静。你感到很宁静。<</language>>
       <<elseif $fallenangel gte 2 or $demon gte 6>>
-        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> words are violent and accusing.<<option 'CN'>>约旦开始读圣典。<<His>>话语仿佛充满暴力和指责。<</language>><<gggpurity>><<gtrauma>><<gstress>><<gpain>>
-      <<else>>
-        <<gpurity>>
+        <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> words are violent and accusing.<<option 'CN'>>约旦开始读圣典。<<His>>话语仿佛充满暴力和指责。<</language>>
       <</if>>
     <<case 1>>
       <<language>><<option 'EN'>>Jordan finishes the reading and turns towards the choir. The response begins softly, with a higher phrase halfway through. You have a moment to take your breath.<<option 'CN'>>约旦读完经文，转向唱诗班。答唱轻声起头，中段的音会抬高一些。你还有片刻可以换气。<</language>>
@@ -149,12 +196,18 @@
   <</switch>><br><br>
   <<language>>
     <<option 'EN'>>
-      <span class='teal'>Following the melody is easier. Trying a harmony part gives you more practice, but requires greater skill. Recent practice helps; tiredness and alcohol make singing harder.</span><br>
-      Performance so far: <span class='gold'><<= $TempleChoir.shift.score>></span> points. A clear verse earns two points, or three when leading. An unsteady verse earns one.
+      <<if $TempleChoir.services is 0 and $TempleChoir.shift.round is 0>>Following the melody is easier. You could try the harmony if you feel confident.<br><br><</if>>
+      Performance so far: <span class='gold'><<= $TempleChoir.shift.score>></span> points.
     <<option 'CN'>>
-      <span class='teal'>跟着大家唱比较容易，尝试和声更考验技巧，也能多练习歌唱。最近的练习有帮助，疲劳和醉酒则会妨碍发挥。</span><br>
-      当前表现：<span class='gold'><<= $TempleChoir.shift.score>></span> 分。稳稳唱完一节得两分，领唱得三分，勉强跟上得一分。
-  <</language>><br><br>
+      <<if $TempleChoir.services is 0 and $TempleChoir.shift.round is 0>>跟着大家的旋律唱比较容易。若有把握，也可以试试和声。<br><br><</if>>
+      当前表现：<span class='gold'><<= $TempleChoir.shift.score>></span> 分。
+  <</language>>
+  <<if $TempleChoir.shift.round is 0>>
+    <<note `lanSwitch('Recent practice helps. Tiredness and alcohol hinder your singing.', '近期练习有帮助，疲劳和醉酒会妨碍发挥。')` 'teal'>>
+  <</if>>
+  <<if $TempleChoir.services is 0 and $TempleChoir.shift.round is 0>>
+    <<note `lanSwitch('Clear verse: 2 points, or 3 when leading. Unsteady verse: 1 point.', '稳稳唱完得 2 分，领唱得 3 分，勉强跟上得 1 分。')` 'teal'>>
+  <</if>><br><br>
   <<icon 'temple/choir.png'>><<lanLink ['Follow the melody (0:20)', '跟着大家的旋律唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <<icon 'temple/choir.png'>><<lanLink ['Try a harmony part (0:20)', '尝试和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
   <<if $TempleChoir.lead>>
@@ -167,7 +220,8 @@
     and $TempleChoir.shift?.round is 3 and (maplebirch.get('TempleChoir').active or $TempleChoir.shift.done)>>
   <!-- 只结算一次，正文、领唱许可与同伴回应在重绘后仍可查看。 -->
   <<set _choirWasLead to $TempleChoir.lead>>
-  <<if maplebirch.get('TempleChoir').finish()>>
+  <<set _choirFinished to maplebirch.get('TempleChoir').finish()>>
+  <<if _choirFinished>>
     <<if $TempleChoir.lead>><<earnFeat 'Revelation Choir Lead'>><</if>>
     <<grace 2>>
     <<if $TempleChoir.shift.score gte 5>><<npcincr Jordan love 1>><</if>>
@@ -191,27 +245,43 @@
         你没能跟住最后一句，等其他人唱完才合上书。
       <</if>>
       约旦送走信众，随后示意你过来。
-  <</language>><<gtiredness>><<if $TempleChoir.shift.result is 'lost'>><<gstress>><<else>><<lstress>><</if>><<gsingingskill>><br><br>
+  <</language>><<if _choirFinished>><<temple-choir-mass-effects>><</if>><<gtiredness>><<if $TempleChoir.shift.result is 'lost'>><<gstress>><<else>><<lstress>><</if>><<gsingingskill>><br><br>
   <<if $TempleChoir.shift.score gte 5>>
     <<language>>
       <<option 'EN'>>
-        "You listened to the others. Keep doing that. A choir needs more than a loud voice," Jordan says. <<He>> marks your attendance and records your choir earnings in the allowance ledger.
+        <<if $TempleChoir.services is 1>>
+          "You listened to the others. Keep doing that," Jordan says. <<He>> shows you where your attendance and choir earnings are recorded in the allowance ledger.
+        <<else>>
+          Jordan turns to the page with your name. "Thank you, child." <<He>> adds today's date beneath the earlier entries.
+        <</if>>
       <<option 'CN'>>
-        “你有在听其他人的声音。继续这样做，唱诗班需要的不只是响亮的嗓子。”约旦记下你的出勤，把唱诗加款记入津贴账册。
+        <<if $TempleChoir.services is 1>>
+          “你有在听其他人的声音。继续这样做。”约旦说，把津贴账册指给你看，记下出勤和唱诗加款。
+        <<else>>
+          约旦翻到记着你名字的一页。“辛苦了，孩子。”<<He>>在先前的记录下面添上今天的日期。
+        <</if>>
     <</language>><<glove>>
   <<else>>
     <<language>>
       <<option 'EN'>>
-        "Next time, stay with the quieter line until you're sure of the entrance," Jordan says. "You finished the service. That work still counts." <<He>> marks your attendance and records your choir earnings in the allowance ledger.
+        <<if $TempleChoir.services is 1>>
+          "Follow the quieter line until you're sure of the entrance," Jordan says. "You finished the service, child." <<He>> shows you the attendance entry and records your choir earnings beside it.
+        <<else>>
+          Jordan glances at the book closed in your hands. "Rest your voice, child." <<He>> enters today's service beside your name.
+        <</if>>
       <<option 'CN'>>
-        “下次先跟着较轻的声部，等起句有把握再往前唱。”约旦说，“你唱完了弥撒，这份工作依然算数。”<<He>>记下你的出勤，把唱诗加款记入津贴账册。
+        <<if $TempleChoir.services is 1>>
+          “先跟着较轻的声部唱，等起句有把握了再说。”约旦说，“孩子，你唱完了弥撒。”<<He>>指给你看出勤记录，在旁边记下唱诗加款。
+        <<else>>
+          约旦看了看你手中合上的祈祷书。“先歇歇嗓子，孩子。”<<He>>在你的名字旁记下今天的出勤。
+        <</if>>
     <</language>>
   <</if>><br><br>
   <<language>>
     <<option 'EN'>>
-      This service adds <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> to your monthly allowance. <span class='teal'>Collect it with your temple allowance after a successful monthly examination. If your allowance is withheld, the choir earnings remain on the ledger.</span>
+      This service adds <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span> to your temple allowance. <span class='teal'>Collect it after a successful monthly examination. Unpaid choir earnings remain on the ledger.</span>
     <<option 'CN'>>
-      本次唱诗为月度津贴增加 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span>。<span class='teal'>月度检查通过后，随神殿津贴一并领取。若津贴被扣发，唱诗加款仍留在账册上。</span>
+      本次唱诗为神殿津贴增加 <span class='gold'><<printmoney $TempleChoir.shift.bonus>></span>。<span class='teal'>月度检查通过后领取，未领的唱诗加款会留在账册上。</span>
   <</language>><<ggrace>>
   <<if $TempleChoir.lead>>
     <br><br>

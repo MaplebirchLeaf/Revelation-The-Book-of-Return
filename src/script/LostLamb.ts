@@ -1,6 +1,6 @@
 // ./src/script/LostLamb.ts
 
-import { restoreLostLamb } from '../module/LostLamb';
+import { restore } from '../module/LostLamb';
 
 export default function LostLamb(maplebirch: typeof window.maplebirch): void {
   // 独立于模块开关注册，在新页面正文前恢复梦中存档。
@@ -8,7 +8,7 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
     if (!V.LostLamb?.active) return;
     const lamb = maplebirch.get('LostLamb');
     if (lamb?.active && maplebirch.SugarCube.State.passage === 'Lost Lamb Memory') return;
-    restoreLostLamb();
+    restore();
   });
   if (!maplebirch.get('LostLamb')) return;
 

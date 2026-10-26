@@ -5,7 +5,7 @@ import type { LostLambChoice, LostLambStat } from './constants/lost-lamb-types';
 import Module from './Module';
 
 /** 模块关闭后仍能恢复梦中存档，与正常醒来共用同一条恢复路径。 */
-export function restoreLostLamb(): void {
+export function restore(): void {
   if (!V.LostLamb?.active || V.replayScene) return;
   const progress = clone(V.LostLamb);
   // unfreeze 会还原包括本模块在内的全部变量，因此要在它之后放回演绎进度。
