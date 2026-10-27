@@ -41,22 +41,39 @@
 
 <<widget 'wraith-return-talk-check'>>
   <<ivory-necklace-check>>
+  <<set $_ivoryEstate to maplebirch.get('Finance')?.realEstate>>
+  <<set _ivoryTalkHome to $location is 'deadwood_home' and Boolean($_ivoryEstate?.current)
+    and ['Deadwood Reblooms Property Home', 'Deadwood Reblooms Property Bedroom'].includes($passage)
+    and ($passage is 'Deadwood Reblooms Property Home' ? $_ivoryEstate.household.common : $_ivoryEstate.household.bedroom)
+      .some(resident => resident.id === _args[0])
+    and $_ivoryEstate.life.free(_args[0], _args[1] ?? 15)>>
   <<set _ivoryTalkReady to _ivorySafe and $RBR.necklace.returned
     and ['talk', 'shore'].includes($RBR.necklace.aftercare)
     and !$RBR.necklace.confidants.includes(_args[0]) and C.npc[_args[0]]?.init is 1>>
   <<if _ivoryTalkReady>>
     <<switch _args[0]>>
       <<case 'Robin'>>
-        <<set _ivoryTalkReady to $location is 'home' and getRobinLocation() is 'orphanage'
+        <<set _ivoryTalkReady to (_ivoryTalkHome or $location is 'home' and getRobinLocation() is 'orphanage')
           and !$robinmissing and $robin.timer.hurt is 0 and C.npc.Robin.trauma lt 80>>
       <<case 'Sydney'>>
-        <<sydneySchedule>>
-        <<set _ivoryTalkReady to $passage is 'Temple Sydney' and _sydney_location is 'temple'
-          and $sydney_templeWork is 'pray'>>
+        <<if !_ivoryTalkHome and $passage is 'Temple Sydney'>><<sydneySchedule>><</if>>
+        <<set _ivoryTalkReady to _ivoryTalkHome or ($passage is 'Temple Sydney' and _sydney_location is 'temple'
+          and $sydney_templeWork is 'pray')>>
       <<case 'Gwylan'>>
         <<set _ivoryTalkReady to $location is 'forest_shop' and gwylanSchedule() is 'shop'>>
       <<default>><<set _ivoryTalkReady to false>>
     <</switch>>
+  <</if>>
+<</widget>>
+
+<<widget 'wraith-return-home-link'>>
+  <<set $_ivoryEstate to maplebirch.get('Finance')?.realEstate>>
+  <<if $_ivoryEstate?.current and $location is 'deadwood_home'
+      and Array.from(document.querySelectorAll('#passage-content .macro-link[data-passage]'))
+        .some(link => $passage === 'Deadwood Reblooms Property Home' ? link.dataset.passage === $_ivoryEstate.current.street
+          : ['Deadwood Reblooms Property Home', 'Deadwood Reblooms Property Landing'].includes(link.dataset.passage))>>
+    <<wraith-return-talk-link 'Robin'>>
+    <<wraith-return-talk-link 'Sydney'>>
   <</if>>
 <</widget>>
 
@@ -72,13 +89,15 @@
           <<wraith-return-talk-check _ivoryConfidant>>
           <<if _ivoryTalkReady>>
             <<set _ivoryTalkSource to $passage>>
+            <<set $_ivoryHome to _ivoryTalkHome ? maplebirch.get('Finance').realEstate.current.id : null>>
             <<pass _ivoryTalkMinutes>>
-            <<wraith-return-talk-check _ivoryConfidant>>
-            <<if _ivoryTalkReady and $passage is _ivoryTalkSource>>
+            <<wraith-return-talk-check _ivoryConfidant 0>>
+            <<if _ivoryTalkReady and $passage is _ivoryTalkSource
+                and (!$_ivoryHome or maplebirch.get('Finance')?.realEstate.current?.id is $_ivoryHome)>>
               <<set $RBR.necklace.confidants.pushUnique(_ivoryConfidant)>>
               <<set $RBR.necklace.aftercare to 'shore'>>
               <<replace `'#ivory-return-talk-' + _ivoryConfidant`>>
-                <<wraith-return-support _ivoryConfidant>>
+                <<wraith-return-support _ivoryConfidant `_ivoryTalkHome`>>
               <</replace>>
             <<elseif $passage is _ivoryTalkSource>>
               <<replace `'#ivory-return-talk-' + _ivoryConfidant`>>
@@ -175,33 +194,37 @@
       <<run statusCheck('Sydney')>>
       <<language>>
         <<option 'EN'>>
-          Sydney listens, keeping a finger between the pages of <<nnpc_his 'Sydney'>> prayer book.
+          <<if _args[1]>>Sydney sits beside you and listens.<<else>>Sydney listens, keeping a finger between the pages of <<nnpc_his 'Sydney'>> prayer book.<</if>>
           <br><br>
           <<if _sydneyStatus.includes('corrupt')>>
             "Well, I'm glad you gave it back," <<nnpc_he 'Sydney'>> says. "But don't go jumping into the lake because something in a dream looked at you. It can wait."
           <<elseif _sydneyStatus.includes('pure')>>
             "Returning it was the right thing to do," <<nnpc_he 'Sydney'>> says. "I could pray with you. But I can't promise that would keep it away. I don't know what it is."
+          <<elseif _args[1]>>
+            Sydney looks down at <<nnpc_his 'Sydney'>> hands. "I don't know what that was," <<nnpc_he 'Sydney'>> says. "But you don't have to go back tonight. Stay here for a bit."
           <<else>>
             Sydney looks down at the place held between the pages. "I keep trying to find a prayer for everything," <<nnpc_he 'Sydney'>> says. "I don't know one for this. But you don't have to go back tonight. We can sit here."
           <</if>>
           <br><br>
-          <<if $sydneyromance is 1>>Sydney rests <<nnpc_his 'Sydney'>> hand over yours. "I'm glad you told me."<<else>>Sydney closes the book. "Would you like to sit here for a bit?"<</if>>
+          <<if $sydneyromance is 1>>Sydney rests <<nnpc_his 'Sydney'>> hand over yours. "I'm glad you told me."<<else>><<if !_args[1]>>Sydney closes the book.<</if>> "Would you like to sit here for a bit?"<</if>>
           <br><br>
-          You stay on the pew together. Nobody asks you to close your eyes.
+          <<if _args[1]>>You sit together, listening to the small sounds of the house.<<else>>You stay on the pew together. Nobody asks you to close your eyes.<</if>>
         <<option 'CN'>>
-          悉尼听着，手指还夹在祈祷书的书页间。
+          <<if _args[1]>>悉尼在你身边坐下，听你说起那个梦。<<else>>悉尼听着，手指还夹在祈祷书的书页间。<</if>>
           <br><br>
           <<if _sydneyStatus.includes('corrupt')>>
             “好吧，至少你把东西还回去了，”<<nnpc_he 'Sydney'>>说，“不过，别因为梦里的东西看了你一眼，就又往湖里跳。让它等着。”
           <<elseif _sydneyStatus.includes('pure')>>
             “还回去是对的，”<<nnpc_he 'Sydney'>>说，“我可以陪你祈祷。不过，我不能保证这样就能让它远离你。我不知道那究竟是什么。”
+          <<elseif _args[1]>>
+            悉尼低头看看自己的双手。“我也不知道那是什么，”<<nnpc_he 'Sydney'>>说，“不过，你今晚不必回去。在这里待会儿吧。”
           <<else>>
             悉尼低头看看手指夹住的那一页。“我总想给什么事都找一段祷文，”<<nnpc_he 'Sydney'>>说，“这次，我也不知道该念哪段。不过，你今晚不必回去。我们可以在这里坐会儿。”
           <</if>>
           <br><br>
-          <<if $sydneyromance is 1>>悉尼把手覆在你的手上。“谢谢你愿意告诉我。”<<else>>悉尼合上书。“想在这里坐一会儿吗？”<</if>>
+          <<if $sydneyromance is 1>>悉尼把手覆在你的手上。“谢谢你愿意告诉我。”<<else>><<if !_args[1]>>悉尼合上书。<</if>>“想在这里坐一会儿吗？”<</if>>
           <br><br>
-          你们一起留在长椅上。没有人要求你闭上眼睛。
+          <<if _args[1]>>你们坐在一起，听着屋里细小的声响。<<else>>你们一起留在长椅上。没有人要求你闭上眼睛。<</if>>
       <</language>>
       <<npcincr Sydney love 1>><<glove 'Sydney'>>
     <<case 'Gwylan'>>

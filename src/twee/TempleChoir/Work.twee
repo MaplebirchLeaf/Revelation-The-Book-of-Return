@@ -49,6 +49,27 @@
   <</if>>
 <</widget>>
 
+<<widget 'temple-choir-mass-familiarity'>>
+  <<if maplebirch.get('TempleChoir')?.member and $TempleChoir.joined and $TempleChoir.lead
+      and $TempleChoir.services gte 3 and $sydneySeen?.includes('mass')
+      and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced>>
+    <<language>>
+      <<option 'EN'>>
+        <<if $TempleChoir.practices gte 10>>
+          As you leave the pew, a familiar singer holds up the hymnbook at a line you have rehearsed together. You quietly give the note, and the two of you hum the ending before putting the book away.
+        <<else>>
+          A singer from the choir nods to you as you leave the pew. You help pass the prayer books back along the row.
+        <</if>>
+      <<option 'CN'>>
+        <<if $TempleChoir.practices gte 10>>
+          你离开长椅时，一名熟识的歌者翻开赞美诗，指了指你们一起练过的那句。你轻轻起音，两人低声哼完结尾，才把书收好。
+        <<else>>
+          你离开长椅时，唱诗班里的一名歌者朝你点点头。你帮着把祈祷书沿座位传回去。
+        <</if>>
+    <</language>><br><br>
+  <</if>>
+<</widget>>
+
 :: TempleChoir Practice
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<if maplebirch.get('TempleChoir')?.practice>>

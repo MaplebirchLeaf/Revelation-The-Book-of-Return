@@ -35,7 +35,7 @@
     <<set _performanceReady to _performanceSafe and (_performanceVenue is 'banquet' or $TempleChoir.performanceDay isnot Time.days)>>
     <<set _performanceCurrent to _performance and _performance.venue is _performanceVenue
       and _performance.source is $passage
-      and (_performanceVenue is 'banquet' or $TempleChoir.performanceDay is Time.days)>>
+      and (_performanceVenue is 'banquet' ? _performance.banquetDay is _choirHost?.state.last_day : $TempleChoir.performanceDay is Time.days)>>
     <<set _performanceActive to _performanceSafe and _performanceCurrent and !_performance.done>>
   <</silently>>
 <</widget>>
@@ -59,6 +59,7 @@
           <<if _performanceReady>>
             <<if _performanceVenue isnot 'banquet'>><<set $TempleChoir.performanceDay to Time.days>><</if>>
             <<set $TempleChoir.performance to {venue: _performanceVenue, source: $passage,
+              banquetDay: _performanceVenue is 'banquet' ? _choirHost.state.last_day : -1,
               round: 0, score: 0, attention: _performanceVenue is 'pub' ? 35 : _performanceVenue is 'park' ? 20 : 40,
               last: '', tips: 0, done: false}>>
             <<run Dynamic.render('temple-choir-performance')>>

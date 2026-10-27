@@ -14,6 +14,7 @@ export interface TempleChoirState {
   performance: {
     venue: 'pub' | 'park' | 'banquet';
     source: string;
+    banquetDay: number;
     round: number;
     score: number;
     attention: number;

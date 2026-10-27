@@ -19,6 +19,7 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
     'BeforeLinkZone',
     { widget: 'temple-choir-hall-link', passage: 'Temple' },
     { widget: 'temple-choir-mass-link', passage: 'Temple' },
+    { widget: 'temple-choir-mass-familiarity', passage: 'Temple Mass' },
     { widget: 'temple-choir-field-practice', passage: 'Bird Tower Sing' },
     { widget: 'temple-choir-pub-entry', passage: 'Pub Music' }
   );

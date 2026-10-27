@@ -297,7 +297,7 @@ class RobinTemple extends Module {
     else if (faith <= -20) this.faith--;
     this.reviewFaith();
     const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
-    if (state.grace < 100) state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
+    state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
   }
 
   /** 信仰或动摇达到 20 时以 35% 概率触发转折，同一天只抽取一次。 */
