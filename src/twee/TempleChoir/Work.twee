@@ -20,7 +20,7 @@
           <<set $TempleChoir.exercise to $_practiceKind>>
           <<set $TempleChoir.practiceDay to Time.days>>
           <<set $TempleChoir.practices += 1>>
-          <<run maplebirch.get('Psyche')?.rest(5, -80)>>
+          <<if maplebirch.get('Psyche')>><<psyche-rest 5 80>><</if>>
           <<print $_practiceBody>>
           <<goto 'TempleChoir Practice Result'>>
         <</if>>

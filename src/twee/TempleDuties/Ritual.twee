@@ -44,7 +44,10 @@
   <<if !_denForced and _dutySafe and $TempleDuties.case?.id is 'ritual' and $TempleDuties.case.stage is 'field' and !$combat and $TempleDuties.case.clues.includes('route')>>
     <<if !$TempleDuties.case.clues.includes('confronted')>>
       <<stress `currentSkillValue('willpower') gte 500 ? 2 : 4`>>
-      <<run maplebirch.get('Psyche')?.change(currentSkillValue('willpower') gte 500 ? -10 : -20, currentSkillValue('willpower') gte 500 ? 75 : 150)>>
+      <<if maplebirch.get('Psyche')>>
+        <<set $_ritualSteady to currentSkillValue('willpower') gte 500>>
+        <<dread `$_ritualSteady ? 75 : 150`>><<sanity `$_ritualSteady ? -10 : -20`>>
+      <</if>>
     <</if>>
     <<run $TempleDuties.case.clues.pushUnique('confronted')>>
     <<endevent>>
@@ -62,7 +65,10 @@
       and (!pcAreArmsBound('both') or $TempleDuties.case.clues.includes('help'))>>
     <<if !$TempleDuties.case.clues.includes('confronted')>>
       <<stress `currentSkillValue('willpower') gte 500 ? 2 : 4`>>
-      <<run maplebirch.get('Psyche')?.change(currentSkillValue('willpower') gte 500 ? -10 : -20, currentSkillValue('willpower') gte 500 ? 75 : 150)>>
+      <<if maplebirch.get('Psyche')>>
+        <<set $_ritualSteady to currentSkillValue('willpower') gte 500>>
+        <<dread `$_ritualSteady ? 75 : 150`>><<sanity `$_ritualSteady ? -10 : -20`>>
+      <</if>>
     <</if>>
     <<if pcAreArmsBound('both') and $TempleDuties.case.clues.includes('help')>>
       <<lanSwitch 'The monk works the knots loose while you steady the captive against your shoulder.' '你用肩膀抵住受困者，让修士解开绳结。'>>
@@ -211,7 +217,10 @@
         <<run $TempleDuties.case.clues.pushUnique('marks')>>
         <<set $TempleDuties.note to 'ritual-marks'>>
         <<historyskill 1>>
-        <<run maplebirch.get('Psyche')?.change(currentSkillValue('willpower') gte 500 ? -5 : -10, currentSkillValue('willpower') gte 500 ? 40 : 80)>>
+        <<if maplebirch.get('Psyche')>>
+          <<set _ritualSteady to currentSkillValue('willpower') gte 500>>
+          <<dread `_ritualSteady ? 40 : 80`>><<sanity `_ritualSteady ? -5 : -10`>>
+        <</if>>
       <</if>>
     <</temple-duty-action>><br>
   <</if>>

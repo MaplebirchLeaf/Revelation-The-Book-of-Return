@@ -66,15 +66,16 @@
         <<case 'monstrance'>>
           <<set _archive_name to ['Read the old drawing and description of the monstrance', '查阅圣体匣的旧图与描述']>>
       <</switch>>
+      <<set _archiveMinutes to Math.ceil(_studyMinutes * (['ward-notes', 'monstrance'].includes(_archive_topic) ? (maplebirch.get('Psyche')?.research ?? 1) : 1))>>
       <<icon `({buildings:'temple/building-plans.png', deliveries:'temple/delivery-records.png', fieldwork:'temple/field-kit.png', 'ward-notes':'temple/ward-stone.png', monstrance:'temple/duties-book.png'})[_archive_topic]`>>
-      <<temple-duty-action `_archive_name` `_studyMinutes` 'Revelation Temple Archive Note'>>
+      <<temple-duty-action `_archive_name` `_archiveMinutes` 'Revelation Temple Archive Note'>>
         <<set $TempleDuties.topic to _archive_topic>>
         <<if !$TempleDuties.archive.topics.includes(_archive_topic)>>
           <<run $TempleDuties.archive.topics.push(_archive_topic)>>
           <<historyskill 2>>
         <</if>>
       <</temple-duty-action>>
-      (<<print '0:' + _studyMinutes>>)<br>
+      (<<print '0:' + _archiveMinutes>>)<<if _archiveMinutes lt _studyMinutes>><<note `lanSwitch('You study the old patterns intently.', '你看着旧图样，不觉入了神。')`>><</if>><br>
     <</capture>>
   <</for>>
   <<if $TempleDuties.archive.sorted lt 3 and $TempleDuties.archive.sort_day isnot Math.floor(Time.days)>>

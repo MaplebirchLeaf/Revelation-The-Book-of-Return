@@ -201,7 +201,7 @@
     <!-- 先交还实物、扣除待售账目，再走原版水下行动，时间钩子重入也不会重复结算。 -->
     <<set $RBR.necklace.returned to true>>
     <<set $RBR.necklace.returnedOnce to true>>
-    <<if _ivoryFirstReturn>><<run maplebirch.get('Psyche')?.change(75, -250)>><</if>>
+    <<if _ivoryFirstReturn>><<if maplebirch.get('Psyche')>><<sanity 75>><<psyche-rest 0 250>><</if>><</if>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
     <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
     <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>

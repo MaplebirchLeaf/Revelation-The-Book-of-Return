@@ -405,7 +405,7 @@
       or $TempleDuties.case.id is 'crate' and $TempleDuties.archive.topics.includes('deliveries') ? 10 : 20>>
     <<temple-duty-action `['Copy and compare marks', '抄录标记并比对']` `_markMinutes` 'Revelation Temple Case Note'>>
       <<if $TempleDuties.case.id is 'roots' and !$TempleDuties.case.clues.includes('marks') and !$TempleDuties.case.clues.includes('visit-quiet')>>
-        <<run maplebirch.get('Psyche')?.change(-15, 120)>>
+        <<if maplebirch.get('Psyche')>><<dread 120>><<sanity -15>><</if>>
       <</if>>
       <<run $TempleDuties.case.clues.pushUnique('marks')>>
       <<historyskill 1>>

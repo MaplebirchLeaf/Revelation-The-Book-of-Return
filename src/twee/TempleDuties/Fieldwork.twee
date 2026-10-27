@@ -114,9 +114,9 @@
     <<if _file.result is 'resolved'>>
       <<if $TempleDuties.trial_day lt 0>>
         <<set $TempleDuties.trial_day to Math.floor(Time.days)>>
-        <<run maplebirch.get('Psyche')?.change(60, -200)>>
+        <<if maplebirch.get('Psyche')>><<sanity 60>><<psyche-rest 0 200>><</if>>
       <<else>>
-        <<run maplebirch.get('Psyche')?.rest(10, -150)>>
+        <<if maplebirch.get('Psyche')>><<psyche-rest 10 150>><</if>>
       <</if>>
     <</if>>
     <<for _field_name range ['Robin', 'Sydney']>>
