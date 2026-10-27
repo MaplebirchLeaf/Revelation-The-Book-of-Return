@@ -50,7 +50,7 @@
     <<set _dutyTrained to $TempleDuties.rewards.includes('roots')>>
     <<set _dutyFieldwork to $TempleDuties.rewards.includes('crate')>>
     <<set _dutyRitual to $TempleDuties.rewards.includes('ritual')>>
-    <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and _dutyTrained and _dutyFieldwork and _dutyRitual>>
+    <<set _dutyReady to _dutyCredentials and $temple_rank is 'monk' and $grace gte 100 and _dutyTrained and _dutyFieldwork and _dutyRitual>>
     <<set _bishopKnown to Boolean($per_npc.bishop) and ($temple_confessor_intro or $kylar_manor_secret is 3)>>
   <</silently>>
 <</widget>>

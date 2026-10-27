@@ -16,25 +16,31 @@ export default function Combat(core: typeof maplebirch): void {
       Widgets: [
         {
           src: '<<set _thedamage to (2 * _defiance * ($physique / 4000))>>',
-          applyafter: '\n\t\t<<temple-watch-defiance _args[2]>>',
+          applyafter: '\n\t\t<<temple-exorcism-defiance _args[2]>>',
           expected: 1
         },
         { src: '<<npcdamage _args[1]>>', to: '<<npcdamage _args[1] _args[2]>>', expected: 1 }
       ],
       'Widgets NPC Damage': [
-        { src: '<<widget "npcdamage">>', applyafter: '\n\t<<temple-watch-npcs _args[0] _args[1]>>', expected: 1 },
-        { src: '$NPCList[_args[0]].health -= _thedamage', to: '$NPCList[_args[0]].health -= _watchHits[_args[0]]', expected: 1 },
-        { src: '$NPCList[_npctodamage].health -= (_thedamage/_enemydivide)', to: '$NPCList[_npctodamage].health -= _watchHits[_npctodamage]', expected: 1 }
+        { src: '<<widget "npcdamage">>', applyafter: '\n\t<<temple-exorcism-npcs _args[0] _args[1]>>', expected: 1 },
+        { src: '$NPCList[_args[0]].health -= _thedamage', to: '$NPCList[_args[0]].health -= _exorcismHits[_args[0]]', expected: 1 },
+        { src: '$NPCList[_npctodamage].health -= (_thedamage/_enemydivide)', to: '$NPCList[_npctodamage].health -= _exorcismHits[_npctodamage]', expected: 1 }
       ],
       'Widgets Effects Hands': [
         {
           src: '<<set $NPCList[_npctodamage].health -= _thedamage>>',
-          applybefore: '<<temple-watch-damage $NPCList[_npctodamage] _thedamage>><<set _thedamage to _watchDamage>>\n\t\t\t\t',
+          applybefore: '<<temple-exorcism-damage $NPCList[_npctodamage] _thedamage>><<set _thedamage to _exorcismDamage>>\n\t\t\t\t',
           expected: 1
         }
       ],
       'Widgets Combat Tentacle Adv': [
-        { src: '<<set $_amount to _args[1] or 1>>', applyafter: '\n\t<<temple-watch-record $_type $_amount `_args[2] ?? _tentacle` _args[3]>><<set $_amount to _watchDamage>>', expected: 1 },
+        // 0.5.12.13 的乘法须作为单个宏入参求值，记录量与实际扣血保持一致。
+        {
+          srcmatch: /<<tentacle_record "(damage|banish)" `?([^`>\r\n]+ \* _multi)`?>>/g,
+          to: '<<tentacle_record "$1" `$2`>>',
+          expected: 4
+        },
+        { src: '<<set $_amount to _args[1] or 1>>', applyafter: '\n\t<<temple-exorcism-record $_type $_amount `_args[2] ?? _tentacle` _args[3]>><<set $_amount to _exorcismDamage>>', expected: 1 },
         // 项圈电击与圣印反伤由敌人的接触触发，保留原伤害。
         { src: '<<tentacle_record "damage" 3>>', to: '<<tentacle_record "damage" 3 _tentacle "passive">>', expected: 1 },
         { src: '<<tentacle_record "banish" 12>>', to: '<<tentacle_record "banish" 12 _tentacle "passive">>', expected: 1 },
@@ -51,12 +57,12 @@ export default function Combat(core: typeof maplebirch): void {
         { srcmatch: /<<struggle_part_init _actionpart>>/g, to: '<<struggle_part_init _actionpart "active">>', expected: 2 },
         {
           srcmatch: /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<\/if>>\s*<<\/if>>\s*<<\/for>>)/,
-          to: '<<temple-watch-damage $struggle.enemy[_i] 1 `_args[1] is "active" ? "active" : "passive"`>><<set $struggle.enemy[_i].health -= _watchDamage>>',
+          to: '<<temple-exorcism-damage $struggle.enemy[_i] 1 `_args[1] is "active" ? "active" : "passive"`>><<set $struggle.enemy[_i].health -= _exorcismDamage>>',
           expected: 1
         },
         {
           srcmatch: /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<else>>\s*<span class="teal">)/,
-          to: '<<temple-watch-damage $struggle.enemy[_i] 1>><<set $struggle.enemy[_i].health -= _watchDamage>>',
+          to: '<<temple-exorcism-damage $struggle.enemy[_i] 1>><<set $struggle.enemy[_i].health -= _exorcismDamage>>',
           expected: 1
         }
       ]

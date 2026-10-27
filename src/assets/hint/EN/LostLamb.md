@@ -34,7 +34,7 @@ Checks and changes appear beside choices, and your Journal records clues. Promis
 
 ### Rewards and follow-up
 
-Finish the main ending and wake for the **Lost Lamb** feat and **Dream Scar** trait. Dream Scar reduces ongoing nightmare stress during sleep by **25%**.
+Finish the main ending and wake for the **Lost Lamb** feat and **Dream Scar** trait. Dream Scar reduces ongoing nightmare stress during sleep by **25%**. With Deadwood Reblooms' psyche system enabled, dread gained on waking from nightmares is also reduced by **25%**.
 
 Afterwards, visit Kylar's room **from 18:00** and choose **Talk to Kylar about the dream**. Offer company, discuss that night or ask for a little space. Your promises in the dream and Kylar's jealousy affect the reply. Completing the conversation also changes later room descriptions.
 

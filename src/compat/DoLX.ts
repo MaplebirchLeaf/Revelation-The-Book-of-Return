@@ -38,16 +38,39 @@ export default function DoLX(core: typeof window.maplebirch): void {
     }
   }
   if (core.get('TempleDuties')) {
+    for (const rule of zone.widgetPassage['Widgets Combat Tentacle Adv'] ?? []) {
+      if (rule.to === '<<tentacle_record "$1" `$2`>>') rule.expected = 8;
+    }
+    core.tool.inject({
+      widgetPassage: {
+        // 多人总血池按 npcdamage 的实际伤害扣除，保留溢出修正。单敌仍沿用 DoLX 取整。
+        Widgets: [
+          {
+            srcmatch: /(<<widget "defiance">>(?:(?!<<\/widget>>)[\s\S])*?<<if \$enemyno gte 2>>\s*<<npcdamage _args\[1\](?: _args\[2\])?>>\s*)<<set \$enemyhealth -= Math\.round\(_thedamage\)>>/,
+            to: '$1<<set $enemyhealth -= _thedamage>>',
+            expected: 1
+          }
+        ],
+        // DoLX 的触手伤害含完整计算式，作为单个宏入参求值后再记录与结算驱邪加成。
+        'Widgets Combat Tentacle Adv': [
+          {
+            srcmatch: /<<tentacle_record "damage" `?(Math\.round\([^`>\r\n]+\)(?: \* _multi)?)`?>>/g,
+            to: '<<tentacle_record "damage" `$1`>>',
+            expected: 8
+          }
+        ]
+      }
+    });
     // 保留 DoLX 已计算的挑衅伤害，只在结果之后结算驱邪之术加成。
     for (const rule of zone.widgetPassage.Widgets ?? []) {
-      if (!rule.applyafter?.includes('<<temple-watch-defiance')) continue;
+      if (!rule.applyafter?.includes('<<temple-exorcism-defiance')) continue;
       delete rule.src;
       rule.srcmatch =
         /<<if !Number\.isFinite\(_thedamage\) or _thedamage lt 0>>\s*<<set _thedamage to Math\.max\(0, 2 \* \(Number\.isFinite\(_defiance\) \? _defiance : Number\(_args\[0\]\) \|\| 1\)\)>>\s*<<\/if>>/;
     }
     for (const rule of zone.widgetPassage['Widgets Struggle'] ?? []) {
       // 只调整 DoLX 防守分支的锚点，主动清除的独立规则仍匹配原生扣血处。
-      if (rule.to === '<<temple-watch-damage $struggle.enemy[_i] 1>><<set $struggle.enemy[_i].health -= _watchDamage>>')
+      if (rule.to === '<<temple-exorcism-damage $struggle.enemy[_i] 1>><<set $struggle.enemy[_i].health -= _exorcismDamage>>')
         rule.srcmatch = /<<set \$struggle\.enemy\[_i\]\.health -= 1>>(?=\s*<<set _struggleDefenseResult to "guard">>)/;
     }
   }

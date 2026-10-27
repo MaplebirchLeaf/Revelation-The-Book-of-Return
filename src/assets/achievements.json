@@ -16,6 +16,38 @@
     "filter": ["All", "General"]
   },
   {
+    "module": "TempleDuties",
+    "id": "Revelation Cult Den",
+    "title": ["An Uninvited Guest", "不速之客"],
+    "description": ["Bring the captives out of the cult's hideout, dismantle its ritual, and give Jordan an honest account.", "救出林中巢穴的受困者，破坏仪式布置，并向约旦如实汇报。"],
+    "difficulty": 3,
+    "filter": ["All", "Discoveries-Town"]
+  },
+  {
+    "module": "TempleDuties",
+    "id": "Revelation Seeing It Through",
+    "title": ["Seeing It Through", "有始有终"],
+    "description": ["Resolve all four temple investigations and give Jordan an honest account.", "完成神殿的四项调查，并向约旦如实汇报。"],
+    "difficulty": 3,
+    "filter": ["All", "General"]
+  },
+  {
+    "module": "TempleDuties",
+    "id": "Revelation Companions Ordained",
+    "title": ["The Bells Ring for You", "钟声为你们而鸣"],
+    "description": ["Help both Robin and Sydney become priests of the temple.", "帮助罗宾与悉尼各自成为神殿的司祭。"],
+    "difficulty": 4,
+    "filter": ["All", "Social"]
+  },
+  {
+    "module": "RBR",
+    "id": "Revelation Shared Vow",
+    "title": ["As Two, As One", "两者如一"],
+    "description": ["Complete the rite with Robin and Sydney and share the Confounded Vow.", "与罗宾、悉尼完成仪式，共享混乱誓约。"],
+    "difficulty": 3,
+    "filter": ["All", "Social"]
+  },
+  {
     "module": "RBR",
     "id": "Revelation Ivory Return",
     "title": ["Back Where It Belongs", "物归原主"],

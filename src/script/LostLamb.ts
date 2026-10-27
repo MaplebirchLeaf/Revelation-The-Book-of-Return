@@ -24,7 +24,10 @@ export default function LostLamb(maplebirch: typeof window.maplebirch): void {
     colour: 'black',
     has: () => Boolean(maplebirch.get('LostLamb')?.reward),
     text: () =>
-      lanSwitch('You remember the way back from a dream. The ongoing stress caused by nightmares during sleep is reduced by 25%.', '你记得从梦中归来的路。睡眠中因噩梦持续增加的压力减少 25%。')
+      lanSwitch(
+        'You remember the way back from a dream. The ongoing stress caused by nightmares during sleep is reduced by 25%.<<if maplebirch.get("Psyche")>> Dread gained on waking from nightmares is also reduced by 25%.<</if>>',
+        '你记得从梦中归来的路。睡眠中因噩梦持续增加的压力减少 25%。<<if maplebirch.get("Psyche")>>噩梦醒后的恐惧增长也减少 25%。<</if>>'
+      )
   });
 
   maplebirch.tool.inject({

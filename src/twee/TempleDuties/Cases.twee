@@ -472,10 +472,11 @@
             + ($TempleDuties.case.clues.includes('visit-shifted') ? 2 : 0)
             - ($TempleDuties.archive.topics.includes('ward-notes') ? 1 : 0)
             - ($TempleDuties.case.id is 'roots' and !$TempleDuties.rewards.includes('roots') ? 1 : 0)>>
+          <!-- 生命仍交由原生 tentaclestart 初始化，保留分支版本的难度倍率。 -->
           <<if $TempleDuties.case.id is 'roots'>>
-            <<tentaclestart _fieldCount 12 'root' 'vine' true>>
+            <<tentaclestart _fieldCount 18 'root' 'vine' true>>
           <<else>>
-            <<tentaclestart _fieldCount 15>>
+            <<tentaclestart _fieldCount 18>>
           <</if>>
         <</if>>
       <</temple-duty-action>>
@@ -724,6 +725,7 @@
     <</if>>
     <<if !_fileFollowup and _args[0] and _file.result is 'resolved' and !$TempleDuties.rewards.includes(_file.id)>>
       <<run $TempleDuties.rewards.push(_file.id)>>
+      <<if _file.id is 'ritual'>><<earnFeat 'Revelation Cult Den'>><</if>>
       <<set $TempleDuties.followups[_file.id] to Math.floor(Time.days)>>
       <<grace 3>>
       <<famegood 10 null true>>
@@ -737,6 +739,9 @@
       <<money `_file.id is 'echo' ? 3500 : _file.id is 'roots' ? 6000 : 8000` 'templeDuty'>>
     <<elseif !_args[0]>>
       <<npcincr Jordan love -2>>
+    <</if>>
+    <<if !_fileFollowup and _args[0] and _file.result is 'resolved' and $TempleDuties.rewards.includesAll('echo', 'roots', 'crate', 'ritual')>>
+      <<earnFeat 'Revelation Seeing It Through'>>
     <</if>>
     <<temple-field-file _args[0]>>
     <<if _fileFollowup and _args[0] and _file.result is 'resolved'>>

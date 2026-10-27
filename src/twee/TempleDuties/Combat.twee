@@ -1,9 +1,9 @@
 :: Temple Duties Combat Widgets [widget]
 
 <!-- 保留已有任职与试炼收益，回放和梦中冻结不结算战斗加成。 -->
-<<widget 'temple-watch-ready'>>
+<<widget 'temple-exorcism-ready'>>
   <<silently>>
-    <<set _watchReady to Boolean(maplebirch.get('TempleDuties') and ($TempleDuties?.ordained gte 0 or $TempleDuties?.trial_day gte 0 or $temple_rank is 'priest') and $combat is 1 and !$possessed and !$statFreeze and !$replayScene)>>
+    <<set _exorcismReady to Boolean(maplebirch.get('TempleDuties') and ($TempleDuties?.ordained gte 0 or $TempleDuties?.trial_day gte 0 or $temple_rank is 'priest') and $combat is 1 and !$possessed and !$statFreeze and !$replayScene)>>
   <</silently>>
 <</widget>>
 
@@ -22,63 +22,63 @@
 <</widget>>
 
 <!-- 使用实际目标的物种，机器与伪装成人形的普通人不由 enemytype 推断。 -->
-<<widget 'temple-watch-target'>>
+<<widget 'temple-exorcism-target'>>
   <<silently>>
-    <<temple-watch-ready>>
-    <<set _watchTarget to false>>
-    <<set _watchFoe to _args[0]>>
-    <<if _watchReady and _watchFoe>>
-      <<if typeof _watchFoe.tentaclehealth is 'number'>>
-        <<set _watchTarget to ['tentacle', 'vine', 'root', 'shoot', 'tendril'].includes(_watchFoe.type) and !_watchFoe.fullDesc?.includes('metal')>>
-      <<elseif $enemytype is 'struggle' and Object.values($struggle.enemy).includes(_watchFoe)>>
-        <<set _watchTarget to true>>
+    <<temple-exorcism-ready>>
+    <<set _exorcismTarget to false>>
+    <<set _exorcismFoe to _args[0]>>
+    <<if _exorcismReady and _exorcismFoe>>
+      <<if typeof _exorcismFoe.tentaclehealth is 'number'>>
+        <<set _exorcismTarget to ['tentacle', 'vine', 'root', 'shoot', 'tendril'].includes(_exorcismFoe.type) and !_exorcismFoe.fullDesc?.includes('metal')>>
+      <<elseif $enemytype is 'struggle' and Object.values($struggle.enemy).includes(_exorcismFoe)>>
+        <<set _exorcismTarget to true>>
       <<elseif ['man', 'beast', 'plant'].includes($enemytype)>>
-        <<set $_watchSpecies to String(_watchFoe.type ?? '').replace(/(boy|girl)$/, '')>>
-        <<set _watchTarget to Boolean($BeastList?.includes($_watchSpecies) or ['bull', 'centaur', 'harpy', 'plant'].includes($_watchSpecies) or _watchFoe.fullDescription is 'Ivory Wraith' or ($abomination is 1 and _watchFoe is $NPCList[0]))>>
+        <<set $_exorcismSpecies to String(_exorcismFoe.type ?? '').replace(/(boy|girl)$/, '')>>
+        <<set _exorcismTarget to Boolean($BeastList?.includes($_exorcismSpecies) or ['bull', 'centaur', 'harpy', 'plant'].includes($_exorcismSpecies) or ['deadwood_harbour_ghost', 'deadwood_ship_undead', 'deadwood_coin_guard'].includes(_exorcismFoe.per) or _exorcismFoe.fullDescription is 'Ivory Wraith' or ($abomination is 1 and _exorcismFoe is $NPCList[0]))>>
       <</if>>
     <</if>>
   <</silently>>
 <</widget>>
 
-<<widget 'temple-watch-damage'>>
+<<widget 'temple-exorcism-damage'>>
   <<silently>>
-    <<set _watchDamage to _args[1]>>
-    <<set _watchTarget to false>>
+    <<set _exorcismDamage to _args[1]>>
+    <<set _exorcismTarget to false>>
     <<if _args[2] isnot 'passive'>>
-      <<temple-watch-target _args[0]>>
-      <<if _watchTarget and _watchDamage gt 0>>
-        <<set _watchDamage *= 1.2>>
+      <<temple-exorcism-target _args[0]>>
+      <<if _exorcismTarget and _exorcismDamage gt 0>>
+        <<set _exorcismDamage *= 1.2>>
       <</if>>
     <</if>>
   <</silently>>
 <</widget>>
 
-<<widget 'temple-watch-defiance'>>
+<<widget 'temple-exorcism-defiance'>>
   <<silently>>
     <<if $enemyno lt 2 and ['man', 'beast', 'plant'].includes($enemytype)>>
-      <<set _watchFoe to $NPCList.find(npc => npc.active is 'active' and npc.stance isnot 'defeated') ?? $NPCList[0]>>
-      <<temple-watch-damage _watchFoe _thedamage _args[0]>>
-      <<set _thedamage to _watchDamage>>
+      <<set _exorcismFoe to $NPCList.find(npc => npc.active is 'active' and npc.stance isnot 'defeated') ?? $NPCList[0]>>
+      <<temple-exorcism-damage _exorcismFoe _thedamage _args[0]>>
+      <<set _thedamage to _exorcismDamage>>
     <</if>>
   <</silently>>
 <</widget>>
 
 <!-- 分摊伤害逐个判定，原版随后继续处理击倒与溢出伤害。 -->
-<<widget 'temple-watch-npcs'>>
+<<widget 'temple-exorcism-npcs'>>
   <<silently>>
-    <<set _watchHits to []>>
-    <<set $_watchBase to _thedamage>>
+    <<set _exorcismHits to []>>
+    <<set $_exorcismBase to _thedamage>>
     <<if _args[0] isnot undefined>>
-      <<temple-watch-damage $NPCList[_args[0]] $_watchBase _args[1]>>
-      <<set _watchHits[_args[0]] to _watchDamage>>
-      <<set _thedamage to _watchDamage>>
+      <<temple-exorcism-damage $NPCList[_args[0]] $_exorcismBase _args[1]>>
+      <<set _exorcismHits[_args[0]] to _exorcismDamage>>
+      <<set _thedamage to _exorcismDamage>>
     <<else>>
-      <<for _watchIndex to 0; _watchIndex lt $enemynomax; _watchIndex++>>
-        <<if $NPCList[_watchIndex].active is 'active' and $NPCList[_watchIndex].stance isnot 'defeated' and (!$fightTargets or $fightTargets.includes(_watchIndex))>>
-          <<set $_watchShare to $_watchBase / ($fightTargets ? $fightTargets.length : $enemyno)>>
-          <<temple-watch-damage $NPCList[_watchIndex] $_watchShare _args[1]>>
-          <<set _watchHits[_watchIndex] to _watchDamage>>
-          <<set _thedamage += _watchDamage - $_watchShare>>
+      <<for _exorcismIndex to 0; _exorcismIndex lt $enemynomax; _exorcismIndex++>>
+        <<if $NPCList[_exorcismIndex].active is 'active' and $NPCList[_exorcismIndex].stance isnot 'defeated' and (!$fightTargets or $fightTargets.includes(_exorcismIndex))>>
+          <<set $_exorcismShare to $_exorcismBase / ($fightTargets ? $fightTargets.length : $enemyno)>>
+          <<temple-exorcism-damage $NPCList[_exorcismIndex] $_exorcismShare _args[1]>>
+          <<set _exorcismHits[_exorcismIndex] to _exorcismDamage>>
+          <<set _thedamage += _exorcismDamage - $_exorcismShare>>
         <</if>>
       <</for>>
     <</if>>
@@ -86,46 +86,46 @@
 <</widget>>
 
 <!-- 原伤害已从触手扣除，只追加增幅，记录与实际扣血使用同一数值。 -->
-<<widget 'temple-watch-tentacle'>>
+<<widget 'temple-exorcism-tentacle'>>
   <<silently>>
-    <<set $_watchOrgan to _args[0]>>
-    <<set $_watchPower to _args[1]>>
-    <<temple-watch-damage $_watchOrgan $_watchPower>>
-    <<if _watchTarget and _watchDamage gt $_watchPower>>
-      <<set $_watchOrgan.tentaclehealth -= _watchDamage - $_watchPower>>
+    <<set $_exorcismOrgan to _args[0]>>
+    <<set $_exorcismPower to _args[1]>>
+    <<temple-exorcism-damage $_exorcismOrgan $_exorcismPower>>
+    <<if _exorcismTarget and _exorcismDamage gt $_exorcismPower>>
+      <<set $_exorcismOrgan.tentaclehealth -= _exorcismDamage - $_exorcismPower>>
     <</if>>
   <</silently>>
 <</widget>>
 
-<<widget 'temple-watch-record'>>
+<<widget 'temple-exorcism-record'>>
   <<silently>>
-    <<set _watchDamage to _args[1]>>
+    <<set _exorcismDamage to _args[1]>>
     <<if ['damage', 'banish'].includes(_args[0]) and !['passive', 'settled', 'derived'].includes(_args[3])>>
-      <<temple-watch-tentacle _args[2] _args[1]>>
+      <<temple-exorcism-tentacle _args[2] _args[1]>>
     <</if>>
   <</silently>>
 <</widget>>
 
 <!-- 枯木的清除有独立结算，捕获实际扣血再追加，未启用归途时不调用。 -->
-<<widget 'temple-watch-expunge-start'>>
+<<widget 'temple-exorcism-expunge-start'>>
   <<silently>>
-    <<temple-watch-ready>>
-    <<set _watchExpunge to []>>
-    <<set _watchMode to _args[0]>>
-    <<if _watchReady>>
-      <<if _watchMode is 'Default' and ['man', 'beast', 'plant'].includes($enemytype)>>
-        <<set _watchFoe to $NPCList.find(npc => npc.active is 'active' and npc.stance isnot 'defeated') ?? $NPCList[0]>>
-        <<temple-watch-target _watchFoe>>
-        <<if _watchTarget>>
-          <<set _watchExpunge.push({target: _watchFoe, health: $enemyhealth})>>
+    <<temple-exorcism-ready>>
+    <<set _exorcismExpunge to []>>
+    <<set _exorcismMode to _args[0]>>
+    <<if _exorcismReady>>
+      <<if _exorcismMode is 'Default' and ['man', 'beast', 'plant'].includes($enemytype)>>
+        <<set _exorcismFoe to $NPCList.find(npc => npc.active is 'active' and npc.stance isnot 'defeated') ?? $NPCList[0]>>
+        <<temple-exorcism-target _exorcismFoe>>
+        <<if _exorcismTarget>>
+          <<set _exorcismExpunge.push({target: _exorcismFoe, health: $enemyhealth})>>
         <</if>>
-      <<elseif _watchMode is 'Struggle' or _watchMode is 'Tentacle'>>
-        <<set $_watchList to _watchMode is 'Struggle' ? ($struggle?.enemy ?? []) : Object.values($tentacles ?? {})>>
-        <<for _watchFoe range $_watchList>>
-          <<temple-watch-target _watchFoe>>
-          <<if _watchTarget>>
-            <<set _watchHealth to _watchMode is 'Struggle' ? _watchFoe.health : _watchFoe.tentaclehealth>>
-            <<set _watchExpunge.push({target: _watchFoe, health: _watchHealth})>>
+      <<elseif _exorcismMode is 'Struggle' or _exorcismMode is 'Tentacle'>>
+        <<set $_exorcismList to _exorcismMode is 'Struggle' ? ($struggle?.enemy ?? []) : Object.values($tentacles ?? {})>>
+        <<for _exorcismFoe range $_exorcismList>>
+          <<temple-exorcism-target _exorcismFoe>>
+          <<if _exorcismTarget>>
+            <<set _exorcismHealth to _exorcismMode is 'Struggle' ? _exorcismFoe.health : _exorcismFoe.tentaclehealth>>
+            <<set _exorcismExpunge.push({target: _exorcismFoe, health: _exorcismHealth})>>
           <</if>>
         <</for>>
       <</if>>
@@ -133,24 +133,24 @@
   <</silently>>
 <</widget>>
 
-<<widget 'temple-watch-expunge-end'>>
+<<widget 'temple-exorcism-expunge-end'>>
   <<silently>>
-    <<for _watchEntry range _watchExpunge>>
-      <<set _watchHealth to _watchMode is 'Default' ? $enemyhealth : (_watchMode is 'Struggle' ? _watchEntry.target.health : _watchEntry.target.tentaclehealth)>>
-      <<set $_watchDelta to _watchEntry.health - _watchHealth>>
-      <<if $_watchDelta gt 0>>
-        <<temple-watch-damage _watchEntry.target $_watchDelta>>
-        <<set $_watchExtra to _watchDamage - $_watchDelta>>
-        <<if _watchMode is 'Default'>>
-          <<set $enemyhealth to Math.max(0, $enemyhealth - $_watchExtra)>>
-        <<elseif _watchMode is 'Struggle'>>
-          <<set _watchEntry.target.health to Math.max(0, _watchHealth - $_watchExtra)>>
+    <<for _exorcismEntry range _exorcismExpunge>>
+      <<set _exorcismHealth to _exorcismMode is 'Default' ? $enemyhealth : (_exorcismMode is 'Struggle' ? _exorcismEntry.target.health : _exorcismEntry.target.tentaclehealth)>>
+      <<set $_exorcismDelta to _exorcismEntry.health - _exorcismHealth>>
+      <<if $_exorcismDelta gt 0>>
+        <<temple-exorcism-damage _exorcismEntry.target $_exorcismDelta>>
+        <<set $_exorcismExtra to _exorcismDamage - $_exorcismDelta>>
+        <<if _exorcismMode is 'Default'>>
+          <<set $enemyhealth to Math.max(0, $enemyhealth - $_exorcismExtra)>>
+        <<elseif _exorcismMode is 'Struggle'>>
+          <<set _exorcismEntry.target.health to Math.max(0, _exorcismHealth - $_exorcismExtra)>>
         <<else>>
-          <<set _watchEntry.target.tentaclehealth to Math.max(0, _watchHealth - $_watchExtra)>>
-          <<tentacle_record 'banish' `_watchEntry.health - _watchEntry.target.tentaclehealth` _watchEntry.target 'settled'>>
+          <<set _exorcismEntry.target.tentaclehealth to Math.max(0, _exorcismHealth - $_exorcismExtra)>>
+          <<tentacle_record 'banish' `_exorcismEntry.health - _exorcismEntry.target.tentaclehealth` _exorcismEntry.target 'settled'>>
         <</if>>
       <</if>>
     <</for>>
-    <<unset _watchExpunge>>
+    <<unset _exorcismExpunge>>
   <</silently>>
 <</widget>>

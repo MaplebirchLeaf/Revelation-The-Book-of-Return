@@ -29,10 +29,10 @@
     <<endevent>>
     <<generateCultist 1>><<generateCultist 2>>
     <<if !$TempleDuties.case.clues.includes('den-guards')>><<generateCultist 3>><</if>>
-    <!-- 敌人表只保存交战的邪教徒。同伴与搬运工留在撤离通道。 -->
+    <!-- 敌人表只保存交战的邪教徒。生成后提高生命，保留原生难度倍率，再由 maninit 汇总血池。 -->
     <<for _denEnemy to 0; _denEnemy lt $enemyno; _denEnemy++>>
-      <<set $NPCList[_denEnemy].health to _denEnemy is 0 ? 180 : 140>>
-      <<set $NPCList[_denEnemy].healthmax to $NPCList[_denEnemy].health>>
+      <<set $NPCList[_denEnemy].healthmax to Math.ceil($NPCList[_denEnemy].healthmax * (_denEnemy is 0 ? 1.75 : 1.5))>>
+      <<set $NPCList[_denEnemy].health to $NPCList[_denEnemy].healthmax>>
     <</for>>
     <<neutral 1>><<maninit>><<npcidlegenitals>>
     <<set $enemytrust to -100, $enemyanger to 200>>
@@ -233,7 +233,8 @@
       - ($TempleDuties.case.clues.includes('den-pattern') ? 1 : 0)
       - ($TempleDuties.case.clues.includes('den-supplies') ? 1 : 0)
       - ($TempleDuties.case.clues.includes('help') ? 1 : 0))>>
-    <<tentaclestart _denCount `$TempleDuties.case.clues.includes('den-supplies') ? 12 : 15`>>
+    <!-- 保留准备减少数量，原生 tentaclestart 继续应用难度倍率。 -->
+    <<tentaclestart _denCount `$TempleDuties.case.clues.includes('den-supplies') ? 20 : 26`>>
     <<set $TempleDuties.case.stage to 'combat'>>
   <</if>>
 <</temple-duty-action>><br><br>

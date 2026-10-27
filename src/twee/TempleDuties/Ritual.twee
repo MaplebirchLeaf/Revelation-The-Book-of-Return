@@ -378,7 +378,8 @@
         - ($TempleDuties.case.clues.includes('loosened') ? 1 : 0)
         - ($TempleDuties.case.clues.includes('ward') ? 1 : 0)
         - ($TempleDuties.case.clues.includes('help') ? 1 : 0))>>
-      <<tentaclestart _ritual_count `$TempleDuties.case.clues.includes('smother') ? 12 : 15`>>
+      <!-- 保留准备减少数量，原生 tentaclestart 继续应用难度倍率。 -->
+      <<tentaclestart _ritual_count `$TempleDuties.case.clues.includes('smother') ? 18 : 24`>>
     <</if>>
   <</temple-duty-action>><br>
 <<else>>

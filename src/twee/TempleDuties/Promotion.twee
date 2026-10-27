@@ -185,6 +185,7 @@
 :: Temple Duties Review Widgets [widget]
 <<widget 'temple-duty-requirements'>>
   <ul class='journal'>
+    <li><span @class="$grace gte 100 ? 'teal' : ''"><<lanSwitch 'Reach 100 grace before appointment.' '任命前，恩典须达到100。'>></span></li>
     <li>
       <<if _flockRescued>>
         <span class='teal'><<lanSwitch 'The missing member of the flock has been rescued from the Danube Street manor.' '已从多瑙河街宅邸救回失踪的教徒。'>></span>
@@ -210,7 +211,7 @@
       <<if _dutyFieldwork>>
         <span class='teal'><<lanSwitch 'You led the warehouse rescue and repelled the creatures.' '已负责仓库救援，击退异物并如实汇报。'>></span>
       <<else>>
-        <<lanSwitch 'After the accompanied assignment, take responsibility for the returned-crate rescue. You can invite prepared companions.' '随行委托完成后，接下退回货箱的救援，独立负责处置。可以邀请准备妥当的同伴。'>>
+        <<lanSwitch 'After the accompanied assignment, take responsibility for the returned-crate rescue. You can invite prepared companions.' '随行委托完成后，接下退回货箱的救援，负责现场处置。可以邀请准备妥当的同伴。'>>
       <</if>>
     </li>
     <li>
@@ -233,8 +234,8 @@
 
 
 <<widget 'temple-ordain-player'>>
-  <<if $temple_rank is 'monk' and $player.virginity.temple is true
-      and $templetest isnot 'failed' and $temple_chastity_timer gt 0
+  <<temple-ordination-standing 'Player'>>
+  <<if _ordinationSafe and $temple_rank is 'monk' and _ordination_standing
       and $TempleDuties.ordination?.stage is 'vows'
       and $TempleDuties.ordination.party.includes('Player')
       and $TempleDuties.ordination.choices['answer:Player']
@@ -246,7 +247,6 @@
       <<earnFeat 'Revelation Ordination'>>
       <<npcincr Jordan love 5>>
       <<famegood 30 null true>>
-      <<grace 15>>
       <<trauma -30>>
       <<stress -40>>
     <</if>>

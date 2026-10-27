@@ -19,7 +19,7 @@ Four assignments open in order. The last three need monk/nun or priest rank. Com
 | The returned donation crate | Rescue the worker at the docks warehouse, repel the tentacles and bring back the records            | £200          |
 | Chanting beyond the shore   | Follow the chanting from the shore, rescue the captive and investigate the woodland hideout         | £200          |
 
-Each first truthful completion also grants **3 grace and 10 good fame**. Complete the independent defence for **Exorcism**: active attacks and banishment deal **20% more damage to nonhuman creatures**.
+Each first truthful completion also grants **3 grace and 10 good fame**. Resolve the warehouse or shore assignment and report truthfully for **Exorcism**: active attacks and banishment deal **20% more damage to nonhuman creatures**.
 
 With tentacles enabled, the storehouse and warehouse involve tentacle combat. A monk helps with the first investigation, then you take the lead. Surveying and preparing equipment ease the burden. With tentacles disabled, complete the rescue and compare the marks, then spend **five minutes** securing the entrance and carrying out the records.
 
@@ -49,8 +49,21 @@ Join the rota, become a monk/nun and truthfully complete the storehouse, warehou
 - Rescue the missing temple member from the Danube Street manor.
 - Return the golden spear to Jordan.
 - Keep the temple vow and pass the current monthly examination.
+- Reach 100 grace before appointment.
 
-Ask Jordan about appointment **before 17:00**. After the interview, take the oath at the hall altar for affection, fame, grace and mental recovery. Appointment opens priest duties and prayer-room access. Monthly examinations continue afterwards.
+Ask Jordan about appointment **before 17:00**. After the interview, allow about **six hours** for the ordination trial. You can pause and continue another day. Complete all five trials. You can work with Robin and Sydney when they are taking the trial with you:
+
+| Trial                     | Ability needed                                              |
+| ------------------------- | ----------------------------------------------------------- |
+| Lead the chanting         | 400 English or History, or choir membership and 300 Singing |
+| Resist the whispers       | 500 Willpower                                               |
+| Bear the censer           | 5,000 Physique                                              |
+| Resume the prayer         | 400 History or 500 Willpower                                |
+| Explain the investigation | 400 History or English                                      |
+
+You can face the whispers and bear the censers together, with an attendant lending a hand. Leading and resuming the prayers, and explaining the investigation, need the relevant abilities. If you do not finish every trial, practise before trying again. Your investigations and shifts remain recorded.
+
+After passing, take the oath for affection, fame and mental recovery. Appointment opens priest duties and prayer-room access. Monthly examinations continue afterwards.
 
 ### Robin and Sydney
 

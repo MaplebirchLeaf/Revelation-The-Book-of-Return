@@ -310,7 +310,7 @@
     <</if>>
 <</language>><br><br>
 <<if maplebirch.get('LostLamb')?.reward and $LostLamb.ending is 'main'>>
-  <<language>><<option 'EN'>>You have gained the trait <span class='black'>Dream Scar</span>. <span class='green'>The ongoing stress caused by nightmares during sleep is reduced by 25%.</span><<option 'CN'>>你获得了特质<span class='black'>“梦痕”</span>。<span class='green'>睡眠中因噩梦持续增加的压力减少 25%。</span><</language>><br><br>
+  <<language>><<option 'EN'>>You have gained the trait <span class='black'>Dream Scar</span>. <span class='green'>The ongoing stress caused by nightmares during sleep is reduced by 25%.<<if maplebirch.get('Psyche')>> Dread gained on waking from nightmares is also reduced by 25%.<</if>></span><<option 'CN'>>你获得了特质<span class='black'>“梦痕”</span>。<span class='green'>睡眠中因噩梦持续增加的压力减少 25%。<<if maplebirch.get('Psyche')>>噩梦醒后的恐惧增长也减少 25%。<</if>></span><</language>><br><br>
 <</if>>
 <<getouticon>><<lanLink ['Sit up', '坐起来'] 'Manor Kylar Room'>><</lanLink>><br>
 
