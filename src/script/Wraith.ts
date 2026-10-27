@@ -150,13 +150,11 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
 
   maplebirch.tool.onInit('ivory-necklace-stock');
   maplebirch.tool.addTo('Journal', 'ivory-necklace-journal');
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'ivory-necklace-recovery-link', passage: 'Town Hall Wait' });
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'wraith-return-rest-link', passage: 'Bed' });
   maplebirch.tool.addTo(
     'BeforeLinkZone',
-    { widget: 'wraith-return-home-link', passage: 'Deadwood Reblooms Property Home' },
-    { widget: 'wraith-return-home-link', passage: 'Deadwood Reblooms Property Bedroom' }
+    { widget: 'ivory-necklace-recovery-link', passage: 'Town Hall Wait' },
+    { widget: 'wraith-return-rest-link', passage: 'Bed' },
+    { widget: 'wraith-return-home-link', passage: ['Deadwood Reblooms Property Home', 'Deadwood Reblooms Property Bedroom'] }
   );
-  maplebirch.tool.addTo('Header', 'ivory-necklace-history');
-  maplebirch.tool.addTo('Header', 'wraith-return-dream-cleanup');
+  maplebirch.tool.addTo('Header', 'ivory-necklace-history', 'wraith-return-dream-cleanup');
 }

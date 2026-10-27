@@ -47,24 +47,27 @@ export default function RobinTemple(maplebirch: typeof window.maplebirch): void 
     text: () => lanSwitch('Inside becomes outside. Betrayal, or belonging? Promise partners +1.', '表里相易，内外相别，此是背叛，还是同在？承诺对象 +1。')
   });
 
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' });
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-vigil-reminder', passage: 'Temple' });
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'secret-day-link', passage: 'Temple' });
-  maplebirch.tool.addTo('CustomLinkZone', { widget: [1, 'robin-temple-cleaning-link "garden"'], passage: 'Temple Garden' });
-  // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
-  maplebirch.tool.addTo('BeforeLinkZone', { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' });
-
-  // 结果补充放在原版选择前，试炼中的反应在正文对应位置注入。
   maplebirch.tool.addTo(
     'BeforeLinkZone',
+    { widget: 'robin-temple-hospital-followup', passage: 'Hospital front' },
+    { widget: 'robin-temple-vigil-reminder', passage: 'Temple' },
+    { widget: 'secret-day-link', passage: 'Temple' },
+    // widget 要求正常房屋菜单的街道出口，贝利堵门时没有这个入口。
+    { widget: 'robin-temple-home-link', passage: 'Deadwood Reblooms Property Home' },
+    // 结果补充放在原版选择前，试炼中的反应在正文对应位置注入。
     { widget: 'robin-temple-vigil-bell', passage: 'Temple Vigil 9' },
     { widget: 'robin-temple-vigil-pyre', passage: 'Temple Vigil 10' },
     { widget: 'robin-temple-vigil-failed', passage: 'Temple Vigil Refuse 2' },
     { widget: 'robin-temple-vigil-failure', passage: ['Temple Vigil End', 'Temple Vigil End Sydney'] },
     { widget: 'robin-temple-vigil-return', passage: ['Temple Vigil Refuse 2', 'Temple Vigil 15', 'Temple Vigil 15 Sydney', 'Temple Vigil End 2', 'Temple Vigil End Sydney 2'] }
   );
-  // 从末尾定位拒绝选项，悉尼的牵手选择出现时不改变插入位置。
-  maplebirch.tool.addTo('CustomLinkZone', { widget: [-1, 'robin-temple-vigil-options 8'], passage: 'Temple Vigil 10' }, { widget: [-1, 'robin-temple-vigil-options'], passage: 'Temple Vigil Refuse' });
+  maplebirch.tool.addTo(
+    'CustomLinkZone',
+    { widget: [1, 'robin-temple-cleaning-link "garden"'], passage: 'Temple Garden' },
+    // 从末尾定位拒绝选项，悉尼的牵手选择出现时不改变插入位置。
+    { widget: [-1, 'robin-temple-vigil-options 8'], passage: 'Temple Vigil 10' },
+    { widget: [-1, 'robin-temple-vigil-options'], passage: 'Temple Vigil Refuse' }
+  );
 
   maplebirch.tool.inject({
     locationPassage: {
