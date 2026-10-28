@@ -635,25 +635,26 @@
 
 :: RobinTemple Hospital Bed
 <<robin-temple-hospital-check>><<if _robinHospitalAlone>><<exit>><</if>>
+<<set $outside to 0>><<set $location to "hospital">><<effects>>
 <<language>>
   <<option 'EN'>>
-    <<set $outside to 0>><<set $location to "hospital">><<effects>>
-
     You awaken in a bed at the civic hospital. You see Robin on the same bed, asleep. You're still holding each other.
-    <<generate1>><<person1>>
-    "About time." It's a nurse. "The doctor tried to separate you two, but even unconscious you wouldn't let go." <<He>> points to Robin. "Eventually <<nnpc_he "Robin">> stirred and asked us not to take you away. Then <<nnpc_he "Robin">> held on tighter and fell asleep again. Once we'd checked you both, we let you rest together."
-
-    The nurse explains that you have suffered a severe stress response, but you are both otherwise physically healthy. <<He>> asks you to wait a moment while <<he>> fetches the doctor.
+    "About time." It's a nurse. "The doctor tried to separate you two, but even unconscious you wouldn't let go." The nurse points to Robin. "Eventually <<nnpc_he "Robin">> stirred and asked us not to take you away. Then <<nnpc_he "Robin">> held on tighter and fell asleep again. Once we'd checked you both, we let you rest together."
+    The nurse explains that you have suffered a severe stress response, but you are both otherwise physically healthy. The nurse asks you to wait a moment, then leaves to fetch the doctor.
     <br><br>
-    <<endevent>>
-
-    You don't have to wait long.
-
-    <<npc "Harper" 1>><<person1>><<npc "Robin" 2>><<person2>>
-    <<if !$harperSeen.includes("hospital")>>
+  <<option 'CN'>>
+    你在医院的床上醒来。罗宾就在你的身旁，你们还紧紧相拥着。
+    “终于醒了。”一个护士说。“医生试图分开你们两个，但即使在昏迷时，你们也不肯松手。”护士指着罗宾。“后来<<nnpc_he "Robin">>迷迷糊糊地醒了一下，求我们别把你带走，抱得更紧了，随后又睡了过去。确认你们都没有大碍后，我们就让你们一起休息了。”
+    护士解释说，你们遭受了严重的应激反应，不过其他方面并无大碍。护士让你们稍等片刻，自己去叫医生来。
+    <br><br>
+<</language>>
+<<endevent>><<npc "Harper" 1>><<npc "Robin" 2>>
+<<set _robinHarperSeen to $harperSeen.includes("hospital")>>
+<<language>>
+  <<option 'EN'>>    You don't have to wait long.
+    <<if !_robinHarperSeen>>
       A <<person1>><<personsimple>> wearing a white medical coat and carrying a clipboard enters.
       <br><br>
-
       <<if $harperSeen.includes("livestock")>>
         It's the doctor from the farm. The one who experimented on you. <<He>> smiles at you. "Hello, I'm Doctor Harper," <<he>> says. There's no recognition on <<his>> face. <<He>> takes a seat by your bedside.
       <<elseif $harperSeen.includes("party")>>
@@ -661,30 +662,14 @@
       <<else>>
         <<He>> smiles at you. "Hello, I'm Doctor Harper." <<He>> takes a seat by your bedside and pulls <<his>> blond fringe away from <<his>> eyes. <<He>> looks young for a doctor, can't be older than 25.
       <</if>>
-
-      <<set $harperSeen.pushUnique("hospital")>>
     <<else>>
       Doctor Harper enters, carrying <<person1>><<his>> usual clipboard. <<He>> assures you that there is no immediate concern, but <<he>> would like to examine you further.
     <</if>>
     <br><br>
-  <<option 'CN'>>
-    <<set $outside to 0>><<set $location to "hospital">><<effects>>
-
-    你在医院的床上醒来。罗宾就在你的身旁，你们还紧紧相拥着。
-    <<generate1>><<person1>>
-    “终于醒了。”一个护士说。“医生试图分开你们两个，但即使在昏迷时，你们也不肯松手。”<<He>>指着罗宾。“后来<<nnpc_he "Robin">>迷迷糊糊地醒了一下，求我们别把你带走，抱得更紧了，随后又睡了过去。确认你们都没有大碍后，我们就让你们一起休息了。”
-
-    护士解释说，你们遭受了严重的应激反应，不过其他方面并无大碍。<<He>>让你们稍等片刻，自己去叫医生来。
-    <br><br>
-    <<endevent>>
-
-    你不用等很久。
-
-    <<npc "Harper" 1>><<person1>><<npc "Robin" 2>><<person2>>
-    <<if !$harperSeen.includes("hospital")>>
+  <<option 'CN'>>    你不用等很久。
+    <<if !_robinHarperSeen>>
       一个穿着白大褂、拿着写字板的<<person1>><<personsimple>>走了进来。
       <br><br>
-
       <<if $harperSeen.includes("livestock")>>
         是农场那个医生。那个在你身上做实验的人。<<He>>朝你微笑。“你好，我是哈珀医生。”<<he>>说。<<his>>脸上看不出任何认出你的表情。<<He>>在你的床边坐下。
       <<elseif $harperSeen.includes("party")>>
@@ -692,13 +677,12 @@
       <<else>>
         <<He>>对你微微一笑。“你好，我是哈珀医生。”<<He>>在你床边坐下，将<<his>>金色的刘海从眼前拨开。<<He>>看起来比一般医生年轻许多，应该不超过25岁。
       <</if>>
-
-      <<set $harperSeen.pushUnique("hospital")>>
     <<else>>
       哈珀医生拿着<<person1>><<his>>惯用的写字板走了进来。<<He>>向你保证目前没有紧急情况，但<<he>>想对你做进一步检查。
     <</if>>
     <br><br>
 <</language>>
+<<run $harperSeen.pushUnique("hospital")>>
 <<lanLink ['Next', '继续'] 'RobinTemple Hospital Examination'>><</lanLink>>
 <br>
 

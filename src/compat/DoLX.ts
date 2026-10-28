@@ -107,7 +107,7 @@ export default function DoLX(core: typeof window.maplebirch): void {
     if (!widget?.tags.includes('widget')) return;
     const replacements: Array<[RegExp, string, number]> = [
       [/<<if !\$RobinTemple\.monthly_checked>>/g, `$&${formula}`, 1],
-      [/maplebirch\.get\('TempleChoir'\)\?\.allowance \?\? \(\$grace \* 4000\)/g, "(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))", 6],
+      [/maplebirch\.get\('TempleChoir'\)\?\.allowance \?\? \(\$grace \* 4000\)/g, "(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))", 1],
       [
         /<<money `\(maplebirch\.get\('TempleChoir'\)\?\.settle\(\) \?\? \(\$grace \* 4000\)\)`>>/g,
         "<<money `(_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0))` \"templeAllowance\" { divineTfAdjusted: true }>><<if maplebirch.get('TempleChoir')>><<set $TempleChoir.bonus to 0>><</if>>",

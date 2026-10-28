@@ -102,7 +102,7 @@
             <<elseif $passage is _ivoryTalkSource>>
               <<replace `'#ivory-return-talk-' + _ivoryConfidant`>>
                 <<if $nextPassageCheck or $nextPassage>>
-                  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>>
+                  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || _ivoryTalkSource`>><</lanLink>>
                 <<else>>
                   <<lanSwitch 'There is no longer time to finish the conversation. You can bring it up another time.' '已经没有时间继续这段交谈了。可以下次再提。'>>
                 <</if>>
@@ -384,7 +384,7 @@
 <<effects>>
 <<if $passage isnot 'Revelation Ivory Dream Wake'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Bed'`>><</lanLink>><br><<exit>>
 <</if>>
 <<if !maplebirch.get('RBR') or !['talk', 'shore', 'complete'].includes($RBR?.necklace?.aftercare)>>
   <<getouticon>><<lanLink ['Return to bed', '回到床上'] 'Bed'>><</lanLink>><br><<exit>>

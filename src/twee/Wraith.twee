@@ -164,7 +164,7 @@
 <<lakeeffects>>
 <<if $passage isnot 'Revelation Ivory Necklace Return'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Lake Ruin Deep'`>><</lanLink>><br>
   <<exit>>
 <</if>>
 <<ivory-necklace-check>>
@@ -224,7 +224,7 @@
 <<lakeeffects>>
 <<if $passage isnot 'Revelation Ivory Necklace Returned'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Lake Ruin Deep'`>><</lanLink>><br>
   <<exit>>
 <</if>>
 <<if !$RBR?.necklace?.returned>>
@@ -268,7 +268,7 @@
 <<set $outside to 0>><<set $location to 'forest_shop'>><<effects>>
 <<if $passage isnot 'Revelation Ivory Necklace Gwylan'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Forest Shop'`>><</lanLink>><br>
   <<exit>>
 <</if>>
 <<npc Gwylan>><<person1>>
@@ -365,7 +365,7 @@
 <<lakeeffects>>
 <<if $passage isnot 'Revelation Wraith Shore'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Lake Shore'`>><</lanLink>><br>
   <<exit>>
 <</if>>
 <<revelation-wraith-visit-check>>
@@ -436,7 +436,7 @@
           <</if>>
           <br><br>
           <<if $nextPassageCheck or $nextPassage>>
-            <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+            <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Lake Shore'`>><</lanLink>><br>
           <<else>>
             <<getouticon>><<lanLink ['Return to the shore', '回到湖岸'] 'Lake Shore'>><</lanLink>><br>
           <</if>>

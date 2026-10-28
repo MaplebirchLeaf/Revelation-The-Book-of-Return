@@ -3,25 +3,26 @@
   <<if !$RobinTemple.monthly_checked>>
     <<unset $templetest>>
     <<set $RobinTemple.monthly_checked to true>>
+    <<set _robinAllowance to (maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000))>>
     <<language>>
       <<option 'EN'>>
         <<if $grace gte 90>>
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. Your behaviour has been remarkable. <span class="green">You're a credit to our faith, and every one of us could learn from you.</span> Thank you."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print (_robinAllowance / 100)>></span> inside.
 
         <<elseif $grace gte 50>>
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="teal">You've been an upstanding member of our faith,</span> and deserve every penny."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print (_robinAllowance / 100)>></span> inside.
 
         <<elseif $grace gte 1>>
 
           Without looking, <<he>> places an envelope on the shelf beside you. "Your monthly allowance. <span class="lblue">You've been an upstanding member of our faith.</span> There is room for improvement, but such is true of us all. We should strive to be better each day."
           <br><br>
-          You open the envelope. There's <span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span> inside.
+          You open the envelope. There's <span class="gold">£<<print (_robinAllowance / 100)>></span> inside.
 
         <<else>>
           <span class="red">"Though pure, your behaviour hasn't been appropriate for a member of our faith,"</span> <<he>> says. "We know you can do better. As such, we've decided to withhold your allowance this month. I hope I can pay you next time."
@@ -31,19 +32,19 @@
 
           <<he>>没有看你，只是把一个信封放在了你旁边的架子上。“这是你的月度津贴。你的表现非常出色。<span class="green">你是我们信仰中值得称赞的人，我们每个人都可以向你学习。</span>谢谢。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
+          你打开信封，里面有<span class="gold">£<<print (_robinAllowance / 100)>></span>。
 
         <<elseif $grace gte 50>>
 
           <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="teal">你一直是我们教会的杰出成员，</span>每一分钱都对应着你的付出。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
+          你打开信封，里面有<span class="gold">£<<print (_robinAllowance / 100)>></span>。
 
         <<elseif $grace gte 1>>
 
           <<he>>没有看你，只是把一个信封放在你旁边的架子上。“这是你的月度津贴。<span class="lblue">你一直是我们教会中表现良好的成员。</span>当然，还有提高的空间，但我们所有人都需要进步。我们应该每天努力变得更好。”
           <br><br>
-          你打开信封，里面有<span class="gold">£<<print ((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)>></span>。
+          你打开信封，里面有<span class="gold">£<<print (_robinAllowance / 100)>></span>。
 
         <<else>>
           <span class="red">“尽管你很纯洁，但作为信徒，你的行为并不合乎我们的信仰，”</span><<he>>说道，“我们知道你可以做得更好。因此，我们决定暂停发放你这个月的津贴。希望下次我能发放给你。”
@@ -101,19 +102,15 @@
     <<option 'EN'>>
       Jordan gives you a solemn nod. "Please come with me."
       <<if getRobinLocation() is 'temple'>>
-
         You<<if _args[0]>>, Robin and Sydney<</if>><<if !_args[0]>> and Robin<</if>> follow.
       <</if>>
-
       <br><br>
       <<He>> leads you out of the main hall and into a small room. "There's a ritual to this, nothing complicated. It differs from the usual examination. I'll prepare while you undress."
       <<if getRobinLocation() isnot 'temple'>>
-
         The door opens behind you, giving you a start. A <<monk>> enters with Robin in tow. <<nnpc_He "Robin">> yawns, before smiling and waving at you.
       <</if>>
-
       <br><br>
-      <<npc "Robin" 2>><<person1>>
+      <<person1>>
       <<if _args[0]>>You three remove your clothing, wishing it wasn't quite so cold in here.<<else>>You both remove your clothing, wishing it wasn't quite so cold in here.<</if>> Jordan rubs grey powder between <<person1>><<his>> hands, then kneels in front of you.
       <<if playerChastity() and $worn.genitals.origin is "temple">>
         <<He>> holds a strange rod against your $worn.genitals.name, and the device clatters to the floor.
@@ -147,13 +144,11 @@
             <</if>>
             "That's a bad sign," <<he>> mutters.
             <br><br>
-
             <<if _args[0] and $daily.sydney.cum>>
               Sydney looks away and blushes. "That... that was my fault..."
             <<else>>
               Robin's eyes widen.
             <</if>>
-
           <<else>>
             lips, giving <<him>> a clear view inside. <<He>> rubs the grey powder around the entrance.
             <br>
@@ -163,38 +158,33 @@
       <</if>>
       <br><br>
       The fondling continues for a few minutes. At last, <<he>> finishes <<his>> work, scraping the grey powder into a small jar. <<He>> then approaches Robin.
-      <<arousal 1000 "genitals">>
       <br><br>
     <<option 'CN'>>
       约旦向你郑重点头。“请随我来。”
       <<if getRobinLocation() is 'temple'>>
-
         你<<if _args[0]>>、罗宾和悉尼<</if>><<if !_args[0]>>和罗宾<</if>>跟了上去。
       <</if>>
-
       <br><br>
       <<He>>带你离开主厅，来到一个小房间。“还有个仪式，和平常有些不一样，但没什么复杂的。我来准备，你先脱衣服吧。”
       <<if getRobinLocation() isnot 'temple'>>
-
         门在你身后打开，吓了你一跳。一名<<monk>>带着罗宾走了进来。<<nnpc_He "Robin">>打了个哈欠，微笑着朝你挥了挥手。
       <</if>>
-
       <br><br>
-      <<npc "Robin" 2>><<person2>>
+      <<person2>>
       <<if _args[0]>>你们三人脱掉衣服，都希望不会很冷。<<else>>你俩脱掉衣服，都希望不会很冷。<</if>>约旦在两手间擦拭上白色粉末，然后跪在了你们的面前。<<person1>>
       <<if playerChastity() and $worn.genitals.origin is "temple">>
-        <<He>>拿着一根奇怪的杆状物抵住你的$worn.genitals.cn_name_cap，装置随即咔嗒落地。
+        <<He>>拿着一根奇怪的杆状物抵住你的<<print $worn.genitals.cn_name_cap ?? maplebirch.auto($worn.genitals.name)>>，装置随即咔嗒落地。
       <</if>>
       <<if $player.penisExist>>
         <<if playerChastity("penis") and $worn.genitals.origin isnot "temple">>
-          <<He>>用双手的食指夹住你的$worn.genitals.cn_name_cap，轻轻地摆弄着。<<He>>一边检查着它，一边在上面涂抹灰色粉末。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>审视下变得更硬了。
+          <<He>>用双手的食指夹住你的<<print $worn.genitals.cn_name_cap ?? maplebirch.auto($worn.genitals.name)>>，轻轻地摆弄着。<<He>>一边检查着它，一边在上面涂抹灰色粉末。你试图分散注意力，但很快就感觉到你的<<penis>>在<<his>>审视下变得更硬了。
         <<else>>
           约旦用两根食指夹住你的阴茎，温柔地在上面套弄着。灰白色的粉末被均匀地涂抹在了你的阴茎上，用以细致地检查包皮的状况。你试图分散自己的注意力，但阴茎还是在<<his>>抚摸下慢慢挺立。
         <</if>>
       <</if>>
       <<if $player.vaginaExist>>
         <<if playerChastity("vagina") and $worn.genitals.origin isnot "temple">>
-          <<He>>用<<his>>双手的拇指放在你的$worn.genitals.cn_name_cap边上，试图检查你的阴部。<<he>>艰难地将灰白色的粉末涂抹在上面。
+          <<He>>用<<his>>双手的拇指放在你的<<print $worn.genitals.cn_name_cap ?? maplebirch.auto($worn.genitals.name)>>边上，试图检查你的阴部。<<he>>艰难地将灰白色的粉末涂抹在上面。
           <br>
         <<else>>
           随后<<He>>用<<his>>双手的拇指轻触着你的阴部，温柔地打开了你的
@@ -214,13 +204,11 @@
             <</if>>
             “那可不是一个好兆头。”<<he>>喃喃道。
             <br><br>
-
             <<if _args[0] and $daily.sydney.cum>>
               悉尼把脸别向一边，满脸通红。“那……那是我的错……”
             <<else>>
               罗宾的双眼瞪大了。
             <</if>>
-
           <<else>>
             阴唇，以便能清晰查看里面的景象。<<He>>在入口处涂抹上了灰色的粉末。
             <br>
@@ -230,9 +218,10 @@
       <</if>>
       <br><br>
       抚弄持续了几分钟。最后，<<he>>完成了手里的活儿，把灰粉刮进一个小罐子里，然后走向罗宾。
-      <<arousal 1000 "genitals">>
       <br><br>
+
   <</language>>
+  <<arousal 1000 "genitals">>
   <<if _args[0]>>
     <<language>>
       <<option 'EN'>>
@@ -409,19 +398,23 @@
         <</if>>
         <br><br>
         <<person1>><<He>> turns away to let you both dress.
-        <<robin-temple-examination-success>>
-        Robin hugs you. "I love you." <<stress -6>><<lstress>>
       <<option 'CN'>>
         <span class="gold">粉末闪起了激烈的火花，</span>约旦微笑了起来。
         “你们对彼此忠诚，希望继续保持。”
         <<if playerChastity() and $worn.genitals.origin is "temple">>
-          <<he>>飞快地将$worn.genitals.cn_name_cap装了回去，护住你的裆部。
+          <<he>>飞快地将<<print $worn.genitals.cn_name_cap ?? maplebirch.auto($worn.genitals.name)>>装了回去，护住你的裆部。
         <</if>>
         <br><br>
         <<person1>><<He>>转过身，让你们将衣物穿好。
-        <<robin-temple-examination-success>>
-        罗宾抱住你。“我爱你。”<<stress -6>><<lstress>>
+
     <</language>>
+    <<robin-temple-examination-success>>
+    <<language>>
+      <<option 'EN'>>Robin hugs you. "I love you." <<lstress>>
+      <<option 'CN'>>罗宾抱住你。“我爱你。”<<lstress>>
+
+    <</language>>
+    <<stress -6>>
     <br><br>
     <<clotheson>>
     <<lanLink ['Next', '继续'] 'Temple'>><<endevent>><</lanLink>>

@@ -28,7 +28,7 @@
         <<option 'EN'>>
           With one anxious motion, Jordan returns your $worn.genitals.name to its place, guarding your crotch.
         <<option 'CN'>>
-          约旦飞快地将你的$worn.genitals.cn_name_cap装了回去，护住你的裆部。
+          约旦飞快地将你的<<print $worn.genitals.cn_name_cap ?? maplebirch.auto($worn.genitals.name)>>装了回去，护住你的裆部。
       <</language>>
     <</if>>
     <<robin-temple-examination-success>>

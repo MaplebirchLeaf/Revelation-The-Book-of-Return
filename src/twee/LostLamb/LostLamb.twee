@@ -140,7 +140,7 @@
           <</switch>>
           <<goto _lambTarget>>
         <<elseif $passage is _lambSource>>
-          <<goto `$nextPassageCheck || $nextPassage || _lambSource`>>
+          <<revelation-next _lambSource>>
         <</if>>
       <</if>>
     <</lanLink>><br>
@@ -181,7 +181,22 @@
   <</language>>
   <br><br>
   <i class='teal'><<language>><<option 'EN'>>You will follow the dream as Kylar. Your present time and belongings will return when you wake.<<option 'CN'>>你将在梦里作为凯拉尔行动。醒来后，会恢复现实的时间与随身物品。<</language>></i><br><br>
-  <<bedicon 'kylar'>><<lanLink ['Close your eyes (0:30)', '闭上眼睛 (0:30)'] 'Lost Lamb Memory'>><<if maplebirch.get('LostLamb')?.available>><<pass 30>><<run maplebirch.get('LostLamb').begin()>><</if>><</lanLink>><br>
+  <<set $_lambRecall to $LostLamb, $_lambRecallSource to $passage, $_lambRecallUsed to false>>
+  <<capture $_lambRecall $_lambRecallSource $_lambRecallUsed>>
+    <<bedicon 'kylar'>><<lanLink ['Close your eyes (0:30)', '闭上眼睛 (0:30)']>>
+      <<if !$_lambRecallUsed and $LostLamb is $_lambRecall and $passage is $_lambRecallSource
+          and maplebirch.get('LostLamb')?.available>>
+        <<set $_lambRecallUsed to true, $_lambRecallEnd to Time.date.timeStamp + 1800>>
+        <<pass 30>>
+        <<if $LostLamb is $_lambRecall and $passage is $_lambRecallSource
+            and Time.date.timeStamp gte $_lambRecallEnd and maplebirch.get('LostLamb')?.begin()>>
+          <<goto 'Lost Lamb Memory'>>
+        <<else>>
+          <<revelation-next $_lambRecallSource>>
+        <</if>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
 <</if>>
 <<getouticon>><<lanLink ['Sit up', '坐起来'] 'Manor Kylar Room'>><</lanLink>><br>
 
@@ -400,7 +415,7 @@
 <<set $outside to 0>><<effects>>
 <<if $passage isnot 'Lost Lamb Sydney Talk'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || $LostLamb_sydneyReturn || 'Temple Sydney'`>><</lanLink>><br><<exit>>
 <</if>>
 <<if !maplebirch.get('LostLamb') or !$LostLamb?.sydneyTalk>>
   <<getouticon>><<lanLink ['Return', '返回'] 'Temple'>><</lanLink>><br><<exit>>
@@ -477,7 +492,7 @@
 <<set $outside to 0>><<effects>>
 <<if $passage isnot 'Lost Lamb Gwylan Talk'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Forest Shop Entrance'`>><</lanLink>><br><<exit>>
 <</if>>
 <<if !maplebirch.get('LostLamb') or !$LostLamb?.gwylanTalk>>
   <<getouticon>><<lanLink ['Return to the shop', '返回店内'] 'Forest Shop Entrance'>><</lanLink>><br><<exit>>
@@ -522,7 +537,7 @@
 <<set $outside to 0>><<effects>>
 <<if $passage isnot 'Lost Lamb Bishop Talk'>><<exit>><</if>>
 <<if $nextPassageCheck or $nextPassage>>
-  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br><<exit>>
+  <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || $LostLamb_bishopReturn || 'Temple'`>><</lanLink>><br><<exit>>
 <</if>>
 <<if !maplebirch.get('LostLamb') or !$LostLamb?.bishopTalk>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br><<exit>>

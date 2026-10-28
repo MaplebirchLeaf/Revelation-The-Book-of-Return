@@ -28,6 +28,7 @@ export default class LostLamb extends Module {
 
   public get available(): boolean {
     return (
+      this.core.get('LostLamb') === this &&
       C.npc.Kylar.init === 1 &&
       C.npc.Kylar.state === 'active' &&
       V.location === 'kylar_manor' &&
@@ -35,8 +36,15 @@ export default class LostLamb extends Module {
       this.state.recalled &&
       V.kylar_sleep_abduction !== undefined &&
       V.combat !== 1 &&
+      !V.possessed &&
+      !V.nextPassage &&
+      !V.nextPassageCheck &&
+      !V.eventforced &&
+      !V.statFreeze &&
       !V.frozenValues &&
-      !V.replayScene
+      !V.replayScene &&
+      V.stress < V.stressmax &&
+      !window.isPregnancyEnding()
     );
   }
 

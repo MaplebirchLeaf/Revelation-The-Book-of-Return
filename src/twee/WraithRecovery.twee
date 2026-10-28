@@ -79,7 +79,7 @@
   <<if $passage isnot $_recoverySource>><<exit>><</if>>
   <<ivory-necklace-recovery-check>>
   <<if $nextPassageCheck or $nextPassage>>
-    <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassageCheck || $nextPassage`>><</lanLink>><br>
+    <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Town Hall Wait'`>><</lanLink>><br>
   <<elseif !_ivoryRecovery>>
     <<lanSwitch 'You cannot reach the necklace now.' '现在无法接近项链。'>><br><br>
     <<ivory-necklace-recovery-leave>>

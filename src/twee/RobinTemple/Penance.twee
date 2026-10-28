@@ -890,7 +890,7 @@
         <br><br>
         "I... I think I need to sit down," <<he>> says. You lead <<him>> to a pew, and stay with <<him>> until <<he>> stops shaking.
       <</if>>
-      <<stress -3>><<lstress>>
+      <<lstress>>
     <<option 'CN'>>
       <<if _punishJoint>>
         你们继续拥抱着彼此，直至最后，尽管仍在颤抖，悉尼还是站起了身。“我……我得回家了。<<nnpc_Mum 'Sirris'>>可能担心坏了。我……我们明天见。”<<nnpc_He 'Sydney'>>在离开神殿时回头又看了你们一眼，给了你们一个虚弱的飞吻。罗宾则留在了你的身边。
@@ -899,8 +899,10 @@
         <br><br>
         “我……我想坐一会儿，”<<he>>说。你扶着<<him>>到长椅上坐下，一直陪着<<him>>，直到<<he>>不再发抖。
       <</if>>
-      <<stress -3>><<lstress>>
+      <<lstress>>
+
   <</language>>
+  <<stress -3>>
   <br><br>
 <</if>>
 <<getouticon>><<lanLink ['Continue', '继续'] 'Temple'>><<set $eventskip to 1>><</lanLink>><br>

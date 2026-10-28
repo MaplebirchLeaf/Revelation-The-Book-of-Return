@@ -198,7 +198,7 @@
               <br><br>
               "I... I can't believe I've been thinking about this." <<He>> takes a deep breath. "I've been promised to someone. The one I love. We can be in-intimate with each other because of that. If either of us breaks our vow with someone else, though, we are punished. At least we're punished together, right? But..."
               <br><br>
-              There's a catch in <<his>> voice. It's subtle, but in this small space, you hear it. "But what if the one I l-love is assaulted?" <<he>> asks. "Please forgive me for saying this, <<sister>>, but it doesn't seem right to punish <<phim>> for that." The words pour out in a flood. You feel <<his>> doubt pushing against your lips to force its way in. <<stress 3>><<gstress>>
+              There's a catch in <<his>> voice. It's subtle, but in this small space, you hear it. "But what if the one I l-love is assaulted?" <<he>> asks. "Please forgive me for saying this, <<sister>>, but it doesn't seem right to punish <<phim>> for that." The words pour out in a flood. You feel <<his>> doubt pushing against your lips to force its way in. <<gstress>>
               <br><br>
               "It isn't as if <<pshe>> asked for it. Yes, maybe <<pshe>> shouldn't put <<pherself>> in a situation where <<pshe>> could get attacked, but what if <<pshe>> does everything right and it still happens? How is it fair or right to punish <<phim>> for that? And why should I be punished alongside <<phim>>?" <<He>> pauses. "Oh, that sounds so selfish. I guess I'll need to ask forgiveness for that too."
             <</if>>
@@ -217,13 +217,15 @@
               <br><br>
               “我……我竟然一直在想这种事。”<<he>>深吸一口气，“我和我的爱人缔结了契约。正因为如此，我们才能亲密无间。但如果我们中的任何一方违背誓言与别人结合，我们就会受到惩罚。至少我们会一起受到惩罚，不是吗？但是……”
               <br><br>
-              <<his>>声音带着一丝哽咽。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我心爱的人被侵犯了怎么办？”<<he>>问道。“请原谅我这么说，<<sister>>，但为此惩罚<<phim>>似乎太不公平了。”话语像洪水般涌出。你感觉到<<his>>疑虑紧贴着你的嘴唇，逼迫着你做出回应。<<stress 3>><<gstress>>
+              <<his>>声音带着一丝哽咽。这很微妙，但在这个狭小的空间里，你听得清清楚楚。“但是如果我的——我心爱的人被侵犯了怎么办？”<<he>>问道。“请原谅我这么说，<<sister>>，但为此惩罚<<phim>>似乎太不公平了。”话语像洪水般涌出。你感觉到<<his>>疑虑紧贴着你的嘴唇，逼迫着你做出回应。<<gstress>>
               <br><br>
               “又不是<<pshe>>求着发生这种事。确实，也许<<pshe>>不该把自己置于可能遭遇袭击的境地，但即使<<pshe>>无可指摘，也还是发生了呢？为此惩罚<<phim>>是公正合理的吗？为什么我也要跟<<phim>>一起受罚？”<<He>>停顿了一下，“哦，听起来好自私。我想我也得为此请求宽恕。”
             <</if>>
             <br><br>
             <<He>>叹了口气。“<<Sister>>，我该怎么做呢？”
+
         <</language>>
+        <<if maplebirch.get('RobinTemple').faith gt -20>><<stress 3>><</if>>
         <<robin-temple-confession-options>>
       <</addinlineevent>>
     <</if>>
@@ -285,34 +287,43 @@
       <<option 'EN'>>
         "If you are bound by promise, then you have committed no sin. You were given exception through a holy rite."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>. I needed the reassurance." <<He>> exits the confessional. <<grace 1>><<ggrace>><<arousal 20>><<garousal>>
+        You hear a sigh of relief. "Thank you, <<sister>>. I needed the reassurance." <<He>> exits the confessional. <<ggrace>><<garousal>>
       <<option 'CN'>>
         “如果你们已经被誓言所绑定，那你就没有犯下任何罪。你们神圣的仪式给了你们特许的例外。”
         <br><br>
-        你听见另一个人松了口气。“谢谢你，<<sister>>。我真的很需要这样的安慰。”<<He>>走出了忏悔室。<<grace 1>><<ggrace>><<arousal 20>><<garousal>>
+        你听见另一个人松了口气。“谢谢你，<<sister>>。我真的很需要这样的安慰。”<<He>>走出了忏悔室。<<ggrace>><<garousal>>
+
     <</language>>
+    <<grace 1>>
+    <<arousal 20>>
   <<case 'robin_romance'>>
     <<language>>
       <<option 'EN'>>
         "So long as you remain true and faithful, and keep your vow, you have done little wrong."
         <br><br>
-        You hear Robin catch <<his>> breath. "Thank you, <<sister>>..." The cubicle falls quiet for a moment before <<he>> leaves. <<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
+        You hear Robin catch <<his>> breath. "Thank you, <<sister>>..." The cubicle falls quiet for a moment before <<he>> leaves. <<glust 'Robin'>><<lconviction 'Robin'>>
       <<option 'CN'>>
         “只要你保持真诚与信仰，信守誓言，就没有太大的罪过。”
         <br><br>
-        罗宾轻轻吸了口气。“谢谢你，<<sister>>……”隔间里安静了片刻，随后传来离开的脚步声。<<npcincr Robin lust 1>><<set maplebirch.get('RobinTemple').faith -= 1>><<glust 'Robin'>><<lconviction 'Robin'>>
+        罗宾轻轻吸了口气。“谢谢你，<<sister>>……”隔间里安静了片刻，随后传来离开的脚步声。<<glust 'Robin'>><<lconviction 'Robin'>>
+
     <</language>>
+    <<npcincr Robin lust 1>>
+    <<set maplebirch.get('RobinTemple').faith -= 1>>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
         "If your feelings are pure, you will remain free of sin."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>. That puts my mind at ease." Robin stays by the partition a little longer before leaving the confessional. <<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
+        You hear a sigh of relief. "Thank you, <<sister>>. That puts my mind at ease." Robin stays by the partition a little longer before leaving the confessional. <<ggrace>><<glove 'Robin'>>
       <<option 'CN'>>
         “如果你的感情是纯洁的，那你就是无罪的。”
         <br><br>
-        你听见一声释然的叹息。“谢谢你，<<sister>>。听你这么说，我就放心了。”罗宾在隔板前又站了一会儿，才离开忏悔室。<<grace 1>><<ggrace>><<npcincr Robin love 3>><<glove 'Robin'>>
+        你听见一声释然的叹息。“谢谢你，<<sister>>。听你这么说，我就放心了。”罗宾在隔板前又站了一会儿，才离开忏悔室。<<ggrace>><<glove 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin love 3>>
   <<case 'robin_doubt'>>
     <<robin-temple-confession-band>>
     <<language>>
@@ -328,7 +339,7 @@
         <<else>>
           "Human," <<he>> echoes. "I'm just a <<personsimple>>, that's true. I guess I thought I should be above such things. Thank you for reminding me that I'm not."
         <</if>>
-        <<He>> exits the confessional. You sneak a look through your door. <<He>> looks at peace. <<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>> exits the confessional. You sneak a look through your door. <<He>> looks at peace. <<ggrace>><<glove 'Robin'>>
       <<option 'CN'>>
         “疑虑是正常的。持有所疑是人之常情，全知则是神的领域。只要你不让疑虑吞噬自己，你就不会迷失。<<nnpc_brother 'Robin'>>，我原谅你，你也要原谅自己。”
         <br><br>
@@ -341,19 +352,25 @@
         <<else>>
           “人之常情，”<<he>>轻声重复。“确实，我只是一个<<personsimple>>。我曾以为我应该超脱这些俗事。谢谢你提醒我，告诉我其实不需要。”
         <</if>>
-        <<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很平静。<<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很平静。<<ggrace>><<glove 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin love 2>>
   <<case 'robin_things'>>
     <<language>>
       <<option 'EN'>>
         "<<Sister>>, I can forgive you. You did nothing wrong. If someone helped you, repay them with kindness."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<npcincr Robin love 1>><<npcincr Robin dom 1>><<glove 'Robin'>><<gdom 'Robin'>>
+        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<glove 'Robin'>><<gdom 'Robin'>>
       <<option 'CN'>>
         “我可以宽恕你。你并没有做错什么。如果有人帮助了你，那就用善意去回报<<phim>>。”
         <br><br>
-        你听见<<him>>松了口气。“谢谢你，<<sister>>。”<<He>>走出了忏悔室。<<npcincr Robin love 1>><<npcincr Robin dom 1>><<glove 'Robin'>><<gdom 'Robin'>>
+        你听见<<him>>松了口气。“谢谢你，<<sister>>。”<<He>>走出了忏悔室。<<glove 'Robin'>><<gdom 'Robin'>>
+
     <</language>>
+    <<npcincr Robin love 1>>
+    <<npcincr Robin dom 1>>
 <</switch>>
 <br><br>
 <<getouticon>><<lanLink ['Next', '继续'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
@@ -386,34 +403,45 @@
       <<option 'EN'>>
         "Do not abuse the Rite of Promise. You risk corrupting yourself and the one you love."
         <br><br>
-        "I... I knew it. I'm sorry, <<sister>>." <<He>> exits the confessional. <<grace 1>><<ggrace>><<npcincr Robin lust -1>><<set maplebirch.get('RobinTemple').faith += 2>><<llust 'Robin'>><<gconviction 'Robin'>>
+        "I... I knew it. I'm sorry, <<sister>>." <<He>> exits the confessional. <<ggrace>><<llust 'Robin'>><<gconviction 'Robin'>>
       <<option 'CN'>>
         “不要辜负你的承诺仪式，你会玷污自己和你所爱的人。”
         <br><br>
-        “我……明白了，对不起，<<sister>>。”<<He>>走出了忏悔室。<<grace 1>><<ggrace>><<npcincr Robin lust -1>><<set maplebirch.get('RobinTemple').faith += 2>><<llust 'Robin'>><<gconviction 'Robin'>>
+        “我……明白了，对不起，<<sister>>。”<<He>>走出了忏悔室。<<ggrace>><<llust 'Robin'>><<gconviction 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin lust -1>>
+    <<set maplebirch.get('RobinTemple').faith += 2>>
   <<case 'robin_romance'>>
     <<language>>
       <<option 'EN'>>
         "You mustn't allow yourself to be swayed by another. Remember your vows and your duty to us."
         <br><br>
-        "I... I knew it. I'm sorry, <<sister>>." <<He>> exits the confessional. <<grace 1>><<ggrace>><<npcincr Robin lust -1>><<set maplebirch.get('RobinTemple').faith += 2>><<llust 'Robin'>><<gconviction 'Robin'>>
+        "I... I knew it. I'm sorry, <<sister>>." <<He>> exits the confessional. <<ggrace>><<llust 'Robin'>><<gconviction 'Robin'>>
       <<option 'CN'>>
         “你不能让自己被他人支配。记住你的誓言，还有你对我们的承诺。”
         <br><br>
-        “我……明白了，对不起，<<sister>>。”<<He>>走出了忏悔室。<<grace 1>><<ggrace>><<npcincr Robin lust -1>><<set maplebirch.get('RobinTemple').faith += 2>><<llust 'Robin'>><<gconviction 'Robin'>>
+        “我……明白了，对不起，<<sister>>。”<<He>>走出了忏悔室。<<ggrace>><<llust 'Robin'>><<gconviction 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin lust -1>>
+    <<set maplebirch.get('RobinTemple').faith += 2>>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
         "You risk being swayed by allowing yourself to be so vulnerable. Remember yourself."
         <br><br>
-        There's a moment of silence. "You're right, <<sister>>. I... I got carried away. Thank you." <<He>> trudges from the confessional. <<grace 1>><<ggrace>><<npcincr Robin love -8>><<lllove 'Robin'>>
+        There's a moment of silence. "You're right, <<sister>>. I... I got carried away. Thank you." <<He>> trudges from the confessional. <<ggrace>><<lllove 'Robin'>>
       <<option 'CN'>>
         “你将自己的脆弱暴露出来，将自己陷入被他人支配的危险。记住，要更珍重自己。”
         <br><br>
-        沉默持续了片刻。“你是对的，<<sister>>。我……是我昏了头。谢谢你。”<<He>>脚步沉重地离开了忏悔室。<<grace 1>><<ggrace>><<npcincr Robin love -8>><<lllove 'Robin'>>
+        沉默持续了片刻。“你是对的，<<sister>>。我……是我昏了头。谢谢你。”<<He>>脚步沉重地离开了忏悔室。<<ggrace>><<lllove 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin love -8>>
   <<case 'robin_doubt'>>
     <<robin-temple-confession-band>>
     <<language>>
@@ -429,7 +457,7 @@
         <<else>>
           "You're right," <<he>> says quietly. "Thank you, <<sister>>. Truly."
         <</if>>
-        <<He>> exits the confessional. <<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>> exits the confessional. <<ggrace>><<glove 'Robin'>>
       <<option 'CN'>>
         <<if $robinSeen.includes('self-sabotage')>>
           “曾有一位睿智的<<monk>>告诉我，怀疑只是自我破坏，”你说道。“为伤害自己而忏悔，宽恕就会随之而来。”
@@ -442,19 +470,24 @@
         <<else>>
           “你说得对，”<<he>>轻声说道。“谢谢你，<<sister>>。真的。”
         <</if>>
-        <<He>>离开了忏悔室。<<grace 1>><<npcincr Robin love 2>><<ggrace>><<glove 'Robin'>>
+        <<He>>离开了忏悔室。<<ggrace>><<glove 'Robin'>>
+
     <</language>>
+    <<grace 1>>
+    <<npcincr Robin love 2>>
   <<case 'robin_things'>>
     <<language>>
       <<option 'EN'>>
         "<<Sister>>, you should repent. Even if you did nothing wrong, learn how to repay kindness."
         <br><br>
-        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<npcincr Robin love 2>><<glove 'Robin'>>
+        You hear a sigh of relief. "Thank you, <<sister>>." <<He>> exits the confessional. <<glove 'Robin'>>
       <<option 'CN'>>
         “你应该忏悔。即便你并没有做错什么，也要学会如何回报善意。”
         <br><br>
-        你听见<<him>>松了口气。“谢谢你，<<sister>>。”<<He>>走出了忏悔室。<<npcincr Robin love 2>><<glove 'Robin'>>
+        你听见<<him>>松了口气。“谢谢你，<<sister>>。”<<He>>走出了忏悔室。<<glove 'Robin'>>
+
     <</language>>
+    <<npcincr Robin love 2>>
 <</switch>>
 <br><br>
 <<getouticon>><<lanLink ['Next', '继续'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
@@ -466,17 +499,21 @@
   <<case 'robin_promised' 'robin_romance'>>
     <<language>>
       <<option 'EN'>>
-        "...What? I haven't broken my vow. I... I would never. I'm sorry, <<sister>>, but I think I should go." <<He>> leaves the confessional. <<grace -2>><<lgrace>>
+        "...What? I haven't broken my vow. I... I would never. I'm sorry, <<sister>>, but I think I should go." <<He>> leaves the confessional. <<lgrace>>
       <<option 'CN'>>
-        “……什么？我没有违背自己的誓言。我……我绝不会那么做的。对不起，<<sister>>，我想我该走了。”<<He>>离开了忏悔室。<<grace -2>><<lgrace>>
+        “……什么？我没有违背自己的誓言。我……我绝不会那么做的。对不起，<<sister>>，我想我该走了。”<<He>>离开了忏悔室。<<lgrace>>
+
     <</language>>
+    <<grace -2>>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
-        "...What? I told you there's someone I love. I... I couldn't. I'm sorry, <<sister>>, I should go." <<He>> leaves the confessional. <<grace -2>><<lgrace>>
+        "...What? I told you there's someone I love. I... I couldn't. I'm sorry, <<sister>>, I should go." <<He>> leaves the confessional. <<lgrace>>
       <<option 'CN'>>
-        “……什么？我说过我已经有心上人了。我……我做不到。对不起，<<sister>>，我想我该走了。”<<He>>离开了忏悔室。<<grace -2>><<lgrace>>
+        “……什么？我说过我已经有心上人了。我……我做不到。对不起，<<sister>>，我想我该走了。”<<He>>离开了忏悔室。<<lgrace>>
+
     <</language>>
+    <<grace -2>>
   <<case 'robin_doubt'>>
     <<robin-temple-confession-band>>
     <<if _robinBand is 'doubt'>>
@@ -492,12 +529,15 @@
       <<option 'EN'>>
         You hear <<him>> shuffle as <<he>> stands.
         <br><br>
-        "The one I love and I can withstand any test thrown at us. Our faith will drown our doubts. Thank you for being an example of everything the temple isn't, <<sister>>." <<He>> exits the confessional. You sneak a look through your door. <<He>> looks angry. <<grace -4>><<stress 3>><<llgrace>><<gstress>>
+        "The one I love and I can withstand any test thrown at us. Our faith will drown our doubts. Thank you for being an example of everything the temple isn't, <<sister>>." <<He>> exits the confessional. You sneak a look through your door. <<He>> looks angry. <<llgrace>><<gstress>>
       <<option 'CN'>>
         你听见<<him>>起身产生的沙沙声响。
         <br><br>
-        “我和我的爱人能经受住任何考验，我们的信念将淹没一切疑虑。感谢你成为了神殿一切教义的反面教材，<<sister>>。”<<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很生气。<<grace -4>><<stress 3>><<llgrace>><<gstress>>
+        “我和我的爱人能经受住任何考验，我们的信念将淹没一切疑虑。感谢你成为了神殿一切教义的反面教材，<<sister>>。”<<He>>走出了忏悔室。你偷偷地透过门缝看了一眼，<<He>>看起来很生气。<<llgrace>><<gstress>>
+
     <</language>>
+    <<grace -4>>
+    <<stress 3>>
   <<case 'robin_things'>>
     <<language>>
       <<option 'EN'>>
@@ -537,32 +577,38 @@
         <<else>>
           "I... I just told you I'm taken. You can't do this to me, <<sister>>. If you insist, I think I'll report you."
         <</if>>
-        The outrage in <<his>> voice betrays <<his>> identity. <span class="pink">It's Robin.</span> <<He>> starts to leave the booth. <<grace -2>><<lgrace>>
+        The outrage in <<his>> voice betrays <<his>> identity. <span class="pink">It's Robin.</span> <<He>> starts to leave the booth. <<lgrace>>
       <<option 'CN'>>
         <<if _robinBand is 'doubt'>>
           “你在说什么？你不能这样。我要对你再说一遍——我是有对象的，死变态。”
         <<else>>
           “我……我刚才说我有对象了，你不能这么对我，<<sister>>。如果你执意如此，我想我会检举你。”
         <</if>>
-        <<his>>声音中的愤怒暴露了<<his>>真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<grace -2>><<lgrace>>
+        <<his>>声音中的愤怒暴露了<<his>>真实身份。<span class="pink">是罗宾。</span><<He>>转身准备离开隔间。<<lgrace>>
+
     <</language>>
+    <<grace -2>>
     <br><br>
     <<lanLink ['Reveal yourself', '现身'] 'RobinTemple Confession Reveal'>><</lanLink>><br>
     <<lanLink ['Let <<him>> leave', '让<<him>>离开'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
   <<case 'robin_love'>>
     <<language>>
       <<option 'EN'>>
-        "Wh-what?! <<Sister>>, you... you can't ask me to do that. I... I have to go." <<He>> flees the confessional. <<grace -2>><<lgrace>>
+        "Wh-what?! <<Sister>>, you... you can't ask me to do that. I... I have to go." <<He>> flees the confessional. <<lgrace>>
       <<option 'CN'>>
-        “什、什么？！<<Sister>>，你……你不能让我做这种事。我……我得走了。”<<He>>逃出了忏悔室。<<grace -2>><<lgrace>>
+        “什、什么？！<<Sister>>，你……你不能让我做这种事。我……我得走了。”<<He>>逃出了忏悔室。<<lgrace>>
+
     <</language>>
+    <<grace -2>>
   <<case 'robin_things'>>
     <<language>>
       <<option 'EN'>>
-        "Wh-what?! You want me to take off my clothes? <<Sister>>, that's... that's not why I came here." <<He>> leaves the booth in a hurry. <<grace -2>><<lgrace>>
+        "Wh-what?! You want me to take off my clothes? <<Sister>>, that's... that's not why I came here." <<He>> leaves the booth in a hurry. <<lgrace>>
       <<option 'CN'>>
-        “什、什么？！你要我脱衣服？<<Sister>>，我……我不是为了这个来的。”<<He>>匆匆离开了隔间。<<grace -2>><<lgrace>>
+        “什、什么？！你要我脱衣服？<<Sister>>，我……我不是为了这个来的。”<<He>>匆匆离开了隔间。<<lgrace>>
+
     <</language>>
+    <<grace -2>>
 <</switch>>
 <br><br>
 <<getouticon>><<lanLink ['Next', '继续'] 'Temple Confess Start'>><<endconfession>><</lanLink>><br>
@@ -771,11 +817,13 @@
           你开始隔着<<his>>内裤<<handtext>>爱抚<<his>><<robin-temple-punishment-genitals 'Robin'>><<if !$RobinTemple.clasp_discussed and (C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>，<span class="lewd">但你感觉到有什么东西阻碍了你</span><</if>>。<<He>>看起来非常的紧张，但没有试图去阻止你。<<He>>温柔地放开了你的手，然后把双腿分开，以便你更容易地接触。你脱下了<<his>>内裤。
       <</language>>
       <br><br>
+      <<robin-temple-confession-expose>>
       <<language>>
         <<option 'EN'>>
-          <<robin-temple-confession-expose>> You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if C.npc.Robin.penis isnot 'none'>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
+           You waste no time pleasuring <<him>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>> through <<his>> belt<</if>>. <<He>> blushes and looks away as <<he>> gradually gets <<if C.npc.Robin.penis isnot 'none'>>erect<<else>>wet<</if>> from your touch. You keep it up for a while, eventually leaning forward and kissing <<his>> neck, which elicits a moan.
         <<option 'CN'>>
-          <<robin-temple-confession-expose>><<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>脖子上轻吻，引得<<he>>发出呻吟。
+          <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>隔着<<his>>贞操带<</if>>，你毫不犹豫地给<<him>>带来想要的快感。随着你的触摸，<<he>>渐渐地<<if C.npc.Robin.penis isnot 'none'>>勃起<<else>>湿润<</if>>了，脸红得无法直视你。你继续抚摸了一段时间，最后俯身在<<his>>脖子上轻吻，引得<<he>>发出呻吟。
+
       <</language>>
       <<if C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity')>>
         <<language>>
@@ -819,7 +867,6 @@
     <</if>>
   <</if>>
 <</if>>
-
 
 :: RobinTemple Confession Sex
 <<run statusCheck('Robin')>>
@@ -866,12 +913,14 @@
       <<option 'EN'>>
         <span class="lewd">Your orgasmic spasms stop you from answering.</span>
         <span class="red"><<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> gasps in indignation, realising what you're doing.</span> "Fucking perverts!"
-        <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> flees the confessional. <<grace -4>><<lgrace>>
+        <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> flees the confessional. <<lgrace>>
       <<option 'CN'>>
         <span class="lewd">你因高潮的兴奋而无法回复。</span>
         <span class="red"><<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>愤怒地抽了口气，意识到了你在做的事。</span>“死变态！”
-        <<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>从忏悔室跑了出去。<<grace -4>><<lgrace>>
+        <<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>从忏悔室跑了出去。<<lgrace>>
+
     <</language>>
+    <<grace -4>>
     <<set $timer to 0>><<set $RobinTemple.confession.state to 'exposed'>>
   <<else>>
     <<language>>
@@ -1086,7 +1135,7 @@
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
         <</if>>
         <br><br>
-        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<grace -4>><<llgrace>>
+        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<llgrace>>
         <br><br>
         "Sorry... I made a mess of that," <<he>> mutters, half-laughing.
       <<option 'CN'>>
@@ -1098,10 +1147,12 @@
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
         <</if>>
         <br><br>
-        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<grace -4>><<llgrace>>
+        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<llgrace>>
         <br><br>
         “抱歉……我搞砸了，”<<he>>低声说着，然后咯咯笑起来。
+
     <</language>>
+    <<grace -4>>
   <<elseif $RobinTemple.confession.state is 'exposed'>>
     <<ejaculation>>
     <<language>>
@@ -1166,7 +1217,7 @@
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
         <</if>>
         <br><br>
-        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<grace -4>><<llgrace>>
+        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<llgrace>>
       <<option 'CN'>>
         罗宾漏出一丝痛苦的呻吟。
         <br><br>
@@ -1178,8 +1229,10 @@
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
         <</if>>
         <br><br>
-        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<grace -4>><<llgrace>>
+        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<llgrace>>
+
     <</language>>
+    <<grace -4>>
   <<else>>
     <<language>>
       <<option 'EN'>>
@@ -1225,7 +1278,7 @@
           Silence. Robin awkwardly glances at you, covering <<his>> mouth.
         <</if>>
         <br><br>
-        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<grace -4>><<llgrace>>
+        "I don't believe this! This place is horrible!" <<if $RobinTemple.confession.pronoun is 'm'>>He<<else>>She<</if>> storms out of the booth. <<llgrace>>
       <<else>>
         <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
@@ -1249,7 +1302,7 @@
           沉默下来。罗宾尴尬地扫了你一眼，捂住了自己的嘴。
         <</if>>
         <br><br>
-        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<grace -4>><<llgrace>>
+        “难以置信！这个地方太可怕了！”<<if $RobinTemple.confession.pronoun is 'm'>>他<<else>>她<</if>>怒气冲冲地离开了隔间。<<llgrace>>
       <<else>>
         <<if maplebirch.get('RobinTemple').faith gte 20>>
           <<if $enemyarousal gte ($enemyarousalmax / 5) * 2>>
@@ -1263,7 +1316,11 @@
           “噢，行，我们可以停。”<<He>>低头沉默了一瞬，但还是笑了笑。
         <</if>>
       <</if>>
-    <</language>>
+
+  <</language>>
+  <<if $RobinTemple.confession.state is 'present'>>
+    <<grace -4>>
+  <</if>>
   <<npcincr Robin lust 5>><<set maplebirch.get('RobinTemple').faith += 2>><<gglust 'Robin'>><<gconviction 'Robin'>>
   <br><br>
   <<tearful>><<language>>
@@ -1291,14 +1348,13 @@
         Robin doesn't say anything for a moment, just leans into you. When <<he>> does speak, <<his>> voice is small. "That was... I don't know how to describe it. But I'm glad it was you."
       <</if>>
       <<if !(C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>
-        <<pass 2>>
         <<He>> lets out one last shaky breath as <<he>> finishes, gripping your arm. You hold each other until <<he>> settles.
-        <<npcincr Robin lust 3>><<gglust 'Robin'>>
+        <<gglust 'Robin'>>
       <<else>>
         <<He>> is still restless when you stop, <<his>> thighs pressed together. "I don't think I finished," <<he>> admits, then goes even redder. "That's not — I'm not complaining."
-        <<npcincr Robin lust 3>><<gglust 'Robin'>>
+        <<gglust 'Robin'>>
       <</if>>
-      <<set maplebirch.get('RobinTemple').faith -= 2>><<lconviction 'Robin'>>
+      <<lconviction 'Robin'>>
     <<option 'CN'>>
       <<if _robinBand is 'doubt'>>
         罗宾靠在木壁上喘着气，笑出了声。“我没想过自己会说这种话，但是……我喜欢这样。很喜欢。”<<his>>脸还是红的，却没有移开视线。“你会把我带坏的，你知道吗？”
@@ -1308,15 +1364,20 @@
         罗宾一时没说话，只是往你身上靠。等<<he>>开口时，声音很小。“刚才的感觉……我不知道该怎么形容。但幸好是你。”
       <</if>>
       <<if !(C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>
-        <<pass 2>>
         <<He>>在最后关头猛地攥住你的手臂，长出了一口气。你们相拥着，直到<<he>>平复下来。
-        <<npcincr Robin lust 3>><<gglust 'Robin'>>
+        <<gglust 'Robin'>>
       <<else>>
         你停下时<<he>>还是不安分地并着腿。“我好像还没……”<<he>>说了一半就红透了，“我不是在抱怨。”
-        <<npcincr Robin lust 3>><<gglust 'Robin'>>
+        <<gglust 'Robin'>>
       <</if>>
-      <<set maplebirch.get('RobinTemple').faith -= 2>><<lconviction 'Robin'>>
+      <<lconviction 'Robin'>>
+
   <</language>>
+  <<if !(C.npc.Robin.chastity.penis.includes('chastity') or C.npc.Robin.chastity.vagina.includes('chastity'))>>
+    <<pass 2>>
+  <</if>>
+  <<npcincr Robin lust 3>>
+  <<set maplebirch.get('RobinTemple').faith -= 2>>
   <br><br>
 <</if>>
 <<if _robinBand is 'doubt'>>

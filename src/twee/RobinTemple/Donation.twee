@@ -8,6 +8,7 @@
     and ($_reliefSpeaker is 'Jordan' ? _reliefAid.available('temple') : getRobinLocation() is 'temple')>>
 <</silently>><<if $_reliefShow and ($_reliefDonations.state.total.temple gt 0 or _reliefAid.funded('temple'))>>
   <<set $_reliefState to _reliefAid.state('temple')>>
+  <<capture $_reliefSpeaker $_reliefState>>
   <<if !_reliefAid.funded('temple')>>
     <<language>>
       <<option 'EN'>>
@@ -53,6 +54,7 @@
         <<if $_reliefSpeaker is 'Jordan'>>“你已经认识经手采购的成员。需要储物货箱时，他们可以向你的工厂询价。订单和发票要放在一起。”<<else>>“约旦说，经手采购的人可以找你的工厂问货箱的报价，”罗宾说，“我会把交货标签和清单放在一起。”<</if>>
     <</language>>
   <</if>>
+  <</capture>>
   <br><br>
 <</if>><</widget>>
 

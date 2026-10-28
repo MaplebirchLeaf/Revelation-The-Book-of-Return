@@ -29,28 +29,27 @@
 <<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<npc Robin 1>><<npc Jordan 2>><<person2>>
 <<if $RobinTemple.stage is 'approved' and $RobinTemple.evaluation_day gte 0>>
   <<npcincr Robin lust 1>>
+  <<effects>>
   <<language>>
     <<option 'EN'>>
-      <<effects>>
-      <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
       Jordan leads you back into the other room, where Robin waits. <<person1>><<He>> excitedly hops up from <<his>> seat. "So? Did we...?"
       <br><br>
-      "Yes. Congratulations, my children, you've passed. Your union will be permitted, with the full support of myself and every other member of the order. The bishop will be informed at once, and your rings are already being prepared." <<npcincr "Jordan" love 5>><<gglove "Jordan">>
+      "Yes. Congratulations, my children, you've passed. Your union will be permitted, with the full support of myself and every other member of the order. The bishop will be informed at once, and your rings are already being prepared." <<gglove "Jordan">>
       <br><br>
-      Robin barrels into you, hugging you with enough force to nearly knock you over. You hear a few gentle sobs, and find your own eyes watering. <<trauma -24>><<llltrauma>>
+      Robin barrels into you, hugging you with enough force to nearly knock you over. You hear a few gentle sobs, and find your own eyes watering. <<llltrauma>>
       <br><br>
-
     <<option 'CN'>>
-      <<effects>>
-      <<set $RobinTemple.evaluation_day to -1>><<set $RobinTemple.stage to 'approved'>>
       约旦将你带到罗宾等候的房间。<<person1>><<He>>一见到你，便兴奋地从座位上跳了起来。“怎么样？我们……？”
       <br><br>
-      “是的，我的孩子们，我在此向你们二位表示祝贺，你们通过了。在神殿所有兄弟姐妹的见证下，你们的结合将会得到主的认可。主教将会立刻知晓，你们的戒指也已经在准备了。”<<npcincr "Jordan" love 5>><<gglove "Jordan">>
+      “是的，我的孩子们，我在此向你们二位表示祝贺，你们通过了。在神殿所有兄弟姐妹的见证下，你们的结合将会得到主的认可。主教将会立刻知晓，你们的戒指也已经在准备了。”<<gglove "Jordan">>
       <br><br>
-      罗宾飞扑而来，用尽全身力气抱住你，几乎要把你推倒。你听见几声轻微的抽泣，你的眼眶也湿润了。<<trauma -24>><<llltrauma>>
+      罗宾飞扑而来，用尽全身力气抱住你，几乎要把你推倒。你听见几声轻微的抽泣，你的眼眶也湿润了。<<llltrauma>>
       <br><br>
-
   <</language>>
+  <<set $RobinTemple.evaluation_day to -1>>
+  <<set $RobinTemple.stage to 'approved'>>
+  <<npcincr "Jordan" love 5>>
+  <<trauma -24>>
 <</if>>
 <<robin-temple-promise-ready>>
 <<if _robinPromiseReady>>
@@ -66,11 +65,12 @@
 <<robin-temple-promise-ready>>
 <<if _robinPromiseReady>>
   <<endevent>><<npc Robin 1>><<npc Jordan 2>><<person2>>
+  <<set _promiseGenitals to clone($worn.genitals), _promiseChastity to { any: playerChastity(), penis: playerChastity('penis'), vagina: playerChastity('vagina'), anus: playerChastity('anus') }, _promiseParasites to { vaginal: $vaginalchastityparasite, penile: $penilechastityparasite, anal: $analchastityparasite }>>
   <<language>>
     <<option 'EN'>>
       Jordan smiles. "While we wait for your rings, I'll ready the two of you for the ritual. Please undress fully." Robin shows some hesitation, but follows your lead.
       <br><br>
-      <<if playerChastity() and $worn.genitals.origin is "temple">>
+      <<if _promiseChastity.any and _promiseGenitals.origin is "temple">>
         <<He>> produces a sinister bladed instrument from <<his>> robes and kneels in front of you. Seconds later, the belt lies ruined on the floor and your <<genitals 1>>
         <<if $player.penisExist and $player.vaginaExist>>
           are
@@ -79,33 +79,26 @@
         <</if>>
         once again exposed and vulnerable. <<He>> stands up, and approaches Robin.
         <br><br>
-        <<set $worn.genitals.type.push("broken")>>
-        <<genitalsruined>>
-        <<if $vaginalchastityparasite isnot 0>>
-          <span class="pink">With the chastity belt gone, the $vaginalchastityparasite fall out of your vagina.</span>
+        <<if _promiseParasites.vaginal isnot 0>>
+          <span class="pink">With the chastity belt gone, the _promiseParasites.vaginal fall out of your vagina.</span>
           <br>
-          <<set $vaginalchastityparasite to 0>>
         <</if>>
-        <<if $penilechastityparasite isnot 0>>
-          <span class="pink">With the chastity belt gone, the $penilechastityparasite fall off of your penis.</span>
+        <<if _promiseParasites.penile isnot 0>>
+          <span class="pink">With the chastity belt gone, the _promiseParasites.penile fall off of your penis.</span>
           <br>
-          <<set $penilechastityparasite to 0>>
         <</if>>
-        <<if $analchastityparasite isnot 0>>
-          <span class="pink">With the chastity belt gone, the $analchastityparasite fall out of your anus.</span>
+        <<if _promiseParasites.anal isnot 0>>
+          <span class="pink">With the chastity belt gone, the _promiseParasites.anal fall out of your anus.</span>
           <br>
-          <<set $analchastityparasite to 0>>
         <</if>>
-        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
       <<else>>
         With your chastity belt already removed, <<He>> moves right to Robin.
       <</if>>
       <br><br>
-      <<undress "ritual">>
     <<option 'CN'>>
       约旦笑了笑。“在等待戒指期间，我会为你们准备好仪式。现在请脱掉所有衣物。”罗宾有些迟疑，但跟在你后头脱了衣服。
       <br><br>
-      <<if playerChastity() and $worn.genitals.origin is "temple">>
+      <<if _promiseChastity.any and _promiseGenitals.origin is "temple">>
         <<He>>从斗篷里拿出一个不祥的片状物体，然后跪在了你的面前。瞬间，你的贞操带哐当落地，<<genitals 1>>
         <<if $player.penisExist and $player.vaginaExist>>
           被
@@ -114,42 +107,54 @@
         <</if>>
         再次脆弱地暴露在了空气中。<<He>>站起身来，随后走向了罗宾。
         <br><br>
-        <<set $worn.genitals.type.push("broken")>>
-        <<genitalsruined>>
-        <<if $vaginalchastityparasite isnot 0>>
-          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($vaginalchastityparasite)>>从你的阴道中脱落。</span>
+        <<if _promiseParasites.vaginal isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto(_promiseParasites.vaginal)>>从你的阴道中脱落。</span>
           <br>
-          <<set $vaginalchastityparasite to 0>>
         <</if>>
-        <<if $penilechastityparasite isnot 0>>
-          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($penilechastityparasite)>>从你的阴茎上脱落下来。</span>
+        <<if _promiseParasites.penile isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto(_promiseParasites.penile)>>从你的阴茎上脱落下来。</span>
           <br>
-          <<set $penilechastityparasite to 0>>
         <</if>>
-        <<if $analchastityparasite isnot 0>>
-          <span class="pink">随着贞操带的解除，<<= maplebirch.auto($analchastityparasite)>>从你的肛门掉了出来。</span>
+        <<if _promiseParasites.anal isnot 0>>
+          <span class="pink">随着贞操带的解除，<<= maplebirch.auto(_promiseParasites.anal)>>从你的肛门掉了出来。</span>
           <br>
-          <<set $analchastityparasite to 0>>
         <</if>>
-        <<if playerChastity("anus")>><<set $worn.genitals.anal_shield to 0>><</if>>
       <<else>>
         你的贞操带已经被拆掉，于是<<he>>走向了罗宾。
       <</if>>
       <br><br>
-      <<undress "ritual">>
   <</language>>
+  <<if playerChastity() and $worn.genitals.origin is "temple">>
+    <<set $worn.genitals.type.push("broken")>>
+    <<genitalsruined>>
+    <<if $vaginalchastityparasite isnot 0>>
+      <<set $vaginalchastityparasite to 0>>
+    <</if>>
+    <<if $penilechastityparasite isnot 0>>
+      <<set $penilechastityparasite to 0>>
+    <</if>>
+    <<if $analchastityparasite isnot 0>>
+      <<set $analchastityparasite to 0>>
+    <</if>>
+    <<if playerChastity("anus")>>
+      <<set $worn.genitals.anal_shield to 0>>
+    <</if>>
+  <</if>>
+  <<undress "ritual">>
 
   <<person1>>
   <<if $RobinTemple.clasp_equipped and C.npc.Robin.chastity.anus is 'anal shield'
     and C.npc.Robin.chastity.vagina is 'chastity belt' and C.npc.Robin.chastity.penis is 'chastity belt'>>
     <<language>>
       <<option 'EN'>>
-        Jordan kneels in front of <<person1>><<him>>, and seconds later, Robin's belt lies on the floor. <<He>> gasps, the sensation of being unrestricted taking <<him>> by surprise. <span class="lewd">You can see some signs of arousal already.</span> <<arousal 50>><<garousal>>
+        Jordan kneels in front of <<person1>><<him>>, and seconds later, Robin's belt lies on the floor. <<He>> gasps, the sensation of being unrestricted taking <<him>> by surprise. <span class="lewd">You can see some signs of arousal already.</span> <<garousal>>
         <br><br>
       <<option 'CN'>>
-        约旦跪在了<<person1>><<him>>面前，瞬间罗宾的贞操带便掉在了地上。<<He>>吸了口气，被解放的触感令<<him>>吃了一惊。<span class="lewd">你能看出罗宾下体已经有些兴奋的迹象。</span><<arousal 50>><<garousal>>
+        约旦跪在了<<person1>><<him>>面前，瞬间罗宾的贞操带便掉在了地上。<<He>>吸了口气，被解放的触感令<<him>>吃了一惊。<span class="lewd">你能看出罗宾下体已经有些兴奋的迹象。</span><<garousal>>
         <br><br>
+
     <</language>>
+    <<arousal 50>>
     <<set C.npc.Robin.chastity.anus to ''>><<set C.npc.Robin.chastity.vagina to ''>><<set C.npc.Robin.chastity.penis to ''>>
     <<set $RobinTemple.clasp_equipped to false>>
   <</if>>
@@ -160,9 +165,18 @@
       <br><br>
       "Please lie on the altar," Jordan says, placing a hand on your shoulder. You comply, lying on your back, the blankets protecting you from the cold material underneath. The <<monks>> begin softly speaking, but you can't make out their words. "<<nnpc_Brother "Robin">> Robin. Please join the one you love on the altar. Take <<pher>> hands in yours, face to face." Robin hesitates, but complies.
       <br><br>
-      <<person1>><<He>> climbs on top of you, taking your hands in <<his>> own. <<His>> face is becoming more red by the second as you both maintain eye contact, trying to ignore your mutual exposure. <<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
+      <<person1>><<He>> climbs on top of you, taking your hands in <<his>> own. <<His>> face is becoming more red by the second as you both maintain eye contact, trying to ignore your mutual exposure.
+    <<option 'CN'>>
+      约旦从斗篷里拿出一枚铃铛摇响了四次，罗宾见了迅速用手遮住<<person1>><<his>>赤裸的身体。过了一会儿，四名<<person2>><<monks>>走进房间。其中二人手持一瓶装满灰色粉末的干净玻璃罐，另外两人则拿着各色的软垫，毯子和烛台。众人把东西都放在桌子上，随后点燃了烛台。房间里的其它灯瞬间显得昏暗起来。
       <br><br>
-
+      "请躺在圣坛上。"约旦说着，把手搭在你的肩上。你照做躺下，身下柔软的毯子隔开了冰冷的台面。<<monks>>开始温柔低吟，但你听不清说些了什么。"罗宾<<nnpc_Brother "Robin">>，请和你的挚爱一起躺到圣坛上，握住你们的双手，面向对方。"罗宾迟疑了一瞬，但还是照做了。
+      <br><br>
+      <<person1>><<He>>压在你身上，握住你的手。当你们注视着对方时，<<his>>的脸又烧了起来，试着忽视你们彼此赤裸的身体。
+  <</language>>
+  <<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
+  <<language>>
+    <<option 'EN'>>
+      <br><br>
       Jordan moves to touch something under the altar, and sets of ivory restraints emerge, binding your hands with Robin's. "As those wish to be bound, so do we bind them."
       <br>
       The <<person2>><<monks>> repeat Jordan's words. "So do we bind them."
@@ -175,18 +189,12 @@
       <br>
       "Forever, as one."
       <br><br>
-      One of the <<person2>><<monks>> picks up one of the candles, holding it over Robin. "Should your love be pure, you will feel no pain." You both find your breathing becoming more laboured, and a heat begins to rise in you as Robin's bare body is pressed against yours. <<arousal 100>><<garousal>>
+      One of the <<person2>><<monks>> picks up one of the candles, holding it over Robin. "Should your love be pure, you will feel no pain." You both find your breathing becoming more laboured, and a heat begins to rise in you as Robin's bare body is pressed against yours. <<garousal>>
       <br><br>
       You see the candle above Robin melt at a faster rate. A drop of wax hits <<person1>><<his>> bare back. <<He>> flinches, but soon looks relieved. More wax begins to drip down, until it begins to drip from Robin onto you. It's very hot, <span class="gold">yet you feel no pain.</span>
       <br><br>
     <<option 'CN'>>
-      约旦从斗篷里拿出一枚铃铛摇响了四次，罗宾见了迅速用手遮住<<person1>><<his>>赤裸的身体。过了一会儿，四名<<person2>><<monks>>走进房间。其中二人手持一瓶装满灰色粉末的干净玻璃罐，另外两人则拿着各色的软垫，毯子和烛台。众人把东西都放在桌子上，随后点燃了烛台。房间里的其它灯瞬间显得昏暗起来。
       <br><br>
-      "请躺在圣坛上。"约旦说着，把手搭在你的肩上。你照做躺下，身下柔软的毯子隔开了冰冷的台面。<<monks>>开始温柔低吟，但你听不清说些了什么。"罗宾<<nnpc_Brother "Robin">>，请和你的挚爱一起躺到圣坛上，握住你们的双手，面向对方。"罗宾迟疑了一瞬，但还是照做了。
-      <br><br>
-      <<person1>><<He>>压在你身上，握住你的手。当你们注视着对方时，<<his>>的脸又烧了起来，试着忽视你们彼此赤裸的身体。<<takeHandholdingVirginity "Robin" `($robinromance is 1?"romantic":"consensual")`>>
-      <br><br>
-
       约旦在圣坛下触动了某个机关，只见一对象牙束手出现在眼前，你和罗宾的手随即被绑在了一起。“希望彼此缔结的爱人，我们就会如此将他们绑在一起。”
       <br>
       <<person2>><<monks>>重复着约旦的话：“我们就会如此将他们绑在一起。”
@@ -199,11 +207,13 @@
       <br>
       "永远，如一。"
       <br><br>
-      一名<<person2>><<monks>>端起烛台，举到罗宾的上方，"如果你们的爱是纯净的，那将不会有痛楚。"听罢，你们的呼吸变得沉重了起来。当罗宾赤身裸体地压在你身上时，你的体内卷起了热浪。<<arousal 100>><<garousal>>
+      一名<<person2>><<monks>>端起烛台，举到罗宾的上方，"如果你们的爱是纯净的，那将不会有痛楚。"听罢，你们的呼吸变得沉重了起来。当罗宾赤身裸体地压在你身上时，你的体内卷起了热浪。<<garousal>>
       <br><br>
       罗宾上方的蜡烛飞速地融化着。一滴蜡落下，烫在<<person1>><<his>>光滑的脊背上。<<He>>微微一缩，但很快便放松下来。更多的蜡随之滴落，顺着罗宾的腰肢流到了你的身上。蜡滴很烫，<span class="gold">但你一点也不疼。</span>
       <br><br>
+
   <</language>>
+  <<arousal 100>>
   <<loveicon 'hug'>><<lanLink ['Forever, as one', '永远，如一'] 'RobinTemple Promise End'>><<set $RobinTemple.stage to 'promised'>><<set $RobinTemple.templePromised to 'Robin'>><<set $RobinTemple.chastity_timer to 30>><<set $player.virginity.temple to true>><<set $virginityProtected to true>><<world_corruption 'hard' -1>><</lanLink>><br>
 <<else>>
   <<language>>
@@ -242,10 +252,7 @@
         "I think so. Are you ready?" you ask.
       <</if>>
       <br>
-      Robin smiles at you. "I'm ready." <<He>> wraps <<his>> arms around you and kisses you. You both fall back onto the cushioned altar. <<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
-      <br><br>
-      You've gained the <span class="blue">Rite of Promise: Robin</span> trait.
-      <br><br>
+      Robin smiles at you. "I'm ready." <<He>> wraps <<his>> arms around you and kisses you. You both fall back onto the cushioned altar.
     <<option 'CN'>>
       蜡烛融化流淌，顺着你的身子滴在了圣坛上。一名<<person2>><<monks>>拿出一个空罐子，收集起蜡液。"松开吧。"束手收起，将你们的手解放。<<monks>>帮你俩直起身，让你们坐在了圣坛的边上。
       <br><br>
@@ -265,10 +272,20 @@
         "我可以，你准备好了吗？"你问道。
       <</if>>
       <br>
-      罗宾绽开笑容。"我准备好了。"<<He>>将你拥进怀里，亲吻着你的身体。你们双双躺倒在软垫铺好的圣坛上。<<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+      罗宾绽开笑容。"我准备好了。"<<He>>将你拥进怀里，亲吻着你的身体。你们双双躺倒在软垫铺好的圣坛上。
+
+  <</language>>
+  <<takeKissVirginity "Robin" `($robinromance is 1?"loveInterest":"romantic")`>>
+  <<language>>
+    <<option 'EN'>>
+      <br><br>
+      You've gained the <span class="blue">Rite of Promise: Robin</span> trait.
+      <br><br>
+    <<option 'CN'>>
       <br><br>
       你获得了<span class="blue">承诺仪式：罗宾</span>特质。
       <br><br>
+
   <</language>>
 <<else>>
   <<language>>
@@ -280,12 +297,10 @@
 <</if>>
 <br><br>
 <<if $RobinTemple.templePromised is 'Robin'>>
-  <<endevent>><<npc Robin>><<person1>>
-  <<lanLink ['Next', '继续'] 'RobinTemple Promise Sex'>><<set $sexstart to 1>><</lanLink>><br>
+  <<lanLink ['Next', '继续'] 'RobinTemple Promise Sex'>><<endevent>><<npc Robin>><<person1>><<set $sexstart to 1>><</lanLink>><br>
 <<else>>
   <<getouticon>><<lanLink ['Return to the temple quarters', '返回神殿宿舍'] 'Temple Quarters'>><<clotheson>><<endevent>><</lanLink>><br>
 <</if>>
-
 
 :: RobinTemple Promise Sex
 <<run statusCheck('Robin')>>
