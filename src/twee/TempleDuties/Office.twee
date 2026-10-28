@@ -5,6 +5,8 @@
     <<set _dutyAccess to false>>
     <<set _dutyOffice to false>>
     <<set _dutyReady to false>>
+    <<set _dutyToday to false>>
+    <<set _dutyReport to false>>
     <<exit>>
   <</if>>
   <<silently>>
@@ -16,7 +18,7 @@
       and ['initiate', 'monk', 'priest'].includes($temple_rank)
       and _dutyAccess
       and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
-      and !$replayScene and !$statFreeze and $exposed lte 0
+      and !$replayScene and !$statFreeze and !$frozenValues and $exposed lte 0
       and $stress lt $stressmax and !isPregnancyEnding()>>
     <<set _dutyOffice to _dutySafe and C.npc.Jordan.init is 1
       and $daily.jordanMissing isnot 1 and Time.hour gte 9 and Time.hour lt 18
@@ -61,7 +63,8 @@
   <<set $_dutyTarget to _args[2]>>
   <<set $_dutyPartners to Array.isArray(_args[3]) ? clone(_args[3]) : (_args[3] ? [_args[3]] : [])>>
   <<set $_dutyUsed to false>>
-  <<capture $_dutyBody $_dutyMinutes $_dutyTarget $_dutyPartners $_dutyUsed>>
+  <<set $_dutySource to $passage, $_dutyLocation to $location>>
+  <<capture $_dutyBody $_dutyMinutes $_dutyTarget $_dutyPartners $_dutyUsed $_dutySource $_dutyLocation>>
     <<lanLink _args[0]>>
       <<temple-duty-check>>
       <<set $_dutyGuests to true>>
@@ -71,9 +74,10 @@
           <<set $_dutyGuests to false>>
         <</if>>
       <</for>>
-      <<if !$_dutyUsed and _dutySafe and $_dutyGuests>>
+      <<if !$_dutyUsed and _dutySafe and $_dutyGuests
+          and $passage is $_dutySource and maplebirch.passage.title is $_dutySource and $location is $_dutyLocation>>
         <<set $_dutyUsed to true>>
-        <<set $_dutySource to $passage, _dutyLocation to $location>>
+        <<set $_dutyStarted to Time.date.timeStamp>>
         <<pass $_dutyMinutes>>
         <<temple-duty-check>>
         <<for _guest range $_dutyPartners>>
@@ -82,9 +86,13 @@
             <<set $_dutyGuests to false>>
           <</if>>
         <</for>>
-        <<if $passage is $_dutySource and $location is _dutyLocation and !$nextPassageCheck and _dutySafe and $_dutyGuests>>
+        <<if $passage is $_dutySource and $location is $_dutyLocation
+            and Time.date.timeStamp gte $_dutyStarted + $_dutyMinutes * 60
+            and !$nextPassageCheck and _dutySafe and $_dutyGuests>>
           <<print $_dutyBody>>
-          <<goto $_dutyTarget>>
+          <<revelation-next $_dutySource $_dutyTarget>>
+        <<else>>
+          <<revelation-next $_dutySource>>
         <</if>>
       <</if>>
     <</lanLink>>
@@ -117,7 +125,7 @@
   <<if maplebirch.get('TempleDuties') and $TempleDuties and !$TempleDuties.quarters_ready
       and ['initiate', 'monk', 'priest'].includes($temple_rank) and $temple_quarters gte 100
       and !$combat and !$possessed and !$nextPassage and !$nextPassageCheck and !$eventforced
-      and !$replayScene and !$statFreeze and $exposed lte 0
+      and !$replayScene and !$statFreeze and !$frozenValues and $exposed lte 0
       and $stress lt $stressmax and !isPregnancyEnding()>>
     <<set $TempleDuties.quarters_ready to true>>
     <<if !$TempleDuties.enrolled and $temple_rank isnot 'priest'>>

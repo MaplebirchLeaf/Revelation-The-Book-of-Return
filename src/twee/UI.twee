@@ -10,3 +10,14 @@
     </div>
   </section>
 <</widget>>
+
+<!-- 耗时后沿用原版链接的强制转场顺序，未完成时回到来源页。 -->
+<<widget 'revelation-next'>>
+  <<if $passage isnot _args[0] or maplebirch.passage.title isnot _args[0] or $statFreeze or $frozenValues or $replayScene>><<exit>><</if>>
+  <<set $_revelation_destination to $nextPassage or _args[1] or _args[0]>>
+  <<if $nextPassage>>
+    <<set $nextPassageIntended to _args[1] or _args[0]>>
+    <<unset $nextPassage>>
+  <</if>>
+  <<goto $_revelation_destination>>
+<</widget>>

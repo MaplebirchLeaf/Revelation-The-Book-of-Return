@@ -9,6 +9,11 @@ export interface TempleDutiesState {
   duties: number;
   duty_day: number;
   rest_day: number;
+  pastoral: {
+    day: number;
+    scene: string;
+    visitors: Record<'comfort' | 'prayer' | 'amends' | 'shore', { count: number; choice: string; result: string }>;
+  };
   followups: Partial<Record<TempleCase, number>>;
   archive: {
     roof: number;
@@ -57,6 +62,16 @@ export const DEFAULT_TEMPLE_DUTIES_STATE: TempleDutiesState = {
   duties: 0,
   duty_day: -1,
   rest_day: -1,
+  pastoral: {
+    day: -1,
+    scene: '',
+    visitors: {
+      comfort: { count: 0, choice: '', result: '' },
+      prayer: { count: 0, choice: '', result: '' },
+      amends: { count: 0, choice: '', result: '' },
+      shore: { count: 0, choice: '', result: '' }
+    }
+  },
   followups: {},
   archive: { roof: -1, shelves: -1, sorted: 0, sort_day: -1, topics: [] },
   case: null,

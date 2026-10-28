@@ -18,6 +18,46 @@
   <</if>>
 <</widget>>
 
+<<widget 'temple-den-crowbar'>>
+  <<set _den_crowbar to null>>
+  <!-- 使用原版衣物取值，兼容存档裁剪；只认当前可动手中完好的撬棍。 -->
+  <<for _den_slot, _den_hand range { handheld: 'right', handheld_left: 'left' }>>
+    <<if $worn[_den_slot] and $worn[_den_slot].integrity gt 0
+        and (_den_hand is 'right' ? $rightarm : $leftarm) is 0
+        and clothingData('handheld', $worn[_den_slot], 'variable') is 'street_crowbar'>>
+      <<set _den_crowbar to $worn[_den_slot]>><<break>>
+    <</if>>
+  <</for>>
+<</widget>>
+
+<<widget 'temple-den-pry'>>
+  <<temple-den-crowbar>>
+  <<if !_den_crowbar>><<exit>><</if>>
+  <<set _den_pry_tool to _den_crowbar, _den_pry_case to $TempleDuties.case, _den_pry_day to Math.floor(Time.days)>>
+  <<capture _den_pry_tool _den_pry_case _den_pry_day>>
+    <<lanLink ['Free the rear door with your crowbar (0:03)', '用撬棍松开后门 (0:03)']>>
+      <<temple-duty-check>><<temple-den-priority>><<temple-den-crowbar>>
+      <<if !_denForced and _dutySafe and !$foresthunt and $location is 'forest'
+          and $passage is 'Revelation Temple Cult Den Exterior' and Math.floor(Time.days) is _den_pry_day
+          and $TempleDuties.case is _den_pry_case and _den_pry_case?.id is 'ritual' and _den_pry_case.stage is 'field'
+          and _den_pry_case.clues.includesAll('den-lead', 'den-found', 'den-scout') and !_den_pry_case.clues.includes('den-exit')
+          and _den_crowbar is _den_pry_tool>>
+        <<set _den_pry_started to Time.date.timeStamp>><<pass 3>>
+        <<temple-duty-check>><<temple-den-priority>><<temple-den-crowbar>>
+        <<if !_denForced and _dutySafe and !$foresthunt and $location is 'forest'
+            and $passage is 'Revelation Temple Cult Den Exterior' and Math.floor(Time.days) is _den_pry_day
+            and $TempleDuties.case is _den_pry_case and _den_pry_case?.id is 'ritual' and _den_pry_case.stage is 'field'
+            and _den_pry_case.clues.includesAll('den-lead', 'den-found', 'den-scout') and !_den_pry_case.clues.includes('den-exit')
+            and _den_crowbar is _den_pry_tool and Time.date.timeStamp gte _den_pry_started + 180>>
+          <<run _den_pry_case.clues.pushUnique('den-exit', 'den-door-crowbar')>>
+          <<tiredness 1>>
+        <</if>>
+        <<revelation-next 'Revelation Temple Cult Den Exterior'>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
+<</widget>>
+
 <<widget 'temple-den-fight-start'>>
   <<temple-duty-check>><<temple-den-priority>>
   <<if !_denForced and _dutySafe and $TempleDuties.case?.id is 'ritual'
@@ -107,11 +147,15 @@
   <span class='lblue'><<lanSwitch 'You have counted the leader and two guards. A low rear door opens onto the cart track.' '你确认了领祷者与两名看守的位置。后方还有一扇低门，通向车道。'>></span><br>
 <</if>>
 <<if $TempleDuties.case.clues.includes('den-scout') and !$TempleDuties.case.clues.includes('den-exit')>>
+  <<temple-den-pry>>
   <<set _denExitTime to $TempleDuties.case.prepared or currentSkillValue('physique') gte 5000 ? 5 : 15>>
   <<temple-duty-action `['Free the rear door and arrange the withdrawal rope', '松开后门，布好接应的绳索']` `_denExitTime` 'Revelation Temple Cult Den Exterior'>>
     <<run $TempleDuties.case.clues.pushUnique('den-exit')>>
   <</temple-duty-action>> (<<print '0:' + String(_denExitTime).padStart(2, '0')>>)<br>
 <<elseif $TempleDuties.case.clues.includes('den-exit')>>
+  <<if $TempleDuties.case.clues.includes('den-door-crowbar')>>
+    <<lanSwitch 'The bent nails lie beside the threshold. You have worked the swollen frame loose with your crowbar, leaving the door itself in place.' '拔弯的钉子落在门槛边。你用撬棍扳松了受潮的门框，门板仍留在原处。'>><br>
+  <</if>>
   <<lanSwitch 'The rear door swings freely. The porter holds the line beyond the wall; its other end is secured around your waist. You have agreed to call and pull twice if you cannot get back unaided.' '后门已经能推开。搬运工在墙外握着绳索，另一端系在你的腰间。你们约好：若不能自己退回来，就喊一声，拉两下绳。'>><br>
 <</if>>
 <<if $TempleDuties.case.clues.includes('den-scout') and !$TempleDuties.case.clues.includes('den-guards')

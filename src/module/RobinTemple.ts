@@ -11,6 +11,7 @@ interface NPCAvatarModule {
 
 class RobinTemple extends Module {
   public readonly secret = new SecretPromise(this);
+  private readonly dailyHurt = new WeakMap<DateTime, number>();
 
   public get publicPromise(): string {
     return V.RobinTemple.dual_promise ? this.secret.state.first : V.RobinTemple.templePromised || V.templePromised;
@@ -60,10 +61,30 @@ class RobinTemple extends Module {
       });
     });
     this.core.npc.Schedule.get('Robin').when(() => this.templeTime, 'temple', { id: 'revelation-robin-temple', before: 'robin-location' });
+    const daily = () => this.core.get('RobinTemple') === this && !V.statFreeze && !V.frozenValues && !V.replayScene;
+    // 框架在本次耗时前后共用 prevDate，临时计时也能区分嵌套耗时，不写入存档。
+    this.core.dynamic.regTimeEvent('onBefore', ':revelation-robin-temple-start', {
+      cond: daily,
+      action: ({ prevDate }) => {
+        if (V.robin) this.dailyHurt.set(prevDate!, V.robin.timer.hurt);
+      }
+    });
     this.core.dynamic.regTimeEvent('onDay', ':revelation-robin-temple-daily', {
       exact: true,
-      cond: () => !V.statFreeze && !V.replayScene,
-      action: () => this.dailyUpdate()
+      cond: daily,
+      action: ({ prevDate, currentDate }) => {
+        const seconds = this.core.dynamic.Time.TimeConstants.secondsPerDay;
+        const days = Math.floor(currentDate!.timeStamp / seconds) - Math.floor(prevDate!.timeStamp / seconds);
+        if (V.RobinTemple?.chastity_timer > 0) V.RobinTemple.chastity_timer = Math.max(0, V.RobinTemple.chastity_timer - days);
+        // onDay 跨多日只通知一次，各日贡献按日期副本结算，不改动全局时间。
+        const date = new DateTime(currentDate!).addDays(1 - days);
+        const hurt = this.dailyHurt.get(prevDate!);
+        this.dailyHurt.delete(prevDate!);
+        for (let offset = 1; offset <= days; offset++, date.addDays(1)) {
+          // 原版每天先减少一次伤病计时，恢复前的日子不补算贡献与信仰。
+          if (hurt !== undefined && hurt <= offset) this.dailyUpdate(date, Time.days - days + offset);
+        }
+      }
     });
   }
 
@@ -281,10 +302,8 @@ class RobinTemple extends Module {
     return forms;
   }
 
-  private dailyUpdate(): void {
+  private dailyUpdate(date: DateTime, day: number): void {
     const state = V.RobinTemple;
-    // 检查日历不因罗宾受伤、失踪或暂停值班而停止。
-    if (state?.chastity_timer > 0) state.chastity_timer--;
     if (!state || !this.available) return;
     if (state.stage === 'scheduled' || state.stage === 'failed') {
       state.assessment_bonus = Math.min(15, state.assessment_bonus + (state.pendant ? 3 : 1));
@@ -295,13 +314,14 @@ class RobinTemple extends Module {
     const faith = this.faith;
     if (faith >= 20) this.faith++;
     else if (faith <= -20) this.faith--;
-    this.reviewFaith();
-    const increment = Time.weekDay === 1 ? 3 : !Time.schoolDay && !Time.isWeekEnd() ? 2 : !Time.schoolDay ? 1 : -1;
+    this.reviewFaith(day);
+    const schoolDay = Time.isSchoolDay(date);
+    const increment = date.weekDay === 1 ? 3 : !schoolDay && !date.weekEnd ? 2 : !schoolDay ? 1 : -1;
     state.grace = Math.max(0, Math.min(100, state.grace + increment * (state.pendant && increment >= 0 ? 2 : 1)));
   }
 
   /** 信仰或动摇达到 20 时以 35% 概率触发转折，同一天只抽取一次。 */
-  public reviewFaith(): void {
+  public reviewFaith(day = Time.days): void {
     const state = V.RobinTemple;
     const robin = C.npc.Robin;
     if (!state || !this.member || robin?.init !== 1) return;
@@ -315,8 +335,8 @@ class RobinTemple extends Module {
       return;
     }
     if (state.faith_transition && state.faith_transition !== band) state.faith_transition = '';
-    if (band === state.faith_band || state.faith_review_day === Time.days) return;
-    state.faith_review_day = Time.days;
+    if (band === state.faith_band || state.faith_review_day === day) return;
+    state.faith_review_day = day;
     if (Math.random() >= 0.35) return;
     state.faith_band = band;
     state.faith_transition = band;
@@ -504,7 +524,7 @@ class RobinTemple extends Module {
   }
 
   public get templeTime(): boolean {
-    if (!this.member || !this.available || V.replayScene || V.statFreeze) return false;
+    if (this.core.get('RobinTemple') !== this || !this.member || !this.available || V.replayScene || V.statFreeze || V.frozenValues) return false;
     // 预约与剧情覆盖优先，原版地点函数会处理它们。
     if (V.robinlocationoverride?.during?.includes(Time.hour)) return false;
 

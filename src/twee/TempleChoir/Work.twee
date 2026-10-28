@@ -2,27 +2,33 @@
 <<widget 'temple-choir-practice-action' 'container'>>
   <<set $_practiceKind to _args[1]>>
   <<set $_practiceBody to _contents>>
-  <<capture $_practiceKind $_practiceBody>>
+  <<set _practice_source to $passage, _practice_day to Time.days>>
+  <<capture $_practiceKind $_practiceBody _practice_source _practice_day>>
     <<lanLink _args[0]>>
       <<if maplebirch.get('TempleChoir')?.practice
-          and !$combat and !$possessed and !$replayScene and !$statFreeze
+          and $passage is 'TempleChoir Practice' and $passage is _practice_source and $location is 'temple' and Time.days is _practice_day
+          and !$combat and !$possessed and !$replayScene and !$statFreeze and !$frozenValues
           and !$nextPassage and !$nextPassageCheck and !$eventforced
+          and !$worn.face.type.includes('gag')
           and $stress lt $stressmax and !isPregnancyEnding()>>
-        <<set $_practiceSource to $passage>>
-        <<set $_practiceDay to Time.days>>
+        <<set _practice_started to Time.date.timeStamp>>
         <<pass 30>>
-        <<if $passage is $_practiceSource and $location is 'temple' and Time.days is $_practiceDay
+        <<if $passage is _practice_source and $location is 'temple' and Time.days is _practice_day
+            and Time.date.timeStamp gte _practice_started + 1800
             and maplebirch.get('TempleChoir')?.member and $TempleChoir.joined
             and $TempleChoir.practiceDay isnot Time.days
-            and !$combat and !$possessed and !$replayScene and !$statFreeze
+            and !$combat and !$possessed and !$replayScene and !$statFreeze and !$frozenValues
             and !$nextPassage and !$nextPassageCheck and !$eventforced
+            and !$worn.face.type.includes('gag')
             and $stress lt $stressmax and !isPregnancyEnding()>>
           <<set $TempleChoir.exercise to $_practiceKind>>
           <<set $TempleChoir.practiceDay to Time.days>>
           <<set $TempleChoir.practices += 1>>
           <<if maplebirch.get('Psyche')>><<psyche-rest 5 80>><</if>>
           <<print $_practiceBody>>
-          <<goto 'TempleChoir Practice Result'>>
+          <<revelation-next _practice_source 'TempleChoir Practice Result'>>
+        <<else>>
+          <<revelation-next _practice_source>>
         <</if>>
       <</if>>
     <</lanLink>>
@@ -30,10 +36,32 @@
 <</widget>>
 
 <<widget 'temple-choir-round'>>
-  <<if maplebirch.get('TempleChoir').sing(_args[0])>>
-    <<pass 20>><<tiredness 2>>
-    <<if $TempleChoir.shift.result is 'lost'>><<stress 3>><<else>><<stress -1>><</if>>
-  <</if>>
+  <<set _choir_style to _args[0], _choir_shift to $TempleChoir.shift, _choir_round to $TempleChoir.shift?.round, _choir_day to Time.days>>
+  <<capture _choir_style _choir_shift _choir_round _choir_day>>
+    <<lanLink _args[1]>>
+      <<if maplebirch.get('TempleChoir')?.active and $passage is 'TempleChoir Mass'
+          and $TempleChoir.shift is _choir_shift and _choir_shift.round is _choir_round and Time.days is _choir_day
+          and _choir_round lt 3 and ['follow', 'harmony', 'lead'].includes(_choir_style)
+          and (_choir_style isnot 'lead' or $TempleChoir.lead)>>
+        <!-- 先度过本段，再检查中断；未完成的段落不加分、不练技能，也不抽检定。 -->
+        <<set _choir_started to Time.date.timeStamp>>
+        <<pass 20>>
+        <<if maplebirch.get('TempleChoir')?.active and $passage is 'TempleChoir Mass'
+            and $TempleChoir.shift is _choir_shift and _choir_shift.round is _choir_round and Time.days is _choir_day
+            and Time.date.timeStamp gte _choir_started + 1200 and (_choir_style isnot 'lead' or $TempleChoir.lead)>>
+          <<set _choir_breath to _choir_round is 0 and $TempleChoir.exercise is 'breath'
+            and $TempleChoir.practiceDay gte 0 and Time.days - $TempleChoir.practiceDay gte 0 and Time.days - $TempleChoir.practiceDay lte 2>>
+          <<if maplebirch.get('TempleChoir').sing(_choir_style, _choir_round)>>
+            <<tiredness `_choir_breath ? 1 : 2`>>
+            <<if _choir_shift.result is 'lost'>><<stress 3>><<else>><<stress -1>><</if>>
+            <<revelation-next 'TempleChoir Mass'>>
+          <</if>>
+        <<else>>
+          <<revelation-next 'TempleChoir Mass'>>
+        <</if>>
+      <</if>>
+    <</lanLink>>
+  <</capture>>
 <</widget>>
 
 <<widget 'temple-choir-mass-effects'>>
@@ -101,17 +129,21 @@
   <<icon 'temple/hymnbook.png'>>
   <<temple-choir-practice-action `['Practise breathing (0:30)', '练习换气 (0:30)']` 'breath'>>
     <<singingskill 12>><<tiredness 1>><<stress -3>>
-  <</temple-choir-practice-action>><<gtiredness>><<lstress>><<gsingingskill>><br>
+  <</temple-choir-practice-action>><<gtiredness>><<lstress>><<gsingingskill>> | <span class='lblue'><<lanSwitch 'Less tiring opening hymn' '开场赞美诗更省力'>></span><br>
   <<icon 'temple/hymnbook.png'>>
   <<temple-choir-practice-action `['Match the pitch (0:30)', '练习音准 (0:30)']` 'pitch'>>
     <<singingskill 18>><<tiredness 2>>
-  <</temple-choir-practice-action>><<gtiredness>><<gsingingskill>><br>
+  <</temple-choir-practice-action>><<gtiredness>><<gsingingskill>> | <span class='lblue'><<lanSwitch 'Helps the higher response part' '有助于答唱的高声部'>></span><br>
   <<icon 'temple/choir.png'>>
   <<temple-choir-practice-action `['Rehearse with the choir (0:30)', '排练合唱 (0:30)']` 'choir'>>
     <<singingskill 15>><<tiredness 1>><<grace 1>>
-  <</temple-choir-practice-action>><<gtiredness>><<ggrace>><<gsingingskill>><br>
+  <</temple-choir-practice-action>><<gtiredness>><<ggrace>><<gsingingskill>> | <span class='lblue'><<lanSwitch 'Helps you recover and keep together at the ending' '有助于失误后跟回与收尾合唱'>></span><br>
 <<else>>
-  <<language>><<option 'EN'>>There is no practice available now. Check the choir schedule in your journal.<<option 'CN'>>现在没有可参加的练习。可以在日志中查看唱诗班的时间安排。<</language>><br><br>
+  <<if $worn.face.type.includes('gag')>>
+    <<lanSwitch 'You cannot sing with your mouth covered.' '嘴被堵着，你没法开口唱歌。'>><br><br>
+  <<else>>
+    <<language>><<option 'EN'>>There is no practice available now. Check the choir schedule in your journal.<<option 'CN'>>现在没有可参加的练习。可以在日志中查看唱诗班的时间安排。<</language>><br><br>
+  <</if>>
 <</if>>
 <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 
@@ -204,7 +236,7 @@
   <<switch $TempleChoir.shift.round>>
     <<case 0>>
       <<robin-temple-mass-presence 'opening'>>
-      <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. <<if $TempleChoir.lead>>The singers turn towards you, waiting for the opening note.<<else>>The singer beside you points to the first line.<</if>><<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。<<if $TempleChoir.lead>>歌者们望向你，等你起音。<<else>>身旁的歌者指了指第一行。<</if>><</language>>
+      <<language>><<option 'EN'>>The congregation settles into the pews. Jordan closes the doors and signals the opening hymn. Its first long phrase leaves little room to breathe. <<if $TempleChoir.lead>>The singers turn towards you, waiting for the opening note.<<else>>The singer beside you points to the first line.<</if>><<option 'CN'>>信众在长椅上坐定。约旦关好门，示意开始唱开场赞美诗。开头的一句很长，换气的空隙不多。<<if $TempleChoir.lead>>歌者们望向你，等你起音。<<else>>身旁的歌者指了指第一行。<</if>><</language>>
       <<if $angel gte 6>>
         <br><br><<language>><<option 'EN'>>Jordan reads holy scripture. <<His>> melodic voice calms you. You feel serene.<<option 'CN'>>约旦开始读圣典。<<His>>悠扬的声音使你平静。你感到很宁静。<</language>>
       <<elseif $fallenangel gte 2 or $demon gte 6>>
@@ -226,16 +258,34 @@
   <<if $TempleChoir.shift.round is 0>>
     <<note `lanSwitch('Recent practice helps. Tiredness and alcohol hinder your singing.', '近期练习有帮助，疲劳和醉酒会妨碍发挥。')` 'teal'>>
   <</if>>
+  <<if $TempleChoir.practiceDay gte 0 and Time.days - $TempleChoir.practiceDay gte 0 and Time.days - $TempleChoir.practiceDay lte 2>>
+    <<if $TempleChoir.exercise is 'breath' and $TempleChoir.shift.round is 0>>
+      <<note `lanSwitch('Remembering the breathing points will make this long hymn less tiring.', '记着练过的换气处，这段长赞美诗会唱得更省力。')` 'teal'>>
+    <<elseif $TempleChoir.exercise is 'pitch' and $TempleChoir.shift.round is 1>>
+      <<note `lanSwitch('The higher phrase is familiar from practice. It will help if you try the harmony or lead.', '高声部的乐句已经练过，尝试和声或领唱时更有把握。')` 'teal'>>
+    <<elseif $TempleChoir.exercise is 'choir' and $TempleChoir.shift.round gt 0
+        and ($TempleChoir.shift.round is 2 or ['unsteady', 'lost'].includes($TempleChoir.shift.result))>>
+      <<note `lanSwitch('You remember the other parts. Following or harmonising will help you stay with them.', '你记得其他声部的起落。跟唱或和声时，更容易和大家唱在一起。')` 'teal'>>
+    <</if>>
+  <</if>>
   <<if $TempleChoir.services is 0 and $TempleChoir.shift.round is 0>>
     <<note `lanSwitch('Clear verse: 2 points, or 3 when leading. Unsteady verse: 1 point.', '稳稳唱完得 2 分，领唱得 3 分，勉强跟上得 1 分。')` 'teal'>>
   <</if>><br><br>
-  <<icon 'temple/choir.png'>><<lanLink ['Follow the melody (0:20)', '跟着大家的旋律唱 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'follow'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
-  <<icon 'temple/choir.png'>><<lanLink ['Try a harmony part (0:20)', '尝试和声 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'harmony'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<temple-choir-round 'follow' `['Follow the melody (0:20)', '跟着大家的旋律唱 (0:20)']`>><<gtiredness>><<gsingingskill>><br>
+  <<icon 'temple/choir.png'>><<temple-choir-round 'harmony' `['Try a harmony part (0:20)', '尝试和声 (0:20)']`>><<gtiredness>><<gsingingskill>><br>
   <<if $TempleChoir.lead>>
-    <<icon 'temple/choir.png'>><<lanLink ['Lead the verse (0:20)', '领唱这一节 (0:20)'] 'TempleChoir Mass'>><<temple-choir-round 'lead'>><</lanLink>><<gtiredness>><<gsingingskill>><br>
+    <<icon 'temple/choir.png'>><<temple-choir-round 'lead' `['Lead the verse (0:20)', '领唱这一节 (0:20)']`>><<gtiredness>><<gsingingskill>><br>
   <</if>>
 
-  <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗'] 'Temple'>><<set $TempleChoir.shift to null>><<endevent>><</lanLink>><br>
+  <<set _choir_shift_exit to $TempleChoir.shift>>
+  <<capture _choir_shift_exit>>
+    <<getouticon>><<lanLink ['Leave the choir', '退出本次唱诗']>>
+      <<if $passage is 'TempleChoir Mass' and $TempleChoir.shift is _choir_shift_exit
+          and !$combat and !$possessed and !$statFreeze and !$frozenValues and !$replayScene>>
+        <<set $TempleChoir.shift to null>><<endevent>><<revelation-next 'TempleChoir Mass' 'Temple'>>
+      <</if>>
+    <</lanLink>><br>
+  <</capture>>
   <<language>><<option 'EN'>><span class='red'>Leaving before the final hymn earns no allowance bonus for this service. You cannot restart today's service.</span><<option 'CN'>><span class='red'>未唱完结束赞美诗就离开，本次不增加津贴，今天也不能重新参加唱诗。</span><</language>>
 <<elseif maplebirch.get('TempleChoir') and $TempleChoir.serviceDay is Time.days
     and $TempleChoir.shift?.round is 3 and (maplebirch.get('TempleChoir').active or $TempleChoir.shift.done)>>
@@ -329,5 +379,10 @@
   <<robin-temple-mass-presence>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><<endevent>><</lanLink>><br>
 <<else>>
+  <<if $worn.face.type.includes('gag')>>
+    <<lanSwitch 'You cannot sing with your mouth covered.' '嘴被堵着，你没法开口唱歌。'>><br><br>
+  <<else>>
+    <<lanSwitch 'You cannot continue the service now.' '眼下无法继续唱诗。'>><br><br>
+  <</if>>
   <<getouticon>><<lanLink ['Return to the hall', '返回大厅'] 'Temple'>><</lanLink>><br>
 <</if>>

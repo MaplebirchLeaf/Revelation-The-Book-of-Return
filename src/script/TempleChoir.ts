@@ -2,17 +2,15 @@
 
 /** 注册神殿唱诗班入口、歌唱技能卡与原版神殿流程补丁。 */
 export default function TempleChoir(maplebirch: typeof window.maplebirch): void {
-  maplebirch.once(':sugarcube', () => {
-    const { macro } = maplebirch.tool;
-    macro.create('gsingingskill', () => macro.statChange(lanSwitch('Singing', '歌唱'), 1, 'green'));
-  });
+  const { macro } = maplebirch.tool;
+  macro.create('gsingingskill', () => macro.statChange(lanSwitch('Singing', '歌唱'), 1, 'green'));
 
   maplebirch.tool.addTo('SkillsBonusDisplay', 'temple-choir-skill-bonus');
   maplebirch.tool.addTo('SkillsBox', 'temple-choir-skill-box');
   maplebirch.tool.addTo('Journal', 'temple-choir-journal');
   maplebirch.on(':passagestart', () => {
     const performance = V.TempleChoir?.performance;
-    if (!performance || performance.done || V.replayScene || V.statFreeze) return;
+    if (!maplebirch.get('TempleChoir') || !performance || performance.done || V.replayScene || V.statFreeze || V.frozenValues) return;
     if (performance.source !== maplebirch.passage.title) performance.done = true;
   });
   maplebirch.tool.addTo(
@@ -30,35 +28,20 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
       'Widgets Pirates': [
         { src: '<<englishdifficulty 1 1000>>', to: '<<temple-choir-shanty-check>>', expected: 1 },
         {
-          srcmatchgroup: /\|Pirate Scum Deck Shanty Join\]\]>>/g,
-          applyafter: '<<singingskill 6>>',
+          srcmatchgroup: /(\|Pirate Scum Deck Shanty Join\]\]>>)([\s\S]*?<<\/link>>)/g,
+          to: '$1<<singingskill 6>>$2<<gsingingskill>>',
           expected: 1
         },
         {
-          srcmatchgroup: /\|Pirate Scum Deck Shanty Join\]\]>>[\s\S]*?<<\/link>>/g,
-          applyafter: '<<gsingingskill>>',
-          expected: 1
-        },
-        {
-          srcmatchgroup: /\|Pirate Scum Deck Shanty Lead\]\]>>/g,
-          applyafter: '<<singingskill 10>>',
-          expected: 1
-        },
-        {
-          srcmatchgroup: /\|Pirate Scum Deck Shanty Lead\]\]>>[\s\S]*?<<\/link>>/g,
-          applyafter: '<<gsingingskill>>',
+          srcmatchgroup: /(\|Pirate Scum Deck Shanty Lead\]\]>>)([\s\S]*?<<\/link>>)/g,
+          to: '$1<<singingskill 10>>$2<<gsingingskill>>',
           expected: 1
         }
       ],
       'Widgets Bird': [
         {
-          srcmatchgroup: /\|Bird Tower Sing\]\]>>/g,
-          applyafter: '<<singingskill 8>>',
-          expected: 3
-        },
-        {
-          srcmatchgroup: /\|Bird Tower Sing\]\]>>[\s\S]*?<<\/link>>/g,
-          applyafter: '<<gsingingskill>>',
+          srcmatchgroup: /(\|Bird Tower Sing\]\]>>)([\s\S]*?<<\/link>>)/g,
+          to: '$1<<singingskill 8>>$2<<gsingingskill>>',
           expected: 3
         }
       ]
@@ -66,13 +49,8 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
     locationPassage: {
       'Pub Music': [
         {
-          srcmatchgroup: /\|Pub Music Sing\]\]>>/g,
-          applyafter: '<<singingskill 10>>',
-          expected: 1
-        },
-        {
-          srcmatchgroup: /\|Pub Music Sing\]\]>>[\s\S]*?<<\/link>>/g,
-          applyafter: '<<gsingingskill>>',
+          srcmatchgroup: /(\|Pub Music Sing\]\]>>)([\s\S]*?<<\/link>>)/g,
+          to: '$1<<singingskill 10>>$2<<gsingingskill>>',
           expected: 1
         }
       ],
@@ -83,8 +61,8 @@ export default function TempleChoir(maplebirch: typeof window.maplebirch): void 
         ['Temple Test', 'Sydney Temple Test 2'].map(passage => [
           passage,
           [
-            { srcmatchgroup: /\(\$grace \* 40\)(?=>>)/g, to: "(maplebirch.get('TempleChoir').allowance / 100)", expected: 3 },
-            { srcmatchgroup: /`\(\$grace \* 4000\)`/g, to: "`maplebirch.get('TempleChoir').settle()`", expected: 3 }
+            { srcmatchgroup: /\(\$grace \* 40\)(?=>>)/g, to: "((maplebirch.get('TempleChoir')?.allowance ?? ($grace * 4000)) / 100)", expected: 3 },
+            { srcmatchgroup: /`\(\$grace \* 4000\)`/g, to: "`(maplebirch.get('TempleChoir')?.settle() ?? ($grace * 4000))`", expected: 3 }
           ]
         ])
       )

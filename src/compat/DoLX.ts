@@ -77,18 +77,18 @@ export default function DoLX(core: typeof window.maplebirch): void {
   if (core.get('TempleChoir')) {
     for (const title of ['Temple Test', 'Sydney Temple Test 2']) {
       const rules = core.tool.zone.locationPassage[title] ?? [];
-      core.tool.zone.locationPassage[title] = rules.filter(rule => !rule.to?.includes("maplebirch.get('TempleChoir').allowance") && !rule.to?.includes("maplebirch.get('TempleChoir').settle()"));
+      core.tool.zone.locationPassage[title] = rules.filter(rule => !rule.to?.includes("maplebirch.get('TempleChoir')?.allowance") && !rule.to?.includes("maplebirch.get('TempleChoir')?.settle()"));
       core.tool.inject({
         locationPassage: {
           [title]: [
             {
               srcmatch: /<<printmoney _templeAllowance>>/g,
-              to: '<<printmoney `_templeAllowance + $TempleChoir.bonus`>>',
+              to: "<<printmoney `_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0)`>>",
               expected: 3
             },
             {
               srcmatch: /<<money _templeAllowance "templeAllowance" \{ divineTfAdjusted: true \}>>/g,
-              to: '<<money `_templeAllowance + $TempleChoir.bonus` "templeAllowance" { divineTfAdjusted: true }>><<set $TempleChoir.bonus to 0>>',
+              to: "<<money `_templeAllowance + (maplebirch.get('TempleChoir') ? $TempleChoir.bonus : 0)` \"templeAllowance\" { divineTfAdjusted: true }>><<if maplebirch.get('TempleChoir')>><<set $TempleChoir.bonus to 0>><</if>>",
               expected: 3
             }
           ]

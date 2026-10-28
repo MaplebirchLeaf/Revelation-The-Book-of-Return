@@ -10,7 +10,7 @@ class TempleChoir extends Module {
 
   public get modifier(): number {
     let value = V.harpy >= 3 ? 120 : 100;
-    if (V.tiredness >= V.tirednessmax / 2) value = Math.floor(value * 0.9);
+    if (V.tiredness >= C.tiredness.max / 2) value = Math.floor(value * 0.9);
     if (V.drunk > 0) value = Math.floor(value * 0.9);
     return value;
   }
@@ -24,11 +24,33 @@ class TempleChoir extends Module {
   }
 
   public get practice(): boolean {
-    return this.member && V.TempleChoir.joined && V.TempleChoir.practiceDay !== Time.days && Time.hour >= 9 && Time.hour < 18 && !(Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13);
+    return (
+      this.member &&
+      V.TempleChoir.joined &&
+      V.TempleChoir.practiceDay !== Time.days &&
+      Time.hour >= 9 &&
+      Time.hour < 18 &&
+      !(Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13) &&
+      !V.frozenValues &&
+      !V.worn.face.type.includes('gag')
+    );
   }
 
   public get service(): boolean {
-    return this.member && V.TempleChoir.joined && V.TempleChoir.serviceDay !== Time.days && V.daily.massAttended !== 1 && Time.weekDay === 1 && Time.hour >= 11 && Time.hour < 13;
+    return (
+      this.member &&
+      V.TempleChoir.joined &&
+      V.TempleChoir.serviceDay !== Time.days &&
+      V.daily.massAttended !== 1 &&
+      Time.weekDay === 1 &&
+      Time.hour >= 11 &&
+      Time.hour < 13 &&
+      !V.eventforced &&
+      !V.frozenValues &&
+      !V.worn.face.type.includes('gag') &&
+      V.stress < V.stressmax &&
+      !window.isPregnancyEnding()
+    );
   }
 
   public begin(): boolean {
@@ -49,20 +71,34 @@ class TempleChoir extends Module {
       !V.possessed &&
       !V.nextPassage &&
       !V.nextPassageCheck &&
+      !V.eventforced &&
       !V.replayScene &&
       !V.statFreeze &&
+      !V.frozenValues &&
+      !V.worn.face.type.includes('gag') &&
+      V.stress < V.stressmax &&
+      !window.isPregnancyEnding() &&
       Boolean(V.TempleChoir.shift && !V.TempleChoir.shift.done)
     );
   }
 
-  /** 在链接中结算一次，再进入下一段正文，避免重访页面重复工作。 */
-  public sing(style: 'follow' | 'harmony' | 'lead'): boolean {
+  /** 耗时与中断复核由 Twee 完成，旧段落不能再次提交或消耗随机数。 */
+  public sing(style: 'follow' | 'harmony' | 'lead', round: number): boolean {
     const state = V.TempleChoir;
     const shift = state.shift;
-    if (!this.active || !shift || shift.round >= 3 || !['follow', 'harmony', 'lead'].includes(style) || (style === 'lead' && !state.lead)) return false;
+    if (!this.active || !shift || shift.round !== round || shift.round >= 3 || !['follow', 'harmony', 'lead'].includes(style) || (style === 'lead' && !state.lead)) return false;
     const threshold = style === 'lead' ? 700 : style === 'harmony' ? 400 : 100;
-    const prepared = Time.days - state.practiceDay <= 2 && state.practiceDay >= 0 ? 100 : 0;
-    const value = this.singing + prepared + random(-100, 100);
+    const practice_age = Time.days - state.practiceDay;
+    const prepared = state.practiceDay >= 0 && practice_age >= 0 && practice_age <= 2;
+    let value = this.singing + (prepared ? 100 : 0);
+    // 音准用于答唱的高句；合唱用于收尾或失误后跟回声部，不叠加两份加成。
+    if (
+      prepared &&
+      ((state.exercise === 'pitch' && round === 1 && style !== 'follow') ||
+        (state.exercise === 'choir' && round > 0 && style !== 'lead' && (round === 2 || ['unsteady', 'lost'].includes(shift.result))))
+    )
+      value += 100;
+    value += random(-100, 100);
     shift.result = value >= threshold ? 'clear' : value >= threshold - 200 ? 'unsteady' : 'lost';
     shift.score += shift.result === 'clear' ? (style === 'lead' ? 3 : 2) : shift.result === 'unsteady' ? 1 : 0;
     shift.round++;
