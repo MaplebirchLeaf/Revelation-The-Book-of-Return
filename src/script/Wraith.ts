@@ -1,7 +1,7 @@
 /** 象牙怨灵的岸边回访与遗物归还共用此处接入。 */
 export default function Wraith(maplebirch: typeof window.maplebirch): void {
   // 项链放回基座后仍可再次拿走，原版 notFound、拾取与潜水队取得流程保持有效。
-  // 当前归还标记需随原版物品去向更新，即使玩家随后关闭根模块也如此。
+  // 实物去向沿用原版古董状态，关闭根模块后也保留已有物品的处理。
   maplebirch.tool.inject({
     locationPassage: {
       'Lake Shore': [
@@ -20,7 +20,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         {
-          // 再次拿走后清除当前归还状态，随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
+          // 再次拿走只记录历史，随后原版 Lake Ruin Ivory 会将痴迷重新设为20。
           src: '<<set $necklaceThief to "player">>',
           applyafter: '<<wraith-necklace-retake>><<ivory-necklace-clothes "give">>',
           expected: 1
@@ -36,10 +36,11 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
       ],
       'Town Hall Projects Diving 2': [
         {
-          // 前置归还判断，保留怨灵的倒影 1.3.4 使用的 `"player">>` 尾部锚点。
-          // 接受已注入的前缀，使重复处理保持幂等，其它模组追加的条件原样保留。
-          srcmatch: /(?:!\$RBR\?\.necklace\?\.returned and )?(\$museumAntiques\.antiques\.antiqueivorynecklace isnot "found" and \$necklaceThief is "player")/,
-          to: '!$RBR?.necklace?.returned and $1',
+          // 只有已交给奎恩的项链才在展示盒中，保留其它模组使用的人物尾部锚点。
+          // 同时接受处理后的条件，重复注入不再叠加判断。
+          srcmatch:
+            /(?:\$museumAntiques\.antiques\.antiqueivorynecklace isnot "found"|\["talk", "museum"\]\.includes\(\$museumAntiques\.antiques\.antiqueivorynecklace\)) and \$necklaceThief is "player"/,
+          to: '["talk", "museum"].includes($museumAntiques.antiques.antiqueivorynecklace) and $necklaceThief is "player"',
           expected: 1
         },
         { src: '<<effects>>', applyafter: '<<ivory-necklace-learn "quinn">>', expected: 1 }
@@ -53,13 +54,13 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 潜水队仍可取得放回的项链，不把潜水队的行为计作PC再次盗取。
           src: '<<set $necklaceThief to "diver">>',
-          applyafter: '<<if $RBR?.necklace and !$replayScene and !$statFreeze>><<set $RBR.necklace.returned to false>><</if>><<ivory-necklace-learn "quinn">>',
+          applyafter: '<<ivory-necklace-learn "quinn">>',
           expected: 1
         },
         {
           // 保留 else 与人物代词的连续锚点，只判断其后的展示盒描述，共用原版离场出口。
           srcmatch: /(<<else>>\s*<<He>>)([^\r\n]*\s*<br><br>)/,
-          to: '$1<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty true>><<else>><<ivory-necklace-learn "quinn">>$2<</if>>',
+          to: '$1<<if !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty true>><<else>><<ivory-necklace-learn "quinn">>$2<</if>>',
           expected: 1
         }
       ],
@@ -70,9 +71,9 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
           expected: 1
         },
         {
-          // 原版宏不接受 found -> museum，补齐交接步骤，只记一次首次馆藏。
-          src: '<<museumAntiqueStatus "antiqueivorynecklace" "museum">>',
-          to: '<<museumAntiqueStatus "antiqueivorynecklace" "talk">><<museumAntiqueStatus "antiqueivorynecklace" "museum">><<ivory-necklace-learn "quinn">>',
+          // 只在仍持有实物时结算原版交接、报酬与馆藏；一次匹配完整结算，避免留下半个条件块。
+          srcmatch: /<<museumAntiqueStatus "antiqueivorynecklace" "museum">>([\s\S]*?<<money 600000 "townProject">>)/,
+          to: '<<if $museumAntiques.antiques.antiqueivorynecklace is "found">><<museumAntiqueStatus "antiqueivorynecklace" "talk">><<museumAntiqueStatus "antiqueivorynecklace" "museum">><<ivory-necklace-learn "quinn">>$1<</if>>',
           expected: 1
         }
       ],
@@ -103,7 +104,7 @@ export default function Wraith(maplebirch: typeof window.maplebirch): void {
         {
           // 原版这一段总是假定展示盒里有项链，这里只包裹该段，不改电脑任务。
           src: '<<if $necklaceThief is "player">>',
-          applybefore: '<<if $RBR?.necklace?.returned or !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty>><<else>>',
+          applybefore: '<<if !["talk", "museum"].includes($museumAntiques?.antiques?.antiqueivorynecklace)>><<ivory-necklace-quinn-empty>><<else>>',
           expected: 1
         },
         {

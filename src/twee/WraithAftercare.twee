@@ -1,7 +1,7 @@
 :: Revelation Ivory Aftercare Widgets [widget]
 <<widget 'wraith-return-dream-check'>>
   <<ivory-necklace-check>>
-  <<set _ivoryDreamReady to _ivorySafe and $RBR.necklace.returned
+  <<set _ivoryDreamReady to _ivorySafe and _ivoryReturned
     and $RBR.necklace.aftercare is 'dream' and !Time.isBloodMoon()
     and !$wraith?.hunt and !$foresthunt and !$controlled
     and !['dead', 'sold'].includes($wraith?.offspring) and !($wraithAngerCooldown gt 0)
@@ -47,7 +47,7 @@
     and ($passage is 'Deadwood Reblooms Property Home' ? $_ivoryEstate.household.common : $_ivoryEstate.household.bedroom)
       .some(resident => resident.id === _args[0])
     and $_ivoryEstate.life.free(_args[0], _args[1] ?? 15)>>
-  <<set _ivoryTalkReady to _ivorySafe and $RBR.necklace.returned
+  <<set _ivoryTalkReady to _ivorySafe and _ivoryReturned
     and ['talk', 'shore'].includes($RBR.necklace.aftercare)
     and !$RBR.necklace.confidants.includes(_args[0]) and C.npc[_args[0]]?.init is 1>>
   <<if _ivoryTalkReady>>

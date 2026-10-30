@@ -6,7 +6,6 @@ export const version = maplebirch.modUtils.getMod('revelation-the-book-of-return
 export const DEFAULT_REVELATION_STATE = {
   wraithVisitDay: -1,
   necklace: {
-    returned: false,
     returnedOnce: false,
     retaken: 0,
     advised: false,

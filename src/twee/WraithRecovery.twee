@@ -5,7 +5,7 @@
       <<set $_ivoryStock to $specialClothes.some(item => item.name is 'ivory necklace')>>
       <<if !$_ivoryStock>><<run $specialClothes.push({ name: 'ivory necklace', unlocked: 0 })>><</if>>
     <</if>>
-    <<if $RBR.necklace.returned or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'>>
+    <<if $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'>>
       <<ivory-necklace-clothes 'clear'>>
     <</if>>
     <<if $RBR.necklace.stage and $RBR.necklace.attemptDay isnot Math.floor(Time.days)>>
@@ -37,8 +37,7 @@
     <<if $_ivoryRemoved>><<updateallure>><<updatesidebarimg>><<updatesidebardescription>><</if>>
   <<elseif _args[0] is 'give' and maplebirch.get('RBR')>>
     <<if (!$RBR.necklace.reclaimed and $necklaceThief isnot 'player') or $RBR.necklace.clothed
-        or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'
-        or $RBR.necklace.returned>><<exit>><</if>>
+        or $museumAntiques?.antiques?.antiqueivorynecklace isnot 'found'>><<exit>><</if>>
     <!-- 先记录交付，再由原生衣柜接管保存与穿戴，刷新或读档不再发一件。 -->
     <<set $RBR.necklace.clothed to true>>
     <<generalSend 'wardrobe' 'neck' 'ivory necklace'>>
@@ -48,7 +47,6 @@
 
 <<widget 'ivory-necklace-learn'>>
   <<if $RBR?.necklace and !$replayScene and !$statFreeze and !$frozenValues
-      and !$RBR.necklace.returned
       and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
     <<set $RBR.necklace.known to true>>
   <</if>>
@@ -57,7 +55,7 @@
 <<widget 'ivory-necklace-recovery-check'>>
   <<ivory-necklace-check>>
   <!-- 这些结果由地点、入口和回调共用，局部检定过程则留在各自 widget 内。 -->
-  <<set _ivoryQuinn to Boolean($RBR?.necklace) and !$RBR.necklace.returned
+  <<set _ivoryQuinn to Boolean($RBR?.necklace)
     and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace)>>
   <<set _ivoryRecovery to _ivorySafe and _ivoryQuinn and $RBR.necklace.known
     and $location is 'townhall' and $outside is 0 and $exposed lte 0

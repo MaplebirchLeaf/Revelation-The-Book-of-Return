@@ -23,14 +23,15 @@
 
 <<widget 'ivory-necklace-check'>>
   <<silently>>
+    <!-- 原版古董状态决定实物去向；模组只记录是否曾经归还。 -->
+    <<set _ivoryReturned to Boolean($RBR?.necklace?.returnedOnce)
+      and $museumAntiques?.antiques?.antiqueivorynecklace is 'notFound'>>
     <<set _ivorySafe to Boolean(maplebirch.get('RBR')) and Boolean($RBR?.necklace)
       and !$combat and !$possessed and !$replayScene and !$statFreeze
       and !$activeNightmare and !$frozenValues
       and !$nextPassage and !$nextPassageCheck and !$eventforced
       and $stress lt $stressmax and !isPregnancyEnding()>>
-    <<set $_ivoryHeld to $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
-      and ($RBR?.necklace?.reclaimed or ($necklaceThief is 'player' and $antiquemoney gte 2000))>>
-    <<set _ivoryReady to _ivorySafe and $_ivoryHeld and !$RBR.necklace.returned
+    <<set _ivoryReady to _ivorySafe and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
       and $location is 'lake_ruin' and !Time.isBloodMoon()
       and $oxygen gt 0 and !pcAreArmsBound('both')
       and ['Lake Ruin Plinth', 'Revelation Ivory Necklace Return'].includes($passage)>>
@@ -39,7 +40,7 @@
 
 <<widget 'ivory-necklace-link'>>
   <<ivory-necklace-check>>
-  <<if _ivorySafe and $RBR.necklace.returned and _leave>>
+  <<if _ivorySafe and _ivoryReturned and _leave>>
     <span class='red'><<lanSwitch 'The necklace is still on the plinth. Taking it again will bring back the wraith\'s full obsession.' '项链仍在基座上。再次拿走它，会重新招来怨灵满额的痴迷。'>></span><br>
   <<elseif _ivoryReady and _leave>>
     <<icon 'clothes/ivory-necklace.png'>>
@@ -49,8 +50,8 @@
 <</widget>>
 
 <<widget 'wraith-necklace-retake'>>
-  <<if $RBR?.necklace?.returned and !$replayScene and !$statFreeze>>
-    <<set $RBR.necklace.returned to false>>
+  <<if $RBR?.necklace?.returnedOnce and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'
+      and !$replayScene and !$statFreeze>>
     <<set $RBR.necklace.retaken to ($RBR.necklace.retaken ?? 0) + 1>>
     <!-- 不替未登场的怨灵初始化。已登场时重算原版盗取状态，痴迷20由原版取物页结算。 -->
     <<if C.npc['Ivory Wraith']?.init is 1>><<checkWraith>><</if>>
@@ -60,7 +61,7 @@
 <<widget 'revelation-wraith-visit-check'>>
   <<ivory-necklace-check>>
   <<set _wraithVisitAngry to ['dead', 'sold'].includes($wraith?.offspring) or $wraithAngerCooldown gt 0>>
-  <<set _wraithVisitHere to _ivorySafe and $RBR.necklace.returned
+  <<set _wraithVisitHere to _ivorySafe and _ivoryReturned
     and $location is 'lake' and $outside is 1 and $bus is 'lakeshore'
     and ['Lake Shore', 'Revelation Wraith Shore'].includes($passage)
     and $wraith?.state is 'active' and $wraith.init and C.npc['Ivory Wraith']?.init is 1
@@ -86,13 +87,13 @@
   <<ivory-necklace-check>>
   <<if _ivorySafe and $location is 'forest_shop' and _gwylanLocation is 'shop'
       and C.npc.Gwylan.init is 1 and ($necklaceThief is 'player' or $RBR.necklace.reclaimed)
-      and ((!$RBR.necklace.returned and !$RBR.necklace.advised)
-      or ($RBR.necklace.returned and !$RBR.necklace.followedUp))>>
+      and ((!_ivoryReturned and !$RBR.necklace.advised)
+      or (_ivoryReturned and !$RBR.necklace.followedUp))>>
     <<socialiseicon 'ask'>>
-    <<lanLink `[$RBR.necklace.returned ? 'Tell Gwylan you returned the necklace (0:10)' : 'Ask Gwylan about returning the ivory necklace (0:10)', $RBR.necklace.returned ? '告诉格威岚你归还了项链 (0:10)' : '询问格威岚能否归还象牙项链 (0:10)']`>>
+    <<lanLink `[_ivoryReturned ? 'Tell Gwylan you returned the necklace (0:10)' : 'Ask Gwylan about returning the ivory necklace (0:10)', _ivoryReturned ? '告诉格威岚你归还了项链 (0:10)' : '询问格威岚能否归还象牙项链 (0:10)']`>>
       <<ivory-necklace-check>>
       <<if _ivorySafe and $location is 'forest_shop' and _gwylanLocation is 'shop'>>
-        <<set _ivoryFollowup to $RBR.necklace.returned>>
+        <<set _ivoryFollowup to _ivoryReturned>>
         <<if (!_ivoryFollowup and !$RBR.necklace.advised) or (_ivoryFollowup and !$RBR.necklace.followedUp)>>
           <<set _ivorySource to $passage>>
           <<pass 10>>
@@ -121,15 +122,16 @@
 <</widget>>
 
 <<widget 'ivory-necklace-journal'>>
+  <<ivory-necklace-check>>
   <<if maplebirch.get('RBR') and $RBR?.necklace
       and !$statFreeze and !$replayScene
-      and ($RBR.necklace.returned ? ($RBR.necklace.advised and !$RBR.necklace.followedUp)
+      and (_ivoryReturned ? ($RBR.necklace.advised and !$RBR.necklace.followedUp)
           or ($RBR.necklace.aftercare isnot 'complete' and !['dead', 'sold'].includes($wraith?.offspring))
         : ($RBR.necklace.known and ['talk', 'museum'].includes($museumAntiques?.antiques?.antiqueivorynecklace))
           or (($necklaceThief is 'player' or $RBR.necklace.reclaimed) and $museumAntiques?.antiques?.antiqueivorynecklace is 'found'))>>
     <<revelation-card 'The ivory necklace' '象牙项链'>>
       <ul class='journal'>
-          <<if $RBR.necklace.returned>>
+          <<if _ivoryReturned>>
             <<wraith-return-journal>>
             <<if $RBR.necklace.advised and !$RBR.necklace.followedUp>>
               <li><<lanSwitch 'You can tell Gwylan at the forest shop that you returned the necklace.' '下次去森林商店时，可以告诉格威岚，你已经归还了项链。'>></li>
@@ -199,11 +201,10 @@
     <<set _ivorySource to $passage>>
     <<set _ivoryFirstReturn to !$RBR.necklace.returnedOnce>>
     <!-- 先交还实物、扣除待售账目，再走原版水下行动，时间钩子重入也不会重复结算。 -->
-    <<set $RBR.necklace.returned to true>>
+    <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
     <<set $RBR.necklace.returnedOnce to true>>
     <<if _ivoryFirstReturn>><<if maplebirch.get('Psyche')>><<sanity 75>><<psyche-rest 0 250>><</if>><</if>>
     <<set $RBR.wraithVisitDay to Math.floor(Time.days)>>
-    <<museumAntiqueStatus 'antiqueivorynecklace' 'notFound'>>
     <<if !$RBR.necklace.reclaimed>><<set $antiquemoney -= 2000>><</if>>
     <<if ['haunt', 'despair'].includes($wraith?.state)>><<set $wraith.state to 'active'>><</if>>
     <<if C.npc['Ivory Wraith']?.init is 1
@@ -227,7 +228,8 @@
   <<getouticon>><<lanLink ['Continue', '继续'] `$nextPassage || 'Lake Ruin Deep'`>><</lanLink>><br>
   <<exit>>
 <</if>>
-<<if !$RBR?.necklace?.returned>>
+<<ivory-necklace-check>>
+<<if !_ivoryReturned>>
   <<swimicon 'back'>><<lanLink ['Leave', '离开'] 'Lake Ruin Deep'>><</lanLink>><br>
   <<exit>>
 <</if>>
@@ -276,7 +278,8 @@
   <<getouticon>><<lanLink ['Return to the shop', '返回商店'] 'Forest Shop'>><</lanLink>><br>
   <<exit>>
 <</if>>
-<<if $RBR.necklace.returned>>
+<<ivory-necklace-check>>
+<<if _ivoryReturned>>
   <<language>>
     <<option 'EN'>>
       Gwylan listens without interrupting. When you describe the hand reaching out of the darkness, <<he>> stops turning the ring on <<his>> finger.
