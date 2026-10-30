@@ -262,13 +262,13 @@
       <<tficon 'cow'>><<lanLink ['Touch Robin with your horn (0:10)', '用角轻碰罗宾 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'cow'>><</lanLink>><br>
     <</if>>
     <<if _robinForms.includes('horse')>>
-      <<= maplebirch.get('MoreTransformations').Horse.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><</lanLink>><br>
+      <<= maplebirch.get('MoreTransformations').Horse.transformation.icon>><<lanLink ['Let Robin brush your tail (0:10)', '让罗宾梳理你的尾巴 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'horse'>><</lanLink>><br>
     <</if>>
     <<if _robinForms.includes('whale')>>
-      <<= maplebirch.get('MoreTransformations').Whale.icon>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'whale'>><</lanLink>><br>
+      <<iconUi 'whale.png'>><<lanLink ['Show Robin your fins (0:10)', '让罗宾看看你的耳鳍 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'whale'>><</lanLink>><br>
     <</if>>
     <<if _robinForms.includes('raven')>>
-      <<= maplebirch.get('MoreTransformations').Raven.icon>><<lanLink ['Let Robin tidy your wing feathers (0:10)', '让罗宾帮你理顺羽毛 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'raven'>><</lanLink>><br>
+      <<iconUi 'raven.png'>><<lanLink ['Let Robin tidy your wing feathers (0:10)', '让罗宾帮你理顺羽毛 (0:10)'] 'RobinTemple Transformation'>><<set $RobinTemple.transformation_kind to 'raven'>><</lanLink>><br>
     <</if>>
   <</if>>
   <br>

@@ -279,7 +279,7 @@
       <br><br>
       <<if $RBR.necklace.confidants.length>>
         <<if $RBR.necklace.confidants.includes('Robin')>>You remember sitting beside Robin in the familiar room. <</if>>
-        <<if $RBR.necklace.confidants.includes('Sydney')>>You remember Sydney listening on the pew, a finger still between the pages. <</if>>
+        <<if $RBR.necklace.confidants.includes('Sydney')>>You remember Sydney sitting beside you, listening to your dream. <</if>>
         <<if $RBR.necklace.confidants.includes('Gwylan')>>You remember the warmth of Gwylan's cup, and the time <<nnpc_he 'Gwylan'>> gave you to finish it. <</if>>
       <<else>>You feel the ground under your palms, and listen to the water against the shore. <</if>>You do not move closer.
       <br><br>
@@ -293,7 +293,7 @@
       <br><br>
       <<if $RBR.necklace.confidants.length>>
         <<if $RBR.necklace.confidants.includes('Robin')>>你想起和罗宾一起坐在那间熟悉的房间里。<</if>>
-        <<if $RBR.necklace.confidants.includes('Sydney')>>你想起悉尼坐在长椅上听你说话，手指还夹在祈祷书的页间。<</if>>
+        <<if $RBR.necklace.confidants.includes('Sydney')>>你想起悉尼坐在身旁，听你说起那个梦。<</if>>
         <<if $RBR.necklace.confidants.includes('Gwylan')>>你想起格威岚递来的那只温热的杯子，以及<<nnpc_he 'Gwylan'>>留给你慢慢喝完的时间。<</if>>
       <<else>>你用手掌感受身下的泥土，听着湖水拍打岸边。<</if>>你没有靠近。
       <br><br>

@@ -167,7 +167,7 @@
       <br><br>
       When you asked about the change, <<nnpc_he 'Kylar'>> could only describe the night around it. <<nnpc_His 'Kylar'>> parents were excited. They put <<nnpc_him 'Kylar'>> to bed early. Windows broke below. <<nnpc_He 'Kylar'>> hid under the covers. By morning, they were different.
       <br><br>
-      <<if $sydneySeen.includes('Kylar manor')>>Sydney used to visit this house. Their parents knew one another. Then Sydney was told not to come again. You try to recall whether <<nnpc_he 'Sydney'>> ever said why.<br><br><</if>>
+      <<if $sydneySeen?.includes('Kylar manor')>>Sydney used to visit this house. Their parents knew one another. Then Sydney was told not to come again. You try to recall whether <<nnpc_he 'Sydney'>> ever said why.<br><br><</if>>
       <<if $kylar_manor_secret gte 3>>The bishop said Kylar's parents had unknowingly befriended servants of Auriga. He spoke of an altar and a blood moon. They begged for their child to be spared. You remember how easily he admitted what he had done.<br><br><</if>>
       You lie down. A door closes somewhere in the house. Before the footsteps fade, you almost hear someone calling a child downstairs for supper.
     <<option 'CN'>>
@@ -175,7 +175,7 @@
       <br><br>
       问起异变时，<<nnpc_he 'Kylar'>>只能说出围绕它的那个夜晚。父母很兴奋，让<<nnpc_him 'Kylar'>>早点上床。楼下的窗户碎了。<<nnpc_He 'Kylar'>>藏在被子下面。到了早晨，他们就变得不一样了。
       <br><br>
-      <<if $sydneySeen.includes('Kylar manor')>>悉尼以前会来这所房子玩，两家的父母互相认识。后来，悉尼被告知不能再来。你努力回想，<<nnpc_he 'Sydney'>>有没有说过原因。<br><br><</if>>
+      <<if $sydneySeen?.includes('Kylar manor')>>悉尼以前会来这所房子玩，两家的父母互相认识。后来，悉尼被告知不能再来。你努力回想，<<nnpc_he 'Sydney'>>有没有说过原因。<br><br><</if>>
       <<if $kylar_manor_secret gte 3>>主教说过，凯拉尔的父母不知情地结交了奥里加的仆从。他提到染血的祭坛与血色的红月，提到他们哀求放过自己的孩子。你仍记得，他承认这些时语气有多轻描淡写。<br><br><</if>>
       你躺下。房子里有扇门关上。脚步声还没消失，你几乎听见有人喊一个孩子下楼吃晚饭。
   <</language>>

@@ -1,0 +1,58 @@
+:: Temple Field Combat Widgets [widget]
+
+<!-- 开战前沿用实际同行资格，maninit 后再加入，避免原版初始化清空名单。 -->
+<<widget 'temple-field-combat-roster'>>
+  <<set _fieldCombatParty to []>>
+  <<for _fieldCombatName range ['Robin', 'Sydney']>>
+    <<temple-field-companion-check _fieldCombatName 0>>
+    <<if _field_companion>><<run _fieldCombatParty.push(_fieldCombatName)>><</if>>
+  <</for>>
+<</widget>>
+
+<!-- 自动掩护不代替救人、取证或破坏仪式，也不额外增加好感或见习成绩。 -->
+<<widget 'temple-field-support'>>
+  <<if $TempleDuties.case?.id isnot 'ritual' or $TempleDuties.case.stage isnot 'combat'
+      or !$TempleDuties.case.clues.includes('party:' + _args[0].npc.nam)
+      or !['Robin', 'Sydney'].includes(_args[0].npc.nam)
+      or _args[0].npc isnot C.npc[_args[0].npc.nam]>><<exit>><</if>>
+  <<if ['leave', 'defeat'].includes(_args[0].event)>>
+    <<lanSwitch `[_args[0].npc.nam + ' falls back towards the path, breathing hard.', (_args[0].npc.nam is 'Robin' ? '罗宾' : '悉尼') + '喘着气，退向来时的小径。']`>><br>
+    <<exit>>
+  <</if>>
+  <!-- 战斗中不要求职务桌开放；日程、誓约与本人意愿仍由原有检查计算。 -->
+  <<temple-candidate-check _args[0].npc.nam 0>>
+  <<if !_candidatePresent or !_candidateStanding or !_candidateWilling or !_templeCompanionTime
+      or _candidateRank isnot 'monk' or !_candidate.agreed or !_candidate.lessons.includesAll('care', 'wards')>>
+    <<if _args[0].event is 'assist'>><<companions-leave _args[0].npc>><</if>>
+    <<exit>>
+  <</if>>
+  <<switch _args[0].event>>
+    <<case 'effects'>>
+      <<if _args[0].npc.nam is 'Robin'>>
+        <<set _args[0].bonus to 0.08 * Math.clamp(C.npc.Robin.dom / 100, 0, 1) * (1 - C.npc.Robin.trauma / 100) * _args[0].health / _args[0].healthmax>>
+        <<set _args[0].guard to 0.05 * (1 - C.npc.Robin.trauma / 100) * _args[0].health / _args[0].healthmax>>
+      <<else>>
+        <<set _args[0].bonus to 0.05 * _args[0].health / _args[0].healthmax>>
+        <<set _args[0].guard to 0.08 * _args[0].health / _args[0].healthmax>>
+      <</if>>
+    <<case 'assist'>>
+      <<if _args[0].npc.nam is 'Robin'>>
+        <<language>>
+          <<option 'EN'>>
+            <<if C.npc.Robin.trauma gte 40>>Robin holds the way back open, keeping well clear of the reaching hands. "I'm here. You can still get back."<<elseif C.npc.Robin.dom gte 60>>Robin pushes a reaching arm aside and steps back beside you. "This way. I've got you."<<else>>Robin catches your sleeve before someone can get behind you. "Watch out!"<</if>>
+          <<option 'CN'>>
+            <<if C.npc.Robin.trauma gte 40>>罗宾避开伸来的手，守在归路旁。“我在这里。还能退回来。”<<elseif C.npc.Robin.dom gte 60>>罗宾推开伸来的胳膊，退回你身旁。“这边。有我呢。”<<else>>有人试着绕到你身后，罗宾赶紧拉住你的袖子。“小心！”<</if>>
+        <</language>>
+      <<else>>
+        <<run statusCheck('Sydney')>>
+        <<language>>
+          <<option 'EN'>>
+            <<if _sydneyStatus.includes('pure')>>Sydney pushes a hand away from your shoulder. "Leave us alone!" <<nnpc_He 'Sydney'>> stays close as you find your footing.<<else>>Sydney catches a wrist and pulls it away from your clothes. "Let go." <<nnpc_He 'Sydney'>> glances back towards the path.<</if>>
+          <<option 'CN'>>
+            <<if _sydneyStatus.includes('pure')>>悉尼推开伸向你肩膀的手。“离我们远点！”你重新站稳时，<<nnpc_he 'Sydney'>>仍紧挨在身旁。<<else>>悉尼抓住一只手腕，将它从你的衣服上扯开。“松手。”<<nnpc_He 'Sydney'>>回头看了看小径。<</if>>
+        <</language>>
+      <</if>><br>
+    <<case 'stun'>>
+      <<lanSwitch `[_args[0].npc.nam + ' stumbles, struggling to regain balance.', (_args[0].npc.nam is 'Robin' ? '罗宾' : '悉尼') + '脚下一晃，正努力站稳。']`>><br>
+  <</switch>>
+<</widget>>

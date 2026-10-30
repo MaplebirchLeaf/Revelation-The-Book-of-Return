@@ -175,46 +175,7 @@ export default class LostLamb extends Module {
       this.state.date = new DateTime(Time.startDate.year, 9, 1, returning ? 18 : 14, returning ? 30 : 0).timeStamp;
     }
     this.state.active = true;
-    V.player.name = lanSwitch('Kylar', '凯拉尔');
-    V.player.gender = C.npc.Kylar.gender;
-    V.player.sex = C.npc.Kylar.gender;
-    V.player.gender_body = C.npc.Kylar.gender;
-    V.player.gender_posture = C.npc.Kylar.gender;
-    V.player.penisExist = V.player.ballsExist = C.npc.Kylar.gender === 'm';
-    V.player.vaginaExist = C.npc.Kylar.gender === 'f';
-    V.player.breastsize = 0;
-    V.player.bodyshape = 'slender';
-    V.bodysize = 1;
-    V.haircolour = C.npc.Kylar.hairColour;
-    V.hairfringecolour = C.npc.Kylar.hairColour;
-    V.naturalhaircolour = C.npc.Kylar.hairColour;
-    V.hairColourGradient.colours = [V.haircolour, V.haircolour];
-    V.hairFringeColourGradient.colours = [V.haircolour, V.haircolour];
-    V.leftEyeColour = C.npc.Kylar.eyeColour;
-    V.rightEyeColour = C.npc.Kylar.eyeColour;
-    V.hairlength = V.fringelength = 100;
-    V.hairlengthstage = V.fringelengthstage = 'short';
-    V.hairtype = V.fringetype = 'default';
-    // 沿用绝望轮回的演绎清理，避免现实镜片覆盖凯拉尔眼色。
-    Object.assign(V.makeup, {
-      lipstick: 0,
-      eyeshadow: 0,
-      eyelenses: { left: 0, right: 0 },
-      blusher: 0,
-      mascara: 0,
-      mascara_running: 0,
-      pbcolour: 0,
-      browscolour: 0,
-      concealer: 0
-    });
-    V.bellySizeDebug = 0;
-    V.milk_volume = V.milk_amount = V.lactating = 0;
-    V.vaginaWetness = V.penisWetness = V.anusWetness = 0;
-    // 清掉现实衣装，使用原版的普通套装，不把成人衣装带进童年演绎。
-    for (const slot of Object.keys(V.worn)) {
-      if (setup.clothes[slot]) V.worn[slot] = clone(setup.clothes[slot][0]);
-    }
-    new maplebirch.SugarCube.Wikifier(null, '<<upperwear "t-shirt" "white">><<lowerwear "shorts" "black">><<underlowerwear "briefs" "white">><<feetwear "trainers" "black">><<endevent>>');
+    new maplebirch.SugarCube.Wikifier(null, '<<lost-lamb-form>>');
     this.sync();
     return true;
   }

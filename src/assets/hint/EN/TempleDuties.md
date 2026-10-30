@@ -71,6 +71,7 @@ Discuss appointment at each companion's temple pew. They must be monks/nuns with
 
 1. Arrange two lessons through the candidates' book: receiving a parishioner and inspecting wards, **thirty minutes each**.
 2. After accepting the warehouse or shore assignment, invite companions to meet on site before setting out. Leave **ninety minutes** free.
+   When people block your way during the shore investigation, Robin and Sydney watch your flank and help keep reaching hands off you. Robin's confidence and trauma affect how much help Robin can give.
 3. Helping with a rescue, evidence or dangerous ritual earns appointment experience. Finish the assignment and report truthfully. After the shore investigation, you can also return with companions still needing experience to escort a witness or check records.
 4. Accompany a **fifteen-minute interview**, then allow **six to seven hours** for the ordination trial. You can pause and continue later. With Robin, **09:00 on a school-free weekday** is a suitable start.
 

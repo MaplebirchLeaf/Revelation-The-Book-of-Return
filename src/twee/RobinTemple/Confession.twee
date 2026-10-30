@@ -1121,8 +1121,20 @@
 <</if>>
 
 :: RobinTemple Confession Sex Finish
+<<if $nextPassage or $nextPassageCheck>>
+  <span id='next'><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex Finish'>><</lanLink>></span><<nexttext>><<exit>>
+<</if>>
+<<if $combat isnot 1 or !$RobinTemple.confession or $NPCList[0]?.fullDescription isnot 'Robin'>>
+  <<loveicon 'kiss'>><<lanLink ['Next', '继续'] 'RobinTemple Confession Tempt End'>><</lanLink>><br><<exit>>
+<</if>>
 <<temple_effects>><<effects>><<run statusCheck('Robin')>>
-<<if $enemyarousal gte $enemyarousalmax>>
+<<if $nextPassage or $nextPassageCheck>>
+  <span id='next'><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex Finish'>><</lanLink>></span><<nexttext>><<exit>>
+<</if>>
+<<if $possessed>>
+  <span id='next'><<lanLink ['Next', '继续'] 'RobinTemple Confession Sex'>><</lanLink>></span><<nexttext>><<exit>>
+<</if>>
+<<if maplebirch.combat.climax>>
   <<if $RobinTemple.confession.state is 'present'>>
     <<ejaculation 'short'>>
     <<language>>

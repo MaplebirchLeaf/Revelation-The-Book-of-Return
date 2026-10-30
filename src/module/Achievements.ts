@@ -22,6 +22,24 @@ class Achievements {
         };
       }
     });
+
+    switch (module) {
+      case 'TempleDuties': {
+        maplebirch.dynamic.regStateEvent('append', 'revelation-ordination-feat', {
+          output: 'earnFeat "Revelation Ordination"',
+          cond: () =>
+            !V.replayScene && !!V.feats?.currentSave && V.feats.currentSave['Revelation Ordination'] === undefined && !!maplebirch.get('TempleDuties') && (V.TempleDuties?.ordained ?? -1) >= 0
+        });
+        break;
+      }
+      case 'TempleChoir': {
+        maplebirch.dynamic.regStateEvent('append', 'revelation-choir-lead-feat', {
+          output: 'earnFeat "Revelation Choir Lead"',
+          cond: () => !V.replayScene && !!V.feats?.currentSave && V.feats.currentSave['Revelation Choir Lead'] === undefined && !!maplebirch.get('TempleChoir') && V.TempleChoir?.lead === true
+        });
+        break;
+      }
+    }
   }
 }
 

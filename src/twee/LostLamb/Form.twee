@@ -1,0 +1,38 @@
+:: Lost Lamb Form Widgets [widget]
+
+<!-- 原版演绎清理后设置梦中的外观，醒来仍由同一份原版快照恢复。 -->
+<<widget 'lost-lamb-form'>><<silently>>
+  <<set $player.name to lanSwitch('Kylar', '凯拉尔')>>
+  <<set $player.gender to C.npc.Kylar.gender>>
+  <<set $player.sex to C.npc.Kylar.gender>>
+  <<set $player.gender_body to C.npc.Kylar.gender>>
+  <<set $player.gender_posture to C.npc.Kylar.gender>>
+  <<set $player.ballsExist to C.npc.Kylar.gender is 'm'>>
+  <<set $player.penisExist to $player.ballsExist>>
+  <<set $player.vaginaExist to C.npc.Kylar.gender is 'f'>>
+  <<set $player.breastsize to 0>>
+  <<set $player.bodyshape to 'slender'>>
+  <<set $bodysize to 1>>
+  <<set $haircolour to C.npc.Kylar.hairColour>>
+  <<set $hairfringecolour to C.npc.Kylar.hairColour>>
+  <<set $naturalhaircolour to C.npc.Kylar.hairColour>>
+  <<set $hairColourGradient.colours to [$haircolour, $haircolour]>>
+  <<set $hairFringeColourGradient.colours to [$haircolour, $haircolour]>>
+  <<set $leftEyeColour to C.npc.Kylar.eyeColour>>
+  <<set $rightEyeColour to C.npc.Kylar.eyeColour>>
+  <<set $fringelength to 100>><<set $hairlength to $fringelength>>
+  <<set $fringelengthstage to 'short'>><<set $hairlengthstage to $fringelengthstage>>
+  <<set $fringetype to 'default'>><<set $hairtype to $fringetype>>
+  <!-- 不让现实的妆容、镜片与身体状态覆盖梦中人物。 -->
+  <<set $makeup.lipstick to 0, $makeup.eyeshadow to 0, $makeup.eyelenses to { left: 0, right: 0 },
+    $makeup.blusher to 0, $makeup.mascara to 0, $makeup.mascara_running to 0,
+    $makeup.pbcolour to 0, $makeup.browscolour to 0, $makeup.concealer to 0>>
+  <<set $bellySizeDebug to 0>>
+  <<set $lactating to 0, $milk_amount to 0, $milk_volume to 0>>
+  <<set $anusWetness to 0, $penisWetness to 0, $vaginaWetness to 0>>
+  <!-- 使用原版普通衣装，不把现实衣装带进童年演绎。 -->
+  <<for _lambFormSlot range Object.keys($worn)>>
+    <<if setup.clothes[_lambFormSlot]>><<set $worn[_lambFormSlot] to clone(setup.clothes[_lambFormSlot][0])>><</if>>
+  <</for>>
+  <<upperwear 't-shirt' 'white'>><<lowerwear 'shorts' 'black'>><<underlowerwear 'briefs' 'white'>><<feetwear 'trainers' 'black'>><<endevent>>
+<</silently>><</widget>>

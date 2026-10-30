@@ -66,6 +66,7 @@
       and !$TempleDuties.case.clues.includes('den-humans-cleared')>>
     <<set $TempleDuties.case.clues to $TempleDuties.case.clues.filter(clue => !['den-human-won', 'den-human-spent', 'den-retreat'].includes(clue))>>
     <<set $TempleDuties.case.result to ''>>
+    <<temple-field-combat-roster>>
     <<endevent>>
     <<generateCultist 1>><<generateCultist 2>>
     <<if !$TempleDuties.case.clues.includes('den-guards')>><<generateCultist 3>><</if>>
@@ -78,6 +79,7 @@
     <<set $enemytrust to -100, $enemyanger to 200>>
     <<set $TempleDuties.case.stage to 'combat'>>
     <<run $TempleDuties.case.clues.pushUnique('den-human-combat')>>
+    <<for _fieldCombatName range _fieldCombatParty>><<companions-add `C.npc[_fieldCombatName]` 'temple-field-support'>><</for>>
   <</if>>
 <</widget>>
 
@@ -198,7 +200,7 @@
 <<effects>><<effectsman>><<man>><<stateman>><<actionsman>>
 <<temple-den-priority>>
 <<if !_denForced>>
-  <<if $enemyarousalmax gt 0 and $enemyarousal gte $enemyarousalmax>>
+  <<if maplebirch.combat.climax>>
     <<run $TempleDuties.case.clues.pushUnique('den-human-spent')>>
   <<elseif $enemyhealth lte 0>>
     <<run $TempleDuties.case.clues.pushUnique('den-human-won')>>

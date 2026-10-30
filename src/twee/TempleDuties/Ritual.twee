@@ -107,6 +107,7 @@
       <</if>>
     <</if>>
     <<run $TempleDuties.case.clues.pushUnique('confronted')>>
+    <<temple-field-combat-roster>>
     <<endevent>>
     <<generateCultist 1>>
     <<if !$TempleDuties.case.clues.includes('marks') and !$TempleDuties.case.clues.includes('help')>><<generateCultist 2>><</if>>
@@ -114,6 +115,7 @@
     <<set $enemytrust -= 100, $enemyanger += 200>>
     <<npcidlegenitals>>
     <<set $TempleDuties.case.stage to 'combat'>>
+    <<for _fieldCombatName range _fieldCombatParty>><<companions-add `C.npc[_fieldCombatName]` 'temple-field-support'>><</for>>
   <</if>>
 <</widget>>
 
@@ -167,7 +169,7 @@
 <!-- 原版临时结束标记不跨页，只保存实际胜败。人类战不等于已经救人。 -->
 <<temple-den-priority>>
 <<if !_denForced>>
-<<if $enemyarousal gte $enemyarousalmax and $enemyarousalmax gt 0>>
+<<if maplebirch.combat.climax>>
   <<run $TempleDuties.case.clues.pushUnique('cultist-spent')>>
 <<elseif $enemyhealth lte 0>>
   <<run $TempleDuties.case.clues.pushUnique('cultist-defeated')>>

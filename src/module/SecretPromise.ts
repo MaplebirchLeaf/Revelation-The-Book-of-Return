@@ -15,8 +15,8 @@ export default class SecretPromise {
 
   /** 不屈意志抵抗耳液操控，不免除仪式代价或幽灵追猎。 */
   public get unyielding(): boolean {
-    const vanillaPlus = this.temple.core.get('VanillaPlus') as { hasTrait(trait: 'willpower'): boolean } | undefined;
-    return vanillaPlus?.hasTrait('willpower') ?? false;
+    const vanillaPlus = this.temple.core.get('VanillaPlus') as { unlocked(trait: 'willpower'): boolean } | undefined;
+    return vanillaPlus?.unlocked('willpower') ?? false;
   }
 
   public get known(): boolean {

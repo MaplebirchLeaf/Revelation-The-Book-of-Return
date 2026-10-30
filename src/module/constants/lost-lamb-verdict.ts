@@ -156,7 +156,7 @@ export const LOST_LAMB_VERDICT_SCENES: Record<string, LostLambScene> = {
     outside: true,
     note: ['Sydney cannot explain the adults’ decision for them.', '悉尼不能替大人解释他们的决定。'],
     choices: [
-      choice('verdict-sydney-let', 'Let Sydney go when called', '有人喊时，让悉尼走', 'verdict-return', { mark: 'verdict-let-sydney-go', change: { fear: 4, doubt: 12 } }),
+      choice('verdict-sydney-let', 'Let Sydney go when called', '有人喊时，让悉尼走', 'verdict-return', { change: { fear: 4, doubt: 12 } }),
       choice('verdict-sydney-demand', 'Ask for one clear reason first', '先要一个明确的理由', 'verdict-return', { mark: 'verdict-demanded-sydney', change: { notice: 8, doubt: 6, fear: 8 } })
     ]
   },

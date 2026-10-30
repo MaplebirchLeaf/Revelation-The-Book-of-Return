@@ -29,7 +29,6 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
       choice('stay-play-cards', 'Play the card game', '玩纸牌游戏', 'stay-cards', { mark: 'stay-cards', once: true, minutes: 15 }),
       choice('stay-play-hide', 'Play hide-and-seek', '玩捉迷藏', 'stay-hide', { mark: 'stay-hidden', once: true, minutes: 15 }),
       choice('stay-open-book', 'Check the picture in the book', '翻开书里的图画', 'stay-reading', {
-        mark: 'stay-book',
         once: true,
         minutes: 10,
         needs: { stat: 'doubt', min: 8 },
@@ -43,7 +42,7 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     weather: 'lightPrecipitation',
     choices: [
       choice('stay-cards-fair', 'Put the cards back in the agreed order', '按说好的顺序重新摆牌', 'stay-cards-end', { mark: 'stay-fair', change: { doubt: 5, fear: -3 } }),
-      choice('stay-cards-win', 'Try to make the missing card count', '坚持把漏掉的那张也算进去', 'stay-cards-end', { mark: 'stay-score', change: { fear: 10, notice: 15 } })
+      choice('stay-cards-win', 'Try to make the missing card count', '坚持把漏掉的那张也算进去', 'stay-cards-end', { change: { fear: 10, notice: 15 } })
     ]
   },
   'stay-cards-end': { part: 'stay', weather: 'lightPrecipitation', choices: [choice('stay-cards-back', 'Choose another game', '再选一个游戏', 'stay-rain-hub')] },
@@ -102,7 +101,7 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     part: 'stay',
     outside: true,
     choices: [
-      choice('stay-gate-return', 'Go back before the lamps come on', '在路灯亮起前回去', 'stay-note', { mark: 'stay-went-home', minutes: 20, change: { fear: -3 } }),
+      choice('stay-gate-return', 'Go back before the lamps come on', '在路灯亮起前回去', 'stay-note', { minutes: 20, change: { fear: -3 } }),
       choice('stay-gate-late', 'Stay until the first lamp lights', '等到第一盏路灯亮起', 'stay-note', { mark: 'stay-long-wait', minutes: 90, change: { fear: 10, notice: 5 } })
     ]
   },
@@ -110,7 +109,7 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
     part: 'stay',
     choices: [
       choice('stay-note-send', 'Leave the note with the post', '把字条放进待寄的信里', 'stay-questions', { icon: 'lost-lamb/folded-note.png', mark: 'stay-sent' }),
-      choice('stay-note-pocket', 'Keep the note in your pocket', '把字条留在口袋里', 'stay-questions', { icon: 'lost-lamb/folded-note.png', mark: 'stay-unsent', change: { fear: 3 } })
+      choice('stay-note-pocket', 'Keep the note in your pocket', '把字条留在口袋里', 'stay-questions', { icon: 'lost-lamb/folded-note.png', change: { fear: 3 } })
     ]
   },
   'stay-questions': {
@@ -196,7 +195,6 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
       choice('stay-move-cups', 'Change the places of the cups', '换一下杯子的位置', 'stay-cups', { mark: 'stay-cups', once: true, minutes: 10, change: { doubt: 8 } }),
       choice('stay-change-rules', 'Let Sydney choose the rules', '让悉尼决定游戏规则', 'stay-rules', { mark: 'stay-rules', once: true, minutes: 10, change: { doubt: 8, notice: 8 } }),
       choice('stay-check-drawing', 'Try the door in the drawing', '试试画里的门', 'stay-drawing-check', {
-        mark: 'stay-tested-drawing',
         once: true,
         minutes: 10,
         needs: { stat: 'doubt', min: 35 },
@@ -274,7 +272,7 @@ export const LOST_LAMB_STAY_SCENES: Record<string, LostLambScene> = {
         mark: 'stay-trusted-pause',
         change: { fear: -5 }
       }),
-      choice('stay-shed-open', 'Open the side with daylight', '推开透着白昼的那一侧', 'stay-heard', { mark: 'stay-trusted-light', change: { fear: 8 } })
+      choice('stay-shed-open', 'Open the side with daylight', '推开透着白昼的那一侧', 'stay-heard', { change: { fear: 8 } })
     ]
   },
   'stay-heard': { part: 'stay', outside: true, choices: [choice('stay-heard-call', 'Say Sydney’s name once', '只喊一声悉尼的名字', 'stay-grip')] },

@@ -34,7 +34,7 @@ On **Sunday, 11:00–13:00**, choose **Sing with the choir (1:00)** in the hall.
 
 Following the melody is easier. Harmony needs more skill, and approved singers can lead. A clear verse earns **2 points**, or **3 when leading**. An unsteady verse earns **1 point**.
 
-Joining brings the mass's holy effects: full angels gain stress and trauma relief, while fallen angels and full demons gain stress, trauma and pain. Fallen angels also gain more purity. These effects remain if you leave early.
+Completing the service brings the mass's holy effects: full angels gain stress and trauma relief, while fallen angels and full demons gain stress, trauma and pain. Fallen angels also gain more purity.
 
 You can attend mass once daily. Finish the service and hear Jordan's assessment to record attendance, grace and earnings. Good performance also improves Jordan's affection.
 

@@ -340,7 +340,7 @@
 <<effects>>
 <<if $RobinTemple.intimacy_active>>
 <!-- 原版 passage：Sydney Temple Pure Sex Finish。分支、着装恢复与返回顺序照原版，台词全部按罗宾的人设重写。 -->
-  <<if $enemyarousal gte $enemyarousalmax>>
+  <<if maplebirch.combat.climax>>
     <<ejaculation>>
     <<language>>
       <<option 'EN'>>

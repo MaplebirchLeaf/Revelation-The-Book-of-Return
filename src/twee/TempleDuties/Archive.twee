@@ -252,10 +252,10 @@
         <<temple-duty-action `['Pay for the repairs (0:05)', '支付修缮款 (0:05)']` 5 'Revelation Temple Task Done'>>
           <<if $TempleDuties.archive[_repair] lt 0>>
             <<set _repairPaid to false>>
-            <<if typeof maplebirch.get('Finance')?.donations?.sponsor is 'function'>>
-              <<set _repairPaid to maplebirch.get('Finance').donations.sponsor('temple', _repairCost / 100, { EN: _repairName[0], CN: _repairName[1] })>>
-            <<elseif $money gte _repairCost>>
-              <<money `-_repairCost` 'templeRestoration'>>
+            <<set $_repairCash to Math.min($money, _repairCost)>>
+            <<if $_repairCash is _repairCost or maplebirch.get('Finance')?.payFromBankPennies(_repairCost - $_repairCash) is 'ok'>>
+              <<set $money -= $_repairCash>>
+              <<money `-_repairCost` 'templeRestoration' `{ recordOnly: true }`>>
               <<set _repairPaid to true>>
             <</if>>
             <<if _repairPaid>>

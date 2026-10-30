@@ -237,17 +237,27 @@
   <<option 'EN'>>
     The necklace settles on the stone. You take your hands away.
     <br><br>
-    <span @class="'wraith ' + basicHypnoCss()">A pale hand rests over it. You never saw anyone approach. For a moment, a face hangs beyond the plinth, its eyes fixed on the chain. The fingers close around it, then slowly withdraw.</span>
-    <br><br>
-    When you blink, the figure is gone. The necklace remains on the stone, its blue gemstones barely visible in the dark.
+    <<if $wraithIntro>>
+      <span @class="'wraith ' + basicHypnoCss()">You turn towards the doorway. A pale hand rests against the frame. Beyond it, the figure watches the necklace. It does not enter.</span>
+      <br><br>
+      When you blink, the figure is gone.
+    <<else>>
+      Water stirs beyond the doorway. You watch the darkness for a moment, but see nothing.
+    <</if>>
+    The necklace remains on the stone, its blue gemstones barely visible in the dark.
     <br><br>
     You look down at your empty hands. <<if $RBR.necklace.retaken gt 0>>You have done this before. You leave the necklace where it is, and turn towards the doorway.<<else>>Your fingertips are cold, but the tight feeling at the back of your head eases a little. You turn towards the doorway before your breath runs out.<</if>>
   <<option 'CN'>>
     项链落在石面上。你把双手移开。
     <br><br>
-    <span @class="'wraith ' + basicHypnoCss()">一只苍白的手搭在它上方。你没有看见有谁游过来。一张脸悬在基座后方，双眼紧盯着链子。那几根手指握住它，又慢慢收了回去。</span>
-    <br><br>
-    你眨了一下眼，那身影已经不见了。项链仍留在石面上，蓝色宝石在黑暗中隐约可见。
+    <<if $wraithIntro>>
+      <span @class="'wraith ' + basicHypnoCss()">你转向门口。一只苍白的手按在门框上。那道身影留在门外，紧盯着项链，没有进来。</span>
+      <br><br>
+      你眨了一下眼，那身影已经不见了。
+    <<else>>
+      门外的水流动了动。你望着那片黑暗，什么也没有看见。
+    <</if>>
+    项链仍留在石面上，蓝色宝石在黑暗中隐约可见。
     <br><br>
     你低头看着空空的双手。<<if $RBR.necklace.retaken gt 0>>同样的事，你已经做过一次了。你把项链留在原处，转向门口。<<else>>指尖还有些发冷，脑后那股紧绷的感觉却松了一些。你在憋不住气之前转向门口。<</if>>
 <</language>>
@@ -282,13 +292,13 @@
 <<if _ivoryReturned>>
   <<language>>
     <<option 'EN'>>
-      Gwylan listens without interrupting. When you describe the hand reaching out of the darkness, <<he>> stops turning the ring on <<his>> finger.
+      Gwylan listens without interrupting. As you describe returning the necklace, <<he>> stops turning the ring on <<his>> finger.
       <br><br>
       "Then leave it there," <<he>> says. "Don't go looking for thanks. If that was what it wanted from you, you've given it back."
       <br><br>
       You ask whether it will leave you alone now. Gwylan looks at you for a moment. "I didn't say that." <<He>> lets go of the ring. "Go home. Eat something. You look cold."
     <<option 'CN'>>
-      格威岚没有打断你。听见你说有只手从黑暗中伸出来，<<he>>停下了转动指上戒指的动作。
+      格威岚没有打断你。听你说起归还项链的经过，<<he>>停下了转动指上戒指的动作。
       <br><br>
       “那就把它留在那里，”<<he>>说，“别再回去讨一句感谢。如果它向你要的就是这个，你已经还了。”
       <br><br>
@@ -380,11 +390,11 @@
 <div id='revelation-wraith-visit'>
   <<language>>
     <<option 'EN'>>
-      You find a dry place to sit, well back from the water. You remember the pale hand resting over the blue gemstones before leaving the necklace on the plinth. Nothing tells you whether the figure remembers you any differently.
+      You find a dry place to sit, well back from the water. You remember leaving the necklace on the plinth. Nothing tells you whether the figure remembers you any differently.
       <br><br>
       You could stay a while, without going into the lake or calling anything closer.
     <<option 'CN'>>
-      你找了块干燥的地方坐下，与水边隔着一段距离。你记得那只苍白的手曾搭在蓝色宝石上方，又将项链留在基座上。你不知道，那身影如今会怎样看待你。
+      你找了块干燥的地方坐下，与水边隔着一段距离。你想起自己将项链留在基座上。你不知道，那身影如今会怎样看待你。
       <br><br>
       你可以在这里待一会儿。不下水，也不招呼什么东西靠近。
   <</language>>

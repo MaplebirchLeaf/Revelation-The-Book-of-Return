@@ -237,9 +237,10 @@
 <</if>>
 
 :: RobinTemple Bed Sex Finish
-<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>><<person1>>
+<<set $outside to 0>><<set $location to 'temple'>><<temple_effects>><<effects>>
 <<if $RobinTemple.intimacy_active>>
-  <<if $enemyarousal gte $enemyarousalmax>>
+  <<person1>>
+  <<if maplebirch.combat.climax>>
     <<ejaculation>><<npcincr Robin lust -20>>
   <</if>>
   <<if $consensual isnot 1>>
@@ -251,7 +252,7 @@
     <</language>>
   <<else>>
     <<takeKissVirginity 'Robin' 'loveInterest'>>
-    <<if $enemyarousal gte $enemyarousalmax>>
+    <<if maplebirch.combat.climax>>
       <<language>>
         <<option 'EN'>>
           Robin shudders against you, holding on until it passes. <span @class="'pink ' + basicJitterCss()">"That was... a lot,"</span> <<he>> says between breaths, then laughs, embarrassed. "I think I needed that."
