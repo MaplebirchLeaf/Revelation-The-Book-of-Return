@@ -121,7 +121,6 @@
     <</if>>
     <<for _field_name range ['Robin', 'Sydney']>>
       <<set _field_candidate to $TempleDuties.candidates[_field_name]>>
-      <<set _field_candidate.deeds to _field_candidate.deeds ?? []>>
       <<set _field_deeds to _file.clues.filter(clue => clue.startsWith('deed:' + _field_name + ':')).map(clue => clue.split(':')[2])>>
       <<if _file.id is 'crate' and _file.clues.includesAll('party:' + _field_name, 'worked:' + _field_name)>>
         <<run _field_deeds.pushUnique(_field_name is 'Robin' ? 'rescue' : 'evidence')>>
